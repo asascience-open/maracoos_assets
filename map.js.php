@@ -1107,69 +1107,6 @@ function init() {
         ]);
       });
     }}
-    ,tbar             : [
-      {
-         text    : 'Bookmark'
-        ,icon    : 'img/Places-bookmarks-icon.png'
-        ,handler : function() {
-          var p = {
-             'center'  : map.getCenter().lon + ',' + map.getCenter().lat
-            ,'zoom'    : map.getZoom()
-            ,'base'    : ''
-            ,'lyrs'    : []
-            ,'styls'   : []
-            ,'opcty'   : []
-            ,'imgTyps' : []
-            ,'esriO'   : esriOcean.visibility ? esriOcean.opacity * 100 : ''
-            ,'navC'    : navCharts.visibility ? navCharts.opacity * 100 : ''
-            ,'lyrLyrs' : []
-          };
-          for (var i = 0; i < map.layers.length; i++) {
-            if (map.layers[i].visibility) {
-              if (map.layers[i].isBaseLayer) {
-                p['base'] = map.layers[i].name;
-                p['lyrs'].push(map.layers[i].name);
-                p['styls'].push('');
-                p['opcty'].push(map.layers[i].opacity * 100);
-                p['imgTyps'].push('');
-                p['lyrLyrs'].push('');
-              }
-              else if (mainStore.find('name',map.layers[i].name) >= 0) {
-                p['lyrs'].push(map.layers[i].name);
-                if (map.layers[i].DEFAULT_PARAMS) {
-                  p['styls'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['STYLES']);
-                  p['opcty'].push(map.layers[i].opacity * 100);
-                  p['lyrLyrs'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['LAYERS']);
-                  p['imgTyps'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['FORMAT'].split('/')[1]);
-                }
-                else {
-                  p['styls'].push('');
-                  p['opcty'].push('');
-                  p['lyrLyrs'].push('');
-                  p['imgTyps'].push('');
-                }
-              }
-            }
-          }
-          p['lyrs'] = p['lyrs'].join(',');
-          p['bathyC'] = bathyContours.visibility;
-          var u = [];
-          for (var i in p) {
-            u.push(i + '=' + p[i]);
-          }
-          var url = "<?php echo 'http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/'))?>?" + u.join('&');
-          Ext.Msg.alert('Bookmark','The following link will launch the MARACOOS Assets Explorer with your current confiuration and may be used as a bookmark. <a target=_blank href="' + url.replace(/ /g,'%20') + '">Link to my MARACOOS Assets Explorer</a>');
-        }
-      }
-      ,'->'
-      ,{
-         text    : 'Help'
-        ,icon    : 'img/help-icon.png'
-        ,handler : function() {
-          showHelp(true);
-        }
-      }
-    ]
   });
 
   new Ext.Viewport({
@@ -1198,7 +1135,59 @@ function init() {
             ,region    : 'center'
             ,border    : false
             ,tbar      : [
-               {icon : 'img/blank.png'} // for spacing
+              {
+                 text    : 'Bookmark'
+                ,icon    : 'img/Places-bookmarks-icon.png'
+                ,handler : function() {
+                  var p = {
+                     'center'  : map.getCenter().lon + ',' + map.getCenter().lat
+                    ,'zoom'    : map.getZoom()
+                    ,'base'    : ''
+                    ,'lyrs'    : []
+                    ,'styls'   : []
+                    ,'opcty'   : []
+                    ,'imgTyps' : []
+                    ,'esriO'   : esriOcean.visibility ? esriOcean.opacity * 100 : ''
+                    ,'navC'    : navCharts.visibility ? navCharts.opacity * 100 : ''
+                    ,'lyrLyrs' : []
+                  };
+                  for (var i = 0; i < map.layers.length; i++) {
+                    if (map.layers[i].visibility) {
+                      if (map.layers[i].isBaseLayer) {
+                        p['base'] = map.layers[i].name;
+                        p['lyrs'].push(map.layers[i].name);
+                        p['styls'].push('');
+                        p['opcty'].push(map.layers[i].opacity * 100);
+                        p['imgTyps'].push('');
+                        p['lyrLyrs'].push('');
+                      }
+                      else if (mainStore.find('name',map.layers[i].name) >= 0) {
+                        p['lyrs'].push(map.layers[i].name);
+                        if (map.layers[i].DEFAULT_PARAMS) {
+                          p['styls'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['STYLES']);
+                          p['opcty'].push(map.layers[i].opacity * 100);
+                          p['lyrLyrs'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['LAYERS']);
+                          p['imgTyps'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['FORMAT'].split('/')[1]);
+                        }
+                        else {
+                          p['styls'].push('');
+                          p['opcty'].push('');
+                          p['lyrLyrs'].push('');
+                          p['imgTyps'].push('');
+                        }
+                      }
+                    }
+                  }
+                  p['lyrs'] = p['lyrs'].join(',');
+                  p['bathyC'] = bathyContours.visibility;
+                  var u = [];
+                  for (var i in p) {
+                    u.push(i + '=' + p[i]);
+                  }
+                  var url = "<?php echo 'http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/'))?>?" + u.join('&');
+                  Ext.Msg.alert('Bookmark','The following link will launch the MARACOOS Assets Explorer with your current confiuration and may be used as a bookmark. <a target=_blank href="' + url.replace(/ /g,'%20') + '">Link to my MARACOOS Assets Explorer</a>');
+                }
+              }
               ,'->'
               ,'Show bathymetry lines?'
               ,' '
@@ -1240,6 +1229,16 @@ function init() {
                   navCharts.setOpacity(1);
                 }}
               })
+              ,' '
+              ,' '
+              ,'-'
+              ,{
+                 text    : 'Help'
+                ,icon    : 'img/help-icon.png'
+                ,handler : function() {
+                  showHelp(true);
+                }
+              }
             ]
             ,bbar      : {
                xtype    : 'container'
