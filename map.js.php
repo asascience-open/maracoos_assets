@@ -1202,7 +1202,7 @@ function init() {
                 ,text    : 'Feedback'
                 ,tooltip : 'Provide feedback'
                 ,handler : function() {
-                  Ext.Msg.alert('Feedback','Sorry, this functionality is not yet available.');
+                  Ext.Msg.alert('Feedback','We are very interested in your feedback.  Please send us an email at this address, <a href="mailto:maracoosinfo@udel.edu">maracoosinfo@udel.edu</a>.');
                 }
               }
               ,{
