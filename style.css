@@ -177,30 +177,6 @@
   top : 25px;
 }
 
-#basemapComboBox {
-  z-index  : 1000;
-  position : absolute;
-  top      : 5px;
-  right    : 10px;
-}
-#bathyContourLabel {
-  z-index  : 1000;
-  position : absolute;
-  top      : 31px;
-  right    : 10px;
-  font : 11px/13px tahoma,helvetica,sans-serif !important;
-  background : #ffffff;
-  padding : 3px 2px 2px 7px;
-  width : 134px;
-  border : 1px solid #B5B8C8;
-}
-#bathyContourCbox {
-  z-index  : 1000;
-  position : absolute;
-  top      : 29px;
-  right    : 7px;
-}
-
 div.olControlMousePosition {
   font : 11px/13px tahoma,helvetica,sans-serif !important;
   background-image : url('img/semiClear.png');
@@ -298,4 +274,8 @@ div.olControlMousePosition {
 .fillSolid {
   border-left : 1px solid #6F94D2;
   border-right : 1px solid #6F94D2;
+}
+
+.x-toolbar-cell .x-form-checkbox, .x-toolbar-cell .x-form-radio {
+    margin-top: 0;
 }

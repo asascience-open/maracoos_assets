@@ -1194,9 +1194,53 @@ function init() {
         ,layout    : 'border'
         ,items     : [
           {
-             html      : '<div id="map"></div><div id="basemapComboBox"></div><div id="bathyContourLabel">Show bathymetry lines?</div><div id="bathyContourCbox"></div>'
+             html      : '<div id="map"></div>'
             ,region    : 'center'
             ,border    : false
+            ,tbar      : [
+               {icon : 'img/blank.png'} // for spacing
+              ,'->'
+              ,'Show bathymetry lines?'
+              ,' '
+              ,new Ext.form.Checkbox({
+                 checked   : typeof defaultLayers['bathyContours'] != 'undefined'
+                ,listeners : {check : function(cbox,checked) {
+                  bathyContours.setVisibility(checked);
+                }}
+              })
+              ,' '
+              ,'Basemaps:'
+              ,' '
+              ,new Ext.form.ComboBox({
+                 store          : new Ext.data.ArrayStore({
+                   fields : ['name']
+                  ,data   : [['ESRI Ocean'],['Open StreetMap'],['Google Satellite'],['Google Terrain']]
+                })
+                ,valueField     : 'name'
+                ,displayField   : 'name'
+                ,editable       : false
+                ,triggerAction  : 'all'
+                ,mode           : 'local'
+                ,width          : 145
+                ,value          : defaultBasemap
+                ,forceSelection : true
+                ,listeners      : {select : function(comboBox,rec) {
+                  var lyr = map.getLayersByName(rec.get('name'))[0];
+                  if (lyr.isBaseLayer) {
+                    lyr.setOpacity(1);
+                    map.setBaseLayer(lyr);
+                    lyr.redraw();
+                  }
+
+                  // special case for esri ocean
+                  esriOcean.setVisibility(rec.get('name') == 'ESRI Ocean');
+                  esriOcean.setOpacity(1);
+                  // special case for nav charts
+                  navCharts.setVisibility(rec.get('name') == 'Navigational Charts');
+                  navCharts.setOpacity(1);
+                }}
+              })
+            ]
             ,bbar      : {
                xtype    : 'container'
               ,height   : 42
@@ -1578,47 +1622,6 @@ function initMap() {
     }
   });
 
-  var basemapsStore = new Ext.data.ArrayStore({
-     fields : ['name']
-    ,data   : [['ESRI Ocean'],['Open StreetMap'],['Google Satellite'],['Google Terrain']]
-  });
-
-  new Ext.form.ComboBox({
-     store          : basemapsStore
-    ,valueField     : 'name'
-    ,displayField   : 'name'
-    ,editable       : false
-    ,triggerAction  : 'all'
-    ,mode           : 'local'
-    ,width          : 145
-    ,value          : defaultBasemap
-    ,forceSelection : true
-    ,renderTo       : 'basemapComboBox'
-    ,listeners      : {select : function(comboBox,rec) {
-      var lyr = map.getLayersByName(rec.get('name'))[0];
-      if (lyr.isBaseLayer) {
-        lyr.setOpacity(1);
-        map.setBaseLayer(lyr);
-        lyr.redraw();
-      }
-
-      // special case for esri ocean
-      esriOcean.setVisibility(rec.get('name') == 'ESRI Ocean');
-      esriOcean.setOpacity(1);
-      // special case for nav charts
-      navCharts.setVisibility(rec.get('name') == 'Navigational Charts');
-      navCharts.setOpacity(1);
-    }}
-  });
-
-  new Ext.form.Checkbox({
-     renderTo  : 'bathyContourCbox'
-    ,checked   : typeof defaultLayers['bathyContours'] != 'undefined'
-    ,listeners : {check : function(cbox,checked) {
-      bathyContours.setVisibility(checked);
-    }}
-  });
-
   addWMS({
      name   : 'NCOM SST'
     ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
@@ -1739,7 +1742,7 @@ function initMap() {
 
   bathyContours = new OpenLayers.Layer.TileCache(
       'Bathymetry contours'
-     ,'http://<?php echo $_SERVER['SERVER_NAME']?>/tilecache/'
+     ,'http://assets.maracoos.org/tilecache/'
     ,'bathy'
     ,{
        visibility        : typeof defaultLayers['bathyContours'] != 'undefined'
