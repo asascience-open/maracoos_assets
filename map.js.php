@@ -1136,8 +1136,17 @@ function init() {
             ,border    : false
             ,tbar      : [
               {
-                 text    : 'Bookmark'
-                ,icon    : 'img/Places-bookmarks-icon.png'
+                 icon    : 'img/printer.png'
+                ,text    : 'Print'
+                ,tooltip : 'Print active map'
+                ,handler : function() {
+                  Ext.Msg.alert('Print','Sorry, this functionality is not yet available.');
+                }
+              }
+              ,{
+                 icon    : 'img/Places-bookmarks-icon.png'
+                ,text    : 'Bookmark'
+                ,tooltip : 'Bookmark active map'
                 ,handler : function() {
                   var p = {
                      'center'  : map.getCenter().lon + ',' + map.getCenter().lat
@@ -1188,6 +1197,22 @@ function init() {
                   Ext.Msg.alert('Bookmark','The following link will launch the MARACOOS Assets Explorer with your current confiuration and may be used as a bookmark. <a target=_blank href="' + url.replace(/ /g,'%20') + '">Link to my MARACOOS Assets Explorer</a>');
                 }
               }
+              ,{
+                 icon    : 'img/email.png'
+                ,text    : 'Feedback'
+                ,tooltip : 'Provide feedback'
+                ,handler : function() {
+                  Ext.Msg.alert('Feedback','Sorry, this functionality is not yet available.');
+                }
+              }
+              ,{
+                 icon    : 'img/help-icon.png'
+                ,text    : 'Help'
+                ,tooltip : 'View help tutorial'
+                ,handler : function() {
+                  showHelp(true);
+                }
+              }
               ,'->'
               ,'Show bathymetry lines?'
               ,' '
@@ -1221,7 +1246,7 @@ function init() {
                     lyr.redraw();
                   }
 
-                  // special case for esri ocean
+                  // special case foresri ocean
                   esriOcean.setVisibility(rec.get('name') == 'ESRI Ocean');
                   esriOcean.setOpacity(1);
                   // special case for nav charts
@@ -1229,16 +1254,6 @@ function init() {
                   navCharts.setOpacity(1);
                 }}
               })
-              ,' '
-              ,' '
-              ,'-'
-              ,{
-                 text    : 'Help'
-                ,icon    : 'img/help-icon.png'
-                ,handler : function() {
-                  showHelp(true);
-                }
-              }
             ]
             ,bbar      : {
                xtype    : 'container'
