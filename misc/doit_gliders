@@ -1,0 +1,9 @@
+convert -size 75x75 xc:'#CCD8E7' /tmp/bg.png
+convert -transparent 'rgb(255,255,255)' /tmp/active.png  /tmp/active.trans.png
+composite -gravity North /tmp/active.trans.png /tmp/bg.png glider_legend.png
+convert -transparent 'rgb(255,255,255)' /tmp/inactive.png  /tmp/inactive.trans.png
+composite -gravity South /tmp/inactive.trans.png glider_legend.png glider_legend.png
+mogrify -fill '#393939' -font 'Helvetica' -pointsize 14 -draw "text 18,20 'active'" glider_legend.png
+mogrify -fill '#393939' -font 'Helvetica' -pointsize 14 -draw "text 13,67 'inactive'" glider_legend.png
+mogrify -border 1x1 -bordercolor '#99BBE8' glider_legend.png
+mv glider_legend.png ../legends/Gliders.png

@@ -1,0 +1,29 @@
+wget 'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=sst/mcsst&COLORBARONLY=true&ORIENTATION=horizontal&WIDTH=10&HEIGHT=50&NUMCOLORBANDS=254&PALETTE=redblue' -O redblue.png 
+mogrify -rotate 90 redblue.png
+
+wget 'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=sst/mcsst&COLORBARONLY=true&ORIENTATION=horizontal&WIDTH=10&HEIGHT=50&NUMCOLORBANDS=254&PALETTE=alg' -O alg.png
+mogrify -rotate 90 alg.png
+
+wget 'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=sst/mcsst&COLORBARONLY=true&ORIENTATION=horizontal&WIDTH=10&HEIGHT=50&NUMCOLORBANDS=254&PALETTE=ncview' -O ncview.png
+mogrify -rotate 90 ncview.png
+
+wget 'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=sst/mcsst&COLORBARONLY=true&ORIENTATION=horizontal&WIDTH=10&HEIGHT=50&NUMCOLORBANDS=254&PALETTE=alg2' -O alg2.png
+mogrify -rotate 90 alg2.png
+
+wget 'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=sst/mcsst&COLORBARONLY=true&ORIENTATION=horizontal&WIDTH=10&HEIGHT=50&NUMCOLORBANDS=254&PALETTE=greyscale' -O greyscale.png
+mogrify -rotate 90 greyscale.png
+
+wget 'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=sst/mcsst&COLORBARONLY=true&ORIENTATION=horizontal&WIDTH=10&HEIGHT=50&NUMCOLORBANDS=254&PALETTE=occam' -O occam.png
+mogrify -rotate 90 occam.png
+
+wget 'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=sst/mcsst&COLORBARONLY=true&ORIENTATION=horizontal&WIDTH=10&HEIGHT=50&NUMCOLORBANDS=254&PALETTE=rainbow' -O rainbow.png
+mogrify -rotate 90 rainbow.png
+
+wget 'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=sst/mcsst&COLORBARONLY=true&ORIENTATION=horizontal&WIDTH=10&HEIGHT=50&NUMCOLORBANDS=254&PALETTE=sst_36' -O sst_36.png
+mogrify -rotate 90 sst_36.png
+
+wget 'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=sst/mcsst&COLORBARONLY=true&ORIENTATION=horizontal&WIDTH=10&HEIGHT=50&NUMCOLORBANDS=254&PALETTE=occam_pastel-30' -O occam_pastel-30.png
+mogrify -rotate 90 occam_pastel-30.png
+
+wget 'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=sst/mcsst&COLORBARONLY=true&ORIENTATION=horizontal&WIDTH=10&HEIGHT=50&NUMCOLORBANDS=254&PALETTE=ferret' -O ferret.png
+mogrify -rotate 90 ferret.png

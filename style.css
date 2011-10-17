@@ -1,0 +1,301 @@
+#loading-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  z-index: 1;
+}
+#loading {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  z-index: 2;
+}
+#loading SPAN {
+  background: url('img/loader.gif') no-repeat left center;
+  padding: 5px 30px;
+  display: block;
+  font-family: "Lucida Grande", Arial, Helvetica, sans-serif;
+  color: #444444;
+  font-size: 12px;
+}
+
+#map .olLayerGoogleCopyright {
+  z-index : -1 !important;
+}
+
+.smallFont {
+  font       : 11px/13px tahoma,helvetica,sans-serif;
+  text-align : justify;
+}
+
+#assetsGridPanel {
+  border-top: 1px solid #99BBE8;
+}
+#assetsGridPanel .x-grid3-row {
+  border-color   : #ffffff;
+}
+#assetsGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
+  padding : 0px;
+}
+#assetsGridPanel a:link {
+  text-decoration : none;
+  font            : 12px tahoma,helvetica,sans-serif;
+  color           : #000000;
+}
+#assetsGridPanel a:hover {
+  color : rgb(74,134,214);
+}
+
+#modelsGridPanel {
+  border-top: 1px solid #99BBE8;
+}
+#modelsGridPanel .x-grid3-row {
+  border-color   : #ffffff;
+}
+#modelsGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
+  padding : 0px;
+}
+#modelsGridPanel a:link {
+  text-decoration : none;
+  font            : 12px tahoma,helvetica,sans-serif;
+  color           : #000000;
+}
+#modelsGridPanel a:hover {
+  color : rgb(74,134,214);
+}
+
+#observationsGridPanel {
+  border-top: 1px solid #99BBE8;
+}
+#observationsGridPanel .x-grid3-row {
+  border-color   : #ffffff;
+}
+#observationsGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
+  padding : 0px;
+}
+#observationsGridPanel a:link {
+  text-decoration : none;
+  font            : 12px tahoma,helvetica,sans-serif;
+  color           : #000000;
+}
+#observationsGridPanel a:hover {
+  color : rgb(74,134,214);
+}
+
+.popup {
+  background : white;
+  padding    : 6px;
+  text-align : justify;
+}
+.popup img {
+  height : 90;
+  border : 1px solid #99BBE8;
+}
+
+#obsPopup table {
+  width : 310px;
+}
+#obsPopup td {
+  vertical-align : top;
+}
+
+.obsPopup {
+  background : white;
+  padding    : 6px;
+  width      : 315px;
+}
+.obsPopup th {
+  font        : 11px tahoma,helvetica,sans-serif;
+  font-weight : bold;
+}
+.obsPopup td {
+  font        : 11px tahoma,helvetica,sans-serif;
+}
+
+#timeseriesPanel {
+  border-top: 1px solid #99BBE8;
+}
+
+.tickLabel {
+  font : 10px/13px tahoma,helvetica,sans-serif;
+}
+.legendLabel {
+  font : 10px/13px tahoma,helvetica,sans-serif;
+}
+
+#legendsGridPanel .x-grid3-row {
+  border-color   : #ffffff;
+}
+#legendsGridPanel .x-grid3-row td, .x-grid3-summary-row td {
+  font            : 12px tahoma,helvetica,sans-serif;
+}
+
+.layerIcon {
+  margin-top : -1px;
+}
+
+.settingsIcon {
+  margin-top : -1px;
+}
+
+.olControlNavigationItemInactive {
+  visibility : hidden !important;
+  position : absolute;
+  left : -200;
+}
+.olControlNavigationItemActive {
+  visibility : hidden !important;
+  position : absolute;
+  left : -200;
+}
+.olControlNavToolbar {
+  top : 100px !important;
+}
+.olControlNavToolbar .olControlZoomBoxItemInactive {
+  background-position: -128px -1px !important;
+  background-image: url("img/editing_tool_bar.png") !important;
+  background-repeat: no-repeat !important;
+  cursor: pointer !important;
+  height: 22px !important;
+  margin: 0 0 5px 5px !important;
+  width: 24px !important;
+  position : absolute;
+  top : 25px;
+}
+.olControlNavToolbar .olControlZoomBoxItemActive {
+  background-position: -128px -24px !important;
+  background-image: url("img/editing_tool_bar.png") !important;
+  background-repeat: no-repeat !important;
+  cursor: pointer !important;
+  height: 22px !important;
+  margin: 0 0 5px 5px !important;
+  width: 24px !important;
+  position : absolute;
+  top : 25px;
+}
+
+#basemapComboBox {
+  z-index  : 1000;
+  position : absolute;
+  top      : 5px;
+  right    : 10px;
+}
+#bathyContourLabel {
+  z-index  : 1000;
+  position : absolute;
+  top      : 31px;
+  right    : 10px;
+  font : 11px/13px tahoma,helvetica,sans-serif !important;
+  background : #ffffff;
+  padding : 3px 2px 2px 7px;
+  width : 134px;
+  border : 1px solid #B5B8C8;
+}
+#bathyContourCbox {
+  z-index  : 1000;
+  position : absolute;
+  top      : 29px;
+  right    : 7px;
+}
+
+div.olControlMousePosition {
+  font : 11px/13px tahoma,helvetica,sans-serif !important;
+  background-image : url('img/semiClear.png');
+  right : 0px !important;
+  padding : 2px;
+  width : 175px !important;
+  text-align : center !important;
+}
+
+.alert {
+  color : red;
+  font-weight : bold;
+}
+
+.blueBorderImg img {
+  border : 1px solid #99BBE8;
+}
+
+.blueBorderTd table {
+  border : 1px solid #99BBE8;
+}
+
+.buttonIcon {
+  background-repeat:no-repeat;
+}
+
+.timeSeries {
+  width : 100%;
+  text-align : center;
+  padding : 0px;
+}
+
+.olControlAttribution {
+  font : 11px/13px tahoma,helvetica,sans-serif !important;
+  bottom : 20px !important;
+}
+
+#tooltip {
+  font : 11px/13px tahoma,helvetica,sans-serif;
+}
+
+.dijitRuleLabelContainerH {
+  font : 10px tahoma,helvetica,sans-serif;
+}
+
+#tide table {
+  border-collapse : collapse;
+  width           : 250px;
+}
+#tide td {
+  padding          : 3px 7px 2px 7px;
+  background-color : #ffffff;
+  text-align       : center;
+  border           : 1px solid #99bbe8;
+}
+#tide .hilite {
+  background-color : #cccccc;
+}
+
+#help td {
+  font : 11px/13px tahoma,helvetica,sans-serif !important;
+  text-align : justify;
+  padding : 5px;
+}
+#help .center {
+  text-align : center;
+  padding : 5px 0px 0px 0px;
+}
+#help .imgBorder {
+  border : 1px solid #99BBE8;
+}
+
+#customizationTip .x-form-label-right label.x-form-item-label {
+  font : 11px tahoma,helvetica,sans-serif;
+  padding-top : 4px;
+}
+
+#sliderTics {
+  padding-left : 36px;
+}
+
+#sliderTicsTable {
+  width : 100%;
+  padding : 0;
+}
+
+#sliderTicsTable td {
+  text-align : center;
+}
+
+#timeSliderContainer {
+  border-bottom : 1px solid #99BBE8;
+}
+
+.fillSolid {
+  border-left : 1px solid #6F94D2;
+  border-right : 1px solid #6F94D2;
+}

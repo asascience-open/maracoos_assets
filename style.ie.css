@@ -1,0 +1,20 @@
+.layerIcon {
+  margin-top : 0px;
+}
+
+.settingsIcon {
+  margin-top : -1px;
+}
+
+.tsLabels {
+  left : -121px;
+}
+
+#bathyContourLabel {
+  padding : 3px 2px 2px 7px;
+  width : 146px;
+}
+
+#bathyContourCbox {
+  right    : 6px;
+}

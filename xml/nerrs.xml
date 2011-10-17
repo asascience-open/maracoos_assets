@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webservices" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webservices" xmlns:intf="http://webservices" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://rpc.xml.coldfusion" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Macromedia ColdFusion MX version 7,0,2,142559-->
+ <wsdl:types>
+  <schema targetNamespace="http://rpc.xml.coldfusion" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://webservices"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="CFCInvocationException">
+    <sequence/>
+   </complexType>
+   <complexType name="QueryBean">
+    <sequence>
+     <element name="columnList" nillable="true" type="impl:ArrayOf_xsd_string"/>
+     <element name="data" nillable="true" type="impl:ArrayOfArrayOf_xsd_anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="http://webservices" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://rpc.xml.coldfusion"/>
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_xsd_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfArrayOf_xsd_anyType">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:anyType[][]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="exportStationCodesXMLResponse">
+
+      <wsdl:part name="exportStationCodesXMLReturn" type="apachesoap:Document"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="exportAllParamsDateRangeXMLResponse">
+
+      <wsdl:part name="exportAllParamsDateRangeXMLReturn" type="apachesoap:Document"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="NERRFilterStationCodesXMLResponse">
+
+      <wsdl:part name="NERRFilterStationCodesXMLReturn" type="apachesoap:Document"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CFCInvocationException">
+
+      <wsdl:part name="fault" type="tns1:CFCInvocationException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="exportSingleParamXMLResponse">
+
+      <wsdl:part name="exportSingleParamXMLReturn" type="apachesoap:Document"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="NERRFilterStationCodesXMLRequest">
+
+      <wsdl:part name="NERRFilter" type="xsd:anyType"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="exportAllParamsXMLResponse">
+
+      <wsdl:part name="exportAllParamsXMLReturn" type="apachesoap:Document"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="exportAllParamsDateRangeXMLRequest">
+
+      <wsdl:part name="tbl" type="xsd:anyType"/>
+
+      <wsdl:part name="mindate" type="xsd:anyType"/>
+
+      <wsdl:part name="maxdate" type="xsd:anyType"/>
+
+      <wsdl:part name="fieldlist" type="xsd:anyType"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="exportAllParamsXMLRequest">
+
+      <wsdl:part name="tbl" type="xsd:anyType"/>
+
+      <wsdl:part name="numrecs" type="xsd:anyType"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="exportStationCodesXMLRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="exportSingleParamXMLRequest">
+
+      <wsdl:part name="tbl" type="xsd:anyType"/>
+
+      <wsdl:part name="numrecs" type="xsd:anyType"/>
+
+      <wsdl:part name="param" type="xsd:anyType"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="xmldatarequest">
+
+      <wsdl:operation name="exportAllParamsXML" parameterOrder="tbl numrecs">
+
+         <wsdl:input message="impl:exportAllParamsXMLRequest" name="exportAllParamsXMLRequest"/>
+
+         <wsdl:output message="impl:exportAllParamsXMLResponse" name="exportAllParamsXMLResponse"/>
+
+         <wsdl:fault message="impl:CFCInvocationException" name="CFCInvocationException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="NERRFilterStationCodesXML" parameterOrder="NERRFilter">
+
+         <wsdl:input message="impl:NERRFilterStationCodesXMLRequest" name="NERRFilterStationCodesXMLRequest"/>
+
+         <wsdl:output message="impl:NERRFilterStationCodesXMLResponse" name="NERRFilterStationCodesXMLResponse"/>
+
+         <wsdl:fault message="impl:CFCInvocationException" name="CFCInvocationException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="exportSingleParamXML" parameterOrder="tbl numrecs param">
+
+         <wsdl:input message="impl:exportSingleParamXMLRequest" name="exportSingleParamXMLRequest"/>
+
+         <wsdl:output message="impl:exportSingleParamXMLResponse" name="exportSingleParamXMLResponse"/>
+
+         <wsdl:fault message="impl:CFCInvocationException" name="CFCInvocationException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="exportAllParamsDateRangeXML" parameterOrder="tbl mindate maxdate fieldlist">
+
+         <wsdl:input message="impl:exportAllParamsDateRangeXMLRequest" name="exportAllParamsDateRangeXMLRequest"/>
+
+         <wsdl:output message="impl:exportAllParamsDateRangeXMLResponse" name="exportAllParamsDateRangeXMLResponse"/>
+
+         <wsdl:fault message="impl:CFCInvocationException" name="CFCInvocationException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="exportStationCodesXML">
+
+         <wsdl:input message="impl:exportStationCodesXMLRequest" name="exportStationCodesXMLRequest"/>
+
+         <wsdl:output message="impl:exportStationCodesXMLResponse" name="exportStationCodesXMLResponse"/>
+
+         <wsdl:fault message="impl:CFCInvocationException" name="CFCInvocationException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="xmldatarequest.cfcSoapBinding" type="impl:xmldatarequest">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="exportAllParamsXML">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="exportAllParamsXMLRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="exportAllParamsXMLResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CFCInvocationException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="CFCInvocationException" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="NERRFilterStationCodesXML">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="NERRFilterStationCodesXMLRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="NERRFilterStationCodesXMLResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CFCInvocationException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="CFCInvocationException" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="exportSingleParamXML">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="exportSingleParamXMLRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="exportSingleParamXMLResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CFCInvocationException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="CFCInvocationException" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="exportAllParamsDateRangeXML">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="exportAllParamsDateRangeXMLRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="exportAllParamsDateRangeXMLResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CFCInvocationException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="CFCInvocationException" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="exportStationCodesXML">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="exportStationCodesXMLRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="exportStationCodesXMLResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CFCInvocationException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="CFCInvocationException" namespace="http://webservices" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="xmldatarequestService">
+
+      <wsdl:port binding="impl:xmldatarequest.cfcSoapBinding" name="xmldatarequest.cfc">
+
+         <wsdlsoap:address location="http://129.252.139.102/webservices/xmldatarequest.cfc"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
