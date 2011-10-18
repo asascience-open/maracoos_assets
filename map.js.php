@@ -1140,7 +1140,7 @@ function init() {
                 ,text    : 'Print'
                 ,tooltip : 'Print active map'
                 ,handler : function() {
-                  Ext.Msg.alert('Print','Sorry, this functionality is not yet available.');
+                  printMap();
                 }
               }
               ,{
@@ -3023,4 +3023,66 @@ function toEnglish(v) {
     }
   }
   return v.val;
+}
+
+function printMap() {
+  var tempBase = new OpenLayers.Layer.WMS(
+     'Blue Marble (EPSG:4326)'
+    ,'http://asascience.mine.nu:8080/geoserver/wms?'
+    ,{
+      layers : 'base:BlueMarble'
+    }
+    ,{
+       isBaseLayer   : false
+      ,visibility    : false
+      ,wrapDateLine  : true
+    }
+  );
+  map.addLayer(tempBase);
+  var layers  = [tempBase.getFullRequestString({width : map.div.style.width.replace('px',''),height : map.div.style.height.replace('px',''),bbox : map.getExtent()})];
+  var legends = [];
+  for (var i = 0; i < map.layers.length; i++) {
+    var lyr = map.layers[i];
+    var legIdx  = legendsStore.find('name',lyr.name);
+    // WMS only (for now?)
+    if (lyr.DEFAULT_PARAMS && legIdx >= 0) {
+      layers.push(lyr.getFullRequestString({unique : new Date().getTime(),width : map.div.style.width.replace('px',''),height : map.div.style.height.replace('px',''),bbox : map.getExtent()}))
+    }
+  }
+  legendsStore.each(function(rec) {
+    var mainIdx = mainStore.find('name',rec.get('name'));
+    if (map.getLayersByName(rec.get('name'))[0].DEFAULT_PARAMS) {
+      var p = [rec.get('name')];
+      if (rec.get('timestamp')) {
+        p.push(rec.get('timestamp'));
+      } 
+      if (mainStore.getAt(mainIdx).get('legend') != '') {
+        p.push('<img src="' + mainStore.getAt(mainIdx).get('legend') + '">');
+      }
+      p.push('&nbsp;');
+      legends.push(p.join('<br>'));
+    }
+  });
+
+  var html = [];
+  for (var i = 0; i < layers.length; i++) {
+    html.push('<div style="position:absolute"><img src="' + layers[i] + '"></div>');
+  }
+  for (var i = 0; i < legends.length; i++) {
+    html.push('<div style="position:relative;left:' + (map.div.style.width.replace('px','') * 1 + 15) + '">' + legends[i] + '</div>');
+  }
+
+  new Ext.Window({
+     title     : 'MARACOOS Assets Explorer'
+    ,width     : map.div.style.width.replace('px','') * 1 + 175
+    ,height    : map.div.style.height.replace('px','') * 1 + 50
+    ,bodyStyle : 'background:white;padding : 5'
+    ,layout    : 'fit'
+    ,items     : new Ext.Panel({
+       html   : html.join('')
+      ,border : false
+    })
+  }).show();
+
+  map.removeLayer(tempBase);
 }
