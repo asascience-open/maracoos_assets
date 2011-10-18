@@ -61,6 +61,7 @@ var lastMapClick = {
    layer : ''
   ,e     : ''
 };
+var checkPrintTimer;
 
 function init() {
   var loadingMask = Ext.get('loading-mask');
@@ -3040,49 +3041,57 @@ function printMap() {
   );
   map.addLayer(tempBase);
   var layers  = [tempBase.getFullRequestString({width : map.div.style.width.replace('px',''),height : map.div.style.height.replace('px',''),bbox : map.getExtent()})];
-  var legends = [];
   for (var i = 0; i < map.layers.length; i++) {
     var lyr = map.layers[i];
     var legIdx  = legendsStore.find('name',lyr.name);
     // WMS only (for now?)
     if (lyr.DEFAULT_PARAMS && legIdx >= 0) {
-      layers.push(lyr.getFullRequestString({unique : new Date().getTime(),width : map.div.style.width.replace('px',''),height : map.div.style.height.replace('px',''),bbox : map.getExtent()}))
+      layers.push(lyr.getFullRequestString({width : map.div.style.width.replace('px',''),height : map.div.style.height.replace('px',''),bbox : map.getExtent()}))
     }
   }
+  var legends = [];
   legendsStore.each(function(rec) {
     var mainIdx = mainStore.find('name',rec.get('name'));
     if (map.getLayersByName(rec.get('name'))[0].DEFAULT_PARAMS) {
-      var p = [rec.get('name')];
+      var p = ['<b>' + rec.get('name') + '</b>'];
       if (rec.get('timestamp')) {
         p.push(rec.get('timestamp'));
-      } 
+      }
       if (mainStore.getAt(mainIdx).get('legend') != '') {
-        p.push('<img src="' + mainStore.getAt(mainIdx).get('legend') + '">');
+        p.push('<img src="' + document.URL + '/getLegend.php?' + mainStore.getAt(mainIdx).get('legend') + '">');
       }
       p.push('&nbsp;');
       legends.push(p.join('<br>'));
     }
   });
 
-  var html = [];
-  for (var i = 0; i < layers.length; i++) {
-    html.push('<div style="position:absolute"><img src="' + layers[i] + '"></div>');
-  }
-  for (var i = 0; i < legends.length; i++) {
-    html.push('<div style="position:relative;left:' + (map.div.style.width.replace('px','') * 1 + 15) + '">' + legends[i] + '</div>');
-  }
+  Ext.MessageBox.show({
+     title        : 'Please wait'
+    ,msg          : 'Generating printing template...'
+    ,width        : 300
+    ,wait         : true
+    ,waitConfig   : {interval : 200}
+  });
+  checkPrintTimer = setTimeout('printErrorAlert()',10000);
 
-  new Ext.Window({
-     title     : 'MARACOOS Assets Explorer'
-    ,width     : map.div.style.width.replace('px','') * 1 + 175
-    ,height    : map.div.style.height.replace('px','') * 1 + 50
-    ,bodyStyle : 'background:white;padding : 5'
-    ,layout    : 'fit'
-    ,items     : new Ext.Panel({
-       html   : html.join('')
-      ,border : false
+  OpenLayers.Request.issue({
+     method  : 'POST'
+    ,url     : 'print.php'
+    ,headers : {'Content-Type' : 'application/x-www-form-urlencoded'}
+    ,data    : OpenLayers.Util.getParameterString({
+       lyr : Ext.encode(layers)
+      ,leg : Ext.encode(legends)
     })
-  }).show();
+    ,callback : function(r) {
+      clearTimeout(checkPrintTimer);
+      Ext.Msg.alert('Print','A printer-friendly page is ready.  Click <a target=_blank href="' + r.responseText + '">here</a> to open it.');
+    }
+  });
 
   map.removeLayer(tempBase);
+}
+
+function printErrorAlert() {
+  Ext.MessageBox.hide();
+  Ext.Msg.alert('Print error',"We're sorry, but a print error has occured.  Please try again.");
 }
