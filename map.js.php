@@ -3067,7 +3067,7 @@ function printMap() {
 
   Ext.MessageBox.show({
      title        : 'Please wait'
-    ,msg          : 'Generating printing template...'
+    ,msg          : 'Generating printer template...'
     ,width        : 300
     ,wait         : true
     ,waitConfig   : {interval : 200}
