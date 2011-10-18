@@ -3058,7 +3058,7 @@ function printMap() {
         p.push(rec.get('timestamp'));
       }
       if (mainStore.getAt(mainIdx).get('legend') != '') {
-        p.push('<img src="' + document.URL + '/getLegend.php?' + mainStore.getAt(mainIdx).get('legend') + '">');
+        p.push('<img src="/getLegend.php?' + mainStore.getAt(mainIdx).get('legend') + '">');
       }
       p.push('&nbsp;');
       legends.push(p.join('<br>'));
