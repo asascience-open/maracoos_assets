@@ -3084,7 +3084,7 @@ function printMap() {
     })
     ,callback : function(r) {
       clearTimeout(checkPrintTimer);
-      Ext.Msg.alert('Print','A printer-friendly page is ready.  Note that only models and observations will apear (i.e. no assets and no bathymetry lines).  Click <a target=_blank href="' + r.responseText + '">here</a> to open it.');
+      Ext.Msg.alert('Print','A printer-friendly page is ready.  Note that only models and observations will appear (i.e. no assets and no bathymetry lines).  Click <a target=_blank href="' + r.responseText + '">here</a> to open it.');
     }
   });
 
