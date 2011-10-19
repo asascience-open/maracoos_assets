@@ -33,6 +33,7 @@ var obsBbox = {};
 var obsZoom = {};
 var obsBigExtentScale = 2;  // bigger this # is, the more obs it will cache
 var popupObs;
+var mouseoverObs;
 var popupCtl;
 var hiliteCtl;
 var lyrQueryPts;
@@ -2563,7 +2564,7 @@ function addObs(l) {
       ,highlightOnly : true
       ,renderIntent  : 'temporary'
       ,eventListeners : {
-        featurehighlighted : function(e) {
+        beforefeaturehighlighted : function(e) {
           // figure out the target id (the id of the dot)
           var showPopup = false;
           var target;
@@ -2583,12 +2584,22 @@ function addObs(l) {
           if (!showPopup) {
             return;
           }
-          new Ext.ToolTip({
+          if (mouseoverObs) {
+            mouseoverObs.hide();
+          }
+          mouseoverObs = new Ext.ToolTip({
              html         : title
             ,anchor       : 'bottom'
             ,target       : target
             ,dismissDelay : 2500
-          }).show();
+            ,listeners    : {
+              hide    : function() {
+                this.destroy();
+                mouseoverObs = null;
+              }
+            }
+          });
+          mouseoverObs.show();
         }
       }
     });
