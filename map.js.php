@@ -2576,9 +2576,10 @@ function addObs(l) {
             return;
           }
           new Ext.ToolTip({
-             html      : title
-            ,anchor    : 'bottom'
-            ,target    : target
+             html         : title
+            ,anchor       : 'bottom'
+            ,target       : target
+            ,dismissDelay : 2500
           }).show();
         }
       }
