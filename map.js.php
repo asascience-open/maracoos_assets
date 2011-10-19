@@ -1206,6 +1206,7 @@ function init() {
                   Ext.Msg.alert('Feedback','We are very interested in your feedback.  Please send us an email at this address, <a href="mailto:maracoosinfo@udel.edu">maracoosinfo@udel.edu</a>.');
                 }
               }
+              ,'-'
               ,{
                  icon    : 'img/help-icon.png'
                 ,text    : 'Help'
@@ -1223,8 +1224,6 @@ function init() {
                   bathyContours.setVisibility(checked);
                 }}
               })
-              ,' '
-              ,'Basemaps:'
               ,' '
               ,new Ext.form.ComboBox({
                  store          : new Ext.data.ArrayStore({
