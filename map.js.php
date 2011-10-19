@@ -3042,6 +3042,7 @@ function printMap() {
   map.addLayer(tempBase);
   var layers   = [tempBase.getFullRequestString({width : map.div.style.width.replace('px',''),height : map.div.style.height.replace('px',''),bbox : map.getExtent()})];
   var features = {};
+  var tracks   = {};
   for (var i = 0; i < map.layers.length; i++) {
     var lyr = map.layers[i];
     var legIdx = legendsStore.find('name',lyr.name);
@@ -3052,10 +3053,27 @@ function printMap() {
     }
     else if (legIdx >= 0 && assIdx >= 0) {
       features[lyr.name] = [];
+      tracks[lyr.name]   = [];
       for (var j = 0; j < lyr.features.length; j++) {
-        var cen = lyr.features[j].geometry.getCentroid();
-        var pix = map.getPixelFromLonLat(new OpenLayers.LonLat(cen.x,cen.y));
-        features[lyr.name].push([pix.x,pix.y]);
+        var verts = lyr.features[j].geometry.getVertices();
+        if (verts.length == 1) {
+          var cen = verts[0].getCentroid();
+          var pix = map.getPixelFromLonLat(new OpenLayers.LonLat(cen.x,cen.y));
+          features[lyr.name].push([pix.x,pix.y]);
+        }
+        else {
+          var a = [];
+          for (var k = 0; k < verts.length; k++) {
+            var cen = verts[k].getCentroid();
+            var pix = map.getPixelFromLonLat(new OpenLayers.LonLat(cen.x,cen.y));
+            a.push([pix.x,pix.y]);
+          }
+          tracks[lyr.name].push({
+             stroke : lyr.features[j].attributes.strokeDashstyle
+            ,color  : lyr.features[j].attributes.strokeColor
+            ,data   : a
+          });
+        }
       }
     }
   }
@@ -3063,13 +3081,13 @@ function printMap() {
   var icons    = [];
   legendsStore.each(function(rec) {
     var mainIdx = mainStore.find('name',rec.get('name'));
-    icons.push('<img class="layerIcon" src="/maracoos_assets/img/' + rec.get('name') + '.drawn.png">');
+    icons.push('<img class="layerIcon" src="<?php echo substr($_SERVER['SCRIPT_NAME'],0,strrpos($_SERVER['SCRIPT_NAME'],'/')+1)?>img/' + rec.get('name') + '.drawn.png">');
     var p = ['<b>' + rec.get('displayName') + '</b>'];
     if (rec.get('timestamp')) {
       p.push(rec.get('timestamp'));
     }
     if (mainStore.getAt(mainIdx).get('legend') != '') {
-      p.push('<img src="/maracoos_assets/getLegend.php?' + mainStore.getAt(mainIdx).get('legend') + '">');
+      p.push('<img src="<?php echo substr($_SERVER['SCRIPT_NAME'],0,strrpos($_SERVER['SCRIPT_NAME'],'/')+1)?>getLegend.php?' + mainStore.getAt(mainIdx).get('legend') + '">');
     }
     p.push('&nbsp;');
     legends.push(p.join('<br>'));
@@ -3093,10 +3111,15 @@ function printMap() {
       ,leg : Ext.encode(legends)
       ,ico : Ext.encode(icons)
       ,ftr : Ext.encode(features)
+      ,trk : Ext.encode(tracks)
     })
     ,callback : function(r) {
       clearTimeout(checkPrintTimer);
-      Ext.Msg.alert('Print','A printer-friendly page is ready.  Note that only models and observations will appear (i.e. no assets and no bathymetry lines).  Click <a target=_blank href="' + r.responseText + '">here</a> to open it.');
+      var bathyAlert = '';
+      if (bathyContours.visibility) {
+        bathyAlert = 'Please note that bathymetry lines will not appear on the printable map.  ';
+      }
+      Ext.Msg.alert('Print','A printer-friendly page is ready.  ' + bathyAlert + 'Click <a target=_blank href="' + r.responseText + '">here</a> to open it.');
     }
   });
 

@@ -1,8 +1,11 @@
 <?php
+  $iconSysPath = substr($_SERVER['SCRIPT_FILENAME'],0,strrpos($_SERVER['SCRIPT_FILENAME'],'/')+1).'img/';
+
   $layers   = json_decode($_REQUEST['lyr']);
   $legends  = json_decode($_REQUEST['leg']);
   $icons    = json_decode($_REQUEST['ico']);
   $features = json_decode($_REQUEST['ftr'],true);
+  $tracks   = json_decode($_REQUEST['trk'],true);
 
   $tmp_dir = '/tmp/';
   $tmp_url = '/tmp/';
@@ -22,10 +25,28 @@
     }
   }
 
+  foreach ($tracks as $k => $v) {
+    for ($i = 0; $i < count($tracks[$k]); $i++) {
+      $draw = new ImagickDraw();
+      $draw->setStrokeColor(new ImagickPixel($tracks[$k][$i]['color']));
+      if ($tracks[$k][$i]['stroke'] == 'dot') {
+        $draw->setStrokeDashArray(array(2,3));
+      }
+      else {
+        $draw->setStrokeWidth(2);
+      }
+      for ($j = 1; $j < count($tracks[$k][$i]['data']); $j++) {
+        $draw->line($tracks[$k][$i]['data'][$j-1][0],$tracks[$k][$i]['data'][$j-1][1],$tracks[$k][$i]['data'][$j][0],$tracks[$k][$i]['data'][$j][1]);
+      }
+      $canvas->drawImage($draw);
+    }
+  }
+
   foreach ($features as $k => $v) {
-    $img = new Imagick('/var/www/maracoos_assets/img/'.$k.'.png');
+    $img = new Imagick($iconSysPath.$k.'.png');
     for ($i = 0; $i < count($features[$k]); $i++) {
-      $canvas->compositeImage($img,imagick::COMPOSITE_OVER,$features[$k][$i][0],$features[$k][$i][1]);
+      // subtract 10 because icons are 20px in size
+      $canvas->compositeImage($img,imagick::COMPOSITE_OVER,$features[$k][$i][0] - 10,$features[$k][$i][1] - 10);
     }
   }
 
