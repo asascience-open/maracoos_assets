@@ -1,6 +1,7 @@
 <?php
   $layers  = json_decode($_REQUEST['lyr']);
   $legends = json_decode($_REQUEST['leg']);
+  $icons   = json_decode($_REQUEST['ico']);
 
   $tmp_dir = '/tmp/';
   $tmp_url = '/tmp/';
@@ -21,7 +22,11 @@
   }
   $canvas->writeImage($tmp_dir.$id.'.print.png');
 
-  $legHtml = implode('<br>',$legends);
+  $legTr = array();
+  for ($i = 0; $i < count($legends); $i++) {
+    array_push($legTr,"<tr><td>$icons[$i]</td><td>$legends[$i]</td></tr>");
+  }
+  $legTable = '<table>'.implode('',$legTr).'</table>';
 
 $html = "
 <html>
@@ -33,12 +38,15 @@ $html = "
         font-size   : 15px;
       }
       td {
-        font-family : 'Lucida Grande', Arial, Helvetica, sans-serif;
-        font-size   : 13px;
+        font-family    : 'Lucida Grande', Arial, Helvetica, sans-serif;
+        font-size      : 13px;
         vertical-align : top;
       }
       .mapImg {
         border   : 1px solid #6F94D2;
+      }
+      .layerIcon {
+        margin-top : -1px;
       }
     </style>
   </head>
@@ -47,7 +55,7 @@ $html = "
       <tr><th colspan=2 align=center>MARACOOS Assets Explorer</th></tr>
       <tr>
         <td><img class='mapImg' src='$url_dir$id.print.png'></td>
-        <td>$legHtml</td>
+        <td>$legTable</td>
       </tr>
     </table>
   </body>

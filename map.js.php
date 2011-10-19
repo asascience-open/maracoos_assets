@@ -3050,19 +3050,19 @@ function printMap() {
     }
   }
   var legends = [];
+  var icons   = [];
   legendsStore.each(function(rec) {
     var mainIdx = mainStore.find('name',rec.get('name'));
-    if (map.getLayersByName(rec.get('name'))[0].DEFAULT_PARAMS) {
-      var p = ['<b>' + rec.get('name') + '</b>'];
-      if (rec.get('timestamp')) {
-        p.push(rec.get('timestamp'));
-      }
-      if (mainStore.getAt(mainIdx).get('legend') != '') {
-        p.push('<img src="/getLegend.php?' + mainStore.getAt(mainIdx).get('legend') + '">');
-      }
-      p.push('&nbsp;');
-      legends.push(p.join('<br>'));
+    icons.push('<img class="layerIcon" src="/maracoos_assets/img/' + rec.get('name') + '.drawn.png">');
+    var p = ['<b>' + rec.get('displayName') + '</b>'];
+    if (rec.get('timestamp')) {
+      p.push(rec.get('timestamp'));
     }
+    if (mainStore.getAt(mainIdx).get('legend') != '') {
+      p.push('<img src="/maracoos_assets/getLegend.php?' + mainStore.getAt(mainIdx).get('legend') + '">');
+    }
+    p.push('&nbsp;');
+    legends.push(p.join('<br>'));
   });
 
   Ext.MessageBox.show({
@@ -3081,6 +3081,7 @@ function printMap() {
     ,data    : OpenLayers.Util.getParameterString({
        lyr : Ext.encode(layers)
       ,leg : Ext.encode(legends)
+      ,ico : Ext.encode(icons)
     })
     ,callback : function(r) {
       clearTimeout(checkPrintTimer);
