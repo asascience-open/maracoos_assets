@@ -2467,8 +2467,8 @@ function addObs(l) {
         ,'select' : new OpenLayers.Style(OpenLayers.Util.applyDefaults({
            externalGraphic : 'img/' + l.name + '.png'
           ,pointRadius     : 8
-          ,graphicWidth    : 20
-          ,graphicHeight   : 20
+          ,graphicWidth    : 40
+          ,graphicHeight   : 40
           ,graphicOpacity  : 1
           ,strokeWidth     : '${strokeWidth}'
           ,strokeColor     : '${strokeColor}'
@@ -2573,7 +2573,7 @@ function addObs(l) {
               hide    : function() {
                 this.destroy();
                 popupObs = null;
-                popupCtl.unselectAll();
+                popupCtl.unselect(e.feature);
               }
               ,render : function() {
                 for (var i in e.feature.attributes.data) {
@@ -2592,10 +2592,12 @@ function addObs(l) {
                         if (document.getElementById(target + '.data')) {
                           document.getElementById(target + '.data').innerHTML = html;
                         }
-                        popupObs.suspendEvents();
-                        popupObs.hide();
-                        popupObs.show();
-                        popupObs.resumeEvents();
+                        if (popupObs) {
+                          popupObs.suspendEvents();
+                          popupObs.hide();
+                          popupObs.show();
+                          popupObs.resumeEvents();
+                        }
                       }
                     });
                   }
