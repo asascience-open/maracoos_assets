@@ -1142,7 +1142,15 @@ function init() {
                 ,text    : 'Print'
                 ,tooltip : 'Print active map'
                 ,handler : function() {
-                  printMap();
+                  printSaveMap('print');
+                }
+              }
+              ,{
+                 icon    : 'img/disk.png'
+                ,text    : 'Save'
+                ,tooltip : 'Save active map'
+                ,handler : function() {
+                  printSaveMap('save');
                 }
               }
               ,{
@@ -1236,7 +1244,7 @@ function init() {
                 ,editable       : false
                 ,triggerAction  : 'all'
                 ,mode           : 'local'
-                ,width          : 145
+                ,width          : 110
                 ,value          : defaultBasemap
                 ,forceSelection : true
                 ,listeners      : {select : function(comboBox,rec) {
@@ -3106,7 +3114,7 @@ function toEnglish(v) {
   return v.val;
 }
 
-function printMap() {
+function printSaveMap(printSave) {
   var tempBase = new OpenLayers.Layer.WMS(
      'Blue Marble (EPSG:4326)'
     ,'http://asascience.mine.nu:8080/geoserver/wms?'
@@ -3192,18 +3200,26 @@ function printMap() {
       ,ico : Ext.encode(icons)
       ,ftr : Ext.encode(features)
       ,trk : Ext.encode(tracks)
+      ,out : printSave
     })
-    ,callback : function(r) {
-      clearTimeout(checkPrintTimer);
-      var bathyAlert = '';
-      if (bathyContours.visibility) {
-        bathyAlert = 'Please note that bathymetry lines will not appear on the printable map.  ';
-      }
-      Ext.Msg.alert('Print','A printer-friendly page is ready.  ' + bathyAlert + 'Click <a target=_blank href="' + r.responseText + '">here</a> to open it.');
-    }
+    ,callback : OpenLayers.Function.bind(printSaveCallback,null,printSave)
   });
 
   map.removeLayer(tempBase);
+
+  function printSaveCallback(printSave,r) {
+    clearTimeout(checkPrintTimer);
+    var bathyAlert = '';
+    if (bathyContours.visibility) {
+      bathyAlert = 'Please note that bathymetry lines will not appear on the printable map.  ';
+    }
+    if (printSave == 'print') {
+      Ext.Msg.alert('Print','A printer-friendly page is ready.  ' + bathyAlert + 'Click <a target=_blank href="' + r.responseText + '">here</a> to open it.');
+    }
+    else {
+      Ext.Msg.alert('Save','A ZIP file containting the map and legend is ready.  ' + bathyAlert + 'Click <a target=_blank href="' + r.responseText + '">here</a> to open it.');
+    }
+  }
 }
 
 function printErrorAlert() {

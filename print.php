@@ -52,8 +52,26 @@
 
   $canvas->writeImage($tmp_dir.$id.'.print.png');
 
-  $legTr = array();
+  $legTr  = array();
+  $images = array();
   for ($i = 0; $i < count($legends); $i++) {
+    // create local copies of all images
+    preg_match('/src="(.*)"/',$legends[$i],$matches);
+    if (count($matches) > 0) {
+      $handle = fopen($tmp_dir.$id.'.legend.'.$i.'.png','w');
+      fwrite($handle,@file_get_contents('http://localhost'.str_replace(' ','%20',$matches[1])));
+      fclose($handle);
+      array_push($images,$id.'.legend.'.$i.'.png');
+      $legends[$i] = str_replace($matches[1],$id.'.legend.'.$i.'.png',$legends[$i]);
+    }
+    preg_match('/src="(.*)"/',$icons[$i],$matches);
+    if (count($matches) > 0) {
+      $handle = fopen($tmp_dir.$id.'.icon.'.$i.'.png','w');
+      fwrite($handle,@file_get_contents('http://localhost'.str_replace(' ','%20',$matches[1])));
+      fclose($handle);
+      array_push($images,$id.'.icon.'.$i.'.png');
+      $icons[$i] = str_replace($matches[1],$id.'.icon.'.$i.'.png',$icons[$i]);
+    }
     array_push($legTr,"<tr><td>$icons[$i]</td><td>$legends[$i]</td></tr>");
   }
   $legTable = '<table>'.implode('',$legTr).'</table>';
@@ -84,7 +102,7 @@ $html = "
     <table>
       <tr><th colspan=2 align=center>MARACOOS Assets Explorer</th></tr>
       <tr>
-        <td><img class='mapImg' src='$tmp_url$id.print.png'></td>
+        <td><img class='mapImg' src='$id.print.png'></td>
         <td>$legTable</td>
       </tr>
     </table>
@@ -96,4 +114,15 @@ $handle = fopen($tmp_url.$id.'.html','w');
 fwrite($handle,$html);
 fclose($handle);
 
-echo $tmp_url.$id.'.html';
+if ($_REQUEST['out'] == 'print') {
+  echo $tmp_url.$id.'.html';
+}
+else {
+  $cmd = "cd $tmp_dir ; zip"
+    .' '.$id.'.zip'
+    .' '.$id.'.html'
+    .' '.$id.'.print.png'
+    .' '.implode(' ',$images);
+  `$cmd`;
+  echo $tmp_url.$id.'.zip';
+}
