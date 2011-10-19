@@ -2554,6 +2554,34 @@ function addObs(l) {
        hover         : true
       ,highlightOnly : true
       ,renderIntent  : 'temporary'
+      ,eventListeners : {
+        featurehighlighted : function(e) {
+          // figure out the target id (the id of the dot)
+          var showPopup = false;
+          var target;
+          var title;
+          for (var i in e.feature.attributes.data) {
+            for (var j = 0; j < e.feature.attributes.data[i].length; j++) {
+              title = e.feature.attributes.data[i][0].descr;
+              target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.id.split('_')[e.feature.id.split('_').length - 1]) - 1);
+              if (e.feature.attributes.featureId) {
+                target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.attributes.featureId.split('_')[e.feature.attributes.featureId.split('_').length - 1]) - 3);
+              }
+              if (e.feature.attributes.data[i][0].url) {
+                showPopup = true;
+              }
+            }
+          }
+          if (!showPopup) {
+            return;
+          }
+          new Ext.ToolTip({
+             html      : title
+            ,anchor    : 'bottom'
+            ,target    : target
+          }).show();
+        }
+      }
     });
     map.addControl(hiliteCtl);
     hiliteCtl.activate();
