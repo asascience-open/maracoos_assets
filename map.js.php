@@ -3040,17 +3040,27 @@ function printMap() {
     }
   );
   map.addLayer(tempBase);
-  var layers  = [tempBase.getFullRequestString({width : map.div.style.width.replace('px',''),height : map.div.style.height.replace('px',''),bbox : map.getExtent()})];
+  var layers   = [tempBase.getFullRequestString({width : map.div.style.width.replace('px',''),height : map.div.style.height.replace('px',''),bbox : map.getExtent()})];
+  var features = {};
   for (var i = 0; i < map.layers.length; i++) {
     var lyr = map.layers[i];
-    var legIdx  = legendsStore.find('name',lyr.name);
+    var legIdx = legendsStore.find('name',lyr.name);
+    var assIdx = assetsStore.find('name',lyr.name); 
     // WMS only (for now?)
     if (lyr.DEFAULT_PARAMS && legIdx >= 0) {
       layers.push(lyr.getFullRequestString({width : map.div.style.width.replace('px',''),height : map.div.style.height.replace('px',''),bbox : map.getExtent()}))
     }
+    else if (legIdx >= 0 && assIdx >= 0) {
+      features[lyr.name] = [];
+      for (var j = 0; j < lyr.features.length; j++) {
+        var cen = lyr.features[j].geometry.getCentroid();
+        var pix = map.getPixelFromLonLat(new OpenLayers.LonLat(cen.x,cen.y));
+        features[lyr.name].push([pix.x,pix.y]);
+      }
+    }
   }
-  var legends = [];
-  var icons   = [];
+  var legends  = [];
+  var icons    = [];
   legendsStore.each(function(rec) {
     var mainIdx = mainStore.find('name',rec.get('name'));
     icons.push('<img class="layerIcon" src="/maracoos_assets/img/' + rec.get('name') + '.drawn.png">');
@@ -3082,6 +3092,7 @@ function printMap() {
        lyr : Ext.encode(layers)
       ,leg : Ext.encode(legends)
       ,ico : Ext.encode(icons)
+      ,ftr : Ext.encode(features)
     })
     ,callback : function(r) {
       clearTimeout(checkPrintTimer);

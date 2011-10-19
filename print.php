@@ -1,7 +1,8 @@
 <?php
-  $layers  = json_decode($_REQUEST['lyr']);
-  $legends = json_decode($_REQUEST['leg']);
-  $icons   = json_decode($_REQUEST['ico']);
+  $layers   = json_decode($_REQUEST['lyr']);
+  $legends  = json_decode($_REQUEST['leg']);
+  $icons    = json_decode($_REQUEST['ico']);
+  $features = json_decode($_REQUEST['ftr'],true);
 
   $tmp_dir = '/tmp/';
   $tmp_url = '/tmp/';
@@ -20,6 +21,14 @@
       $canvas->compositeImage($img,imagick::COMPOSITE_OVER,0,0);
     }
   }
+
+  foreach ($features as $k => $v) {
+    $img = new Imagick('/var/www/maracoos_assets/img/'.$k.'.png');
+    for ($i = 0; $i < count($features[$k]); $i++) {
+      $canvas->compositeImage($img,imagick::COMPOSITE_OVER,$features[$k][$i][0],$features[$k][$i][1]);
+    }
+  }
+
   $canvas->writeImage($tmp_dir.$id.'.print.png');
 
   $legTr = array();
@@ -54,7 +63,7 @@ $html = "
     <table>
       <tr><th colspan=2 align=center>MARACOOS Assets Explorer</th></tr>
       <tr>
-        <td><img class='mapImg' src='$url_dir$id.print.png'></td>
+        <td><img class='mapImg' src='$tmp_url$id.print.png'></td>
         <td>$legTable</td>
       </tr>
     </table>
