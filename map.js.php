@@ -34,6 +34,7 @@ var obsZoom = {};
 var obsBigExtentScale = 2;  // bigger this # is, the more obs it will cache
 var popupObs;
 var popupCtl;
+var hiliteCtl;
 var lyrQueryPts;
 var chartData;
 var chartLayerStore;
@@ -2537,15 +2538,49 @@ function addObs(l) {
   });
   map.addLayer(lyr);
 
+  if (!hiliteCtl) {
+    hiliteCtl = new OpenLayers.Control.SelectFeature(lyr,{
+       hover         : true
+      ,highlightOnly : true
+    });
+    map.addControl(hiliteCtl);
+    hiliteCtl.activate();
+  }
+  else {
+    var layers = [lyr];
+    if (hiliteCtl.layers) {
+      for (var i = 0; i < hiliteCtl.layers.length; i++) {
+        layers.push(hiliteCtl.layers[i]);
+      }
+    }
+    else {
+      layers.push(hiliteCtl.layer);
+    }
+    hiliteCtl.setLayer(layers);
+  }
+
   if (!popupCtl) {
     popupCtl = new OpenLayers.Control.SelectFeature(lyr,{
       eventListeners : {
-        featurehighlighted    : function(e) {
+        featurehighlighted : function(e) {
+          // don't relaunch the popup request if it's already up
+          if (e.feature.attributes.featureId) {
+            if (Ext.getCmp(e.feature.attributes.featureId)) {
+              return;
+            }
+          }
+          else if (e.feature.id) {
+            if (Ext.getCmp(e.feature.id)) {
+              return;
+            }
+          }
           // figure out the target id (the id of the dot)
           var showPopup = false;
           var target;
+          var title;
           for (var i in e.feature.attributes.data) {
             for (var j = 0; j < e.feature.attributes.data[i].length; j++) {
+              title = e.feature.attributes.data[i][0].descr;
               target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.id.split('_')[e.feature.id.split('_').length - 1]) - 1);
               if (e.feature.attributes.featureId) {
                 target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.attributes.featureId.split('_')[e.feature.attributes.featureId.split('_').length - 1]) - 3);
@@ -2562,7 +2597,8 @@ function addObs(l) {
             return;
           }
           popupObs = new Ext.ToolTip({
-             title     : e.feature.attributes.data[i][0].descr
+             title     : title
+            ,id        : e.feature.attributes.featureId ? e.feature.attributes.featureId : e.feature.id
             ,anchor    : 'bottom'
             ,width     : 345
             ,target    : target
@@ -2573,7 +2609,9 @@ function addObs(l) {
               hide    : function() {
                 this.destroy();
                 popupObs = null;
-                popupCtl.unselect(e.feature);
+                if (e.feature.layer) {
+                  popupCtl.unselect(e.feature);
+                }
               }
               ,render : function() {
                 for (var i in e.feature.attributes.data) {
