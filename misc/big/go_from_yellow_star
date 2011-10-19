@@ -1,0 +1,8 @@
+convert $1.png -resize 30x30 bullet-big.png
+convert bullet-big.png -channel A -blur 0x2.5 +channel -fill '#ff0000' -colorize 100% shadow.png
+composite -gravity center $1.png shadow.png $1.select.png
+convert bullet-big.png -channel A -blur 0x2.5 +channel -fill '#00ff00' -colorize 100% shadow.png
+composite -gravity center $1.png shadow.png $1.hilite.png
+convert -size 40x40 xc:transparent bg.png
+composite -gravity center $1.select.png bg.png $1.select.png
+composite -gravity center $1.hilite.png bg.png $1.hilite.png

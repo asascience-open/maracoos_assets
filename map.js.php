@@ -2466,7 +2466,18 @@ function addObs(l) {
           ,strokeDashstyle : '${strokeDashstyle}'
         }))
         ,'select' : new OpenLayers.Style(OpenLayers.Util.applyDefaults({
-           externalGraphic : 'img/' + l.name + '.png'
+           externalGraphic : 'img/' + l.name + '.select.png'
+          ,pointRadius     : 8
+          ,graphicWidth    : 40
+          ,graphicHeight   : 40
+          ,graphicOpacity  : 1
+          ,strokeWidth     : '${strokeWidth}'
+          ,strokeColor     : '${strokeColor}'
+          ,strokeOpacity   : '${strokeOpacity}'
+          ,strokeDashstyle : '${strokeDashstyle}'
+        }))
+        ,'temporary' : new OpenLayers.Style(OpenLayers.Util.applyDefaults({
+           externalGraphic : 'img/' + l.name + '.hilite.png'
           ,pointRadius     : 8
           ,graphicWidth    : 40
           ,graphicHeight   : 40
@@ -2542,6 +2553,7 @@ function addObs(l) {
     hiliteCtl = new OpenLayers.Control.SelectFeature(lyr,{
        hover         : true
       ,highlightOnly : true
+      ,renderIntent  : 'temporary'
     });
     map.addControl(hiliteCtl);
     hiliteCtl.activate();
