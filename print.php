@@ -6,23 +6,39 @@
   $icons    = json_decode($_REQUEST['ico']);
   $features = json_decode($_REQUEST['ftr'],true);
   $tracks   = json_decode($_REQUEST['trk'],true);
+  $basemap  = json_decode($_REQUEST['bm'],true);
 
   $tmp_dir = '/tmp/';
   $tmp_url = '/tmp/';
   $id      = time().'.'.rand();
 
-  $canvas = new Imagick();
+  $wms = new Imagick();
   for ($i = 0; $i < count($layers); $i++) {
     $handle = fopen($tmp_dir.$id.'.png','w');
     fwrite($handle,@file_get_contents($layers[$i]));
     fclose($handle);
     $img = new Imagick($tmp_dir.$id.'.png');
     if ($i == 0) {
-      $canvas = $img->clone();
+      $wms = $img->clone();
     }
     else {
-      $canvas->compositeImage($img,imagick::COMPOSITE_OVER,0,0);
+      $wms->compositeImage($img,imagick::COMPOSITE_OVER,0,0);
     }
+  }
+  
+  $canvas = new Imagick();
+  $canvas->newImage($_REQUEST['w'],$_REQUEST['h'],new ImagickPixel('transparent'));
+  $canvas->setImageFormat('png');
+  foreach ($basemap as $k => $v) {
+    $handle = fopen($tmp_dir.$id.'.bm.png','w');
+    fwrite($handle,@file_get_contents($basemap[$k]['url']));
+    fclose($handle);
+    $img = new Imagick($tmp_dir.$id.'.bm.png');
+    $canvas->compositeImage($img,imagick::COMPOSITE_OVER,$basemap[$k]['x'],$basemap[$k]['y']);
+  }
+
+  if (count($layers) > 0) {
+    $canvas->compositeImage($wms,imagick::COMPOSITE_OVER,0,0);
   }
 
   foreach ($tracks as $k => $v) {
@@ -100,7 +116,7 @@ $html = "
   </head>
   <body onload=\"window.print()\">
     <table>
-      <tr><th colspan=2 align=center>MARACOOS Assets Explorer</th></tr>
+      <tr><th align=center>MARACOOS Assets Explorer</th></tr>
       <tr>
         <td><img class='mapImg' src='$id.print.png'></td>
         <td>$legTable</td>

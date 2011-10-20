@@ -1238,7 +1238,7 @@ function init() {
               ,new Ext.form.ComboBox({
                  store          : new Ext.data.ArrayStore({
                    fields : ['name']
-                  ,data   : [['ESRI Ocean'],['Open StreetMap'],['Google Satellite'],['Google Terrain']]
+                  ,data   : [['ESRI Ocean'],['Google Satellite'],['Google Terrain']]
                 })
                 ,valueField     : 'name'
                 ,displayField   : 'name'
@@ -1797,7 +1797,7 @@ function initMap() {
           OpenLayers.Util.indexOf(this.serverResolutions, res) :
           this.map.getZoom();
       // this is the trick
-      tileZ += this.map.baseLayer.minZoomLevel ? this.map.baseLayer.minZoomLevel : 0;
+      tileZ += this.esriOcean.minZoomLevel ? this.esriOcean.minZoomLevel : 0;
       /**
        * Zero-pad a positive integer.
        * number - {Int}
@@ -3126,6 +3126,10 @@ function toEnglish(v) {
 }
 
 function printSaveMap(printSave) {
+  if (map.baseLayer.name != 'Open StreetMap') {
+    Ext.Msg.alert('Basemap error','Due to copyright limitations, only the ESRI Ocean baselayer may be printed or saved.  Please change your basemap selection and try again.');
+    return;
+  }
   var tempBase = new OpenLayers.Layer.WMS(
      'Blue Marble (EPSG:4326)'
     ,'http://asascience.mine.nu:8080/geoserver/wms?'
@@ -3139,7 +3143,7 @@ function printSaveMap(printSave) {
     }
   );
   map.addLayer(tempBase);
-  var layers   = [tempBase.getFullRequestString({width : map.div.style.width.replace('px',''),height : map.div.style.height.replace('px',''),bbox : map.getExtent()})];
+  var layers   = [];
   var features = {};
   var tracks   = {};
   for (var i = 0; i < map.layers.length; i++) {
@@ -3176,6 +3180,7 @@ function printSaveMap(printSave) {
       }
     }
   }
+
   var legends  = [];
   var icons    = [];
   legendsStore.each(function(rec) {
@@ -3192,6 +3197,22 @@ function printSaveMap(printSave) {
     legends.push(p.join('<br>'));
   });
 
+  var basemap = [];
+  var baseLayer = esriOcean;
+  if (map.getScale() <= 433344.01634946937) {
+    baseLayer = openStreetMap;
+  }
+  for (tilerow in baseLayer.grid) {
+    for (tilei in baseLayer.grid[tilerow]) {
+      var tile = baseLayer.grid[tilerow][tilei];
+      if (tile.bounds) {
+        var url      = baseLayer.getURL(tile.bounds);
+        var position = tile.position;
+        basemap.push({url : url,x : position.x,y : position.y});
+      }
+    }
+  }
+
   Ext.MessageBox.show({
      title        : 'Please wait'
     ,msg          : 'Generating template...'
@@ -3199,7 +3220,7 @@ function printSaveMap(printSave) {
     ,wait         : true
     ,waitConfig   : {interval : 200}
   });
-  checkPrintTimer = setTimeout('printErrorAlert()',10000);
+  checkPrintTimer = setTimeout('printErrorAlert()',20000);
 
   OpenLayers.Request.issue({
      method  : 'POST'
@@ -3211,7 +3232,10 @@ function printSaveMap(printSave) {
       ,ico : Ext.encode(icons)
       ,ftr : Ext.encode(features)
       ,trk : Ext.encode(tracks)
+      ,bm  : Ext.encode(basemap)
       ,out : printSave
+      ,w   : map.div.style.width.replace('px','')
+      ,h   : map.div.style.height.replace('px','')
     })
     ,callback : OpenLayers.Function.bind(printSaveCallback,null,printSave)
   });
