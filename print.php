@@ -98,7 +98,7 @@ $html = "
       }
     </style>
   </head>
-  <body>
+  <body onload=\"window.print()\">
     <table>
       <tr><th colspan=2 align=center>MARACOOS Assets Explorer</th></tr>
       <tr>
