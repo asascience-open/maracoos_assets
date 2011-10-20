@@ -3220,6 +3220,10 @@ function printSaveMap(printSave) {
 
   function printSaveCallback(printSave,r) {
     clearTimeout(checkPrintTimer);
+    if (r.responseText == '') {
+      printErrorAlert();
+      return;
+    }
     var bathyAlert = '';
     if (bathyContours.visibility) {
       bathyAlert = 'Please note that bathymetry lines will not appear on the printable map.  ';
@@ -3235,5 +3239,5 @@ function printSaveMap(printSave) {
 
 function printErrorAlert() {
   Ext.MessageBox.hide();
-  Ext.Msg.alert('Print error',"We're sorry, but a print error has occured.  Please try again.");
+  Ext.Msg.alert('Print/save error',"We're sorry, but a print/save error has occured.  Please try again.");
 }
