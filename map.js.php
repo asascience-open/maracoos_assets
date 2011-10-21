@@ -63,6 +63,7 @@ var lastMapClick = {
    layer : ''
   ,e     : ''
 };
+var timeControlsHeight = 42;
 var checkPrintTimer;
 
 function init() {
@@ -1267,39 +1268,16 @@ function init() {
             ]
             ,bbar      : {
                xtype    : 'container'
-              ,height   : 42
+              ,height   : timeControlsHeight
               ,defaults : {border : false,bodyStyle : 'background:transparent'}
               ,cls      : 'x-toolbar'
-              ,id      : 'timeSliderContainer'
+              ,id       : 'timeSliderContainer'
               ,items : [
                  new Ext.Panel({
                    width       : 100
                   ,height      : 15
                   ,id          : 'sliderTics'
                   ,html        : '<table id="sliderTicsTable"><tbody></tbody></table>'
-                  ,listeners   : {afterrender : function() {
-                    var tbody = document.getElementById('sliderTicsTable').getElementsByTagName('tbody')[0];
-                    var tr = document.createElement('tr');
-                    for (var i = 0; i < availableTimes.length; i++) {
-                      var td = document.createElement('td');
-                      if (availableTimes[i].getHours() == 0) {
-                        td.innerHTML = (availableTimes[i].getMonth() + 1) + '/' + availableTimes[i].getDate();
-                        td.style.width = (1 / numTics * 100) + '%';
-                        td.style.paddingRight = i;
-                      }
-                      else {
-                        td.innerHTML = '<img src="img/blank.png" width=2>';
-                      }
-                      if (i == 0 || availableTimes[i].getHours() != 0 || i == availableTimes.length - 1) {
-                        td.className = 'fillSolid';
-                      }
-                      tr.appendChild(td);
-                      if (availableTimes[i].getTime() == dNow.getTime()) {
-                        Ext.getCmp('timeSlider').setValue(i);
-                      }
-                    }
-                    tbody.appendChild(tr);
-                  }}
                 })
                 ,new Ext.Panel({
                    layout       : 'column'
@@ -1800,7 +1778,7 @@ function initMap() {
           OpenLayers.Util.indexOf(this.serverResolutions, res) :
           this.map.getZoom();
       // this is the trick
-      tileZ += this.esriOcean.minZoomLevel ? this.esriOcean.minZoomLevel : 0;
+      tileZ += esriOcean.minZoomLevel ? esriOcean.minZoomLevel : 0;
       /**
        * Zero-pad a positive integer.
        * number - {Int}
@@ -1874,6 +1852,8 @@ function initMap() {
      name       : 'Gliders'
     ,visibility : typeof defaultLayers['Gliders'] != 'undefined'
   });
+
+  makeTimeSlider(true);
 }
 
 function setLayerInfo(layerName,on) {
@@ -3267,4 +3247,62 @@ function printSaveMap(printSave) {
 function printErrorAlert() {
   Ext.MessageBox.hide();
   Ext.Msg.alert('Print/save error',"We're sorry, but a print/save error has occured.  Please try again.");
+}
+
+function makeTimeSlider(initOnly) {
+  dNow = new Date();
+  dNow12Hours = new Date(dNow.getTime());
+  dNow12Hours.setHours(12);
+  var availableTimes = [];
+  for (var i = -numTics; i <= numTics; i++) {
+    availableTimes.push(new Date(dNow12Hours.getTime() + 12 * i * 60 * 60 * 1000));
+  }
+  if (dNow.getHours() >= 12) {
+    dNow.setHours(12);
+  }
+  else {
+    dNow.setHours(0);
+  }
+
+  var tbody = document.getElementById('sliderTicsTable').getElementsByTagName('tbody')[0];
+  if (tbody.hasChildNodes()) {
+    while (tbody.childNodes.length >= 1) {
+      tbody.removeChild(tbody.firstChild);
+    }
+  }
+  var tr = document.createElement('tr');
+  for (var i = 0; i < availableTimes.length; i++) {
+    var td = document.createElement('td');
+    if (availableTimes[i].getHours() == 0) {
+      td.innerHTML = (availableTimes[i].getMonth() + 1) + '/' + availableTimes[i].getDate();
+      td.style.width = (1 / numTics * 100) + '%';
+      td.style.paddingRight = i;
+    }
+    else {
+      td.innerHTML = '<img src="img/blank.png" width=2>';
+    }
+    if (i == 0 || availableTimes[i].getHours() != 0 || i == availableTimes.length - 1) {
+      td.className = 'fillSolid';
+    }
+    tr.appendChild(td);
+    if (availableTimes[i].getTime() == dNow.getTime()) {
+      Ext.getCmp('timeSlider').suspendEvents();
+      Ext.getCmp('timeSlider').setValue(i);
+      Ext.getCmp('timeSlider').resumeEvents();
+      if (!initOnly) {
+        var dStr = dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00';
+        for (var j = 0; j < map.layers.length; j++) {
+          // WMS layers only
+          if (map.layers[j].DEFAULT_PARAMS) {
+            map.layers[j].mergeNewParams({TIME : dStr,unique : new Date().getTime()});
+            // record the action on google analytics
+            if (mainStore.find('name',map.layers[i].name) >= 0) {
+              pageTracker._trackEvent('timeSlider',mainStore.getAt(mainStore.find('name',map.layers[i].name)).get('displayName'));
+            }
+          }
+        }
+      }
+    }
+  }
+  tbody.appendChild(tr);
 }
