@@ -1320,6 +1320,9 @@ function init() {
                       ,maxValue    : availableTimes.length - 1
                       ,width       : 100
                       ,id          : 'timeSlider'
+                      ,plugins     : new Ext.slider.Tip({getText : function(thumb){
+                        return shortDateString(availableTimes[thumb.value]);
+                      }})
                       ,listeners   : {change : function(slider,val) {
                         var dStr = availableTimes[val].getUTCFullYear() + '-' + String.leftPad(availableTimes[val].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[val].getUTCDate(),2,'0') + 'T' + String.leftPad(availableTimes[val].getUTCHours(),2,'0') + ':00';
                         for (var i = 0; i < map.layers.length; i++) {
@@ -2442,7 +2445,7 @@ function addWMS(l) {
               rec.set('timestamp','<span class="alert">This layer\'s domain<br/>is out of bounds.<span>');
             }
             else {
-              rec.set('timestamp',new Date(r.responseText * 1000));
+              rec.set('timestamp',shortDateString(new Date(r.responseText * 1000)));
               if (lastMapClick['layer'] == lyr.name && lyrQueryPts.features.length > 0) {
                 mapClick(lastMapClick['e']);
               }

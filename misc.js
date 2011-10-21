@@ -506,3 +506,21 @@ function addVector(l) {
 
   map.addLayer(lyr);
 }
+
+function zeroPad(number, length) {
+    number = String(number);
+    var zeros = [];
+    for(var i=0; i<length; ++i) {
+        zeros.push('0');
+    }
+    return zeros.join('').substring(0, length - number.length) + number;
+}
+
+function shortDateString(d) {
+  return (d.getMonth() + 1)
+    + '/' + d.getDate() 
+    + ' ' + zeroPad(d.getHours(),2) 
+    + ':' + zeroPad(d.getMinutes(),2) 
+    + ' UTC' + (d.getTimezoneOffset() * -1 < 0 ? '-' : '+')
+    + zeroPad(d.getTimezoneOffset()/60,2);
+}
