@@ -43,22 +43,10 @@ var esriOcean;     // special case for this layer
 var navCharts;     // special case for this layer
 var openStreetMap; // special case for this layer
 var bathyContours;
-var dNow = new Date();
-dNow.setMinutes(0);
-dNow.setSeconds(0);
-var dNow12Hours = new Date(dNow.getTime());
-dNow12Hours.setHours(12);
-var numTics = 4; // must be even!
+var dNow;
+var numTics = 4;           // must be even!
+var ticIntervalHours = 12;
 var availableTimes = [];
-for (var i = -numTics; i <= numTics; i++) {
-  availableTimes.push(new Date(dNow12Hours.getTime() + 12 * i * 60 * 60 * 1000));
-}
-if (dNow.getHours() >= 12) {
-  dNow.setHours(12);
-}
-else {
-  dNow.setHours(0);
-}
 var lastMapClick = {
    layer : ''
   ,e     : ''
@@ -91,6 +79,8 @@ function init() {
   Ext.state.Manager.setProvider(cp);
 
   Ext.QuickTips.init();
+
+  makeAvailableTimes();
 
   chartLayerStore =  new Ext.data.ArrayStore({
      id        : 0
@@ -3249,19 +3239,24 @@ function printErrorAlert() {
   Ext.Msg.alert('Print/save error',"We're sorry, but a print/save error has occured.  Please try again.");
 }
 
-function makeTimeSlider(initOnly) {
+function makeAvailableTimes() {
   dNow = new Date();
-  dNow12Hours = new Date(dNow.getTime());
+  var dNow12Hours = new Date(dNow.getTime());
   dNow12Hours.setHours(12);
-  var availableTimes = [];
   for (var i = -numTics; i <= numTics; i++) {
-    availableTimes.push(new Date(dNow12Hours.getTime() + 12 * i * 60 * 60 * 1000));
+    availableTimes.push(new Date(dNow12Hours.getTime() + ticIntervalHours * i * 60 * 60 * 1000));
   }
   if (dNow.getHours() >= 12) {
     dNow.setHours(12);
   }
   else {
     dNow.setHours(0);
+  }
+}
+
+function makeTimeSlider(initOnly) {
+  if (!initOnly) {
+    makeAvailableTimes();
   }
 
   var tbody = document.getElementById('sliderTicsTable').getElementsByTagName('tbody')[0];
