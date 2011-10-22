@@ -1768,7 +1768,7 @@ function initMap() {
           OpenLayers.Util.indexOf(this.serverResolutions, res) :
           this.map.getZoom();
       // this is the trick
-      tileZ += esriOcean.minZoomLevel ? esriOcean.minZoomLevel : 0;
+      tileZ += map.baseLayer.minZoomLevel ? map.baseLayer.minZoomLevel : 0;
       /**
        * Zero-pad a positive integer.
        * number - {Int}
