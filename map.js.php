@@ -3217,7 +3217,7 @@ function mapClick(e) {
     var mapTime;
     var legIdx = legendsStore.find('name',lyr.name);
     if (legIdx >= 0 && legendsStore.getAt(legIdx).get('timestamp') && String(legendsStore.getAt(legIdx).get('timestamp')).indexOf('alert') < 0) {
-      mapTime = '&mapTime=' + (new Date((legendsStore.getAt(legIdx).get('timestamp')).getTime() - new Date().getTimezoneOffset() * 60000) / 1000);
+      mapTime = '&mapTime=' + (new Date(shortDateToDate(legendsStore.getAt(legIdx).get('timestamp')).getTime() - new Date().getTimezoneOffset() * 60000) / 1000);
     }
     var paramOrig = OpenLayers.Util.getParameters(lyr.getFullRequestString({}));
     var paramNew = {

@@ -519,8 +519,20 @@ function zeroPad(number, length) {
 function shortDateString(d) {
   return (d.getMonth() + 1)
     + '/' + d.getDate() 
+    + '/' + d.getFullYear()
     + ' ' + zeroPad(d.getHours(),2) 
     + ':' + zeroPad(d.getMinutes(),2) 
     + ' UTC' + (d.getTimezoneOffset() * -1 < 0 ? '-' : '+')
     + zeroPad(d.getTimezoneOffset()/60,2);
+}
+
+function shortDateToDate(s) {
+  // 10/22/2011 08:00 UTC-04
+  return new Date(
+     s.substr(6,4)
+    ,s.substr(0,2)-1
+    ,s.substr(3,2)
+    ,s.substr(11,2)
+    ,s.substr(14,2)
+  );
 }
