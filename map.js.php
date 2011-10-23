@@ -726,11 +726,10 @@ function init() {
         ,'false'
         ,''
       ]
-/*
       ,[
          'marine'
         ,'WWA'
-        ,'NWS hazards'
+        ,'Hazards and forecasts'
         ,'off'
         ,defaultLayers['WWA'] ? 'on' : 'off'
         ,'off'
@@ -781,7 +780,6 @@ function init() {
         ,'false'
         ,''
       ]
-*/
       ,[
          'n/a'
         ,'Bathymetry contours'
@@ -1199,7 +1197,7 @@ function init() {
   var marineGridPanel = new Ext.grid.GridPanel({
      id               : 'marineGridPanel'
     ,height           : marineStore.getCount() * 21.1 + 26 + 11 + 25
-    ,title            : 'Marine'
+    ,title            : 'National Weather Service'
     ,collapsible      : true
     ,store            : marineStore
     ,border           : false
@@ -1213,7 +1211,7 @@ function init() {
     ,disableSelection : true
     ,tbar             : [
       {
-         text    : 'Turn all marine off'
+         text    : 'Turn all NWS off'
         ,icon    : 'img/delete.png'
         ,handler : function() {
           marineStore.each(function(rec) {
@@ -1222,6 +1220,21 @@ function init() {
             rec.commit();
             if (lyr.visibility) {
               lyr.setVisibility(false);
+            }
+          });
+        }
+      }
+      ,'->'
+      ,{
+         text    : 'Turn all NWS on'
+        ,icon    : 'img/add.png'
+        ,handler : function() {
+          marineStore.each(function(rec) {
+            var lyr = map.getLayersByName(rec.get('name'))[0];
+            rec.set('status','on');
+            rec.commit();
+            if (!lyr.visibility) {
+              lyr.setVisibility(true);
             }
           });
         }
@@ -1267,7 +1280,7 @@ function init() {
           ,assetsGridPanel
           ,modelsGridPanel
           ,observationsGridPanel
-          // ,marineGridPanel
+          ,marineGridPanel
         ]
       })
       ,new Ext.Panel({
@@ -1330,6 +1343,12 @@ function init() {
                           p['opcty'].push(map.layers[i].opacity * 100);
                           p['lyrLyrs'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['LAYERS']);
                           p['imgTyps'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['FORMAT'].split('/')[1]);
+                        }
+                        else if (map.layers[i].grid) {
+                          p['styls'].push('');
+                          p['opcty'].push(map.layers[i].opacity * 100);
+                          p['lyrLyrs'].push('');
+                          p['imgTyps'].push('');
                         }
                         else {
                           p['styls'].push('');
@@ -1800,6 +1819,21 @@ function initMap() {
     ,singleTile : true
     ,projection : proj3857
   });
+
+  addTMS({
+     name   : 'WWA'
+    ,url    : [
+       'http://radarcache0.srh.noaa.gov/tc/tc.py/'
+      ,'http://radarcache1.srh.noaa.gov/tc/tc.py/'
+      ,'http://radarcache2.srh.noaa.gov/tc/tc.py/'
+      ,'http://radarcache3.srh.noaa.gov/tc/tc.py/'
+      ,'http://radarcache4.srh.noaa.gov/tc/tc.py/'
+    ]
+    ,layer  : 'threat'
+    ,format : 'png'
+    ,projection : proj4326
+  });
+
   addWMS({
      name   : 'ROMS'
     ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
@@ -1880,20 +1914,6 @@ function initMap() {
     ,styles : ''
     ,singleTile : true
     ,projection : proj900913
-  });
-
-  addTMS({
-     name   : 'WWA'
-    ,url    : [
-       'http://radarcache0.srh.noaa.gov/tc/tc.py/'
-      ,'http://radarcache1.srh.noaa.gov/tc/tc.py/'
-      ,'http://radarcache2.srh.noaa.gov/tc/tc.py/'
-      ,'http://radarcache3.srh.noaa.gov/tc/tc.py/'
-      ,'http://radarcache4.srh.noaa.gov/tc/tc.py/'
-    ]
-    ,layer  : 'threat'
-    ,format : 'png'
-    ,projection : proj4326
   });
 
   addTileCache({
@@ -2624,7 +2644,8 @@ function addTMS(l) {
       ,visibility  : mainStore.find('name',l.name) >= 0 ? mainStore.getAt(mainStore.find('name',l.name)).get('status') == 'on' : false
       ,isBaseLayer : false
       ,projection  : l.projection
-      ,scales            : [
+      ,opacity     : mainStore.find('name',l.name) >= 0 ? mainStore.getAt(mainStore.find('name',l.name)).get('settingsOpacity') / 100 : 1
+      ,scales      : [
          55468034.09273208   // ESRI Ocean zoom 3
         ,27734017.04636604
         ,13867008.52318302
