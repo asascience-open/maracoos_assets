@@ -1267,7 +1267,7 @@ function init() {
           ,assetsGridPanel
           ,modelsGridPanel
           ,observationsGridPanel
-          ,marineGridPanel
+          // ,marineGridPanel
         ]
       })
       ,new Ext.Panel({
