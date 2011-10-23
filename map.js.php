@@ -1918,7 +1918,7 @@ function initMap() {
 
   addTileCache({
      name   : 'Zones'
-    ,url    : 'http://gentoo/tilecache/'
+    ,url    : 'http://assets.maracoos.org/tilecache/'
     ,layer  : 'marine_zones'
     ,projection : proj900913
   });
