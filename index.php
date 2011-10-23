@@ -47,6 +47,8 @@
         ,'Satellite water temperature' : 100
         ,'GOES visible imagery'        : 100
         ,'NHC storm tracks'            :  65
+        ,'Zones'                       : 100
+        ,'WWA'                         : 100
         ,'Open StreetMap'              : 100
         ,'Google Satellite'            : 100
         ,'Google Terrain'              : 100

@@ -85,6 +85,24 @@
   color : rgb(74,134,214);
 }
 
+#marineGridPanel {
+  border-top: 1px solid #99BBE8;
+}
+#marineGridPanel .x-grid3-row {
+  border-color   : #ffffff;
+}
+#marineGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
+  padding : 0px;
+}
+#marineGridPanel a:link {
+  text-decoration : none;
+  font            : 12px tahoma,helvetica,sans-serif;
+  color           : #000000;
+}
+#marineGridPanel a:hover {
+  color : rgb(74,134,214);
+}
+
 .popup {
   background : white;
   padding    : 6px;

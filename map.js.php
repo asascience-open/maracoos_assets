@@ -16,6 +16,7 @@ var mainStore;
 var assetsStore;
 var modelsStore;
 var observationsStore;
+var marineStore;
 var legendsStore;
 var spot;
 var spotTooltip;
@@ -42,7 +43,6 @@ var chartLayerStore;
 var esriOcean;     // special case for this layer
 var navCharts;     // special case for this layer
 var openStreetMap; // special case for this layer
-var bathyContours;
 var dNow;
 var numTics = 4;           // must be even!
 var ticIntervalHours = 12;
@@ -726,6 +726,89 @@ function init() {
         ,'false'
         ,''
       ]
+/*
+      ,[
+         'marine'
+        ,'WWA'
+        ,'NWS hazards'
+        ,'off'
+        ,defaultLayers['WWA'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/WWA.html')))?>'
+        ,''
+        ,typeof defaultOpacities['WWA'] != 'undefined' && defaultOpacities['WWA'] != '' ? defaultOpacities['WWA'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'false'
+        ,'-135,0,-50,50'
+        ,'false'
+        ,''
+      ]
+      ,[
+         'marine'
+        ,'Zones'
+        ,'Near and offshore zones'
+        ,'off'
+        ,defaultLayers['Zones'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Zones.html')))?>'
+        ,''
+        ,typeof defaultOpacities['Zones'] != 'undefined' && defaultOpacities['Zones'] != '' ? defaultOpacities['Zones'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'false'
+        ,'-135,0,-50,50'
+        ,'false'
+        ,''
+      ]
+*/
+      ,[
+         'n/a'
+        ,'Bathymetry contours'
+        ,'Bathymetry contours'
+        ,'off'
+        ,defaultLayers['Bathymetry contours'] ? 'on' : 'off'
+        ,'off'
+        ,''
+        ,''
+        ,typeof defaultOpacities['Bathymetry contours'] != 'undefined' && defaultOpacities['Bathymetry contours'] != '' ? defaultOpacities['Bathymetry contours'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'false'
+        ,'-135,0,-50,50'
+        ,'false'
+        ,''
+      ]
     ]
   });
 
@@ -834,6 +917,40 @@ function init() {
   mainStore.each(function(rec) {
     if (rec.get('type') == 'observation') {
       observationsStore.add(rec);
+    }
+  });
+
+  marineStore = new Ext.data.ArrayStore({
+    fields : [
+       'name'
+      ,'displayName'
+      ,'info'
+      ,'status'
+      ,'settings'
+      ,'infoBlurb'
+      ,'settingsParam'
+      ,'settingsOpacity'
+      ,'settingsImageType'
+      ,'settingsPalette'
+      ,'settingsBaseStyle'
+      ,'settingsColorMap'
+      ,'settingsStriding'
+      ,'settingsBarbLabel'
+      ,'settingsTailMag'
+      ,'settingsMin'
+      ,'settingsMax'
+      ,'settingsMinMaxBounds'
+      ,'rank'
+      ,'legend'
+      ,'timestamp'
+      ,'bbox'
+      ,'queryable'
+      ,'settingsLayers'
+    ]
+  });
+  mainStore.each(function(rec) {
+    if (rec.get('type') == 'marine') {
+      marineStore.add(rec);
     }
   });
 
@@ -967,7 +1084,7 @@ function init() {
 
   var assetsGridPanel = new Ext.grid.GridPanel({
      id               : 'assetsGridPanel'
-    ,height           : 8 * 21.1 + 26 + 11 + 25
+    ,height           : assetsStore.getCount() * 21.1 + 26 + 11 + 25
     ,title            : 'Assets'
     ,collapsible      : true
     ,store            : assetsStore
@@ -1015,7 +1132,7 @@ function init() {
 
   var modelsGridPanel = new Ext.grid.GridPanel({
      id               : 'modelsGridPanel'
-    ,height           : 10 * 21.1 + 26 + 11 + 25
+    ,height           : modelsStore.getCount() * 21.1 + 26 + 11 + 25
     ,title            : 'Models'
     ,collapsible      : true
     ,store            : modelsStore
@@ -1048,7 +1165,7 @@ function init() {
 
   var observationsGridPanel = new Ext.grid.GridPanel({
      id               : 'observationsGridPanel'
-    ,height           : 4 * 21.1 + 26 + 11 + 25
+    ,height           : observationsStore.getCount() * 21.1 + 26 + 11 + 25
     ,title            : 'Observations'
     ,collapsible      : true
     ,store            : observationsStore
@@ -1067,6 +1184,39 @@ function init() {
         ,icon    : 'img/delete.png'
         ,handler : function() {
           observationsStore.each(function(rec) {
+            var lyr = map.getLayersByName(rec.get('name'))[0];
+            rec.set('status','off');
+            rec.commit();
+            if (lyr.visibility) {
+              lyr.setVisibility(false);
+            }
+          });
+        }
+      }
+    ]
+  });
+
+  var marineGridPanel = new Ext.grid.GridPanel({
+     id               : 'marineGridPanel'
+    ,height           : marineStore.getCount() * 21.1 + 26 + 11 + 25
+    ,title            : 'Marine'
+    ,collapsible      : true
+    ,store            : marineStore
+    ,border           : false
+    ,columns          : [
+       {id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 45,css : 'vertical-align:middle'}
+      ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+      ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
+    ]
+    ,hideHeaders      : true
+    ,disableSelection : true
+    ,tbar             : [
+      {
+         text    : 'Turn all marine off'
+        ,icon    : 'img/delete.png'
+        ,handler : function() {
+          marineStore.each(function(rec) {
             var lyr = map.getLayersByName(rec.get('name'))[0];
             rec.set('status','off');
             rec.commit();
@@ -1117,6 +1267,7 @@ function init() {
           ,assetsGridPanel
           ,modelsGridPanel
           ,observationsGridPanel
+          ,marineGridPanel
         ]
       })
       ,new Ext.Panel({
@@ -1190,7 +1341,7 @@ function init() {
                     }
                   }
                   p['lyrs'] = p['lyrs'].join(',');
-                  p['bathyC'] = bathyContours.visibility;
+                  p['bathyC'] = map.getLayersByName('Bathymetry contours')[0].visibility;
                   var u = [];
                   for (var i in p) {
                     u.push(i + '=' + p[i]);
@@ -1200,7 +1351,7 @@ function init() {
                 }
               }
               ,{
-                 icon    : 'img/email.png'
+                 icon    : 'img/comments.png'
                 ,text    : 'Feedback'
                 ,tooltip : 'Provide feedback'
                 ,handler : function() {
@@ -1217,12 +1368,12 @@ function init() {
                 }
               }
               ,'->'
-              ,'Show bathymetry lines?'
+              ,'Show bathymetry contours?'
               ,' '
               ,new Ext.form.Checkbox({
                  checked   : typeof defaultLayers['bathyContours'] != 'undefined'
                 ,listeners : {check : function(cbox,checked) {
-                  bathyContours.setVisibility(checked);
+                  map.getLayersByName('Bathymetry contours')[0].setVisibility(checked);
                 }}
               })
               ,' '
@@ -1512,16 +1663,12 @@ function initMap() {
       ,navCharts
       ,new OpenLayers.Layer.Google('Google Satellite',{
          type          : google.maps.MapTypeId.SATELLITE
-        ,minZoomLevel  : 5
-        ,numZoomLevels : 8
         ,projection    : proj900913
         ,opacity       : defaultOpacities['Google Satellite'] / 100
         ,visibility    : defaultBasemap == 'Google Satellite'
       })
       ,new OpenLayers.Layer.Google('Google Terrain',{
          type          : google.maps.MapTypeId.TERRAIN
-        ,minZoomLevel  : 5
-        ,numZoomLevels : 8
         ,projection    : proj900913
         ,opacity       : defaultOpacities['Google Terrain'] / 100
         ,visibility    : defaultBasemap == 'Google Terrain'
@@ -1735,75 +1882,33 @@ function initMap() {
     ,projection : proj900913
   });
 
-  bathyContours = new OpenLayers.Layer.TileCache(
-      'Bathymetry contours'
-     ,'http://assets.maracoos.org/tilecache/'
-    ,'bathy'
-    ,{
-       visibility        : typeof defaultLayers['bathyContours'] != 'undefined'
-      ,isBaseLayer       : false
-      ,wrapDateLine      : true
-      ,projection        : proj900913
-      ,opacity           : 1
-      ,scales            : [
-         55468034.09273208
-        ,27734017.04636604
-        ,13867008.52318302
-        ,6933504.26159151
-        ,3466752.130795755
-        ,1733376.0653978775
-        ,866688.0326989387
-        ,433344.01634946937
-        ,216672.00817473468
-      ]
-    }
-  );
-  bathyContours.getURL = function(bounds) {
-      var res = this.map.getResolution();
-      var bbox = this.maxExtent;
-      var size = this.tileSize;
-      var tileX = Math.round((bounds.left - bbox.left) / (res * size.w));
-      var tileY = Math.round((bounds.bottom - bbox.bottom) / (res * size.h));
-      var tileZ = this.serverResolutions != null ?
-          OpenLayers.Util.indexOf(this.serverResolutions, res) :
-          this.map.getZoom();
-      // this is the trick
-      tileZ += map.baseLayer.minZoomLevel ? map.baseLayer.minZoomLevel : 0;
-      /**
-       * Zero-pad a positive integer.
-       * number - {Int}
-       * length - {Int}
-       *
-       * Returns:
-       * {String} A zero-padded string
-       */
-      function zeroPad(number, length) {
-          number = String(number);
-          var zeros = [];
-          for(var i=0; i<length; ++i) {
-              zeros.push('0');
-          }
-          return zeros.join('').substring(0, length - number.length) + number;
-      }
-      var components = [
-          this.layername,
-          zeroPad(tileZ, 2),
-          zeroPad(parseInt(tileX / 1000000), 3),
-          zeroPad((parseInt(tileX / 1000) % 1000), 3),
-          zeroPad((parseInt(tileX) % 1000), 3),
-          zeroPad(parseInt(tileY / 1000000), 3),
-          zeroPad((parseInt(tileY / 1000) % 1000), 3),
-          zeroPad((parseInt(tileY) % 1000), 3) + '.' + this.extension
-      ];
-      var path = components.join('/');
-      var url = this.url;
-      if (url instanceof Array) {
-          url = this.selectUrl(path, url);
-      }
-      url = (url.charAt(url.length - 1) == '/') ? url : url + '/';
-      return url + path;
-  }
-  map.addLayer(bathyContours);
+  addTMS({
+     name   : 'WWA'
+    ,url    : [
+       'http://radarcache0.srh.noaa.gov/tc/tc.py/'
+      ,'http://radarcache1.srh.noaa.gov/tc/tc.py/'
+      ,'http://radarcache2.srh.noaa.gov/tc/tc.py/'
+      ,'http://radarcache3.srh.noaa.gov/tc/tc.py/'
+      ,'http://radarcache4.srh.noaa.gov/tc/tc.py/'
+    ]
+    ,layer  : 'threat'
+    ,format : 'png'
+    ,projection : proj4326
+  });
+
+  addTileCache({
+     name   : 'Zones'
+    ,url    : 'http://gentoo/tilecache/'
+    ,layer  : 'marine_zones'
+    ,projection : proj900913
+  });
+
+  addTileCache({
+     name   : 'Bathymetry contours'
+    ,url    : 'http://assets.maracoos.org/tilecache/'
+    ,layer  : 'bathy'
+    ,projection : proj900913
+  });
 
   addVector({
      name       : 'ROMS ESPRESSO'
@@ -2328,24 +2433,7 @@ function renderLegend(val,metadata,rec) {
   return a.join('<br/>');
 }
 
-function addWMS(l) {
-  var lyr = new OpenLayers.Layer.WMS(
-     l.name
-    ,l.url
-    ,{
-       layers      : l.layers
-      ,format      : l.format
-      ,transparent : true
-      ,styles      : l.styles
-    }
-    ,{
-       isBaseLayer : false
-      ,projection  : l.projection
-      ,singleTile  : l.singleTile
-      ,visibility  : mainStore.getAt(mainStore.find('name',l.name)).get('status') == 'on'
-      ,opacity     : mainStore.getAt(mainStore.find('name',l.name)).get('settingsOpacity') / 100
-    }
-  );
+function addLayer(lyr,timeSensitive) {
   lyr.events.register('visibilitychanged',this,function(e) {
     if (!lyr.visibility) {
       var idx = legendsStore.find('name',lyr.name);
@@ -2427,8 +2515,146 @@ function addWMS(l) {
     // record the action on google analytics
     pageTracker._trackEvent('layerView','loadEnd',mainStore.getAt(mainStore.find('name',lyr.name)).get('displayName'));
   });
-  lyr.mergeNewParams({TIME : dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00'});
+  if (timeSensitive) {
+    lyr.mergeNewParams({TIME : dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00'});
+  }
   map.addLayer(lyr);
+}
+
+function addWMS(l) {
+  var lyr = new OpenLayers.Layer.WMS(
+     l.name
+    ,l.url
+    ,{
+       layers      : l.layers
+      ,format      : l.format
+      ,transparent : true
+      ,styles      : l.styles
+    }
+    ,{
+       isBaseLayer : false
+      ,projection  : l.projection
+      ,singleTile  : l.singleTile
+      ,visibility  : mainStore.getAt(mainStore.find('name',l.name)).get('status') == 'on'
+      ,opacity     : mainStore.getAt(mainStore.find('name',l.name)).get('settingsOpacity') / 100
+    }
+  );
+  addLayer(lyr,true);
+}
+
+function addTileCache(l) {
+  var lyr = new OpenLayers.Layer.TileCache(
+     l.name
+    ,l.url
+    ,l.layer
+    ,{
+       visibility        : mainStore.find('name',l.name) >= 0 ? mainStore.getAt(mainStore.find('name',l.name)).get('status') == 'on' : false
+      ,isBaseLayer       : false
+      ,wrapDateLine      : true
+      ,projection        : l.projection
+      ,opacity           : mainStore.find('name',l.name) >= 0 ? mainStore.getAt(mainStore.find('name',l.name)).get('settingsOpacity') / 100 : 1
+      ,scales            : [
+         55468034.09273208   // ESRI Ocean zoom 3
+        ,27734017.04636604
+        ,13867008.52318302
+        ,6933504.26159151
+        ,3466752.130795755
+        ,1733376.0653978775
+        ,866688.0326989387
+        ,433344.01634946937
+        ,216672.00817473468
+      ]
+    }
+  );
+  lyr.getURL = function(bounds) {
+    var res = this.map.getResolution();
+    var bbox = this.maxExtent;
+    var size = this.tileSize;
+    var tileX = Math.round((bounds.left - bbox.left) / (res * size.w));
+    var tileY = Math.round((bounds.bottom - bbox.bottom) / (res * size.h));
+    var tileZ = this.serverResolutions != null ?
+        OpenLayers.Util.indexOf(this.serverResolutions, res) :
+        this.map.getZoom();
+    // this is the trick
+    tileZ += map.baseLayer.minZoomLevel ? map.baseLayer.minZoomLevel : 0;
+    /**
+     * Zero-pad a positive integer.
+     * number - {Int}
+     * length - {Int}
+     *
+     * Returns:
+     * {String} A zero-padded string
+     */
+    function zeroPad(number, length) {
+        number = String(number);
+        var zeros = [];
+        for(var i=0; i<length; ++i) {
+            zeros.push('0');
+        }
+        return zeros.join('').substring(0, length - number.length) + number;
+    }
+    var components = [
+        this.layername,
+        zeroPad(tileZ, 2),
+        zeroPad(parseInt(tileX / 1000000), 3),
+        zeroPad((parseInt(tileX / 1000) % 1000), 3),
+        zeroPad((parseInt(tileX) % 1000), 3),
+        zeroPad(parseInt(tileY / 1000000), 3),
+        zeroPad((parseInt(tileY / 1000) % 1000), 3),
+        zeroPad((parseInt(tileY) % 1000), 3) + '.' + this.extension
+    ];
+    var path = components.join('/');
+    var url = this.url;
+    if (url instanceof Array) {
+        url = this.selectUrl(path, url);
+    }
+    url = (url.charAt(url.length - 1) == '/') ? url : url + '/';
+    return url + path;
+  };
+  addLayer(lyr,false);
+}
+
+function addTMS(l) {
+  var lyr = new OpenLayers.Layer.TMS(
+     l.name
+    ,l.url
+    ,{
+       layername   : l.layer
+      ,type        : l.format
+      ,visibility  : mainStore.find('name',l.name) >= 0 ? mainStore.getAt(mainStore.find('name',l.name)).get('status') == 'on' : false
+      ,isBaseLayer : false
+      ,projection  : l.projection
+      ,scales            : [
+         55468034.09273208   // ESRI Ocean zoom 3
+        ,27734017.04636604
+        ,13867008.52318302
+        ,6933504.26159151
+        ,3466752.130795755
+        ,1733376.0653978775
+        ,866688.0326989387
+        ,433344.01634946937
+        ,216672.00817473468
+      ]
+      ,getURL      : function (bounds) {
+        bounds = this.adjustBounds(bounds);
+        var res = this.map.getResolution();
+        var x = Math.round((bounds.left - this.tileOrigin.lon) / (res * this.tileSize.w));
+        // var y = Math.round((bounds.bottom - this.tileOrigin.lat) / (res * this.tileSize.h));
+        var y = Math.round((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
+        var z = this.serverResolutions != null ?
+            OpenLayers.Util.indexOf(this.serverResolutions, res) :
+            this.map.getZoom() + this.zoomOffset;
+        z += map.baseLayer.minZoomLevel ? map.baseLayer.minZoomLevel : 0;
+        var path = this.serviceVersion + "/" + this.layername + "/" + z + "/" + x + "/" + y + "." + this.type;
+        var url = this.url;
+        if (OpenLayers.Util.isArray(url)) {
+            url = this.selectUrl(path, url);
+        }
+        return url + path;
+      }
+    }
+  );
+  addLayer(lyr,false);
 }
 
 function addObs(l) {
@@ -3123,32 +3349,45 @@ function printSaveMap(printSave) {
     var lyr = map.layers[i];
     var legIdx = legendsStore.find('name',lyr.name);
     var assIdx = assetsStore.find('name',lyr.name); 
-    // WMS only (for now?)
-    if (lyr.DEFAULT_PARAMS && legIdx >= 0) {
-      layers.push(lyr.getFullRequestString({width : map.div.style.width.replace('px',''),height : map.div.style.height.replace('px',''),bbox : map.getExtent()}))
-    }
-    else if (legIdx >= 0 && assIdx >= 0) {
-      features[lyr.name] = [];
-      tracks[lyr.name]   = [];
-      for (var j = 0; j < lyr.features.length; j++) {
-        var verts = lyr.features[j].geometry.getVertices();
-        if (verts.length == 1) {
-          var cen = verts[0].getCentroid();
-          var pix = map.getPixelFromLonLat(new OpenLayers.LonLat(cen.x,cen.y));
-          features[lyr.name].push([pix.x,pix.y]);
-        }
-        else {
-          var a = [];
-          for (var k = 0; k < verts.length; k++) {
-            var cen = verts[k].getCentroid();
-            var pix = map.getPixelFromLonLat(new OpenLayers.LonLat(cen.x,cen.y));
-            a.push([pix.x,pix.y]);
+    if (legIdx >= 0) {
+      if (lyr.DEFAULT_PARAMS) {
+        layers.push({url : lyr.getFullRequestString({width : map.div.style.width.replace('px',''),height : map.div.style.height.replace('px',''),bbox : map.getExtent()}),x : 0,y : 0})
+      }
+      else if (lyr.grid) {
+        for (tilerow in lyr.grid) {
+          for (tilei in lyr.grid[tilerow]) {
+            var tile = lyr.grid[tilerow][tilei];
+            if (tile.bounds) {
+              var url      = lyr.getURL(tile.bounds);
+              var position = tile.position;
+              layers.push({url : url,x : position.x,y : position.y});
+            }
           }
-          tracks[lyr.name].push({
-             stroke : lyr.features[j].attributes.strokeDashstyle
-            ,color  : lyr.features[j].attributes.strokeColor
-            ,data   : a
-          });
+        }
+      }
+      else if (assIdx >= 0) {
+        features[lyr.name] = [];
+        tracks[lyr.name]   = [];
+        for (var j = 0; j < lyr.features.length; j++) {
+          var verts = lyr.features[j].geometry.getVertices();
+          if (verts.length == 1) {
+            var cen = verts[0].getCentroid();
+            var pix = map.getPixelFromLonLat(new OpenLayers.LonLat(cen.x,cen.y));
+            features[lyr.name].push([pix.x,pix.y]);
+          }
+          else {
+            var a = [];
+            for (var k = 0; k < verts.length; k++) {
+              var cen = verts[k].getCentroid();
+              var pix = map.getPixelFromLonLat(new OpenLayers.LonLat(cen.x,cen.y));
+              a.push([pix.x,pix.y]);
+            }
+            tracks[lyr.name].push({
+               stroke : lyr.features[j].attributes.strokeDashstyle
+              ,color  : lyr.features[j].attributes.strokeColor
+              ,data   : a
+            });
+          }
         }
       }
     }
@@ -3221,12 +3460,8 @@ function printSaveMap(printSave) {
       printErrorAlert();
       return;
     }
-    var bathyAlert = '';
-    if (bathyContours.visibility) {
-      bathyAlert = 'Please note that bathymetry lines will not appear on the printable map.  ';
-    }
     if (printSave == 'print') {
-      Ext.Msg.alert('Print','A printer-friendly page is ready.  ' + bathyAlert + 'Click <a target=_blank href="' + r.responseText + '">here</a> to open it.');
+      Ext.Msg.alert('Print','A printer-friendly page is ready.  Click <a target=_blank href="' + r.responseText + '">here</a> to open it.');
     }
     else {
       Ext.Msg.alert('Save','A ZIP file containting the map and legend is ready.  ' + bathyAlert + 'Click <a target=_blank href="' + r.responseText + '">here</a> to open it.');

@@ -1,7 +1,7 @@
 <?php
   $iconSysPath = substr($_SERVER['SCRIPT_FILENAME'],0,strrpos($_SERVER['SCRIPT_FILENAME'],'/')+1).'img/';
 
-  $layers   = json_decode($_REQUEST['lyr']);
+  $layers   = json_decode($_REQUEST['lyr'],true);
   $legends  = json_decode($_REQUEST['leg']);
   $icons    = json_decode($_REQUEST['ico']);
   $features = json_decode($_REQUEST['ftr'],true);
@@ -12,18 +12,15 @@
   $tmp_url = '/tmp/';
   $id      = time().'.'.rand();
 
-  $wms = new Imagick();
-  for ($i = 0; $i < count($layers); $i++) {
+  $olay = new Imagick();
+  $olay->newImage($_REQUEST['w'],$_REQUEST['h'],new ImagickPixel('transparent'));
+  $olay->setImageFormat('png');
+  foreach ($layers as $k => $v) {
     $handle = fopen($tmp_dir.$id.'.png','w');
-    fwrite($handle,@file_get_contents($layers[$i]));
+    fwrite($handle,@file_get_contents($layers[$k]['url']));
     fclose($handle);
     $img = new Imagick($tmp_dir.$id.'.png');
-    if ($i == 0) {
-      $wms = $img->clone();
-    }
-    else {
-      $wms->compositeImage($img,imagick::COMPOSITE_OVER,0,0);
-    }
+    $olay->compositeImage($img,imagick::COMPOSITE_OVER,$layers[$k]['x'],$layers[$k]['y']);
   }
   
   $canvas = new Imagick();
@@ -36,10 +33,7 @@
     $img = new Imagick($tmp_dir.$id.'.bm.png');
     $canvas->compositeImage($img,imagick::COMPOSITE_OVER,$basemap[$k]['x'],$basemap[$k]['y']);
   }
-
-  if (count($layers) > 0) {
-    $canvas->compositeImage($wms,imagick::COMPOSITE_OVER,0,0);
-  }
+  $canvas->compositeImage($olay,imagick::COMPOSITE_OVER,0,0);
 
   foreach ($tracks as $k => $v) {
     for ($i = 0; $i < count($tracks[$k]); $i++) {
