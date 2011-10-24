@@ -3318,7 +3318,7 @@ function queryWWA(e,f) {
   });
   popupObs.show();
   OpenLayers.Request.GET({
-     url      : 'getWWA.php'
+     url      : 'getWWAremote.php'
       + '?lon=' + lonLat.lon
       + '&lat=' + lonLat.lat
     ,callback : OpenLayers.Function.bind(wwaPopupCallback,null,target)
