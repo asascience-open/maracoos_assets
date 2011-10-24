@@ -10,6 +10,12 @@
     <script>
       var djConfig = {parseOnLoad: true};
 
+      var hideMarine = true;
+<?php
+  if (isset($_REQUEST['hideMarine'])) {
+    echo 'hideMarine = '.$_REQUEST['hideMarine'].";\n";
+  }
+?>
       var defaultLayers = {
          'NDBC'                        : true
         ,'NERRS'                       : true
@@ -17,6 +23,16 @@
         ,'WWIII waves'                 : true
         ,'NHC storm tracks'            : true
       };
+
+      if (!hideMarine) {
+        defaultLayers = {
+           'NDBC'  : true
+          ,'NERRS' : true
+          ,'WWA'   : true
+          ,'Zones' : true
+        };
+      }
+
       var defaultStyles = {
          'Satellite water temperature' : 'boxfill/rainbow'
         ,'ROMS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
@@ -146,13 +162,6 @@
           defaultStyles[s] = guaranteeDefaultStyles[s];
         }
       }
-
-      var hideMarine = true;
-<?php
-  if (isset($_REQUEST['hideMarine'])) {
-    echo 'hideMarine = '.$_REQUEST['hideMarine'].";\n";
-  }
-?>
     </script>
 
     <script type="text/javascript">

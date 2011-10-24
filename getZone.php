@@ -2,7 +2,7 @@
   $pt = ms_newPointObj();
   $pt->setXY($_REQUEST['lon'],$_REQUEST['lat']);
 
-  $m = ms_newMapObj('/home/cpurvis/Temp/nws/zones.map');
+  $m = ms_newMapObj('./nws/zones.map');
 
   $mz = '';
   $l  = $m->getLayer(2);

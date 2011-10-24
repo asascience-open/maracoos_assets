@@ -1,0 +1,27 @@
+SYMBOLSET
+
+Symbol
+Name 'circle'
+Type ELLIPSE
+Filled TRUE
+Points
+1 1
+END
+END
+
+Symbol
+Name 'filled_outline'
+Type ELLIPSE
+Filled TRUE
+Points
+1 1
+END
+END
+
+SYMBOL
+  NAME "hatchsymbol"
+  TYPE hatch
+  TRANSPARENT 70
+END
+
+END

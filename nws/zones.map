@@ -1,0 +1,71 @@
+MAP
+  STATUS OFF
+  EXTENT -180 -90 180 90
+  SIZE 600 464
+  SHAPEPATH '.'
+  SYMBOLSET 'symbols.sym'
+  FONTSET 'fonts.txt'
+  IMAGECOLOR 204 255 255
+  UNITS DD
+
+  IMAGETYPE PNG
+  OUTPUTFORMAT
+    NAME PNG
+    DRIVER "GD/PNG"
+    MIMETYPE "image/png"
+    IMAGEMODE RGBA
+    EXTENSION "png"
+  END
+
+  PROJECTION
+    "init=epsg:4269"
+  END
+
+  WEB
+    IMAGEPATH "/var/tmp/ms_tmp/"
+    IMAGEURL "/ms_tmp/"
+    METADATA
+      "wms_srs"                          "epsg:4326 epsg:900913 epsg:3857 epsg:102100 epsg:4269"
+    END
+  END
+
+  LAYER
+    NAME hz
+    DATA 'hz30mr09.shp'
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      COLOR 90 90 90
+    END
+    TEMPLATE 'foo'
+  END
+
+  LAYER
+    NAME oz
+    DATA 'conus_oz.shp'
+    TYPE POLYGON
+    STATUS OFF
+    CLASS
+      OUTLINECOLOR 90 90 90
+      STYLE
+        SYMBOL "hatchsymbol"
+        COLOR 120 120 120
+        SIZE 2
+        ANGLE 45
+      END
+    END
+    TEMPLATE 'foo'
+  END
+
+  LAYER
+    NAME mz
+    DATA 'conus_mz.shp'
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      COLOR 90 90 90
+    END
+    TEMPLATE 'foo'
+  END
+
+END
