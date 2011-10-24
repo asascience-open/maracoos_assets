@@ -3664,6 +3664,8 @@ function printErrorAlert() {
 
 function makeAvailableTimes() {
   dNow = new Date();
+  dNow.setMinutes(0);
+  dNow.setSeconds(0);
   var dNow12Hours = new Date(dNow.getTime());
   dNow12Hours.setHours(12);
   for (var i = -numTics; i <= numTics; i++) {
