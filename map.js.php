@@ -749,7 +749,7 @@ function init() {
         ,''
         ,''
         ,''
-        ,''
+        ,'legends/WWA.png'
         ,'false'
         ,'-135,0,-50,50'
         ,'false'
