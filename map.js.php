@@ -3364,6 +3364,15 @@ function queryWWA(e,f) {
       if (marineFC) {
         Ext.getCmp('hazardsForecastsPanel').add({border : false,html : '<b>Coastal zone forecast</b>'});
         Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({width : 390,height : 150,value : marineFC}));
+        if (pointFC) {
+          Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '&nbsp;'});
+          var lines = [pointFC[i].location + ' (' + pointFC[i].lat + ' ' + pointFC[i].lon + ')'];
+          for (var i = 0; i < pointFC.length; i++) {
+            lines.push(pointFC[i].valid + ': ' + pointFC[i].text);
+          }
+          Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '<b>Coastal point forecast</b>'});
+          Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({width : 390,height : 150,value : lines.join("\n\n")}));
+        }
         popupObs.doLayout();
       }
       if (offshoreFC) {
@@ -3372,18 +3381,6 @@ function queryWWA(e,f) {
         }
         Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '<b>Offshore zone forecast</b>'});
         Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({width : 390,height : 150,value : offshoreFC}));
-        popupObs.doLayout();
-      }
-      if (pointFC) {
-        if (marineFC || offshoreFC) {
-          Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '&nbsp;'});
-        }
-        var lines = [];
-        for (var i = 0; i < pointFC.length; i++) {
-          lines.push(pointFC[i].valid + ': ' + pointFC[i].text);
-        }
-        Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '<b>Point forecast</b>'});
-        Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({width : 390,height : 150,value : lines.join("\n\n")}));
         popupObs.doLayout();
       }
       html = '<table class="obsDetails"><tr>' + tr.join('</tr><tr>') + '</tr></table>';

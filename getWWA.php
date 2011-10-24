@@ -44,18 +44,25 @@
     ));
   }
   else {
-    $json->{'features'}[0]->{'properties'}->{'marineFC'} = @file_get_contents('http://weather.noaa.gov/pub/data/forecasts/marine/coastal/'.strtolower(substr($mz,0,2).'/'.$mz.'.txt'));
-    $json->{'features'}[0]->{'properties'}->{'offshoreFC'} = @file_get_contents('http://weather.noaa.gov/pub/data/forecasts/marine/offshore/'.strtolower(substr($oz,0,2).'/'.$oz.'.txt'));
-    $json->{'features'}[0]->{'properties'}->{'pointFC'} = array();
-    $xml = simplexml_load_file('http://forecast.weather.gov/MapClick.php?FcstType=xml&lon='.$_REQUEST['lon'].'&lat='.$_REQUEST['lat']);
-    foreach ($xml->{'period'} as $p) {
-      array_push($json->{'features'}[0]->{'properties'}->{'pointFC'},array(
-         'valid'   => sprintf("%s",$p->{'valid'})
-        ,'text'    => sprintf("%s",$p->{'text'})
-        ,'image'   => sprintf("%s/%s",$xml->{'icon-location'},$p->{'image'})
-        ,'weather' => sprintf("%s",$p->{'weather'})
-        ,'temp'    => sprintf("%s of %s %s",($p->{'temp'}->attributes()->{'hilo'} == 'H' ? 'high' : 'low'),$p->{'temp'},$p->{'temp'}->attributes()->{'format'})
-      ));
+    if ($mz != '') {
+      $json->{'features'}[0]->{'properties'}->{'marineFC'} = @file_get_contents('http://weather.noaa.gov/pub/data/forecasts/marine/coastal/'.strtolower(substr($mz,0,2).'/'.$mz.'.txt'));
+      $json->{'features'}[0]->{'properties'}->{'pointFC'} = array();
+      $xml = simplexml_load_file('http://forecast.weather.gov/MapClick.php?FcstType=xml&lon='.$_REQUEST['lon'].'&lat='.$_REQUEST['lat']);
+      foreach ($xml->{'period'} as $p) {
+        array_push($json->{'features'}[0]->{'properties'}->{'pointFC'},array(
+           'location' => sprintf("%s",$xml->attributes()->{'location'})
+          ,'lon'      => sprintf("%s",$xml->attributes()->{'lon'})
+          ,'lat'      => sprintf("%s",$xml->attributes()->{'lat'})
+          ,'valid'    => sprintf("%s",$p->{'valid'})
+          ,'text'     => sprintf("%s",$p->{'text'})
+          ,'image'    => sprintf("%s/%s",$xml->{'icon-location'},$p->{'image'})
+          ,'weather'  => sprintf("%s",$p->{'weather'})
+          ,'temp'     => sprintf("%s of %s %s",($p->{'temp'}->attributes()->{'hilo'} == 'H' ? 'high' : 'low'),$p->{'temp'},$p->{'temp'}->attributes()->{'format'})
+        ));
+      }
+    }
+    if ($oz != '') {
+      $json->{'features'}[0]->{'properties'}->{'offshoreFC'} = @file_get_contents('http://weather.noaa.gov/pub/data/forecasts/marine/offshore/'.strtolower(substr($oz,0,2).'/'.$oz.'.txt'));
     }
   }
 
