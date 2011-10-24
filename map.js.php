@@ -3309,6 +3309,7 @@ function queryWWA(e,f) {
       var tr = [];
       var marineFC;
       var offshoreFC;
+      var pointFC;
       for (var i = 0; i < features.length; i++) {
         var td = [];
         if (!features[i].attributes.dummy) {
@@ -3355,16 +3356,34 @@ function queryWWA(e,f) {
           if (features[i].attributes.offshoreFC) {
             offshoreFC = features[i].attributes.offshoreFC;
           }
+          if (features[i].attributes.pointFC) {
+            pointFC = features[i].attributes.pointFC;
+          }
         }
       }
       if (marineFC) {
-        Ext.getCmp('hazardsForecastsPanel').add({border : false,html : '<b>Coastal forecast</b>'});
+        Ext.getCmp('hazardsForecastsPanel').add({border : false,html : '<b>Coastal zone forecast</b>'});
         Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({width : 390,height : 150,value : marineFC}));
         popupObs.doLayout();
       }
       if (offshoreFC) {
-        Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '<b>Offshore forecast</b>'});
+        if (marineFC) {
+          Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '&nbsp;'});
+        }
+        Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '<b>Offshore zone forecast</b>'});
         Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({width : 390,height : 150,value : offshoreFC}));
+        popupObs.doLayout();
+      }
+      if (pointFC) {
+        if (marineFC || offshoreFC) {
+          Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '&nbsp;'});
+        }
+        var lines = [];
+        for (var i = 0; i < pointFC.length; i++) {
+          lines.push(pointFC[i].valid + ': ' + pointFC[i].text);
+        }
+        Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '<b>Point forecast</b>'});
+        Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({width : 390,height : 150,value : lines.join("\n\n")}));
         popupObs.doLayout();
       }
       html = '<table class="obsDetails"><tr>' + tr.join('</tr><tr>') + '</tr></table>';
