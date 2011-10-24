@@ -53,6 +53,7 @@ var lastMapClick = {
 };
 var timeControlsHeight = 42;
 var checkPrintTimer;
+var refreshWWATimer;
 
 function init() {
   var loadingMask = Ext.get('loading-mask');
@@ -756,7 +757,7 @@ function init() {
       ,[
          'marine'
         ,'Zones'
-        ,'Near and offshore zones'
+        ,'Coastal and offshore zones'
         ,'off'
         ,defaultLayers['Zones'] ? 'on' : 'off'
         ,'off'
@@ -1260,7 +1261,7 @@ function init() {
       this.addListener('bodyresize',function(p,w,h) {
         this.getColumnModel().setConfig([
            {id : 'status',dataIndex : 'status',renderer : renderLayerStatus,width : 32}
-          ,{id : 'legend',dataIndex : 'name'  ,renderer : renderLegend     ,width : w - 4 - 27}
+          ,{id : 'legend',dataIndex : 'name'  ,renderer : renderLegend     ,width : w - 4 - 32}
         ]);
       });
     }}
@@ -1717,7 +1718,7 @@ function initMap() {
   }
 
   map.events.register('click',this,function(e) {
-    mapClick(e);
+    mapClick(e,true,true);
   });
 
   map.events.register('addlayer',this,function() {
@@ -1833,6 +1834,7 @@ function initMap() {
     ,format : 'png'
     ,projection : proj4326
   });
+  refreshWWATimer = setTimeout('refreshWWA()',30000);
 
   addWMS({
      name   : 'ROMS'
@@ -2525,7 +2527,7 @@ function addLayer(lyr,timeSensitive) {
             else {
               rec.set('timestamp',shortDateString(new Date(r.responseText * 1000)));
               if (lastMapClick['layer'] == lyr.name && lyrQueryPts.features.length > 0) {
-                mapClick(lastMapClick['e']);
+                mapClick(lastMapClick['e'],true,false);
               }
             }
           }
@@ -2656,6 +2658,7 @@ function addTMS(l) {
         ,433344.01634946937
         ,216672.00817473468
       ]
+      ,time        : new Date().getTime()
       ,getURL      : function (bounds) {
         bounds = this.adjustBounds(bounds);
         var res = this.map.getResolution();
@@ -2671,7 +2674,7 @@ function addTMS(l) {
         if (OpenLayers.Util.isArray(url)) {
             url = this.selectUrl(path, url);
         }
-        return url + path;
+        return url + path + '?time=' + this.options.time;;
       }
     }
   );
@@ -3218,52 +3221,170 @@ function restoreDefaultStyles(l,items) {
   }
 }
 
-function mapClick(e) {
+function mapClick(e,doWMS,doWWA) {
   lastMapClick['e'] = e;
   lyrQueryPts.removeFeatures(lyrQueryPts.features);
-  var lyr = map.getLayersByName(Ext.getCmp('chartLayerCombo').getValue())[0];
-  if (!lyr) {
-    return;
-  }
-  // WMS layers only
-  if (lyr.visibility && lyr.DEFAULT_PARAMS) {
-    lastMapClick['layer'] = lyr.name;
-    Ext.getCmp('graphAction').setText('Processing');
-    Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
+
+  var modelQueryLyr = map.getLayersByName(Ext.getCmp('chartLayerCombo').getValue())[0];
+  var wwaLyr        = map.getLayersByName('WWA')[0];
+  if ((modelQueryLyr && modelQueryLyr.visibility && modelQueryLyr.DEFAULT_PARAMS) || wwaLyr.visibility) {
     var lonLat = map.getLonLatFromPixel(e.xy);
     var f = new OpenLayers.Feature.Vector(new OpenLayers.Geometry.Point(lonLat.lon,lonLat.lat));
     f.attributes.img = 'Delete-icon.png';
     lyrQueryPts.addFeatures(f);
-
-    var mapTime;
-    var legIdx = legendsStore.find('name',lyr.name);
-    if (legIdx >= 0 && legendsStore.getAt(legIdx).get('timestamp') && String(legendsStore.getAt(legIdx).get('timestamp')).indexOf('alert') < 0) {
-      mapTime = '&mapTime=' + (new Date(shortDateToDate(legendsStore.getAt(legIdx).get('timestamp')).getTime() - new Date().getTimezoneOffset() * 60000) / 1000);
-    }
-    var paramOrig = OpenLayers.Util.getParameters(lyr.getFullRequestString({}));
-    var paramNew = {
-       REQUEST       : 'GetFeatureInfo'
-      ,EXCEPTIONS    : 'application/vnd.ogc.se_xml'
-      ,BBOX          : map.getExtent().toBBOX()
-      ,X             : e.xy.x
-      ,Y             : e.xy.y
-      ,INFO_FORMAT   : 'text/xml'
-      ,FEATURE_COUNT : 1
-      ,WIDTH         : map.size.w
-      ,HEIGHT        : map.size.h
-      ,QUERY_LAYERS  : forceQueryLayers(lyr.name,paramOrig['LAYERS'])
-    };
-    if (paramOrig['GFI_TIME'] == 'min/max') {
-      dMin = new Date(dNow.getTime() - 12 * 60 * 60 * 1000);
-      dMax = new Date(dNow.getTime() + 24 * 60 * 60 * 1000);
-      paramNew['TIME'] =
-          dMin.getUTCFullYear() + '-' + String.leftPad(dMin.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMin.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z'
-        + '/'
-        + dMax.getUTCFullYear() + '-' + String.leftPad(dMax.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMax.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z';
-      paramNew['GFI_TIME'] = 'min/max';
-    }
-    makeChart(lyr.getFullRequestString(paramNew,'getFeatureInfo.php?' + lyr.url + '&tz=' + new Date().getTimezoneOffset() + mapTime),'model',mainStore.getAt(mainStore.find('name',lyr.name)).get('displayName'));
   }
+
+  if (doWMS && modelQueryLyr && modelQueryLyr.visibility && modelQueryLyr.DEFAULT_PARAMS) {
+    queryWMS(e,modelQueryLyr);
+  }
+  if (doWWA && wwaLyr.visibility) {
+    queryWWA(e,f);
+  }
+}
+
+function queryWMS(e,lyr) {
+  lastMapClick['layer'] = lyr.name;
+  Ext.getCmp('graphAction').setText('Processing');
+  Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
+  var mapTime;
+  var legIdx = legendsStore.find('name',lyr.name);
+  if (legIdx >= 0 && legendsStore.getAt(legIdx).get('timestamp') && String(legendsStore.getAt(legIdx).get('timestamp')).indexOf('alert') < 0) {
+    mapTime = '&mapTime=' + (new Date(shortDateToDate(legendsStore.getAt(legIdx).get('timestamp')).getTime() - new Date().getTimezoneOffset() * 60000) / 1000);
+  }
+  var paramOrig = OpenLayers.Util.getParameters(lyr.getFullRequestString({}));
+  var paramNew = {
+     REQUEST       : 'GetFeatureInfo'
+    ,EXCEPTIONS    : 'application/vnd.ogc.se_xml'
+    ,BBOX          : map.getExtent().toBBOX()
+    ,X             : e.xy.x
+    ,Y             : e.xy.y
+    ,INFO_FORMAT   : 'text/xml'
+    ,FEATURE_COUNT : 1
+    ,WIDTH         : map.size.w
+    ,HEIGHT        : map.size.h
+    ,QUERY_LAYERS  : forceQueryLayers(lyr.name,paramOrig['LAYERS'])
+  };
+  if (paramOrig['GFI_TIME'] == 'min/max') {
+    dMin = new Date(dNow.getTime() - 12 * 60 * 60 * 1000);
+    dMax = new Date(dNow.getTime() + 24 * 60 * 60 * 1000);
+    paramNew['TIME'] =
+        dMin.getUTCFullYear() + '-' + String.leftPad(dMin.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMin.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z'
+      + '/'
+      + dMax.getUTCFullYear() + '-' + String.leftPad(dMax.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMax.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z';
+    paramNew['GFI_TIME'] = 'min/max';
+  }
+  makeChart(lyr.getFullRequestString(paramNew,'getFeatureInfo.php?' + lyr.url + '&tz=' + new Date().getTimezoneOffset() + mapTime),'model',mainStore.getAt(mainStore.find('name',lyr.name)).get('displayName'));
+}
+
+function queryWWA(e,f) {
+  var lonLat = map.getLonLatFromPixel(e.xy).transform(map.getProjectionObject(),proj4326);
+  var target = 'OpenLayers.Geometry.Point_' + (Number(f.id.split('_')[f.id.split('_').length - 1]) - 1);
+  if (popupObs) {
+    popupObs.hide();
+  }
+  popupObs = new Ext.ToolTip({
+     title     : 'Hazards and forecasts'
+    ,id        : 'wwa.' + f.id
+    ,anchor    : 'bottom'
+    ,width     : 345 + 70
+    ,target    : target
+    ,autoHide  : false
+    ,closable  : true
+    ,items     : new Ext.Panel({id : 'hazardsForecastsPanel',bodyCssClass : 'wwaPopup',items : {id : 'wwaLegend',border : false,html : "<span id ='" + target + ".data'><table style='width:100%'><tr><td style='text-align:center'><img width=44 height=44 src='img/spinner.gif'></td></tr></table></span>"}})
+    ,listeners : {
+      hide    : function() {
+        this.destroy();
+        popupObs = null;
+      }
+    }
+  });
+  popupObs.show();
+  OpenLayers.Request.GET({
+     url      : 'getWWA.php'
+      + '?lon=' + lonLat.lon
+      + '&lat=' + lonLat.lat
+    ,callback : function(r) {
+      var json = new OpenLayers.Format.GeoJSON();
+      var features = json.read(r.responseText);
+      var tr = [];
+      var marineFC;
+      var offshoreFC;
+      for (var i = 0; i < features.length; i++) {
+        var td = [];
+        if (!features[i].attributes.dummy) {
+          var color = (features[i].attributes.significance == 'W' ? 'FF0000' : (features[i].attributes.significance == 'A' ? 'FF9933' : 'FFFF00'));
+          var borderColor;
+          if (features[i].attributes.significance == 'W') switch(features[i].attributes.phenomenon){
+            case "TO":
+              borderColor = "CC0099";
+              break;
+            case "SV":
+            case "SM":
+              borderColor = "0000FF";
+              break;
+            case "FF":
+              borderColor = "00FF00";
+              break;
+            default:
+              borderColor = undefined;
+              break;
+          }
+          var site   = features[i].attributes.office.substr(1).toLowerCase();
+          var url    = 'http://forecast.weather.gov/product.php?site=' + site + '&issuedby=' + site + '&product=' + features[i].attributes.pil;
+          var hdln   = features[i].attributes.phenomenon_string + ' ' + features[i].attributes.significance_string;
+          var dBegin = new Date(features[i].attributes.begin*1000);
+          var time   = dateToFriendlyString(dBegin);
+          if (features[i].attributes.end) {
+            time += ' to ';
+            var dEnd = new Date(features[i].attributes.end*1000);
+            time += dateToFriendlyString(dEnd);
+          }
+          else {
+            time += ' until further notice';
+          }
+          td.push('<td style="border:1px solid #5a5a5a;width:20px;background-color:#' + color + '">&nbsp;</td>');
+          td.push('<td>&nbsp;<a target=_blank title="' + features[i].attributes.headline + '" href="' + url + '">' + hdln + '</a></td>');
+          tr.push(td.join(''));
+          tr.push('<td>&nbsp;</td><td>&nbsp;' + time + '</td>');
+        }
+
+        if (i == 0) {
+          if (features[i].attributes.marineFC) {
+            marineFC = features[i].attributes.marineFC;
+          }
+          if (features[i].attributes.offshoreFC) {
+            offshoreFC = features[i].attributes.offshoreFC;
+          }
+        }
+      }
+      if (marineFC) {
+        Ext.getCmp('hazardsForecastsPanel').add({border : false,html : '<b>Coastal forecast</b>'});
+        Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({width : 390,height : 150,value : marineFC}));
+        popupObs.doLayout();
+      }
+      if (offshoreFC) {
+        Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '<b>Offshore forecast</b>'});
+        Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({width : 390,height : 150,value : offshoreFC}));
+        popupObs.doLayout();
+      }
+      html = '<table class="obsDetails"><tr>' + tr.join('</tr><tr>') + '</tr></table>';
+      if (document.getElementById(target + '.data')) {
+        if (tr.length == 0 && !marineFC && !offshoreFC) {
+          document.getElementById(target + '.data').innerHTML = '<table id="wwaPopup"><tr><td><img height=44 width=1 src="img/blank.png"></td><td>' + '<table class="obsDetails"><tr><th style="text-align:center">No hazards or forecasts to report</th></tr></table>' + '</td></tr></table>';
+        }
+        else if (tr.length == 0) {
+          Ext.getCmp('hazardsForecastsPanel').remove(Ext.getCmp('wwaLegend'));
+        }
+        else {
+          document.getElementById(target + '.data').innerHTML = '<table id="wwaPopup"><tr><td><img height=44 width=1 src="img/blank.png"></td><td>' + html + '</td></tr></table>';
+        }
+      }
+      popupObs.suspendEvents();
+      popupObs.hide();
+      popupObs.show();
+      popupObs.resumeEvents();
+    }
+  });
 }
 
 function zoomToBbox(bbox) {
@@ -3556,4 +3677,17 @@ function makeTimeSlider(initOnly) {
     }
   }
   tbody.appendChild(tr);
+}
+
+function refreshWWA() {
+  var lyr = map.getLayersByName('WWA')[0];
+  if (lyr && lyr.visibility) {
+    lyr.options.time = new Date().getTime();
+    lyr.spiralTileLoad();
+    lyr.redraw();
+    if (popupObs && popupObs.id.indexOf('wwa.') == 0) {
+      mapClick(lastMapClick['e'],false,true);
+    }
+  }
+  setTimeout('refreshWWA()',30000);
 }

@@ -536,3 +536,28 @@ function shortDateToDate(s) {
     ,s.substr(14,2)
   );
 }
+
+function dateToFriendlyString(e) {
+  var c = "";
+  var a = new Date();
+  if (a.getDate() == e.getDate()) {
+    strDay = "today"
+  } else {
+    var b = new Date(a.getTime() + 86400000);
+    var d = new Date(a.getTime() - 86400000);
+    if (b.getDate() == e.getDate()) {
+      strDay = "tomorrow"
+    } else {
+      if (d.getDate() == e.getDate()) {
+        strDay = "yesterday"
+      } else {
+        aryDays = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+        strDay = aryDays[e.getDay()]
+      }
+    }
+  }
+  c += (e.getHours() > 12 ? e.getHours() - 12 : (e.getHours() == 0 ? 12 : e.getHours()));
+  c += ":" + (e.getMinutes() < 10 ? "0" : "") + e.getMinutes() + (e.getHours() > 11 ? " pm" : " am");
+  c += " " + strDay;
+  return c
+}

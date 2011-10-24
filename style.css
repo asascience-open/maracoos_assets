@@ -133,6 +133,26 @@
   font        : 11px tahoma,helvetica,sans-serif;
 }
 
+#wwaPopup table {
+  width : 385px;
+}
+#wwaPopup td {
+  vertical-align : top;
+}
+
+.wwaPopup {
+  background : white;
+  padding    : 6px;
+  width      : 400px;
+}
+.wwaPopup th {
+  font        : 11px tahoma,helvetica,sans-serif;
+  font-weight : bold;
+}
+.wwaPopup td {
+  font        : 11px tahoma,helvetica,sans-serif;
+}
+
 #timeseriesPanel {
   border-top: 1px solid #99BBE8;
 }
