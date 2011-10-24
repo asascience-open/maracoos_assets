@@ -54,6 +54,7 @@ var lastMapClick = {
 var timeControlsHeight = 42;
 var checkPrintTimer;
 var refreshWWATimer;
+var refreshWWAInterval = 60000;
 
 function init() {
   var loadingMask = Ext.get('loading-mask');
@@ -1834,7 +1835,7 @@ function initMap() {
     ,format : 'png'
     ,projection : proj4326
   });
-  refreshWWATimer = setTimeout('refreshWWA()',30000);
+  refreshWWATimer = setTimeout('refreshWWA()',refreshWWAInterval);
 
   addWMS({
      name   : 'ROMS'
@@ -3303,104 +3304,116 @@ function queryWWA(e,f) {
      url      : 'getWWA.php'
       + '?lon=' + lonLat.lon
       + '&lat=' + lonLat.lat
-    ,callback : function(r) {
-      var json = new OpenLayers.Format.GeoJSON();
-      var features = json.read(r.responseText);
-      var tr = [];
-      var marineFC;
-      var offshoreFC;
-      var pointFC;
-      for (var i = 0; i < features.length; i++) {
-        var td = [];
-        if (!features[i].attributes.dummy) {
-          var color = (features[i].attributes.significance == 'W' ? 'FF0000' : (features[i].attributes.significance == 'A' ? 'FF9933' : 'FFFF00'));
-          var borderColor;
-          if (features[i].attributes.significance == 'W') switch(features[i].attributes.phenomenon){
-            case "TO":
-              borderColor = "CC0099";
-              break;
-            case "SV":
-            case "SM":
-              borderColor = "0000FF";
-              break;
-            case "FF":
-              borderColor = "00FF00";
-              break;
-            default:
-              borderColor = undefined;
-              break;
-          }
-          var site   = features[i].attributes.office.substr(1).toLowerCase();
-          var url    = 'http://forecast.weather.gov/product.php?site=' + site + '&issuedby=' + site + '&product=' + features[i].attributes.pil;
-          var hdln   = features[i].attributes.phenomenon_string + ' ' + features[i].attributes.significance_string;
-          var dBegin = new Date(features[i].attributes.begin*1000);
-          var time   = dateToFriendlyString(dBegin);
-          if (features[i].attributes.end) {
-            time += ' to ';
-            var dEnd = new Date(features[i].attributes.end*1000);
-            time += dateToFriendlyString(dEnd);
-          }
-          else {
-            time += ' until further notice';
-          }
-          td.push('<td style="border:1px solid #5a5a5a;width:20px;background-color:#' + color + '">&nbsp;</td>');
-          td.push('<td>&nbsp;<a target=_blank title="' + features[i].attributes.headline + '" href="' + url + '">' + hdln + '</a></td>');
-          tr.push(td.join(''));
-          tr.push('<td>&nbsp;</td><td>&nbsp;' + time + '</td>');
-        }
-
-        if (i == 0) {
-          if (features[i].attributes.marineFC) {
-            marineFC = features[i].attributes.marineFC;
-          }
-          if (features[i].attributes.offshoreFC) {
-            offshoreFC = features[i].attributes.offshoreFC;
-          }
-          if (features[i].attributes.pointFC) {
-            pointFC = features[i].attributes.pointFC;
-          }
-        }
-      }
-      if (marineFC) {
-        Ext.getCmp('hazardsForecastsPanel').add({border : false,html : '<b>Coastal zone forecast</b>'});
-        Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({width : 390,height : 150,value : marineFC}));
-        if (pointFC) {
-          Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '&nbsp;'});
-          var lines = ['<b>' + pointFC[i].location + '</b> (' + pointFC[i].lat + ' ' + pointFC[i].lon + ')'];
-          for (var i = 0; i < pointFC.length; i++) {
-            lines.push('<b>' + pointFC[i].valid + ':</b> ' + pointFC[i].text);
-          }
-          Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '<b>Coastal point forecast</b>'});
-          Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.HtmlEditor({width : 390,height : 150,value : lines.join("<br><br>"),listeners : {initialize : function(f) {var h = f.getToolbar().getHeight();f.getToolbar().hide();f.setHeight(150 + h)}}}));
-        }
-        popupObs.doLayout();
-      }
-      if (offshoreFC) {
-        if (marineFC) {
-          Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '&nbsp;'});
-        }
-        Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '<b>Offshore zone forecast</b>'});
-        Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({width : 390,height : 150,value : offshoreFC}));
-        popupObs.doLayout();
-      }
-      html = '<table class="obsDetails"><tr>' + tr.join('</tr><tr>') + '</tr></table>';
-      if (document.getElementById(target + '.data')) {
-        if (tr.length == 0 && !marineFC && !offshoreFC) {
-          document.getElementById(target + '.data').innerHTML = '<table id="wwaPopup"><tr><td><img height=44 width=1 src="img/blank.png"></td><td>' + '<table class="obsDetails"><tr><th style="text-align:center">No hazards or forecasts to report</th></tr></table>' + '</td></tr></table>';
-        }
-        else if (tr.length == 0) {
-          Ext.getCmp('hazardsForecastsPanel').remove(Ext.getCmp('wwaLegend'));
-        }
-        else {
-          document.getElementById(target + '.data').innerHTML = '<table id="wwaPopup"><tr><td><img height=44 width=1 src="img/blank.png"></td><td>' + html + '</td></tr></table>';
-        }
-      }
-      popupObs.suspendEvents();
-      popupObs.hide();
-      popupObs.show();
-      popupObs.resumeEvents();
-    }
+    ,callback : OpenLayers.Function.bind(wwaPopupCallback,null,target)
   });
+}
+
+function wwaPopupCallback(target,r) {
+  var json = new OpenLayers.Format.GeoJSON();
+  var features = json.read(r.responseText);
+  var tr = [];
+  var marineFC;
+  var offshoreFC;
+  var pointFC;
+  for (var i = 0; i < features.length; i++) {
+    var td = [];
+    if (!features[i].attributes.dummy) {
+      var color = (features[i].attributes.significance == 'W' ? 'FF0000' : (features[i].attributes.significance == 'A' ? 'FF9933' : 'FFFF00'));
+      var borderColor;
+      if (features[i].attributes.significance == 'W') switch(features[i].attributes.phenomenon){
+        case "TO":
+          borderColor = "CC0099";
+          break;
+        case "SV":
+        case "SM":
+          borderColor = "0000FF";
+          break;
+        case "FF":
+          borderColor = "00FF00";
+          break;
+        default:
+          borderColor = undefined;
+          break;
+      }
+      var site   = features[i].attributes.office.substr(1).toLowerCase();
+      var url    = 'http://forecast.weather.gov/product.php?site=' + site + '&issuedby=' + site + '&product=' + features[i].attributes.pil;
+      var hdln   = features[i].attributes.phenomenon_string + ' ' + features[i].attributes.significance_string;
+      var dBegin = new Date(features[i].attributes.begin*1000);
+      var time   = dateToFriendlyString(dBegin);
+      if (features[i].attributes.end) {
+        time += ' to ';
+        var dEnd = new Date(features[i].attributes.end*1000);
+        time += dateToFriendlyString(dEnd);
+      }
+      else {
+        time += ' until further notice';
+      }
+      td.push('<td style="border:1px solid #5a5a5a;width:20px;background-color:#' + color + '">&nbsp;</td>');
+      td.push('<td>&nbsp;<a target=_blank title="' + features[i].attributes.headline + '" href="' + url + '">' + hdln + '</a></td>');
+      tr.push(td.join(''));
+      tr.push('<td>&nbsp;</td><td>&nbsp;' + time + '</td>');
+    }
+
+    if (i == 0) {
+      if (features[i].attributes.marineFC) {
+        marineFC = features[i].attributes.marineFC;
+      }
+      if (features[i].attributes.offshoreFC) {
+        offshoreFC = features[i].attributes.offshoreFC;
+      }
+      if (features[i].attributes.pointFC) {
+        pointFC = features[i].attributes.pointFC;
+      }
+    }
+  }
+  if (marineFC) {
+    for (var i = 0; i < 5; i++) {
+      if (Ext.getCmp('wwa.marineFC' + i)) {
+        Ext.getCmp('hazardsForecastsPanel').remove(Ext.getCmp('wwa.marineFC' + i));
+      }
+    }
+    Ext.getCmp('hazardsForecastsPanel').add({id : 'wwa.marineFC0',border : false,html : '<b>Coastal zone forecast</b>'});
+    Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({id : 'wwa.marineFC1',width : 390,height : 150,value : marineFC}));
+    if (pointFC) {
+      Ext.getCmp('hazardsForecastsPanel').add({id : 'wwa.marineFC2',border: false,html : '&nbsp;'});
+      var lines = ['<b>' + pointFC[i].location + '</b> (' + pointFC[i].lat + ' ' + pointFC[i].lon + ')'];
+      for (var i = 0; i < pointFC.length; i++) {
+        lines.push('<b>' + pointFC[i].valid + ':</b> ' + pointFC[i].text);
+      }
+      Ext.getCmp('hazardsForecastsPanel').add({id : 'wwa.marineFC3',border: false,html : '<b>Coastal point forecast</b>'});
+      Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.HtmlEditor({id : 'wwa.marineFC4',width : 390,height : 150,value : lines.join("<br><br>"),listeners : {initialize : function(f) {var h = f.getToolbar().getHeight();f.getToolbar().hide();f.setHeight(150 + h)}}}));
+    }
+    popupObs.doLayout();
+  }
+  if (offshoreFC) {
+    for (var i = 0; i < 3; i++) {
+      if (Ext.getCmp('wwa.offshoreFC' + i)) {
+        Ext.getCmp('hazardsForecastsPanel').remove(Ext.getCmp('wwa.offshoreFC' + i));
+      }
+    }
+    if (marineFC) {
+      Ext.getCmp('hazardsForecastsPanel').add({id : 'wwa.offshoreFC0',border: false,html : '&nbsp;'});
+    }
+    Ext.getCmp('hazardsForecastsPanel').add({id : 'wwa.offshoreFC1',border: false,html : '<b>Offshore zone forecast</b>'});
+    Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({id : 'wwa.offshoreFC2',width : 390,height : 150,value : offshoreFC}));
+    popupObs.doLayout();
+  }
+  html = '<table class="obsDetails"><tr>' + tr.join('</tr><tr>') + '</tr></table>';
+  if (document.getElementById(target + '.data')) {
+    if (tr.length == 0 && !marineFC && !offshoreFC) {
+      document.getElementById(target + '.data').innerHTML = '<table id="wwaPopup"><tr><td><img height=44 width=1 src="img/blank.png"></td><td>' + '<table class="obsDetails"><tr><th style="text-align:center">No hazards or forecasts to report</th></tr></table>' + '</td></tr></table>';
+    }
+    else if (tr.length == 0) {
+      Ext.getCmp('hazardsForecastsPanel').remove(Ext.getCmp('wwaLegend'));
+    }
+    else {
+      document.getElementById(target + '.data').innerHTML = '<table id="wwaPopup"><tr><td><img height=44 width=1 src="img/blank.png"></td><td>' + html + '</td></tr></table>';
+    }
+    popupObs.suspendEvents();
+    popupObs.hide();
+    popupObs.show();
+    popupObs.resumeEvents();
+  }
 }
 
 function zoomToBbox(bbox) {
@@ -3705,5 +3718,5 @@ function refreshWWA() {
       mapClick(lastMapClick['e'],false,true);
     }
   }
-  setTimeout('refreshWWA()',30000);
+  setTimeout('refreshWWA()',refreshWWAInterval);
 }
