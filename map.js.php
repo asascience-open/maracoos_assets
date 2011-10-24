@@ -2902,25 +2902,7 @@ function addObs(l) {
                   for (var j = 0; j < e.feature.attributes.data[i].length; j++) {
                     OpenLayers.Request.GET({
                        url      : e.feature.attributes.data[i][0].url + '&tz=' + new Date().getTimezoneOffset() + '&uom=english'
-                      ,callback : function(r) {
-                        var obs = new OpenLayers.Format.JSON().read(r.responseText);
-                        var html = '';
-                        if (!obs) {
-                          html = '<table id="obsPopup"><tr><th style="text-align:center">No recent observations</th></tr></table>';
-                        }
-                        else {
-                          html = '<table id="obsPopup"><tr><td>' + obs.html + '</td></tr></table>';
-                        }
-                        if (document.getElementById(target + '.data')) {
-                          document.getElementById(target + '.data').innerHTML = html;
-                        }
-                        if (popupObs) {
-                          popupObs.suspendEvents();
-                          popupObs.hide();
-                          popupObs.show();
-                          popupObs.resumeEvents();
-                        }
-                      }
+                      ,callback : OpenLayers.Function.bind(obsPopupCallback,null,target)
                     });
                   }
                 }
@@ -2948,6 +2930,26 @@ function addObs(l) {
       layers.push(popupCtl.layer);
     }
     popupCtl.setLayer(layers);
+  }
+}
+
+function obsPopupCallback(target,r) {
+  var obs = new OpenLayers.Format.JSON().read(r.responseText);
+  var html = '';
+  if (!obs) {
+    html = '<table id="obsPopup"><tr><th style="text-align:center">No recent observations</th></tr></table>';
+  }
+  else {
+    html = '<table id="obsPopup"><tr><td>' + obs.html + '</td></tr></table>';
+  }
+  if (document.getElementById(target + '.data')) {
+    document.getElementById(target + '.data').innerHTML = html;
+  }
+  if (popupObs) {
+    popupObs.suspendEvents();
+    popupObs.hide();
+    popupObs.show();
+    popupObs.resumeEvents();
   }
 }
 
