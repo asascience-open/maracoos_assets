@@ -812,6 +812,14 @@ function init() {
     ]
   });
 
+  if (hideMarine) {
+    mainStore.each(function(rec) {
+      if (rec.get('type') == 'marine') {
+        mainStore.remove(rec);
+      }
+    });
+  }
+
   var i = 0;
   mainStore.each(function(rec) {
     rec.set('rank',i++);
@@ -1268,6 +1276,16 @@ function init() {
     }}
   });
 
+  var vpItems = [
+     introPanel
+    ,assetsGridPanel
+    ,modelsGridPanel
+    ,observationsGridPanel
+  ];
+  if (!hideMarine) {
+    vpItems.push(marineGridPanel);
+  }
+
   new Ext.Viewport({
      layout : 'border'
     ,items  : [
@@ -1277,13 +1295,7 @@ function init() {
         ,title       : 'MARACOOS Assets Manager'
         ,collapsible : true
         ,autoScroll  : true
-        ,items       : [
-           introPanel
-          ,assetsGridPanel
-          ,modelsGridPanel
-          ,observationsGridPanel
-          ,marineGridPanel
-        ]
+        ,items       : vpItems
       })
       ,new Ext.Panel({
          region    : 'center'
@@ -1363,6 +1375,9 @@ function init() {
                   }
                   p['lyrs'] = p['lyrs'].join(',');
                   p['bathyC'] = map.getLayersByName('Bathymetry contours')[0].visibility;
+                  if (!hideMarine) {
+                    p['hideMarine'] = hideMarine;
+                  }
                   var u = [];
                   for (var i in p) {
                     u.push(i + '=' + p[i]);

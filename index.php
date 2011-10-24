@@ -146,6 +146,13 @@
           defaultStyles[s] = guaranteeDefaultStyles[s];
         }
       }
+
+      var hideMarine = true;
+<?php
+  if (isset($_REQUEST['hideMarine'])) {
+    echo 'hideMarine = '.$_REQUEST['hideMarine'].";\n";
+  }
+?>
     </script>
 
     <script type="text/javascript">
