@@ -3366,12 +3366,12 @@ function queryWWA(e,f) {
         Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({width : 390,height : 150,value : marineFC}));
         if (pointFC) {
           Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '&nbsp;'});
-          var lines = [pointFC[i].location + ' (' + pointFC[i].lat + ' ' + pointFC[i].lon + ')'];
+          var lines = ['<b>' + pointFC[i].location + '</b> (' + pointFC[i].lat + ' ' + pointFC[i].lon + ')'];
           for (var i = 0; i < pointFC.length; i++) {
-            lines.push(pointFC[i].valid + ': ' + pointFC[i].text);
+            lines.push('<b>' + pointFC[i].valid + ':</b> ' + pointFC[i].text);
           }
           Ext.getCmp('hazardsForecastsPanel').add({border: false,html : '<b>Coastal point forecast</b>'});
-          Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({width : 390,height : 150,value : lines.join("\n\n")}));
+          Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.HtmlEditor({width : 390,height : 150,value : lines.join("<br><br>"),listeners : {initialize : function(f) {var h = f.getToolbar().getHeight();f.getToolbar().hide();f.setHeight(150 + h)}}}));
         }
         popupObs.doLayout();
       }
