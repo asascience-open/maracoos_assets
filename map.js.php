@@ -3390,7 +3390,7 @@ function wwaPopupCallback(target,r) {
       }
     }
     Ext.getCmp('hazardsForecastsPanel').add({id : 'wwa.marineFC0',border : false,html : '<b>Coastal zone forecast</b>'});
-    Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({id : 'wwa.marineFC1',width : 390,height : 150,value : marineFC}));
+    Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({id : 'wwa.marineFC1',width : 390,height : 100,value : marineFC}));
     if (pointFC) {
       Ext.getCmp('hazardsForecastsPanel').add({id : 'wwa.marineFC2',border: false,html : '&nbsp;'});
       var lines = ['<b>' + pointFC[i].location + '</b> (' + pointFC[i].lat + ' ' + pointFC[i].lon + ')'];
@@ -3398,7 +3398,7 @@ function wwaPopupCallback(target,r) {
         lines.push('<b>' + pointFC[i].valid + ':</b> ' + pointFC[i].text);
       }
       Ext.getCmp('hazardsForecastsPanel').add({id : 'wwa.marineFC3',border: false,html : '<b>Coastal point forecast</b>'});
-      Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.HtmlEditor({id : 'wwa.marineFC4',width : 390,height : 150,value : lines.join("<br><br>"),listeners : {initialize : function(f) {var h = f.getToolbar().getHeight();f.getToolbar().hide();f.setHeight(150 + h)}}}));
+      Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.HtmlEditor({id : 'wwa.marineFC4',width : 390,height : 100,value : lines.join("<br><br>"),listeners : {initialize : function(f) {var h = f.getToolbar().getHeight();f.getToolbar().hide();f.setHeight(100 + h)}}}));
     }
     popupObs.doLayout();
   }
@@ -3412,7 +3412,7 @@ function wwaPopupCallback(target,r) {
       Ext.getCmp('hazardsForecastsPanel').add({id : 'wwa.offshoreFC0',border: false,html : '&nbsp;'});
     }
     Ext.getCmp('hazardsForecastsPanel').add({id : 'wwa.offshoreFC1',border: false,html : '<b>Offshore zone forecast</b>'});
-    Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({id : 'wwa.offshoreFC2',width : 390,height : 150,value : offshoreFC}));
+    Ext.getCmp('hazardsForecastsPanel').add(new Ext.form.TextArea({id : 'wwa.offshoreFC2',width : 390,height : 100,value : offshoreFC}));
     popupObs.doLayout();
   }
   html = '<table class="obsDetails"><tr>' + tr.join('</tr><tr>') + '</tr></table>';
