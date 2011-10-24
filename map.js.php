@@ -3303,7 +3303,7 @@ function queryWWA(e,f) {
   popupObs = new Ext.ToolTip({
      title     : 'Hazards and forecasts'
     ,id        : 'wwa.' + f.id
-    ,anchor    : 'bottom'
+    ,anchor    : 'right'
     ,width     : 345 + 70
     ,target    : target
     ,autoHide  : false
