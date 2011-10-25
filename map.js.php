@@ -3696,7 +3696,6 @@ function makeTimeSlider(initOnly) {
     if (availableTimes[i].getHours() == 0) {
       td.innerHTML = (availableTimes[i].getMonth() + 1) + '/' + availableTimes[i].getDate();
       td.style.width = (1 / ((availableTimes.length - 1) / 2)  * 100) + '%';
-      td.style.paddingRight = i;
     }
     else {
       td.innerHTML = '<img src="img/blank.png" width=2>';
