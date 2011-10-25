@@ -526,6 +526,12 @@ function shortDateString(d) {
     + zeroPad(d.getTimezoneOffset()/60,2);
 }
 
+function shortDateStringNoTime(d) {
+  return (d.getMonth() + 1)
+    + '/' + d.getDate()
+    + '/' + d.getFullYear();
+}
+
 function shortDateToDate(s) {
   // 10/22/2011 08:00 UTC-04
   return new Date(

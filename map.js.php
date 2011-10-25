@@ -44,8 +44,7 @@ var esriOcean;     // special case for this layer
 var navCharts;     // special case for this layer
 var openStreetMap; // special case for this layer
 var dNow;
-var numTics = 4;           // must be even!
-var ticIntervalHours = 12;
+
 var availableTimes = [];
 var lastMapClick = {
    layer : ''
@@ -1476,7 +1475,13 @@ function init() {
                       ,width       : 100
                       ,id          : 'timeSlider'
                       ,plugins     : new Ext.slider.Tip({getText : function(thumb){
-                        return shortDateString(availableTimes[thumb.value]);
+                        // time span longer than 2wks, we don't care about hours
+                        if ((availableTimes[availableTimes.length - 1].getTime() - availableTimes[0].getTime()) > 1000 * 60 * 60 * 24 * 14) {
+                          return shortDateStringNoTime(availableTimes[thumb.value]); 
+                        }
+                        else {
+                          return shortDateString(availableTimes[thumb.value]);
+                        }
                       }})
                       ,listeners   : {change : function(slider,val) {
                         var dStr = availableTimes[val].getUTCFullYear() + '-' + String.leftPad(availableTimes[val].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[val].getUTCDate(),2,'0') + 'T' + String.leftPad(availableTimes[val].getUTCHours(),2,'0') + ':00';
@@ -3337,7 +3342,7 @@ function wwaPopupCallback(target,r) {
     if (!features[i].attributes.dummy) {
       var color = (features[i].attributes.significance == 'W' ? 'FF0000' : (features[i].attributes.significance == 'A' ? 'FF9933' : 'FFFF00'));
       var borderColor;
-      if (features[i].attributes.significance == 'W') switch(features[i].attributes.phenomenon){
+      if (features[i].attributes.significance == 'W') switch(features[i].attributes.phenomenon) {
         case "TO":
           borderColor = "CC0099";
           break;
@@ -3662,15 +3667,32 @@ function printErrorAlert() {
   Ext.Msg.alert('Print/save error',"We're sorry, but a print/save error has occured.  Please try again.");
 }
 
-function makeAvailableTimes() {
+function makeAvailableTimes(dMin) {
   dNow = new Date();
   dNow.setMinutes(0);
   dNow.setSeconds(0);
   var dNow12Hours = new Date(dNow.getTime());
   dNow12Hours.setHours(12);
-  for (var i = -numTics; i <= numTics; i++) {
-    availableTimes.push(new Date(dNow12Hours.getTime() + ticIntervalHours * i * 60 * 60 * 1000));
+
+  var ticIntervalHours = 12;
+  var numTics          = 4;
+  if (dMin) {
+    var dH = (dNow.getTime() - dMin.getTime()) / (1000 * 60 * 60);
+    // less than a week
+    if (dH > 24 * 7) {
+      numTics          = 10;
+      ticIntervalHours = Math.ceil(dH / (10 * 2));
+    }
+    for (var i = -2 * numTics; i <= 0; i++) {
+      availableTimes.push(new Date(dNow12Hours.getTime() + ticIntervalHours * i * 60 * 60 * 1000));
+    }
   }
+  else {
+    for (var i = -numTics; i <= numTics; i++) {
+      availableTimes.push(new Date(dNow12Hours.getTime() + ticIntervalHours * i * 60 * 60 * 1000));
+    }
+  }
+
   if (dNow.getHours() >= 12) {
     dNow.setHours(12);
   }
@@ -3695,6 +3717,13 @@ function makeTimeSlider(initOnly) {
     var td = document.createElement('td');
     if (i % 2 == 1) {
       td.innerHTML = zeroPad((availableTimes[i].getMonth() + 1),2) + '/' + zeroPad(availableTimes[i].getDate(),2);
+      // if the time span > 6 months and the first and last years are different, show mm/yyyy instead of mm/dd
+      if (
+        (availableTimes[availableTimes.length - 1].getTime() - availableTimes[0].getTime()) > 1000 * 60 * 60 * 24 * 30 * 6
+        && availableTimes[availableTimes.length - 1].getFullYear() != availableTimes[0].getFullYear()
+      ) {
+        td.innerHTML = zeroPad((availableTimes[i].getMonth() + 1),2) + '/' + availableTimes[i].getFullYear();
+      }
     }
     else {
       td.innerHTML = '|';
