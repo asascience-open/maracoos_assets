@@ -16,6 +16,14 @@
     echo 'hideMarine = '.$_REQUEST['hideMarine'].";\n";
   }
 ?>
+
+      var fetchTimespan = false;
+<?php
+  if (isset($_REQUEST['fetchTimespan'])) {
+    echo 'fetchTimespan = '.$_REQUEST['fetchTimespan'].";\n";
+  }
+?>
+
       var defaultLayers = {
          'NDBC'                        : true
         ,'NERRS'                       : true

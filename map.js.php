@@ -43,9 +43,10 @@ var chartLayerStore;
 var esriOcean;     // special case for this layer
 var navCharts;     // special case for this layer
 var openStreetMap; // special case for this layer
-var dNow;
-
-var availableTimes = [];
+var dNow = new Date();
+dNow.setMinutes(0);
+dNow.setSeconds(0);
+var availableTimes = [dNow];
 var lastMapClick = {
    layer : ''
   ,e     : ''
@@ -1991,7 +1992,28 @@ function initMap() {
     ,visibility : typeof defaultLayers['Gliders'] != 'undefined'
   });
 
-  makeTimeSlider(true);
+  if (fetchTimespan) {
+    OpenLayers.Request.issue({
+       method  : 'POST'
+      ,url     : 'proxy.php'
+      ,headers : {'Content-Type' : 'application/x-www-form-urlencoded'}
+      ,data    : OpenLayers.Util.getParameterString({
+        u : 'http://marine.rutgers.edu/cool/auvs/track.php?service=info'
+      })
+      ,callback : function(r) {
+        var json = new OpenLayers.Format.JSON().read(r.responseText);
+        var mdy = json.timespan.start.split(' ')[0].split('-');
+        makeAvailableTimes(new Date(mdy[0],mdy[1] - 1,mdy[2]));
+        Ext.getCmp('timeSlider').suspendEvents();
+        Ext.getCmp('timeSlider').setMaxValue(availableTimes.length - 1);
+        Ext.getCmp('timeSlider').resumeEvents();
+        makeTimeSlider(true);
+      }
+    });
+  }
+  else {
+    makeTimeSlider(true);
+  }
 }
 
 function setLayerInfo(layerName,on) {
@@ -3680,6 +3702,7 @@ function makeAvailableTimes(dMin) {
 
   var ticIntervalHours = 12;
   var numTics          = 4;
+  availableTimes       = [];
   if (dMin) {
     var dH = (dNow.getTime() - dMin.getTime()) / (1000 * 60 * 60);
     if (dH > 24 * 7) {
