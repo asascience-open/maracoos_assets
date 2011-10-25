@@ -3693,7 +3693,7 @@ function makeTimeSlider(initOnly) {
   var tr = document.createElement('tr');
   for (var i = 0; i < availableTimes.length; i++) {
     var td = document.createElement('td');
-    if (availableTimes[i].getHours() == 0) {
+    if (i % 2 == 1) {
       td.innerHTML = zeroPad((availableTimes[i].getMonth() + 1),2) + '/' + zeroPad(availableTimes[i].getDate(),2);
     }
     else {
