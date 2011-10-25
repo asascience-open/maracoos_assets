@@ -3697,11 +3697,9 @@ function makeTimeSlider(initOnly) {
       td.innerHTML = zeroPad((availableTimes[i].getMonth() + 1),2) + '/' + zeroPad(availableTimes[i].getDate(),2);
     }
     else {
-      td.innerHTML = '<img src="img/blank.png" width=1>';
+      td.innerHTML = '|';
+      td.style.color = '#6F94D2';
       td.style.width = '1px';
-    }
-    if (i == 0 || availableTimes[i].getHours() != 0 || i == availableTimes.length - 1) {
-      td.className = 'fillSolid';
     }
     tr.appendChild(td);
     if (availableTimes[i].getTime() == dNow.getTime()) {

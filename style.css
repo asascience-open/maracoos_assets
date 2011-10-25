@@ -309,11 +309,6 @@ div.olControlMousePosition {
   border-bottom : 1px solid #99BBE8;
 }
 
-.fillSolid {
-  border-left : 1px solid #6F94D2;
-  border-right : 1px solid #6F94D2;
-}
-
 .x-toolbar-cell .x-form-checkbox, .x-toolbar-cell .x-form-radio {
     margin-top: 0;
 }
