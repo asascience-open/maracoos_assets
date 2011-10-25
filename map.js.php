@@ -3695,10 +3695,10 @@ function makeTimeSlider(initOnly) {
     var td = document.createElement('td');
     if (availableTimes[i].getHours() == 0) {
       td.innerHTML = (availableTimes[i].getMonth() + 1) + '/' + availableTimes[i].getDate();
-      td.style.width = (1 / ((availableTimes.length - 1) / 2)  * 100) + '%';
     }
     else {
-      td.innerHTML = '<img src="img/blank.png" width=2>';
+      td.innerHTML = '<img src="img/blank.png" width=1>';
+      td.style.width = '1px';
     }
     if (i == 0 || availableTimes[i].getHours() != 0 || i == availableTimes.length - 1) {
       td.className = 'fillSolid';
