@@ -431,33 +431,33 @@ function init() {
         ,'true'
         ,''
       ]
-      ,[
-         'model'
-        ,'UMass'
-        ,'UMass currents'
-        ,'off'
-        ,defaultLayers['UMass'] ? 'on' : 'off'
-        ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/UMass.html')))?>'
-        ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
-        ,typeof defaultOpacities['UMass'] != 'undefined' && defaultOpacities['UMass'] != '' ? defaultOpacities['UMass'] : 100
-        ,defaultImageTypes['UMass']
-        ,''
-        ,defaultStyles['UMass'].split('-')[0]
-        ,defaultStyles['UMass'].split('-')[1]
-        ,defaultStyles['UMass'].split('-')[3]
-        ,defaultStyles['UMass'].split('-')[2]
-        ,defaultStyles['UMass'].split('-')[4]
-        ,defaultStyles['UMass'].split('-')[5]
-        ,defaultStyles['UMass'].split('-')[6]
-        ,'0-6'
-        ,''
-        ,'legends/UMass.png'
-        ,''
-        ,'-72,40.5,-69,43.5'
-        ,'true'
-        ,''
-      ]
+//      ,[
+//         'model'
+//        ,'UMass'
+//        ,'UMass currents'
+//        ,'off'
+//        ,defaultLayers['UMass'] ? 'on' : 'off'
+//        ,'off'
+//        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/UMass.html')))?>'
+//        ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
+//        ,typeof defaultOpacities['UMass'] != 'undefined' && defaultOpacities['UMass'] != '' ? defaultOpacities['UMass'] : 100
+//        ,defaultImageTypes['UMass']
+//        ,''
+//        ,defaultStyles['UMass'].split('-')[0]
+//        ,defaultStyles['UMass'].split('-')[1]
+//        ,defaultStyles['UMass'].split('-')[3]
+//        ,defaultStyles['UMass'].split('-')[2]
+//        ,defaultStyles['UMass'].split('-')[4]
+//        ,defaultStyles['UMass'].split('-')[5]
+//        ,defaultStyles['UMass'].split('-')[6]
+//        ,'0-6'
+//        ,''
+//        ,'legends/UMass.png'
+//        ,''
+//        ,'-72,40.5,-69,43.5'
+//        ,'true'
+//        ,''
+//      ]
       ,[
          'model'
         ,'ROMS ESPRESSO'
@@ -1906,15 +1906,15 @@ function initMap() {
     ,singleTile : true
     ,projection : proj3857
   });
-  addWMS({
-     name   : 'UMass'
-    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
-    ,layers : 'FVCOM_MASS_CURRENTS'
-    ,format : 'image/' + defaultImageTypes['UMass']
-    ,styles : defaultStyles['UMass']
-    ,singleTile : true
-    ,projection : proj3857
-  });
+//  addWMS({
+//     name   : 'UMass'
+//    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+//    ,layers : 'FVCOM_MASS_CURRENTS'
+//    ,format : 'image/' + defaultImageTypes['UMass']
+//    ,styles : defaultStyles['UMass']
+//    ,singleTile : true
+//    ,projection : proj3857
+//  });
   addWMS({
      name   : 'NAM winds'
     ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
