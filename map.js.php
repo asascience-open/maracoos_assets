@@ -1378,6 +1378,9 @@ function init() {
                   if (!hideMarine) {
                     p['hideMarine'] = hideMarine;
                   }
+                  if (fetchTimespan) {
+                    p['fetchTimespan'] = fetchTimespan;
+                  }
                   var u = [];
                   for (var i in p) {
                     u.push(i + '=' + p[i]);
