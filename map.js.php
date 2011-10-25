@@ -3668,9 +3668,13 @@ function printErrorAlert() {
 }
 
 function makeAvailableTimes(dMin) {
+  // if no dMin is passed, the slider will center on now() and go out numTics's worth of ticIntervalHours in each direction
+  // otherwise, it will put dMin at the left side and now() at the right
   dNow = new Date();
   dNow.setMinutes(0);
   dNow.setSeconds(0);
+
+  // since we want a '|' in the middle of the time slider, the LCD is 12h
   var dNow12Hours = new Date(dNow.getTime());
   dNow12Hours.setHours(12);
 
@@ -3678,7 +3682,6 @@ function makeAvailableTimes(dMin) {
   var numTics          = 4;
   if (dMin) {
     var dH = (dNow.getTime() - dMin.getTime()) / (1000 * 60 * 60);
-    // less than a week
     if (dH > 24 * 7) {
       numTics          = 10;
       ticIntervalHours = Math.ceil(dH / (10 * 2));
