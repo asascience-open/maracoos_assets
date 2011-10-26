@@ -1419,7 +1419,6 @@ function init() {
     ,hidden           : hideGlidersGridPanel
     ,height           : glidersStore.getCount() * 25.1 + 26 + 11 + 25
     ,title            : 'Gliders'
-    ,collapsible      : true
     ,store            : glidersStore
     ,border           : false
     ,columns          : [
