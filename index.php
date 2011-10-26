@@ -248,7 +248,7 @@
     <script type="text/javascript" src="./js/jquery/jquery.flot.crosshair.js"></script>
     <script type="text/javascript" src="./js/jquery/jquery.flot.navigate.js"></script>
     <script type="text/javascript" src="./js/jquery/excanvas.js"></script>
-    <script type="text/javascript" src="misc.js?v=1"></script>
-    <script type="text/javascript" src="map.js.php?v=1"></script>
+    <script type="text/javascript" src="misc.js?v=2"></script>
+    <script type="text/javascript" src="map.js.php?v=2"></script>
   </body>
 </html>
