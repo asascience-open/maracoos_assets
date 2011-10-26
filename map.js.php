@@ -2946,8 +2946,8 @@ function addObs(l) {
         'default' : new OpenLayers.Style(OpenLayers.Util.applyDefaults({
            externalGraphic : 'img/' + l.name + '.png'
           ,pointRadius     : 8
-          ,graphicWidth    : 20
-          ,graphicHeight   : 20
+          ,graphicWidth    : '${graphicWidth}'
+          ,graphicHeight   : '${graphicHeight}'
           ,graphicOpacity  : 1
           ,strokeWidth     : '${strokeWidth}'
           ,strokeColor     : '${strokeColor}'
@@ -2957,8 +2957,8 @@ function addObs(l) {
         ,'select' : new OpenLayers.Style(OpenLayers.Util.applyDefaults({
            externalGraphic : 'img/' + l.name + '.select.png'
           ,pointRadius     : 8
-          ,graphicWidth    : 40
-          ,graphicHeight   : 40
+          ,graphicWidth    : '${graphicWidthBig}'
+          ,graphicHeight   : '${graphicHeightBig}'
           ,graphicOpacity  : 1
           ,strokeWidth     : '${strokeWidth}'
           ,strokeColor     : '${strokeColor}'
@@ -2968,8 +2968,8 @@ function addObs(l) {
         ,'temporary' : new OpenLayers.Style(OpenLayers.Util.applyDefaults({
            externalGraphic : 'img/' + l.name + '.hilite.png'
           ,pointRadius     : 8
-          ,graphicWidth    : 40
-          ,graphicHeight   : 40
+          ,graphicWidth    : '${graphicWidthBig}'
+          ,graphicHeight   : '${graphicHeightBig}'
           ,graphicOpacity  : 1
           ,strokeWidth     : '${strokeWidth}'
           ,strokeColor     : '${strokeColor}'
@@ -3245,7 +3245,7 @@ function syncObs(l,force) {
         var boundsEqual = true;
         for (var loc in obs.data) {
           // Gliders are unique beasts.
-          if (loc.indexOf('Gliders') >= 0 || loc.indexOf('gliders') >= 0) {
+          if (loc.toLowerCase().indexOf('gliders') >= 0) {
             for (var i = 0; i < obs.data[loc][loc].length; i++) {
               var pts = [];
               for (var j = 0; j < obs.data[loc][loc][i].track.length; j++) {
@@ -3277,6 +3277,16 @@ function syncObs(l,force) {
                 f.attributes.provider            = 'Gliders';
                 f.attributes.data                = obs.data[loc];
                 f.attributes.active              = obs.data[loc][loc][i].active;
+                f.attributes.graphicWidth        = 20;
+                f.attributes.graphicWidthBig     = 20 * 2;
+                f.attributes.graphicHeight       = 20;
+                f.attributes.graphicHeightBig    = 20 * 2;
+                if (loc.indexOf('gliders') >= 0) {
+                  f.attributes.graphicWidth        = 30;
+                  f.attributes.graphicWidthBig     = 30 * 1.5;
+                  f.attributes.graphicHeight       = 25;
+                  f.attributes.graphicHeightBig    = 25 * 1.5;
+                }
                 map.layers[lyrIdx].featureFactor = 0.5;
                 map.layers[lyrIdx].addFeatures(f);
               }
@@ -3285,10 +3295,14 @@ function syncObs(l,force) {
           else {
             var p = loc.split(',');
             var f = new OpenLayers.Feature.Vector(new OpenLayers.Geometry.Point(p[0],p[1]).transform(proj4326,map.getProjectionObject()));
-            f.attributes.data = obs.data[loc];
-            f.attributes.lon  = p[0];
-            f.attributes.lat  = p[1];
-            f.attributes.graphicOpacity = 1;
+            f.attributes.data             = obs.data[loc];
+            f.attributes.lon              = p[0];
+            f.attributes.lat              = p[1];
+            f.attributes.graphicOpacity   = 1;
+            f.attributes.graphicWidth     = 20;
+            f.attributes.graphicWidthBig  = 40;
+            f.attributes.graphicHeight    = 20;
+            f.attributes.graphicHeightBig = 40;
             var p = [];
             for (var provider in obs.data[loc]) {
               p.push(provider);
@@ -3933,7 +3947,7 @@ function makeAvailableTimes(dMin) {
     }
   }
 
-  if (dNow.getHours() >= 12) {
+  if (dNow.getHours() >= 12 || dMin) {
     dNow.setHours(12);
   }
   else {
