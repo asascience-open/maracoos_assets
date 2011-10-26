@@ -3300,11 +3300,12 @@ function syncObs(l,force) {
                 f.attributes.graphicHeight       = 20;
                 f.attributes.graphicHeightBig    = 20 * 2;
                 f.attributes.rotation            = 0;
+                f.attributes.inactive            = !f.attributes.active ? '.inactive' : '';
                 if (loc.indexOf('gliders') >= 0) {
                   f.attributes.graphicWidth        = 30;
-                  f.attributes.graphicWidthBig     = 30 * 1.5;
+                  f.attributes.graphicWidthBig     = 45;
                   f.attributes.graphicHeight       = 25;
-                  f.attributes.graphicHeightBig    = 25 * 1.5;
+                  f.attributes.graphicHeightBig    = 38;
                   if (pts.length >= 2) {
                     f.attributes.rotation = greatCircle(
                        obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 1][0]
@@ -3331,6 +3332,7 @@ function syncObs(l,force) {
             f.attributes.graphicHeight    = 20;
             f.attributes.graphicHeightBig = 40;
             f.attributes.rotation         = 0;
+            f.attributes.inactive         = '';
             var p = [];
             for (var provider in obs.data[loc]) {
               p.push(provider);
