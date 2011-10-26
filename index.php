@@ -59,15 +59,17 @@
 
       if (config == 'gliders') {
         defaultLayers = {
-           'glidersSea'    : true
-          ,'glidersSlocum' : true
-          ,'glidersSpray'  : true
+           'glidersSea'     : true
+          ,'glidersSlocum'  : true
+          ,'glidersSpray'   : true
+          ,'glidersUnknown' : true
         };
         restrictLayers = {
            'Bathymetry contours' : true
           ,'glidersSea'          : true
           ,'glidersSlocum'       : true
           ,'glidersSpray'        : true
+          ,'glidersUnknown'      : true
         };
         hideLegendsGridPanel      = true;
         hideTimeseriesPanel       = true;

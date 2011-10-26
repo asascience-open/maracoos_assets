@@ -192,6 +192,9 @@
 .layerIcon {
   margin-top : -1px;
 }
+.layerIconGlider {
+  margin-top : -2px;
+}
 
 .settingsIcon {
   margin-top : -1px;

@@ -865,6 +865,33 @@ function init() {
         ,''
       ]
       ,[
+         'gliders'
+        ,'glidersUnknown'
+        ,'Unknown'
+        ,'off'
+        ,defaultLayers['glidersUnknown'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/glidersUnknown.html')))?>'
+        ,''
+        ,typeof defaultOpacities['glidersUnknown'] != 'undefined' && defaultOpacities['glidersUnknown'] != '' ? defaultOpacities['glidersUnknown'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'false'
+        ,'-135,0,-50,50'
+        ,'false'
+        ,''
+      ]
+      ,[
          'n/a'
         ,'Bathymetry contours'
         ,'Bathymetry contours'
@@ -1381,13 +1408,13 @@ function init() {
   var glidersGridPanel = new Ext.grid.GridPanel({
      id               : 'glidersGridPanel'
     ,hidden           : hideGlidersGridPanel
-    ,height           : glidersStore.getCount() * 21.1 + 26 + 11 + 25
+    ,height           : glidersStore.getCount() * 31.1 + 26 + 11 + 25
     ,title            : 'Gliders'
     ,collapsible      : true
     ,store            : glidersStore
     ,border           : false
     ,columns          : [
-       {id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 45,css : 'vertical-align:middle'}
+       {id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 55,css : 'vertical-align:middle'}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
       ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
       ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
@@ -2631,7 +2658,13 @@ function setLayerSettings(layerName,on) {
 }
 
 function renderLayerButton(val,metadata,rec) {
-  return '<a id="layer.' + rec.get('name') + '" href="javascript:setLayerStatus(\'' + rec.get('name')  + '\',\'' + rec.get('status') + '\' != \'on\')"><img title="Toggle layer visibility" class="layerIcon" width=40 height=20 src="img/' + rec.get('name') + '.' + rec.get('status') + '.png"></a>';
+  if (rec.get('type') == 'gliders') {
+    // glider icons are bigger
+    return '<a id="layer.' + rec.get('name') + '" href="javascript:setLayerStatus(\'' + rec.get('name')  + '\',\'' + rec.get('status') + '\' != \'on\')"><img title="Toggle layer visibility" class="layerIconGlider" width=47 height=25 src="img/' + rec.get('name') + '.' + rec.get('status') + '.png"></a>';
+  }
+  else {
+    return '<a id="layer.' + rec.get('name') + '" href="javascript:setLayerStatus(\'' + rec.get('name')  + '\',\'' + rec.get('status') + '\' != \'on\')"><img title="Toggle layer visibility" class="layerIcon" width=40 height=20 src="img/' + rec.get('name') + '.' + rec.get('status') + '.png"></a>';
+  }
 }
 
 function renderLayerInfoLink(val,metadata,rec) {
