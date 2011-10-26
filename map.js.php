@@ -1425,8 +1425,8 @@ function init() {
     ,columns          : [
        {id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 55,css : 'vertical-align:middle'}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
-      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
-      ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
+//      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+//      ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
