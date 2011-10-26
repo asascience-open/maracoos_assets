@@ -176,7 +176,7 @@
       $type = 'unknown';
     }
 
-    $json = json_decode(file_get_contents(str_replace(' ','%20',"http://marine.rutgers.edu/cool/auvs/track.php?service=track&type[]=$type&t0=".$_REQUEST['t0']."&t1=".$_REQUEST['t1'])));
+    $json = json_decode(file_get_contents(str_replace(' ','%20',"http://marine.rutgers.edu/cool/auvs/track.php?service=track&type[]=$type&t0=".$_REQUEST['t0']."&t1=".$_REQUEST['t1'].$_REQUEST['filterProvider'])));
     foreach ($json as $k => $v) {
       $d = array(
          'id'       => ''

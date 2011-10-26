@@ -18,6 +18,7 @@ var modelsStore;
 var observationsStore;
 var marineStore;
 var glidersStore;
+var glidersMetadataStore;
 var legendsStore;
 var spot;
 var spotTooltip;
@@ -56,7 +57,6 @@ var timeControlsHeight = 42;
 var checkPrintTimer;
 var refreshWWATimer;
 var refreshWWAInterval = 60000;
-var glidersMetadata = {};
 
 function init() {
   var loadingMask = Ext.get('loading-mask');
@@ -1112,6 +1112,13 @@ function init() {
     }
   });
 
+  glidersMetadataStore = new Ext.data.ArrayStore({
+    fields : [
+       'name'
+      ,'description'
+    ]
+  });
+
   legendsStore = new Ext.data.ArrayStore({
     fields : [
        'name'
@@ -1410,7 +1417,7 @@ function init() {
   var glidersGridPanel = new Ext.grid.GridPanel({
      id               : 'glidersGridPanel'
     ,hidden           : hideGlidersGridPanel
-    ,height           : glidersStore.getCount() * 31.1 + 26 + 11 + 25
+    ,height           : glidersStore.getCount() * 25.1 + 26 + 11 + 25
     ,title            : 'Gliders'
     ,collapsible      : true
     ,store            : glidersStore
@@ -1456,6 +1463,54 @@ function init() {
     ]
   });
 
+  var glidersProvidersSelModel = new Ext.grid.CheckboxSelectionModel({
+    header : ''
+  });
+  var glidersProvidersGridPanel = new Ext.grid.GridPanel({
+     id               : 'glidersProvidersGridPanel'
+    ,hidden           : hideGlidersGridPanel
+    ,title            : 'Filter by provider'
+    ,store            : glidersMetadataStore
+    ,height           : 200
+    ,border           : false
+    ,autoExpandColumn : 'description'
+    ,columns          : [
+       glidersProvidersSelModel
+      ,{id : 'description',dataIndex : 'description'}
+    ]
+    ,hideHeaders      : true
+    ,loadMask         : true
+    ,deferRowRender   : false
+    ,selModel         : glidersProvidersSelModel
+    ,listeners        : {
+      rowclick : function(grid,rowIndex,e) {
+        syncObs({name : 'Sea gliders'},true);
+        syncObs({name : 'Slocum gliders'},true);
+        syncObs({name : 'Spray gliders'},true);
+        syncObs({name : 'Unknown gliders'},true);
+      }
+    }
+    ,tbar             : [
+      {
+         text    : 'Hide all providers'
+        ,icon    : 'img/delete.png'
+        ,handler : function() {
+          Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().clearSelections();
+          Ext.getCmp('glidersProvidersGridPanel').fireEvent('rowclick',Ext.getCmp('glidersProvidersGridPanel'));
+        }
+      }
+      ,'->'
+      ,{
+         text    : 'Show all providers'
+        ,icon    : 'img/add.png'
+        ,handler : function() {
+          Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().selectAll();
+          Ext.getCmp('glidersProvidersGridPanel').fireEvent('rowclick',Ext.getCmp('glidersProvidersGridPanel'));
+        }
+      }
+    ]
+  });
+
   var legendsGridPanel = new Ext.grid.GridPanel({
      id               : 'legendsGridPanel'
     ,hidden           : hideLegendsGridPanel
@@ -1485,6 +1540,7 @@ function init() {
      introPanel
     ,assetsGridPanel
     ,glidersGridPanel
+    ,glidersProvidersGridPanel
     ,modelsGridPanel
     ,observationsGridPanel
     ,marineGridPanel
@@ -2182,6 +2238,7 @@ function initMap() {
   });
 
   if (config == 'gliders') {
+    glidersMetadataStore.fireEvent('beforeload');
     OpenLayers.Request.issue({
        method  : 'POST'
       ,url     : 'proxy.php'
@@ -2191,9 +2248,19 @@ function initMap() {
       })
       ,callback : function(r) {
         var json = new OpenLayers.Format.JSON().read(r.responseText);
+        var menu = [];
         for (var i in json.providers) {
-          glidersMetadata[json.providers[i].name] = json.providers[i].description;
+          if (i != 'remove') {
+            glidersMetadataStore.add(new glidersMetadataStore.recordType({
+               'name'        : json.providers[i].name
+              ,'description' : json.providers[i].description
+            }));
+          }
         }
+        glidersMetadataStore.fireEvent('load');
+        glidersMetadataStore.sort('description','ASC');
+        Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().selectAll();
+        Ext.getCmp('glidersProvidersGridPanel').setHeight(glidersMetadataStore.getCount() * 21.1 + 26 + 11 + 25);
         var mdy = json.timespan.start.split(' ')[0].split('-');
         makeAvailableTimes(new Date(mdy[0],mdy[1] - 1,mdy[2]));
         Ext.getCmp('timeSlider').suspendEvents();
@@ -3048,15 +3115,15 @@ function addObs(l) {
           leg = '';
         }
         mainStoreRec.set('legend',leg);
-        var a = ['<td colspan=2 align=center>' + (lyr.features.length / 2) + ' glider(s) fetched' + '</td>']; 
+        var a = ['<td colspan=2>' + (lyr.features.length / 2) + ' glider(s) fetched' + '</td>']; 
         var activity = {
            active   : 0
           ,inactive : 0
         };
         var providerHits = {};
-        for (var i in glidersMetadata) {
-          providerHits[i] = 0;
-        }
+        glidersMetadataStore.each(function(rec) {
+          providerHits[rec.get('name')] = 0;
+        });
         for (var i = 0; i < lyr.features.length; i++) {
           if (lyr.features[i].attributes.active) {
             activity['active'] += 0.5;
@@ -3072,11 +3139,11 @@ function addObs(l) {
           a.push('<td>inactive</td><td align=right>' + activity['inactive'] + '</td>');
           a.push('<td colspan=2 align=center>by provider</td>'); 
         }
-        for (var i in glidersMetadata) {
-          if (providerHits[i] > 0) {
-            a.push('<td>' + i + '</td><td align=right>' + providerHits[i] + '</td>');
+        glidersMetadataStore.each(function(rec) {
+          if (providerHits[rec.get('name')] > 0) {
+            a.push('<td>' + rec.get('name') + '</td><td align=right>' + providerHits[rec.get('name')] + '</td>');
           }
-        }
+        });
         rec.set('timestamp','<table><tr>' + a.join('</tr><tr>') + '</tr></table>');
       }
       mainStoreRec.commit();
@@ -3101,8 +3168,9 @@ function addObs(l) {
           for (var i in e.feature.attributes.data) {
             for (var j = 0; j < e.feature.attributes.data[i].length; j++) {
               title = e.feature.attributes.data[i][0].descr;
-              if (glidersMetadata[title.split(' ')[0]]) {
-                title = glidersMetadata[title.split(' ')[0]] + ' ::' + title.replace(title.split(' ')[0],'');
+              var idx = glidersMetadataStore.find('name',title.split(' ')[0]);
+              if (idx >= 0) {
+                title = glidersMetadataStore.getAt(idx).get('description') + ' ::' + title.replace(title.split(' ')[0],'');
               }
               target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.id.split('_')[e.feature.id.split('_').length - 1]) - 1);
               if (e.feature.attributes.featureId) {
@@ -3173,8 +3241,9 @@ function addObs(l) {
           for (var i in e.feature.attributes.data) {
             for (var j = 0; j < e.feature.attributes.data[i].length; j++) {
               title = e.feature.attributes.data[i][0].descr;
-              if (glidersMetadata[title.split(' ')[0]]) {
-                title = glidersMetadata[title.split(' ')[0]] + ' ::' + title.replace(title.split(' ')[0],'');
+              var idx = glidersMetadataStore.find('name',title.split(' ')[0]);
+              if (idx >= 0) {
+                title = glidersMetadataStore.getAt(idx).get('description') + ' ::' + title.replace(title.split(' ')[0],'');
               }
               target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.id.split('_')[e.feature.id.split('_').length - 1]) - 1);
               if (e.feature.attributes.featureId) {
@@ -3294,6 +3363,7 @@ function syncObs(l,force) {
          + '&provider='    + l.name
          + '&everyNth='    + everyNth
          + getDateRange()
+         + getFilter()
       ,callback : function(r) {
         var obs = new OpenLayers.Format.JSON().read(r.responseText);
         obsBbox[l.name] = new OpenLayers.Bounds(obs.bbox[0],obs.bbox[1],obs.bbox[2],obs.bbox[3]).transform(proj4326,map.getProjectionObject());;
@@ -3582,7 +3652,7 @@ function mapClick(e,doWMS,doWWA) {
   if (doWMS && modelQueryLyr && modelQueryLyr.visibility && modelQueryLyr.DEFAULT_PARAMS) {
     queryWMS(e,modelQueryLyr);
   }
-  if (doWWA && wwaLyr.visibility) {
+  if (doWWA && wwaLyr && wwaLyr.visibility) {
     queryWWA(e,f);
   }
 }
@@ -4190,6 +4260,20 @@ function getDateRange() {
     var t0 = availableTimes[min].getUTCFullYear() + '-' + String.leftPad(availableTimes[min].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[min].getUTCDate(),2,'0') + ' ' + String.leftPad(availableTimes[min].getUTCHours(),2,'0') + ':00';
     var t1 = availableTimes[max].getUTCFullYear() + '-' + String.leftPad(availableTimes[max].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[max].getUTCDate(),2,'0') + ' ' + String.leftPad(availableTimes[max].getUTCHours(),2,'0') + ':00';
     return '&t0=' + t0 + '&t1=' + t1;
+  }
+  else {
+    return '';
+  }
+}
+
+function getFilter() {
+  if (config == 'gliders' && glidersMetadataStore.getCount() > 0) {
+    var p = [];
+    var sel = Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().getSelections();
+    for (var i = 0; i < sel.length; i++) {
+      p.push(sel[i].get('name'));
+    }
+    return '&filterProvider=' + escape('&provider[]=' + p.join('&provider[]='));
   }
   else {
     return '';
