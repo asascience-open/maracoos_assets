@@ -3345,7 +3345,7 @@ function syncObs(l,force) {
     } 
   }
 
-  if (!lyrIdx || !map.layers[lyrIdx].visibility) {
+  if (!force && (!lyrIdx || !map.layers[lyrIdx].visibility)) {
     return;
   }
 
