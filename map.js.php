@@ -812,7 +812,7 @@ function init() {
     ]
   });
 
-  if (hideMarine) {
+  if (config == 'assets') {
     mainStore.each(function(rec) {
       if (rec.get('type') == 'marine') {
         mainStore.remove(rec);
@@ -1292,7 +1292,7 @@ function init() {
     ,modelsGridPanel
     ,observationsGridPanel
   ];
-  if (!hideMarine) {
+  if (config == 'marine') {
     vpItems.push(marineGridPanel);
   }
 
@@ -1383,14 +1383,9 @@ function init() {
                       }
                     }
                   }
-                  p['lyrs'] = p['lyrs'].join(',');
+                  p['lyrs']   = p['lyrs'].join(',');
                   p['bathyC'] = map.getLayersByName('Bathymetry contours')[0].visibility;
-                  if (!hideMarine) {
-                    p['hideMarine'] = false;
-                  }
-                  if (gliderSite) {
-                    p['gliderSite'] = true;
-                  }
+                  p['config'] = config;
                   var u = [];
                   for (var i in p) {
                     u.push(i + '=' + p[i]);
@@ -2006,7 +2001,7 @@ function initMap() {
     ,visibility : typeof defaultLayers['Gliders'] != 'undefined'
   });
 
-  if (gliderSite) {
+  if (config == 'gliders') {
     OpenLayers.Request.issue({
        method  : 'POST'
       ,url     : 'proxy.php'

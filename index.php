@@ -1,7 +1,7 @@
 <html>
   <head>
 <?php
-  if (isset($_REQUEST['gliderSite']) && $_REQUEST['gliderSite'] == 'true') {
+  if (isset($_REQUEST['config'])) {
 
   }
 ?>
@@ -15,40 +15,28 @@
     <script>
       var djConfig = {parseOnLoad: true};
 
-      var hideMarine = true;
+      var config = 'assets';
 <?php
-  if (isset($_REQUEST['hideMarine']) && $_REQUEST['hideMarine'] == 'false') {
-    echo "hideMarine = false;\n";
-  }
-?>
-
-      var gliderSite                = false;
-      var hideLegendsGridPanel      = false;
-      var hideTimeseriesPanel       = false;
-      var hideAssetsGridPanel       = false;
-      var hideModelsGridPanel       = false;
-      var hideObservationsGridPanel = false;
-<?php
-  if (isset($_REQUEST['gliderSite']) && $_REQUEST['gliderSite'] == 'true') {
-    echo "gliderSite                = true;\n";
-    echo "hideLegendsGridPanel      = true;\n";
-    echo "hideTimeseriesPanel       = true;\n";
-    echo "hideAssetsGridPanel       = true;\n";
-    echo "hideModelsGridPanel       = true;\n";
-    echo "hideObservationsGridPanel = true;\n";
+  if (isset($_REQUEST['config'])) {
+    echo 'config = "'.$_REQUEST['config'].'"'."\n";
   }
 ?>
 
       var restrictLayers;
       var defaultLayers = {
-         'NDBC'                        : true
-        ,'NERRS'                       : true
-        ,'NCOM currents'               : true
-        ,'WWIII waves'                 : true
-        ,'NHC storm tracks'            : true
+         'NDBC'             : true
+        ,'NERRS'            : true
+        ,'NCOM currents'    : true
+        ,'WWIII waves'      : true
+        ,'NHC storm tracks' : true
       };
+      var hideLegendsGridPanel      = false;
+      var hideTimeseriesPanel       = false;
+      var hideAssetsGridPanel       = false;
+      var hideModelsGridPanel       = false;
+      var hideObservationsGridPanel = false;
 
-      if (!hideMarine) {
+      if (config == 'marine') {
         defaultLayers = {
            'NDBC'  : true
           ,'NERRS' : true
@@ -56,18 +44,30 @@
           ,'Zones' : true
         };
         restrictLayers = {
-           'NDBC'  : true
-          ,'NERRS' : true
-          ,'WWA'   : true
-          ,'Zones' : true
-          ,'Bathymetry contours' : true
+           'Bathymetry contours' : true
+          ,'NDBC'                : true
+          ,'NERRS'               : true
+          ,'WWA'                 : true
+          ,'Zones'               : true
         };
+        hideTimeseriesPanel       = true;
+        hideModelsGridPanel       = true;
+        hideObservationsGridPanel = true;
       }
 
-      if (gliderSite) {
+      if (config == 'gliders') {
         defaultLayers = {
-          'NDBC' : true
+           'Bathymetry contours' : true
+          ,'NDBC'                : true
         };
+        restrictLayers = {
+           'Bathymetry contours' : true
+          ,'NDBC'                : true
+        };
+        hideLegendsGridPanel      = true;
+        hideTimeseriesPanel       = true;
+        hideModelsGridPanel       = true;
+        hideObservationsGridPanel = true;
       }
 
       var defaultStyles = {
