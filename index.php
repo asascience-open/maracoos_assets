@@ -35,6 +35,8 @@
       var hideAssetsGridPanel       = false;
       var hideModelsGridPanel       = false;
       var hideObservationsGridPanel = false;
+      var hideMarineGridPanel       = true;
+      var hideGlidersGridPanel      = true;
 
       if (config == 'marine') {
         defaultLayers = {
@@ -57,17 +59,22 @@
 
       if (config == 'gliders') {
         defaultLayers = {
-           'Bathymetry contours' : true
-          ,'NDBC'                : true
+           'glidersSea'    : true
+          ,'glidersSlocum' : true
+          ,'glidersSpray'  : true
         };
         restrictLayers = {
            'Bathymetry contours' : true
-          ,'NDBC'                : true
+          ,'glidersSea'          : true
+          ,'glidersSlocum'       : true
+          ,'glidersSpray'        : true
         };
         hideLegendsGridPanel      = true;
         hideTimeseriesPanel       = true;
+        hideAssetsGridPanel       = true;
         hideModelsGridPanel       = true;
         hideObservationsGridPanel = true;
+        hideGlidersGridPanel      = false;
       }
 
       var defaultStyles = {

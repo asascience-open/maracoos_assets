@@ -17,6 +17,7 @@ var assetsStore;
 var modelsStore;
 var observationsStore;
 var marineStore;
+var glidersStore;
 var legendsStore;
 var spot;
 var spotTooltip;
@@ -783,6 +784,87 @@ function init() {
         ,''
       ]
       ,[
+         'gliders'
+        ,'glidersSea'
+        ,'Sea'
+        ,'off'
+        ,defaultLayers['glidersSea'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/glidersSea.html')))?>'
+        ,''
+        ,typeof defaultOpacities['glidersSea'] != 'undefined' && defaultOpacities['glidersSea'] != '' ? defaultOpacities['glidersSea'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'false'
+        ,'-135,0,-50,50'
+        ,'false'
+        ,''
+      ]
+      ,[
+         'gliders'
+        ,'glidersSlocum'
+        ,'Slocum'
+        ,'off'
+        ,defaultLayers['glidersSlocum'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/glidersSlocum.html')))?>'
+        ,''
+        ,typeof defaultOpacities['glidersSlocum'] != 'undefined' && defaultOpacities['glidersSlocum'] != '' ? defaultOpacities['glidersSlocum'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'false'
+        ,'-135,0,-50,50'
+        ,'false'
+        ,''
+      ]
+      ,[
+         'gliders'
+        ,'glidersSpray'
+        ,'Spray'
+        ,'off'
+        ,defaultLayers['glidersSpray'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/glidersSpray.html')))?>'
+        ,''
+        ,typeof defaultOpacities['glidersSpray'] != 'undefined' && defaultOpacities['glidersSpray'] != '' ? defaultOpacities['glidersSpray'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'false'
+        ,'-135,0,-50,50'
+        ,'false'
+        ,''
+      ]
+      ,[
          'n/a'
         ,'Bathymetry contours'
         ,'Bathymetry contours'
@@ -965,6 +1047,40 @@ function init() {
   mainStore.each(function(rec) {
     if (rec.get('type') == 'marine') {
       marineStore.add(rec);
+    }
+  });
+
+  glidersStore = new Ext.data.ArrayStore({
+    fields : [
+       'name'
+      ,'displayName'
+      ,'info'
+      ,'status'
+      ,'settings'
+      ,'infoBlurb'
+      ,'settingsParam'
+      ,'settingsOpacity'
+      ,'settingsImageType'
+      ,'settingsPalette'
+      ,'settingsBaseStyle'
+      ,'settingsColorMap'
+      ,'settingsStriding'
+      ,'settingsBarbLabel'
+      ,'settingsTailMag'
+      ,'settingsMin'
+      ,'settingsMax'
+      ,'settingsMinMaxBounds'
+      ,'rank'
+      ,'legend'
+      ,'timestamp'
+      ,'bbox'
+      ,'queryable'
+      ,'settingsLayers'
+    ]
+  });
+  mainStore.each(function(rec) {
+    if (rec.get('type') == 'gliders') {
+      glidersStore.add(rec);
     }
   });
 
@@ -1215,6 +1331,7 @@ function init() {
 
   var marineGridPanel = new Ext.grid.GridPanel({
      id               : 'marineGridPanel'
+    ,hidden           : hideMarineGridPanel
     ,height           : marineStore.getCount() * 21.1 + 26 + 11 + 25
     ,title            : 'National Weather Service'
     ,collapsible      : true
@@ -1261,6 +1378,55 @@ function init() {
     ]
   });
 
+  var glidersGridPanel = new Ext.grid.GridPanel({
+     id               : 'glidersGridPanel'
+    ,hidden           : hideGlidersGridPanel
+    ,height           : glidersStore.getCount() * 21.1 + 26 + 11 + 25
+    ,title            : 'Gliders'
+    ,collapsible      : true
+    ,store            : glidersStore
+    ,border           : false
+    ,columns          : [
+       {id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 45,css : 'vertical-align:middle'}
+      ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+      ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
+    ]
+    ,hideHeaders      : true
+    ,disableSelection : true
+    ,tbar             : [
+      {
+         text    : 'Turn all gliders off'
+        ,icon    : 'img/delete.png'
+        ,handler : function() {
+          glidersStore.each(function(rec) {
+            var lyr = map.getLayersByName(rec.get('name'))[0];
+            rec.set('status','off');
+            rec.commit();
+            if (lyr.visibility) {
+              lyr.setVisibility(false);
+            }
+          });
+        }
+      }
+      ,'->'
+      ,{
+         text    : 'Turn all gliders on'
+        ,icon    : 'img/add.png'
+        ,handler : function() {
+          glidersStore.each(function(rec) {
+            var lyr = map.getLayersByName(rec.get('name'))[0];
+            rec.set('status','on');
+            rec.commit();
+            if (!lyr.visibility) {
+              lyr.setVisibility(true);
+            }
+          });
+        }
+      }
+    ]
+  });
+
   var legendsGridPanel = new Ext.grid.GridPanel({
      id               : 'legendsGridPanel'
     ,hidden           : hideLegendsGridPanel
@@ -1289,12 +1455,11 @@ function init() {
   var vpItems = [
      introPanel
     ,assetsGridPanel
+    ,glidersGridPanel
     ,modelsGridPanel
     ,observationsGridPanel
+    ,marineGridPanel
   ];
-  if (config == 'marine') {
-    vpItems.push(marineGridPanel);
-  }
 
   new Ext.Viewport({
      layout : 'border'
