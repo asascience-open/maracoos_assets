@@ -1476,7 +1476,7 @@ function init() {
     ,autoExpandColumn : 'description'
     ,columns          : [
        glidersProvidersSelModel
-      ,{id : 'description',dataIndex : 'description'}
+      ,{id : 'description',dataIndex : 'description',renderer : renderGlidersDescription}
     ]
     ,hideHeaders      : true
     ,loadMask         : true
@@ -2771,6 +2771,10 @@ function renderLegend(val,metadata,rec) {
     a.push('<img src="getLegend.php?' + mainStore.getAt(idx).get('legend') + '">');
   }
   return a.join('<br/>');
+}
+
+function renderGlidersDescription(val,metdata,rec) {
+  return val + ' (' + rec.get('name') + ')';
 }
 
 function addLayer(lyr,timeSensitive) {
