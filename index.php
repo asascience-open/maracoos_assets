@@ -1,5 +1,10 @@
 <html>
   <head>
+<?php
+  if (isset($_REQUEST['gliderSite']) && $_REQUEST['gliderSite'] == 'true') {
+
+  }
+?>
     <title>MARACOOS Assets Explorer</title>
     <link rel="stylesheet" type="text/css" href="./js/ext-3.3.0/resources/css/ext-all.css"/>
     <link rel="stylesheet" type="text/css" href="style.css"/>
@@ -12,18 +17,29 @@
 
       var hideMarine = true;
 <?php
-  if (isset($_REQUEST['hideMarine'])) {
-    echo 'hideMarine = '.$_REQUEST['hideMarine'].";\n";
+  if (isset($_REQUEST['hideMarine']) && $_REQUEST['hideMarine'] == 'false') {
+    echo "hideMarine = false;\n";
   }
 ?>
 
-      var fetchTimespan = false;
+      var gliderSite                = false;
+      var hideLegendsGridPanel      = false;
+      var hideTimeseriesPanel       = false;
+      var hideAssetsGridPanel       = false;
+      var hideModelsGridPanel       = false;
+      var hideObservationsGridPanel = false;
 <?php
-  if (isset($_REQUEST['fetchTimespan'])) {
-    echo 'fetchTimespan = '.$_REQUEST['fetchTimespan'].";\n";
+  if (isset($_REQUEST['gliderSite']) && $_REQUEST['gliderSite'] == 'true') {
+    echo "gliderSite                = true;\n";
+    echo "hideLegendsGridPanel      = true;\n";
+    echo "hideTimeseriesPanel       = true;\n";
+    echo "hideAssetsGridPanel       = true;\n";
+    echo "hideModelsGridPanel       = true;\n";
+    echo "hideObservationsGridPanel = true;\n";
   }
 ?>
 
+      var restrictLayers;
       var defaultLayers = {
          'NDBC'                        : true
         ,'NERRS'                       : true
@@ -38,6 +54,19 @@
           ,'NERRS' : true
           ,'WWA'   : true
           ,'Zones' : true
+        };
+        restrictLayers = {
+           'NDBC'  : true
+          ,'NERRS' : true
+          ,'WWA'   : true
+          ,'Zones' : true
+          ,'Bathymetry contours' : true
+        };
+      }
+
+      if (gliderSite) {
+        defaultLayers = {
+          'NDBC' : true
         };
       }
 

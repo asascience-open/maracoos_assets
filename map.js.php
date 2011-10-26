@@ -820,6 +820,12 @@ function init() {
     });
   }
 
+  mainStore.each(function(rec) {
+    if (restrictLayers && !restrictLayers[rec.get('name')]) {
+      mainStore.remove(rec);
+    }
+  });
+
   var i = 0;
   mainStore.each(function(rec) {
     rec.set('rank',i++);
@@ -1092,6 +1098,7 @@ function init() {
 
   var assetsGridPanel = new Ext.grid.GridPanel({
      id               : 'assetsGridPanel'
+    ,hidden           : hideAssetsGridPanel
     ,height           : assetsStore.getCount() * 21.1 + 26 + 11 + 25
     ,title            : 'Assets'
     ,collapsible      : true
@@ -1140,6 +1147,7 @@ function init() {
 
   var modelsGridPanel = new Ext.grid.GridPanel({
      id               : 'modelsGridPanel'
+    ,hidden           : hideModelsGridPanel
     ,height           : modelsStore.getCount() * 21.1 + 26 + 11 + 25
     ,title            : 'Models'
     ,collapsible      : true
@@ -1173,6 +1181,7 @@ function init() {
 
   var observationsGridPanel = new Ext.grid.GridPanel({
      id               : 'observationsGridPanel'
+    ,hidden           : hideObservationsGridPanel
     ,height           : observationsStore.getCount() * 21.1 + 26 + 11 + 25
     ,title            : 'Observations'
     ,collapsible      : true
@@ -1254,6 +1263,7 @@ function init() {
 
   var legendsGridPanel = new Ext.grid.GridPanel({
      id               : 'legendsGridPanel'
+    ,hidden           : hideLegendsGridPanel
     ,region           : 'east'
     ,width            : 180
     ,title            : 'Legends'
@@ -1376,10 +1386,10 @@ function init() {
                   p['lyrs'] = p['lyrs'].join(',');
                   p['bathyC'] = map.getLayersByName('Bathymetry contours')[0].visibility;
                   if (!hideMarine) {
-                    p['hideMarine'] = hideMarine;
+                    p['hideMarine'] = false;
                   }
-                  if (fetchTimespan) {
-                    p['fetchTimespan'] = fetchTimespan;
+                  if (gliderSite) {
+                    p['gliderSite'] = true;
                   }
                   var u = [];
                   for (var i in p) {
@@ -1533,6 +1543,7 @@ function init() {
           }
           ,new Ext.Panel({
              region      : 'south'
+            ,hidden      : hideTimeseriesPanel
             ,id          : 'timeseriesPanel'
             ,title       : 'Time-Series Query Results'
             ,tbar        : [
@@ -1995,7 +2006,7 @@ function initMap() {
     ,visibility : typeof defaultLayers['Gliders'] != 'undefined'
   });
 
-  if (fetchTimespan) {
+  if (gliderSite) {
     OpenLayers.Request.issue({
        method  : 'POST'
       ,url     : 'proxy.php'
@@ -2590,6 +2601,9 @@ function addLayer(lyr,timeSensitive) {
 }
 
 function addWMS(l) {
+  if (restrictLayers && !restrictLayers[l.name]) {
+    return;
+  }
   var lyr = new OpenLayers.Layer.WMS(
      l.name
     ,l.url
@@ -2611,6 +2625,9 @@ function addWMS(l) {
 }
 
 function addTileCache(l) {
+  if (restrictLayers && !restrictLayers[l.name]) {
+    return;
+  }
   var lyr = new OpenLayers.Layer.TileCache(
      l.name
     ,l.url
@@ -2683,6 +2700,9 @@ function addTileCache(l) {
 }
 
 function addTMS(l) {
+  if (restrictLayers && !restrictLayers[l.name]) {
+    return;
+  }
   var lyr = new OpenLayers.Layer.TMS(
      l.name
     ,l.url
@@ -2728,6 +2748,9 @@ function addTMS(l) {
 }
 
 function addObs(l) {
+  if (restrictLayers && !restrictLayers[l.name]) {
+    return;
+  }
   var lyr = new OpenLayers.Layer.Vector(
      l.name
     ,{
@@ -3006,7 +3029,7 @@ function syncObs(l,force) {
     } 
   }
 
-  if (!map.layers[lyrIdx].visibility) {
+  if (!lyrIdx || !map.layers[lyrIdx].visibility) {
     return;
   }
 

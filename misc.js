@@ -61,6 +61,9 @@
 
 // this function stuck here for layers that aren't WMS-ready (yet)
 function addVector(l) {
+  if (restrictLayers && !restrictLayers[l.name]) {
+    return;
+  }
   var a = {
     'ROMS ESPRESSO' : [
       [
