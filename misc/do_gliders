@@ -1,0 +1,8 @@
+convert -size 47x25 xc:transparent -fill gray -font '/usr/local/fonts/ttf/DejaVuSansCondensed.ttf' -pointsize 8 -draw "text 32,15 'OFF'" foo.png
+composite -gravity west $1.png foo.png $1.off.png
+convert $1.off.png -colorspace gray /tmp/$1.off.png
+mv /tmp/$1.off.png "/var/www/m2/img/$2.off.png"
+
+convert -size 47x25 xc:transparent -fill green -font '/usr/local/fonts/ttf/DejaVuSansCondensed.ttf' -pointsize 8 -draw "text 32,15 'ON'" foo.png
+composite -gravity west $1.png foo.png $1.on.png
+mv $1.on.png "/var/www/m2/img/$2.on.png"
