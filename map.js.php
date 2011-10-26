@@ -4195,9 +4195,24 @@ function makeTimeSlider() {
       }})
       ,listeners   : {change : function(slider) {
         if (availableTimes[slider.getValues()[1]].getTime() - availableTimes[slider.getValues()[0]].getTime() > 365 * 24 * 60 * 60 * 1000) {
-          // Ext.Msg.alert('Error','You have exceeded the maximum supported time window of one year.  Please try again.');
+          if (!Ext.getCmp('sliderAlertTimespan')) {
+            new Ext.Window({
+               id              : 'sliderAlertTimespan'
+              ,resizable       : false
+              ,constrainHeader : true
+              ,bodyStyle       : 'background:white;padding:5'
+              ,title           : 'Time request error'
+              ,html            : "We're sorry, but the time span you have requested isn't supported.<br>The maximum time window we support is 1 year.  Please try again."
+              ,listeners       : {afterrender : function(win) {
+                win.setPosition(win.getPosition[0],slider.getPosition()[1] - win.getHeight() - 25);
+              }}
+            }).show();
+          }
         }
         else {
+          if (Ext.getCmp('sliderAlertTimespan')) {
+            Ext.getCmp('sliderAlertTimespan').hide();
+          }
           syncObs({name : 'Sea gliders'},true);
           syncObs({name : 'Slocum gliders'},true);
           syncObs({name : 'Spray gliders'},true);
