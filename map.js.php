@@ -3032,7 +3032,7 @@ function addObs(l) {
       var mainStoreRec = mainStore.getAt(mainStore.find('name',lyr.name));
       if (map.getZoom() + zoomOffset() < obsMinZoom[lyr.name]) {
         mainStoreRec.set('legend','img/zoom.png');
-        rec.set('timestamp',lyr.features.length * lyr.featureFactor + ' station(s) fetched<br/><span class="alert">More stations available<br/>at a closer zoom.<span>');
+        rec.set('timestamp',(lyr.featureFactor ? lyr.features.length * lyr.featureFactor : 0) + ' station(s) fetched<br/><span class="alert">More stations available<br/>at a closer zoom.<span>');
       }
       else if (assetsIndex >= 0) {
         var leg = assetsStore.getAt(assetsIndex).get('legend');
@@ -3040,7 +3040,7 @@ function addObs(l) {
           leg = '';
         }
         mainStoreRec.set('legend',leg);
-        rec.set('timestamp',lyr.features.length * lyr.featureFactor + ' station(s) fetched');
+        rec.set('timestamp',(lyr.featureFactor ? lyr.features.length * lyr.featureFactor : 0) + ' station(s) fetched');
       }
       else if (glidersIndex >= 0) {
         var leg = glidersStore.getAt(glidersIndex).get('legend');
