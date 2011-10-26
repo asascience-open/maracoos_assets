@@ -62,17 +62,17 @@
 
       if (config == 'gliders') {
         defaultLayers = {
-           'glidersSea'     : true
-          ,'glidersSlocum'  : true
-          ,'glidersSpray'   : true
-          ,'glidersUnknown' : true
+           'Sea gliders'     : true
+          ,'Slocum gliders'  : true
+          ,'Spray gliders'   : true
+          ,'Unknown gliders' : true
         };
         restrictLayers = {
            'Bathymetry contours' : true
-          ,'glidersSea'          : true
-          ,'glidersSlocum'       : true
-          ,'glidersSpray'        : true
-          ,'glidersUnknown'      : true
+          ,'Sea gliders'         : true
+          ,'Slocum gliders'      : true
+          ,'Spray gliders'       : true
+          ,'Unknown gliders'     : true
         };
         hideLegendsGridPanel      = true;
         hideTimeseriesPanel       = true;

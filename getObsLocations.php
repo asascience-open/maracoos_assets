@@ -161,7 +161,7 @@
     }
   }
 
-  if (preg_match('/^gliders/',$_REQUEST['provider'])) {
+  if (preg_match('/gliders$/',$_REQUEST['provider'])) {
     $json = json_decode(file_get_contents('http://marine.rutgers.edu/cool/auvs/deployments.php?t0='.date("Y-m-d H:i",time() - 365 / 2 * 24 * 3600)));
     foreach ($json as $k => $v) {
       $d = array(

@@ -786,14 +786,14 @@ function init() {
       ]
       ,[
          'gliders'
-        ,'glidersSea'
+        ,'Sea gliders'
         ,'Sea gliders'
         ,'off'
-        ,defaultLayers['glidersSea'] ? 'on' : 'off'
+        ,defaultLayers['Sea gliders'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/glidersSea.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Sea gliders.html')))?>'
         ,''
-        ,typeof defaultOpacities['glidersSea'] != 'undefined' && defaultOpacities['glidersSea'] != '' ? defaultOpacities['glidersSea'] : 100
+        ,typeof defaultOpacities['Sea gliders'] != 'undefined' && defaultOpacities['Sea gliders'] != '' ? defaultOpacities['Sea gliders'] : 100
         ,''
         ,''
         ,''
@@ -813,14 +813,14 @@ function init() {
       ]
       ,[
          'gliders'
-        ,'glidersSlocum'
+        ,'Slocum gliders'
         ,'Slocum gliders'
         ,'off'
-        ,defaultLayers['glidersSlocum'] ? 'on' : 'off'
+        ,defaultLayers['Slocum gliders'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/glidersSlocum.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Slocum gliders.html')))?>'
         ,''
-        ,typeof defaultOpacities['glidersSlocum'] != 'undefined' && defaultOpacities['glidersSlocum'] != '' ? defaultOpacities['glidersSlocum'] : 100
+        ,typeof defaultOpacities['Slocum gliders'] != 'undefined' && defaultOpacities['Slocum gliders'] != '' ? defaultOpacities['Slocum gliders'] : 100
         ,''
         ,''
         ,''
@@ -840,14 +840,14 @@ function init() {
       ]
       ,[
          'gliders'
-        ,'glidersSpray'
+        ,'Spray gliders'
         ,'Spray gliders'
         ,'off'
-        ,defaultLayers['glidersSpray'] ? 'on' : 'off'
+        ,defaultLayers['Spray gliders'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/glidersSpray.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Spray gliders.html')))?>'
         ,''
-        ,typeof defaultOpacities['glidersSpray'] != 'undefined' && defaultOpacities['glidersSpray'] != '' ? defaultOpacities['glidersSpray'] : 100
+        ,typeof defaultOpacities['Spray gliders'] != 'undefined' && defaultOpacities['Spray gliders'] != '' ? defaultOpacities['Spray gliders'] : 100
         ,''
         ,''
         ,''
@@ -867,14 +867,14 @@ function init() {
       ]
       ,[
          'gliders'
-        ,'glidersUnknown'
+        ,'Unknown gliders'
         ,'Unknown gliders'
         ,'off'
-        ,defaultLayers['glidersUnknown'] ? 'on' : 'off'
+        ,defaultLayers['Unknown gliders'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/glidersUnknown.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Unknown gliders.html')))?>'
         ,''
-        ,typeof defaultOpacities['glidersUnknown'] != 'undefined' && defaultOpacities['glidersUnknown'] != '' ? defaultOpacities['glidersUnknown'] : 100
+        ,typeof defaultOpacities['Unknown gliders'] != 'undefined' && defaultOpacities['Unknown gliders'] != '' ? defaultOpacities['Unknown gliders'] : 100
         ,''
         ,''
         ,''
@@ -1952,10 +1952,10 @@ function initMap() {
     // gliders don't need to be re-fetched w/ each map move
     if (!glidersInitialized) {
       syncObs({name : 'Gliders'});
-      syncObs({name : 'glidersSea'});
-      syncObs({name : 'glidersSlocum'});
-      syncObs({name : 'glidersSpray'});
-      syncObs({name : 'glidersUnknown'});
+      syncObs({name : 'Sea gliders'});
+      syncObs({name : 'Slocum gliders'});
+      syncObs({name : 'Spray gliders'});
+      syncObs({name : 'Unknown gliders'});
       glidersInitialized = true;
     }
     if (popupObs) {
@@ -2172,20 +2172,20 @@ function initMap() {
     ,visibility : typeof defaultLayers['Gliders'] != 'undefined'
   });
   addObs({
-     name       : 'glidersSea'
-    ,visibility : typeof defaultLayers['glidersSea'] != 'undefined'
+     name       : 'Sea gliders'
+    ,visibility : typeof defaultLayers['Sea gliders'] != 'undefined'
   });
   addObs({
-     name       : 'glidersSlocum'
-    ,visibility : typeof defaultLayers['glidersSlocum'] != 'undefined'
+     name       : 'Slocum gliders'
+    ,visibility : typeof defaultLayers['Slocum gliders'] != 'undefined'
   });
   addObs({
-     name       : 'glidersSpray'
-    ,visibility : typeof defaultLayers['glidersSpray'] != 'undefined'
+     name       : 'Spray gliders'
+    ,visibility : typeof defaultLayers['Spray gliders'] != 'undefined'
   });
   addObs({
-     name       : 'glidersUnknown'
-    ,visibility : typeof defaultLayers['glidersUnknown'] != 'undefined'
+     name       : 'Unknown gliders'
+    ,visibility : typeof defaultLayers['Unknown gliders'] != 'undefined'
   });
 
   if (config == 'gliders') {
