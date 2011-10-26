@@ -1384,7 +1384,6 @@ function init() {
                     }
                   }
                   p['lyrs']   = p['lyrs'].join(',');
-                  p['bathyC'] = map.getLayersByName('Bathymetry contours')[0].visibility;
                   p['config'] = config;
                   var u = [];
                   for (var i in p) {
@@ -1415,7 +1414,7 @@ function init() {
               ,'Show bathymetry contours?'
               ,' '
               ,new Ext.form.Checkbox({
-                 checked   : typeof defaultLayers['bathyContours'] != 'undefined'
+                 checked   : typeof defaultLayers['Bathymetry contours'] != 'undefined'
                 ,listeners : {check : function(cbox,checked) {
                   map.getLayersByName('Bathymetry contours')[0].setVisibility(checked);
                 }}

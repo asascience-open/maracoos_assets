@@ -18,7 +18,7 @@
       var config = 'assets';
 <?php
   if (isset($_REQUEST['config'])) {
-    echo 'config = "'.$_REQUEST['config'].'"'."\n";
+    echo 'config = "'.$_REQUEST['config'].'"'.";\n";
   }
 ?>
 
@@ -132,9 +132,6 @@
       array_push($layers,"'$l' : true");
     }
     echo "defaultLayers = {".implode(',',$layers)."};\n";
-  }
-  if (isset($_REQUEST['bathyC']) && $_REQUEST['bathyC'] == 'true') {
-    echo "defaultLayers['bathyContours'] = true;\n";
   }
 
   $layers = explode(',',$_REQUEST['lyrs']);
