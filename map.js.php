@@ -3528,7 +3528,7 @@ function mapClick(e,doWMS,doWWA) {
 
   var modelQueryLyr = map.getLayersByName(Ext.getCmp('chartLayerCombo').getValue())[0];
   var wwaLyr        = map.getLayersByName('WWA')[0];
-  if ((modelQueryLyr && modelQueryLyr.visibility && modelQueryLyr.DEFAULT_PARAMS) || wwaLyr.visibility) {
+  if ((modelQueryLyr && modelQueryLyr.visibility && modelQueryLyr.DEFAULT_PARAMS) || (wwaLyr && wwaLyr.visibility)) {
     var lonLat = map.getLonLatFromPixel(e.xy);
     var f = new OpenLayers.Feature.Vector(new OpenLayers.Geometry.Point(lonLat.lon,lonLat.lat));
     f.attributes.img = 'Delete-icon.png';
@@ -4077,7 +4077,7 @@ function makeTimeSlider() {
       }})
       ,listeners   : {change : function(slider) {
         if (availableTimes[slider.getValues()[1]].getTime() - availableTimes[slider.getValues()[0]].getTime() > 365 * 24 * 60 * 60 * 1000) {
-          Ext.Msg.alert('Error','You have exceeded the maximum supported time window of one year.  Please try again.');
+          // Ext.Msg.alert('Error','You have exceeded the maximum supported time window of one year.  Please try again.');
         }
         else {
           syncObs({name : 'Sea gliders'},true);
