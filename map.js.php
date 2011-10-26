@@ -34,7 +34,6 @@ var obsMinZoom = {
 var obsBbox = {};
 var obsZoom = {};
 var obsBigExtentScale  = 2;  // bigger this # is, the more obs it will cache
-var glidersInitialized = false;
 var popupObs;
 var mouseoverObs;
 var popupCtl;
@@ -790,7 +789,7 @@ function init() {
         ,'Sea gliders'
         ,'off'
         ,defaultLayers['Sea gliders'] ? 'on' : 'off'
-        ,'off'
+        ,''
         ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Sea gliders.html')))?>'
         ,''
         ,typeof defaultOpacities['Sea gliders'] != 'undefined' && defaultOpacities['Sea gliders'] != '' ? defaultOpacities['Sea gliders'] : 100
@@ -817,7 +816,7 @@ function init() {
         ,'Slocum gliders'
         ,'off'
         ,defaultLayers['Slocum gliders'] ? 'on' : 'off'
-        ,'off'
+        ,''
         ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Slocum gliders.html')))?>'
         ,''
         ,typeof defaultOpacities['Slocum gliders'] != 'undefined' && defaultOpacities['Slocum gliders'] != '' ? defaultOpacities['Slocum gliders'] : 100
@@ -844,7 +843,7 @@ function init() {
         ,'Spray gliders'
         ,'off'
         ,defaultLayers['Spray gliders'] ? 'on' : 'off'
-        ,'off'
+        ,''
         ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Spray gliders.html')))?>'
         ,''
         ,typeof defaultOpacities['Spray gliders'] != 'undefined' && defaultOpacities['Spray gliders'] != '' ? defaultOpacities['Spray gliders'] : 100
@@ -871,7 +870,7 @@ function init() {
         ,'Unknown gliders'
         ,'off'
         ,defaultLayers['Unknown gliders'] ? 'on' : 'off'
-        ,'off'
+        ,''
         ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Unknown gliders.html')))?>'
         ,''
         ,typeof defaultOpacities['Unknown gliders'] != 'undefined' && defaultOpacities['Unknown gliders'] != '' ? defaultOpacities['Unknown gliders'] : 100
@@ -1119,6 +1118,7 @@ function init() {
       ,'status'
       ,'rank'
       ,'fetchTime'
+      ,'type'
     ]
     ,listeners : {update : function() {
       this.sort('rank','ASC');
@@ -1473,8 +1473,8 @@ function init() {
     ,listeners        : {afterrender : function() {
       this.addListener('bodyresize',function(p,w,h) {
         this.getColumnModel().setConfig([
-           {id : 'status',dataIndex : 'status',renderer : renderLayerStatus,width : 32}
-          ,{id : 'legend',dataIndex : 'name'  ,renderer : renderLegend     ,width : w - 4 - 32}
+           {id : 'status',dataIndex : 'status',renderer : renderLayerStatus,width : 42}
+          ,{id : 'legend',dataIndex : 'name'  ,renderer : renderLegend     ,width : w - 4 - 42}
         ]);
       });
     }}
@@ -1949,15 +1949,7 @@ function initMap() {
     syncObs({name : 'Weatherflow'});
     syncObs({name : 'HF Radar'});
     syncObs({name : 'Satellites'});
-    // gliders don't need to be re-fetched w/ each map move
-    if (!glidersInitialized) {
-      syncObs({name : 'Gliders'});
-      syncObs({name : 'Sea gliders'});
-      syncObs({name : 'Slocum gliders'});
-      syncObs({name : 'Spray gliders'});
-      syncObs({name : 'Unknown gliders'});
-      glidersInitialized = true;
-    }
+    syncObs({name : 'Gliders'});
     if (popupObs) {
       popupObs.show();
     }
@@ -2681,10 +2673,20 @@ function renderBboxButton(val,metadata,rec) {
 
 function renderLayerStatus(val,metadata,rec) {
   if (val == 'loading') {
-    return '<img src="img/loading.gif">';
+    if (rec.get('type') == 'gliders') {
+      return '<img src="img/blank.png" height=23 width=0><img src="img/loading.gif">';
+    }
+    else {
+      return '<img src="img/loading.gif">';
+    }
   }
   else {
-    return '<img class="layerIcon" src="img/' + rec.get('name') + '.drawn.png">';
+    if (rec.get('type') == 'gliders') {
+      return '<img class="layerIconGlider" src="img/' + rec.get('name') + '.drawn.png">';
+    }
+    else {
+      return '<img class="layerIcon" src="img/' + rec.get('name') + '.drawn.png">';
+    }
   }
 }
 
@@ -2731,6 +2733,7 @@ function addLayer(lyr,timeSensitive) {
         ,status      : 'loading'
         ,rank        : rec.get('rank')
         ,fetchTime   : rec.get('timestamp') != 'false'
+        ,type        : rec.get('type')
       }));
     }
     idx = chartLayerStore.find('name',lyr.name);
@@ -3006,6 +3009,7 @@ function addObs(l) {
         ,displayName : rec.get('displayName')
         ,status      : 'loading'
         ,rank        : rec.get('rank')
+        ,type        : rec.get('type')
       }));
     }
     // record the action on google analytics
@@ -3225,7 +3229,7 @@ function syncObs(l,force) {
   var bigExtent  = new OpenLayers.Geometry.LinearRing(map.getExtent().toGeometry().getVertices()).resize(obsBigExtentScale,new OpenLayers.Geometry.Point(map.getCenter().lon,map.getCenter().lat)).getBounds();
 
   map.layers[lyrIdx].events.triggerEvent('loadstart');
-  if (!obsBbox[l.name] || !obsBbox[l.name].containsBounds(realExtent) || map.getZoom() + zoomOffset() != obsZoom[l.name]) {
+  if (force || !obsBbox[l.name] || !obsBbox[l.name].containsBounds(realExtent) || map.getZoom() + zoomOffset() != obsZoom[l.name]) {
     map.layers[lyrIdx].removeFeatures(map.layers[lyrIdx].features);
     var everyNth = 1;
     if (map.getZoom() + zoomOffset() < obsMinZoom[l.name]) {
@@ -3238,6 +3242,7 @@ function syncObs(l,force) {
          + '&zoom='        + (map.getZoom() + zoomOffset())
          + '&provider='    + l.name
          + '&everyNth='    + everyNth
+         + getDateRange()
       ,callback : function(r) {
         var obs = new OpenLayers.Format.JSON().read(r.responseText);
         obsBbox[l.name] = new OpenLayers.Bounds(obs.bbox[0],obs.bbox[1],obs.bbox[2],obs.bbox[3]).transform(proj4326,map.getProjectionObject());;
@@ -3264,11 +3269,11 @@ function syncObs(l,force) {
                 vec.attributes.strokeWidth   = 2;
                 vec.attributes.strokeColor   = '#ffff00';
                 if (obs.data[loc][loc][i].active) {
-                  vec.attributes.strokeOpacity = 0.80;
+                  vec.attributes.strokeOpacity   = 0.80;
                   vec.attributes.strokeDashstyle = 'solid';
                 }
                 else {
-                  vec.attributes.strokeOpacity = 0.50;
+                  vec.attributes.strokeOpacity   = 0.50;
                   vec.attributes.strokeDashstyle = 'dot';
                 }
                 map.layers[lyrIdx].addFeatures(vec);
@@ -3792,6 +3797,7 @@ function printSaveMap(printSave) {
     var lyr = map.layers[i];
     var legIdx = legendsStore.find('name',lyr.name);
     var assIdx = assetsStore.find('name',lyr.name); 
+    var gliIdx = glidersStore.find('name',lyr.name);
     if (legIdx >= 0) {
       if (lyr.DEFAULT_PARAMS) {
         layers.push({url : lyr.getFullRequestString({width : map.div.style.width.replace('px',''),height : map.div.style.height.replace('px',''),bbox : map.getExtent()}),x : 0,y : 0})
@@ -3808,7 +3814,7 @@ function printSaveMap(printSave) {
           }
         }
       }
-      else if (assIdx >= 0) {
+      else if (assIdx >= 0 || gliIdx >= 0) {
         features[lyr.name] = [];
         tracks[lyr.name]   = [];
         for (var j = 0; j < lyr.features.length; j++) {
@@ -3988,8 +3994,22 @@ function configTimeSlider(initOnly) {
     if (availableTimes[i].getTime() == dNow.getTime()) {
       Ext.getCmp('timeSlider').suspendEvents();
       if (config == 'gliders') {
-        Ext.getCmp('timeSlider').setValue(0,i);
         Ext.getCmp('timeSlider').setValue(1,i);
+        var minT;
+        for (j = availableTimes.length - 1; j >= 0; j--) {
+          // set the slider a max of 1 year away from now
+          if (!minT && dNow.getTime() - availableTimes[j].getTime() > 365 * 24 * 60 * 60 * 1000) {
+            minT = j + 1;
+          }
+        }
+        if (!minT || minT >= availableTimes.length) {
+          minT = 0;
+        }
+        Ext.getCmp('timeSlider').setValue(0,minT);
+        syncObs({name : 'Sea gliders'});
+        syncObs({name : 'Slocum gliders'});
+        syncObs({name : 'Spray gliders'});
+        syncObs({name : 'Unknown gliders'});
       }
       else {
         Ext.getCmp('timeSlider').setValue(i);
@@ -4033,6 +4053,15 @@ function makeTimeSlider() {
         }
       }})
       ,listeners   : {change : function(slider) {
+        if (availableTimes[slider.getValues()[1]].getTime() - availableTimes[slider.getValues()[0]].getTime() > 365 * 24 * 60 * 60 * 1000) {
+          Ext.Msg.alert('Error','You have exceeded the maximum supported time window of one year.  Please try again.');
+        }
+        else {
+          syncObs({name : 'Sea gliders'},true);
+          syncObs({name : 'Slocum gliders'},true);
+          syncObs({name : 'Spray gliders'},true);
+          syncObs({name : 'Unknown gliders'},true);
+        }
       }}
     })
   }
@@ -4084,6 +4113,19 @@ function shiftSlider(n) {
   }
   else {
     slider.setValue(slider.getValue() + n);
+  }
+}
+
+function getDateRange() {
+  if (config == 'gliders') {
+    var min = Ext.getCmp('timeSlider').getValues()[0];
+    var max = Ext.getCmp('timeSlider').getValues()[1];
+    var t0 = availableTimes[min].getUTCFullYear() + '-' + String.leftPad(availableTimes[min].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[min].getUTCDate(),2,'0') + '%20' + String.leftPad(availableTimes[min].getUTCHours(),2,'0') + ':00';
+    var t1 = availableTimes[max].getUTCFullYear() + '-' + String.leftPad(availableTimes[max].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[max].getUTCDate(),2,'0') + '%20' + String.leftPad(availableTimes[max].getUTCHours(),2,'0') + ':00';
+    return '&t0=' + t0 + '&t1=' + t1;
+  }
+  else {
+    return '';
   }
 }
 

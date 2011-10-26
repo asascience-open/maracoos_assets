@@ -39,6 +39,8 @@
       var hideGlidersGridPanel      = true;
       var hideTimeSlider            = false;
 
+      var defaultBasemap = 'ESRI Ocean';
+
       if (config == 'marine') {
         defaultLayers = {
            'NDBC'  : true
@@ -74,12 +76,14 @@
           ,'Spray gliders'       : true
           ,'Unknown gliders'     : true
         };
-        hideLegendsGridPanel      = true;
+        hideLegendsGridPanel      = false;
         hideTimeseriesPanel       = true;
         hideAssetsGridPanel       = true;
         hideModelsGridPanel       = true;
         hideObservationsGridPanel = true;
         hideGlidersGridPanel      = false;
+
+        defaultBasemap            = 'Google Satellite';
       }
 
       var defaultStyles = {
@@ -118,6 +122,10 @@
         ,'Google Satellite'            : 100
         ,'Google Terrain'              : 100
         ,'ESRI Ocean'                  : 100
+        ,'Sea gliders'                 : 100
+        ,'Slocum gliders'              : 100
+        ,'Spray gliders'               : 100
+        ,'Unknown gliders'             : 100
       };
       var guaranteeDefaultOpacities = defaultOpacities;
       var defaultImageTypes = {
@@ -136,7 +144,6 @@
       }
       var defaultCenter  = [-7792364.3544444,4865942.2788258];
       var defaultZoom    = 6;
-      var defaultBasemap = 'ESRI Ocean';
 <?php
   $layers = array();
   if (isset($_REQUEST['lyrs'])) {

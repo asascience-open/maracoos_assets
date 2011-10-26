@@ -162,7 +162,21 @@
   }
 
   if (preg_match('/gliders$/',$_REQUEST['provider'])) {
-    $json = json_decode(file_get_contents('http://marine.rutgers.edu/cool/auvs/deployments.php?t0='.date("Y-m-d H:i",time() - 365 / 2 * 24 * 3600)));
+    $type = '';
+    if ($_REQUEST['provider'] == 'Sea gliders') {
+      $type = 'seaglider';
+    }
+    else if ($_REQUEST['provider'] == 'Spray gliders') {
+      $type = 'spray';
+    }
+    else if ($_REQUEST['provider'] == 'Slocum gliders') {
+      $type = 'slocum';
+    }
+    else if ($_REQUEST['provider'] == 'Unknown gliders') {
+      $type = 'unknown';
+    }
+
+    $json = json_decode(file_get_contents("http://marine.rutgers.edu/cool/auvs/track.php?service=track&type[]=$type&t0=".$_REQUEST['t0']."&t1=".$_REQUEST['t1']));
     foreach ($json as $k => $v) {
       $d = array(
          'id'     => ''
@@ -179,8 +193,10 @@
         }
         else if ($depKey == 'track') {
           for ($i = 0; $i < count($depVal); $i++) {
-            array_push($d['track'],array($depVal[$i]->lon,$depVal[$i]->lat));
-            array_push($d['t'],$depVal[$i]->timestamp);
+            if (is_array($depVal)) {
+              array_push($d['track'],array($depVal[$i]->lon,$depVal[$i]->lat));
+              array_push($d['t'],$depVal[$i]->timestamp);
+            }
           }
         }
         else if ($depKey == 'active' && $depVal == 1) {
