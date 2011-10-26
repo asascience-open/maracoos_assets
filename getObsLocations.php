@@ -179,17 +179,21 @@
     $json = json_decode(file_get_contents("http://marine.rutgers.edu/cool/auvs/track.php?service=track&type[]=$type&t0=".$_REQUEST['t0']."&t1=".$_REQUEST['t1']));
     foreach ($json as $k => $v) {
       $d = array(
-         'id'     => ''
-        ,'track'  => array()
-        ,'t'      => array()
-        ,'active' => false
-        ,'url'    => ''
-        ,'descr'  => ''
+         'id'       => ''
+        ,'track'    => array()
+        ,'t'        => array()
+        ,'active'   => false
+        ,'url'      => ''
+        ,'descr'    => ''
+        ,'provider' => ''
       );
       foreach ($v as $depKey => $depVal) {
         if ($depKey == 'deployment') {
           $d['id']    = $depVal;
           $d['descr'] = $_REQUEST['provider']." $depVal";
+        }
+        else if ($depKey == 'provider') {
+          $d['provider'] = $depVal;
         }
         else if ($depKey == 'track') {
           for ($i = 0; $i < count($depVal); $i++) {
@@ -209,10 +213,10 @@
       if (!$d['active']) {
         $d['descr'] .= ' (inactive)';
       }
+      $d['descr'] = $d['provider'].' '.$d['descr'];
       $d['url'] = "popupGliders.php"
         .'?id='.$d['id']
-        .'&t='.$d['t'][0].' to '.$d['t'][count($d['t']) - 1]
-        .'&u='.$d['url'];
+        .'&t='.$d['t'][0].' to '.$d['t'][count($d['t']) - 1];
 
       // push to $metadata straight up
       $metadata[$_REQUEST['provider'].'.'.$d['id']][$_REQUEST['provider'].'.'.$d['id']] = array($d);

@@ -570,3 +570,15 @@ function dateToFriendlyString(e) {
   c += " " + strDay;
   return c
 }
+
+Number.prototype.toDeg = function() {
+   return this * 180 / Math.PI;
+}
+
+function greatCircle(lon1,lat1,lon2,lat2) {
+  var dLon = lon2 - lon1;
+  var y = Math.sin(dLon) * Math.cos(lat2);
+  var x = Math.cos(lat1)*Math.sin(lat2) -
+          Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLon);
+  return Math.atan2(y, x).toDeg();
+}

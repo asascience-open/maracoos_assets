@@ -56,6 +56,7 @@ var timeControlsHeight = 42;
 var checkPrintTimer;
 var refreshWWATimer;
 var refreshWWAInterval = 60000;
+var glidersMetadata = {};
 
 function init() {
   var loadingMask = Ext.get('loading-mask');
@@ -2190,6 +2191,9 @@ function initMap() {
       })
       ,callback : function(r) {
         var json = new OpenLayers.Format.JSON().read(r.responseText);
+        for (var i in json.providers) {
+          glidersMetadata[json.providers[i].name] = json.providers[i].description;
+        }
         var mdy = json.timespan.start.split(' ')[0].split('-');
         makeAvailableTimes(new Date(mdy[0],mdy[1] - 1,mdy[2]));
         Ext.getCmp('timeSlider').suspendEvents();
@@ -2952,6 +2956,7 @@ function addObs(l) {
           ,graphicWidth    : '${graphicWidth}'
           ,graphicHeight   : '${graphicHeight}'
           ,graphicOpacity  : 1
+          ,rotation        : '${rotation}'
           ,strokeWidth     : '${strokeWidth}'
           ,strokeColor     : '${strokeColor}'
           ,strokeOpacity   : '${strokeOpacity}'
@@ -2963,6 +2968,7 @@ function addObs(l) {
           ,graphicWidth    : '${graphicWidthBig}'
           ,graphicHeight   : '${graphicHeightBig}'
           ,graphicOpacity  : 1
+          ,rotation        : '${rotation}'
           ,strokeWidth     : '${strokeWidth}'
           ,strokeColor     : '${strokeColor}'
           ,strokeOpacity   : '${strokeOpacity}'
@@ -2974,6 +2980,7 @@ function addObs(l) {
           ,graphicWidth    : '${graphicWidthBig}'
           ,graphicHeight   : '${graphicHeightBig}'
           ,graphicOpacity  : 1
+          ,rotation        : '${rotation}'
           ,strokeWidth     : '${strokeWidth}'
           ,strokeColor     : '${strokeColor}'
           ,strokeOpacity   : '${strokeOpacity}'
@@ -3056,6 +3063,9 @@ function addObs(l) {
           for (var i in e.feature.attributes.data) {
             for (var j = 0; j < e.feature.attributes.data[i].length; j++) {
               title = e.feature.attributes.data[i][0].descr;
+              if (glidersMetadata[title.split(' ')[0]]) {
+                title = glidersMetadata[title.split(' ')[0]] + ' ::' + title.replace(title.split(' ')[0],'');
+              }
               target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.id.split('_')[e.feature.id.split('_').length - 1]) - 1);
               if (e.feature.attributes.featureId) {
                 target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.attributes.featureId.split('_')[e.feature.attributes.featureId.split('_').length - 1]) - 3);
@@ -3125,6 +3135,9 @@ function addObs(l) {
           for (var i in e.feature.attributes.data) {
             for (var j = 0; j < e.feature.attributes.data[i].length; j++) {
               title = e.feature.attributes.data[i][0].descr;
+              if (glidersMetadata[title.split(' ')[0]]) {
+                title = glidersMetadata[title.split(' ')[0]] + ' ::' + title.replace(title.split(' ')[0],'');
+              }
               target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.id.split('_')[e.feature.id.split('_').length - 1]) - 1);
               if (e.feature.attributes.featureId) {
                 target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.attributes.featureId.split('_')[e.feature.attributes.featureId.split('_').length - 1]) - 3);
@@ -3286,11 +3299,20 @@ function syncObs(l,force) {
                 f.attributes.graphicWidthBig     = 20 * 2;
                 f.attributes.graphicHeight       = 20;
                 f.attributes.graphicHeightBig    = 20 * 2;
+                f.attributes.rotation            = 0;
                 if (loc.indexOf('gliders') >= 0) {
                   f.attributes.graphicWidth        = 30;
                   f.attributes.graphicWidthBig     = 30 * 1.5;
                   f.attributes.graphicHeight       = 25;
                   f.attributes.graphicHeightBig    = 25 * 1.5;
+                  if (pts.length >= 2) {
+                    f.attributes.rotation = greatCircle(
+                       obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 1][0]
+                      ,obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 1][1]
+                      ,obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 2][0]
+                      ,obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 2][1]
+                    ) - 90;
+                  }
                 }
                 map.layers[lyrIdx].featureFactor = 0.5;
                 map.layers[lyrIdx].addFeatures(f);
@@ -3308,6 +3330,7 @@ function syncObs(l,force) {
             f.attributes.graphicWidthBig  = 40;
             f.attributes.graphicHeight    = 20;
             f.attributes.graphicHeightBig = 40;
+            f.attributes.rotation         = 0;
             var p = [];
             for (var provider in obs.data[loc]) {
               p.push(provider);
