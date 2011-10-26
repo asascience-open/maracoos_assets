@@ -4203,9 +4203,14 @@ function makeTimeSlider() {
               ,bodyStyle       : 'background:white;padding:5'
               ,title           : 'Time request error'
               ,html            : "We're sorry, but the time span you have requested isn't supported.<br>The maximum time window we support is 1 year.  Please try again."
-              ,listeners       : {afterrender : function(win) {
-                win.setPosition(win.getPosition[0],slider.getPosition()[1] - win.getHeight() - 25);
-              }}
+              ,listeners       : {
+                afterrender : function(win) {
+                  win.setPosition(win.getPosition[0],slider.getPosition()[1] - win.getHeight() - 25);
+                }
+                ,hide       : function(win) {
+                  win.destroy();
+                }
+              }
             }).show();
           }
         }
