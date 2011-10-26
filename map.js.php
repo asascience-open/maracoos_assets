@@ -4143,8 +4143,8 @@ function getDateRange() {
   if (config == 'gliders') {
     var min = Ext.getCmp('timeSlider').getValues()[0];
     var max = Ext.getCmp('timeSlider').getValues()[1];
-    var t0 = availableTimes[min].getUTCFullYear() + '-' + String.leftPad(availableTimes[min].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[min].getUTCDate(),2,'0') + '%20' + String.leftPad(availableTimes[min].getUTCHours(),2,'0') + ':00';
-    var t1 = availableTimes[max].getUTCFullYear() + '-' + String.leftPad(availableTimes[max].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[max].getUTCDate(),2,'0') + '%20' + String.leftPad(availableTimes[max].getUTCHours(),2,'0') + ':00';
+    var t0 = availableTimes[min].getUTCFullYear() + '-' + String.leftPad(availableTimes[min].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[min].getUTCDate(),2,'0') + ' ' + String.leftPad(availableTimes[min].getUTCHours(),2,'0') + ':00';
+    var t1 = availableTimes[max].getUTCFullYear() + '-' + String.leftPad(availableTimes[max].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[max].getUTCDate(),2,'0') + ' ' + String.leftPad(availableTimes[max].getUTCHours(),2,'0') + ':00';
     return '&t0=' + t0 + '&t1=' + t1;
   }
   else {
