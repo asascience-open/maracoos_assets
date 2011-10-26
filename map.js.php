@@ -3023,8 +3023,9 @@ function addObs(l) {
     pageTracker._trackEvent('layerView','loadStart',mainStore.getAt(mainStore.find('name',lyr.name)).get('displayName'));
   });
   lyr.events.register('loadend',this,function(e) {
-    var idx = legendsStore.find('name',lyr.name);
-    var assetsIndex = assetsStore.find('name',lyr.name);
+    var idx          = legendsStore.find('name',lyr.name);
+    var assetsIndex  = assetsStore.find('name',lyr.name);
+    var glidersIndex = glidersStore.find('name',lyr.name);
     if (idx >= 0) {
       var rec = legendsStore.getAt(idx);
       rec.set('status','drawn');
@@ -3040,6 +3041,43 @@ function addObs(l) {
         }
         mainStoreRec.set('legend',leg);
         rec.set('timestamp',lyr.features.length * lyr.featureFactor + ' station(s) fetched');
+      }
+      else if (glidersIndex >= 0) {
+        var leg = glidersStore.getAt(glidersIndex).get('legend');
+        if (leg.indexOf('legends') < 0) {
+          leg = '';
+        }
+        mainStoreRec.set('legend',leg);
+        var a = ['<td colspan=2 align=center>' + (lyr.features.length / 2) + ' glider(s) fetched' + '</td>']; 
+        var activity = {
+           active   : 0
+          ,inactive : 0
+        };
+        var providerHits = {};
+        for (var i in glidersMetadata) {
+          providerHits[i] = 0;
+        }
+        for (var i = 0; i < lyr.features.length; i++) {
+          if (lyr.features[i].attributes.active) {
+            activity['active'] += 0.5;
+          }
+          else {
+            activity['inactive'] += 0.5;
+          }
+          providerHits[lyr.features[i].attributes.provider]++;
+        }
+ 
+        if (lyr.features.length > 0) {
+          a.push('<td>active</td><td align=right>' + activity['active'] + '</td>');
+          a.push('<td>inactive</td><td align=right>' + activity['inactive'] + '</td>');
+          a.push('<td colspan=2 align=center>by provider</td>'); 
+        }
+        for (var i in glidersMetadata) {
+          if (providerHits[i] > 0) {
+            a.push('<td>' + i + '</td><td align=right>' + providerHits[i] + '</td>');
+          }
+        }
+        rec.set('timestamp','<table><tr>' + a.join('</tr><tr>') + '</tr></table>');
       }
       mainStoreRec.commit();
       rec.commit();
@@ -3262,8 +3300,11 @@ function syncObs(l,force) {
         obsZoom[l.name] = obs.zoom;
         var boundsEqual = true;
         for (var loc in obs.data) {
+          if (loc == 'remove') {
+            // not sure why this is coming back in the json 
+          }
           // Gliders are unique beasts.
-          if (loc.toLowerCase().indexOf('gliders') >= 0) {
+          else if (loc.toLowerCase().indexOf('gliders') >= 0) {
             for (var i = 0; i < obs.data[loc][loc].length; i++) {
               var pts = [];
               for (var j = 0; j < obs.data[loc][loc][i].track.length; j++) {
@@ -3302,6 +3343,7 @@ function syncObs(l,force) {
                 f.attributes.rotation            = 0;
                 f.attributes.inactive            = !f.attributes.active ? '.inactive' : '';
                 if (loc.indexOf('gliders') >= 0) {
+                  f.attributes.provider            = obs.data[loc][loc][i].provider;
                   f.attributes.graphicWidth        = 30;
                   f.attributes.graphicWidthBig     = 45;
                   f.attributes.graphicHeight       = 25;
