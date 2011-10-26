@@ -41,6 +41,9 @@
 
       var defaultBasemap = 'ESRI Ocean';
 
+      var defaultCenter  = [-7792364.3544444,4865942.2788258];
+      var defaultZoom    = 6;
+
       if (config == 'marine') {
         defaultLayers = {
            'NDBC'  : true
@@ -84,6 +87,9 @@
         hideGlidersGridPanel      = false;
 
         defaultBasemap            = 'Google Satellite';
+
+        defaultCenter  = [0,0];
+        defaultZoom    = 1;
       }
 
       var defaultStyles = {
@@ -142,8 +148,6 @@
         ,'GOES visible imagery' : 'png'
         ,'Navigational Charts'  : 'png'
       }
-      var defaultCenter  = [-7792364.3544444,4865942.2788258];
-      var defaultZoom    = 6;
 <?php
   $layers = array();
   if (isset($_REQUEST['lyrs'])) {
