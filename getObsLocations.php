@@ -161,6 +161,48 @@
     }
   }
 
+  if (preg_match('/^gliders/',$_REQUEST['provider'])) {
+    $json = json_decode(file_get_contents('http://marine.rutgers.edu/cool/auvs/deployments.php?t0='.date("Y-m-d H:i",time() - 365 / 2 * 24 * 3600)));
+    foreach ($json as $k => $v) {
+      $d = array(
+         'id'     => ''
+        ,'track'  => array()
+        ,'t'      => array()
+        ,'active' => false
+        ,'url'    => ''
+        ,'descr'  => ''
+      );
+      foreach ($v as $depKey => $depVal) {
+        if ($depKey == 'deployment') {
+          $d['id']    = $depVal;
+          $d['descr'] = $_REQUEST['provider']." $depVal";
+        }
+        else if ($depKey == 'track') {
+          for ($i = 0; $i < count($depVal); $i++) {
+            array_push($d['track'],array($depVal[$i]->lon,$depVal[$i]->lat));
+            array_push($d['t'],$depVal[$i]->timestamp);
+          }
+        }
+        else if ($depKey == 'active' && $depVal == 1) {
+          $d['active'] = true;
+        }
+        else if ($depKey == 'url') {
+          $d['url'] = $depVal;
+        }
+      }
+      if (!$d['active']) {
+        $d['descr'] .= ' (inactive)';
+      }
+      $d['url'] = "popupGliders.php"
+        .'?id='.$d['id']
+        .'&t='.$d['t'][0].' to '.$d['t'][count($d['t']) - 1]
+        .'&u='.$d['url'];
+
+      // push to $metadata straight up
+      $metadata[$_REQUEST['provider'].'.'.$d['id']][$_REQUEST['provider'].'.'.$d['id']] = array($d);
+    }
+  }
+
   if ($_REQUEST['provider'] == 'NERRS') {
     require_once('/usr/local/nusoap/lib/nusoap.php');
     nusoap_base::setGlobalDebugLevel(0);

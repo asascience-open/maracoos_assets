@@ -33,7 +33,8 @@ var obsMinZoom = {
 };
 var obsBbox = {};
 var obsZoom = {};
-var obsBigExtentScale = 2;  // bigger this # is, the more obs it will cache
+var obsBigExtentScale  = 2;  // bigger this # is, the more obs it will cache
+var glidersInitialized = false;
 var popupObs;
 var mouseoverObs;
 var popupCtl;
@@ -786,7 +787,7 @@ function init() {
       ,[
          'gliders'
         ,'glidersSea'
-        ,'Sea'
+        ,'Sea gliders'
         ,'off'
         ,defaultLayers['glidersSea'] ? 'on' : 'off'
         ,'off'
@@ -813,7 +814,7 @@ function init() {
       ,[
          'gliders'
         ,'glidersSlocum'
-        ,'Slocum'
+        ,'Slocum gliders'
         ,'off'
         ,defaultLayers['glidersSlocum'] ? 'on' : 'off'
         ,'off'
@@ -840,7 +841,7 @@ function init() {
       ,[
          'gliders'
         ,'glidersSpray'
-        ,'Spray'
+        ,'Spray gliders'
         ,'off'
         ,defaultLayers['glidersSpray'] ? 'on' : 'off'
         ,'off'
@@ -867,7 +868,7 @@ function init() {
       ,[
          'gliders'
         ,'glidersUnknown'
-        ,'Unknown'
+        ,'Unknown gliders'
         ,'off'
         ,defaultLayers['glidersUnknown'] ? 'on' : 'off'
         ,'off'
@@ -1644,6 +1645,7 @@ function init() {
             ]
             ,bbar      : {
                xtype    : 'container'
+              ,hidden   : hideTimeSlider
               ,height   : timeControlsHeight
               ,defaults : {border : false,bodyStyle : 'background:transparent'}
               ,cls      : 'x-toolbar'
@@ -1663,46 +1665,16 @@ function init() {
                     ,new Ext.Button({
                        icon : 'img/control_rewind_blue.png'
                       ,handler : function() {
-                        var slider = Ext.getCmp('timeSlider');
-                        slider.setValue(slider.getValue() - 1);
+                        shiftSlider(-1);
                       }
                     })
                     ,{html : '&nbsp;&nbsp;',width : 5}
-                    ,new Ext.Slider({
-                       increment   : 1
-                      ,minValue    : 0
-                      ,maxValue    : availableTimes.length - 1
-                      ,width       : 100
-                      ,id          : 'timeSlider'
-                      ,plugins     : new Ext.slider.Tip({getText : function(thumb){
-                        // time span longer than 2wks, we don't care about hours
-                        if ((availableTimes[availableTimes.length - 1].getTime() - availableTimes[0].getTime()) > 1000 * 60 * 60 * 24 * 14) {
-                          return shortDateStringNoTime(availableTimes[thumb.value]); 
-                        }
-                        else {
-                          return shortDateString(availableTimes[thumb.value]);
-                        }
-                      }})
-                      ,listeners   : {change : function(slider,val) {
-                        var dStr = availableTimes[val].getUTCFullYear() + '-' + String.leftPad(availableTimes[val].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[val].getUTCDate(),2,'0') + 'T' + String.leftPad(availableTimes[val].getUTCHours(),2,'0') + ':00';
-                        for (var i = 0; i < map.layers.length; i++) {
-                          // WMS layers only
-                          if (map.layers[i].DEFAULT_PARAMS) {
-                            map.layers[i].mergeNewParams({TIME : dStr});
-                            // record the action on google analytics
-                            if (mainStore.find('name',map.layers[i].name) >= 0) {
-                              pageTracker._trackEvent('timeSlider',mainStore.getAt(mainStore.find('name',map.layers[i].name)).get('displayName'));
-                            }
-                          }
-                        }
-                      }}
-                    })
+                    ,makeTimeSlider()
                     ,{html : '&nbsp;&nbsp;',width : 5}
                     ,new Ext.Button({
                        icon    : 'img/control_fastforward_blue.png'
                       ,handler : function() {
-                        var slider = Ext.getCmp('timeSlider');
-                        slider.setValue(slider.getValue() + 1);
+                        shiftSlider(1);
                       }
                     })
                     ,{html : '&nbsp;',width : 5}
@@ -1977,7 +1949,15 @@ function initMap() {
     syncObs({name : 'Weatherflow'});
     syncObs({name : 'HF Radar'});
     syncObs({name : 'Satellites'});
-    syncObs({name : 'Gliders'});
+    // gliders don't need to be re-fetched w/ each map move
+    if (!glidersInitialized) {
+      syncObs({name : 'Gliders'});
+      syncObs({name : 'glidersSea'});
+      syncObs({name : 'glidersSlocum'});
+      syncObs({name : 'glidersSpray'});
+      syncObs({name : 'glidersUnknown'});
+      glidersInitialized = true;
+    }
     if (popupObs) {
       popupObs.show();
     }
@@ -2191,6 +2171,22 @@ function initMap() {
      name       : 'Gliders'
     ,visibility : typeof defaultLayers['Gliders'] != 'undefined'
   });
+  addObs({
+     name       : 'glidersSea'
+    ,visibility : typeof defaultLayers['glidersSea'] != 'undefined'
+  });
+  addObs({
+     name       : 'glidersSlocum'
+    ,visibility : typeof defaultLayers['glidersSlocum'] != 'undefined'
+  });
+  addObs({
+     name       : 'glidersSpray'
+    ,visibility : typeof defaultLayers['glidersSpray'] != 'undefined'
+  });
+  addObs({
+     name       : 'glidersUnknown'
+    ,visibility : typeof defaultLayers['glidersUnknown'] != 'undefined'
+  });
 
   if (config == 'gliders') {
     OpenLayers.Request.issue({
@@ -2207,12 +2203,12 @@ function initMap() {
         Ext.getCmp('timeSlider').suspendEvents();
         Ext.getCmp('timeSlider').setMaxValue(availableTimes.length - 1);
         Ext.getCmp('timeSlider').resumeEvents();
-        makeTimeSlider(true);
+        configTimeSlider(true);
       }
     });
   }
   else {
-    makeTimeSlider(true);
+    configTimeSlider(true);
   }
 }
 
@@ -3026,7 +3022,7 @@ function addObs(l) {
         mainStoreRec.set('legend','img/zoom.png');
         rec.set('timestamp',lyr.features.length * lyr.featureFactor + ' station(s) fetched<br/><span class="alert">More stations available<br/>at a closer zoom.<span>');
       }
-      else {
+      else if (assetsIndex >= 0) {
         var leg = assetsStore.getAt(assetsIndex).get('legend');
         if (leg.indexOf('legends') < 0) {
           leg = '';
@@ -3249,7 +3245,7 @@ function syncObs(l,force) {
         var boundsEqual = true;
         for (var loc in obs.data) {
           // Gliders are unique beasts.
-          if (loc.indexOf('Gliders') >= 0) {
+          if (loc.indexOf('Gliders') >= 0 || loc.indexOf('gliders') >= 0) {
             for (var i = 0; i < obs.data[loc][loc].length; i++) {
               var pts = [];
               for (var j = 0; j < obs.data[loc][loc][i].track.length; j++) {
@@ -3945,7 +3941,7 @@ function makeAvailableTimes(dMin) {
   }
 }
 
-function makeTimeSlider(initOnly) {
+function configTimeSlider(initOnly) {
   if (!initOnly) {
     makeAvailableTimes();
   }
@@ -3977,7 +3973,13 @@ function makeTimeSlider(initOnly) {
     tr.appendChild(td);
     if (availableTimes[i].getTime() == dNow.getTime()) {
       Ext.getCmp('timeSlider').suspendEvents();
-      Ext.getCmp('timeSlider').setValue(i);
+      if (config == 'gliders') {
+        Ext.getCmp('timeSlider').setValue(0,i);
+        Ext.getCmp('timeSlider').setValue(1,i);
+      }
+      else {
+        Ext.getCmp('timeSlider').setValue(i);
+      }
       Ext.getCmp('timeSlider').resumeEvents();
       if (!initOnly) {
         var dStr = dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00';
@@ -3995,6 +3997,80 @@ function makeTimeSlider(initOnly) {
     }
   }
   tbody.appendChild(tr);
+}
+
+function makeTimeSlider() {
+  var slider;
+  if (config == 'gliders') {
+    slider = new Ext.slider.MultiSlider({
+       increment   : 1
+      ,minValue    : 0
+      ,maxValue    : availableTimes.length - 1
+      ,values      : [0,0]
+      ,width       : 100
+      ,id          : 'timeSlider'
+      ,plugins     : new Ext.slider.Tip({getText : function(thumb){
+        // time span longer than 2wks, we don't care about hours
+        if ((availableTimes[availableTimes.length - 1].getTime() - availableTimes[0].getTime()) > 1000 * 60 * 60 * 24 * 14) {
+          return shortDateStringNoTime(availableTimes[thumb.value]);
+        }
+        else {
+          return shortDateString(availableTimes[thumb.value]);
+        }
+      }})
+      ,listeners   : {change : function(slider) {
+      }}
+    })
+  }
+  else {
+    slider = new Ext.Slider({
+       increment   : 1
+      ,minValue    : 0
+      ,maxValue    : availableTimes.length - 1
+      ,width       : 100
+      ,id          : 'timeSlider'
+      ,plugins     : new Ext.slider.Tip({getText : function(thumb){
+        // time span longer than 2wks, we don't care about hours
+        if ((availableTimes[availableTimes.length - 1].getTime() - availableTimes[0].getTime()) > 1000 * 60 * 60 * 24 * 14) {
+          return shortDateStringNoTime(availableTimes[thumb.value]);
+        }
+        else {
+          return shortDateString(availableTimes[thumb.value]);
+        }
+      }})
+      ,listeners   : {change : function(slider,val) {
+        var dStr = availableTimes[val].getUTCFullYear() + '-' + String.leftPad(availableTimes[val].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[val].getUTCDate(),2,'0') + 'T' + String.leftPad(availableTimes[val].getUTCHours(),2,'0') + ':00';
+        for (var i = 0; i < map.layers.length; i++) {
+          // WMS layers only
+          if (map.layers[i].DEFAULT_PARAMS) {
+            map.layers[i].mergeNewParams({TIME : dStr});
+            // record the action on google analytics
+            if (mainStore.find('name',map.layers[i].name) >= 0) {
+              pageTracker._trackEvent('timeSlider',mainStore.getAt(mainStore.find('name',map.layers[i].name)).get('displayName'));
+            }
+          }
+        }
+      }}
+    })
+  }
+
+  return slider;
+}
+
+function shiftSlider(n) {
+  var slider = Ext.getCmp('timeSlider');
+  if (config == 'gliders') {
+    // move both thumbs to shift the time window
+    if (slider.getValues()[0] + n >= slider.minValue && slider.getValues()[1] + n <= slider.maxValue) {
+      slider.suspendEvents();
+      slider.setValue(0,slider.getValues()[0] + n);
+      slider.resumeEvents();
+      slider.setValue(1,slider.getValues()[1] + n);
+    } 
+  }
+  else {
+    slider.setValue(slider.getValue() + n);
+  }
 }
 
 function refreshWWA() {

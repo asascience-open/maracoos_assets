@@ -37,6 +37,7 @@
       var hideObservationsGridPanel = false;
       var hideMarineGridPanel       = true;
       var hideGlidersGridPanel      = true;
+      var hideTimeSlider            = false;
 
       if (config == 'marine') {
         defaultLayers = {
@@ -55,6 +56,8 @@
         hideTimeseriesPanel       = true;
         hideModelsGridPanel       = true;
         hideObservationsGridPanel = true;
+        hideTimeSlider            = true;
+        hideMarineGridPanel       = false;
       }
 
       if (config == 'gliders') {
