@@ -1,11 +1,17 @@
 <html>
   <head>
 <?php
+  $title = 'MARACOOS Assets';
   if (isset($_REQUEST['config'])) {
-
+    if ($_REQUEST['config'] == 'gliders') {
+      $title = 'IOOS Gliders';
+    }
+    else if ($_REQUEST['config'] == 'marine') {
+      $title = 'MARACOOS Marine';
+    }
   }
 ?>
-    <title>MARACOOS Assets Explorer</title>
+    <title><?php echo $title?> Explorer</title>
     <link rel="stylesheet" type="text/css" href="./js/ext-3.3.0/resources/css/ext-all.css"/>
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <!--[if IE]>
@@ -13,9 +19,10 @@
     <![endif]-->
 
     <script>
-      var djConfig = {parseOnLoad: true};
-
-      var config = 'assets';
+      var globalTitle     = '<?php echo $title?>';
+      var config          = 'assets';
+      var helpUnavailable = false;
+      var fdbkUnavailable = false;
 <?php
   if (isset($_REQUEST['config'])) {
     echo 'config = "'.$_REQUEST['config'].'"'.";\n";
@@ -47,6 +54,9 @@
       var showHelpOnStartup = true;
 
       if (config == 'marine') {
+        helpUnavailable = true;
+        fdbkUnavailable = true;
+
         defaultLayers = {
            'NDBC'  : true
           ,'NERRS' : true
@@ -69,6 +79,9 @@
       }
 
       if (config == 'gliders') {
+        helpUnavailable = true;
+        fdbkUnavailable = true
+
         defaultLayers = {
            'Sea gliders'     : true
           ,'Slocum gliders'  : true

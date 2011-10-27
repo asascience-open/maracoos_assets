@@ -1551,14 +1551,14 @@ function init() {
       new Ext.Panel({
          region      : 'west'
         ,width       : 278
-        ,title       : 'MARACOOS Assets Manager'
+        ,title       : globalTitle + ' Manager'
         ,collapsible : true
         ,autoScroll  : true
         ,items       : vpItems
       })
       ,new Ext.Panel({
          region    : 'center'
-        ,title     : 'MARACOOS Assets Explorer'
+        ,title     : globalTitle + ' Explorer'
         ,layout    : 'border'
         ,items     : [
           {
@@ -1639,7 +1639,7 @@ function init() {
                     u.push(i + '=' + p[i]);
                   }
                   var url = "<?php echo 'http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/'))?>?" + u.join('&');
-                  Ext.Msg.alert('Bookmark','The following link will launch the MARACOOS Assets Explorer with your current confiuration and may be used as a bookmark. <a target=_blank href="' + url.replace(/ /g,'%20') + '">Link to my MARACOOS Assets Explorer</a>');
+                  Ext.Msg.alert('Bookmark','The following link will launch the ' + globalTitle + ' Explorer with your current confiuration and may be used as a bookmark. <a target=_blank href="' + url.replace(/ /g,'%20') + '">Link to my ' + globalTitle + ' Explorer</a>');
                 }
               }
               ,{
@@ -1647,6 +1647,10 @@ function init() {
                 ,text    : 'Feedback'
                 ,tooltip : 'Provide feedback'
                 ,handler : function() {
+                  if (fdbkUnavailable) {
+                    Ext.Msg.alert('Help',"We're sorry, but feedback is currently unavailable.");
+                    return;
+                  }
                   Ext.Msg.alert('Feedback','We are very interested in your feedback.  Please send us an email at this address, <a href="mailto:maracoosinfo@udel.edu">maracoosinfo@udel.edu</a>.');
                 }
               }
@@ -3839,6 +3843,11 @@ function zoomToBbox(bbox) {
 }
 
 function showHelp(fromButton) {
+  if (helpUnavailable) {
+    Ext.Msg.alert('Help',"We're sorry, but help is currently unavailable.");
+    return;
+  }
+
   if (!helpWin || helpWin.hidden) {
     helpWin = new Ext.Window({
        width      : 500
