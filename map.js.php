@@ -3913,6 +3913,11 @@ function toEnglish(v) {
 }
 
 function printSaveMap(printSave) {
+  if (!(new OpenLayers.Bounds(-180,-90,180,90).containsBounds(map.getExtent().transform(map.getProjectionObject(),proj4326)))) {
+    Ext.Msg.alert('Print request error','No portion of your map may be outside of real world boundaries.  Please either zoom in or resize your map to hide any "blank" space and try again.');
+    return;
+  }
+
   if (map.baseLayer.name != 'Open StreetMap') {
     Ext.Msg.alert('Basemap error','Due to copyright limitations, only the ESRI Ocean baselayer may be printed or saved.  Please change your basemap selection and try again.');
     return;
