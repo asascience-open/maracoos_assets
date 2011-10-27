@@ -3353,7 +3353,6 @@ function syncObs(l,force) {
 
   map.layers[lyrIdx].events.triggerEvent('loadstart');
   if (force || !obsBbox[l.name] || !obsBbox[l.name].containsBounds(realExtent) || map.getZoom() + zoomOffset() != obsZoom[l.name]) {
-    map.layers[lyrIdx].removeFeatures(map.layers[lyrIdx].features);
     var everyNth = 1;
     if (map.getZoom() + zoomOffset() < obsMinZoom[l.name]) {
       everyNth = Math.pow(2,(obsMinZoom[l.name] - (map.getZoom() + zoomOffset())));
@@ -3368,6 +3367,7 @@ function syncObs(l,force) {
          + getDateRange()
          + getFilter()
       ,callback : function(r) {
+        map.layers[lyrIdx].removeFeatures(map.layers[lyrIdx].features);
         var obs = new OpenLayers.Format.JSON().read(r.responseText);
         obsBbox[l.name] = new OpenLayers.Bounds(obs.bbox[0],obs.bbox[1],obs.bbox[2],obs.bbox[3]).transform(proj4326,map.getProjectionObject());;
         obsZoom[l.name] = obs.zoom;
