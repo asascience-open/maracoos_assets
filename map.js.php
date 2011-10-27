@@ -3021,7 +3021,7 @@ function addObs(l) {
     ,{
       styleMap : new OpenLayers.StyleMap({
         'default' : new OpenLayers.Style(OpenLayers.Util.applyDefaults({
-           externalGraphic : 'img/' + l.name + '${inactive}.png'
+           externalGraphic : 'img/' + l.name + '.png'
           ,pointRadius     : 8
           ,graphicWidth    : '${graphicWidth}'
           ,graphicHeight   : '${graphicHeight}'
@@ -3033,7 +3033,7 @@ function addObs(l) {
           ,strokeDashstyle : '${strokeDashstyle}'
         }))
         ,'select' : new OpenLayers.Style(OpenLayers.Util.applyDefaults({
-           externalGraphic : 'img/' + l.name + '${inactive}.select.png'
+           externalGraphic : 'img/' + l.name + '.select.png'
           ,pointRadius     : 8
           ,graphicWidth    : '${graphicWidthBig}'
           ,graphicHeight   : '${graphicHeightBig}'
@@ -3045,7 +3045,7 @@ function addObs(l) {
           ,strokeDashstyle : '${strokeDashstyle}'
         }))
         ,'temporary' : new OpenLayers.Style(OpenLayers.Util.applyDefaults({
-           externalGraphic : 'img/' + l.name + '${inactive}.hilite.png'
+           externalGraphic : 'img/' + l.name + '.hilite.png'
           ,pointRadius     : 8
           ,graphicWidth    : '${graphicWidthBig}'
           ,graphicHeight   : '${graphicHeightBig}'
@@ -3409,24 +3409,18 @@ function syncObs(l,force) {
                 f.attributes.provider            = 'Gliders';
                 f.attributes.data                = obs.data[loc];
                 f.attributes.active              = obs.data[loc][loc][i].active;
-                f.attributes.inactive            = !f.attributes.active ? '.inactive' : '';
                 f.attributes.graphicWidth        = 20;
                 f.attributes.graphicWidthBig     = 20 * 2;
                 f.attributes.graphicHeight       = 20;
                 f.attributes.graphicHeightBig    = 20 * 2;
                 f.attributes.rotation            = 0;
+                f.attributes.inactive            = !f.attributes.active ? '.inactive' : '';
                 if (loc.indexOf('gliders') >= 0) {
                   f.attributes.provider            = obs.data[loc][loc][i].provider;
                   f.attributes.graphicWidth        = 30;
                   f.attributes.graphicWidthBig     = 45;
                   f.attributes.graphicHeight       = 25;
                   f.attributes.graphicHeightBig    = 38;
-                  if (!obs.data[loc][loc][i].active) {
-                    f.attributes.graphicWidth        = 16;
-                    f.attributes.graphicWidthBig     = 32;
-                    f.attributes.graphicHeight       = 16;
-                    f.attributes.graphicHeightBig    = 32;
-                  }
                   if (pts.length >= 2) {
                     f.attributes.rotation = greatCircle(
                        obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 1][0]
@@ -3919,16 +3913,15 @@ function toEnglish(v) {
 }
 
 function printSaveMap(printSave) {
-  if (map.baseLayer.name != 'Open StreetMap') {
-    Ext.Msg.alert('Basemap error','Due to copyright limitations, only the ESRI Ocean baselayer may be printed or saved.  Please change your basemap selection and try again.');
-    return;
-  }
-
   if (!(new OpenLayers.Bounds(-180,-90,180,90).containsBounds(map.getExtent().transform(map.getProjectionObject(),proj4326)))) {
     Ext.Msg.alert('Print request error','No portion of your map may be outside of real world boundaries.  Please either zoom in or resize your map to hide any "blank" space and try again.');
     return;
   }
 
+  if (map.baseLayer.name != 'Open StreetMap') {
+    Ext.Msg.alert('Basemap error','Due to copyright limitations, only the ESRI Ocean baselayer may be printed or saved.  Please change your basemap selection and try again.');
+    return;
+  }
   var tempBase = new OpenLayers.Layer.WMS(
      'Blue Marble (EPSG:4326)'
     ,'http://asascience.mine.nu:8080/geoserver/wms?'
