@@ -44,6 +44,8 @@
       var defaultCenter  = [-7792364.3544444,4865942.2788258];
       var defaultZoom    = 6;
 
+      var showHelpOnStartup = true;
+
       if (config == 'marine') {
         defaultLayers = {
            'NDBC'  : true
@@ -63,6 +65,7 @@
         hideObservationsGridPanel = true;
         hideTimeSlider            = true;
         hideMarineGridPanel       = false;
+        showHelpOnStartup         = false;
       }
 
       if (config == 'gliders') {
@@ -85,6 +88,7 @@
         hideModelsGridPanel       = true;
         hideObservationsGridPanel = true;
         hideGlidersGridPanel      = false;
+        showHelpOnStartup         = false;
 
         defaultBasemap            = 'Google Satellite';
 

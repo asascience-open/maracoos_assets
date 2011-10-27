@@ -1851,7 +1851,7 @@ function init() {
       ,legendsGridPanel
     ]
   });
-  if (!cp.get('hideAssetsHelpOnStartup')) {
+  if (!cp.get('hideAssetsHelpOnStartup') && showHelpOnStartup) {
     showHelp(false);
   }
 }
