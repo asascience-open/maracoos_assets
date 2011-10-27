@@ -56,7 +56,8 @@
     $img = new Imagick($iconSysPath.$k.'.png');
     for ($i = 0; $i < count($features[$k]); $i++) {
       $cloneImg = $img->clone();
-      $cloneImg->rotateImage(new ImagickPixel('none'),$features[$k][$i][2]);
+      // don't rotate for now
+      // $cloneImg->rotateImage(new ImagickPixel('none'),$features[$k][$i][2]);
       $dim = $cloneImg->getImageGeometry();
       $canvas->compositeImage($cloneImg,imagick::COMPOSITE_OVER,$features[$k][$i][0] - $dim['width'] / 2,$features[$k][$i][1] - $dim['height'] / 2);
     }
