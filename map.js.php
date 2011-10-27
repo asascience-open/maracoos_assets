@@ -3962,7 +3962,7 @@ function printSaveMap(printSave) {
           if (verts.length == 1) {
             var cen = verts[0].getCentroid();
             var pix = map.getPixelFromLonLat(new OpenLayers.LonLat(cen.x,cen.y));
-            features[lyr.name].push([pix.x,pix.y]);
+            features[lyr.name].push([pix.x,pix.y,Math.round(lyr.features[j].attributes.rotation)]);
           }
           else {
             var a = [];

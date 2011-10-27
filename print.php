@@ -55,8 +55,10 @@
   foreach ($features as $k => $v) {
     $img = new Imagick($iconSysPath.$k.'.png');
     for ($i = 0; $i < count($features[$k]); $i++) {
-      // subtract 10 because icons are 20px in size
-      $canvas->compositeImage($img,imagick::COMPOSITE_OVER,$features[$k][$i][0] - 10,$features[$k][$i][1] - 10);
+      $cloneImg = $img->clone();
+      $cloneImg->rotateImage(new ImagickPixel('none'),$features[$k][$i][2]);
+      $dim = $cloneImg->getImageGeometry();
+      $canvas->compositeImage($cloneImg,imagick::COMPOSITE_OVER,$features[$k][$i][0] - $dim['width'] / 2,$features[$k][$i][1] - $dim['height'] / 2);
     }
   }
 
