@@ -3427,7 +3427,7 @@ function syncObs(l,force) {
                       ,obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 1][1]
                       ,obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 2][0]
                       ,obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 2][1]
-                    ) - 90;
+                    ) + 90;
                   }
                 }
                 map.layers[lyrIdx].featureFactor = 0.5;
