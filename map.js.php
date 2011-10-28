@@ -19,6 +19,7 @@ var observationsStore;
 var marineStore;
 var glidersStore;
 var glidersMetadataStore;
+var glatosMetadataStore;
 var legendsStore;
 var spot;
 var spotTooltip;
@@ -1119,6 +1120,18 @@ function init() {
     ]
   });
 
+  glatosMetadataStore = new Ext.data.ArrayStore({
+    fields : [
+       'id'
+      ,'name'
+      ,'description'
+      ,'species'
+      ,'start'
+      ,'end'
+      ,'url'
+    ]
+  });
+
   legendsStore = new Ext.data.ArrayStore({
     fields : [
        'name'
@@ -1483,10 +1496,7 @@ function init() {
     ,selModel         : glidersProvidersSelModel
     ,listeners        : {
       rowclick : function(grid,rowIndex,e) {
-        syncObs({name : 'Sea gliders'},true);
-        syncObs({name : 'Slocum gliders'},true);
-        syncObs({name : 'Spray gliders'},true);
-        syncObs({name : 'Unknown gliders'},true);
+        syncGliders(true);
       }
     }
     ,tbar             : [
@@ -1505,6 +1515,50 @@ function init() {
         ,handler : function() {
           Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().selectAll();
           Ext.getCmp('glidersProvidersGridPanel').fireEvent('rowclick',Ext.getCmp('glidersProvidersGridPanel'));
+        }
+      }
+    ]
+  });
+
+  var glatosStudiesSelModel = new Ext.grid.CheckboxSelectionModel({
+    header : ''
+  });
+  var glatosStudiesGridPanel = new Ext.grid.GridPanel({
+     id               : 'glatosStudiesGridPanel'
+    ,hidden           : hideGlatosGridPanel
+    ,title            : 'Filter by study'
+    ,store            : glatosMetadataStore
+    ,height           : 200
+    ,border           : false
+    ,autoExpandColumn : 'description'
+    ,columns          : [
+       glatosStudiesSelModel
+      ,{id : 'description',dataIndex : 'description'}
+    ]
+    ,hideHeaders      : true
+    ,loadMask         : true
+    ,deferRowRender   : false
+    ,selModel         : glatosStudiesSelModel
+    ,listeners        : {
+      rowclick : function(grid,rowIndex,e) {
+      }
+    }
+    ,tbar             : [
+      {
+         text    : 'Hide all studies'
+        ,icon    : 'img/delete.png'
+        ,handler : function() {
+          Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().clearSelections();
+          Ext.getCmp('glatosStudiesGridPanel').fireEvent('rowclick',Ext.getCmp('glatosStudiesGridPanel'));
+        }
+      }
+      ,'->'
+      ,{
+         text    : 'Show all studies'
+        ,icon    : 'img/add.png'
+        ,handler : function() {
+          Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().selectAll();
+          Ext.getCmp('glatosStudiesGridPanel').fireEvent('rowclick',Ext.getCmp('glatosStudiesGridPanel'));
         }
       }
     ]
@@ -1539,6 +1593,7 @@ function init() {
      introPanel
     ,assetsGridPanel
     ,glidersGridPanel
+    ,glatosStudiesGridPanel
     ,glidersProvidersGridPanel
     ,modelsGridPanel
     ,observationsGridPanel
@@ -2264,8 +2319,45 @@ function initMap() {
         glidersMetadataStore.sort('description','ASC');
         Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().selectAll();
         Ext.getCmp('glidersProvidersGridPanel').setHeight(glidersMetadataStore.getCount() * 21.1 + 26 + 11 + 25);
-        var mdy = json.timespan.start.split(' ')[0].split('-');
-        makeAvailableTimes(new Date(mdy[0],mdy[1] - 1,mdy[2]));
+        var ymd = json.timespan.start.split(' ')[0].split('-');
+        makeAvailableTimes(new Date(ymd[0],ymd[1] - 1,ymd[2]));
+        Ext.getCmp('timeSlider').suspendEvents();
+        Ext.getCmp('timeSlider').setMaxValue(availableTimes.length - 1);
+        Ext.getCmp('timeSlider').resumeEvents();
+        configTimeSlider(true);
+      }
+    });
+  }
+  if (config == 'glatos') {
+    glatosMetadataStore.fireEvent('beforeload');
+    OpenLayers.Request.issue({
+       method  : 'GET'
+      ,url     : 'glatosMetadata.php'
+      ,callback : function(r) {
+        var json = new OpenLayers.Format.JSON().read(r.responseText);
+        var menu = [];
+        var minD;
+        for (var i = 0; i < json.length; i++) {
+          glatosMetadataStore.add(new glatosMetadataStore.recordType({
+             'id'          : json[i].id
+            ,'name'        : json[i].name
+            ,'description' : json[i].description
+            ,'species'     : json[i].species
+            ,'start'       : json[i].start
+            ,'end'         : json[i].end
+            ,'url'         : json[i].url
+          }));
+          var ymd = json[i].start.split('T')[0].split('-');
+          var d   = new Date(ymd[0],ymd[1] - 1,ymd[2]);
+          if (!minD || d < minD) {
+            minD = d;
+          }
+        }
+        glatosMetadataStore.fireEvent('load');
+        glatosMetadataStore.sort('description','ASC');
+        Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().selectAll();
+        Ext.getCmp('glatosStudiesGridPanel').setHeight(glatosMetadataStore.getCount() * 21.1 + 26 + 11 + 25);
+        makeAvailableTimes(minD);
         Ext.getCmp('timeSlider').suspendEvents();
         Ext.getCmp('timeSlider').setMaxValue(availableTimes.length - 1);
         Ext.getCmp('timeSlider').resumeEvents();
@@ -4147,7 +4239,7 @@ function configTimeSlider(initOnly) {
     tr.appendChild(td);
     if (availableTimes[i].getTime() == dNow.getTime()) {
       Ext.getCmp('timeSlider').suspendEvents();
-      if (config == 'gliders') {
+      if (config == 'gliders' || config == 'glatos') {
         Ext.getCmp('timeSlider').setValue(1,i);
         var minT;
         for (j = availableTimes.length - 1; j >= 0; j--) {
@@ -4160,10 +4252,12 @@ function configTimeSlider(initOnly) {
           minT = 0;
         }
         Ext.getCmp('timeSlider').setValue(0,minT);
-        syncObs({name : 'Sea gliders'});
-        syncObs({name : 'Slocum gliders'});
-        syncObs({name : 'Spray gliders'});
-        syncObs({name : 'Unknown gliders'});
+        if (config == 'gliders') {
+          syncGliders();
+        }
+        else if (config == 'glatos') {
+          syncGlatos();
+        }
       }
       else {
         Ext.getCmp('timeSlider').setValue(i);
@@ -4189,7 +4283,7 @@ function configTimeSlider(initOnly) {
 
 function makeTimeSlider() {
   var slider;
-  if (config == 'gliders') {
+  if (config == 'gliders' || config == 'glatos') {
     slider = new Ext.slider.MultiSlider({
        increment   : 1
       ,minValue    : 0
@@ -4231,10 +4325,7 @@ function makeTimeSlider() {
           if (Ext.getCmp('sliderAlertTimespan')) {
             Ext.getCmp('sliderAlertTimespan').hide();
           }
-          syncObs({name : 'Sea gliders'},true);
-          syncObs({name : 'Slocum gliders'},true);
-          syncObs({name : 'Spray gliders'},true);
-          syncObs({name : 'Unknown gliders'},true);
+          syncGliders(true);
         }
       }}
     })
@@ -4276,7 +4367,7 @@ function makeTimeSlider() {
 
 function shiftSlider(n) {
   var slider = Ext.getCmp('timeSlider');
-  if (config == 'gliders') {
+  if (config == 'gliders' || config == 'glatos') {
     // move both thumbs to shift the time window
     if (slider.getValues()[0] + n >= slider.minValue && slider.getValues()[1] + n <= slider.maxValue) {
       slider.suspendEvents();
@@ -4291,7 +4382,7 @@ function shiftSlider(n) {
 }
 
 function getDateRange() {
-  if (config == 'gliders') {
+  if (config == 'gliders' || config == 'glatos') {
     var min = Ext.getCmp('timeSlider').getValues()[0];
     var max = Ext.getCmp('timeSlider').getValues()[1];
     var t0 = availableTimes[min].getUTCFullYear() + '-' + String.leftPad(availableTimes[min].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[min].getUTCDate(),2,'0') + ' ' + String.leftPad(availableTimes[min].getUTCHours(),2,'0') + ':00';
@@ -4328,4 +4419,15 @@ function refreshWWA() {
     }
   }
   setTimeout('refreshWWA()',refreshWWAInterval);
+}
+
+function syncGliders(force) {
+  syncObs({name : 'Sea gliders'},force);
+  syncObs({name : 'Slocum gliders'},force);
+  syncObs({name : 'Spray gliders'},force);
+  syncObs({name : 'Unknown gliders'},force);
+}
+
+function syncGlatos(force) {
+
 }

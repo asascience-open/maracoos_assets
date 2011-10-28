@@ -9,6 +9,9 @@
     else if ($_REQUEST['config'] == 'marine') {
       $title = 'MARACOOS Marine';
     }
+    else if ($_REQUEST['config'] == 'glatos') {
+      $title = 'GLATOSWeb';
+    }
   }
 ?>
     <title><?php echo $title?> Explorer</title>
@@ -44,6 +47,7 @@
       var hideObservationsGridPanel = false;
       var hideMarineGridPanel       = true;
       var hideGlidersGridPanel      = true;
+      var hideGlatosGridPanel       = true;
       var hideTimeSlider            = false;
 
       var defaultBasemap = 'ESRI Ocean';
@@ -107,6 +111,28 @@
 
         defaultCenter  = [0,0];
         defaultZoom    = 1;
+      }
+
+      if (config == 'glatos') {
+        helpUnavailable = true;
+        fdbkUnavailable = true
+
+        defaultLayers = {
+        };
+        restrictLayers = {
+        };
+        hideLegendsGridPanel      = false;
+        hideTimeseriesPanel       = true;
+        hideAssetsGridPanel       = true;
+        hideModelsGridPanel       = true;
+        hideObservationsGridPanel = true;
+        hideGlatosGridPanel       = false;
+        showHelpOnStartup         = false;
+
+        defaultBasemap            = 'Google Satellite';
+
+        defaultCenter  = [-9367578.6331264,5443194.7163551];
+        defaultZoom    = 6;
       }
 
       var defaultStyles = {
