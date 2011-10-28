@@ -1589,7 +1589,7 @@ function init() {
     }}
   });
 
-  var vpItems = [
+  var managerItems = [
      introPanel
     ,assetsGridPanel
     ,glidersGridPanel
@@ -1604,12 +1604,20 @@ function init() {
      layout : 'border'
     ,items  : [
       new Ext.Panel({
+         region    : 'north'
+        ,html      : mapBanner.html
+        ,height    : mapBanner.height
+        ,border    : false
+        ,bodyStyle : mapBanner.bodyStyle
+        ,hidden    : !mapBanner
+      })
+      ,new Ext.Panel({
          region      : 'west'
         ,width       : 278
         ,title       : globalTitle + ' Manager'
         ,collapsible : true
         ,autoScroll  : true
-        ,items       : vpItems
+        ,items       : managerItems
       })
       ,new Ext.Panel({
          region    : 'center'

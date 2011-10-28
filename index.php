@@ -51,6 +51,8 @@
       var hideTimeSlider            = false;
       var hideMapToolbar            = false;
 
+      var mapBanner = {hidden : true};
+
       var defaultBasemap = 'ESRI Ocean';
 
       var defaultCenter  = [-7792364.3544444,4865942.2788258];
@@ -129,6 +131,13 @@
         hideGlatosGridPanel       = false;
         showHelpOnStartup         = false;
         hideMapToolbar            = true;
+
+        mapBanner = {
+           html      : '<img src="img/glatosBanner.jpg">'
+          ,height    : 81
+          ,bodyStyle : 'text-align : center;background : #144E90'
+          ,hidden    : false
+        };
 
         defaultBasemap            = 'Google Terrain';
 
@@ -271,7 +280,7 @@
     </script>
     <script type="text/javascript">
       try{
-        var pageTracker = _gat._getTracker("UA-25332621-1");
+        var pageTracker = _gat._getTracker("UA-25332621-1b");
         pageTracker._trackPageview();
       } catch(err) {}
     </script>
