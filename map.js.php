@@ -3398,7 +3398,7 @@ function addObs(l) {
               title = e.feature.attributes.data[i][0].descr;
               var glidersIdx = glidersMetadataStore.find('name',title.split(' ')[0]);
               if (glidersIdx >= 0) {
-                title = glidersMetadataStore.getAt(idx).get('description') + ' ::' + title.replace(title.split(' ')[0],'');
+                title = glidersMetadataStore.getAt(glidersIdx).get('description') + ' ::' + title.replace(title.split(' ')[0],'');
               }
               if (title.indexOf('GLATOS') == 0) {
                 var glatosIdx = glatosMetadataStore.find('id',title.split(' ')[1]);
