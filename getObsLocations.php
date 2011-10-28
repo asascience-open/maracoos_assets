@@ -227,6 +227,7 @@
     $t0            = strtotime($_REQUEST['t0']);
     $t1            = strtotime($_REQUEST['t1']);
     $studiesFilter = explode(',',$_REQUEST['glatosStudiesFilter']);
+    $speciesFilter = explode(',',$_REQUEST['glatosSpeciesFilter']);
     $json = json_decode(file_get_contents('glatosDeployments.json'));
     for ($i = 0; $i < count($json); $i++) {
       preg_match('/\((.*) (.*)\)/',sprintf("%s",$json[$i]->geojson->geometry),$lonLat);
@@ -244,7 +245,7 @@
       $timeOK = ($t0 <= $d['start'] && $d['start'] <= $t1)
         || ($t0 <= $d['end'] && $d['end'] <= $t1)
         || ($d['start'] <= $t0 && $t1 <= $d['end']);
-      if (in_array($d['studyId'],$studiesFilter) && $timeOK) {
+      if (in_array($d['studyId'],$studiesFilter) && in_array($d['studyId'],$speciesFilter) && $timeOK) {
         addToStack($metadata,array(-180,-90,180,90),$d['lon'],$d['lat'],$_REQUEST['provider'],array(
            'id'      => sprintf("%s",$json[$i]->geojson->id)
           ,'studyId' => sprintf("%s",$json[$i]->geojson->properties->study_id)

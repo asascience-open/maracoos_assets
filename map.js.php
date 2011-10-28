@@ -1671,6 +1671,51 @@ function init() {
     ]
   });
 
+  var glatosSpeciesSelModel = new Ext.grid.CheckboxSelectionModel({
+    header : ''
+  });
+  var glatosSpeciesGridPanel = new Ext.grid.GridPanel({
+     id               : 'glatosSpeciesGridPanel'
+    ,hidden           : hideGlatosGridPanels
+    ,title            : 'Filter by species'
+    ,store            : new Ext.data.Store({recordType : glatosMetadataStore.recordType})
+    ,height           : 200
+    ,border           : false
+    ,autoExpandColumn : 'species'
+    ,columns          : [
+       glatosSpeciesSelModel
+      ,{id : 'species',dataIndex : 'species'}
+    ]
+    ,hideHeaders      : true
+    ,loadMask         : true
+    ,deferRowRender   : false
+    ,selModel         : glatosSpeciesSelModel
+    ,listeners        : {
+      rowclick : function(grid,rowIndex,e) {
+        syncGlatos(true);
+      }
+    }
+    ,tbar             : [
+      {
+         text    : 'Hide all species'
+        ,icon    : 'img/delete.png'
+        ,handler : function() {
+          Ext.getCmp('glatosSpeciesGridPanel').getSelectionModel().clearSelections();
+          Ext.getCmp('glatosSpeciesGridPanel').fireEvent('rowclick',Ext.getCmp('glatosSpeciesGridPanel'));
+        }
+      }
+      ,'->'
+      ,{
+         text    : 'Show all species'
+        ,icon    : 'img/add.png'
+        ,handler : function() {
+          Ext.getCmp('glatosSpeciesGridPanel').getSelectionModel().selectAll();
+          Ext.getCmp('glatosSpeciesGridPanel').fireEvent('rowclick',Ext.getCmp('glatosSpeciesGridPanel'));
+        }
+      }
+    ]
+  });
+
   var legendsGridPanel = new Ext.grid.GridPanel({
      id               : 'legendsGridPanel'
     ,hidden           : hideLegendsGridPanel
@@ -1703,6 +1748,7 @@ function init() {
     ,glidersProvidersGridPanel
     ,glatosGridPanel
     ,glatosStudiesGridPanel
+    ,glatosSpeciesGridPanel
     ,modelsGridPanel
     ,observationsGridPanel
     ,marineGridPanel
@@ -2486,6 +2532,15 @@ function initMap() {
         glatosMetadataStore.sort('description','ASC');
         Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().selectAll();
         Ext.getCmp('glatosStudiesGridPanel').setHeight(glatosMetadataStore.getCount() * 21.1 + 26 + 11 + 25);
+        var sto = Ext.getCmp('glatosSpeciesGridPanel').getStore();
+        var recs = [];
+        glatosMetadataStore.each(function(rec) {
+          recs.push(rec);
+        });
+        sto.add(recs);
+        sto.sort('species','ASC');
+        Ext.getCmp('glatosSpeciesGridPanel').getSelectionModel().selectAll();
+        Ext.getCmp('glatosSpeciesGridPanel').setHeight(glatosMetadataStore.getCount() * 21.1 + 26 + 11 + 25);
         makeAvailableTimes(minD);
         Ext.getCmp('timeSlider').suspendEvents();
         Ext.getCmp('timeSlider').setMaxValue(availableTimes.length - 1);
@@ -4550,12 +4605,21 @@ function getFilter() {
     return '&filterProvider=' + escape('&provider[]=' + p.join('&provider[]='));
   }
   else if (config == 'glatos' && glatosMetadataStore.getCount() > 0) {
+    var f = [];
     var p = [];
     var sel = Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().getSelections();
     for (var i = 0; i < sel.length; i++) {
       p.push(sel[i].get('id'));
     }
-    return '&glatosStudiesFilter=' + p.join(',');
+    f.push('glatosStudiesFilter=' + p.join(','));
+    p = [];
+    var sel = Ext.getCmp('glatosSpeciesGridPanel').getSelectionModel().getSelections();
+    for (var i = 0; i < sel.length; i++) {
+      // for now study:species = 1:1
+      p.push(sel[i].get('id'));
+    }
+    f.push('glatosSpeciesFilter=' + p.join(','));
+    return '&' + f.join('&');
   }
   else {
     return '';
