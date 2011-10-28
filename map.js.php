@@ -19,6 +19,7 @@ var observationsStore;
 var marineStore;
 var glidersStore;
 var glidersMetadataStore;
+var glatosStore;
 var glatosMetadataStore;
 var legendsStore;
 var spot;
@@ -894,6 +895,33 @@ function init() {
         ,''
       ]
       ,[
+         'glatos'
+        ,'Receivers'
+        ,'Receivers'
+        ,'off'
+        ,defaultLayers['Receivers'] ? 'on' : 'off'
+        ,''
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Receivers.html')))?>'
+        ,''
+        ,typeof defaultOpacities['Receivers'] != 'undefined' && defaultOpacities['Receivers'] != '' ? defaultOpacities['Receivers'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'false'
+        ,'-135,0,-50,50'
+        ,'false'
+        ,''
+      ]
+      ,[
          'n/a'
         ,'Bathymetry contours'
         ,'Bathymetry contours'
@@ -1110,6 +1138,40 @@ function init() {
   mainStore.each(function(rec) {
     if (rec.get('type') == 'gliders') {
       glidersStore.add(rec);
+    }
+  });
+
+  glatosStore = new Ext.data.ArrayStore({
+    fields : [
+       'name'
+      ,'displayName'
+      ,'info'
+      ,'status'
+      ,'settings'
+      ,'infoBlurb'
+      ,'settingsParam'
+      ,'settingsOpacity'
+      ,'settingsImageType'
+      ,'settingsPalette'
+      ,'settingsBaseStyle'
+      ,'settingsColorMap'
+      ,'settingsStriding'
+      ,'settingsBarbLabel'
+      ,'settingsTailMag'
+      ,'settingsMin'
+      ,'settingsMax'
+      ,'settingsMinMaxBounds'
+      ,'rank'
+      ,'legend'
+      ,'timestamp'
+      ,'bbox'
+      ,'queryable'
+      ,'settingsLayers'
+    ]
+  });
+  mainStore.each(function(rec) {
+    if (rec.get('type') == 'glatos') {
+      glatosStore.add(rec);
     }
   });
 
@@ -1429,7 +1491,7 @@ function init() {
 
   var glidersGridPanel = new Ext.grid.GridPanel({
      id               : 'glidersGridPanel'
-    ,hidden           : hideGlidersGridPanel
+    ,hidden           : hideGlidersGridPanels
     ,height           : glidersStore.getCount() * 25.1 + 26 + 11 + 25
     ,title            : 'Glider types'
     ,store            : glidersStore
@@ -1437,8 +1499,6 @@ function init() {
     ,columns          : [
        {id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 55,css : 'vertical-align:middle'}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
-//      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
-//      ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
@@ -1475,12 +1535,58 @@ function init() {
     ]
   });
 
+  var glatosGridPanel = new Ext.grid.GridPanel({
+     id               : 'glatosGridPanel'
+    ,hidden           : hideGlatosGridPanels
+    ,height           : glatosStore.getCount() * 25.1 + 26 + 11 + 25
+    ,title            : 'Sites'
+    ,store            : glatosStore
+    ,border           : false
+    ,columns          : [
+       {id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 55,css : 'vertical-align:middle'}
+      ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
+    ]
+    ,hideHeaders      : true
+    ,disableSelection : true
+    ,tbar             : [
+      {
+         text    : 'Turn all sites off'
+        ,icon    : 'img/delete.png'
+        ,handler : function() {
+          glatosStore.each(function(rec) {
+            var lyr = map.getLayersByName(rec.get('name'))[0];
+            rec.set('status','off');
+            rec.commit();
+            if (lyr.visibility) {
+              lyr.setVisibility(false);
+            }
+          });
+        }
+      }
+      ,'->'
+      ,{
+         text    : 'Turn all sites on'
+        ,icon    : 'img/add.png'
+        ,handler : function() {
+          glatosStore.each(function(rec) {
+            var lyr = map.getLayersByName(rec.get('name'))[0];
+            rec.set('status','on');
+            rec.commit();
+            if (!lyr.visibility) {
+              lyr.setVisibility(true);
+            }
+          });
+        }
+      }
+    ]
+  });
+
   var glidersProvidersSelModel = new Ext.grid.CheckboxSelectionModel({
     header : ''
   });
   var glidersProvidersGridPanel = new Ext.grid.GridPanel({
      id               : 'glidersProvidersGridPanel'
-    ,hidden           : hideGlidersGridPanel
+    ,hidden           : hideGlidersGridPanels
     ,title            : 'Filter by provider'
     ,store            : glidersMetadataStore
     ,height           : 200
@@ -1525,7 +1631,7 @@ function init() {
   });
   var glatosStudiesGridPanel = new Ext.grid.GridPanel({
      id               : 'glatosStudiesGridPanel'
-    ,hidden           : hideGlatosGridPanel
+    ,hidden           : hideGlatosGridPanels
     ,title            : 'Filter by study'
     ,store            : glatosMetadataStore
     ,height           : 200
@@ -1541,6 +1647,7 @@ function init() {
     ,selModel         : glatosStudiesSelModel
     ,listeners        : {
       rowclick : function(grid,rowIndex,e) {
+        syncGlatos(true);
       }
     }
     ,tbar             : [
@@ -1593,8 +1700,9 @@ function init() {
      introPanel
     ,assetsGridPanel
     ,glidersGridPanel
-    ,glatosStudiesGridPanel
     ,glidersProvidersGridPanel
+    ,glatosGridPanel
+    ,glatosStudiesGridPanel
     ,modelsGridPanel
     ,observationsGridPanel
     ,marineGridPanel
@@ -1739,7 +1847,7 @@ function init() {
               ,new Ext.form.ComboBox({
                  store          : new Ext.data.ArrayStore({
                    fields : ['name']
-                  ,data   : [['ESRI Ocean'],['Google Satellite'],['Google Terrain']]
+                  ,data   : [['ESRI Ocean'],['Google Satellite'],['Google Terrain'],['Google Hybrid']]
                 })
                 ,valueField     : 'name'
                 ,displayField   : 'name'
@@ -2001,6 +2109,12 @@ function initMap() {
        openStreetMap
       ,esriOcean
       ,navCharts
+      ,new OpenLayers.Layer.Google('Google Hybrid',{
+         type          : google.maps.MapTypeId.HYBRID
+        ,projection    : proj900913
+        ,opacity       : defaultOpacities['Google Hybrid'] / 100
+        ,visibility    : defaultBasemap == 'Google Hybrid'
+      })
       ,new OpenLayers.Layer.Google('Google Satellite',{
          type          : google.maps.MapTypeId.SATELLITE
         ,projection    : proj900913
@@ -2304,6 +2418,10 @@ function initMap() {
   addObs({
      name       : 'Unknown gliders'
     ,visibility : typeof defaultLayers['Unknown gliders'] != 'undefined'
+  });
+  addObs({
+     name       : 'Receivers'
+    ,visibility : typeof defaultLayers['Receivers'] != 'undefined'
   });
 
   if (config == 'gliders') {
@@ -3278,9 +3396,15 @@ function addObs(l) {
           for (var i in e.feature.attributes.data) {
             for (var j = 0; j < e.feature.attributes.data[i].length; j++) {
               title = e.feature.attributes.data[i][0].descr;
-              var idx = glidersMetadataStore.find('name',title.split(' ')[0]);
-              if (idx >= 0) {
+              var glidersIdx = glidersMetadataStore.find('name',title.split(' ')[0]);
+              if (glidersIdx >= 0) {
                 title = glidersMetadataStore.getAt(idx).get('description') + ' ::' + title.replace(title.split(' ')[0],'');
+              }
+              if (title.indexOf('GLATOS') == 0) {
+                var glatosIdx = glatosMetadataStore.find('id',title.split(' ')[1]);
+                if (glatosIdx >= 0) {
+                  title = glatosMetadataStore.getAt(glatosIdx).get('description');
+                }
               }
               target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.id.split('_')[e.feature.id.split('_').length - 1]) - 1);
               if (e.feature.attributes.featureId) {
@@ -3351,9 +3475,15 @@ function addObs(l) {
           for (var i in e.feature.attributes.data) {
             for (var j = 0; j < e.feature.attributes.data[i].length; j++) {
               title = e.feature.attributes.data[i][0].descr;
-              var idx = glidersMetadataStore.find('name',title.split(' ')[0]);
-              if (idx >= 0) {
-                title = glidersMetadataStore.getAt(idx).get('description') + ' ::' + title.replace(title.split(' ')[0],'');
+              var glidersIdx = glidersMetadataStore.find('name',title.split(' ')[0]);
+              if (glidersIdx >= 0) {
+                title = glidersMetadataStore.getAt(glidersIdx).get('description') + ' ::' + title.replace(title.split(' ')[0],'');
+              }
+              if (title.indexOf('GLATOS') == 0) {
+                var glatosIdx = glatosMetadataStore.find('id',title.split(' ')[1]);
+                if (glatosIdx >= 0) {
+                  title = glatosMetadataStore.getAt(glatosIdx).get('description');
+                }
               }
               target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.id.split('_')[e.feature.id.split('_').length - 1]) - 1);
               if (e.feature.attributes.featureId) {
@@ -4419,6 +4549,14 @@ function getFilter() {
     }
     return '&filterProvider=' + escape('&provider[]=' + p.join('&provider[]='));
   }
+  else if (config == 'glatos' && glatosMetadataStore.getCount() > 0) {
+    var p = [];
+    var sel = Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().getSelections();
+    for (var i = 0; i < sel.length; i++) {
+      p.push(sel[i].get('id'));
+    }
+    return '&glatosStudiesFilter=' + p.join(',');
+  }
   else {
     return '';
   }
@@ -4445,7 +4583,7 @@ function syncGliders(force) {
 }
 
 function syncGlatos(force) {
-
+  syncObs({name : 'Receivers'},force);
 }
 
 function mkTbar() {

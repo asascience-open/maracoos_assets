@@ -46,8 +46,8 @@
       var hideModelsGridPanel       = false;
       var hideObservationsGridPanel = false;
       var hideMarineGridPanel       = true;
-      var hideGlidersGridPanel      = true;
-      var hideGlatosGridPanel       = true;
+      var hideGlidersGridPanels     = true;
+      var hideGlatosGridPanels      = true;
       var hideTimeSlider            = false;
       var hideMapToolbar            = false;
       var hideMapTitle              = false;
@@ -109,7 +109,7 @@
         hideAssetsGridPanel       = true;
         hideModelsGridPanel       = true;
         hideObservationsGridPanel = true;
-        hideGlidersGridPanel      = false;
+        hideGlidersGridPanels     = false;
         showHelpOnStartup         = false;
 
         defaultBasemap            = 'Google Satellite';
@@ -123,15 +123,17 @@
         fdbkUnavailable = true
 
         defaultLayers = {
+          'Receivers' : true
         };
         restrictLayers = {
+          'Receivers' : true
         };
         hideLegendsGridPanel      = true;
         hideTimeseriesPanel       = true;
         hideAssetsGridPanel       = true;
         hideModelsGridPanel       = true;
         hideObservationsGridPanel = true;
-        hideGlatosGridPanel       = false;
+        hideGlatosGridPanels      = false;
         showHelpOnStartup         = false;
         hideMapToolbar            = true;
         hideMapTitle              = true;
@@ -145,7 +147,7 @@
           ,hidden    : false
         };
 
-        defaultBasemap            = 'Google Terrain';
+        defaultBasemap            = 'Google Hybrid';
 
         defaultCenter  = [-9367578.6331264,5443194.7163551];
         defaultZoom    = 6;
@@ -186,6 +188,7 @@
         ,'Open StreetMap'              : 100
         ,'Google Satellite'            : 100
         ,'Google Terrain'              : 100
+        ,'Google Hybrid'               : 100
         ,'ESRI Ocean'                  : 100
         ,'Sea gliders'                 : 100
         ,'Slocum gliders'              : 100

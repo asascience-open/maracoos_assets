@@ -223,6 +223,42 @@
     }
   }
 
+  if (preg_match('/Receiver/',$_REQUEST['provider'])) {
+    $t0            = strtotime($_REQUEST['t0']);
+    $t1            = strtotime($_REQUEST['t1']);
+    $studiesFilter = explode(',',$_REQUEST['glatosStudiesFilter']);
+    $json = json_decode(file_get_contents('glatosDeployments.json'));
+    for ($i = 0; $i < count($json); $i++) {
+      preg_match('/\((.*) (.*)\)/',sprintf("%s",$json[$i]->geojson->geometry),$lonLat);
+      $d = array(
+         'lon'     => $lonLat[1]
+        ,'lat'     => $lonLat[2]
+        ,'id'      => sprintf("%s",$json[$i]->geojson->id)
+        ,'studyId' => sprintf("%s",$json[$i]->geojson->properties->study_id)
+        ,'start'   => strtotime(sprintf("%s",$json[$i]->geojson->properties->start))
+        ,'end'     => strtotime(sprintf("%s",$json[$i]->geojson->properties->end))
+      );
+      if (!$d['end']) {
+        $d['end'] = time();
+      }
+      $timeOK = ($t0 <= $d['start'] && $d['start'] <= $t1)
+        || ($t0 <= $d['end'] && $d['end'] <= $t1)
+        || ($d['start'] <= $t0 && $t1 <= $d['end']);
+      if (in_array($d['studyId'],$studiesFilter) && $timeOK) {
+        addToStack($metadata,array(-180,-90,180,90),$d['lon'],$d['lat'],$_REQUEST['provider'],array(
+           'id'      => sprintf("%s",$json[$i]->geojson->id)
+          ,'studyId' => sprintf("%s",$json[$i]->geojson->properties->study_id)
+          ,'descr'   => 'GLATOS '.sprintf("%s",$json[$i]->geojson->properties->study_id).' '.sprintf("%s",$json[$i]->geojson->id)
+          ,'start'   => strtotime(sprintf("%s",$json[$i]->geojson->properties->start))
+          ,'end'     => strtotime(sprintf("%s",$json[$i]->geojson->properties->end))
+          ,'url'     => 'popupGlatos.php'
+            .'?start='.sprintf("%s",$json[$i]->geojson->properties->start)
+            .'&end='.sprintf("%s",$json[$i]->geojson->properties->end)
+        ));
+      }
+    }
+  }
+
   if ($_REQUEST['provider'] == 'NERRS') {
     require_once('/usr/local/nusoap/lib/nusoap.php');
     nusoap_base::setGlobalDebugLevel(0);
