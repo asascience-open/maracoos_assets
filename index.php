@@ -49,6 +49,7 @@
       var hideGlidersGridPanel      = true;
       var hideGlatosGridPanel       = true;
       var hideTimeSlider            = false;
+      var hideMapToolbar            = false;
 
       var defaultBasemap = 'ESRI Ocean';
 
@@ -99,7 +100,6 @@
           ,'Spray gliders'       : true
           ,'Unknown gliders'     : true
         };
-        hideLegendsGridPanel      = false;
         hideTimeseriesPanel       = true;
         hideAssetsGridPanel       = true;
         hideModelsGridPanel       = true;
@@ -121,15 +121,16 @@
         };
         restrictLayers = {
         };
-        hideLegendsGridPanel      = false;
+        hideLegendsGridPanel      = true;
         hideTimeseriesPanel       = true;
         hideAssetsGridPanel       = true;
         hideModelsGridPanel       = true;
         hideObservationsGridPanel = true;
         hideGlatosGridPanel       = false;
         showHelpOnStartup         = false;
+        hideMapToolbar            = true;
 
-        defaultBasemap            = 'Google Satellite';
+        defaultBasemap            = 'Google Terrain';
 
         defaultCenter  = [-9367578.6331264,5443194.7163551];
         defaultZoom    = 6;

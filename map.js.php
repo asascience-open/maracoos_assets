@@ -1799,6 +1799,9 @@ function init() {
             }
             ,listeners : {
               afterrender : function(panel) {
+                if (hideMapToolbar) {
+                  panel.getTopToolbar().hide();
+                }
                 initMap();
               }
               ,bodyresize : function(p,w,h) {
@@ -4301,7 +4304,7 @@ function makeTimeSlider() {
         }
       }})
       ,listeners   : {change : function(slider) {
-        if (availableTimes[slider.getValues()[1]].getTime() - availableTimes[slider.getValues()[0]].getTime() > 365 * 24 * 60 * 60 * 1000) {
+        if (config == 'gliders' && availableTimes[slider.getValues()[1]].getTime() - availableTimes[slider.getValues()[0]].getTime() > 365 * 24 * 60 * 60 * 1000) {
           if (!Ext.getCmp('sliderAlertTimespan')) {
             new Ext.Window({
                id              : 'sliderAlertTimespan'
@@ -4325,7 +4328,12 @@ function makeTimeSlider() {
           if (Ext.getCmp('sliderAlertTimespan')) {
             Ext.getCmp('sliderAlertTimespan').hide();
           }
-          syncGliders(true);
+          if (config == 'gliders') {
+            syncGliders(true);
+          }
+          else if (config == 'glatos') {
+            syncGlatos(true);
+          }
         }
       }}
     })
@@ -4430,4 +4438,8 @@ function syncGliders(force) {
 
 function syncGlatos(force) {
 
+}
+
+function mkTbar() {
+  return {tbar : []};
 }
