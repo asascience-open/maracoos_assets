@@ -375,7 +375,7 @@ function init() {
         ,defaultStyles['ROMS'].split('-')[6]
         ,'0-6'
         ,''
-        ,'legends/ROMS.png'
+        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=NOSCBOFSCUR_CURRENTS&STYLES=' + defaultStyles['ROMS'] + '&VERSION=1.1.0&FORMAT=image/png'
         ,''
         ,'-79,35.5,-74,40'
         ,'true'
@@ -402,7 +402,7 @@ function init() {
         ,defaultStyles['STPS'].split('-')[6]
         ,'0-6'
         ,''
-        ,'legends/STPS.png'
+        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=CODARSTPS_CURRENTS&STYLES=' + defaultStyles['STPS'] + '&VERSION=1.1.0&FORMAT=image/png'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -429,7 +429,7 @@ function init() {
         ,defaultStyles['Stevens NYHOPS'].split('-')[6]
         ,'0-6'
         ,''
-        ,'legends/Stevens NYHOPS.png'
+        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=NYHOPSCUR_currents&STYLES=' + defaultStyles['Stevens NYHOPS'] + '&VERSION=1.1.0&FORMAT=image/png'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -510,7 +510,7 @@ function init() {
         ,defaultStyles['NCOM currents'].split('-')[6]
         ,'0-6'
         ,''
-        ,'legends/NCOM currents.png'
+        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=NCOM_CURRENTS&STYLES=' + defaultStyles['NCOM currents'] + '&VERSION=1.1.0&FORMAT=image/png'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -537,7 +537,7 @@ function init() {
         ,defaultStyles['HYCOM currents'].split('-')[6]
         ,'0-6'
         ,''
-        ,'legends/HYCOM currents.png'
+        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=HYCOM_CURRENTS&STYLES=' + defaultStyles['HYCOM currents'] + '&VERSION=1.1.0&FORMAT=image/png'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -564,7 +564,7 @@ function init() {
         ,defaultStyles['NAM winds'].split('-')[4]
         ,'0-70'
         ,''
-        ,'legends/NAM winds.png'
+        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=NAM_WINDS&STYLES=' + defaultStyles['NAM winds'] + '&VERSION=1.1.0&FORMAT=image/png'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -591,7 +591,7 @@ function init() {
         ,''
         ,''
         ,''
-        ,'legends/WWIII waves.png'
+        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=WW3_WAVE_HEIGHT&STYLES=' + defaultStyles['WWIII waves'] + '&VERSION=1.1.0&FORMAT=image/png'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -618,7 +618,7 @@ function init() {
         ,''
         ,''
         ,''
-        ,'legends/NCOM SST.png'
+        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=NCOM_SST&STYLES=' + defaultStyles['NCOM SST'] + '&VERSION=1.1.0&FORMAT=image/png'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -645,7 +645,7 @@ function init() {
         ,defaultStyles['HF radar currents'].split('-')[6]
         ,'0-6'
         ,''
-        ,'legends/HF radar currents.png'
+        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=MARCOOSHFRADAR_CURRENTS&STYLES=' + defaultStyles['HF radar currents'] + '&VERSION=1.1.0&FORMAT=image/png'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -1191,6 +1191,7 @@ function init() {
       ,'start'
       ,'end'
       ,'url'
+      ,'receiversCount'
     ]
   });
 
@@ -1639,7 +1640,8 @@ function init() {
     ,autoExpandColumn : 'description'
     ,columns          : [
        glatosStudiesSelModel
-      ,{id : 'description',dataIndex : 'description'}
+      ,{id : 'description'   ,dataIndex : 'description'}
+      // ,{id : 'receiversCount',dataIndex : 'receiversCount'}
     ]
     ,hideHeaders      : true
     ,loadMask         : true
@@ -2261,6 +2263,15 @@ function initMap() {
         mainStore.getAt(idx).set('legend',e.layer.getFullRequestString(params));
         mainStore.getAt(idx).commit();
       }
+      else if (idx >= 0 && mainStore.getAt(idx).get('legend').indexOf('GetLegend') >= 0) {
+        var params = {
+           REQUEST : 'GetLegend'
+          ,LAYER   : OpenLayers.Util.getParameters(e.layer.getFullRequestString({}))['LAYERS']
+        };
+        mainStore.getAt(idx).get('legend').indexOf('GetMetadata') >= 0 ? params.GetMetadata = '' : false;
+        mainStore.getAt(idx).set('legend',e.layer.getFullRequestString(params).replace('new.coastmap.com','services.asascience.com'));
+        mainStore.getAt(idx).commit();
+      }
     }
   });
 
@@ -2514,13 +2525,14 @@ function initMap() {
         var minD;
         for (var i = 0; i < json.length; i++) {
           glatosMetadataStore.add(new glatosMetadataStore.recordType({
-             'id'          : json[i].id
-            ,'name'        : json[i].name
-            ,'description' : json[i].description
-            ,'species'     : json[i].species
-            ,'start'       : json[i].start
-            ,'end'         : json[i].end
-            ,'url'         : json[i].url
+             'id'             : json[i].id
+            ,'name'           : json[i].name
+            ,'description'    : json[i].description
+            ,'species'        : json[i].species
+            ,'start'          : json[i].start
+            ,'end'            : json[i].end
+            ,'url'            : json[i].url
+            ,'receiversCount' : 0
           }));
           var ymd = json[i].start.split('T')[0].split('-');
           var d   = new Date(ymd[0],ymd[1] - 1,ymd[2]);
@@ -3376,6 +3388,7 @@ function addObs(l) {
     var idx          = legendsStore.find('name',lyr.name);
     var assetsIndex  = assetsStore.find('name',lyr.name);
     var glidersIndex = glidersStore.find('name',lyr.name);
+    var glatosIndex  = glatosStore.find('name',lyr.name);
     if (idx >= 0) {
       var rec = legendsStore.getAt(idx);
       rec.set('status','drawn');

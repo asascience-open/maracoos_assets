@@ -163,6 +163,8 @@
         ,'HYCOM currents'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
         ,'NAM winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45'
         ,'HF radar currents'           : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+        ,'WWIII waves'                 : ''
+        ,'NCOM SST'                    : ''
       };
       var defaultLayerLayers = {
         'Satellite water temperature' : 'sst-seven/mcsst'
