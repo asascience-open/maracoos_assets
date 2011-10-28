@@ -50,6 +50,9 @@
       var hideGlatosGridPanel       = true;
       var hideTimeSlider            = false;
       var hideMapToolbar            = false;
+      var hideMapTitle              = false;
+      var hideIntroPanel            = false;
+      var introPanelHtmlOverride;
 
       var mapBanner = {hidden : true};
 
@@ -131,6 +134,9 @@
         hideGlatosGridPanel       = false;
         showHelpOnStartup         = false;
         hideMapToolbar            = true;
+        hideMapTitle              = true;
+
+        introPanelHtmlOverride = '<table class="smallFont" width="100%"><tr><td align=justify>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</td></tr></table>';
 
         mapBanner = {
            html      : '<img src="img/glatosBanner.jpg">'

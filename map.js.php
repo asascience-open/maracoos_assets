@@ -105,7 +105,7 @@ function init() {
   var introPanel = new Ext.Panel({
      height : 48
     ,border : false
-    ,html   : '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://maracoos.org/"><img title="Go to the MARACOOS home page" src="img/maracoos.jpg"></a></td><td align=center><a target=_blank href="http://www.ioos.gov/"><img title="Go to the IOOS home page" src="img/ioos.gif"></a></td></tr></table>'
+    ,html   : introPanelHtmlOverride ? introPanelHtmlOverride : '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://maracoos.org/"><img title="Go to the MARACOOS home page" src="img/maracoos.jpg"></a></td><td align=center><a target=_blank href="http://www.ioos.gov/"><img title="Go to the IOOS home page" src="img/ioos.gif"></a></td></tr></table>'
   });
 
   mainStore = new Ext.data.ArrayStore({
@@ -1621,7 +1621,7 @@ function init() {
       })
       ,new Ext.Panel({
          region    : 'center'
-        ,title     : globalTitle + ' Explorer'
+        ,title     : !hideMapTitle ? globalTitle + ' Explorer' : ''
         ,layout    : 'border'
         ,items     : [
           {
@@ -4264,10 +4264,10 @@ function configTimeSlider(initOnly) {
         }
         Ext.getCmp('timeSlider').setValue(0,minT);
         if (config == 'gliders') {
-          syncGliders();
+          syncGliders(true);
         }
         else if (config == 'glatos') {
-          syncGlatos();
+          syncGlatos(true);
         }
       }
       else {
