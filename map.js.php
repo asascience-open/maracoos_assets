@@ -1642,7 +1642,7 @@ function init() {
     ,columns          : [
        glatosStudiesSelModel
       ,{id : 'description'   ,dataIndex : 'description'}
-      // ,{id : 'receiversCount',dataIndex : 'receiversCount'}
+      ,{id : 'receiversCount',dataIndex : 'receiversCount',renderer : renderReceiversCount,align : 'right',width : 75}
     ]
     ,hideHeaders      : true
     ,loadMask         : true
@@ -3077,6 +3077,10 @@ function renderGlidersDescription(val,metdata,rec) {
   return val + ' (' + rec.get('name') + ')';
 }
 
+function renderReceiversCount(val,metadata,rec) {
+  return val + ' on map';
+}
+
 function addLayer(lyr,timeSensitive) {
   lyr.events.register('visibilitychanged',this,function(e) {
     if (!lyr.visibility) {
@@ -3433,12 +3437,11 @@ function addObs(l) {
           if (lyr.features[i].attributes.active) {
             activity['active'] += 0.5;
           }
-          else {
-            activity['inactive'] += 0.5;
+          else if (lyr.features[i].attributes.inactive) {
+            activity['inactive']++;
           }
           providerHits[lyr.features[i].attributes.provider]++;
         }
- 
         if (lyr.features.length > 0) {
           a.push('<td>active</td><td align=right>' + activity['active'] + '</td>');
           a.push('<td>inactive</td><td align=right>' + activity['inactive'] + '</td>');
@@ -3450,6 +3453,21 @@ function addObs(l) {
           }
         });
         rec.set('timestamp','<table><tr>' + a.join('</tr><tr>') + '</tr></table>');
+      }
+      else if (glatosIndex >= 0) {
+        glatosMetadataStore.each(function(rec) {
+          var hits = 0;
+          for (var k = 0; k < lyr.features.length; k++) {
+            for (var i in lyr.features[k].attributes.data) {
+              if (lyr.features[k].attributes.data[i][0].studyId == rec.get('id')) { 
+                hits++;
+              }
+            }
+          }
+          rec.set('receiversCount',hits);
+          rec.commit();
+        });
+        Ext.getCmp('glatosStudiesGridPanel').getView().refresh();
       }
       mainStoreRec.commit();
       rec.commit();
@@ -3477,10 +3495,10 @@ function addObs(l) {
               if (glidersIdx >= 0) {
                 title = glidersMetadataStore.getAt(glidersIdx).get('description') + ' ::' + title.replace(title.split(' ')[0],'');
               }
-              if (title.indexOf('GLATOS') == 0) {
-                var glatosIdx = glatosMetadataStore.find('id',title.split(' ')[1]);
+              if (e.feature.layer.name == 'Receivers') {
+                var glatosIdx = glatosMetadataStore.find('id',e.feature.attributes.data[i][0].studyId);
                 if (glatosIdx >= 0) {
-                  title = glatosMetadataStore.getAt(glatosIdx).get('description');
+                  title = glatosMetadataStore.getAt(glatosIdx).get('description') + '&nbsp;-&nbsp;Site&nbsp;' + e.feature.attributes.data[i][0].id;
                 }
               }
               target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.id.split('_')[e.feature.id.split('_').length - 1]) - 1);
@@ -3556,10 +3574,11 @@ function addObs(l) {
               if (glidersIdx >= 0) {
                 title = glidersMetadataStore.getAt(glidersIdx).get('description') + ' ::' + title.replace(title.split(' ')[0],'');
               }
-              if (title.indexOf('GLATOS') == 0) {
-                var glatosIdx = glatosMetadataStore.find('id',title.split(' ')[1]);
+              if (e.feature.layer.name == 'Receivers') {
+                var glatosIdx = glatosMetadataStore.find('id',e.feature.attributes.data[i][0].studyId);
                 if (glatosIdx >= 0) {
-                  title = glatosMetadataStore.getAt(glatosIdx).get('description');
+                  title = glatosMetadataStore.getAt(glatosIdx).get('description') + '&nbsp;-&nbsp;Site&nbsp;' + e.feature.attributes.data[i][0].id;
+                  e.feature.attributes.data[i][0].url += '&species=' + glatosMetadataStore.getAt(glatosIdx).get('species');
                 }
               }
               target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.id.split('_')[e.feature.id.split('_').length - 1]) - 1);
@@ -3687,7 +3706,7 @@ function syncObs(l,force) {
         obsZoom[l.name] = obs.zoom;
         var boundsEqual = true;
         for (var loc in obs.data) {
-          if (loc == 'remove') {
+          if (loc == 'remove' || loc == 'indexOf') {
             // not sure why this is coming back in the json 
           }
           // Gliders are unique beasts.

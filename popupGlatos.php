@@ -5,6 +5,10 @@
       ,$_REQUEST['start'] != '' ? date('M j, Y',strtotime($_REQUEST['start'])) : ''
       ,$_REQUEST['end'] != '' ? date('M j, Y',strtotime($_REQUEST['end'])) : 'currently active'
     )
+    ,sprintf(
+       "<tr><td colspan=2 style='text-align:center'>species : %s</td></tr>"
+      ,$_REQUEST['species']
+    )
   );
 
   echo json_encode(Array('html' => '<table class="obsDetails">'.implode('',$o).'</table>'));

@@ -249,7 +249,7 @@
         addToStack($metadata,array(-180,-90,180,90),$d['lon'],$d['lat'],$_REQUEST['provider'],array(
            'id'      => sprintf("%s",$json[$i]->geojson->id)
           ,'studyId' => sprintf("%s",$json[$i]->geojson->properties->study_id)
-          ,'descr'   => 'GLATOS '.sprintf("%s",$json[$i]->geojson->properties->study_id).' '.sprintf("%s",$json[$i]->geojson->id)
+          ,'descr'   => ''
           ,'start'   => strtotime(sprintf("%s",$json[$i]->geojson->properties->start))
           ,'end'     => strtotime(sprintf("%s",$json[$i]->geojson->properties->end))
           ,'url'     => 'popupGlatos.php'
