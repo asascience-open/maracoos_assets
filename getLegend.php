@@ -1,4 +1,9 @@
 <?php
+  session_start(); 
+  header("Cache-Control: private, max-age=10800, pre-check=10800");
+  header("Pragma: private");
+  header("Expires: " . date(DATE_RFC822,strtotime("2 day")));
+
   $u = substr($_SERVER['REQUEST_URI'],strpos($_SERVER['REQUEST_URI'],'?')+1);
   if (isset($_REQUEST['GetMetadata'])) {
     $barSize = array(30,150);

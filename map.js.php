@@ -1,5 +1,6 @@
 var cp;
 var map;
+var legendImages = {};
 var proj3857   = new OpenLayers.Projection("EPSG:3857");
 var proj900913 = new OpenLayers.Projection("EPSG:900913");
 var proj4326   = new OpenLayers.Projection("EPSG:4326");
@@ -375,7 +376,7 @@ function init() {
         ,defaultStyles['ROMS'].split('-')[6]
         ,'0-6'
         ,''
-        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=NOSCBOFSCUR_CURRENTS&STYLES=' + defaultStyles['ROMS'] + '&VERSION=1.1.0&FORMAT=image/png&TIME='
+        ,'http://services.asascience.com/ecop/wms.aspx?LAYERS=NOSCBOFSCUR_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['ROMS'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegend&TIME=&SRS=EPSG%3A3857&LAYER=NOSCBOFSCUR_CURRENTS'
         ,''
         ,'-79,35.5,-74,40'
         ,'true'
@@ -402,7 +403,7 @@ function init() {
         ,defaultStyles['STPS'].split('-')[6]
         ,'0-6'
         ,''
-        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=CODARSTPS_CURRENTS&STYLES=' + defaultStyles['STPS'] + '&VERSION=1.1.0&FORMAT=image/png&TIME='
+        ,'http://services.asascience.com/ecop/wms.aspx?LAYERS=CODARSTPS_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['STPS'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegend&TIME=&SRS=EPSG%3A3857&LAYER=CODARSTPS_CURRENTS'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -429,7 +430,7 @@ function init() {
         ,defaultStyles['Stevens NYHOPS'].split('-')[6]
         ,'0-6'
         ,''
-        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=NYHOPSCUR_currents&STYLES=' + defaultStyles['Stevens NYHOPS'] + '&VERSION=1.1.0&FORMAT=image/png&TIME='
+        ,'http://services.asascience.com/ecop/wms.aspx?LAYERS=NYHOPSCUR_currents&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['Stevens NYHOPS'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegend&TIME=&SRS=EPSG%3A3857&LAYER=NYHOPSCUR_currents'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -510,7 +511,7 @@ function init() {
         ,defaultStyles['NCOM currents'].split('-')[6]
         ,'0-6'
         ,''
-        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=NCOM_CURRENTS&STYLES=' + defaultStyles['NCOM currents'] + '&VERSION=1.1.0&FORMAT=image/png&TIME='
+        ,'http://services.asascience.com/ecop/wms.aspx?LAYERS=NCOM_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegend&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_CURRENTS'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -537,7 +538,7 @@ function init() {
         ,defaultStyles['HYCOM currents'].split('-')[6]
         ,'0-6'
         ,''
-        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=HYCOM_CURRENTS&STYLES=' + defaultStyles['HYCOM currents'] + '&VERSION=1.1.0&FORMAT=image/png&TIME='
+        ,'http://services.asascience.com/ecop/wms.aspx?LAYERS=HYCOM_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HYCOM currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegend&TIME=&SRS=EPSG%3A3857&LAYER=HYCOM_CURRENTS'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -564,7 +565,7 @@ function init() {
         ,defaultStyles['NAM winds'].split('-')[4]
         ,'0-70'
         ,''
-        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=NAM_WINDS&STYLES=' + defaultStyles['NAM winds'] + '&VERSION=1.1.0&FORMAT=image/png&TIME='
+        ,'http://services.asascience.com/ecop/wms.aspx?LAYERS=NAM_WINDS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NAM winds'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegend&TIME=&SRS=EPSG%3A3857&LAYER=NAM_WINDS'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -591,7 +592,7 @@ function init() {
         ,''
         ,''
         ,''
-        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=WW3_WAVE_HEIGHT&STYLES=' + defaultStyles['WWIII waves'] + '&VERSION=1.1.0&FORMAT=image/png&TIME='
+        ,'http://services.asascience.com/ecop/wms.aspx?LAYERS=WW3_WAVE_HEIGHT&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['WWIII waves'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegend&TIME=&SRS=EPSG%3A3857&LAYER=WW3_WAVE_HEIGHT'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -618,7 +619,7 @@ function init() {
         ,''
         ,''
         ,''
-        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=NCOM_SST&STYLES=' + defaultStyles['NCOM SST'] + '&VERSION=1.1.0&FORMAT=image/png&TIME='
+        ,'http://services.asascience.com/ecop/wms.aspx?LAYERS=NCOM_SST&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM SST'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegend&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_SST'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -645,7 +646,7 @@ function init() {
         ,defaultStyles['HF radar currents'].split('-')[6]
         ,'0-6'
         ,''
-        ,'http://services.asascience.com/ecop/wms.aspx?REQUEST=GetLegend&LAYERS=MARCOOSHFRADAR_CURRENTS&STYLES=' + defaultStyles['HF radar currents'] + '&VERSION=1.1.0&FORMAT=image/png&TIME='
+        ,'http://services.asascience.com/ecop/wms.aspx?LAYERS=MARCOOSHFRADAR_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HF radar currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegend&TIME=&SRS=EPSG%3A3857&LAYER=MARCOOSHFRADAR_CURRENTS'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -2269,9 +2270,11 @@ function initMap() {
           ,LAYER   : OpenLayers.Util.getParameters(e.layer.getFullRequestString({}))['LAYERS']
           ,TIME    : ''
         };
-        mainStore.getAt(idx).get('legend').indexOf('GetMetadata') >= 0 ? params.GetMetadata = '' : false;
-        mainStore.getAt(idx).set('legend',e.layer.getFullRequestString(params).replace('new.coastmap.com','services.asascience.com'));
-        mainStore.getAt(idx).commit();
+        if (mainStore.getAt(idx).get('legend') != e.layer.getFullRequestString(params).replace('new.coastmap.com','services.asascience.com')) {
+          mainStore.getAt(idx).get('legend').indexOf('GetMetadata') >= 0 ? params.GetMetadata = '' : false;
+          mainStore.getAt(idx).set('legend',e.layer.getFullRequestString(params).replace('new.coastmap.com','services.asascience.com'));
+          mainStore.getAt(idx).commit();
+        }
       }
     }
   });
@@ -3060,6 +3063,11 @@ function renderLegend(val,metadata,rec) {
     a.push(rec.get('timestamp'));
   }
   if (mainStore.getAt(idx).get('legend') != '') {
+    if (!legendImages[rec.get('name')]) {
+      var img = new Image();
+      img.src = 'getLegend.php?' + mainStore.getAt(idx).get('legend');
+      legendImages[rec.get('name')] = img;
+    }
     a.push('<img src="getLegend.php?' + mainStore.getAt(idx).get('legend') + '">');
   }
   return a.join('<br/>');
