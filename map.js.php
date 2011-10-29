@@ -1772,7 +1772,7 @@ function init() {
          region      : 'west'
         ,width       : 278
         ,title       : globalTitle + ' Manager'
-        ,collapsible : true
+        ,collapsible : managerPanelCollapsible
         ,autoScroll  : true
         ,items       : managerItems
       })
