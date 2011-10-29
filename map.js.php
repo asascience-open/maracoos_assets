@@ -3327,7 +3327,7 @@ function addObs(l) {
           ,graphicWidth    : '${graphicWidth}'
           ,graphicHeight   : '${graphicHeight}'
           ,graphicOpacity  : 1
-          ,rotation        : '${rotation}'
+          // ,rotation        : '${rotation}'
           ,strokeWidth     : '${strokeWidth}'
           ,strokeColor     : '${strokeColor}'
           ,strokeOpacity   : '${strokeOpacity}'
@@ -3339,7 +3339,7 @@ function addObs(l) {
           ,graphicWidth    : '${graphicWidthBig}'
           ,graphicHeight   : '${graphicHeightBig}'
           ,graphicOpacity  : 1
-          ,rotation        : '${rotation}'
+          // ,rotation        : '${rotation}'
           ,strokeWidth     : '${strokeWidth}'
           ,strokeColor     : '${strokeColor}'
           ,strokeOpacity   : '${strokeOpacity}'
@@ -3351,7 +3351,7 @@ function addObs(l) {
           ,graphicWidth    : '${graphicWidthBig}'
           ,graphicHeight   : '${graphicHeightBig}'
           ,graphicOpacity  : 1
-          ,rotation        : '${rotation}'
+          // ,rotation        : '${rotation}'
           ,strokeWidth     : '${strokeWidth}'
           ,strokeColor     : '${strokeColor}'
           ,strokeOpacity   : '${strokeOpacity}'
