@@ -1325,6 +1325,18 @@ function init() {
     ]
   });
 
+  var assetsSelModel = new Ext.grid.CheckboxSelectionModel({
+     header    : ''
+    ,checkOnly : true
+    ,listeners : {
+      rowdeselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
+      }
+      ,rowselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
+      }
+    }
+  });
   var assetsGridPanel = new Ext.grid.GridPanel({
      id               : 'assetsGridPanel'
     ,hidden           : hideAssetsGridPanel
@@ -1333,27 +1345,33 @@ function init() {
     ,collapsible      : true
     ,store            : assetsStore
     ,border           : false
+    ,selModel         : assetsSelModel
     ,columns          : [
-       {id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 45,css : 'vertical-align:middle'}
+       assetsSelModel
+      ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
       ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
       ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
+    ,listeners        : {viewready : function(grid) {
+      assetsSelModel.suspendEvents();
+      var i = 0;
+      assetsStore.each(function(rec) {
+        if (rec.get('status') == 'on') {
+          assetsSelModel.selectRow(i,true);
+        }
+        i++;
+      });
+      assetsSelModel.resumeEvents();
+    }}
     ,tbar             : [
       {
          text    : 'Turn all assets off'
         ,icon    : 'img/delete.png'
         ,handler : function() {
-          assetsStore.each(function(rec) {
-            var lyr = map.getLayersByName(rec.get('name'))[0];
-            rec.set('status','off');
-            rec.commit();
-            if (lyr.visibility) {
-              lyr.setVisibility(false);
-            }
-          });
+          assetsSelModel.clearSelections(); 
         }
       }
       ,'->'
@@ -1361,19 +1379,24 @@ function init() {
          text    : 'Turn all assets on'
         ,icon    : 'img/add.png'
         ,handler : function() {
-          assetsStore.each(function(rec) {
-            var lyr = map.getLayersByName(rec.get('name'))[0];
-            rec.set('status','on');
-            rec.commit();
-            if (!lyr.visibility) {
-              lyr.setVisibility(true);
-            }
-          });
+          assetsSelModel.selectAll();
         }
       }
     ]
   });
 
+  var modelsSelModel = new Ext.grid.CheckboxSelectionModel({
+     header    : ''
+    ,checkOnly : true
+    ,listeners : {
+      rowdeselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
+      }
+      ,rowselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
+      }
+    }
+  });
   var modelsGridPanel = new Ext.grid.GridPanel({
      id               : 'modelsGridPanel'
     ,hidden           : hideModelsGridPanel
@@ -1382,32 +1405,50 @@ function init() {
     ,collapsible      : true
     ,store            : modelsStore
     ,border           : false
+    ,selModel         : modelsSelModel
     ,columns          : [
-       {id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 45,css : 'vertical-align:middle'}
+       modelsSelModel
+      ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
       ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
       ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
+    ,listeners        : {viewready : function(grid) {
+      modelsSelModel.suspendEvents();
+      var i = 0;
+      modelsStore.each(function(rec) {
+        if (rec.get('status') == 'on') {
+          modelsSelModel.selectRow(i,true);
+        }
+        i++;
+      });
+      modelsSelModel.resumeEvents();
+    }}
     ,tbar             : [
       {
          text    : 'Turn all models off'
         ,icon    : 'img/delete.png'
         ,handler : function() {
-          modelsStore.each(function(rec) {
-            var lyr = map.getLayersByName(rec.get('name'))[0];
-            rec.set('status','off');
-            rec.commit();
-            if (lyr.visibility) {
-              lyr.setVisibility(false);
-            }
-          });
+          modelsSelModel.clearSelections();
         }
       }
     ]
   });
 
+  var observationsSelModel = new Ext.grid.CheckboxSelectionModel({
+     header    : ''
+    ,checkOnly : true
+    ,listeners : {
+      rowdeselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
+      }
+      ,rowselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
+      }
+    }
+  });
   var observationsGridPanel = new Ext.grid.GridPanel({
      id               : 'observationsGridPanel'
     ,hidden           : hideObservationsGridPanel
@@ -1416,32 +1457,50 @@ function init() {
     ,collapsible      : true
     ,store            : observationsStore
     ,border           : false
+    ,selModel         : observationsSelModel
     ,columns          : [
-       {id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 45,css : 'vertical-align:middle'}
+       observationsSelModel
+      ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
       ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
       ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
+    ,listeners        : {viewready : function(grid) {
+      observationsSelModel.suspendEvents();
+      var i = 0;
+      observationsStore.each(function(rec) {
+        if (rec.get('status') == 'on') {
+          observationsSelModel.selectRow(i,true);
+        }
+        i++;
+      });
+      observationsSelModel.resumeEvents();
+    }}
     ,tbar             : [
       {
          text    : 'Turn all observations off'
         ,icon    : 'img/delete.png'
         ,handler : function() {
-          observationsStore.each(function(rec) {
-            var lyr = map.getLayersByName(rec.get('name'))[0];
-            rec.set('status','off');
-            rec.commit();
-            if (lyr.visibility) {
-              lyr.setVisibility(false);
-            }
-          });
+          observationsSelModel.clearSelections();
         }
       }
     ]
   });
 
+  var marineSelModel = new Ext.grid.CheckboxSelectionModel({
+     header    : ''
+    ,checkOnly : true
+    ,listeners : {
+      rowdeselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
+      }
+      ,rowselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
+      }
+    }
+  });
   var marineGridPanel = new Ext.grid.GridPanel({
      id               : 'marineGridPanel'
     ,hidden           : hideMarineGridPanel
@@ -1450,27 +1509,33 @@ function init() {
     ,collapsible      : true
     ,store            : marineStore
     ,border           : false
+    ,selModel         : marineSelModel
     ,columns          : [
-       {id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 45,css : 'vertical-align:middle'}
+       marineSelModel
+      ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
       ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
       ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
+    ,listeners        : {viewready : function(grid) {
+      marineSelModel.suspendEvents();
+      var i = 0;
+      marineStore.each(function(rec) {
+        if (rec.get('status') == 'on') {
+          marineSelModel.selectRow(i,true);
+        }
+        i++;
+      });
+      marineSelModel.resumeEvents();
+    }}
     ,tbar             : [
       {
          text    : 'Turn all NWS off'
         ,icon    : 'img/delete.png'
         ,handler : function() {
-          marineStore.each(function(rec) {
-            var lyr = map.getLayersByName(rec.get('name'))[0];
-            rec.set('status','off');
-            rec.commit();
-            if (lyr.visibility) {
-              lyr.setVisibility(false);
-            }
-          });
+          marineSelModel.clearSelections();
         }
       }
       ,'->'
@@ -1478,74 +1543,86 @@ function init() {
          text    : 'Turn all NWS on'
         ,icon    : 'img/add.png'
         ,handler : function() {
-          marineStore.each(function(rec) {
-            var lyr = map.getLayersByName(rec.get('name'))[0];
-            rec.set('status','on');
-            rec.commit();
-            if (!lyr.visibility) {
-              lyr.setVisibility(true);
-            }
-          });
+          marineSelModel.selectAll();
         }
       }
     ]
   });
 
+  var glidersSelModel = new Ext.grid.CheckboxSelectionModel({
+     header    : ''
+    ,checkOnly : true
+    ,listeners : {
+      rowdeselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
+      }
+      ,rowselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
+      }
+    }
+  });
   var glidersGridPanel = new Ext.grid.GridPanel({
      id               : 'glidersGridPanel'
-    ,hidden           : hideGlidersGridPanels
+    ,hidden           : hideGlidersGridPanel
     ,height           : glidersStore.getCount() * 25.1 + 26 + 11 + 25
-    ,title            : 'Glider types'
+    ,title            : 'Gliders'
+    ,collapsible      : true
     ,store            : glidersStore
     ,border           : false
+    ,selModel         : glidersSelModel
     ,columns          : [
-       {id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 55,css : 'vertical-align:middle'}
+       glidersSelModel
+      ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 35}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
+    ,listeners        : {viewready : function(grid) {
+      glidersSelModel.suspendEvents();
+      var i = 0;
+      glidersStore.each(function(rec) {
+        if (rec.get('status') == 'on') {
+          glidersSelModel.selectRow(i,true);
+        }
+        i++;
+      });
+      glidersSelModel.resumeEvents();
+    }}
     ,tbar             : [
       {
          text    : 'Turn all gliders off'
         ,icon    : 'img/delete.png'
         ,handler : function() {
-          glidersStore.each(function(rec) {
-            var lyr = map.getLayersByName(rec.get('name'))[0];
-            rec.set('status','off');
-            rec.commit();
-            if (lyr.visibility) {
-              lyr.setVisibility(false);
-            }
-          });
-        }
-      }
-      ,'->'
-      ,{
-         text    : 'Turn all gliders on'
-        ,icon    : 'img/add.png'
-        ,handler : function() {
-          glidersStore.each(function(rec) {
-            var lyr = map.getLayersByName(rec.get('name'))[0];
-            rec.set('status','on');
-            rec.commit();
-            if (!lyr.visibility) {
-              lyr.setVisibility(true);
-            }
-          });
+          glidersSelModel.clearSelections();
         }
       }
     ]
   });
 
+  var glatosSelModel = new Ext.grid.CheckboxSelectionModel({
+     header    : ''
+    ,checkOnly : true
+    ,listeners : {
+      rowdeselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
+      }
+      ,rowselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
+      }
+    }
+  });
   var glatosGridPanel = new Ext.grid.GridPanel({
      id               : 'glatosGridPanel'
-    ,hidden           : hideGlatosGridPanels
-    ,height           : glatosStore.getCount() * 25.1 + 26 + 11 + 25
+    ,hidden           : hideGlatosGridPanel
+    ,height           : glatosStore.getCount() * 21.1 + 26 + 11 + 25
     ,title            : 'Sites'
+    ,collapsible      : true
     ,store            : glatosStore
     ,border           : false
+    ,selModel         : glatosSelModel
     ,columns          : [
-       {id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 55,css : 'vertical-align:middle'}
+       glatosSelModel
+      ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
     ]
     ,hideHeaders      : true
@@ -1555,14 +1632,7 @@ function init() {
          text    : 'Turn all sites off'
         ,icon    : 'img/delete.png'
         ,handler : function() {
-          glatosStore.each(function(rec) {
-            var lyr = map.getLayersByName(rec.get('name'))[0];
-            rec.set('status','off');
-            rec.commit();
-            if (lyr.visibility) {
-              lyr.setVisibility(false);
-            }
-          });
+          glatosSelModel.clearSelections();
         }
       }
       ,'->'
@@ -1570,17 +1640,21 @@ function init() {
          text    : 'Turn all sites on'
         ,icon    : 'img/add.png'
         ,handler : function() {
-          glatosStore.each(function(rec) {
-            var lyr = map.getLayersByName(rec.get('name'))[0];
-            rec.set('status','on');
-            rec.commit();
-            if (!lyr.visibility) {
-              lyr.setVisibility(true);
-            }
-          });
+          glatosSelModel.selectAll();
         }
       }
     ]
+    ,listeners        : {viewready : function(grid) {
+      glatosSelModel.suspendEvents();
+      var i = 0;
+      glatosStore.each(function(rec) {
+        if (rec.get('status') == 'on') {
+          glatosSelModel.selectRow(i,true);
+        }
+        i++;
+      });
+      glatosSelModel.resumeEvents();
+    }}
   });
 
   var glidersProvidersSelModel = new Ext.grid.CheckboxSelectionModel({
@@ -1588,7 +1662,7 @@ function init() {
   });
   var glidersProvidersGridPanel = new Ext.grid.GridPanel({
      id               : 'glidersProvidersGridPanel'
-    ,hidden           : hideGlidersGridPanels
+    ,hidden           : hideGlidersGridPanel
     ,title            : 'Filter by provider'
     ,store            : glidersMetadataStore
     ,height           : 200
@@ -1633,7 +1707,7 @@ function init() {
   });
   var glatosStudiesGridPanel = new Ext.grid.GridPanel({
      id               : 'glatosStudiesGridPanel'
-    ,hidden           : hideGlatosGridPanels
+    ,hidden           : hideGlatosGridPanel
     ,title            : 'Filter by study'
     ,store            : glatosMetadataStore
     ,height           : 200
@@ -1679,7 +1753,7 @@ function init() {
   });
   var glatosSpeciesGridPanel = new Ext.grid.GridPanel({
      id               : 'glatosSpeciesGridPanel'
-    ,hidden           : hideGlatosGridPanels
+    ,hidden           : hideGlatosGridPanel
     ,title            : 'Filter by species'
     ,store            : new Ext.data.Store({recordType : glatosMetadataStore.recordType})
     ,height           : 200
@@ -2604,13 +2678,6 @@ function setLayerInfo(layerName,on) {
   }
 }
 
-function setLayerStatus(layerName,on) {
-  var idx = mainStore.find('name',layerName);
-  mainStore.getAt(idx).set('status',on ? 'on' : 'off');
-  mainStore.getAt(idx).commit();
-  map.getLayersByName(layerName)[0].setVisibility(on);
-}
-
 function setLayerSettings(layerName,on) {
   var idx = mainStore.find('name',layerName);
 
@@ -2661,7 +2728,7 @@ function setLayerSettings(layerName,on) {
       height += 27;
       items.push(
         new Ext.form.ComboBox({
-           fieldLabel     : 'Resolution<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.resolution' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.resolution' + '" src="img/info.png"></a>'
+           fieldLabel     : 'Image quality<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.resolution' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.resolution' + '" src="img/info.png"></a>'
           ,id             : 'imageType'
           ,store          : imageTypesStore
           ,displayField   : 'name'
@@ -2677,7 +2744,7 @@ function setLayerSettings(layerName,on) {
               new Ext.ToolTip({
                  id     : 'tooltip.' + id + '.resolution'
                 ,target : id + '.resolution'
-                ,html   : "Selecting high resolution results in images of greater quality as well as longer download times."
+                ,html   : "Selecting high quality may result in longer download times."
               });
             }
             ,select : function(comboBox,rec) {
@@ -2876,7 +2943,7 @@ function setLayerSettings(layerName,on) {
       height += 27;
       items.push(
         new Ext.Slider({
-           fieldLabel : 'Striding<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.striding' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.striding' + '" src="img/info.png"></a>'
+           fieldLabel : 'Data density<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.striding' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.striding' + '" src="img/info.png"></a>'
           ,id       : 'striding'
           ,width    : 130
           ,minValue : 0
@@ -2909,7 +2976,7 @@ function setLayerSettings(layerName,on) {
               new Ext.ToolTip({
                  id     : 'tooltip.' + id + '.striding'
                 ,target : id + '.striding'
-                ,html   : "Adjust the space between vectors with the striding factor.  The impact of this value varies based on the zoom level."
+                ,html   : "Adjust the space between vectors with the data density factor.  The impact of this value varies based on the zoom level."
               });
             }
             ,change : function(slider,val) {
@@ -3013,11 +3080,10 @@ function setLayerSettings(layerName,on) {
 
 function renderLayerButton(val,metadata,rec) {
   if (rec.get('type') == 'gliders') {
-    // glider icons are bigger
-    return '<a id="layer.' + rec.get('name') + '" href="javascript:setLayerStatus(\'' + rec.get('name')  + '\',\'' + rec.get('status') + '\' != \'on\')"><img title="Toggle layer visibility" class="layerIconGlider" width=47 height=25 src="img/' + rec.get('name') + '.' + rec.get('status') + '.png"></a>';
+    return '<img  width=30 height=25 src="img/' + rec.get('name') + '.drawn.png">';
   }
   else {
-    return '<a id="layer.' + rec.get('name') + '" href="javascript:setLayerStatus(\'' + rec.get('name')  + '\',\'' + rec.get('status') + '\' != \'on\')"><img title="Toggle layer visibility" class="layerIcon" width=40 height=20 src="img/' + rec.get('name') + '.' + rec.get('status') + '.png"></a>';
+    return '<img  width=20 height=20 src="img/' + rec.get('name') + '.drawn.png">';
   }
 }
 

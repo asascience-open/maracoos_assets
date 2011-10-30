@@ -16,9 +16,9 @@
 ?>
     <title><?php echo $title?> Explorer</title>
     <link rel="stylesheet" type="text/css" href="./js/ext-3.3.0/resources/css/ext-all.css"/>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css?v=3"/>
     <!--[if IE]>
-      <link rel="stylesheet" type="text/css" href="style.ie.css" />
+      <link rel="stylesheet" type="text/css" href="style.ie.css?v=3" />
     <![endif]-->
 
     <script>
@@ -46,8 +46,8 @@
       var hideModelsGridPanel       = false;
       var hideObservationsGridPanel = false;
       var hideMarineGridPanel       = true;
-      var hideGlidersGridPanels     = true;
-      var hideGlatosGridPanels      = true;
+      var hideGlidersGridPanel     = true;
+      var hideGlatosGridPanel      = true;
       var hideTimeSlider            = false;
       var hideMapToolbar            = false;
       var hideMapTitle              = false;
@@ -111,7 +111,7 @@
         hideAssetsGridPanel       = true;
         hideModelsGridPanel       = true;
         hideObservationsGridPanel = true;
-        hideGlidersGridPanels     = false;
+        hideGlidersGridPanel     = false;
         showHelpOnStartup         = false;
         managerPanelCollapsible   = false;
 
@@ -136,7 +136,7 @@
         hideAssetsGridPanel       = true;
         hideModelsGridPanel       = true;
         hideObservationsGridPanel = true;
-        hideGlatosGridPanels      = false;
+        hideGlatosGridPanel      = false;
         showHelpOnStartup         = false;
         hideMapToolbar            = true;
         hideMapTitle              = true;
@@ -316,7 +316,7 @@
     <script type="text/javascript" src="./js/jquery/jquery.flot.crosshair.js"></script>
     <script type="text/javascript" src="./js/jquery/jquery.flot.navigate.js"></script>
     <script type="text/javascript" src="./js/jquery/excanvas.js"></script>
-    <script type="text/javascript" src="misc.js?v=2"></script>
-    <script type="text/javascript" src="map.js.php?v=2"></script>
+    <script type="text/javascript" src="misc.js?v=3"></script>
+    <script type="text/javascript" src="map.js.php?v=3"></script>
   </body>
 </html>
