@@ -2572,7 +2572,7 @@ function initMap() {
         var json = new OpenLayers.Format.JSON().read(r.responseText);
         var menu = [];
         for (var i in json.providers) {
-          if (i != 'remove') {
+          if (i != 'remove' && i != 'indexOf') {
             glidersMetadataStore.add(new glidersMetadataStore.recordType({
                'name'        : json.providers[i].name
               ,'description' : json.providers[i].description
