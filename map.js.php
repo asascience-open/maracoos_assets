@@ -1811,7 +1811,7 @@ function init() {
     ,listeners        : {afterrender : function() {
       this.addListener('bodyresize',function(p,w,h) {
         this.getColumnModel().setConfig([
-           {id : 'status',dataIndex : 'status',renderer : renderLayerStatus,width : 42}
+           {id : 'status',dataIndex : 'status',renderer : renderLayerStatus,width : (config == 'gliders' ? 42 : 30)}
           ,{id : 'legend',dataIndex : 'name'  ,renderer : renderLegend     ,width : w - 4 - 42}
         ]);
       });
