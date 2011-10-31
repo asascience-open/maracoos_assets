@@ -3589,6 +3589,9 @@ function addObs(l) {
             ,dismissDelay : 2500
             ,listeners    : {
               hide    : function() {
+                if (!Ext.isIE) {
+                  this.destroy();
+                }
                 mouseoverObs = null;
               }
             }
