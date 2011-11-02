@@ -1,12 +1,12 @@
 <?php
   $draw = new ImagickDraw();
   $draw->setFillColor('black');
-  $draw->setFontSize($_REQUEST['w'] * 0.50);
 
   $icon = new Imagick();
   $icon->newImage($_REQUEST['w'],$_REQUEST['h'],new ImagickPixel('transparent'));
   $icon->setImageFormat('png');
   if ($_REQUEST['type'] == 'arrow') {
+    $draw->setFontSize($_REQUEST['w'] * 0.40);
     $draw->setFont('fonts/ESRICartography.ttf');
     $icon->annotateImage(
        $draw
@@ -17,6 +17,7 @@
     );
   }
   if ($_REQUEST['type'] == 'barb') {
+    $draw->setFontSize($_REQUEST['w'] * 0.50);
     $draw->setFont('fonts/ESRIWeather.ttf');
     $icon->annotateImage(
        $draw
