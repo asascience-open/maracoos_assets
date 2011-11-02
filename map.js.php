@@ -2124,19 +2124,40 @@ function init() {
                   var ts = document.getElementById('tsResults');
                   ts.style.width  = win.getWidth() - 15;
                   ts.style.height = win.getHeight() - 55;
+                  var spd;
+                  var dir;
                   if (chartData && chartData.length > 0) {
+                    for (var i = 0; i < chartData.length; i++) {
+                      if (chartData[i].label.indexOf('Velocity') >= 0) {
+                        spd = chartData[i];
+                      }
+                      else if (chartData[i].label.indexOf('Direction') >= 0) {
+                        dir = chartData[i];
+                      }
+                    }
                     ts.innerHTML    = '';
-                    $.plot(
+                    var p = $.plot(
                        $('#tsResults')
-                      ,chartData
+                      ,spd && dir ? [spd] : chartData
                       ,{
                          xaxis     : {mode  : "time"}
                         ,crosshair : {mode  : 'x'   }
                         ,grid      : {backgroundColor : {colors : ['#fff','#eee']},borderWidth : 1,borderColor : '#99BBE8',hoverable : true}
-                        ,zoom      : {interactive : true}
-                        ,pan       : {interactive : true}
+                        ,zoom      : {interactive : false}
+                        ,pan       : {interactive : false}
                       }
                     );
+                    if (spd && dir) {
+                      var imageSize = 60;
+                      for (var i = 0; i < spd.data.length; i++) {
+                        var type = 'arrow';
+                        if (spd.label.indexOf('Wind') >= 0) {
+                          type = 'barb';
+                        }
+                        var o = p.pointOffset({x : spd.data[i][0],y : spd.data[i][1]});
+                        $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'vector.php?w=' + imageSize + '&h=' + imageSize + '&dir=' + Math.round(dir.data[i][1]) + '&spd=' + Math.round(spd.data[i][1]) + '&type=' + type + '\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
+                      }
+                    }
                   }
                   else {
                     ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/>Click on the map to view a time-series graph of Model or Observation output. Only one layer may be active at a time.</td></tr></table>';
