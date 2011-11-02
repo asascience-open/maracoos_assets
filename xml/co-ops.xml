@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Capabilities xmlns="http://www.opengis.net/sos/1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:om="http://www.opengis.net/om/1.0" xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/sos/1.0 http://schemas.opengis.net/sos/1.0.0/sosGetCapabilities.xsd" version="1.0.0">
   <!--===============================================-->
-  <!-- Information generated on 2011-07-29T20:20:29Z-->
+  <!-- Information generated on 2011-10-28T21:00:52Z-->
   <!-- by these services are valid at this time only.-->
   <!--===============================================-->
   <ows:ServiceIdentification>
@@ -360,7 +360,7 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2011-02-16T16:00:00Z</gml:beginPosition>
+            <gml:beginPosition>2011-09-28T17:00:00Z</gml:beginPosition>
             <gml:endPosition indeterminatePosition="unknown" />
           </gml:TimePeriod>
         </time>
@@ -380,8 +380,8 @@
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
           <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
-            <gml:lowerCorner>37.14 -76.13383</gml:lowerCorner>
-            <gml:upperCorner>37.14 -76.13383</gml:upperCorner>
+            <gml:lowerCorner>37.13983 -76.1435</gml:lowerCorner>
+            <gml:upperCorner>37.13983 -76.1435</gml:upperCorner>
           </gml:Envelope>
         </gml:boundedBy>
         <time>
@@ -516,7 +516,7 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2011-01-20T20:00:00Z</gml:beginPosition>
+            <gml:beginPosition>2011-10-13T14:40:00Z</gml:beginPosition>
             <gml:endPosition indeterminatePosition="unknown" />
           </gml:TimePeriod>
         </time>
@@ -594,7 +594,7 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2011-01-31T15:00:00Z</gml:beginPosition>
+            <gml:beginPosition>2011-08-30T16:30:00Z</gml:beginPosition>
             <gml:endPosition indeterminatePosition="unknown" />
           </gml:TimePeriod>
         </time>
@@ -776,7 +776,7 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2011-01-27T16:00:00Z</gml:beginPosition>
+            <gml:beginPosition>2011-09-08T16:00:00Z</gml:beginPosition>
             <gml:endPosition indeterminatePosition="unknown" />
           </gml:TimePeriod>
         </time>
@@ -874,13 +874,13 @@
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
           <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
-            <gml:lowerCorner>30.19406 -88.98917</gml:lowerCorner>
-            <gml:upperCorner>30.19406 -88.98917</gml:upperCorner>
+            <gml:lowerCorner>30.19409 -88.98922</gml:lowerCorner>
+            <gml:upperCorner>30.19409 -88.98922</gml:upperCorner>
           </gml:Envelope>
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2011-01-19T17:10:00Z</gml:beginPosition>
+            <gml:beginPosition>2011-08-12T17:20:00Z</gml:beginPosition>
             <gml:endPosition indeterminatePosition="unknown" />
           </gml:TimePeriod>
         </time>
@@ -932,7 +932,7 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2011-06-15T19:20:00Z</gml:beginPosition>
+            <gml:beginPosition>2011-09-23T16:00:00Z</gml:beginPosition>
             <gml:endPosition indeterminatePosition="unknown" />
           </gml:TimePeriod>
         </time>
@@ -1082,13 +1082,13 @@
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
           <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
-            <gml:lowerCorner>30.435471 -91.200562</gml:lowerCorner>
-            <gml:upperCorner>30.435471 -91.200562</gml:upperCorner>
+            <gml:lowerCorner>30.43547 -91.20056</gml:lowerCorner>
+            <gml:upperCorner>30.43547 -91.20056</gml:upperCorner>
           </gml:Envelope>
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2009-09-17T14:36:00Z</gml:beginPosition>
+            <gml:beginPosition>2011-10-27T01:00:00Z</gml:beginPosition>
             <gml:endPosition indeterminatePosition="unknown" />
           </gml:TimePeriod>
         </time>
@@ -1134,8 +1134,8 @@
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
           <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
-            <gml:lowerCorner>30.72111 -88.04222</gml:lowerCorner>
-            <gml:upperCorner>30.72111 -88.04222</gml:upperCorner>
+            <gml:lowerCorner>30.72111 -88.04278</gml:lowerCorner>
+            <gml:upperCorner>30.72111 -88.04278</gml:upperCorner>
           </gml:Envelope>
         </gml:boundedBy>
         <time>
@@ -1249,32 +1249,6 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:nb0301" />
-        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
-        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
-        <responseFormat>text/csv</responseFormat>
-        <responseFormat>text/tab-separated-values</responseFormat>
-        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
-        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
-        <resultModel>om:Observation</resultModel>
-        <responseMode>inline</responseMode>
-      </ObservationOffering>
-      <ObservationOffering gml:id="station-ps0101">
-        <gml:description>Pascagoula Harbor LB 8</gml:description>
-        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:ps0101</gml:name>
-        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
-        <gml:boundedBy>
-          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
-            <gml:lowerCorner>30.188829 -88.529327</gml:lowerCorner>
-            <gml:upperCorner>30.188829 -88.529327</gml:upperCorner>
-          </gml:Envelope>
-        </gml:boundedBy>
-        <time>
-          <gml:TimePeriod>
-            <gml:beginPosition>2009-02-03T19:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="unknown" />
-          </gml:TimePeriod>
-        </time>
-        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:ps0101" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
         <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
         <responseFormat>text/csv</responseFormat>
@@ -1498,8 +1472,8 @@
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
           <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
-            <gml:lowerCorner>29.75806 -93.89</gml:lowerCorner>
-            <gml:upperCorner>29.75806 -93.89</gml:upperCorner>
+            <gml:lowerCorner>29.75086 -93.89012</gml:lowerCorner>
+            <gml:upperCorner>29.75086 -93.89012</gml:upperCorner>
           </gml:Envelope>
         </gml:boundedBy>
         <time>
@@ -1639,6 +1613,318 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:t02010" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-BOS1101">
+        <gml:description>Little Misery Island</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:BOS1101</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>42.54217 -70.80013</gml:lowerCorner>
+            <gml:upperCorner>42.54217 -70.80013</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-05-20T15:13:00Z</gml:beginPosition>
+            <gml:endPosition>2011-06-25T13:42:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:BOS1101" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-BOS1103">
+        <gml:description>Abbot Rock</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:BOS1103</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>42.52962 -70.85992</gml:lowerCorner>
+            <gml:upperCorner>42.52962 -70.85992</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-05-20T16:00:00Z</gml:beginPosition>
+            <gml:endPosition>2011-06-25T14:45:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:BOS1103" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-BOS1104">
+        <gml:description>Ft. Pickering</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:BOS1104</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>42.52238 -70.86795</gml:lowerCorner>
+            <gml:upperCorner>42.52238 -70.86795</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-05-20T13:40:00Z</gml:beginPosition>
+            <gml:endPosition>2011-06-25T14:59:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:BOS1104" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-BOS1106">
+        <gml:description>Northeast Grave</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:BOS1106</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>42.37176 -70.8618</gml:lowerCorner>
+            <gml:upperCorner>42.37176 -70.8618</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-05-14T17:30:00Z</gml:beginPosition>
+            <gml:endPosition>2011-06-22T14:14:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:BOS1106" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-BOS1107">
+        <gml:description>Commissioners Ledge</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:BOS1107</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>42.33584 -70.91296</gml:lowerCorner>
+            <gml:upperCorner>42.33584 -70.91296</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-05-14T15:05:00Z</gml:beginPosition>
+            <gml:endPosition>2011-06-21T20:48:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:BOS1107" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-BOS1110">
+        <gml:description>Deer Island (0.7 mi.)</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:BOS1110</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>42.34413 -70.93888</gml:lowerCorner>
+            <gml:upperCorner>42.34413 -70.93888</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-06-25T12:11:00Z</gml:beginPosition>
+            <gml:endPosition>2011-08-05T12:20:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:BOS1110" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-BOS1111">
+        <gml:description>Boston Harbor, Deer Island Light</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:BOS1111</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>42.33778 -70.95578</gml:lowerCorner>
+            <gml:upperCorner>42.33778 -70.95578</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-05-14T15:40:00Z</gml:beginPosition>
+            <gml:endPosition>2011-08-10T13:06:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:BOS1111" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-BOS1113">
+        <gml:description>Boston Channel Light #5</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:BOS1113</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>42.33578 -71.28333</gml:lowerCorner>
+            <gml:upperCorner>42.33578 -71.28333</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-06-28T14:02:00Z</gml:beginPosition>
+            <gml:endPosition>2011-08-04T18:52:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:BOS1113" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-BOS1114">
+        <gml:description>Fort Independence</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:BOS1114</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>42.3418 -71.00892</gml:lowerCorner>
+            <gml:upperCorner>42.3418 -71.00892</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-06-28T12:12:00Z</gml:beginPosition>
+            <gml:endPosition>2011-08-04T16:54:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:BOS1114" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-BOS1122">
+        <gml:description>Georges Island</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:BOS1122</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>42.31293 -70.91995</gml:lowerCorner>
+            <gml:upperCorner>42.31293 -70.91995</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-06-26T12:16:00Z</gml:beginPosition>
+            <gml:endPosition>2011-08-05T13:50:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:BOS1122" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-BOS1123">
+        <gml:description>Hull Gut</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:BOS1123</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>42.30338 -70.92492</gml:lowerCorner>
+            <gml:upperCorner>42.30338 -70.92492</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-06-26T11:38:00Z</gml:beginPosition>
+            <gml:endPosition>2011-08-05T14:25:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:BOS1123" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-BOS1131">
+        <gml:description>Stellwagen Bank</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:BOS1131</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>42.32397 -70.29397</gml:lowerCorner>
+            <gml:upperCorner>42.32397 -70.29397</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-05-15T18:45:00Z</gml:beginPosition>
+            <gml:endPosition>2011-06-26T18:25:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:BOS1131" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
         <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
         <responseFormat>text/csv</responseFormat>
@@ -1977,6 +2263,32 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:COD0903" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-COD0904">
+        <gml:description>Cape Cod Canal, Railroad Bridge</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:COD0904</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>41.74268 -70.61418</gml:lowerCorner>
+            <gml:upperCorner>41.74268 -70.61418</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2009-06-16T18:19:00Z</gml:beginPosition>
+            <gml:endPosition>2009-09-17T14:30:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:COD0904" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
         <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
         <responseFormat>text/csv</responseFormat>
@@ -3442,6 +3754,32 @@
         <resultModel>om:Observation</resultModel>
         <responseMode>inline</responseMode>
       </ObservationOffering>
+      <ObservationOffering gml:id="station-HAI1103">
+        <gml:description>Barbers Point Entrance</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:HAI1103</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>21.31235 -158.13288</gml:lowerCorner>
+            <gml:upperCorner>21.31235 -158.13288</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-01-06T22:18:00Z</gml:beginPosition>
+            <gml:endPosition>2011-02-13T03:57:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:HAI1103" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
       <ObservationOffering gml:id="station-HAI1104">
         <gml:description>Barbers Point Jetty</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:HAI1104</gml:name>
@@ -4031,6 +4369,32 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:HAI1126" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-HAI1127">
+        <gml:description>Upolu Point</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:HAI1127</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>20.26502 -155.90157</gml:lowerCorner>
+            <gml:upperCorner>20.26502 -155.90157</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-02-17T01:17:00Z</gml:beginPosition>
+            <gml:endPosition>2011-04-05T03:07:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:HAI1127" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents" />
         <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
         <responseFormat>text/csv</responseFormat>
@@ -6225,7 +6589,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1005">
-        <gml:description>Fort Trumbull, Thames River</gml:description>
+        <gml:description>Fort Trumbull State Park</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1005</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6251,7 +6615,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1006">
-        <gml:description>State Pier</gml:description>
+        <gml:description>New London State Pier</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1006</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6277,7 +6641,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1007">
-        <gml:description>USCG Academy</gml:description>
+        <gml:description>U.S. Coast Guard Academy</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1007</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6381,7 +6745,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1011">
-        <gml:description>PI Buoy</gml:description>
+        <gml:description>Plum Island, 3 nm. North of, PI Buoy</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1011</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6511,7 +6875,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1016">
-        <gml:description>CF Buoy</gml:description>
+        <gml:description>Cornfield Point, 4 miles south of, CF Buoy</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1016</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6537,7 +6901,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1017">
-        <gml:description>TE Buoy</gml:description>
+        <gml:description>Six Mile Reef, 2 miles south of, Buoy TE</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1017</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6563,7 +6927,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1018">
-        <gml:description>Six Mile Reef</gml:description>
+        <gml:description>Six Mile Reef, 1 mile south of</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1018</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6615,7 +6979,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1020">
-        <gml:description>Roanoke Pt. Shoal</gml:description>
+        <gml:description>Roanoke Point, 2 miles NE of</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1020</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6641,7 +7005,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1021">
-        <gml:description>Branford Reef</gml:description>
+        <gml:description>Branford Reef, 5.0 miles south of</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1021</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6667,7 +7031,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1022">
-        <gml:description>Tanker Terminal</gml:description>
+        <gml:description>New Haven Harbor, Tanker Terminal</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1022</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6719,7 +7083,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1024">
-        <gml:description>Gateway Terminal Approach</gml:description>
+        <gml:description>New Haven Harbor, Gateway Terminal Approach</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1024</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6771,7 +7135,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1026">
-        <gml:description>Stratford Point</gml:description>
+        <gml:description>Stratford Point, 3.5 miles south of</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1026</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6797,7 +7161,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1027">
-        <gml:description>South Stratford Shoal</gml:description>
+        <gml:description>Stratford Shoal, 2 miles south of</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1027</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6849,7 +7213,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1029">
-        <gml:description>Bridgeport Entrance</gml:description>
+        <gml:description>Bridgeport Harbor Entrance</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1029</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6875,7 +7239,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1030">
-        <gml:description>Eatons Neck, 2.5 Mi E</gml:description>
+        <gml:description>Eatons Neck, 2.5 miles east of</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1030</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6927,7 +7291,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1032">
-        <gml:description>Eatons Neck</gml:description>
+        <gml:description>Eatons Neck, 3 miles north of</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1032</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6953,7 +7317,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1033">
-        <gml:description>The Cows, 2 miles SE</gml:description>
+        <gml:description>The Cows, 2 miles SE of</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1033</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -6979,7 +7343,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1034">
-        <gml:description>Stamford</gml:description>
+        <gml:description>Stamford Harbor Entrance</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1034</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -7005,7 +7369,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1035">
-        <gml:description>Matinecock Pt, 1.7 m NW of</gml:description>
+        <gml:description>Matinecock Pt, 1.7 miles northwest of</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1035</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -7057,7 +7421,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-LIS1037">
-        <gml:description>Hart Island</gml:description>
+        <gml:description>Hart Island, southeast of</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:LIS1037</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -17357,6 +17721,7 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:8726607" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/water_surface_height_above_reference_datum" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds" />
@@ -17741,6 +18106,60 @@
         <resultModel>om:Observation</resultModel>
         <responseMode>inline</responseMode>
       </ObservationOffering>
+      <ObservationOffering gml:id="station-8735391">
+        <gml:description>Dog River Bridge</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:8735391</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>30.5652 -88.088</gml:lowerCorner>
+            <gml:upperCorner>30.5652 -88.088</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2010-09-08T00:00:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="unknown" />
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:8735391" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/water_surface_height_above_reference_datum" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-8735523">
+        <gml:description>East Fowl River Bridge</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:8735523</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>30.4437 -88.1139</gml:lowerCorner>
+            <gml:upperCorner>30.4437 -88.1139</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>1980-03-24T00:00:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="unknown" />
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:8735523" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/water_surface_height_above_reference_datum" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
       <ObservationOffering gml:id="station-8736163">
         <gml:description>Middle Bay Port,  Mobile Bay</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:8736163</gml:name>
@@ -17847,6 +18266,33 @@
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_electrical_conductivity" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_salinity" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/water_surface_height_above_reference_datum" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-8738043">
+        <gml:description>West Fowl River Bridge</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:8738043</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>30.3766 -88.1586</gml:lowerCorner>
+            <gml:upperCorner>30.3766 -88.1586</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-04-22T00:00:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="unknown" />
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:8738043" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/water_surface_height_above_reference_datum" />
         <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
         <responseFormat>text/csv</responseFormat>
@@ -18069,6 +18515,37 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:8747437" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/water_surface_height_above_reference_datum" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-8760721">
+        <gml:description>Pilottown</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:8760721</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>29.1783 -89.2583</gml:lowerCorner>
+            <gml:upperCorner>29.1783 -89.2583</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>1980-12-19T00:00:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="unknown" />
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:8760721" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
@@ -18880,6 +19357,7 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:8773701" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/water_surface_height_above_reference_datum" />
@@ -19117,7 +19595,6 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:8776604" />
-        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/water_surface_height_above_reference_datum" />
@@ -19161,7 +19638,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-8779748">
-        <gml:description>South Padre Island C.G Station</gml:description>
+        <gml:description>South Padre Island Coast Guard Station</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:8779748</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -19177,37 +19654,6 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:8779748" />
-        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure" />
-        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature" />
-        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
-        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature" />
-        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/water_surface_height_above_reference_datum" />
-        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds" />
-        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
-        <responseFormat>text/csv</responseFormat>
-        <responseFormat>text/tab-separated-values</responseFormat>
-        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
-        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
-        <resultModel>om:Observation</resultModel>
-        <responseMode>inline</responseMode>
-      </ObservationOffering>
-      <ObservationOffering gml:id="station-8779770">
-        <gml:description>Port Isabel</gml:description>
-        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:8779770</gml:name>
-        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
-        <gml:boundedBy>
-          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
-            <gml:lowerCorner>26.06 -97.215</gml:lowerCorner>
-            <gml:upperCorner>26.06 -97.215</gml:upperCorner>
-          </gml:Envelope>
-        </gml:boundedBy>
-        <time>
-          <gml:TimePeriod>
-            <gml:beginPosition>1944-03-31T00:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="unknown" />
-          </gml:TimePeriod>
-        </time>
-        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:8779770" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
@@ -21800,7 +22246,7 @@
         <responseMode>inline</responseMode>
       </ObservationOffering>
       <ObservationOffering gml:id="station-9439011">
-        <gml:description>Hammond, Columbia River</gml:description>
+        <gml:description>Hammond</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:9439011</gml:name>
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
@@ -21816,7 +22262,9 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:9439011" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/water_surface_height_above_reference_datum" />
         <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
         <responseFormat>text/csv</responseFormat>
         <responseFormat>text/tab-separated-values</responseFormat>
@@ -23274,6 +23722,37 @@
         <resultModel>om:Observation</resultModel>
         <responseMode>inline</responseMode>
       </ObservationOffering>
+      <ObservationOffering gml:id="station-9752235">
+        <gml:description>Culebra</gml:description>
+        <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:9752235</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>18.3009 -65.3025</gml:lowerCorner>
+            <gml:upperCorner>18.3009 -65.3025</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2005-08-19T00:00:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="unknown" />
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:9752235" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/water_surface_height_above_reference_datum" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds" />
+        <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
       <ObservationOffering gml:id="station-9752619">
         <gml:description>Isabel Segunda, Vieques Island</gml:description>
         <gml:name>urn:ioos:station:NOAA.NOS.CO-OPS:9752619</gml:name>
@@ -23591,6 +24070,7 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:9759938" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature" />
@@ -23622,7 +24102,9 @@
         <procedure xlink:href="urn:ioos:station:NOAA.NOS.CO-OPS:9761115" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_surface_height_amplitude_due_to_equilibrium_ocean_tide" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature" />
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/water_surface_height_above_reference_datum" />
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds" />
         <featureOfInterest xlink:href="urn:cgi:feature:CGI:EarthOcean" />
         <responseFormat>text/csv</responseFormat>
