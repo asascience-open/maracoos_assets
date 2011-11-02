@@ -2149,7 +2149,7 @@ function init() {
                     );
                     if (spd && dir) {
                       var imageSize = 80;
-                      for (var i = 0; i < spd.data.length; i++) {
+                      for (var i = spd.data.length - 1; i >= 0; i--) {
                         var type = 'arrow';
                         if (spd.label.indexOf('Wind') >= 0) {
                           type = 'barb';
