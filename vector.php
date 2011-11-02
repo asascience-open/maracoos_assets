@@ -18,6 +18,7 @@
   }
   if ($_REQUEST['type'] == 'barb') {
     $draw->setFont('fonts/ESRIWeather.ttf');
+    $draw->setFontSize($_REQUEST['w'] * 0.50);
     $icon->annotateImage(
        $draw
       ,$_REQUEST['w'] / 2
