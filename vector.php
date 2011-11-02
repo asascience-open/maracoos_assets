@@ -1,6 +1,6 @@
 <?php
   $draw = new ImagickDraw();
-  $draw->setFillColor('black');
+  $draw->setFillColor('#1558BB');
 
   $icon = new Imagick();
   $icon->newImage($_REQUEST['w'],$_REQUEST['h'],new ImagickPixel('transparent'));
