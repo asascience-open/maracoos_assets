@@ -2148,7 +2148,7 @@ function init() {
                       }
                     );
                     if (spd && dir) {
-                      var imageSize = 60;
+                      var imageSize = 80;
                       for (var i = 0; i < spd.data.length; i++) {
                         var type = 'arrow';
                         if (spd.label.indexOf('Wind') >= 0) {
