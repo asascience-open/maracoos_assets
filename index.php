@@ -38,7 +38,6 @@
         ,'NERRS'            : true
         ,'NCOM currents'    : true
         ,'WWIII waves'      : true
-        ,'NHC storm tracks' : true
       };
       var hideLegendsGridPanel      = false;
       var hideTimeseriesPanel       = false;
@@ -160,6 +159,7 @@
       var defaultStyles = {
          'Satellite water temperature' : 'boxfill/rainbow'
         ,'ROMS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+        ,'ROMS ESPRESSO'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
         ,'STPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
         ,'UMass'                       : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
         ,'Stevens NYHOPS'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
@@ -206,6 +206,7 @@
          'NCOM SST'             : 'png'
         ,'WWIII waves'          : 'png'
         ,'ROMS'                 : 'png'
+        ,'ROMS ESPRESSO'        : 'png'
         ,'STPS'                 : 'png'
         ,'UMass'                : 'png'
         ,'Stevens NYHOPS'       : 'png'

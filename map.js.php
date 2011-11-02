@@ -469,25 +469,25 @@ function init() {
         ,'ROMS ESPRESSO'
         ,'off'
         ,defaultLayers['ROMS ESPRESSO'] ? 'on' : 'off'
-        ,''
+        ,'off'
         ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/ROMS ESPRESSO.html')))?>'
+        ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
+        ,typeof defaultOpacities['ROMS ESPRESSO'] != 'undefined' && defaultOpacities['ROMS ESPRESSO'] != '' ? defaultOpacities['ROMS ESPRESSO'] : 100
+        ,defaultImageTypes['ROMS ESPRESSO']
         ,''
+        ,defaultStyles['ROMS ESPRESSO'].split('-')[0]
+        ,defaultStyles['ROMS ESPRESSO'].split('-')[1]
+        ,defaultStyles['ROMS ESPRESSO'].split('-')[3]
+        ,defaultStyles['ROMS ESPRESSO'].split('-')[2]
+        ,defaultStyles['ROMS ESPRESSO'].split('-')[4]
+        ,defaultStyles['ROMS ESPRESSO'].split('-')[5]
+        ,defaultStyles['ROMS ESPRESSO'].split('-')[6]
+        ,'0-6'
         ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
+        ,'http://services.asascience.com/ecop/wms.aspx?LAYERS=ESPRESSO_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['ROMS ESPRESSO'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=ESPRESSO_CURRENTS'
         ,''
         ,'-78,35.5,-62,44'
-        ,''
+        ,'true'
         ,''
       ]
       ,[
@@ -2427,6 +2427,15 @@ function initMap() {
     ,projection : proj3857
   });
   addWMS({
+     name   : 'ROMS ESPRESSO'
+    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+    ,layers : 'ESPRESSO_CURRENTS'
+    ,format : 'image/' + defaultImageTypes['ROMS ESPRESSO']
+    ,styles : defaultStyles['ROMS ESPRESSO']
+    ,singleTile : true
+    ,projection : proj3857
+  });
+  addWMS({
      name   : 'NCOM currents'
     ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
     ,layers : 'NCOM_CURRENTS'
@@ -2493,11 +2502,6 @@ function initMap() {
     ,url    : 'http://assets.maracoos.org/tilecache/'
     ,layer  : 'bathy'
     ,projection : proj900913
-  });
-
-  addVector({
-     name       : 'ROMS ESPRESSO'
-    ,visibility : typeof defaultLayers['ROMS ESPRESSO'] != 'undefined'
   });
 
   addObs({
