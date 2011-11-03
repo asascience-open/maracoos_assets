@@ -1948,7 +1948,48 @@ function init() {
                   Ext.Msg.alert('Feedback','We are very interested in your feedback.  Please send us an email at this address, <a href="mailto:maracoosinfo@udel.edu">maracoosinfo@udel.edu</a>.');
                 }
               }
-              ,'-'
+              ,'->'
+              ,{text : 'Map options',icon : 'img/layers_map.png',menu : {items : [
+                {
+                   text         : 'Show bathymetry contours?'
+                  ,checked      : typeof defaultLayers['Bathymetry contours'] != 'undefined'
+                  ,hideOnClick  : false
+                  ,checkHandler : function(cbox,checked) {
+                    map.getLayersByName('Bathymetry contours')[0].setVisibility(checked);
+                  }
+                }
+                ,'<b class="menu-title" style="margin-left:27px">Select a basemap</b>'
+                ,new Ext.form.ComboBox({
+                   store          : new Ext.data.ArrayStore({
+                     fields : ['name']
+                    ,data   : [['ESRI Ocean'],['Google Satellite'],['Google Terrain'],['Google Hybrid']]
+                  })
+                  ,iconCls        : 'no-icon'
+                  ,valueField     : 'name'
+                  ,displayField   : 'name'
+                  ,editable       : false
+                  ,triggerAction  : 'all'
+                  ,mode           : 'local'
+                  ,width          : 140
+                  ,value          : defaultBasemap
+                  ,forceSelection : true
+                  ,listeners      : {select : function(comboBox,rec) {
+                    var lyr = map.getLayersByName(rec.get('name'))[0];
+                    if (lyr.isBaseLayer) {
+                      lyr.setOpacity(1);
+                      map.setBaseLayer(lyr);
+                      lyr.redraw();
+                    }
+  
+                    // special case foresri ocean
+                    esriOcean.setVisibility(rec.get('name') == 'ESRI Ocean');
+                    esriOcean.setOpacity(1);
+                    // special case for nav charts
+                    navCharts.setVisibility(rec.get('name') == 'Navigational Charts');
+                    navCharts.setOpacity(1);
+                  }}
+                })
+              ]}}
               ,{
                  icon    : 'img/help-icon.png'
                 ,text    : 'Help'
@@ -1957,45 +1998,6 @@ function init() {
                   showHelp(true);
                 }
               }
-              ,'->'
-              ,'Show bathymetry contours?'
-              ,' '
-              ,new Ext.form.Checkbox({
-                 checked   : typeof defaultLayers['Bathymetry contours'] != 'undefined'
-                ,listeners : {check : function(cbox,checked) {
-                  map.getLayersByName('Bathymetry contours')[0].setVisibility(checked);
-                }}
-              })
-              ,' '
-              ,new Ext.form.ComboBox({
-                 store          : new Ext.data.ArrayStore({
-                   fields : ['name']
-                  ,data   : [['ESRI Ocean'],['Google Satellite'],['Google Terrain'],['Google Hybrid']]
-                })
-                ,valueField     : 'name'
-                ,displayField   : 'name'
-                ,editable       : false
-                ,triggerAction  : 'all'
-                ,mode           : 'local'
-                ,width          : 110
-                ,value          : defaultBasemap
-                ,forceSelection : true
-                ,listeners      : {select : function(comboBox,rec) {
-                  var lyr = map.getLayersByName(rec.get('name'))[0];
-                  if (lyr.isBaseLayer) {
-                    lyr.setOpacity(1);
-                    map.setBaseLayer(lyr);
-                    lyr.redraw();
-                  }
-
-                  // special case foresri ocean
-                  esriOcean.setVisibility(rec.get('name') == 'ESRI Ocean');
-                  esriOcean.setOpacity(1);
-                  // special case for nav charts
-                  navCharts.setVisibility(rec.get('name') == 'Navigational Charts');
-                  navCharts.setOpacity(1);
-                }}
-              })
             ]
             ,bbar      : {
                xtype    : 'container'
