@@ -537,12 +537,15 @@ function shortDateStringNoTime(d) {
 
 function shortDateToDate(s) {
   // 10/22/2011 08:00 UTC-04
+  var p = s.split(' ');
+  var mdy = p[0].split('/');
+  var hm = p[1].split(':');
   return new Date(
-     s.substr(6,4)
-    ,s.substr(0,2)-1
-    ,s.substr(3,2)
-    ,s.substr(11,2)
-    ,s.substr(14,2)
+     mdy[2]
+    ,mdy[0] - 1
+    ,mdy[1]
+    ,hm[0]
+    ,hm[1]
   );
 }
 

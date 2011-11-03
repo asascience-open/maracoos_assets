@@ -2158,6 +2158,11 @@ function init() {
                         $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'vector.php?w=' + imageSize + '&h=' + imageSize + '&dir=' + Math.round(dir.data[i][1]) + '&spd=' + Math.round(spd.data[i][1]) + '&type=' + type + '\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
                       }
                     }
+                    if (chartData[0].nowIdx != '') {
+                      var imageSize = 16;
+                      var o = p.pointOffset({x : chartData[0].data[chartData[0].nowIdx][0],y : chartData[0].data[chartData[0].nowIdx][1]});
+                      $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'img/asterisk_orange.png\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
+                    }
                   }
                   else {
                     ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/>Click on the map to view a time-series graph of Model or Observation output. Only one layer may be active at a time.</td></tr></table>';
@@ -3929,19 +3934,14 @@ function makeChart(url,type,title) {
             ,label  : v + ' (' + toEnglish({typ : 'title',src : obs.u[v],val : obs.u[v]}) + ')'
             ,yaxis  : yaxis
             ,lines  : {show : true}
+            ,nowIdx : obs.d[v].length > 1 ? obs.nowIdx : ''
+            ,color  : '#99BBE8'
           });
           for (var i = 0; i < obs.d[v].length; i++) {
             chartData[chartData.length-1].data.push([obs.t[i],toEnglish({typ : 'obs',src : obs.u[v],val : obs.d[v][i]})]);
           }
           if (obs.d[v].length == 1) {
             chartData[chartData.length - 1].points = {show : true};
-          }
-          if (obs.d[v].length > 1 && obs.nowIdx) {
-            chartData.push({
-               data   : [[obs.t[obs.nowIdx],toEnglish({typ : 'obs',src : obs.u[v],val : obs.d[v][obs.nowIdx]})]]
-              ,yaxis  : yaxis
-              ,points : {show : true}
-            });
           }
           yaxis++;
         }
