@@ -11,7 +11,7 @@
   $data['d'] = array();
 
   if ($xml->{'ServiceException'}) {
-    $data['error'] = 'ServiceException';
+    $data['error'] = sprintf("%s",$xml->{'ServiceException'}->attributes()->{'code'});
   }
   else if ($xml->{'Point'}) {
     foreach ($xml->{'Point'} as $p) {
