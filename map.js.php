@@ -2127,8 +2127,14 @@ function init() {
                   ts.style.width  = win.getWidth() - 15;
                   ts.style.height = win.getHeight() - 55;
                   var spd;
-                  var dir;
-                  if (chartData && chartData.length > 0) {
+                  var dir; 
+                  if (!chartData || chartData.length <= 0) {
+                    ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/>Click on the map to view a time-series graph of Model or Observation output. Only one layer may be active at a time.</td></tr></table>';
+                  }
+                  else if (chartData && chartData.length > 0 && typeof chartData[0] == 'string' && chartData[0].indexOf('QUERY ERROR') == 0) {
+                    ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/><font color="red">' + chartData[0] + '</font><br/><br/>' + 'Click on the map to view a time-series graph of Model or Observation output. Only one layer may be active at a time.</td></tr></table>';
+                  }
+                  else {
                     for (var i = 0; i < chartData.length; i++) {
                       if (chartData[i].label.indexOf('Velocity') >= 0) {
                         spd = chartData[i];
@@ -2165,9 +2171,6 @@ function init() {
                       var o = p.pointOffset({x : chartData[0].data[chartData[0].nowIdx][0],y : chartData[0].data[chartData[0].nowIdx][1]});
                       $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'img/asterisk_orange.png\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
                     }
-                  }
-                  else {
-                    ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/>Click on the map to view a time-series graph of Model or Observation output. Only one layer may be active at a time.</td></tr></table>';
                   }
                   Ext.getCmp('graphAction').setText('Clear query');
                   Ext.getCmp('graphAction').setIcon('img/trash-icon.png');
@@ -3926,12 +3929,12 @@ function makeChart(url,type,title) {
       chartData = [];
       var yaxis = 1;
       if (obs.error) {
-        Ext.Msg.alert('Query alert','The layer provider has reported the following error: ' + obs.error + '.');
+        chartData = ['QUERY ERROR. The layer provider has reported the following error: ' + obs.error + '.'];
         // record the action on google analytics
         pageTracker._trackEvent('chartView',title,'error');
       }
       else if (obs.d == '') {
-        Ext.Msg.alert('Query alert','There was an error fetching query results for this layer.');
+        chartData = ['QUERY ERROR. There was an error fetching query results for this layer.'];
         // record the action on google analytics
         pageTracker._trackEvent('chartView',title,'error');
       }
