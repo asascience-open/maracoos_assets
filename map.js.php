@@ -3925,7 +3925,12 @@ function makeChart(url,type,title) {
       var obs = new OpenLayers.Format.JSON().read(r.responseText);
       chartData = [];
       var yaxis = 1;
-      if (obs.d == '') {
+      if (obs.error) {
+        Ext.Msg.alert('Query alert','The layer provider has reported the following error: ' + obs.error + '.');
+        // record the action on google analytics
+        pageTracker._trackEvent('chartView',title,'error');
+      }
+      else if (obs.d == '') {
         Ext.Msg.alert('Query alert','There was an error fetching query results for this layer.');
         // record the action on google analytics
         pageTracker._trackEvent('chartView',title,'error');

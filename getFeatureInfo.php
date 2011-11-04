@@ -10,7 +10,10 @@
   $data['u'] = array();
   $data['d'] = array();
 
-  if ($xml->{'Point'}) {
+  if ($xml->{'ServiceException'}) {
+    $data['error'] = 'ServiceException';
+  }
+  else if ($xml->{'Point'}) {
     foreach ($xml->{'Point'} as $p) {
       $a = preg_split("/-| |:/",sprintf("%s",$p->{'Time'}[0]));
       $t = mktime($a[3],$a[4],$a[5],$a[0],$a[1],$a[2]) - $_REQUEST['tz'] * 60;
