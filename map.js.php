@@ -3244,8 +3244,10 @@ function addLayer(lyr,timeSensitive) {
               rec.set('timestamp','<span class="alert">This layer\'s domain<br/>is out of bounds.<span>');
             }
             else {
-              rec.set('timestamp',shortDateString(new Date(r.responseText * 1000)));
-              if (lastMapClick['layer'] == lyr.name && lyrQueryPts.features.length > 0) {
+              var prevTs = rec.get('timestamp');
+              var newTs  = shortDateString(new Date(r.responseText * 1000));
+              rec.set('timestamp',newTs);
+              if (prevTs != newTs && lastMapClick['layer'] == lyr.name && lyrQueryPts.features.length > 0) {
                 mapClick(lastMapClick['e'],true,false);
               }
             }
