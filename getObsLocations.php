@@ -228,16 +228,19 @@
     $t1            = strtotime($_REQUEST['t1']);
     $studiesFilter = explode(',',$_REQUEST['glatosStudiesFilter']);
     $speciesFilter = explode(',',$_REQUEST['glatosSpeciesFilter']);
-    $json = json_decode(file_get_contents('glatosDeployments.json'));
+    $json = json_decode(file_get_contents('http://glatos.asascience.com/deployments.geo'));
     for ($i = 0; $i < count($json); $i++) {
       preg_match('/\((.*) (.*)\)/',sprintf("%s",$json[$i]->geojson->geometry),$lonLat);
       $d = array(
-         'lon'     => $lonLat[1]
-        ,'lat'     => $lonLat[2]
-        ,'id'      => sprintf("%s",$json[$i]->geojson->id)
-        ,'studyId' => sprintf("%s",$json[$i]->geojson->properties->study_id)
-        ,'start'   => strtotime(sprintf("%s",$json[$i]->geojson->properties->start))
-        ,'end'     => strtotime(sprintf("%s",$json[$i]->geojson->properties->end))
+         'lon'      => $lonLat[1]
+        ,'lat'      => $lonLat[2]
+        ,'id'       => sprintf("%s",$json[$i]->geojson->id)
+        ,'studyId'  => sprintf("%s",$json[$i]->geojson->properties->study_id)
+        ,'start'    => strtotime(sprintf("%s",$json[$i]->geojson->properties->start))
+        ,'end'      => strtotime(sprintf("%s",$json[$i]->geojson->properties->ending))
+        ,'seasonal' => sprintf("%s",$json[$i]->geojson->properties->seasonal)
+        ,'code'     => sprintf("%s",$json[$i]->geojson->properties->code)
+        ,'model'    => sprintf("%s",$json[$i]->geojson->properties->model)
       );
       if (!$d['end']) {
         $d['end'] = time();
@@ -247,14 +250,17 @@
         || ($d['start'] <= $t0 && $t1 <= $d['end']);
       if (in_array($d['studyId'],$studiesFilter) && in_array($d['studyId'],$speciesFilter) && $timeOK) {
         addToStack($metadata,array(-180,-90,180,90),$d['lon'],$d['lat'],$_REQUEST['provider'],array(
-           'id'      => sprintf("%s",$json[$i]->geojson->id)
-          ,'studyId' => sprintf("%s",$json[$i]->geojson->properties->study_id)
-          ,'descr'   => ''
-          ,'start'   => strtotime(sprintf("%s",$json[$i]->geojson->properties->start))
-          ,'end'     => strtotime(sprintf("%s",$json[$i]->geojson->properties->end))
-          ,'url'     => 'popupGlatos.php'
+           'id'       => $d['id']
+          ,'studyId'  => $d['studyId']
+          ,'descr'    => ''
+          ,'start'    => $d['start']
+          ,'end'      => $d['end']
+          ,'url'      => 'popupGlatos.php'
             .'?start='.sprintf("%s",$json[$i]->geojson->properties->start)
             .'&end='.sprintf("%s",$json[$i]->geojson->properties->end)
+          ,'seasonal' => $d['seasonal']
+          ,'code'     => $d['code']
+          ,'model'    => $d['model']
         ));
       }
     }

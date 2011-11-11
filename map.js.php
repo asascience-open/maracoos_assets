@@ -14,14 +14,14 @@ var barbLabelStore;
 var tailMagStore;
 var imageTypesStore;
 var mainStore;
-var assetsStore;
-var modelsStore;
-var observationsStore;
-var marineStore;
-var glidersStore;
-var glidersMetadataStore;
-var glatosStore;
-var glatosMetadataStore;
+var assetsStore          = new Ext.data.ArrayStore({fields : []}); 
+var modelsStore          = new Ext.data.ArrayStore({fields : []});
+var observationsStore    = new Ext.data.ArrayStore({fields : []});
+var marineStore          = new Ext.data.ArrayStore({fields : []});
+var glidersStore         = new Ext.data.ArrayStore({fields : []});
+var glidersMetadataStore = new Ext.data.ArrayStore({fields : []});
+var glatosStore          = new Ext.data.ArrayStore({fields : []});
+var glatosMetadataStore  = new Ext.data.ArrayStore({fields : []});
 var legendsStore;
 var spot;
 var spotTooltip;
@@ -972,228 +972,40 @@ function init() {
     rec.commit();
   });
 
-  assetsStore = new Ext.data.ArrayStore({
-    fields : [
-       'name'
-      ,'displayName'
-      ,'info'
-      ,'status'
-      ,'settings'
-      ,'infoBlurb'
-      ,'settingsParam'
-      ,'settingsOpacity'
-      ,'settingsImageType'
-      ,'settingsPalette'
-      ,'settingsBaseStyle'
-      ,'settingsColorMap'
-      ,'settingsStriding'
-      ,'settingsBarbLabel'
-      ,'settingsTailMag'
-      ,'settingsMin'
-      ,'settingsMax'
-      ,'settingsMinMaxBounds'
-      ,'rank'
-      ,'legend'
-      ,'timestamp'
-      ,'bbox'
-      ,'queryable'
-      ,'settingsLayers'
-    ]
-  });
   mainStore.each(function(rec) {
     if (rec.get('type') == 'asset') {
       assetsStore.add(rec);
     }
   });
 
-  modelsStore = new Ext.data.ArrayStore({
-    fields : [
-       'name'
-      ,'displayName'
-      ,'info'
-      ,'status'
-      ,'settings'
-      ,'infoBlurb'
-      ,'settingsParam'
-      ,'settingsOpacity'
-      ,'settingsImageType'
-      ,'settingsPalette'
-      ,'settingsBaseStyle'
-      ,'settingsColorMap'
-      ,'settingsStriding'
-      ,'settingsBarbLabel'
-      ,'settingsTailMag'
-      ,'settingsMin'
-      ,'settingsMax'
-      ,'settingsMinMaxBounds'
-      ,'rank'
-      ,'legend'
-      ,'timestamp'
-      ,'bbox'
-      ,'queryable'
-      ,'settingsLayers'
-    ]
-  });
   mainStore.each(function(rec) {
     if (rec.get('type') == 'model') {
       modelsStore.add(rec);
     }
   });
 
-  observationsStore = new Ext.data.ArrayStore({
-    fields : [
-       'name'
-      ,'displayName'
-      ,'info'
-      ,'status'
-      ,'settings'
-      ,'infoBlurb'
-      ,'settingsParam'
-      ,'settingsOpacity'
-      ,'settingsImageType'
-      ,'settingsPalette'
-      ,'settingsBaseStyle'
-      ,'settingsColorMap'
-      ,'settingsStriding'
-      ,'settingsBarbLabel'
-      ,'settingsTailMag'
-      ,'settingsMin'
-      ,'settingsMax'
-      ,'settingsMinMaxBounds'
-      ,'rank'
-      ,'legend'
-      ,'timestamp'
-      ,'bbox'
-      ,'queryable'
-      ,'settingsLayers'
-    ]
-  });
   mainStore.each(function(rec) {
     if (rec.get('type') == 'observation') {
       observationsStore.add(rec);
     }
   });
 
-  marineStore = new Ext.data.ArrayStore({
-    fields : [
-       'name'
-      ,'displayName'
-      ,'info'
-      ,'status'
-      ,'settings'
-      ,'infoBlurb'
-      ,'settingsParam'
-      ,'settingsOpacity'
-      ,'settingsImageType'
-      ,'settingsPalette'
-      ,'settingsBaseStyle'
-      ,'settingsColorMap'
-      ,'settingsStriding'
-      ,'settingsBarbLabel'
-      ,'settingsTailMag'
-      ,'settingsMin'
-      ,'settingsMax'
-      ,'settingsMinMaxBounds'
-      ,'rank'
-      ,'legend'
-      ,'timestamp'
-      ,'bbox'
-      ,'queryable'
-      ,'settingsLayers'
-    ]
-  });
   mainStore.each(function(rec) {
     if (rec.get('type') == 'marine') {
       marineStore.add(rec);
     }
   });
 
-  glidersStore = new Ext.data.ArrayStore({
-    fields : [
-       'name'
-      ,'displayName'
-      ,'info'
-      ,'status'
-      ,'settings'
-      ,'infoBlurb'
-      ,'settingsParam'
-      ,'settingsOpacity'
-      ,'settingsImageType'
-      ,'settingsPalette'
-      ,'settingsBaseStyle'
-      ,'settingsColorMap'
-      ,'settingsStriding'
-      ,'settingsBarbLabel'
-      ,'settingsTailMag'
-      ,'settingsMin'
-      ,'settingsMax'
-      ,'settingsMinMaxBounds'
-      ,'rank'
-      ,'legend'
-      ,'timestamp'
-      ,'bbox'
-      ,'queryable'
-      ,'settingsLayers'
-    ]
-  });
   mainStore.each(function(rec) {
     if (rec.get('type') == 'gliders') {
       glidersStore.add(rec);
     }
   });
 
-  glatosStore = new Ext.data.ArrayStore({
-    fields : [
-       'name'
-      ,'displayName'
-      ,'info'
-      ,'status'
-      ,'settings'
-      ,'infoBlurb'
-      ,'settingsParam'
-      ,'settingsOpacity'
-      ,'settingsImageType'
-      ,'settingsPalette'
-      ,'settingsBaseStyle'
-      ,'settingsColorMap'
-      ,'settingsStriding'
-      ,'settingsBarbLabel'
-      ,'settingsTailMag'
-      ,'settingsMin'
-      ,'settingsMax'
-      ,'settingsMinMaxBounds'
-      ,'rank'
-      ,'legend'
-      ,'timestamp'
-      ,'bbox'
-      ,'queryable'
-      ,'settingsLayers'
-    ]
-  });
   mainStore.each(function(rec) {
     if (rec.get('type') == 'glatos') {
       glatosStore.add(rec);
     }
-  });
-
-  glidersMetadataStore = new Ext.data.ArrayStore({
-    fields : [
-       'name'
-      ,'description'
-    ]
-  });
-
-  glatosMetadataStore = new Ext.data.ArrayStore({
-    fields : [
-       'id'
-      ,'name'
-      ,'description'
-      ,'species'
-      ,'start'
-      ,'end'
-      ,'url'
-      ,'receiversCount'
-    ]
   });
 
   legendsStore = new Ext.data.ArrayStore({
@@ -1252,7 +1064,6 @@ function init() {
     ,data : [
        ['Ramp','CURRENTS_RAMP','CURRENTS']
       ,['Black','CURRENTS_STATIC_BLACK','CURRENTS']
-      // ,['Winds','WINDS_VERY_SPARSE','WINDS']
       ,['Green','WINDS_VERY_SPARSE_GREEN','WINDS']
       ,['Purple','WINDS_VERY_SPARSE_PURPLE','WINDS']
       ,['Yellow','WINDS_VERY_SPARSE_YELLOW','WINDS']
@@ -2338,7 +2149,9 @@ function initMap() {
     }
   });
   mouseControl.displayProjection = new OpenLayers.Projection('EPSG:4326');
-  map.addControl(mouseControl);
+  if (!hideMouseControl) {
+    map.addControl(mouseControl);
+  }
 
   map.events.register('zoomend',this,function() {
     if (popupObs) {
@@ -2639,7 +2452,7 @@ function initMap() {
     glatosMetadataStore.fireEvent('beforeload');
     OpenLayers.Request.issue({
        method  : 'GET'
-      ,url     : 'glatosMetadata.php'
+      ,url     : 'proxy.php?u=http://glatos.asascience.com/studies.json'
       ,callback : function(r) {
         var json = new OpenLayers.Format.JSON().read(r.responseText);
         var menu = [];
@@ -2653,6 +2466,9 @@ function initMap() {
             ,'start'          : json[i].start
             ,'end'            : json[i].end
             ,'url'            : json[i].url
+            ,'seasonal'       : json[i].seasonal == 'true'
+            ,'code'           : json[i].code
+            ,'model'          : json[i].model
             ,'receiversCount' : 0
           }));
           var ymd = json[i].start.split('T')[0].split('-');
@@ -3609,7 +3425,7 @@ function addObs(l) {
               if (e.feature.layer.name == 'Receivers') {
                 var glatosIdx = glatosMetadataStore.find('id',e.feature.attributes.data[i][0].studyId);
                 if (glatosIdx >= 0) {
-                  title = glatosMetadataStore.getAt(glatosIdx).get('description') + '&nbsp;-&nbsp;Site&nbsp;' + e.feature.attributes.data[i][0].id;
+                  title = glatosMetadataStore.getAt(glatosIdx).get('name') + '&nbsp;-&nbsp;Site&nbsp;' + e.feature.attributes.data[i][0].code;
                 }
               }
               target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.id.split('_')[e.feature.id.split('_').length - 1]) - 1);
@@ -3690,8 +3506,10 @@ function addObs(l) {
               if (e.feature.layer.name == 'Receivers') {
                 var glatosIdx = glatosMetadataStore.find('id',e.feature.attributes.data[i][0].studyId);
                 if (glatosIdx >= 0) {
-                  title = glatosMetadataStore.getAt(glatosIdx).get('description') + '&nbsp;-&nbsp;Site&nbsp;' + e.feature.attributes.data[i][0].id;
-                  e.feature.attributes.data[i][0].url += '&species=' + glatosMetadataStore.getAt(glatosIdx).get('species');
+                  title = glatosMetadataStore.getAt(glatosIdx).get('name') + '&nbsp;-&nbsp;Site&nbsp;' + e.feature.attributes.data[i][0].code;
+                  e.feature.attributes.data[i][0].url += '&species=' + glatosMetadataStore.getAt(glatosIdx).get('species')
+                    + '&description=' + glatosMetadataStore.getAt(glatosIdx).get('description')
+                    + '&model=' + e.feature.attributes.data[i][0].model;
                 }
               }
               target = 'OpenLayers.Geometry.Point_' + (Number(e.feature.id.split('_')[e.feature.id.split('_').length - 1]) - 1);
