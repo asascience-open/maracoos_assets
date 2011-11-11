@@ -117,7 +117,6 @@
         showHelpOnStartup         = false;
         managerPanelCollapsible   = false;
         hideTimestampLabel        = true;
-        hideMouseControl          = true;
 
         defaultBasemap            = 'Google Satellite';
 
@@ -147,6 +146,7 @@
         managerPanelCollapsible   = false;
         hideTimestampLabel        = true;
         hideTimeSlider            = true;
+        hideMouseControl          = true;
 
         introPanelHtmlOverride = '<table class="smallFont" width="100%"><tr><td align=justify>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</td></tr></table>';
 
