@@ -1856,7 +1856,7 @@ function init() {
         ,layout    : 'border'
         ,items     : [
           {
-             html      : '<div id="map"></div>' + (!hideTimestampLabel ? '<div id="timestampLabel">' + shortDateString(dNow) + '</div><div id="timestampThumb"><img id="timestampImage" src="img/asterick_orange_small.png"></div>' : '')
+             html      : '<div id="map"></div>' + (!hideTimestampLabel ? '<div id="timestampLabel">' + shortDateString(dNow) + '</div><img id="timestampImage" src="img/asterick_orange_small.png">' : '')
             ,region    : 'center'
             ,border    : false
             ,tbar      : [
