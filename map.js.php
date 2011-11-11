@@ -4584,7 +4584,7 @@ function getFilter() {
     }
     return '&filterProvider=' + escape('&provider[]=' + p.join('&provider[]='));
   }
-  else if (config == 'glatos' && Ext.getCmp('glatosStudiesGridPanel').getStore().getCount() > 0 && Ext.getCmp('glatosModelsGridPanel').getSelectionModel().getStore().getCount() > 0) {
+  else if (config == 'glatos' && Ext.getCmp('glatosStudiesGridPanel').getStore().getCount() > 0 && Ext.getCmp('glatosModelsGridPanel').getStore().getCount() > 0) {
     var f = [];
     var p = [];
     var sel = Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().getSelections();
