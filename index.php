@@ -45,8 +45,8 @@
       var hideModelsGridPanel       = false;
       var hideObservationsGridPanel = false;
       var hideMarineGridPanel       = true;
-      var hideGlidersGridPanel     = true;
-      var hideGlatosGridPanel      = true;
+      var hideGlidersGridPanel      = true;
+      var hideGlatosGridPanel       = true;
       var hideTimeSlider            = false;
       var hideMapToolbar            = false;
       var hideMapTitle              = false;
@@ -113,7 +113,7 @@
         hideAssetsGridPanel       = true;
         hideModelsGridPanel       = true;
         hideObservationsGridPanel = true;
-        hideGlidersGridPanel     = false;
+        hideGlidersGridPanel      = false;
         showHelpOnStartup         = false;
         managerPanelCollapsible   = false;
         hideTimestampLabel        = true;
@@ -140,7 +140,7 @@
         hideAssetsGridPanel       = true;
         hideModelsGridPanel       = true;
         hideObservationsGridPanel = true;
-        hideGlatosGridPanel      = false;
+        hideGlatosGridPanel       = false;
         showHelpOnStartup         = false;
         hideMapToolbar            = true;
         hideMapTitle              = true;
