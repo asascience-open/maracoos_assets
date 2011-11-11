@@ -363,6 +363,25 @@ div.olControlMousePosition {
   text-align : center !important;
 }
 
+#timestampLabel {
+  font : 11px/13px tahoma,helvetica,sans-serif !important;
+  background-image : url('img/semiClear.png');
+  position : absolute;
+  bottom : 0px;
+  left : 0px;
+  padding : 2px;
+  width : 175px !important;
+  text-align : center !important;
+  z-index : 1000;
+}
+
+#timestampThumb {
+  position : absolute;
+  bottom : 0px;
+  left : 4px;
+  z-index : 1001;
+}
+
 .alert {
   color : red;
   font-weight : bold;

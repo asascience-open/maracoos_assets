@@ -52,6 +52,7 @@
       var hideMapTitle              = false;
       var hideIntroPanel            = false;
       var managerPanelCollapsible   = true;
+      var hideTimestampLabel        = false;
       var introPanelHtmlOverride;
 
       var mapBanner = {hidden : true};
@@ -87,6 +88,7 @@
         hideMarineGridPanel       = false;
         showHelpOnStartup         = false;
         managerPanelCollapsible   = false;
+        hideTimestampLabel        = true;
       }
 
       if (config == 'gliders') {
@@ -113,6 +115,7 @@
         hideGlidersGridPanel     = false;
         showHelpOnStartup         = false;
         managerPanelCollapsible   = false;
+        hideTimestampLabel        = true;
 
         defaultBasemap            = 'Google Satellite';
 
@@ -140,6 +143,7 @@
         hideMapToolbar            = true;
         hideMapTitle              = true;
         managerPanelCollapsible   = false;
+        hideTimestampLabel        = true
 
         introPanelHtmlOverride = '<table class="smallFont" width="100%"><tr><td align=justify>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</td></tr></table>';
 

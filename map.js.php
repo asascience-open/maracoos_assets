@@ -1856,7 +1856,7 @@ function init() {
         ,layout    : 'border'
         ,items     : [
           {
-             html      : '<div id="map"></div>'
+             html      : '<div id="map"></div>' + (!hideTimestampLabel ? '<div id="timestampLabel">' + shortDateString(dNow) + '</div><div id="timestampThumb"><img id="timestampImage" src="img/asterick_orange_small.png"></div>' : '')
             ,region    : 'center'
             ,border    : false
             ,tbar      : [
@@ -2043,6 +2043,20 @@ function init() {
                 if (hideMapToolbar) {
                   panel.getTopToolbar().hide();
                 }
+                new Ext.ToolTip({
+		   anchor   : 'bottom'
+                  ,title    : 'Map timestamp'
+		  ,target   : 'timestampLabel'
+                  ,html     : 'This is the timestamp the map is attempting to display.  It is up to the data provider to determine what timestamp best matches what you have selected in the time slider below.  Individual layers report their timestamps in the legends panel.'
+                  ,dismissDelay : 12000
+                });
+                new Ext.ToolTip({
+                   anchor   : 'bottom'
+                  ,title    : 'Map timestamp'
+                  ,target   : 'timestampImage'
+                  ,html     : 'This is the timestamp the map is attempting to display.  It is up to the data provider to determine what timestamp best matches what you have selected in the time slider below.  Individual layers report their timestamps in the legends panel.'
+                  ,dismissDelay : 12000
+                });
                 initMap();
               }
               ,bodyresize : function(p,w,h) {
@@ -4689,6 +4703,9 @@ function makeTimeSlider() {
       }})
       ,listeners   : {change : function(slider,val) {
         var dStr = availableTimes[val].getUTCFullYear() + '-' + String.leftPad(availableTimes[val].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[val].getUTCDate(),2,'0') + 'T' + String.leftPad(availableTimes[val].getUTCHours(),2,'0') + ':00';
+        if (document.getElementById('timestampLabel')) {
+          document.getElementById('timestampLabel').innerHTML = shortDateString(availableTimes[val]);
+        }
         for (var i = 0; i < map.layers.length; i++) {
           // WMS layers only
           if (map.layers[i].DEFAULT_PARAMS) {
