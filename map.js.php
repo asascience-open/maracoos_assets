@@ -2526,7 +2526,11 @@ function initMap() {
         configTimeSlider(true);
       }
     });
-    syncGlatos(true);
+    // IE is having sync issues, so put its 1st call in map's moveend
+    if (!Ext.isIE) {
+      glatosInitialized = true;
+      syncGlatos(true);
+    }
   }
   else {
     configTimeSlider(true);
