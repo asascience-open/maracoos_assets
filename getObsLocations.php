@@ -227,7 +227,7 @@
     $t0            = strtotime($_REQUEST['t0']);
     $t1            = strtotime($_REQUEST['t1']);
     $studiesFilter = explode(',',$_REQUEST['glatosStudiesFilter']);
-    $speciesFilter = explode(',',$_REQUEST['glatosSpeciesFilter']);
+    $modelsFilter  = explode(',',$_REQUEST['glatosModelsFilter']);
     $json = json_decode(file_get_contents('http://glatos.asascience.com/deployments.geo'));
     for ($i = 0; $i < count($json); $i++) {
       preg_match('/\((.*) (.*)\)/',sprintf("%s",$json[$i]->geojson->geometry),$lonLat);
@@ -247,8 +247,13 @@
       }
       $timeOK = ($t0 <= $d['start'] && $d['start'] <= $t1)
         || ($t0 <= $d['end'] && $d['end'] <= $t1)
-        || ($d['start'] <= $t0 && $t1 <= $d['end']);
-      if (in_array($d['studyId'],$studiesFilter) && in_array($d['studyId'],$speciesFilter) && $timeOK) {
+        || ($d['start'] <= $t0 && $t1 <= $d['end'])
+        || (!isset($_REQUEST['t0']) && !isset($_REQUEST['t1']));
+      $studiesOK = in_array($d['studyId'],$studiesFilter)
+        || (!isset($_REQUEST['glatosStudiesFilter']));
+      $modelsOK = in_array($d['model'],$modelsFilter)
+        || (!isset($_REQUEST['glatosModelsFilter']));
+      if ($timeOK && $studiesOK && $modelsOK) {
         addToStack($metadata,array(-180,-90,180,90),$d['lon'],$d['lat'],$_REQUEST['provider'],array(
            'id'       => $d['id']
           ,'studyId'  => $d['studyId']
