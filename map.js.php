@@ -20,7 +20,6 @@ var observationsStore    = new Ext.data.ArrayStore({fields : []});
 var marineStore          = new Ext.data.ArrayStore({fields : []});
 var glidersStore         = new Ext.data.ArrayStore({fields : []});
 var glidersMetadataStore = new Ext.data.ArrayStore({fields : []});
-var glatosInitialized    = false;
 var glatosStore          = new Ext.data.ArrayStore({fields : []});
 var glatosStatsStore     = new Ext.data.ArrayStore({fields : []});
 var glatosStudiesStore   = new Ext.data.ArrayStore({fields : []});
@@ -1881,7 +1880,6 @@ function init() {
                   map.updateSize();
                   Ext.getCmp('timeSlider').setWidth(w - 75);
                   Ext.getCmp('sliderTics').setWidth(w - 48);
-                  // document.getElementById('sliderTicsTable').style.width = w - 90;
                 }
               }
             }
@@ -2174,11 +2172,6 @@ function initMap() {
     syncObs({name : 'HF Radar'});
     syncObs({name : 'Satellites'});
     syncObs({name : 'Gliders'});
-    // IE is having sync issues, so stick the 1st call here
-    if (config == 'glatos' && !glatosInitialized) {
-      glatosInitialized = true;
-      syncGlatos(true);
-    }
     if (popupObs) {
       popupObs.show();
     }
@@ -2507,7 +2500,7 @@ function initMap() {
             ,'seasonal'       : json[i].seasonal == 'true'
             ,'code'           : json[i].code
             ,'model'          : json[i].model
-            ,'receiversCount' : 0
+            ,'receiversCount' : 'loading'
           }));
           var ymd = json[i].start.split('T')[0].split('-');
           var d   = new Date(ymd[0],ymd[1] - 1,ymd[2]);
@@ -2526,11 +2519,7 @@ function initMap() {
         configTimeSlider(true);
       }
     });
-    // IE is having sync issues, so put its 1st call in map's moveend
-    if (!Ext.isIE) {
-      glatosInitialized = true;
-      syncGlatos(true);
-    }
+    syncGlatos(true);
   }
   else {
     configTimeSlider(true);
@@ -3037,7 +3026,12 @@ function renderGlidersDescription(val,metdata,rec) {
 }
 
 function renderReceiversCount(val,metadata,rec) {
-  return val + ' on map';
+  if (val == 'loading') {
+    return "<img height=12 src='img/loading.gif'>";
+  }
+  else {
+    return val + ' on map';
+  }
 }
 
 function addLayer(lyr,timeSensitive) {
@@ -3357,6 +3351,14 @@ function addObs(l) {
     }
     // record the action on google analytics
     pageTracker._trackEvent('layerView','loadStart',mainStore.getAt(mainStore.find('name',lyr.name)).get('displayName'));
+    var glatosIndex = glatosStore.find('name',lyr.name);
+    if (glatosIndex >= 0) {
+      glatosStudiesStore.each(function(rec) {
+        rec.set('receiversCount','loading');
+        rec.commit();
+      });
+      Ext.getCmp('glatosStudiesGridPanel').getView().refresh();
+    }
   });
   lyr.events.register('loadend',this,function(e) {
     var idx          = legendsStore.find('name',lyr.name);
@@ -3758,7 +3760,9 @@ function syncObs(l,force) {
                 boundsEqual = false;
               }
             }
-            if (boundsEqual) {
+            // force glatos (Receivers) to update since not having a bottom time slider doesn't cause
+            // the boundsEqual flag to pass
+            if (boundsEqual || map.layers[lyrIdx].name == 'Receivers') {
               map.layers[lyrIdx].featureFactor = 1;
               map.layers[lyrIdx].addFeatures(f);
             }
