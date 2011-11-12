@@ -1429,7 +1429,6 @@ function init() {
     ,hidden           : hideGlatosGridPanel
     ,height           : glatosStore.getCount() * 21.1 + 26 + 11 + 25
     ,title            : 'Sites'
-    ,collapsible      : true
     ,store            : glatosStore
     ,border           : false
     ,selModel         : glatosSelModel
@@ -1441,19 +1440,21 @@ function init() {
     ,hideHeaders      : true
     ,disableSelection : true
     ,tbar             : [
-      {
-         text    : 'Turn all sites off'
-        ,icon    : 'img/delete.png'
-        ,handler : function() {
-          glatosSelModel.clearSelections();
-        }
-      }
-      ,'->'
+       '->'
       ,{
-         text    : 'Turn all sites on'
-        ,icon    : 'img/add.png'
+         text    : 'Reset all filters'
+        ,icon    : 'img/arrow_refresh.png'
         ,handler : function() {
+          glatosSelModel.suspendEvents();
           glatosSelModel.selectAll();
+          glatosSelModel.resumeEvents();
+          Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().selectAll();
+          Ext.getCmp('glatosModelsGridPanel').getSelectionModel().selectAll();
+          Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().suspendEvents(); 
+          Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().selectRow(0)
+          Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().resumeEvents();
+          Ext.getCmp('glatosProjectStatusesGridPanel').getSelectionModel().selectAll();
+          syncGlatos(true);
         }
       }
     ]
@@ -1541,21 +1542,19 @@ function init() {
       }
     }
     ,tbar             : [
-      {
-         text    : 'Hide all studies'
-        ,icon    : 'img/delete.png'
-        ,handler : function() {
-          Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().clearSelections();
-          Ext.getCmp('glatosStudiesGridPanel').fireEvent('rowclick',Ext.getCmp('glatosStudiesGridPanel'));
-        }
-      }
-      ,'->'
+       '->'
       ,{
-         text    : 'Show all studies'
-        ,icon    : 'img/add.png'
+         text    : 'Reset all filters'
+        ,icon    : 'img/arrow_refresh.png'
         ,handler : function() {
           Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().selectAll();
-          Ext.getCmp('glatosStudiesGridPanel').fireEvent('rowclick',Ext.getCmp('glatosStudiesGridPanel'));
+          Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().selectAll();
+          Ext.getCmp('glatosModelsGridPanel').getSelectionModel().selectAll();
+          Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().suspendEvents();
+          Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().selectRow(0)
+          Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().resumeEvents();
+          Ext.getCmp('glatosProjectStatusesGridPanel').getSelectionModel().selectAll();
+          syncGlatos(true);
         }
       }
     ]
@@ -1569,7 +1568,7 @@ function init() {
     ,hidden           : hideGlatosGridPanel
     ,title            : 'Filter by model'
     ,store            : new Ext.data.ArrayStore({fields : ['model']})
-    ,height           : 2 * 21.1 + 26 + 11 + 25
+    ,height           : 2 * 21.1 + 26 + 11
     ,border           : false
     ,autoExpandColumn : 'model'
     ,columns          : [
@@ -1585,25 +1584,6 @@ function init() {
         syncGlatos(true);
       }
     }
-    ,tbar             : [
-      {
-         text    : 'Hide all models'
-        ,icon    : 'img/delete.png'
-        ,handler : function() {
-          Ext.getCmp('glatosModelsGridPanel').getSelectionModel().clearSelections();
-          Ext.getCmp('glatosModelsGridPanel').fireEvent('rowclick',Ext.getCmp('glatosModelsGridPanel'));
-        }
-      }
-      ,'->'
-      ,{
-         text    : 'Show all models'
-        ,icon    : 'img/add.png'
-        ,handler : function() {
-          Ext.getCmp('glatosModelsGridPanel').getSelectionModel().selectAll();
-          Ext.getCmp('glatosModelsGridPanel').fireEvent('rowclick',Ext.getCmp('glatosModelsGridPanel'));
-        }
-      }
-    ]
   });
 
   var glatosSeasonalSelModel = new Ext.grid.CheckboxSelectionModel({
@@ -1617,7 +1597,7 @@ function init() {
   var glatosSeasonalGridPanel = new Ext.grid.GridPanel({
      id               : 'glatosSeasonalGridPanel'
     ,hidden           : hideGlatosGridPanel
-    ,title            : 'Filter by seasonality'
+    ,title            : 'Filter by operating schedule'
     ,store            : new Ext.data.ArrayStore({
       fields : [
         'name'
@@ -1627,7 +1607,7 @@ function init() {
         ,['Seasonal only']
       ]
     })
-    ,height           : 2 * 21.1 + 26 + 11 + 25
+    ,height           : 2 * 21.1 + 26 + 11
     ,border           : false
     ,autoExpandColumn : 'name'
     ,columns          : [
@@ -1646,6 +1626,53 @@ function init() {
         grid.suspendEvents();
         grid.getSelectionModel().selectRow(0);
         grid.resumeEvents();
+      }
+    }
+  });
+
+  var glatosProjectStatusSelModel = new Ext.grid.CheckboxSelectionModel({
+    header : ''
+  });
+  var glatosProjectStatusesGridPanel = new Ext.grid.GridPanel({
+     id               : 'glatosProjectStatusesGridPanel'
+    ,hidden           : hideGlatosGridPanel
+    ,title            : 'Filter by project status'
+    ,store            : new Ext.data.ArrayStore({
+      fields : [
+        'name'
+      ]
+      ,data : [
+         ['Ongoing']
+        ,['Proposed']
+        ,['Finished']
+      ]
+    })
+    ,height           : 3 * 21.1 + 26 + 11
+    ,border           : false
+    ,autoExpandColumn : 'name'
+    ,collapsible      : true
+    ,columns          : [
+       glatosProjectStatusSelModel
+      ,{id : 'name',dataIndex : 'name'}
+    ]
+    ,hideHeaders      : true
+    ,loadMask         : true
+    ,deferRowRender   : false
+    ,selModel         : glatosProjectStatusSelModel
+    ,listeners        : {
+      rowclick : function(grid,rowIndex,e) {
+        syncGlatos(true);
+      }
+      ,viewready : function(grid) {
+        grid.suspendEvents();
+        grid.getSelectionModel().selectAll();
+        grid.resumeEvents();
+      }
+      ,collapse : function() {
+        syncGlatos(true);
+      }
+      ,expand   : function() {
+        syncGlatos(true);
       }
     }
   });
@@ -1680,11 +1707,12 @@ function init() {
     ,assetsGridPanel
     ,glidersGridPanel
     ,glidersProvidersGridPanel
-    ,glatosGridPanel
+//    ,glatosGridPanel
     ,glatosStudiesGridPanel
     ,glatosModelsGridPanel
     ,glatosSeasonalGridPanel
     ,glatosSeasonalGridPanel
+    ,glatosProjectStatusesGridPanel
     ,modelsGridPanel
     ,observationsGridPanel
     ,marineGridPanel
@@ -2507,7 +2535,7 @@ function initMap() {
         }
       });
       Ext.getCmp('glatosModelsGridPanel').getSelectionModel().selectAll();
-      Ext.getCmp('glatosModelsGridPanel').setHeight(modelsSto.getCount() * 21.1 + 26 + 11 + 25);
+      Ext.getCmp('glatosModelsGridPanel').setHeight(modelsSto.getCount() * 21.1 + 26 + 11);
     });
     glatosStatsStore.fireEvent('beforeload');
     Ext.getCmp('glatosModelsGridPanel').getStore().fireEvent('beforeload');
@@ -2543,8 +2571,8 @@ function initMap() {
             ,'name'           : json[i].name
             ,'description'    : json[i].description
             ,'species'        : json[i].species
-            ,'start'          : json[i].start
-            ,'end'            : json[i].end
+            ,'start'          : new Date(json[i].start)
+            ,'end'            : new Date(json[i].ending)
             ,'url'            : json[i].url
             ,'seasonal'       : json[i].seasonal == 'true'
             ,'code'           : json[i].code
@@ -4651,7 +4679,9 @@ function getFilter() {
     var p = [];
     var sel = Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().getSelections();
     for (var i = 0; i < sel.length; i++) {
-      p.push(sel[i].get('id'));
+      if (glatosProjectStatusOK(sel[i])) {
+        p.push(sel[i].get('id'));
+      }
     }
     f.push('glatosStudiesFilter=' + p.join(','));
     p = [];
@@ -4666,11 +4696,37 @@ function getFilter() {
       p.push(sel[i].get('name'));
     }
     f.push('glatosSeasonalFilter=' + p.join(','));
+    p = [];
+    sel = Ext.getCmp('glatosProjectStatusesGridPanel').getSelectionModel().getSelections();
+    for (var i = 0; i < sel.length; i++) {
+      p.push(sel[i].get('name'));
+    }
+    f.push('glatosProjectStatusesFilter=' + p.join(','));
     return '&' + f.join('&');
   }
   else {
     return '';
   }
+}
+
+function glatosProjectStatusOK(studiesRec) {
+  if (Ext.getCmp('glatosProjectStatusesGridPanel').collapsed) {
+    return true;
+  }
+  var ok = false;
+  var sel = Ext.getCmp('glatosProjectStatusesGridPanel').getSelectionModel().getSelections();
+  for (var i = 0; i < sel.length; i++) {
+    if (sel[i].get('name') == 'Ongoing') {
+      ok = ok || (studiesRec.get('start') < dNow && dNow < studiesRec.get('end'));
+    }
+    if (sel[i].get('name') == 'Proposed') {
+      ok = ok || dNow < studiesRec.get('start');
+    }
+    if (sel[i].get('name') == 'Finished') {
+      ok = ok || studiesRec.get('end') < dNow;
+    }
+  }
+  return ok;
 }
 
 function refreshWWA() {
