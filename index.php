@@ -23,6 +23,7 @@
 
     <script>
       var globalTitle     = '<?php echo $title?>';
+      var globalTitleOverride;
       var config          = 'assets';
       var helpUnavailable = false;
       var fdbkUnavailable = false;
