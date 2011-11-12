@@ -1523,7 +1523,7 @@ function init() {
     ,hidden           : hideGlatosGridPanel
     ,title            : 'Filter by study'
     ,store            : glatosStudiesStore
-    ,height           : 200
+    ,height           : 2 * 21.1 + 26 + 11 + 25
     ,border           : false
     ,autoExpandColumn : 'description'
     ,columns          : [
@@ -1569,7 +1569,7 @@ function init() {
     ,hidden           : hideGlatosGridPanel
     ,title            : 'Filter by model'
     ,store            : new Ext.data.ArrayStore({fields : ['model']})
-    ,height           : 200
+    ,height           : 2 * 21.1 + 26 + 11 + 25
     ,border           : false
     ,autoExpandColumn : 'model'
     ,columns          : [
@@ -1606,6 +1606,50 @@ function init() {
     ]
   });
 
+  var glatosSeasonalSelModel = new Ext.grid.CheckboxSelectionModel({
+     header       : ''
+    ,singleSelect : true
+    // make sure 1 row is selected
+    ,listeners    : {rowdeselect : function(selModel,idx) {
+      selModel.selectRow((idx  + 1) % 2); 
+    }}
+  });
+  var glatosSeasonalGridPanel = new Ext.grid.GridPanel({
+     id               : 'glatosSeasonalGridPanel'
+    ,hidden           : hideGlatosGridPanel
+    ,title            : 'Filter by seasonality'
+    ,store            : new Ext.data.ArrayStore({
+      fields : [
+        'name'
+      ]
+      ,data : [
+         ['Year-round']
+        ,['Seasonal only']
+      ]
+    })
+    ,height           : 2 * 21.1 + 26 + 11 + 25
+    ,border           : false
+    ,autoExpandColumn : 'name'
+    ,columns          : [
+       glatosSeasonalSelModel
+      ,{id : 'name',dataIndex : 'name'}
+    ]
+    ,hideHeaders      : true
+    ,loadMask         : true
+    ,deferRowRender   : false
+    ,selModel         : glatosSeasonalSelModel
+    ,listeners        : {
+      rowclick : function(grid,rowIndex,e) {
+        syncGlatos(true);
+      }
+      ,viewready : function(grid) {
+        grid.suspendEvents();
+        grid.getSelectionModel().selectRow(0);
+        grid.resumeEvents();
+      }
+    }
+  });
+
   var legendsGridPanel = new Ext.grid.GridPanel({
      id               : 'legendsGridPanel'
     ,hidden           : hideLegendsGridPanel
@@ -1639,6 +1683,8 @@ function init() {
     ,glatosGridPanel
     ,glatosStudiesGridPanel
     ,glatosModelsGridPanel
+    ,glatosSeasonalGridPanel
+    ,glatosSeasonalGridPanel
     ,modelsGridPanel
     ,observationsGridPanel
     ,marineGridPanel
@@ -4597,7 +4643,10 @@ function getFilter() {
     }
     return '&filterProvider=' + escape('&provider[]=' + p.join('&provider[]='));
   }
-  else if (config == 'glatos' && Ext.getCmp('glatosStudiesGridPanel').getStore().getCount() > 0 && Ext.getCmp('glatosModelsGridPanel').getStore().getCount() > 0) {
+  else if (config == 'glatos' 
+    && Ext.getCmp('glatosStudiesGridPanel').getStore().getCount() > 0 
+    && Ext.getCmp('glatosModelsGridPanel').getStore().getCount() > 0
+  ) {
     var f = [];
     var p = [];
     var sel = Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().getSelections();
@@ -4606,11 +4655,17 @@ function getFilter() {
     }
     f.push('glatosStudiesFilter=' + p.join(','));
     p = [];
-    var sel = Ext.getCmp('glatosModelsGridPanel').getSelectionModel().getSelections();
+    sel = Ext.getCmp('glatosModelsGridPanel').getSelectionModel().getSelections();
     for (var i = 0; i < sel.length; i++) {
       p.push(sel[i].get('model'));
     }
     f.push('glatosModelsFilter=' + p.join(','));
+    p = [];
+    sel = Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().getSelections();
+    for (var i = 0; i < sel.length; i++) {
+      p.push(sel[i].get('name'));
+    }
+    f.push('glatosSeasonalFilter=' + p.join(','));
     return '&' + f.join('&');
   }
   else {

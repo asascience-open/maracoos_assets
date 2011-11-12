@@ -224,10 +224,11 @@
   }
 
   if (preg_match('/Receiver/',$_REQUEST['provider'])) {
-    $t0            = strtotime($_REQUEST['t0']);
-    $t1            = strtotime($_REQUEST['t1']);
-    $studiesFilter = explode(',',$_REQUEST['glatosStudiesFilter']);
-    $modelsFilter  = explode(',',$_REQUEST['glatosModelsFilter']);
+    $t0             = strtotime($_REQUEST['t0']);
+    $t1             = strtotime($_REQUEST['t1']);
+    $studiesFilter  = explode(',',$_REQUEST['glatosStudiesFilter']);
+    $modelsFilter   = explode(',',$_REQUEST['glatosModelsFilter']);
+    $seasonalFilter = $_REQUEST['glatosSeasonalFilter'];
     $json = json_decode(file_get_contents('http://glatos.asascience.com/deployments.geo'));
     for ($i = 0; $i < count($json); $i++) {
       preg_match('/\((.*) (.*)\)/',sprintf("%s",$json[$i]->geojson->geometry),$lonLat);
@@ -238,7 +239,7 @@
         ,'studyId'  => sprintf("%s",$json[$i]->geojson->properties->study_id)
         ,'start'    => strtotime(sprintf("%s",$json[$i]->geojson->properties->start))
         ,'end'      => strtotime(sprintf("%s",$json[$i]->geojson->properties->ending))
-        ,'seasonal' => sprintf("%s",$json[$i]->geojson->properties->seasonal)
+        ,'seasonal' => $json[$i]->geojson->properties->seasonal
         ,'code'     => sprintf("%s",$json[$i]->geojson->properties->code)
         ,'model'    => sprintf("%s",$json[$i]->geojson->properties->model)
       );
@@ -253,7 +254,8 @@
         || (!isset($_REQUEST['glatosStudiesFilter']));
       $modelsOK = in_array($d['model'],$modelsFilter)
         || (!isset($_REQUEST['glatosModelsFilter']));
-      if ($timeOK && $studiesOK && $modelsOK) {
+      $seasonalOK = ($seasonalFilter == 'Seasonal only') ? $d['seasonal'] : true;
+      if ($timeOK && $studiesOK && $modelsOK && $seasonalOK) {
         addToStack($metadata,array(-180,-90,180,90),$d['lon'],$d['lat'],$_REQUEST['provider'],array(
            'id'       => $d['id']
           ,'studyId'  => $d['studyId']
