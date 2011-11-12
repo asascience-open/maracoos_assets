@@ -107,7 +107,7 @@ function init() {
   });
 
   var introPanel = new Ext.Panel({
-     height : 48
+     height : introPanelHeightOverride ? introPanelHeightOverride : 48
     ,border : false
     ,html   : introPanelHtmlOverride ? introPanelHtmlOverride : '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://maracoos.org/"><img title="Go to the MARACOOS home page" src="img/maracoos.jpg"></a></td><td align=center><a target=_blank href="http://www.ioos.gov/"><img title="Go to the IOOS home page" src="img/ioos.gif"></a></td></tr></table>'
   });
@@ -1658,7 +1658,7 @@ function init() {
       ,new Ext.Panel({
          region      : 'west'
         ,width       : 278
-        ,title       : globalTitle + ' Manager'
+        ,title       : globalTitleOverride ? globalTitleOverride : globalTitle + ' Manager'
         ,collapsible : managerPanelCollapsible
         ,autoScroll  : true
         ,items       : managerItems
@@ -2488,8 +2488,11 @@ function initMap() {
         var json = new OpenLayers.Format.JSON().read(r.responseText);
         var menu = [];
         var minD;
+        // for some reason I can't rely on the store to sort the recs by description,
+        // so do it before adding
+        var studies = {};
         for (var i = 0; i < json.length; i++) {
-          glatosStudiesStore.add(new glatosStudiesStore.recordType({
+          studies[json[i].description] = new glatosStudiesStore.recordType({
              'id'             : json[i].id
             ,'name'           : json[i].name
             ,'description'    : json[i].description
@@ -2501,22 +2504,24 @@ function initMap() {
             ,'code'           : json[i].code
             ,'model'          : json[i].model
             ,'receiversCount' : 'loading'
-          }));
+          });
           var ymd = json[i].start.split('T')[0].split('-');
           var d   = new Date(ymd[0],ymd[1] - 1,ymd[2]);
           if (!minD || d < minD) {
             minD = d;
           }
         }
+        var sKeys = [];
+        for (var s in studies) {
+          sKeys.push(s);
+        }
+        sKeys.sort();
+        for (var i = 0; i < sKeys.length; i++) {
+          glatosStudiesStore.add(studies[sKeys[i]]);
+        }
         glatosStudiesStore.fireEvent('load');
-        glatosStudiesStore.sort('description','ASC');
         Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().selectAll();
         Ext.getCmp('glatosStudiesGridPanel').setHeight(glatosStudiesStore.getCount() * 21.1 + 26 + 11 + 25);
-        makeAvailableTimes(minD);
-        Ext.getCmp('timeSlider').suspendEvents();
-        Ext.getCmp('timeSlider').setMaxValue(availableTimes.length - 1);
-        Ext.getCmp('timeSlider').resumeEvents();
-        configTimeSlider(true);
       }
     });
     syncGlatos(true);

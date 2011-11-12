@@ -10,7 +10,7 @@
       $title = 'MARACOOS Marine';
     }
     else if ($_REQUEST['config'] == 'glatos') {
-      $title = 'GLATOSWeb';
+      $title = 'GLATOSWeb Explore Tool';
     }
   }
 ?>
@@ -29,6 +29,9 @@
 <?php
   if (isset($_REQUEST['config'])) {
     echo 'config = "'.$_REQUEST['config'].'"'.";\n";
+    if ($_REQUEST['config'] == 'glatos') {
+      echo "globalTitleOverride = 'GLATOSWeb Explore Tool';\n";
+    }
   }
 ?>
 
@@ -55,6 +58,7 @@
       var hideTimestampLabel        = false;
       var hideMouseControl          = false;
       var introPanelHtmlOverride;
+      var introPanelHeightOverride;
 
       var mapBanner = {hidden : true};
 
@@ -148,7 +152,8 @@
         hideTimeSlider            = true;
         hideMouseControl          = true;
 
-        introPanelHtmlOverride = '<table class="smallFont" width="100%"><tr><td align=justify>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</td></tr></table>';
+        introPanelHtmlOverride   = '<table class="smallFont" width="100%"><tr><td align=justify>Place your curser over points on the map to view additional information about projects and receivers.  Use the tools below to filter receivers by project, operating schedule, acoustic frequency, and status.</td></tr></table>';
+        introPanelHeightOverride = 65;
 
         mapBanner = {
            html      : '<img src="img/glatosBanner.jpg">'
