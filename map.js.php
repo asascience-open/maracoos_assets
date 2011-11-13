@@ -1470,7 +1470,7 @@ function init() {
     ,autoExpandColumn : 'description'
     ,columns          : [
        glatosStudiesSelModel
-      ,{id : 'description'   ,dataIndex : 'description'}
+      ,{id : 'description'   ,dataIndex : 'description'   ,renderer : renderReceiversProject}
       ,{id : 'receiversCount',dataIndex : 'receiversCount',renderer : renderReceiversCount,align : 'right',width : 75}
     ]
     ,hideHeaders      : true
@@ -1541,7 +1541,7 @@ function init() {
     ,border      : false
     ,collapsible : true
     ,collapsed   : true
-    ,labelWidth  : 28
+    ,labelWidth  : 1
     ,layout      : 'column'
     ,tbar             : [
        '->'
@@ -1560,24 +1560,23 @@ function init() {
       }
     ]
     ,items       : [
-      {labelSeparator : '',border : false,columnWidth : 0.45,layout : 'form',items : new Ext.form.DateField({
+      {border : false,columnWidth : 0.40,layout : 'form',items : new Ext.form.DateField({
          id         : 'glatosTimesStart'
-        ,fieldLabel : 'Start'
         ,disabled   : true
         ,showToday  : false
         ,allowBlank : false
-        ,width      : 80
+        ,width      : 100
         ,listeners  : {change : function() {
           syncGlatos(true);
         }}
       })}
-      ,{labelSeparator : '',border : false,columnWidth : 0.45,layout : 'form',items : new Ext.form.DateField({
+      ,{border : false,columnWidth : 0.10,layout : 'form',html : '-',bodyStyle : 'text-align:center'}
+      ,{border : false,columnWidth : 0.40,layout : 'form',items : new Ext.form.DateField({
          id         : 'glatosTimesEnd'
-        ,fieldLabel : 'End'
         ,disabled   : true
         ,showToday  : false
         ,allowBlank : false
-        ,width      : 80
+        ,width      : 100
         ,listeners  : {change : function() {
           syncGlatos(true);
         }}
@@ -3122,6 +3121,22 @@ function renderLegend(val,metadata,rec) {
 
 function renderGlidersDescription(val,metdata,rec) {
   return val + ' (' + rec.get('name') + ')';
+}
+
+function renderReceiversProject(val) {
+  if (val.indexOf('Lake Sturgeon') >= 0) {
+    return 'Lake Sturgeon';
+  }
+  else if (val.indexOf('Sea Lamprey') >= 0) {
+    return 'Sea Lamprey';
+  }
+  else if (val.indexOf('Walleye') >= 0) {
+    return 'Walleye';
+  }
+  else if (val.indexOf('Lake Trout') >= 0) {
+    return 'Lake Trout';
+  }
+  return val;
 }
 
 function renderReceiversCount(val,metadata,rec) {
