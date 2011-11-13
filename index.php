@@ -60,6 +60,7 @@
       var hideMouseControl          = false;
       var introPanelHtmlOverride;
       var introPanelHeightOverride;
+      var maxZoomLevel;
 
       var mapBanner = {hidden : true};
 
@@ -167,6 +168,11 @@
 
         defaultCenter  = [-9367578.6331264,5443194.7163551];
         defaultZoom    = 6;
+<?php
+  if (isset($_REQUEST['maxZoomLevel'])) {
+    echo 'maxZoomLevel = '.$_REQUEST['maxZoomLevel'].";\n";
+  }
+?>
       }
 
       var defaultStyles = {

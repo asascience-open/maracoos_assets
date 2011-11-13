@@ -2179,6 +2179,7 @@ function initMap() {
         ,projection    : proj900913
         ,opacity       : defaultOpacities['Google Hybrid'] / 100
         ,visibility    : defaultBasemap == 'Google Hybrid'
+        ,maxZoomLevel  : maxZoomLevel ? maxZoomLevel : 10
       })
       ,new OpenLayers.Layer.Google('Google Satellite',{
          type          : google.maps.MapTypeId.SATELLITE
