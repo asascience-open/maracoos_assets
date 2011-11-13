@@ -1412,65 +1412,6 @@ function init() {
     ]
   });
 
-  var glatosSelModel = new Ext.grid.CheckboxSelectionModel({
-     header    : ''
-    ,checkOnly : true
-    ,listeners : {
-      rowdeselect : function(sm,idx,rec) {
-        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
-      }
-      ,rowselect : function(sm,idx,rec) {
-        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
-      }
-    }
-  });
-  var glatosGridPanel = new Ext.grid.GridPanel({
-     id               : 'glatosGridPanel'
-    ,hidden           : hideGlatosGridPanel
-    ,height           : glatosStore.getCount() * 21.1 + 26 + 11 + 25
-    ,title            : 'Sites'
-    ,store            : glatosStore
-    ,border           : false
-    ,selModel         : glatosSelModel
-    ,columns          : [
-       glatosSelModel
-      ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
-      ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
-    ]
-    ,hideHeaders      : true
-    ,disableSelection : true
-    ,tbar             : [
-       '->'
-      ,{
-         text    : 'Reset all filters'
-        ,icon    : 'img/arrow_refresh.png'
-        ,handler : function() {
-          glatosSelModel.suspendEvents();
-          glatosSelModel.selectAll();
-          glatosSelModel.resumeEvents();
-          Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().selectAll();
-          Ext.getCmp('glatosModelsGridPanel').getSelectionModel().selectAll();
-          Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().suspendEvents(); 
-          Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().selectRow(0)
-          Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().resumeEvents();
-          Ext.getCmp('glatosProjectStatusesGridPanel').getSelectionModel().selectAll();
-          syncGlatos(true);
-        }
-      }
-    ]
-    ,listeners        : {viewready : function(grid) {
-      glatosSelModel.suspendEvents();
-      var i = 0;
-      glatosStore.each(function(rec) {
-        if (rec.get('status') == 'on') {
-          glatosSelModel.selectRow(i,true);
-        }
-        i++;
-      });
-      glatosSelModel.resumeEvents();
-    }}
-  });
-
   var glidersProvidersSelModel = new Ext.grid.CheckboxSelectionModel({
     header : ''
   });
@@ -1547,13 +1488,19 @@ function init() {
          text    : 'Reset all filters'
         ,icon    : 'img/arrow_refresh.png'
         ,handler : function() {
+          Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().suspendEvents();
+          Ext.getCmp('glatosTimesStart').suspendEvents();
+          Ext.getCmp('glatosTimesEnd').suspendEvents();
           Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().selectAll();
           Ext.getCmp('glatosStudiesGridPanel').getSelectionModel().selectAll();
           Ext.getCmp('glatosModelsGridPanel').getSelectionModel().selectAll();
-          Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().suspendEvents();
           Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().selectRow(0)
-          Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().resumeEvents();
           Ext.getCmp('glatosProjectStatusesGridPanel').getSelectionModel().selectAll();
+          Ext.getCmp('glatosTimesStart').setValue(Ext.getCmp('glatosTimesStart').minValue);
+          Ext.getCmp('glatosTimesEnd').setValue(Ext.getCmp('glatosTimesEnd').maxValue);
+          Ext.getCmp('glatosSeasonalGridPanel').getSelectionModel().resumeEvents();
+          Ext.getCmp('glatosTimesStart').resumeEvents();
+          Ext.getCmp('glatosTimesEnd').resumeEvents();
           syncGlatos(true);
         }
       }
@@ -1594,31 +1541,50 @@ function init() {
     ,border      : false
     ,collapsible : true
     ,collapsed   : true
-    ,labelSeparator : ''
-    ,labelWidth     : 30
+    ,labelWidth  : 28
+    ,layout      : 'column'
+    ,tbar             : [
+       '->'
+      ,{
+         text    : 'Reset times'
+        ,icon    : 'img/arrow_refresh.png'
+        ,handler : function() {
+          Ext.getCmp('glatosTimesStart').suspendEvents();
+          Ext.getCmp('glatosTimesEnd').suspendEvents();
+          Ext.getCmp('glatosTimesStart').setValue(Ext.getCmp('glatosTimesStart').minValue);
+          Ext.getCmp('glatosTimesEnd').setValue(Ext.getCmp('glatosTimesEnd').maxValue);
+          Ext.getCmp('glatosTimesStart').resumeEvents();
+          Ext.getCmp('glatosTimesEnd').resumeEvents();
+          syncGlatos(true);
+        }
+      }
+    ]
     ,items       : [
-      new Ext.form.DateField({
+      {labelSeparator : '',border : false,columnWidth : 0.45,layout : 'form',items : new Ext.form.DateField({
          id         : 'glatosTimesStart'
         ,fieldLabel : 'Start'
         ,disabled   : true
         ,showToday  : false
         ,allowBlank : false
-        ,width      : 100
+        ,width      : 80
         ,listeners  : {change : function() {
           syncGlatos(true);
         }}
-      })
-      ,new Ext.form.DateField({
+      })}
+      ,{labelSeparator : '',border : false,columnWidth : 0.45,layout : 'form',items : new Ext.form.DateField({
          id         : 'glatosTimesEnd'
         ,fieldLabel : 'End'
         ,disabled   : true
         ,showToday  : false
         ,allowBlank : false
-        ,width      : 100
+        ,width      : 80
         ,listeners  : {change : function() {
           syncGlatos(true);
         }}
-      })
+      })}
+      ,{border : false,columnWidth : 0.10,layout : 'form',items : new Ext.Button({
+         text : 'Go'
+      })}
     ]
     ,listeners : {
       collapse : function() {
@@ -1753,7 +1719,6 @@ function init() {
     ,assetsGridPanel
     ,glidersGridPanel
     ,glidersProvidersGridPanel
-//    ,glatosGridPanel
     ,glatosStudiesGridPanel
     ,glatosSeasonalGridPanel
     ,glatosModelsGridPanel

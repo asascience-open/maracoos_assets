@@ -147,7 +147,7 @@
   border-color   : #ffffff;
 }
 #glatosTimesFormPanel .x-form-item label.x-form-item-label {
-  padding : 6px 3px 3px 27px;
+  padding : 6px 3px 3px;
   font : 11px/13px arial,tahoma,helvetica,sans-serif
 }
 #glatosTimesFormPanel .x-form-field {
@@ -184,24 +184,6 @@
 }
 #glatosProjectStatusesGridPanel .x-grid3-body .x-grid3-td-checker {
   background-image : url('img/blank.png');
-}
-
-#glatosGridPanel {
-  border-top: 1px solid #99BBE8;
-}
-#glatosGridPanel .x-grid3-row {
-  border-color   : #ffffff;
-}
-#glatosGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
-  padding : 0px;
-}
-#glatosGridPanel a:link {
-  text-decoration : none;
-  font            : 12px tahoma,helvetica,sans-serif;
-  color           : #000000;
-}
-#glatosGridPanel a:hover {
-  color : rgb(74,134,214);
 }
 
 #modelsGridPanel {
