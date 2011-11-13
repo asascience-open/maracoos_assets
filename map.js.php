@@ -1522,7 +1522,7 @@ function init() {
   var glatosStudiesGridPanel = new Ext.grid.GridPanel({
      id               : 'glatosStudiesGridPanel'
     ,hidden           : hideGlatosGridPanel
-    ,title            : 'Filter by study'
+    ,title            : 'Filter by project'
     ,store            : glatosStudiesStore
     ,height           : 2 * 21.1 + 26 + 11 + 25
     ,border           : false
@@ -1566,7 +1566,7 @@ function init() {
   var glatosModelsGridPanel = new Ext.grid.GridPanel({
      id               : 'glatosModelsGridPanel'
     ,hidden           : hideGlatosGridPanel
-    ,title            : 'Filter by model'
+    ,title            : 'Filter by acoustic frequency'
     ,store            : new Ext.data.ArrayStore({fields : ['model']})
     ,height           : 2 * 21.1 + 26 + 11
     ,border           : false
@@ -1636,7 +1636,7 @@ function init() {
   var glatosProjectStatusesGridPanel = new Ext.grid.GridPanel({
      id               : 'glatosProjectStatusesGridPanel'
     ,hidden           : hideGlatosGridPanel
-    ,title            : 'Filter by project status'
+    ,title            : 'Filter by status'
     ,store            : new Ext.data.ArrayStore({
       fields : [
         'name'
@@ -1709,9 +1709,8 @@ function init() {
     ,glidersProvidersGridPanel
 //    ,glatosGridPanel
     ,glatosStudiesGridPanel
+    ,glatosSeasonalGridPanel
     ,glatosModelsGridPanel
-    ,glatosSeasonalGridPanel
-    ,glatosSeasonalGridPanel
     ,glatosProjectStatusesGridPanel
     ,modelsGridPanel
     ,observationsGridPanel
