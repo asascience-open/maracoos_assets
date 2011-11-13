@@ -1,7 +1,7 @@
 <?php
   $stats = array(
-     'start'  => ''
-    ,'end'    => ''
+     'start'  => time()
+    ,'end'    => time()
     ,'models' => array()
   );
 
@@ -12,13 +12,10 @@
       ,'end'      => strtotime(sprintf("%s",$json[$i]->geojson->properties->ending))
       ,'model'    => sprintf("%s",$json[$i]->geojson->properties->model)
     );
-    if (!$d['end']) {
-      $d['end'] = time();
-    }
-    if (!defined($stats['start']) || $d['start'] < $stats['start']) {
+    if ($d['start'] < $stats['start']) {
       $stats['start'] = $d['start'];
     }
-    if (!defined($stats['end']) || $d['end'] < $stats['end']) {
+    if ($d['end'] > $stats['end']) {
       $stats['end'] = $d['end'];
     }
     if (!in_array($d['model'],$stats['models'])) {

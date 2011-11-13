@@ -224,8 +224,8 @@
   }
 
   if (preg_match('/Receiver/',$_REQUEST['provider'])) {
-    $t0             = strtotime($_REQUEST['t0']);
-    $t1             = strtotime($_REQUEST['t1']);
+    $t0             = $_REQUEST['t0'];
+    $t1             = $_REQUEST['t1'];
     $studiesFilter  = explode(',',$_REQUEST['glatosStudiesFilter']);
     $modelsFilter   = explode(',',$_REQUEST['glatosModelsFilter']);
     $seasonalFilter = $_REQUEST['glatosSeasonalFilter'];

@@ -1586,6 +1586,51 @@ function init() {
     }
   });
 
+  var glatosTimesFormPanel = new Ext.FormPanel({
+     id          : 'glatosTimesFormPanel'
+    ,hidden      : hideGlatosGridPanel
+    ,title       : 'Filter by time'
+    ,height      : 2 * 21.1 + 26 + 11 + 20
+    ,border      : false
+    ,collapsible : true
+    ,collapsed   : true
+    ,labelSeparator : ''
+    ,labelWidth     : 30
+    ,items       : [
+      new Ext.form.DateField({
+         id         : 'glatosTimesStart'
+        ,fieldLabel : 'Start'
+        ,disabled   : true
+        ,showToday  : false
+        ,allowBlank : false
+        ,width      : 100
+        ,listeners  : {change : function() {
+          syncGlatos(true);
+        }}
+      })
+      ,new Ext.form.DateField({
+         id         : 'glatosTimesEnd'
+        ,fieldLabel : 'End'
+        ,disabled   : true
+        ,showToday  : false
+        ,allowBlank : false
+        ,width      : 100
+        ,listeners  : {change : function() {
+          syncGlatos(true);
+        }}
+      })
+    ]
+    ,listeners : {
+      collapse : function() {
+        Ext.getCmp('glatosProjectStatusesGridPanel').expand();
+      }
+      ,expand  : function() {
+        Ext.getCmp('glatosProjectStatusesGridPanel').collapse();
+        syncGlatos(true);
+      }
+    }
+  });
+
   var glatosSeasonalSelModel = new Ext.grid.CheckboxSelectionModel({
      header       : ''
     ,singleSelect : true
@@ -1668,10 +1713,11 @@ function init() {
         grid.getSelectionModel().selectAll();
         grid.resumeEvents();
       }
-      ,collapse : function() {
-        syncGlatos(true);
+      ,collapse  : function() {
+        Ext.getCmp('glatosTimesFormPanel').expand();
       }
-      ,expand   : function() {
+      ,expand    : function() {
+        Ext.getCmp('glatosTimesFormPanel').collapse();
         syncGlatos(true);
       }
     }
@@ -1712,6 +1758,7 @@ function init() {
     ,glatosSeasonalGridPanel
     ,glatosModelsGridPanel
     ,glatosProjectStatusesGridPanel
+    ,glatosTimesFormPanel
     ,modelsGridPanel
     ,observationsGridPanel
     ,marineGridPanel
@@ -2532,6 +2579,14 @@ function initMap() {
             model : m[i]
           }));
         }
+        Ext.getCmp('glatosTimesStart').setValue(rec.get('start'));
+        Ext.getCmp('glatosTimesStart').setMinValue(rec.get('start'));
+        Ext.getCmp('glatosTimesStart').setMaxValue(rec.get('end'));
+        Ext.getCmp('glatosTimesEnd').setValue(rec.get('end'));
+        Ext.getCmp('glatosTimesEnd').setMinValue(rec.get('start'));
+        Ext.getCmp('glatosTimesEnd').setMaxValue(rec.get('end'));
+        Ext.getCmp('glatosTimesStart').enable();
+        Ext.getCmp('glatosTimesEnd').enable();
       });
       Ext.getCmp('glatosModelsGridPanel').getSelectionModel().selectAll();
       Ext.getCmp('glatosModelsGridPanel').setHeight(modelsSto.getCount() * 21.1 + 26 + 11);
@@ -2544,8 +2599,8 @@ function initMap() {
       ,callback : function(r) {
         var json = new OpenLayers.Format.JSON().read(r.responseText);
         glatosStatsStore.add(new glatosStatsStore.recordType({
-           'start'  : new Date(json.start)
-          ,'end'    : new Date(json.end)
+           'start'  : new Date(json.start * 1000)
+          ,'end'    : new Date(json.end * 1000)
           ,'models' : json.models
         }));
         glatosStatsStore.fireEvent('load');
@@ -2570,8 +2625,8 @@ function initMap() {
             ,'name'           : json[i].name
             ,'description'    : json[i].description
             ,'species'        : json[i].species
-            ,'start'          : new Date(json[i].start)
-            ,'end'            : new Date(json[i].ending)
+            ,'start'          : isoDateToDate(json[i].start)
+            ,'end'            : isoDateToDate(json[i].ending)
             ,'url'            : json[i].url
             ,'seasonal'       : json[i].seasonal == 'true'
             ,'code'           : json[i].code
@@ -3110,6 +3165,10 @@ function renderReceiversCount(val,metadata,rec) {
   else {
     return val + ' on map';
   }
+}
+
+function renderDate(val) {
+  return val ? val.dateFormat('M d, Y') : '';
 }
 
 function addLayer(lyr,timeSensitive) {
@@ -4683,6 +4742,10 @@ function getFilter() {
       }
     }
     f.push('glatosStudiesFilter=' + p.join(','));
+    if (!Ext.getCmp('glatosTimesFormPanel').collapsed && Ext.getCmp('glatosTimesStart').getValue() != '' && Ext.getCmp('glatosTimesEnd').getValue() != '') {
+      f.push('t0=' + Ext.getCmp('glatosTimesStart').getValue().getTime() / 1000);
+      f.push('t1=' + Ext.getCmp('glatosTimesEnd').getValue().getTime() / 1000);
+    }
     p = [];
     sel = Ext.getCmp('glatosModelsGridPanel').getSelectionModel().getSelections();
     for (var i = 0; i < sel.length; i++) {

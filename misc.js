@@ -549,6 +549,20 @@ function shortDateToDate(s) {
   );
 }
 
+function isoDateToDate(s) {
+  // 2010-01-01T00:00:00Z
+  var p = s.split('T');
+  var ymd = p[0].split('-');
+  var hm = p[1].split(':');
+  return new Date(
+     ymd[0]
+    ,ymd[1] - 1
+    ,ymd[2]
+    ,hm[0]
+    ,hm[1]
+  );
+}
+
 function dateToFriendlyString(e) {
   var c = "";
   var a = new Date();

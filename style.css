@@ -140,6 +140,20 @@
   background-image : url('img/blank.png');
 }
 
+#glatosTimesFormPanel {
+  border-top: 1px solid #99BBE8;
+}
+#glatosTimesFormPanel .x-grid3-row {
+  border-color   : #ffffff;
+}
+#glatosTimesFormPanel .x-form-item label.x-form-item-label {
+  padding : 6px 3px 3px 27px;
+  font : 11px/13px arial,tahoma,helvetica,sans-serif
+}
+#glatosTimesFormPanel .x-form-field {
+  font : 11px/13px arial,tahoma,helvetica,sans-serif
+}
+
 #glatosSeasonalGridPanel {
   border-top: 1px solid #99BBE8;
 }
