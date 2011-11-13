@@ -1471,7 +1471,7 @@ function init() {
     ,columns          : [
        glatosStudiesSelModel
       ,{id : 'description'   ,dataIndex : 'description'   ,renderer : renderReceiversProject}
-      ,{id : 'receiversCount',dataIndex : 'receiversCount',renderer : renderReceiversCount,align : 'right',width : 75}
+      ,{id : 'receiversCount',dataIndex : 'receiversCount',renderer : renderReceiversCount,align : 'right',width : 70}
     ]
     ,hideHeaders      : true
     ,loadMask         : true
@@ -3125,16 +3125,16 @@ function renderGlidersDescription(val,metdata,rec) {
 
 function renderReceiversProject(val) {
   if (val.indexOf('Lake Sturgeon') >= 0) {
-    return 'Lake Sturgeon';
+    return 'Lake Sturgeon movement/habitat';
   }
   else if (val.indexOf('Sea Lamprey') >= 0) {
-    return 'Sea Lamprey';
+    return 'Tracking Sea Lamprey';
   }
   else if (val.indexOf('Walleye') >= 0) {
-    return 'Walleye';
+    return 'Tracking Walleye';
   }
   else if (val.indexOf('Lake Trout') >= 0) {
-    return 'Lake Trout';
+    return 'Understanding Lake Trout';
   }
   return val;
 }
