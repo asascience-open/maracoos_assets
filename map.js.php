@@ -62,6 +62,11 @@ var timeControlsHeight = 42;
 var checkPrintTimer;
 var refreshWWATimer;
 var refreshWWAInterval = 60000;
+var lineColors = [
+   ['#99BBE8','#1558BB']
+  ,['#e8bb99','#b56529']
+];
+
 
 function init() {
   var loadingMask = Ext.get('loading-mask');
@@ -2075,7 +2080,7 @@ function init() {
                             type = 'barb';
                           }
                           var o = p.pointOffset({x : spd[j].data[i][0],y : spd[j].data[i][1]});
-                          $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'vector.php?w=' + imageSize + '&h=' + imageSize + '&dir=' + Math.round(dir[j].data[i][1]) + '&spd=' + Math.round(spd[j].data[i][1]) + '&type=' + type + '\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
+                          $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'vector.php?w=' + imageSize + '&h=' + imageSize + '&dir=' + Math.round(dir[j].data[i][1]) + '&spd=' + Math.round(spd[j].data[i][1]) + '&type=' + type + '&color=' + lineColor2VectorColor(dir[j].color).replace('#','') + '\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
                         }
                       }
                     }
@@ -3914,13 +3919,14 @@ function makeChart(type,a) {
     Ext.getCmp('activeLabel').setText('Active model query layer: ');
   }
   chartData = [];
+  var color;
   for (var j = 0; j < a.length; j++) {
     OpenLayers.Request.GET({
        url      : a[j].url
-      ,callback : OpenLayers.Function.bind(makeChartCallback,null,a[j].title)
+      ,callback : OpenLayers.Function.bind(makeChartCallback,null,a[j].title,lineColors[j % lineColors.length][0])
     });
   }
-  function makeChartCallback(title,r) {
+  function makeChartCallback(title,lineColor,r) {
     var obs = new OpenLayers.Format.JSON().read(r.responseText);
     var yaxis = 1;
     if (obs.error) {
@@ -3942,7 +3948,7 @@ function makeChart(type,a) {
           ,yaxis  : yaxis
           ,lines  : {show : true}
           ,nowIdx : obs.d[v].length > 1 ? obs.nowIdx : ''
-          ,color  : '#99BBE8'
+          ,color  : lineColor
         });
         for (var i = 0; i < obs.d[v].length; i++) {
           chartData[chartData.length-1].data.push([obs.t[i],toEnglish({typ : 'obs',src : obs.u[v],val : obs.d[v][i]})]);
@@ -4842,4 +4848,13 @@ function syncGlatos(force) {
 
 function mkTbar() {
   return {tbar : []};
+}
+
+function lineColor2VectorColor(l) {
+  for (var i = 0; i < lineColors.length; i++) {
+    if (lineColors[i][0] == l) {
+      return lineColors[i][1];
+    }
+  }
+  return lineColors[0][1];
 }
