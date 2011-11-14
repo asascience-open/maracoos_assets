@@ -4088,9 +4088,10 @@ function mapClick(e,doWMS,doWWA) {
   if (doWMS && modelQueryLyr && modelQueryLyr.visibility && modelQueryLyr.DEFAULT_PARAMS) {
     // now that we've established our pivot point, see if there are any other active layers to drill into
     // based on the last word in the layer name (e.g. 'currents' or 'temperature')
-    var lyrType = modelQueryLyr.name.substr(modelQueryLyr.name.lastIndexOf(' ') + 1);
+    var displayName = mainStore.getAt(mainStore.find('name',modelQueryLyr.name)).get('displayName');
+    var lyrType = displayName.substr(displayName.lastIndexOf(' ') + 1);
     Ext.getCmp('chartLayerCombo').getStore().each(function(rec) {
-      if (rec.get('name') != modelQueryLyr.name && new RegExp(lyrType + '$').test(rec.get('name'))) {
+      if (rec.get('name') != modelQueryLyr.name && new RegExp(lyrType + '$').test(mainStore.getAt(mainStore.find('name',rec.get('name'))).get('displayName'))) {
         var lyr = map.getLayersByName(rec.get('name'))[0];
         if (lyr && lyr.visibility && lyr.DEFAULT_PARAMS) {
           queryLyrs.push(lyr);
