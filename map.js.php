@@ -2036,8 +2036,8 @@ function init() {
                   var ts = document.getElementById('tsResults');
                   ts.style.width  = win.getWidth() - 15;
                   ts.style.height = win.getHeight() - 55;
-                  var spd;
-                  var dir; 
+                  var spd = [];
+                  var dir = []; 
                   if (!chartData || chartData.length <= 0) {
                     ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/>Click on the map to view a time-series graph of Model or Observation output. Only one layer may be active at a time.</td></tr></table>';
                   }
@@ -2047,16 +2047,16 @@ function init() {
                   else {
                     for (var i = 0; i < chartData.length; i++) {
                       if (chartData[i].label.indexOf('Velocity') >= 0) {
-                        spd = chartData[i];
+                        spd.push(chartData[i]);
                       }
                       else if (chartData[i].label.indexOf('Direction') >= 0) {
-                        dir = chartData[i];
+                        dir.push(chartData[i]);
                       }
                     }
                     ts.innerHTML    = '';
                     var p = $.plot(
                        $('#tsResults')
-                      ,spd && dir ? [spd] : chartData
+                      ,spd.length > 0 && dir.length > 0 ? spd : chartData
                       ,{
                          xaxis     : {mode  : "time"}
                         ,crosshair : {mode  : 'x'   }
@@ -2065,15 +2065,18 @@ function init() {
                         ,pan       : {interactive : false}
                       }
                     );
-                    if (spd && dir) {
-                      var imageSize = 80;
-                      for (var i = spd.data.length - 1; i >= 0; i--) {
-                        var type = 'arrow';
-                        if (spd.label.indexOf('Wind') >= 0) {
-                          type = 'barb';
+                    if (spd.length > 0 && dir.length > 0) {
+                      // assume that #spd == #dir
+                      for (var j = 0; j < spd.length; j++) {
+                        var imageSize = 80;
+                        for (var i = spd[j].data.length - 1; i >= 0; i--) {
+                          var type = 'arrow';
+                          if (spd[j].label.indexOf('Wind') >= 0) {
+                            type = 'barb';
+                          }
+                          var o = p.pointOffset({x : spd[j].data[i][0],y : spd[j].data[i][1]});
+                          $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'vector.php?w=' + imageSize + '&h=' + imageSize + '&dir=' + Math.round(dir[j].data[i][1]) + '&spd=' + Math.round(spd[j].data[i][1]) + '&type=' + type + '\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
                         }
-                        var o = p.pointOffset({x : spd.data[i][0],y : spd.data[i][1]});
-                        $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'vector.php?w=' + imageSize + '&h=' + imageSize + '&dir=' + Math.round(dir.data[i][1]) + '&spd=' + Math.round(spd.data[i][1]) + '&type=' + type + '\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
                       }
                     }
                     if (chartData[0].nowIdx != '' && chartData[0].data[chartData[0].nowIdx]) {
@@ -3898,10 +3901,10 @@ function syncObs(l,force) {
 function showObsTimeseries(href) {
   Ext.getCmp('graphAction').setText('Processing');
   Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
-  makeChart(href,'obs',popupObs.title);
+  makeChart('obs',href,popupObs.title);
 }
 
-function makeChart(url,type,title) {
+function makeChart(type,url,title) {
   if (type == 'obs') {
     Ext.getCmp('chartLayerCombo').hide();
     Ext.getCmp('activeLabel').setText(popupObs.title);
@@ -4111,7 +4114,7 @@ function queryWMS(e,lyr) {
       + dMax.getUTCFullYear() + '-' + String.leftPad(dMax.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMax.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z';
     paramNew['GFI_TIME'] = 'min/max';
   }
-  makeChart(lyr.getFullRequestString(paramNew,'getFeatureInfo.php?' + lyr.url + '&tz=' + new Date().getTimezoneOffset() + mapTime),'model',mainStore.getAt(mainStore.find('name',lyr.name)).get('displayName'));
+  makeChart('model',lyr.getFullRequestString(paramNew,'getFeatureInfo.php?' + lyr.url + '&tz=' + new Date().getTimezoneOffset() + mapTime),mainStore.getAt(mainStore.find('name',lyr.name)).get('displayName'));
 }
 
 function queryWWA(e,f) {
