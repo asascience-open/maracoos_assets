@@ -3901,10 +3901,10 @@ function syncObs(l,force) {
 function showObsTimeseries(href) {
   Ext.getCmp('graphAction').setText('Processing');
   Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
-  makeChart('obs',href,popupObs.title);
+  makeChart('obs',[{url : href,title : popupObs.title}]);
 }
 
-function makeChart(type,url,title) {
+function makeChart(type,a) {
   if (type == 'obs') {
     Ext.getCmp('chartLayerCombo').hide();
     Ext.getCmp('activeLabel').setText(popupObs.title);
@@ -3913,47 +3913,50 @@ function makeChart(type,url,title) {
     Ext.getCmp('chartLayerCombo').show();
     Ext.getCmp('activeLabel').setText('Active model query layer: ');
   }
-  OpenLayers.Request.GET({
-     url      : url
-    ,callback : function(r) {
-      var obs = new OpenLayers.Format.JSON().read(r.responseText);
-      chartData = [];
-      var yaxis = 1;
-      if (obs.error) {
-        chartData = ['QUERY ERROR. The layer provider has reported the following error: ' + obs.error + '.'];
-        // record the action on google analytics
-        pageTracker._trackEvent('chartView',title,'error');
-      }
-      else if (obs.d == '') {
-        chartData = ['QUERY ERROR. There was an error fetching query results for this layer.'];
-        // record the action on google analytics
-        pageTracker._trackEvent('chartView',title,'error');
-      }
-      else {
-        for (var v in obs.d) {
-          // get the data
-          chartData.push({
-             data   : []
-            ,label  : v + ' (' + toEnglish({typ : 'title',src : obs.u[v],val : obs.u[v]}) + ')'
-            ,yaxis  : yaxis
-            ,lines  : {show : true}
-            ,nowIdx : obs.d[v].length > 1 ? obs.nowIdx : ''
-            ,color  : '#99BBE8'
-          });
-          for (var i = 0; i < obs.d[v].length; i++) {
-            chartData[chartData.length-1].data.push([obs.t[i],toEnglish({typ : 'obs',src : obs.u[v],val : obs.d[v][i]})]);
-          }
-          if (obs.d[v].length == 1) {
-            chartData[chartData.length - 1].points = {show : true};
-          }
-          yaxis++;
-        }
-        // record the action on google analytics
-        pageTracker._trackEvent('chartView',title,'ok');
-      }
-      Ext.getCmp('timeseriesPanel').fireEvent('resize',Ext.getCmp('timeseriesPanel'));
+  chartData = [];
+  for (var j = 0; j < a.length; j++) {
+    OpenLayers.Request.GET({
+       url      : a[j].url
+      ,callback : OpenLayers.Function.bind(makeChartCallback,null,a[j].title)
+    });
+  }
+  function makeChartCallback(title,r) {
+    var obs = new OpenLayers.Format.JSON().read(r.responseText);
+    var yaxis = 1;
+    if (obs.error) {
+      chartData = ['QUERY ERROR. The layer provider has reported the following error: ' + obs.error + '.'];
+      // record the action on google analytics
+      pageTracker._trackEvent('chartView',title,'error');
     }
-  });
+    else if (obs.d == '') {
+      chartData = ['QUERY ERROR. There was an error fetching query results for this layer.'];
+      // record the action on google analytics
+      pageTracker._trackEvent('chartView',title,'error');
+    }
+    else {
+      for (var v in obs.d) {
+        // get the data
+        chartData.push({
+           data   : []
+          ,label  : v + ' (' + toEnglish({typ : 'title',src : obs.u[v],val : obs.u[v]}) + ')'
+          ,yaxis  : yaxis
+          ,lines  : {show : true}
+          ,nowIdx : obs.d[v].length > 1 ? obs.nowIdx : ''
+          ,color  : '#99BBE8'
+        });
+        for (var i = 0; i < obs.d[v].length; i++) {
+          chartData[chartData.length-1].data.push([obs.t[i],toEnglish({typ : 'obs',src : obs.u[v],val : obs.d[v][i]})]);
+        }
+        if (obs.d[v].length == 1) {
+          chartData[chartData.length - 1].points = {show : true};
+        }
+        yaxis++;
+      }
+      // record the action on google analytics
+      pageTracker._trackEvent('chartView',title,'ok');
+    }
+    Ext.getCmp('timeseriesPanel').fireEvent('resize',Ext.getCmp('timeseriesPanel'));
+  }
 }
 
 function zoomOffset() {
@@ -4114,7 +4117,7 @@ function queryWMS(e,lyr) {
       + dMax.getUTCFullYear() + '-' + String.leftPad(dMax.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMax.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z';
     paramNew['GFI_TIME'] = 'min/max';
   }
-  makeChart('model',lyr.getFullRequestString(paramNew,'getFeatureInfo.php?' + lyr.url + '&tz=' + new Date().getTimezoneOffset() + mapTime),mainStore.getAt(mainStore.find('name',lyr.name)).get('displayName'));
+  makeChart('model',[{url : lyr.getFullRequestString(paramNew,'getFeatureInfo.php?' + lyr.url + '&tz=' + new Date().getTimezoneOffset() + mapTime),title : mainStore.getAt(mainStore.find('name',lyr.name)).get('displayName')}]);
 }
 
 function queryWWA(e,f) {
