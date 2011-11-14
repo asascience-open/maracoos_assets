@@ -160,7 +160,7 @@
         mapBanner = {
            html      : '<img src="img/glatosBanner.jpg">'
           ,height    : 81
-          ,bodyStyle : 'text-align : center;background : #144E90'
+          ,bodyStyle : 'text-align : center;background:url("img/GLATOS_banner.jpg") no-repeat center top'
           ,hidden    : false
         };
 
