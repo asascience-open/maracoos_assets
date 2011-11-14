@@ -4563,7 +4563,29 @@ function configTimeSlider(initOnly) {
     tr.appendChild(td);
     if (availableTimes[i].getTime() == dNow.getTime()) {
       Ext.getCmp('timeSlider').suspendEvents();
-      Ext.getCmp('timeSlider').setValue(i);
+      if (config == 'gliders') {
+        Ext.getCmp('timeSlider').setValue(1,i);
+        var minT;
+        for (j = availableTimes.length - 1; j >= 0; j--) {
+          // set the slider a max of 1 year away from now
+          if (!minT && dNow.getTime() - availableTimes[j].getTime() > 365 * 24 * 60 * 60 * 1000) {
+            minT = j + 1;
+          }
+        }
+        if (!minT || minT >= availableTimes.length) {
+          minT = 0;
+        }
+        Ext.getCmp('timeSlider').setValue(0,minT);
+        if (config == 'gliders') {
+          syncGliders(true);
+        }
+        else if (config == 'glatos') {
+          syncGlatos(true);
+        }
+      }
+      else {
+        Ext.getCmp('timeSlider').setValue(i);
+      }
       Ext.getCmp('timeSlider').resumeEvents();
       if (!initOnly) {
         var dStr = dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00';
