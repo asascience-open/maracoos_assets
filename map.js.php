@@ -3229,7 +3229,7 @@ function addLayer(lyr,timeSensitive) {
               var prevTs = rec.get('timestamp');
               var newTs  = shortDateString(new Date(r.responseText * 1000));
               rec.set('timestamp',newTs);
-              if (prevTs != newTs && lastMapClick['layer'] == lyr.name && lyrQueryPts.features.length > 0) {
+              if (prevTs && prevTs != newTs && lastMapClick['layer'] == lyr.name && lyrQueryPts.features.length > 0) {
                 mapClick(lastMapClick['e'],true,false);
               }
             }
@@ -3938,7 +3938,7 @@ function makeChart(type,a) {
         // get the data
         chartData.push({
            data   : []
-          ,label  : v + ' (' + toEnglish({typ : 'title',src : obs.u[v],val : obs.u[v]}) + ')'
+          ,label  : title + ' : ' + v + ' (' + toEnglish({typ : 'title',src : obs.u[v],val : obs.u[v]}) + ')'
           ,yaxis  : yaxis
           ,lines  : {show : true}
           ,nowIdx : obs.d[v].length > 1 ? obs.nowIdx : ''
@@ -4078,46 +4078,62 @@ function mapClick(e,doWMS,doWWA) {
     lyrQueryPts.addFeatures(f);
   }
 
+  var queryLyrs = [modelQueryLyr];
   if (doWMS && modelQueryLyr && modelQueryLyr.visibility && modelQueryLyr.DEFAULT_PARAMS) {
-    queryWMS(e,modelQueryLyr);
+    // now that we've established our pivot point, see if there are any other active layers to drill into
+    // based on the last word in the layer name (e.g. 'currents' or 'temperature')
+    var lyrType = modelQueryLyr.name.substr(modelQueryLyr.name.lastIndexOf(' ') + 1);
+    Ext.getCmp('chartLayerCombo').getStore().each(function(rec) {
+      if (rec.get('name') != modelQueryLyr.name && new RegExp(lyrType + '$').test(rec.get('name'))) {
+        var lyr = map.getLayersByName(rec.get('name'))[0];
+        if (lyr && lyr.visibility && lyr.DEFAULT_PARAMS) {
+          queryLyrs.push(lyr);
+        }
+      }
+    });
+    queryWMS(e,queryLyrs);
   }
   if (doWWA && wwaLyr && wwaLyr.visibility) {
     queryWWA(e,f);
   }
 }
 
-function queryWMS(e,lyr) {
-  lastMapClick['layer'] = lyr.name;
+function queryWMS(e,a) {
+  lastMapClick['layer'] = a[0].name;
   Ext.getCmp('graphAction').setText('Processing');
   Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
-  var mapTime;
-  var legIdx = legendsStore.find('name',lyr.name);
-  if (legIdx >= 0 && legendsStore.getAt(legIdx).get('timestamp') && String(legendsStore.getAt(legIdx).get('timestamp')).indexOf('alert') < 0) {
-    mapTime = '&mapTime=' + (new Date(shortDateToDate(legendsStore.getAt(legIdx).get('timestamp')).getTime() - new Date().getTimezoneOffset() * 60000) / 1000);
+  var targets = [];
+  for (var i = 0; i < a.length; i++) {
+    var mapTime;
+    var legIdx = legendsStore.find('name',a[i].name);
+    if (legIdx >= 0 && legendsStore.getAt(legIdx).get('timestamp') && String(legendsStore.getAt(legIdx).get('timestamp')).indexOf('alert') < 0) {
+      mapTime = '&mapTime=' + (new Date(shortDateToDate(legendsStore.getAt(legIdx).get('timestamp')).getTime() - new Date().getTimezoneOffset() * 60000) / 1000);
+    }
+    var paramOrig = OpenLayers.Util.getParameters(a[i].getFullRequestString({}));
+    var paramNew = {
+       REQUEST       : 'GetFeatureInfo'
+      ,EXCEPTIONS    : 'application/vnd.ogc.se_xml'
+      ,BBOX          : map.getExtent().toBBOX()
+      ,X             : e.xy.x
+      ,Y             : e.xy.y
+      ,INFO_FORMAT   : 'text/xml'
+      ,FEATURE_COUNT : 1
+      ,WIDTH         : map.size.w
+      ,HEIGHT        : map.size.h
+      ,QUERY_LAYERS  : forceQueryLayers(a[i].name,paramOrig['LAYERS'])
+    };
+    if (paramOrig['GFI_TIME'] == 'min/max') {
+      dMin = new Date(dNow.getTime() - 12 * 60 * 60 * 1000);
+      dMax = new Date(dNow.getTime() + 24 * 60 * 60 * 1000);
+      paramNew['TIME'] =
+          dMin.getUTCFullYear() + '-' + String.leftPad(dMin.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMin.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z'
+        + '/'
+        + dMax.getUTCFullYear() + '-' + String.leftPad(dMax.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMax.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z';
+      paramNew['GFI_TIME'] = 'min/max';
+    }
+    targets.push({url : a[i].getFullRequestString(paramNew,'getFeatureInfo.php?' + a[i].url + '&tz=' + new Date().getTimezoneOffset() + mapTime),title : mainStore.getAt(mainStore.find('name',a[i].name)).get('displayName')});
   }
-  var paramOrig = OpenLayers.Util.getParameters(lyr.getFullRequestString({}));
-  var paramNew = {
-     REQUEST       : 'GetFeatureInfo'
-    ,EXCEPTIONS    : 'application/vnd.ogc.se_xml'
-    ,BBOX          : map.getExtent().toBBOX()
-    ,X             : e.xy.x
-    ,Y             : e.xy.y
-    ,INFO_FORMAT   : 'text/xml'
-    ,FEATURE_COUNT : 1
-    ,WIDTH         : map.size.w
-    ,HEIGHT        : map.size.h
-    ,QUERY_LAYERS  : forceQueryLayers(lyr.name,paramOrig['LAYERS'])
-  };
-  if (paramOrig['GFI_TIME'] == 'min/max') {
-    dMin = new Date(dNow.getTime() - 12 * 60 * 60 * 1000);
-    dMax = new Date(dNow.getTime() + 24 * 60 * 60 * 1000);
-    paramNew['TIME'] =
-        dMin.getUTCFullYear() + '-' + String.leftPad(dMin.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMin.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z'
-      + '/'
-      + dMax.getUTCFullYear() + '-' + String.leftPad(dMax.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMax.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z';
-    paramNew['GFI_TIME'] = 'min/max';
-  }
-  makeChart('model',[{url : lyr.getFullRequestString(paramNew,'getFeatureInfo.php?' + lyr.url + '&tz=' + new Date().getTimezoneOffset() + mapTime),title : mainStore.getAt(mainStore.find('name',lyr.name)).get('displayName')}]);
+  makeChart('model',targets);
 }
 
 function queryWWA(e,f) {
