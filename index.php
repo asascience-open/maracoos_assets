@@ -158,9 +158,9 @@
         introPanelHeightOverride = 65;
 
         mapBanner = {
-           html      : '<img src="img/glatosBanner.jpg">'
+           html      : ''
           ,height    : 81
-          ,bodyStyle : 'text-align : center;background:url("img/GLATOS_banner.jpg") no-repeat center top'
+          ,bodyStyle : 'text-align : center;background:url("img/glatosBanner.jpg") no-repeat center top'
           ,hidden    : false
         };
 
