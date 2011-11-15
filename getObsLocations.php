@@ -1,6 +1,8 @@
 <?php
   include_once('util.php');
 
+  date_default_timezone_set('UTC');
+
   $bbox = explode(',',$_REQUEST['bbox']);
 
   $metadata = array();
