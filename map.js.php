@@ -473,7 +473,7 @@ function init() {
       ,[
          'model'
         ,'ROMS ESPRESSO'
-        ,'ROMS ESPRESSO'
+        ,'ROMS ESPRESSO currents'
         ,'off'
         ,defaultLayers['ROMS ESPRESSO'] ? 'on' : 'off'
         ,'off'
