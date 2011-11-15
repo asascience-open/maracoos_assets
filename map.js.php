@@ -3944,7 +3944,7 @@ function makeChart(type,a) {
         // get the data
         chartData.push({
            data   : []
-          ,label  : title + ' : ' + v + ' (' + toEnglish({typ : 'title',src : obs.u[v],val : obs.u[v]}) + ')'
+          ,label  : (type != 'obs' ? title + ' : ' : '') + v + ' (' + toEnglish({typ : 'title',src : obs.u[v],val : obs.u[v]}) + ')'
           ,yaxis  : yaxis
           ,lines  : {show : true}
           ,nowIdx : obs.d[v].length > 1 ? obs.nowIdx : ''

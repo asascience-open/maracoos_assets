@@ -277,7 +277,7 @@
     require_once('/usr/local/nusoap/lib/nusoap.php');
     nusoap_base::setGlobalDebugLevel(0);
     $u      = substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/'));
-    $wsdl   = new nusoap_client('http://129.252.139.102/webservices/xmldatarequest.cfc?wsdl','wsdl');
+    $wsdl   = new nusoap_client('http://cdmo.baruch.sc.edu/webservices2/requests.cfc?wsdl','wsdl');
     $result = $wsdl->call('exportStationCodesXML');
 
     $col2idx = array();
@@ -297,8 +297,8 @@
       }
       if (count($d) > 0) {
         // lump things by lon,lat
-        $k = $d['Longitude'].','.$d['Latitude'];
-        if ($d['Real_Time'] == 'R') {
+        $k = $d['longitude'].','.$d['latitude'];
+        if ($d['Real_time'] == 'R') {
           if (!array_key_exists($k,$data)) {
             $data[$k] = array($d);
           }
@@ -315,12 +315,12 @@
       $d['stations'] = array();
       $d['params']   = array();
       foreach ($site as $station) {
-        $d['id']    = $station['NERR_Site_ID'];
-        $d['descr'] = $station['Reserve_Name'];
-        $d['lon']   = -$station['Longitude'];
-        $d['lat']   = $station['Latitude'];
+        $d['id']    = $station['NERR_SITE_ID'];
+        $d['descr'] = $station['reserve_name'];
+        $d['lon']   = -$station['longitude'];
+        $d['lat']   = $station['latitude'];
         array_push($d['stations'],$station['Station_Code']);
-        array_push($d['params'],$station['Params_Reported']);
+        array_push($d['params'],$station['params_reported']);
       }
       addToStack($metadata,$bbox,$d['lon'],$d['lat'],$provider,array(
          'id'       => $d['id']
