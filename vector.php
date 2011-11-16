@@ -36,7 +36,7 @@
          $draw
         ,$_REQUEST['w'] / 2
         ,$_REQUEST['w'] / 2
-        ,$_REQUEST['dir']
+        ,0
         ,utf8_encode(chr(77))
       );
     }
