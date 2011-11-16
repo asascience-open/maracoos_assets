@@ -24,7 +24,7 @@
        $draw
       ,$_REQUEST['w'] / 2
       ,$_REQUEST['w'] / 2
-      ,-$_REQUEST['dir'] - 90
+      ,($_REQUEST['dir'] - 180 < 0) ? $_REQUEST['dir'] + 180 : $_REQUEST['dir'] - 180
       ,utf8_encode(chr(33 + ($_REQUEST['spd'] - 5) / 5))
     );
   }
