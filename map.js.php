@@ -65,6 +65,7 @@ var refreshWWAInterval = 60000;
 var lineColors = [
    ['#99BBE8','#1558BB']
   ,['#e8bb99','#b56529']
+  ,['#99e9ae','#1d8538']
 ];
 
 
