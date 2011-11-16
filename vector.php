@@ -18,15 +18,28 @@
     );
   }
   if ($_REQUEST['type'] == 'barb') {
-    $draw->setFontSize($_REQUEST['w'] * 0.50);
-    $draw->setFont('fonts/ESRIWeather.ttf');
-    $icon->annotateImage(
-       $draw
-      ,$_REQUEST['w'] / 2
-      ,$_REQUEST['w'] / 2
-      ,($_REQUEST['dir'] - 180 < 0) ? $_REQUEST['dir'] + 180 : $_REQUEST['dir'] - 180
-      ,utf8_encode(chr(33 + ($_REQUEST['spd'] - 5) / 5))
-    );
+    if ($_REQUEST['spd'] >= 5) {
+      $draw->setFontSize($_REQUEST['w'] * 0.50);
+      $draw->setFont('fonts/ESRIWeather.ttf');
+      $icon->annotateImage(
+         $draw
+        ,$_REQUEST['w'] / 2
+        ,$_REQUEST['w'] / 2
+        ,($_REQUEST['dir'] - 180 < 0) ? $_REQUEST['dir'] + 180 : $_REQUEST['dir'] - 180
+        ,utf8_encode(chr(33 + ($_REQUEST['spd'] - 5) / 5))
+      );
+    }
+    else {
+      $draw->setFontSize($_REQUEST['w'] * 0.35);
+      $draw->setFont('fonts/ESRICartography.ttf');
+      $icon->annotateImage(
+         $draw
+        ,$_REQUEST['w'] / 2
+        ,$_REQUEST['w'] / 2
+        ,$_REQUEST['dir']
+        ,utf8_encode(chr(77))
+      );
+    }
   }
   $icon->trimImage(0);
   $dim = $icon->getImageGeometry();
