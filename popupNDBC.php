@@ -89,6 +89,7 @@
       if ($v != '') {
         $n = underscoreCaps($p);
         $uEscape = str_replace('"','\\"',"graph.php?$base&observedProperty=$p".'&responseFormat=text/csv'."&name=$n&eventTime=$dBegin/$dEnd&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom']);
+        $extra = '';
         if (count($a) == 2) {
           $extra = "<br><a href='javascript:showObsTimeseries(\"".str_replace('graph.php?','graph.php?uomB&',$uEscape)."\")'><img src='img/graph.png' width=10 height=10></a> ".$a[1]["val"].' '.$a[1]["uom"];
         }
