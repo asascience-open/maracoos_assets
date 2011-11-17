@@ -2006,7 +2006,7 @@ function init() {
                     return;
                   }
                   lyrQueryPts.removeFeatures(lyrQueryPts.features);
-                  document.getElementById('tsResults').innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/>Click on the map to view a time-series graph of Model or Observation output.</td></tr></table>';
+                  document.getElementById('tsResults').innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/><img width=8 height=1 src="img/blank.png">Click on the map to view a time-series graph of Model or Observation output.<br/><img width=8 height=1 src="img/blank.png"><img src="info/graph_primer.png"></td></tr></table>';
                   chartData = [];
                   $('#tooltip').remove();
                   Ext.getCmp('chartLayerCombo').show();
@@ -2015,7 +2015,7 @@ function init() {
               }
             ]
             ,border      : false
-            ,height      : 175
+            ,height      : 220
             ,collapsible : true
             ,split       : true
             ,items       : {border : false,html : '<div style="width:10;height:10" id="tsResults"/>'}
@@ -2045,10 +2045,10 @@ function init() {
                   var spd = [];
                   var dir = []; 
                   if (!chartData || chartData.length <= 0) {
-                    ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/>Click on the map to view a time-series graph of Model or Observation output.</td></tr></table>';
+                    ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/><img width=8 height=1 src="img/blank.png">Click on the map to view a time-series graph of Model or Observation output.<br/><img width=8 height=1 src="img/blank.png"><img src="info/graph_primer.png"></td></tr></table>';
                   }
                   else if (chartData && chartData.length > 0 && typeof chartData[0] == 'string' && chartData[0].indexOf('QUERY ERROR') == 0) {
-                    ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/><font color="red">' + chartData[0] + '</font><br/><br/>' + 'Click on the map to view a time-series graph of Model or Observation output.</td></tr></table>';
+                    ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/><font color="red">' + chartData[0] + '</font><br/><br/>' + '<img width=8 height=1 src="img/blank.png">Click on the map to view a time-series graph of Model or Observation output.<br/><img width=8 height=1 src="img/blank.png"><img src="info/graph_primer.png"></td></tr></table>'; 
                   }
                   else {
                     for (var i = 0; i < chartData.length; i++) {
