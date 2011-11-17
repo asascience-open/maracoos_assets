@@ -1170,7 +1170,7 @@ function init() {
       ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
       ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
-      ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
+      // ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
@@ -1230,7 +1230,7 @@ function init() {
       ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
       ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
-      ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
+      // ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
@@ -1282,7 +1282,7 @@ function init() {
       ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
       ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
-      ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
+      // ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
@@ -1334,7 +1334,7 @@ function init() {
       ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
       ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
-      ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
+      // ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
@@ -1747,7 +1747,7 @@ function init() {
       })
       ,new Ext.Panel({
          region      : 'west'
-        ,width       : 278
+        ,width       : 250
         ,title       : globalTitleOverride ? globalTitleOverride : globalTitle + ' Manager'
         ,collapsible : managerPanelCollapsible
         ,autoScroll  : true
@@ -3124,7 +3124,7 @@ function renderLegend(val,metadata,rec) {
       legendImages[rec.get('name')] = img;
     }
     a.push('<img src="getLegend.php?' + mainStore.getAt(idx).get('legend') + '">');
-    a.push('<a title="Customize this layer\'s appearance" href="javascript:setLayerSettings(\'' + rec.get('name') + '\',true)">Customize this layer</a>');
+    a.push('<a id="settings.' + rec.get('name') + '" title="Customize this layer\'s appearance" href="javascript:setLayerSettings(\'' + rec.get('name') + '\',true)">Customize this layer</a>');
   }
   return a.join('<br/>');
 }
