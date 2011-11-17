@@ -3124,7 +3124,7 @@ function renderLegend(val,metadata,rec) {
       legendImages[rec.get('name')] = img;
     }
     a.push('<img src="getLegend.php?' + mainStore.getAt(idx).get('legend') + '">');
-    a.push('<a id="settings.' + rec.get('name') + '" title="Customize this layer\'s appearance" href="javascript:setLayerSettings(\'' + rec.get('name') + '\',true)">Customize this layer</a>');
+    a.push('<table><tr><td width=20><a id="settings.' + rec.get('name') + '" title="Customize this layer\'s appearance" href="javascript:setLayerSettings(\'' + rec.get('name') + '\',true)"><img width=16 height=16 src="img/setting_tools.png"></a></td><td><a title="Customize this layer\'s appearance" href="javascript:setLayerSettings(\'' + rec.get('name') + '\',true)">Customize&nbsp;this&nbsp;layer</a></td></tr></table>');
   }
   return a.join('<br/>');
 }
