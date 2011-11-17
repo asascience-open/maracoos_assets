@@ -2006,7 +2006,7 @@ function init() {
                     return;
                   }
                   lyrQueryPts.removeFeatures(lyrQueryPts.features);
-                  document.getElementById('tsResults').innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/>Click on the map to view a time-series graph of Model or Observation output. Only one layer may be active at a time.</td></tr></table>';
+                  document.getElementById('tsResults').innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/>Click on the map to view a time-series graph of Model or Observation output.</td></tr></table>';
                   chartData = [];
                   $('#tooltip').remove();
                   Ext.getCmp('chartLayerCombo').show();
@@ -2045,10 +2045,10 @@ function init() {
                   var spd = [];
                   var dir = []; 
                   if (!chartData || chartData.length <= 0) {
-                    ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/>Click on the map to view a time-series graph of Model or Observation output. Only one layer may be active at a time.</td></tr></table>';
+                    ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/>Click on the map to view a time-series graph of Model or Observation output.</td></tr></table>';
                   }
                   else if (chartData && chartData.length > 0 && typeof chartData[0] == 'string' && chartData[0].indexOf('QUERY ERROR') == 0) {
-                    ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/><font color="red">' + chartData[0] + '</font><br/><br/>' + 'Click on the map to view a time-series graph of Model or Observation output. Only one layer may be active at a time.</td></tr></table>';
+                    ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><br/><font color="red">' + chartData[0] + '</font><br/><br/>' + 'Click on the map to view a time-series graph of Model or Observation output.</td></tr></table>';
                   }
                   else {
                     for (var i = 0; i < chartData.length; i++) {
