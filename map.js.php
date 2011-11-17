@@ -95,6 +95,11 @@ function init() {
 
   Ext.QuickTips.init();
 
+  // don't remember window settings
+  Ext.override(Ext.Component,{
+    stateful : false
+  });
+
   makeAvailableTimes();
 
   chartLayerStore =  new Ext.data.ArrayStore({
