@@ -3124,6 +3124,7 @@ function renderLegend(val,metadata,rec) {
       legendImages[rec.get('name')] = img;
     }
     a.push('<img src="getLegend.php?' + mainStore.getAt(idx).get('legend') + '">');
+    a.push('<a title="Customize this layer\'s appearance" href="javascript:setLayerSettings(\'' + rec.get('name') + '\',true)">Customize this layer</a>');
   }
   return a.join('<br/>');
 }
@@ -4305,36 +4306,8 @@ function showHelp(fromButton) {
       ,html       : '<div id="help"><?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/help.html')))?></div>'
       ,closeAction : 'hide'
       ,listeners   : {hide : function() {
-        if (!spot && !fromButton) {
-          spot = new Ext.ux.Spotlight({
-             easing   : 'easeOut'
-            ,duration : 0.80
-          });
-          setLayerSettings('NCOM currents',true);
-          spot.show('settings.popup.NCOM currents');
-          spotTooltip = new Ext.ToolTip({
-             title     : 'Customization tip'
-            ,id        : 'customizationTip'
-            ,anchor    : 'bottom'
-            ,target    : 'settings.popup.NCOM currents'
-            ,autoHide  : false
-            ,closable  : true
-            ,items     : new Ext.FormPanel({buttonAlign : 'center',border : false,bodyStyle : 'background:transparent',width : 240,height : 83,labelAlign : 'right',labelWidth : 200,labelSeparator : '',items : [
-              {bodyCssClass : 'popup',html : 'Layer customization options such as the ones below are available to you by clicking on a settings icon to the right of a layer.'}
-              ,new Ext.form.Checkbox({
-                 fieldLabel : "Don't show help and tips again."
-                ,listeners  : {check : function(cbox,checked) {
-                  cp.set('hideAssetsHelpOnStartup',checked);
-                }}
-              })
-            ]})
-            ,listeners : {hide : function() {
-              this.destroy();
-              spot.hide();
-            }}
-          });
-          spotTooltip.show();
-        }
+        // don't show help next visit
+        cp.set('hideAssetsHelpOnStartup',true);
       }}
     }).show();
   }

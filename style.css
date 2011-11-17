@@ -331,6 +331,14 @@
 #legendsGridPanel .x-grid3-row td, .x-grid3-summary-row td {
   font            : 12px tahoma,helvetica,sans-serif;
 }
+#legendsGridPanel a:link {
+  text-decoration : none;
+  font            : 11px tahoma,helvetica,sans-serif;
+  color           : rgb(74,134,214);
+}
+#legendsGridPanel a:hover {
+  color : rgb(255,0,0);
+}
 
 .layerIcon {
   margin-top : -1px;
