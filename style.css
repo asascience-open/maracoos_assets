@@ -46,7 +46,7 @@
   color           : #000000;
 }
 #assetsGridPanel a:hover {
-  color : rgb(74,134,214);
+  color : rgb(255,0,0);
 }
 #assetsGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
@@ -73,7 +73,7 @@
   color           : #000000;
 }
 #glidersGridPanel a:hover {
-  color : rgb(74,134,214);
+  color : rgb(255,0,0);
 }
 #glidersGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
@@ -198,7 +198,7 @@
   color           : #000000;
 }
 #modelsGridPanel a:hover {
-  color : rgb(74,134,214);
+  color : rgb(255,0,0);
 }
 #modelsGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
@@ -225,7 +225,7 @@
   color           : #000000;
 }
 #observationsGridPanel a:hover {
-  color : rgb(74,134,214);
+  color : rgb(255,0,0);
 }
 #observationsGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
@@ -252,7 +252,7 @@
   color           : #000000;
 }
 #marineGridPanel a:hover {
-  color : rgb(74,134,214);
+  color : rgb(255,0,0);
 }
 #marineGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
