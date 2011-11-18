@@ -2086,7 +2086,13 @@ function init() {
                             type = 'barb';
                           }
                           var o = p.pointOffset({x : spd[j].data[i][0],y : spd[j].data[i][1]});
-                          $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'vector.php?w=' + imageSize + '&h=' + imageSize + '&dir=' + Math.round(dir[j].data[i][1]) + '&spd=' + Math.round(spd[j].data[i][1]) + '&type=' + type + '&color=' + lineColor2VectorColor(dir[j].color).replace('#','') + '\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
+                          if (type == 'barb') {
+                            $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'vector.php?w=' + imageSize + '&h=' + imageSize + '&dir=' + Math.round(dir[j].data[i][1]) + '&spd=' + Math.round(spd[j].data[i][1]) + '&type=' + type + '&color=' + lineColor2VectorColor(dir[j].color).replace('#','') + '\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
+                          }
+                          else {
+                            // pull arrows from cache
+                            $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'img/vectors/' + type + '/' + imageSize + 'x' + imageSize + '.dir' + Math.round(dir[j].data[i][1]) + '.' + lineColor2VectorColor(dir[j].color).replace('#','') + '.png\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
+                          }
                         }
                       }
                     }
