@@ -3653,7 +3653,7 @@ function addObs(l) {
           if (!showPopup) {
             return;
           }
-          if (mouseoverObs && mouseoverObs.visible) {
+          if (mouseoverObs && mouseoverObs.isVisible()) {
             mouseoverObs.hide();
           }
           mouseoverObs = new Ext.ToolTip({
@@ -3736,7 +3736,7 @@ function addObs(l) {
           if (!showPopup) {
             return;
           }
-          if (popupObs && popupObs.visible) {
+          if (popupObs && popupObs.isVisible()) {
             popupObs.hide();
           }
           popupObs = new Ext.ToolTip({
