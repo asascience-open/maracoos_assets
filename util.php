@@ -41,6 +41,12 @@
       else if ($uom == 'mm') {
         array_push($a,Array('val' => sprintf("%.02f",$val * 0.0393700787),'uom' => 'in'));
       }
+      else if ($uom == 'kelvin') {
+        array_push($a,Array('val' => sprintf("%.02f",($val - 272.15) * 9 / 5 + 32),'uom' => 'F'));
+      }
+      else if ($uom == 'bar') {
+        array_push($a,Array('val' => sprintf("%.02f",$val / 1000),'uom' => 'hPa'));
+      }
       else {
         return Array(Array('val' => $val,'uom' => $uom));
       }

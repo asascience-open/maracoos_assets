@@ -1,4 +1,9 @@
 convert $1.png -resize 20x20 bullet-big.png
+convert bullet-big.png -channel A -blur 0x2.5 +channel -fill '#FFFFFF' -colorize 100% shadow.png
+composite -gravity center $1.png shadow.png $1.on.png
+cp $1.on.png $1.solo.png
+
+convert $1.png -resize 20x20 bullet-big.png
 convert bullet-big.png -channel A -blur 0x2.5 +channel -fill '#008B00' -colorize 100% shadow.png
 composite -gravity center $1.png shadow.png $1.on.png
 convert -size 20x20 xc:transparent bg.png
@@ -10,5 +15,6 @@ mv /tmp/$1.off.png $1.off.png
 convert -size 40x20 xc:transparent -fill green -font '/usr/local/fonts/ttf/DejaVuSansCondensed.ttf' -pointsize 8 -draw "text 21,13 'ON'" foo.png
 composite -gravity west $1.on.png foo.png $1.on.png
 rm -f bg.png bullet-big.png shadow.png gray.png foo.png
-mv $1.on.png "/var/www/m2/img/$2.on.png"
-mv $1.off.png "/var/www/m2/img/$2.off.png"
+mv $1.on.png "/var/www/maracoos_assets/img/$2.on.png"
+mv $1.off.png "/var/www/maracoos_assets/img/$2.off.png"
+mv $1.solo.png "/var/www/maracoos_assets/img/$2.png"

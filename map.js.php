@@ -31,6 +31,7 @@ var obsMinZoom = {
    'NDBC'        : 1
   ,'CO-OPS'      : 2
   ,'USGS'        : 5
+  ,'Ship'        : 4
   ,'NERRS'       : 0
   ,'Weatherflow' : 3
   ,'HF Radar'    : 0
@@ -309,6 +310,33 @@ function init() {
         ,''
         ,''
         ,'legends/Gliders.png'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,''
+        ,''
+      ]
+      ,[
+         'asset'
+        ,'Ship'
+        ,'Ships'
+        ,'off'
+        ,defaultLayers['Ship'] ? 'on' : 'off'
+        ,''
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Ship.html')))?>'
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
         ,''
         ,'-78,35.5,-62,44'
         ,''
@@ -2272,6 +2300,7 @@ function initMap() {
     syncObs({name : 'NDBC'});
     syncObs({name : 'CO-OPS'});
     syncObs({name : 'USGS'});
+    syncObs({name : 'Ship'});
     syncObs({name : 'NERRS'});
     syncObs({name : 'Weatherflow'});
     syncObs({name : 'HF Radar'});
@@ -2479,6 +2508,10 @@ function initMap() {
   addObs({
      name       : 'USGS'
     ,visibility : typeof defaultLayers['USGS'] != 'undefined'
+  });
+  addObs({
+     name       : 'Ship'
+    ,visibility : typeof defaultLayers['Ship'] != 'undefined'
   });
   addObs({
      name       : 'NERRS'
@@ -3515,7 +3548,7 @@ function addObs(l) {
       var mainStoreRec = mainStore.getAt(mainStore.find('name',lyr.name));
       if (map.getZoom() + zoomOffset() < obsMinZoom[lyr.name]) {
         mainStoreRec.set('legend','img/zoom.png');
-        rec.set('timestamp',(lyr.featureFactor ? lyr.features.length * lyr.featureFactor : 0) + ' station(s) fetched<br/><span class="alert">More stations available<br/>at a closer zoom.<span>');
+        rec.set('timestamp',(lyr.featureFactor ? lyr.features.length * lyr.featureFactor : 0) + ' site(s) fetched<br/><span class="alert">More sites available<br/>at a closer zoom.<span>');
       }
       else if (assetsIndex >= 0) {
         var leg = assetsStore.getAt(assetsIndex).get('legend');
@@ -3523,7 +3556,7 @@ function addObs(l) {
           leg = '';
         }
         mainStoreRec.set('legend',leg);
-        rec.set('timestamp',(lyr.featureFactor ? lyr.features.length * lyr.featureFactor : 0) + ' station(s) fetched');
+        rec.set('timestamp',(lyr.featureFactor ? lyr.features.length * lyr.featureFactor : 0) + ' site(s) fetched');
       }
       else if (glidersIndex >= 0) {
         var leg = glidersStore.getAt(glidersIndex).get('legend');

@@ -54,6 +54,33 @@
     }
   }
 
+  if ($_REQUEST['provider'] == 'Ship') {
+    $provider = 'Ship';
+    $xml = simplexml_load_file('xml/shipobs.xml');
+    $data = array();
+    foreach ($xml->{'record'} as $r) {
+      $a = $r->attributes();
+      // don't pass along bouys
+      if (preg_match("/^\d\d\d\d\d$/",sprintf("%s",$a->{'shef_id'})) == 0) {
+        if (!array_key_exists(sprintf("%s",$a->{'shef_id'}),$data)) {
+          $data[sprintf("%s",$a->{'shef_id'})] = array(
+             'lon'  => sprintf("%f",$a->{'lon'})
+            ,'lat'  => sprintf("%f",$a->{'lat'})
+          );
+        }
+      }
+    }
+
+    foreach ($data as $key => $value) {
+      addToStack($metadata,$bbox,$value['lon'],$value['lat'],$provider,array(
+         'id'       => $key
+        ,'descr'    => sprintf("$provider %s",$key)
+        ,'url'      => "popup$provider.php"
+          ."?id=".$key
+      ));
+    }
+  }
+
   if ($_REQUEST['provider'] == 'USGS') {
     $provider = 'USGS';
     $f = fopen("xml/usgs.csv",'r');
