@@ -3136,7 +3136,7 @@ function renderLegend(val,metadata,rec) {
     }
 
     var customize = '<table><tr><td width=20><a id="settings.' + rec.get('name') + '" title="Customize this layer\'s appearance" href="javascript:setLayerSettings(\'' + rec.get('name') + '\',true)"><img width=16 height=16 src="img/setting_tools.png"></a></td><td><a title="Customize this layer\'s appearance" href="javascript:setLayerSettings(\'' + rec.get('name') + '\',true)">Customize&nbsp;this&nbsp;layer</a></td></tr></table>';
-    if (map.getLayersByName(rec.get('name')).featureFactor) {
+    if (map.getLayersByName(rec.get('name'))[0].featureFactor) {
       customize = '';
     }
 
