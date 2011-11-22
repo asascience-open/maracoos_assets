@@ -72,12 +72,14 @@
     }
 
     foreach ($data as $key => $value) {
-      addToStack($metadata,$bbox,$value['lon'],$value['lat'],$provider,array(
-         'id'       => $key
-        ,'descr'    => sprintf("$provider %s",$key)
-        ,'url'      => "popup$provider.php"
-          ."?id=".$key
-      ));
+      if ($key != 'SHIP') {
+        addToStack($metadata,$bbox,$value['lon'],$value['lat'],$provider,array(
+           'id'       => $key
+          ,'descr'    => sprintf("$provider %s",$key)
+          ,'url'      => "popup$provider.php"
+            ."?id=".$key
+        ));
+      }
     }
   }
 
