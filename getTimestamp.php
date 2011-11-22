@@ -1,4 +1,5 @@
 <?php
+  date_default_timezone_set('UTC');
   $u = substr($_SERVER["REQUEST_URI"],strpos($_SERVER["REQUEST_URI"],'?')+1);
   $c = get_headers(urldecode($u));
 

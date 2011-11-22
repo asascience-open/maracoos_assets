@@ -1,4 +1,5 @@
 <?php
+  date_default_timezone_set('UTC');
   session_start(); 
   header("Cache-Control: private, max-age=10800, pre-check=10800");
   header("Pragma: private");
