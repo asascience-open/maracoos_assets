@@ -31,7 +31,7 @@ var obsMinZoom = {
    'NDBC'        : 1
   ,'CO-OPS'      : 2
   ,'USGS'        : 5
-  ,'Ship'        : 4
+  ,'Ship'        : 0
   ,'NERRS'       : 0
   ,'Weatherflow' : 3
   ,'HF Radar'    : 0
@@ -3660,7 +3660,6 @@ function addObs(l) {
              html         : title
             ,anchor       : 'bottom'
             ,target       : target
-            // ,dismissDelay : 2500
             ,hideDelay    : 0
             ,listeners    : {
               hide    : function(tt) {
