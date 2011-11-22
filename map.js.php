@@ -2288,7 +2288,7 @@ function initMap() {
   }
 
   map.events.register('zoomend',this,function() {
-    if (popupObs) {
+    if (popupObs && !popupObs.isDestroyed) {
       popupObs.hide();
     }
   });
@@ -2306,7 +2306,7 @@ function initMap() {
     syncObs({name : 'HF Radar'});
     syncObs({name : 'Satellites'});
     syncObs({name : 'Gliders'});
-    if (popupObs) {
+    if (popupObs && !popupObs.isDestroyed) {
       popupObs.show();
     }
   });
@@ -3653,20 +3653,20 @@ function addObs(l) {
           if (!showPopup) {
             return;
           }
-          if (mouseoverObs) {
+          if (mouseoverObs && mouseoverObs.visible) {
             mouseoverObs.hide();
           }
           mouseoverObs = new Ext.ToolTip({
              html         : title
             ,anchor       : 'bottom'
             ,target       : target
-            ,dismissDelay : 2500
+            // ,dismissDelay : 2500
+            ,hideDelay    : 0
             ,listeners    : {
-              hide    : function() {
-                if (!Ext.isIE) {
-                  this.destroy();
+              hide    : function(tt) {
+                if (!tt.isDestroyed) {
+                  tt.destroy();
                 }
-                mouseoverObs = null;
               }
             }
           });
@@ -3734,11 +3734,11 @@ function addObs(l) {
               }
             }
           }
-          if (popupObs) {
-            popupObs.hide();
-          }
           if (!showPopup) {
             return;
+          }
+          if (popupObs && popupObs.visible) {
+            popupObs.hide();
           }
           popupObs = new Ext.ToolTip({
              title     : title
@@ -3750,9 +3750,10 @@ function addObs(l) {
             ,closable  : true
             ,items     : {bodyCssClass : 'obsPopup',html : "<span id ='" + target + ".data'><table style='width:100%'><tr><td style='text-align:center'><img width=44 height=44 src='img/spinner.gif'></td></tr></table></span>"}
             ,listeners : {
-              hide    : function() {
-                this.destroy();
-                popupObs = null;
+              hide    : function(tt) {
+                if (!tt.isDestroyed) {
+                  tt.destroy();
+                }
                 if (e.feature.layer) {
                   popupCtl.unselect(e.feature);
                 }
