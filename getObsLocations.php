@@ -55,13 +55,20 @@
   }
 
   if ($_REQUEST['provider'] == 'Ship') {
+    // get list of NDBC stations since we don't want to include these as ships
+    $stations = array();
+    preg_match_all('/<tr class="stndata"><td>(\w)*<\/td>/',file_get_contents('xml/ndbc_stations.html'),$m0);
+    foreach ($m0[0] as $m) {
+      preg_match('/<td>(.*)<\/td>/',$m,$m1);
+      $stations[$m1[1]] = true;
+    }
     $provider = 'Ship';
     $xml = simplexml_load_file('xml/shipobs.xml');
     $data = array();
     foreach ($xml->{'record'} as $r) {
       $a = $r->attributes();
-      // don't pass along bouys
-      if (preg_match("/^\d\d\d\d\d$/",sprintf("%s",$a->{'shef_id'})) == 0) {
+      // don't pass along NDBC stations
+      if (!array_key_exists(sprintf("%s",$a->{'shef_id'}),$stations)) {
         if (!array_key_exists(sprintf("%s",$a->{'shef_id'}),$data)) {
           $data[sprintf("%s",$a->{'shef_id'})] = array(
              'lon'  => sprintf("%f",$a->{'lon'})
