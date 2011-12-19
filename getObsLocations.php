@@ -199,6 +199,39 @@
     }
   }
 
+  if ($_REQUEST['provider'] == 'Drifters') {
+    // we hope that line:marker is 1:1 -- otherwise we're screwed
+    $xml = @simplexml_load_file('xml/drifters.xml');
+
+    $drifters = array();
+    // pull out markers 1st we can get the ID's
+    foreach ($xml->{'marker'} as $c) {
+      $html = sprintf("%s",$c->attributes()->{'html'});
+      preg_match('/StartTime=(.*)<br> EndTime=(.*)/',$html,$matches);
+      array_push($drifters,array(
+         'id'     => sprintf("%s",$c->attributes()->{'label'})
+        ,'track'  => array()
+        ,'active' => sprintf("%s",$c->attributes()->{'active'}) == '1'
+        ,'url'    => 'popupDrifters.php'
+          .'?id='.sprintf("%s",$c->attributes()->{'label'})
+          .'&t='.implode(' to ',array(trim($matches[1]),trim($matches[2])))
+          .'&u=http://www.nefsc.noaa.gov/drifter/drift_X.html?'
+        ,'descr'  => 'Drifter '.sprintf("%s",$c->attributes()->{'label'})
+            .(sprintf("%s",$c->attributes()->{'active'}) !== '1' ? ' (inactive)' : '')
+      ));
+    }
+
+    $i = 0;
+    foreach ($xml->{'line'} as $c) {
+      foreach ($c->{'point'} as $p) {
+        array_push($drifters[$i]['track'],array(sprintf("%f",$p->attributes()->{'lng'}),sprintf("%f",$p->attributes()->{'lat'})));
+      }
+      // push to $metadata straight up
+      $metadata['Drifters.'.$drifters[$i]['id']]['Drifters.'.$drifters[$i]['id']] = array($drifters[$i]);
+      $i++;
+    }
+  }
+
   if (preg_match('/gliders$/',$_REQUEST['provider'])) {
     $type = '';
     if ($_REQUEST['provider'] == 'Sea gliders') {

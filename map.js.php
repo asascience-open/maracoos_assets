@@ -28,15 +28,16 @@ var legendsStore;
 var spot;
 var spotTooltip;
 var obsMinZoom = {
-   'NDBC'        : 1
-  ,'CO-OPS'      : 2
-  ,'USGS'        : 5
-  ,'Ship'        : 0
-  ,'NERRS'       : 0
-  ,'Weatherflow' : 3
+   'NDBC'        : 1 + 5
+  ,'CO-OPS'      : 2 + 5
+  ,'USGS'        : 5 + 5
+  ,'Ship'        : 0 + 5
+  ,'NERRS'       : 0 + 5
+  ,'Weatherflow' : 3 + 5
   ,'HF Radar'    : 0
   ,'Satellites'  : 0
   ,'Gliders'     : 0
+  ,'Drifters'    : 0
 };
 var obsBbox = {};
 var obsZoom = {};
@@ -310,6 +311,33 @@ function init() {
         ,''
         ,''
         ,'legends/Gliders.png'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,''
+        ,''
+      ]
+      ,[
+         'asset'
+        ,'Drifters'
+        ,'Drifters'
+        ,'off'
+        ,defaultLayers['Drifters'] ? 'on' : 'off'
+        ,''
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Drifters.html')))?>'
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'legends/Drifters.png'
         ,''
         ,'-78,35.5,-62,44'
         ,''
@@ -2306,6 +2334,7 @@ function initMap() {
     syncObs({name : 'HF Radar'});
     syncObs({name : 'Satellites'});
     syncObs({name : 'Gliders'});
+    syncObs({name : 'Drifters'});
     if (popupObs && !popupObs.isDestroyed) {
       popupObs.show();
     }
@@ -2532,6 +2561,10 @@ function initMap() {
   addObs({
      name       : 'Gliders'
     ,visibility : typeof defaultLayers['Gliders'] != 'undefined'
+  });
+  addObs({
+     name       : 'Drifters'
+    ,visibility : typeof defaultLayers['Drifters'] != 'undefined'
   });
   addObs({
      name       : 'Sea gliders'
@@ -3853,8 +3886,12 @@ function syncObs(l,force) {
           if (loc == 'remove' || loc == 'indexOf') {
             // not sure why this is coming back in the json 
           }
-          // Gliders are unique beasts.
-          else if (loc.toLowerCase().indexOf('gliders') >= 0) {
+          // Gliders and drifters are unique beasts.
+          else if (loc.toLowerCase().indexOf('gliders') >= 0 || loc.toLowerCase().indexOf('drifters') >= 0) {
+            var provider = 'Gliders';
+            if (loc.toLowerCase().indexOf('drifters') >= 0) {
+              provider = 'Drifters';
+            } 
             for (var i = 0; i < obs.data[loc][loc].length; i++) {
               var pts = [];
               for (var j = 0; j < obs.data[loc][loc][i].track.length; j++) {
@@ -3868,10 +3905,13 @@ function syncObs(l,force) {
               }
               if (boundsEqual) {
                 var vec = new OpenLayers.Feature.Vector(ls);
-                vec.attributes.provider      = 'Gliders';
+                vec.attributes.provider      = provider;
                 vec.attributes.active        = obs.data[loc][loc][i].active;
                 vec.attributes.strokeWidth   = 2;
                 vec.attributes.strokeColor   = '#ffff00';
+                if (provider == 'Drifters') {
+                  vec.attributes.strokeColor = 'rgb(6,170,61)';
+                }
                 if (obs.data[loc][loc][i].active) {
                   vec.attributes.strokeOpacity   = 0.80;
                   vec.attributes.strokeDashstyle = 'solid';
@@ -3883,7 +3923,7 @@ function syncObs(l,force) {
                 map.layers[lyrIdx].addFeatures(vec);
                 var f = new OpenLayers.Feature.Vector(pts[pts.length - 1]);
                 f.attributes.featureId           = f.id;
-                f.attributes.provider            = 'Gliders';
+                f.attributes.provider            = provider;
                 f.attributes.data                = obs.data[loc];
                 f.attributes.active              = obs.data[loc][loc][i].active;
                 f.attributes.graphicWidth        = 20;
@@ -4017,7 +4057,8 @@ function makeChart(type,a) {
 }
 
 function zoomOffset() {
-  return map.getLayersByName('Open StreetMap')[0].visibility ? -5 : 0;
+  // not relying on OSM, but leave here for later, just in case
+  return 0; // map.getLayersByName('Open StreetMap')[0].visibility ? -5 : 0;
 }
 
 function showToolTip(x,y,contents) {
