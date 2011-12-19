@@ -318,7 +318,7 @@ function init() {
       ,[
          'asset'
         ,'Ship'
-        ,'Ships'
+        ,'Ships & drifting buoys'
         ,'off'
         ,defaultLayers['Ship'] ? 'on' : 'off'
         ,''
