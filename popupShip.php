@@ -33,6 +33,7 @@
   }
   else {
     array_unshift($o,sprintf("<tr><td colspan=2 style='text-align:center'><b>%s-%02d</b></td></tr>",date('M d G:i e',$t - $_REQUEST['tz'] * 60),$_REQUEST['tz']/60));
+    array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='http://www.sailwx.info/shiptrack/shipposition.phtml?call=".$_REQUEST['id']."'>Ship status report</a></td></tr>");
     array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='http://madis.noaa.gov/madis_sfc.html'>Provider information</a></td></tr>");
     echo json_encode(Array('html' => '<table class="obsDetails">'.implode('',$o).'</table>'));
   }
