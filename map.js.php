@@ -2245,6 +2245,7 @@ function initMap() {
     ,displayProjection : proj4326
     ,units             : "m"
     ,maxExtent         : new OpenLayers.Bounds(-20037508,-20037508,20037508,20037508.34)
+    ,controls          : [new OpenLayers.Control.PanZoom({zoomWheelEnabled : false})]
     ,layers            : [
        openStreetMap
       ,esriOcean
@@ -3657,6 +3658,9 @@ function addObs(l) {
       ,renderIntent  : 'temporary'
       ,eventListeners : {
         beforefeaturehighlighted : function(e) {
+          if (mouseoverObs && mouseoverObs.isVisible()) {
+            mouseoverObs.hide();
+          }
           // figure out the target id (the id of the dot)
           var showPopup = false;
           var target;
@@ -3686,9 +3690,6 @@ function addObs(l) {
           if (!showPopup) {
             return;
           }
-          if (mouseoverObs && mouseoverObs.isVisible()) {
-            mouseoverObs.hide();
-          }
           mouseoverObs = new Ext.ToolTip({
              html         : title
             ,anchor       : 'bottom'
@@ -3696,7 +3697,7 @@ function addObs(l) {
             ,hideDelay    : 0
             ,listeners    : {
               hide    : function(tt) {
-                if (!tt.isDestroyed) {
+                if (!tt.isDestroyed && !Ext.isIE) {
                   tt.destroy();
                 }
               }
@@ -3726,6 +3727,9 @@ function addObs(l) {
     popupCtl = new OpenLayers.Control.SelectFeature(lyr,{
       eventListeners : {
         featurehighlighted : function(e) {
+          if (popupObs && popupObs.isVisible()) {
+            popupObs.hide();
+          }
           // don't relaunch the popup request if it's already up
           if (e.feature.attributes.featureId) {
             if (Ext.getCmp(e.feature.attributes.featureId)) {
@@ -3768,9 +3772,6 @@ function addObs(l) {
           }
           if (!showPopup) {
             return;
-          }
-          if (popupObs && popupObs.isVisible()) {
-            popupObs.hide();
           }
           popupObs = new Ext.ToolTip({
              title     : title
