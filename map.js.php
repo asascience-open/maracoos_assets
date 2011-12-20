@@ -2245,7 +2245,6 @@ function initMap() {
     ,displayProjection : proj4326
     ,units             : "m"
     ,maxExtent         : new OpenLayers.Bounds(-20037508,-20037508,20037508,20037508.34)
-    ,controls          : [new OpenLayers.Control.PanZoom({zoomWheelEnabled : false})]
     ,layers            : [
        openStreetMap
       ,esriOcean
@@ -2305,6 +2304,8 @@ function initMap() {
 
   var navControl = new OpenLayers.Control.NavToolbar();
   map.addControl(navControl);
+  // only need 1 zoom wheel responder!
+  navControl.controls[0].disableZoomWheel();
 
   var mouseControl = new OpenLayers.Control.MousePosition({
     formatOutput: function(lonLat) {
