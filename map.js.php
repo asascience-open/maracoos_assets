@@ -59,7 +59,7 @@ dNow.setSeconds(0);
 var availableTimes = [dNow];
 var lastMapClick = {
    layer : ''
-  ,e     : ''
+  ,xy    : ''
 };
 var timeControlsHeight = 42;
 var checkPrintTimer;
@@ -2323,7 +2323,7 @@ function initMap() {
   }
 
   map.events.register('click',this,function(e) {
-    mapClick(e,true,true);
+    mapClick(e.xy,true,true);
   });
 
   map.events.register('addlayer',this,function() {
@@ -3358,7 +3358,7 @@ function addLayer(lyr,timeSensitive) {
               var newTs  = shortDateString(new Date(r.responseText * 1000));
               rec.set('timestamp',newTs);
               if (prevTs && prevTs != newTs && lastMapClick['layer'] == lyr.name && lyrQueryPts.features.length > 0) {
-                mapClick(lastMapClick['e'],true,false);
+                mapClick(lastMapClick['xy'],true,false);
               }
             }
           }
@@ -4202,14 +4202,14 @@ function restoreDefaultStyles(l,items) {
   }
 }
 
-function mapClick(e,doWMS,doWWA) {
-  lastMapClick['e'] = e;
+function mapClick(xy,doWMS,doWWA) {
+  lastMapClick['xy'] = xy;
   lyrQueryPts.removeFeatures(lyrQueryPts.features);
 
   var modelQueryLyr = map.getLayersByName(Ext.getCmp('chartLayerCombo').getValue())[0];
   var wwaLyr        = map.getLayersByName('WWA')[0];
   if ((modelQueryLyr && modelQueryLyr.visibility && modelQueryLyr.DEFAULT_PARAMS) || (wwaLyr && wwaLyr.visibility)) {
-    var lonLat = map.getLonLatFromPixel(e.xy);
+    var lonLat = map.getLonLatFromPixel(xy);
     var f = new OpenLayers.Feature.Vector(new OpenLayers.Geometry.Point(lonLat.lon,lonLat.lat));
     f.attributes.img = 'Delete-icon.png';
     lyrQueryPts.addFeatures(f);
@@ -4229,14 +4229,14 @@ function mapClick(e,doWMS,doWWA) {
         }
       }
     });
-    queryWMS(e,queryLyrs);
+    queryWMS(xy,queryLyrs);
   }
   if (doWWA && wwaLyr && wwaLyr.visibility) {
-    queryWWA(e,f);
+    queryWWA(xy,f);
   }
 }
 
-function queryWMS(e,a) {
+function queryWMS(xy,a) {
   lastMapClick['layer'] = a[0].name;
   Ext.getCmp('graphAction').setText('Processing');
   Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
@@ -4252,8 +4252,8 @@ function queryWMS(e,a) {
        REQUEST       : 'GetFeatureInfo'
       ,EXCEPTIONS    : 'application/vnd.ogc.se_xml'
       ,BBOX          : map.getExtent().toBBOX()
-      ,X             : e.xy.x
-      ,Y             : e.xy.y
+      ,X             : xy.x
+      ,Y             : xy.y
       ,INFO_FORMAT   : 'text/xml'
       ,FEATURE_COUNT : 1
       ,WIDTH         : map.size.w
@@ -4274,8 +4274,8 @@ function queryWMS(e,a) {
   makeChart('model',targets);
 }
 
-function queryWWA(e,f) {
-  var lonLat = map.getLonLatFromPixel(e.xy).transform(map.getProjectionObject(),proj4326);
+function queryWWA(xy,f) {
+  var lonLat = map.getLonLatFromPixel(xy).transform(map.getProjectionObject(),proj4326);
   var target = 'OpenLayers.Geometry.Point_' + (Number(f.id.split('_')[f.id.split('_').length - 1]) - 1);
   if (popupObs) {
     popupObs.hide();
@@ -4933,7 +4933,7 @@ function refreshWWA() {
     lyr.spiralTileLoad();
     lyr.redraw();
     if (popupObs && popupObs.id.indexOf('wwa.') == 0) {
-      mapClick(lastMapClick['e'],false,true);
+      mapClick(lastMapClick['xy'],false,true);
     }
   }
   setTimeout('refreshWWA()',refreshWWAInterval);
