@@ -135,6 +135,29 @@
     fclose($f);
   }
 
+  if ($_REQUEST['provider'] == 'HRECOS') {
+    $provider = 'HRECOS';
+    $f = fopen("xml/hrecos.csv",'r');
+    $col2idx = array();
+    $data = array();
+    while (($d = fgetcsv($f)) !== FALSE) {
+      if (count($col2idx) == 0) {
+        foreach ($d as $k => $v) {
+          $col2idx[$v] = count($col2idx);
+        }
+      }
+      else {
+        addToStack($metadata,$bbox,$d[$col2idx['lon']],$d[$col2idx['lat']],$provider,array(
+           'id'    => $d[$col2idx['id']]
+          ,'descr' => 'HRECOS Station - '.$d[$col2idx['id']]
+          ,'url'   => "popup$provider.php"
+            ."?id=".$d[$col2idx['id']]
+        ));
+      }
+    }
+    fclose($f);
+  }
+
   if ($_REQUEST['provider'] == 'Satellites') {
     $provider = 'Satellites';
     $f = fopen("xml/satellites.csv",'r');
