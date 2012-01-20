@@ -54,7 +54,7 @@
           $dEnd   = date('Y-m-d\TH:i:00\Z');
           $dBegin = date('Y-m-d\TH:i:00\Z',time() - 60 * 60 * (24 * 1 + 1));
           if ($v != '') {
-            $uEscape = str_replace('"','\\"',"graph.php?$base&observedProperty=$p".'&responseFormat=text/xml;schema="ioos/0.6.1"'."&name=$n&eventTime=$dBegin/$dEnd&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom']);
+            $uEscape = str_replace('"','\\"',"graph.php?$base&observedProperty=$p".'&responseFormat=text/xml;schema="ioos/0.6.1"'."&name=$n&eventTime=$dBegin/$dEnd&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&lon='.$_REQUEST['lon'].'&lat='.$_REQUEST['lat'].'&cat='.$a[0]['cat']);
             $extra = '';
             if (count($a) == 2) {
               $extra = "<br><a href='javascript:showObsTimeseries(\"".str_replace('graph.php?','graph.php?uomB&',$uEscape)."\")'><img src='img/graph.png' width=10 height=10></a> ".$a[1]["val"].' '.$a[1]["uom"];

@@ -43,7 +43,7 @@
         $a = convertUnits($v,nerrsUnits($k),$_REQUEST['uom'] == 'english');
         $u = $a[0]["uom"];
         $v = $a[0]["val"];
-        $uEscape = str_replace('"','\\"',"graph.php?name=$k&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom']."&NERRS=".$d['station']."&startDt=$dBegin&endDt=$dEnd");
+        $uEscape = str_replace('"','\\"',"graph.php?name=$k&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&lon='.$_REQUEST['lon'].'&lat='.$_REQUEST['lat'].'&cat='.$a[0]['cat']."&NERRS=".$d['station']."&startDt=$dBegin&endDt=$dEnd");
         $extra = '';
         if (count($a) == 2) {
           $extra = "<br><a href='javascript:showObsTimeseries(\"".str_replace('graph.php?','graph.php?uomB&',$uEscape)."\")'><img src='img/graph.png' width=10 height=10></a> ".$a[1]["val"].' '.$a[1]["uom"];

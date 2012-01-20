@@ -2089,14 +2089,27 @@ function init() {
               })
               ,'->'
               ,{
+                 text    : 'Requery'
+                ,icon    : 'img/arrow_refresh.png'
+                ,id      : 'requery'
+                ,hidden  : true
+                ,handler : function() {
+                  if (lyrQueryPts.features.length > 0) {
+                    mapClick(lastMapClick['xy'],true,false,true);
+                  }
+                }
+              }
+              ,{
                  text    : 'Clear query'
                 ,icon    : 'img/trash-icon.png'
                 ,id      : 'graphAction'
+                ,width   : 90
                 ,handler : function() {
                   if (this.icon == 'img/blueSpinner.gif') {
                     return;
                   }
                   lyrQueryPts.removeFeatures(lyrQueryPts.features);
+                  Ext.getCmp('requery').hide();
                   document.getElementById('tsResults').innerHTML = '<table class="obsPopup timeSeries"><tr><td><img width=3 height=3 src="img/blank.png"><br/><img width=8 height=1 src="img/blank.png">Click anywhere on the map or on a dot to view a time-series graph of model or observation output.<br/><img width=8 height=1 src="img/blank.png"><img src="info/graph_primer.png"></td></tr></table>';
                   chartData = [];
                   $('#tooltip').remove();
@@ -2160,6 +2173,7 @@ function init() {
                         ,grid      : {backgroundColor : {colors : ['#fff','#eee']},borderWidth : 1,borderColor : '#99BBE8',hoverable : true}
                         ,zoom      : {interactive : false}
                         ,pan       : {interactive : false}
+                        ,legend    : {backgroundOpacity : 0.3}
                       }
                     );
                     if (spd.length > 0 && dir.length > 0) {
@@ -2188,6 +2202,7 @@ function init() {
                       $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'img/asterisk_orange.png\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
                     }
                   }
+                  lyrQueryPts.features.length > 0 ? Ext.getCmp('requery').show() : Ext.getCmp('requery').hide();
                   Ext.getCmp('graphAction').setText('Clear query');
                   Ext.getCmp('graphAction').setIcon('img/trash-icon.png');
                 });
@@ -3357,9 +3372,6 @@ function addLayer(lyr,timeSensitive) {
               var prevTs = rec.get('timestamp');
               var newTs  = shortDateString(new Date(r.responseText * 1000));
               rec.set('timestamp',newTs);
-              if (prevTs && prevTs != newTs && lastMapClick['layer'] == lyr.name && lyrQueryPts.features.length > 0) {
-                mapClick(lastMapClick['xy'],true,false,true);
-              }
             }
           }
         });
@@ -4036,7 +4048,11 @@ function syncObs(l,force) {
 function showObsTimeseries(href) {
   Ext.getCmp('graphAction').setText('Processing');
   Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
-  var p   = OpenLayers.Util.getParameters(href.split('http://')[href.split('http://').length - 1]);
+  var p = OpenLayers.Util.getParameters(href.split('http://')[href.split('http://').length - 1]);
+  // USGS is differnent . . . of course
+  if (href.indexOf('&USGS=') >= 0) {
+    p = OpenLayers.Util.getParameters('http://foo.bar/' + href.substr(0,href.indexOf('http')));
+  }
   var pix = map.getPixelFromLonLat(new OpenLayers.LonLat(p['lon'],p['lat']).transform(proj4326,map.getProjectionObject()));
 
   // see if there are any WMS layers we can use as a pivot point based on the cat param
@@ -4076,7 +4092,7 @@ function makeChart(type,a) {
     if (obs.error) {
       chartData.push({
          data   : []
-        ,label  : title + ': QUERY ERROR: ' + obs.error
+        ,label  : title + ': QUERY ERROR ' + obs.error
         ,nowIdx : ''
       });
       // record the action on google analytics

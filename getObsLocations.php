@@ -48,6 +48,8 @@
               ."&procedure="     .sprintf("%s",$o->{'procedure'}[0]->attributes('http://www.w3.org/1999/xlink')->{'href'})
               ."&properties="    .str_replace('phenomenaDictionary.xml#','',implode(',',$props)) // hack for Weatherflow
               ."&id="            .$id
+              ."&lon="           .$loc[1]
+              ."&lat="           .$loc[0]
           ));
         }
       }
@@ -107,6 +109,9 @@
           ,'descr'    => sprintf("$provider Station %s - %s",$d[$col2idx['id']],$d[$col2idx['descr']])
           ,'url'      => "popup$provider.php"
             ."?id=".$d[$col2idx['id']]
+            ."&lon=".$d[$col2idx['lon']]
+            ."&lat=".$d[$col2idx['lat']]
+
         ));
       }
     }
@@ -423,6 +428,8 @@
           ."?id=".$d['id']
           .'&stations='.implode('|',$d['stations'])
           .'&params='.implode('|',$d['params'])
+          .'&lon='.$d['lon']
+          .'&lat='.$d['lat']
       ));
     }
   }

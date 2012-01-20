@@ -28,7 +28,7 @@
         $dEnd   = date('Y-m-d\TH:i:00\Z');
         $dBegin = date('Y-m-d\TH:i:00\Z',time() - 60 * 60 * (24 * 1 + 1));
         if ($v != '') {
-          $uEscape = str_replace('"','\\"',"graph.php?name=$n&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom']."&USGS=$base&parameterCd=$p&startDt=$dBegin&endDt=$dEnd");
+          $uEscape = str_replace('"','\\"',"graph.php?name=$n&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&lon='.$_REQUEST['lon'].'&lat='.$_REQUEST['lat'].'&cat='.$a[0]['cat']."&USGS=$base&parameterCd=$p&startDt=$dBegin&endDt=$dEnd");
           $extra = '';
           if (count($a) == 2) {
             $extra = "<br><a href='javascript:showObsTimeseries(\"".str_replace('graph.php?','graph.php?uomB&',$uEscape)."\")'><img src='img/graph.png' width=10 height=10></a> ".$a[1]["val"].' '.$a[1]["uom"];
