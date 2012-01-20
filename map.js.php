@@ -4038,9 +4038,19 @@ function showObsTimeseries(href) {
   Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
   var p   = OpenLayers.Util.getParameters(href.split('http://')[href.split('http://').length - 1]);
   var pix = map.getPixelFromLonLat(new OpenLayers.LonLat(p['lon'],p['lat']).transform(proj4326,map.getProjectionObject()));
-  var a   = mapClick({x : pix.x,y : pix.y},true,false,false) || [];
-  a.push({url : href,title : popupObs.title});
-  makeChart(a.length >= 1 ? 'model' : 'obs',a);
+
+  // see if there are any WMS layers we can use as a pivot point based on the cat param
+  var a = [];
+  if (p['cat'] != '') {
+    Ext.getCmp('chartLayerCombo').getStore().each(function(rec) {
+      if (new RegExp(p['cat'] + '$').test(mainStore.getAt(mainStore.find('name',rec.get('name'))).get('displayName'))) {
+        Ext.getCmp('chartLayerCombo').setValue(rec.get('name'));
+        a = mapClick({x : pix.x,y : pix.y},true,false,false) || [];
+      }
+    });
+  }
+  a.push({url : href,title : popupObs.title.split(' - ')[0]});
+  makeChart(a.length > 1 ? 'model' : 'obs',a);
 }
 
 function makeChart(type,a) {
@@ -4068,12 +4078,12 @@ function makeChart(type,a) {
       // record the action on google analytics
       pageTracker._trackEvent('chartView',title,'error');
     }
-    else if (obs.d == '' && chartData.length == 0) {
+    else if ((obs.d == '' || obs.d.length == 0) && chartData.length == 0) {
       chartData = ['QUERY ERROR. There was an error fetching query results for this layer.'];
       // record the action on google analytics
       pageTracker._trackEvent('chartView',title,'error');
     }
-    else {
+    else if (!(obs.d == '' || obs.d.length == 0)) {
       // get rid of any errors if good, new data has arrived
       if (chartData.length == 1 && String(chartData[0]).indexOf('QUERY ERROR') == 0) {
         chartData.pop();
