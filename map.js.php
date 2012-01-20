@@ -4075,7 +4075,7 @@ function makeChart(type,a) {
     }
     else {
       // get rid of any errors if good, new data has arrived
-      if (chartData.length == 1 && chartData[0].indexOf('QUERY ERROR') == 0) {
+      if (chartData.length == 1 && String(chartData[0]).indexOf('QUERY ERROR') == 0) {
         chartData.pop();
       }
       for (var v in obs.d) {
@@ -4463,7 +4463,7 @@ function forceQueryLayers(name,layer) {
 }
 
 function toEnglish(v) {
-  if (v.src.indexOf('Celcius') >= 0) {
+  if (String(v.src).indexOf('Celcius') >= 0) {
     if (v.typ == 'title') {
       return v.val.replace('Celcius','Fahrenheit');
     }
@@ -4471,7 +4471,7 @@ function toEnglish(v) {
       return v.val * 9/5 + 32;
     }
   }
-  else if (v.src.indexOf('Meters') >= 0) {
+  else if (String(v.src).indexOf('Meters') >= 0) {
     if (v.typ == 'title') {
       return v.val.replace('Meters','Feet');
     }
