@@ -2323,7 +2323,7 @@ function initMap() {
   }
 
   map.events.register('click',this,function(e) {
-    mapClick(e.xy,true,true);
+    mapClick(e.xy,true,true,true);
   });
 
   map.events.register('addlayer',this,function() {
@@ -3358,7 +3358,7 @@ function addLayer(lyr,timeSensitive) {
               var newTs  = shortDateString(new Date(r.responseText * 1000));
               rec.set('timestamp',newTs);
               if (prevTs && prevTs != newTs && lastMapClick['layer'] == lyr.name && lyrQueryPts.features.length > 0) {
-                mapClick(lastMapClick['xy'],true,false);
+                mapClick(lastMapClick['xy'],true,false,true);
               }
             }
           }
@@ -4036,7 +4036,11 @@ function syncObs(l,force) {
 function showObsTimeseries(href) {
   Ext.getCmp('graphAction').setText('Processing');
   Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
-  makeChart('obs',[{url : href,title : popupObs.title}]);
+  var p   = OpenLayers.Util.getParameters(href.split('http://')[href.split('http://').length - 1]);
+  var pix = map.getPixelFromLonLat(new OpenLayers.LonLat(p['lon'],p['lat']).transform(proj4326,map.getProjectionObject()));
+  var a   = mapClick({x : pix.x,y : pix.y},true,false,false) || [];
+  a.push({url : href,title : popupObs.title});
+  makeChart(a.length >= 1 ? 'model' : 'obs',a);
 }
 
 function makeChart(type,a) {
@@ -4059,17 +4063,21 @@ function makeChart(type,a) {
   function makeChartCallback(title,lineColor,r) {
     var obs = new OpenLayers.Format.JSON().read(r.responseText);
     var yaxis = 1;
-    if (obs.error) {
+    if (obs.error && chartData.length == 0) {
       chartData = ['QUERY ERROR. The layer provider has reported the following error: ' + obs.error + '.'];
       // record the action on google analytics
       pageTracker._trackEvent('chartView',title,'error');
     }
-    else if (obs.d == '') {
+    else if (obs.d == '' && chartData.length == 0) {
       chartData = ['QUERY ERROR. There was an error fetching query results for this layer.'];
       // record the action on google analytics
       pageTracker._trackEvent('chartView',title,'error');
     }
     else {
+      // get rid of any errors if good, new data has arrived
+      if (chartData.length == 1 && chartData[0].indexOf('QUERY ERROR') == 0) {
+        chartData.pop();
+      }
       for (var v in obs.d) {
         // get the data
         chartData.push({
@@ -4202,7 +4210,7 @@ function restoreDefaultStyles(l,items) {
   }
 }
 
-function mapClick(xy,doWMS,doWWA) {
+function mapClick(xy,doWMS,doWWA,chartIt) {
   lastMapClick['xy'] = xy;
   lyrQueryPts.removeFeatures(lyrQueryPts.features);
 
@@ -4229,17 +4237,19 @@ function mapClick(xy,doWMS,doWWA) {
         }
       }
     });
-    queryWMS(xy,queryLyrs);
+    return queryWMS(xy,queryLyrs,chartIt);
   }
   if (doWWA && wwaLyr && wwaLyr.visibility) {
     queryWWA(xy,f);
   }
 }
 
-function queryWMS(xy,a) {
+function queryWMS(xy,a,chartIt) {
   lastMapClick['layer'] = a[0].name;
-  Ext.getCmp('graphAction').setText('Processing');
-  Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
+  if (chartIt) {
+    Ext.getCmp('graphAction').setText('Processing');
+    Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
+  }
   var targets = [];
   for (var i = 0; i < a.length; i++) {
     var mapTime;
@@ -4271,7 +4281,10 @@ function queryWMS(xy,a) {
     }
     targets.push({url : a[i].getFullRequestString(paramNew,'getFeatureInfo.php?' + a[i].url + '&tz=' + new Date().getTimezoneOffset() + mapTime),title : mainStore.getAt(mainStore.find('name',a[i].name)).get('displayName')});
   }
-  makeChart('model',targets);
+  if (chartIt) {
+    makeChart('model',targets);
+  }
+  return targets;
 }
 
 function queryWWA(xy,f) {
