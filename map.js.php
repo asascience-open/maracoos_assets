@@ -4073,17 +4073,25 @@ function makeChart(type,a) {
   function makeChartCallback(title,lineColor,r) {
     var obs = new OpenLayers.Format.JSON().read(r.responseText);
     var yaxis = 1;
-    if (obs.error && chartData.length == 0) {
-      chartData = ['QUERY ERROR. The layer provider has reported the following error: ' + obs.error + '.'];
+    if (obs.error) {
+      chartData.push({
+         data   : []
+        ,label  : title + ': QUERY ERROR: ' + obs.error
+        ,nowIdx : ''
+      });
       // record the action on google analytics
       pageTracker._trackEvent('chartView',title,'error');
     }
-    else if ((obs.d == '' || obs.d.length == 0) && chartData.length == 0) {
-      chartData = ['QUERY ERROR. There was an error fetching query results for this layer.'];
+    else if (obs.d == '' || obs.d.length == 0) {
+      chartData.push({
+         data   : []
+        ,label  : title + ': QUERY ERROR'
+        ,nowIdx : ''
+      });
       // record the action on google analytics
       pageTracker._trackEvent('chartView',title,'error');
     }
-    else if (!(obs.d == '' || obs.d.length == 0)) {
+    else {
       // get rid of any errors if good, new data has arrived
       if (chartData.length == 1 && String(chartData[0]).indexOf('QUERY ERROR') == 0) {
         chartData.pop();
