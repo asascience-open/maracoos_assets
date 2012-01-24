@@ -153,6 +153,7 @@ function init() {
       ,'bbox'
       ,'queryable'
       ,'settingsLayers'
+      ,'category'
     ]
     ,data  : [
       [
@@ -181,6 +182,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,''
         ,''
+        ,''
       ]
       ,[
          'asset'
@@ -206,6 +208,7 @@ function init() {
         ,''
         ,''
         ,'-78,35.5,-62,44'
+        ,''
         ,''
         ,''
       ]
@@ -236,6 +239,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,''
         ,''
+        ,''
       ]
 */
       ,[
@@ -262,6 +266,7 @@ function init() {
         ,''
         ,''
         ,'-75,40.5,-73,43'
+        ,''
         ,''
         ,''
       ]
@@ -291,6 +296,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,''
         ,''
+        ,''
       ]
       ,[
          'asset'
@@ -316,6 +322,7 @@ function init() {
         ,''
         ,''
         ,'-78,35.5,-62,44'
+        ,''
         ,''
         ,''
       ]
@@ -345,6 +352,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,''
         ,''
+        ,''
       ]
       ,[
          'asset'
@@ -370,6 +378,7 @@ function init() {
         ,'legends/Drifters.png'
         ,''
         ,'-78,35.5,-62,44'
+        ,''
         ,''
         ,''
       ]
@@ -399,6 +408,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,''
         ,''
+        ,''
       ]
       ,[
          'asset'
@@ -424,6 +434,7 @@ function init() {
         ,''
         ,''
         ,'-76.5,39,-73,41'
+        ,''
         ,''
         ,''
       ]
@@ -453,6 +464,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,''
         ,''
+        ,''
       ]
       ,[
          'model'
@@ -480,6 +492,7 @@ function init() {
         ,'-79,35.5,-74,40'
         ,'true'
         ,''
+        ,'currentsVelocity'
       ]
       ,[
          'model'
@@ -507,6 +520,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,'true'
         ,''
+        ,'currentsVelocity'
       ]
       ,[
          'model'
@@ -534,6 +548,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,'true'
         ,''
+        ,'currentsVelocity'
       ]
 //      ,[
 //         'model'
@@ -561,6 +576,7 @@ function init() {
 //        ,'-72,40.5,-69,43.5'
 //        ,'true'
 //        ,''
+//        ,'currentsVelocity'
 //      ]
       ,[
          'model'
@@ -588,6 +604,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,'true'
         ,''
+        ,'currentsVelocity'
       ]
       ,[
          'model'
@@ -615,6 +632,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,'true'
         ,''
+        ,'currentsVelocity'
       ]
       ,[
          'model'
@@ -642,6 +660,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,'true'
         ,''
+        ,'currentsVelocity'
       ]
       ,[
          'model'
@@ -669,6 +688,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,'true'
         ,''
+        ,'windsVelocity'
       ]
       ,[
          'model'
@@ -696,6 +716,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,'true'
         ,''
+        ,'wavesElevation'
       ]
       ,[
          'model'
@@ -723,6 +744,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,'true'
         ,''
+        ,'temperature'
       ]
       ,[
          'observation'
@@ -750,6 +772,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,'true'
         ,''
+        ,'currentsVelocity'
       ]
       ,[
          'observation'
@@ -777,6 +800,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,'true'
         ,typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'sst-seven/mcsst'
+        ,'temperature'
       ]
       ,[
          'observation'
@@ -803,6 +827,7 @@ function init() {
         ,'false'
         ,'-78,35.5,-62,44'
         ,'false'
+        ,''
         ,''
       ]
       ,[
@@ -831,6 +856,7 @@ function init() {
         ,'-78,35.5,-62,44'
         ,'false'
         ,''
+        ,''
       ]
       ,[
          'marine'
@@ -857,6 +883,7 @@ function init() {
         ,'false'
         ,'-135,0,-50,50'
         ,'false'
+        ,''
         ,''
       ]
       ,[
@@ -885,6 +912,7 @@ function init() {
         ,'-135,0,-50,50'
         ,'false'
         ,''
+        ,''
       ]
       ,[
          'gliders'
@@ -911,6 +939,7 @@ function init() {
         ,'false'
         ,'-135,0,-50,50'
         ,'false'
+        ,''
         ,''
       ]
       ,[
@@ -939,6 +968,7 @@ function init() {
         ,'-135,0,-50,50'
         ,'false'
         ,''
+        ,''
       ]
       ,[
          'gliders'
@@ -965,6 +995,7 @@ function init() {
         ,'false'
         ,'-135,0,-50,50'
         ,'false'
+        ,''
         ,''
       ]
       ,[
@@ -993,6 +1024,7 @@ function init() {
         ,'-135,0,-50,50'
         ,'false'
         ,''
+        ,''
       ]
       ,[
          'glatos'
@@ -1020,6 +1052,7 @@ function init() {
         ,'-135,0,-50,50'
         ,'false'
         ,''
+        ,''
       ]
       ,[
          'n/a'
@@ -1046,6 +1079,7 @@ function init() {
         ,'false'
         ,'-135,0,-50,50'
         ,'false'
+        ,''
         ,''
       ]
     ]
@@ -3340,6 +3374,7 @@ function addLayer(lyr,timeSensitive) {
            rank        : mainStore.getAt(mainIdx).get('rank')
           ,name        : lyr.name
           ,displayName : mainStore.getAt(mainIdx).get('displayName')
+          ,category    : mainStore.getAt(mainIdx).get('category')
         }));
       }
     }
@@ -4059,7 +4094,7 @@ function showObsTimeseries(href) {
   var a = [];
   if (p['cat'] != '') {
     Ext.getCmp('chartLayerCombo').getStore().each(function(rec) {
-      if (new RegExp(p['cat'] + '$').test(mainStore.getAt(mainStore.find('name',rec.get('name'))).get('displayName'))) {
+      if (p['cat'] == mainStore.getAt(mainStore.find('name',rec.get('name'))).get('category')) {
         Ext.getCmp('chartLayerCombo').setValue(rec.get('name'));
         a = mapClick({x : pix.x,y : pix.y},true,false,false) || [];
       }
@@ -4249,6 +4284,7 @@ function mapClick(xy,doWMS,doWWA,chartIt) {
   lyrQueryPts.removeFeatures(lyrQueryPts.features);
 
   var modelQueryLyr = map.getLayersByName(Ext.getCmp('chartLayerCombo').getValue())[0];
+  var modelQueryRec = mainStore.getAt(mainStore.find('displayName',modelQueryLyr.name));
   var wwaLyr        = map.getLayersByName('WWA')[0];
   if ((modelQueryLyr && modelQueryLyr.visibility && modelQueryLyr.DEFAULT_PARAMS) || (wwaLyr && wwaLyr.visibility)) {
     var lonLat = map.getLonLatFromPixel(xy);
@@ -4264,7 +4300,7 @@ function mapClick(xy,doWMS,doWWA,chartIt) {
     var displayName = mainStore.getAt(mainStore.find('name',modelQueryLyr.name)).get('displayName');
     var lyrType = displayName.substr(displayName.lastIndexOf(' ') + 1);
     Ext.getCmp('chartLayerCombo').getStore().each(function(rec) {
-      if (rec.get('name') != modelQueryLyr.name && new RegExp(lyrType + '$').test(mainStore.getAt(mainStore.find('name',rec.get('name'))).get('displayName'))) {
+      if (rec.get('name') != modelQueryLyr.name && rec.get('category') == modelQueryRec.get('category')) {
         var lyr = map.getLayersByName(rec.get('name'))[0];
         if (lyr && lyr.visibility && lyr.DEFAULT_PARAMS) {
           queryLyrs.push(lyr);
