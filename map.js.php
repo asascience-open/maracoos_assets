@@ -4295,8 +4295,7 @@ function mapClick(xy,doWMS,doWWA,chartIt) {
 
   var queryLyrs = [modelQueryLyr];
   if (doWMS && modelQueryLyr && modelQueryLyr.visibility && modelQueryLyr.DEFAULT_PARAMS) {
-    // now that we've established our pivot point, see if there are any other active layers to drill into
-    // based on the last word in the layer name (e.g. 'currents' or 'temperature')
+    // now that we've established our pivot point, see if there are any other active layers to drill into based on the category
     var displayName = mainStore.getAt(mainStore.find('name',modelQueryLyr.name)).get('displayName');
     var lyrType = displayName.substr(displayName.lastIndexOf(' ') + 1);
     Ext.getCmp('chartLayerCombo').getStore().each(function(rec) {
