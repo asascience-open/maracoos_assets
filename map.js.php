@@ -2190,7 +2190,7 @@ function init() {
                   }
                   else {
                     for (var i = 0; i < chartData.length; i++) {
-                      if (chartData[i].label.indexOf('Velocity') >= 0) {
+                      if (new RegExp(/Velocity|Speed/).test(chartData[i].label)) {
                         spd.push(chartData[i]);
                       }
                       else if (chartData[i].label.indexOf('Direction') >= 0) {
@@ -4083,10 +4083,10 @@ function syncObs(l,force) {
 function showObsTimeseries(href) {
   Ext.getCmp('graphAction').setText('Processing');
   Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
-  var p = OpenLayers.Util.getParameters(href.split('http://')[href.split('http://').length - 1]);
+  var p = OpenLayers.Util.getParameters(href[0].split('http://')[href[0].split('http://').length - 1]);
   // USGS is differnent . . . of course
-  if (href.indexOf('&USGS=') >= 0) {
-    p = OpenLayers.Util.getParameters('http://foo.bar/' + href.substr(0,href.indexOf('http')));
+  if (href[0].indexOf('&USGS=') >= 0) {
+    p = OpenLayers.Util.getParameters('http://foo.bar/' + href[0].substr(0,href[0].indexOf('http')));
   }
   var pix = map.getPixelFromLonLat(new OpenLayers.LonLat(p['lon'],p['lat']).transform(proj4326,map.getProjectionObject()));
 
@@ -4100,7 +4100,9 @@ function showObsTimeseries(href) {
       }
     });
   }
-  a.push({url : href,title : popupObs.title.split(' - ')[0]});
+  for (var i = 0 ; i < href.length; i++) {
+    a.push({url : href[i],title : popupObs.title.split(' - ')[0]});
+  }
   makeChart(a.length > 1 ? 'model' : 'obs',a);
 }
 

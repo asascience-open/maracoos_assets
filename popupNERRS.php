@@ -46,9 +46,9 @@
         $uEscape = str_replace('"','\\"',"graph.php?name=$k&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&lon='.$_REQUEST['lon'].'&lat='.$_REQUEST['lat'].'&cat='.$a[0]['cat']."&NERRS=".$d['station']."&startDt=$dBegin&endDt=$dEnd");
         $extra = '';
         if (count($a) == 2) {
-          $extra = "<br><a href='javascript:showObsTimeseries(\"".str_replace('graph.php?','graph.php?uomB&',$uEscape)."\")'><img src='img/graph.png' width=10 height=10></a> ".$a[1]["val"].' '.$a[1]["uom"];
+          $extra = "<br><a href='javascript:showObsTimeseries([\"".str_replace('graph.php?','graph.php?uomB&',$uEscape)."\"])'><img src='img/graph.png' width=10 height=10></a> ".$a[1]["val"].' '.$a[1]["uom"];
         }
-        array_push($o,sprintf("<tr><td><b>%s</b></td><td><a href='javascript:showObsTimeseries(\"$uEscape\")'><img src='img/graph.png' width=10 height=10></a> $v $u$extra</td></tr>",$k));
+        array_push($o,sprintf("<tr><td><b>%s</b></td><td><a href='javascript:showObsTimeseries([\"$uEscape\"])'><img src='img/graph.png' width=10 height=10></a> $v $u$extra</td></tr>",$k));
       }
     }
   }
