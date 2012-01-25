@@ -75,16 +75,16 @@
   foreach ($obs as $k => $v) {
     $companionUrl = '';
     if ($k == 'WindSpeed') {
-      $companionUrl = $obs['WindDirection'][0]['url'];
+      $companionUrl = ',"'.$obs['WindDirection'][0]['url'].'"';
     }
     else if ($k == 'WindDirection') {
-      $companionUrl = $obs['WindSpeed'][0]['url'];
+      $companionUrl = ',"'.$obs['WindSpeed'][0]['url'].'"';
     }
     $extra = '';
     if (count($v) == 2) {
-      $extra = "<br><a href='javascript:showObsTimeseries([\"".$v[1]['url']."\",\"$companionUrl\"])'><img src='img/graph.png' width=10 height=10></a> ".$v[1]['val'];
+      $extra = "<br><a href='javascript:showObsTimeseries([\"".$v[1]['url']."\"$companionUrl])'><img src='img/graph.png' width=10 height=10></a> ".$v[1]['val'];
     }
-    array_push($o,sprintf("<tr><td><b>%s</b></td><td><a href='javascript:showObsTimeseries([\"".$v[0]['url']."\",\"$companionUrl\"])'><img src='img/graph.png' width=10 height=10></a> ".$v[0]['val']."$extra</td></tr>",$k));
+    array_push($o,sprintf("<tr><td><b>%s</b></td><td><a href='javascript:showObsTimeseries([\"".$v[0]['url']."\"$companionUrl])'><img src='img/graph.png' width=10 height=10></a> ".$v[0]['val']."$extra</td></tr>",$k));
   }
 
   // get tide data

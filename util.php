@@ -24,6 +24,7 @@
        'C'      => 'temperature'
       ,'F'      => 'temperature'
       ,'kelvin' => 'temperature'
+      ,'m/s'    => 'windsVelocity'
     );
     if ($val == '') {
       return Array(Array('val' => '','uom' => '','cat' => ''));

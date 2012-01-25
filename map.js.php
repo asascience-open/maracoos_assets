@@ -4120,13 +4120,13 @@ function makeChart(type,a) {
   for (var j = 0; j < a.length; j++) {
     OpenLayers.Request.GET({
        url      : a[j].url
-      ,callback : OpenLayers.Function.bind(makeChartCallback,null,a[j].title,lineColors[j % lineColors.length][0])
+      ,callback : OpenLayers.Function.bind(makeChartCallback,null,a[j].title,lineColors[j % lineColors.length][0],type)
     });
   }
-  function makeChartCallback(title,lineColor,r) {
+  function makeChartCallback(title,lineColor,type,r) {
     var obs = new OpenLayers.Format.JSON().read(r.responseText);
     var yaxis = 1;
-    if (obs.error) {
+    if (obs && obs.error) {
       chartData.push({
          data   : []
         ,label  : title + ': QUERY ERROR ' + obs.error
@@ -4135,7 +4135,7 @@ function makeChart(type,a) {
       // record the action on google analytics
       pageTracker._trackEvent('chartView',title,'error');
     }
-    else if (obs.d == '' || obs.d.length == 0) {
+    else if (!obs || obs.d == '' || obs.d.length == 0) {
       chartData.push({
          data   : []
         ,label  : title + ': QUERY ERROR'
