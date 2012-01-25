@@ -4295,7 +4295,7 @@ function mapClick(xy,doWMS,doWWA,chartIt) {
   lyrQueryPts.removeFeatures(lyrQueryPts.features);
 
   var modelQueryLyr = map.getLayersByName(Ext.getCmp('chartLayerCombo').getValue())[0];
-  var modelQueryRec = mainStore.getAt(mainStore.find('displayName',modelQueryLyr.name));
+  var modelQueryRec = mainStore.getAt(mainStore.find('name',modelQueryLyr.name));
   var wwaLyr        = map.getLayersByName('WWA')[0];
   if ((modelQueryLyr && modelQueryLyr.visibility && modelQueryLyr.DEFAULT_PARAMS) || (wwaLyr && wwaLyr.visibility)) {
     var lonLat = map.getLonLatFromPixel(xy);
