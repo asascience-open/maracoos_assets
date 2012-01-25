@@ -2210,7 +2210,7 @@ function init() {
                         ,legend    : {backgroundOpacity : 0.3}
                       }
                     );
-                    if (spd.length > 0 && dir.length > 0) {
+                    if (spd.length > 0 && dir.length > 0 && spd.length == dir.length) {
                       // assume that #spd == #dir
                       for (var j = 0; j < spd.length; j++) {
                         var imageSize = 80;

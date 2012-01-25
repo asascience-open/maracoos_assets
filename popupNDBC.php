@@ -53,6 +53,9 @@
         if ($cat == 'velocity' && preg_match('/wind/i',$n)) {
           $cat = 'windsVelocity';
         }
+        else if ($cat == 'elevation' && preg_match('/wave|swell/i',$n)) {
+          $cat = 'wavesElevation';
+        }
         $dEnd   = date('Y-m-d\TH:i\Z');
         $dBegin = date('Y-m-d\TH:i\Z',time() - 60 * 60 * (24 * 1 + 1));
         if ($v != '') {
@@ -95,6 +98,9 @@
       $cat = $a[0]["cat"];
       if ($cat == 'velocity' && preg_match('/wind/i',$n)) {
         $cat = 'windsVelocity';
+      }
+      else if ($cat == 'elevation' && preg_match('/wave|swell/i',$n)) {
+        $cat = 'wavesElevation';
       }
       $dEnd   = date('Y-m-d\TH:i\Z');
       $dBegin = date('Y-m-d\TH:i\Z',time() - 60 * 60 * (24 * 1 + 1));

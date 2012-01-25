@@ -25,6 +25,7 @@
       ,'F'      => 'temperature'
       ,'kelvin' => 'temperature'
       ,'m/s'    => 'velocity'
+      ,'m'      => 'elevation'
     );
     if ($val == '') {
       return Array(Array('val' => '','uom' => '','cat' => ''));
