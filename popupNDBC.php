@@ -7,7 +7,7 @@
 
   date_default_timezone_set('UTC');
   $t = ''; // assume same time for all obs
-  $o = Array();
+  $obs = Array();
   foreach (explode(',',$_REQUEST['properties']) as $p) {
     $xml = @simplexml_load_file("$base&observedProperty=$p".'&responseFormat=text/xml;schema="ioos/0.6.1"');
     if ($xml->children('http://www.opengis.net/om/1.0')->{'result'}) {
@@ -49,15 +49,24 @@
         $a = convertUnits(sprintf("%s",$q),sprintf("%s",$q->attributes()->uom),$_REQUEST['uom'] == 'english');
         $u = $a[0]["uom"];
         $v = $a[0]["val"];
+        $cat = $a[0]["cat"];
+        if ($cat == 'velocity' && preg_match('/wind/i',$n)) {
+          $cat = 'windsVelocity';
+        }
         $dEnd   = date('Y-m-d\TH:i\Z');
         $dBegin = date('Y-m-d\TH:i\Z',time() - 60 * 60 * (24 * 1 + 1));
         if ($v != '') {
-          $uEscape = str_replace('"','\\"',"graph.php?$base&observedProperty=$p".'&responseFormat=text/xml;schema="ioos/0.6.1"'."&name=$n&eventTime=$dBegin/$dEnd&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&lon='.$_REQUEST['lon'].'&lat='.$_REQUEST['lat'].'&cat='.$a[0]['cat']);
-          $extra = '';
+          $uEscape = str_replace('"','\\"',"graph.php?$base&observedProperty=$p".'&responseFormat=text/xml;schema="ioos/0.6.1"'."&name=$n&eventTime=$dBegin/$dEnd&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&lon='.$_REQUEST['lon'].'&lat='.$_REQUEST['lat'].'&cat='.$cat);
+          $obs[$n] = array(array(
+             'url' => $uEscape
+            ,'val' => "$v $u"
+          ));
           if (count($a) == 2) {
-            $extra = "<br><a href='javascript:showObsTimeseries([\"".str_replace('graph.php?','graph.php?uomB&',$uEscape)."\"])'><img src='img/graph.png' width=10 height=10></a> ".$a[1]["val"].' '.$a[1]["uom"];
+            array_push($obs[$n],array(
+               'url' => str_replace('graph.php?','graph.php?uomB&',$uEscape)
+              ,'val' => $a[1]["val"].' '.$a[1]["uom"]
+            ));
           }
-          array_push($o,sprintf("<tr><td><b>%s</b></td><td><a href='javascript:showObsTimeseries([\"$uEscape\"])'><img src='img/graph.png' width=10 height=10></a> $v $u$extra</td></tr>",$n));
         }
       }
     }
@@ -83,18 +92,43 @@
       $a = convertUnits($v,$u,$_REQUEST['uom'] == 'english');
       $u = $a[0]["uom"];
       $v = $a[0]["val"];
+      $cat = $a[0]["cat"];
+      if ($cat == 'velocity' && preg_match('/wind/i',$n)) {
+        $cat = 'windsVelocity';
+      }
       $dEnd   = date('Y-m-d\TH:i\Z');
       $dBegin = date('Y-m-d\TH:i\Z',time() - 60 * 60 * (24 * 1 + 1));
       if ($v != '') {
         $n = underscoreCaps($p);
-        $uEscape = str_replace('"','\\"',"graph.php?$base&observedProperty=$p".'&responseFormat=text/csv'."&name=$n&eventTime=$dBegin/$dEnd&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&lon='.$_REQUEST['lon'].'&lat='.$_REQUEST['lat'].'&cat='.$a[0]['cat']);
-        $extra = '';
+        $uEscape = str_replace('"','\\"',"graph.php?$base&observedProperty=$p".'&responseFormat=text/xml;schema="ioos/0.6.1"'."&name=$n&eventTime=$dBegin/$dEnd&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&lon='.$_REQUEST['lon'].'&lat='.$_REQUEST['lat'].'&cat='.$cat);
+        $obs[$n] = array(array(
+           'url' => $uEscape
+          ,'val' => "$v $u"
+        ));
         if (count($a) == 2) {
-          $extra = "<br><a href='javascript:showObsTimeseries([\"".str_replace('graph.php?','graph.php?uomB&',$uEscape)."\"])'><img src='img/graph.png' width=10 height=10></a> ".$a[1]["val"].' '.$a[1]["uom"];
+          array_push($obs[$n],array(
+             'url' => str_replace('graph.php?','graph.php?uomB&',$uEscape)
+            ,'val' => $a[1]["val"].' '.$a[1]["uom"]
+          ));
         }
-        array_push($o,sprintf("<tr><td><b>%s</b></td><td><a href='javascript:showObsTimeseries([\"$uEscape\"])'><img src='img/graph.png' width=10 height=10></a> $v $u$extra</td></tr>",$n));
       }
     }
+  }
+
+  $o = array();
+  foreach ($obs as $k => $v) {
+    $companionUrl = '';
+    if ($k == 'WindSpeed') {
+      $companionUrl = ',"'.$obs['WindDirection'][0]['url'].'"';
+    }
+    else if ($k == 'WindDirection') {
+      $companionUrl = ',"'.$obs['WindSpeed'][0]['url'].'"';
+    }
+    $extra = '';
+    if (count($v) == 2) {
+      $extra = "<br><a href='javascript:showObsTimeseries([\"".$v[1]['url']."\"$companionUrl])'><img src='img/graph.png' width=10 height=10></a> ".$v[1]['val'];
+    }
+    array_push($o,sprintf("<tr><td><b>%s</b></td><td><a href='javascript:showObsTimeseries([\"".$v[0]['url']."\"$companionUrl])'><img src='img/graph.png' width=10 height=10></a> ".$v[0]['val']."$extra</td></tr>",$k));
   }
 
   if (count($o) == 0) {

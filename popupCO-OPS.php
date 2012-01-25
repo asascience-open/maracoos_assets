@@ -51,10 +51,14 @@
           $a = convertUnits(sprintf("%s",$q),sprintf("%s",$q->attributes()->uom),$_REQUEST['uom'] == 'english');
           $u = $a[0]["uom"];
           $v = $a[0]["val"];
+          $cat = $a[0]["cat"];
+          if ($cat == 'velocity' && preg_match('/wind/i',$n)) {
+            $cat = 'windsVelocity';
+          }
           $dEnd   = date('Y-m-d\TH:i:00\Z');
           $dBegin = date('Y-m-d\TH:i:00\Z',time() - 60 * 60 * (24 * 1 + 1));
           if ($v != '') {
-            $uEscape = str_replace('"','\\"',"graph.php?$base&observedProperty=$p".'&responseFormat=text/xml;schema="ioos/0.6.1"'."&name=$n&eventTime=$dBegin/$dEnd&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&lon='.$_REQUEST['lon'].'&lat='.$_REQUEST['lat'].'&cat='.$a[0]['cat']);
+            $uEscape = str_replace('"','\\"',"graph.php?$base&observedProperty=$p".'&responseFormat=text/xml;schema="ioos/0.6.1"'."&name=$n&eventTime=$dBegin/$dEnd&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&lon='.$_REQUEST['lon'].'&lat='.$_REQUEST['lat'].'&cat='.$cat);
             $obs[$n] = array(array(
                'url' => $uEscape
               ,'val' => "$v $u"

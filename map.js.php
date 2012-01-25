@@ -2221,7 +2221,11 @@ function init() {
                           }
                           var o = p.pointOffset({x : spd[j].data[i][0],y : spd[j].data[i][1]});
                           if (type == 'barb') {
-                            $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'vector.php?w=' + imageSize + '&h=' + imageSize + '&dir=' + Math.round(dir[j].data[i][1]) + '&spd=' + Math.round(spd[j].data[i][1]) + '&type=' + type + '&color=' + lineColor2VectorColor(dir[j].color).replace('#','') + '\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
+                            var val = Math.round(dir[j].data[i][1]);
+                            if (spd[j].type == 'obs') {
+                              val = (val + 180) % 360;
+                            }
+                            $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'vector.php?w=' + imageSize + '&h=' + imageSize + '&dir=' + val + '&spd=' + Math.round(spd[j].data[i][1]) + '&type=' + type + '&color=' + lineColor2VectorColor(dir[j].color).replace('#','') + '\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
                           }
                           else {
                             // pull arrows from cache
@@ -4101,9 +4105,13 @@ function showObsTimeseries(href) {
     });
   }
   for (var i = 0 ; i < href.length; i++) {
-    a.push({url : href[i],title : popupObs.title.split(' - ')[0]});
+    a.push({url : href[i],title : popupObs.title.split(' - ')[0],type : 'obs',dontAdvanceColor : i == 1});
   }
-  makeChart(a.length > 1 ? 'model' : 'obs',a);
+  var model = false;
+  for (var i = 0; i < a.length; i++) {
+    model = model || a[i].type == 'model';
+  }
+  makeChart(model ? 'model' : 'obs',a);
 }
 
 function makeChart(type,a) {
@@ -4120,7 +4128,7 @@ function makeChart(type,a) {
   for (var j = 0; j < a.length; j++) {
     OpenLayers.Request.GET({
        url      : a[j].url
-      ,callback : OpenLayers.Function.bind(makeChartCallback,null,a[j].title,lineColors[j % lineColors.length][0],type)
+      ,callback : OpenLayers.Function.bind(makeChartCallback,null,a[j].title,lineColors[(j + (a[j].dontAdvanceColor ? -1 : 0)) % lineColors.length][0],a[j].type)
     });
   }
   function makeChartCallback(title,lineColor,type,r) {
@@ -4153,11 +4161,12 @@ function makeChart(type,a) {
         // get the data
         chartData.push({
            data   : []
-          ,label  : (type != 'obs' ? title + ' : ' : '') + v + ' (' + toEnglish({typ : 'title',src : obs.u[v],val : obs.u[v]}) + ')'
+          ,label  : title + ' : ' + v + ' (' + toEnglish({typ : 'title',src : obs.u[v],val : obs.u[v]}) + ')'
           ,yaxis  : yaxis
           ,lines  : {show : true}
           ,nowIdx : obs.d[v].length > 1 ? obs.nowIdx : ''
           ,color  : lineColor
+          ,type   : type
         });
         for (var i = 0; i < obs.d[v].length; i++) {
           chartData[chartData.length-1].data.push([obs.t[i],toEnglish({typ : 'obs',src : obs.u[v],val : obs.d[v][i]})]);
@@ -4350,7 +4359,7 @@ function queryWMS(xy,a,chartIt) {
         + dMax.getUTCFullYear() + '-' + String.leftPad(dMax.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMax.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z';
       paramNew['GFI_TIME'] = 'min/max';
     }
-    targets.push({url : a[i].getFullRequestString(paramNew,'getFeatureInfo.php?' + a[i].url + '&tz=' + new Date().getTimezoneOffset() + mapTime),title : mainStore.getAt(mainStore.find('name',a[i].name)).get('displayName')});
+    targets.push({url : a[i].getFullRequestString(paramNew,'getFeatureInfo.php?' + a[i].url + '&tz=' + new Date().getTimezoneOffset() + mapTime),title : mainStore.getAt(mainStore.find('name',a[i].name)).get('displayName'),type : 'model'});
   }
   if (chartIt) {
     makeChart('model',targets);
