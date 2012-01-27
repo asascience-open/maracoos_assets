@@ -28,12 +28,10 @@
           }
         }
         if (!array_key_exists('end',$g)) {
-          $g['end']    = date("Y-m-d",time());
-          $g['active'] = 1;
+          $g['end'] = date("Y-m-d",time());
         }
-        else {
-          $g['active'] = 0;
-        }
+
+        $g['active'] = preg_match('/act$/',$g['id']) ? 1 : 0;
 
         $g['track'] = array();
         for ($i = 0; $i < count($g['coords']); $i++) {
