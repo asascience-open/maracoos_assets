@@ -2702,8 +2702,8 @@ function initMap() {
             data.push([json.providers[i].name,json.providers[i].description]);
           }
         }
-        data.push(['scripps','The Scripps Research Institute']);
-        data.push(['uw','The University of Washington']);
+        data.push(['scripps','Scripps Institution of Oceanography']);
+        data.push(['uw','University of Washington']);
         glidersMetadataStore.loadData(data);
         glidersMetadataStore.sort('description','ASC');
         Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().selectAll();
