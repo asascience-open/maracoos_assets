@@ -31,8 +31,6 @@
           $g['end'] = date("Y-m-d",time());
         }
 
-        $g['active'] = preg_match('/act$/',$g['id']) ? 1 : 0;
-
         $g['track'] = array();
         for ($i = 0; $i < count($g['coords']); $i++) {
           if ($g['coords'][$i] != '') {
@@ -50,7 +48,7 @@
         if (dateIntersects(strtotime($_REQUEST['t0']),strtotime($_REQUEST['t1']),strtotime($g['start']),strtotime($g['end']))) {
           $gliders[$g['id']] = array(
              'deployment' => $g['id']
-            ,'active'     => $g['active']
+            ,'active'     => time() - strtotime($g['end']) < 5 * 24 * 3600 ? 1 : 0
             ,'provider'   => 'scripps'
             ,'type'       => 'spray'
             ,'track'      => $g['track']
