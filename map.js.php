@@ -73,6 +73,7 @@ var lineColors = [
 var gliderTracks = {
    'Slocum gliders' : '#ffff00'
   ,'Spray gliders'  : '#EB342F'
+  ,'Sea gliders'    : '#ff0000'
 };
 
 
@@ -2702,6 +2703,7 @@ function initMap() {
           }
         }
         data.push(['scripps','The Scripps Research Institute']);
+        data.push(['uw','The University of Washington']);
         glidersMetadataStore.loadData(data);
         glidersMetadataStore.sort('description','ASC');
         Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().selectAll();
