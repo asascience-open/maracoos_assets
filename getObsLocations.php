@@ -276,6 +276,11 @@
     }
 
     $json = json_decode(file_get_contents(str_replace(' ','%20',"http://marine.rutgers.edu/cool/auvs/track.php?service=track&type[]=$type&t0=".$_REQUEST['t0']."&t1=".$_REQUEST['t1'].$_REQUEST['filterProvider'])));
+
+    if ($type == 'spray') {
+      $json = json_decode(file_get_contents(str_replace(' ','%20','http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/')).'/gliders_scripps.php?t0='.$_REQUEST['t0'].'&t1='.$_REQUEST['t1'])));
+    }
+
     foreach ($json as $k => $v) {
       $d = array(
          'id'       => ''

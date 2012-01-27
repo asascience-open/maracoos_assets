@@ -19,7 +19,7 @@ var modelsStore          = new Ext.data.ArrayStore({fields : []});
 var observationsStore    = new Ext.data.ArrayStore({fields : []});
 var marineStore          = new Ext.data.ArrayStore({fields : []});
 var glidersStore         = new Ext.data.ArrayStore({fields : []});
-var glidersMetadataStore = new Ext.data.ArrayStore({fields : []});
+var glidersMetadataStore = new Ext.data.ArrayStore({fields : ['name','description']});
 var glatosStore          = new Ext.data.ArrayStore({fields : []});
 var glatosStatsStore     = new Ext.data.ArrayStore({fields : []});
 var glatosStudiesStore   = new Ext.data.ArrayStore({fields : []});
@@ -70,6 +70,10 @@ var lineColors = [
   ,['#e8bb99','#b56529']
   ,['#99e9ae','#1d8538']
 ];
+var gliderTracks = {
+   'Slocum gliders' : '#ffff00'
+  ,'Spray gliders'  : '#EB342F'
+};
 
 
 function init() {
@@ -2691,15 +2695,14 @@ function initMap() {
       ,callback : function(r) {
         var json = new OpenLayers.Format.JSON().read(r.responseText);
         var menu = [];
+        var data = [];
         for (var i in json.providers) {
           if (i != 'remove' && i != 'indexOf') {
-            glidersMetadataStore.add(new glidersMetadataStore.recordType({
-               'name'        : json.providers[i].name
-              ,'description' : json.providers[i].description
-            }));
+            data.push([json.providers[i].name,json.providers[i].description]);
           }
         }
-        glidersMetadataStore.fireEvent('load');
+        data.push(['scripps','The Scripps Research Institute']);
+        glidersMetadataStore.loadData(data);
         glidersMetadataStore.sort('description','ASC');
         Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().selectAll();
         Ext.getCmp('glidersProvidersGridPanel').setHeight(glidersMetadataStore.getCount() * 21.1 + 26 + 11 + 25);
@@ -3998,7 +4001,7 @@ function syncObs(l,force) {
                 vec.attributes.provider      = provider;
                 vec.attributes.active        = obs.data[loc][loc][i].active;
                 vec.attributes.strokeWidth   = 2;
-                vec.attributes.strokeColor   = '#ffff00';
+                vec.attributes.strokeColor   = gliderTracks[l.name] ? gliderTracks[l.name] : '#ffff00';
                 if (provider == 'Drifters') {
                   vec.attributes.strokeColor = 'rgb(6,170,61)';
                 }
