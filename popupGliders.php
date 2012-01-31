@@ -11,6 +11,8 @@
       $mission = $matches[1];
       preg_match('/varlist = \[(.*)\]/',$html,$matches);
       $varlist = explode(',',preg_replace('/"| /','',$matches[1]));
+      // not sure why this is showing up 2x
+      array_pop($varlist);
       preg_match('/var plotbase = "(.*)"/',$html,$matches);
       $plotbase = $matches[1];
       preg_match('/var largeplotbase = "(.*)"/',$html,$matches);
