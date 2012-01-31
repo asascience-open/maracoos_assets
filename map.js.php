@@ -3975,6 +3975,8 @@ function obsPopupCallback(target,r) {
     popupObs.suspendEvents();
     popupObs.hide();
     popupObs.show();
+    // do a 2nd show to get the layout to work right
+    Ext.defer(function(){popupObs.show()},100);
     popupObs.resumeEvents();
   }
 }

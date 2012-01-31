@@ -23,7 +23,7 @@
           array_push($img[$i-1]
             ,'<a onmouseover="overlib(\'<table><tr><td><img src='
               .sprintf($largeplotbase,$mission,$var,$i)
-              .'></td></tr></table>\',VAUTO,HAUTO,FGCOLOR,\'#8EAACE\')"><img width=25 src="'
+              .'></td></tr></table>\',VAUTO,HAUTO,FGCOLOR,\'#8EAACE\')"><img height=19 src="'
               .sprintf($plotbase,$mission,$var,$i)
             .'" onmouseout=\'nd()\' ></a>');
         }
@@ -47,7 +47,7 @@
         array_push($td
           ,'<a onmouseover="overlib(\'<table><tr><td><img src='
             .$big_img
-            .'></td></tr></table>\',VAUTO,HAUTO,FGCOLOR,\'#8EAACE\')"><img width=25 src="'
+            .'></td></tr></table>\',VAUTO,HAUTO,FGCOLOR,\'#8EAACE\')"><img height=19 src="'
             .$img
           .'" onmouseout=\'nd()\' ></a>'
         );
@@ -70,7 +70,7 @@
         array_push($td
           ,'<a onmouseover="overlib(\'<table><tr><td><img src='
             .$big_img
-            .'></td></tr></table>\',VAUTO,HAUTO,FGCOLOR,\'#8EAACE\')"><img width=25 src="'
+            .'></td></tr></table>\',VAUTO,HAUTO,FGCOLOR,\'#8EAACE\')"><img height=19 src="'
             .$img
           .'" onmouseout=\'nd()\' ></a>'
         );
