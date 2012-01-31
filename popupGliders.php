@@ -34,8 +34,8 @@
       for ($i = 0; $i < count($img); $i++) {
         $rows .= '<tr><td>'.implode('</td><td>',$img[$i]).'</td></tr>'."\n";
       }
-      array_push($o,"<tr><td colspan=2><table>".$rows."</table></td></tr>");
       if ($rows != '') {
+        array_push($o,"<tr><td colspan=2><table>".$rows."</table></td></tr>");
         array_push($o,"<tr><td colspan=2 style='text-align:center'><font color='gray'>Mouseover a thumbnail to view a larger image.</font></td></tr>");
       }
     }
@@ -60,8 +60,10 @@
           $td = array();
         }
       }
-      array_push($o,"<tr><td colspan=2><table>"."<tr>".implode('</tr><tr>',$tr)."</tr>"."</table></td></tr>");
-      array_push($o,"<tr><td colspan=2 style='text-align:center'><font color='gray'>Mouseover a thumbnail to view a larger image.</font></td></tr>");
+      if (implode('</tr><tr>',$tr) != '') {
+        array_push($o,"<tr><td colspan=2><table>"."<tr>".implode('</tr><tr>',$tr)."</tr>"."</table></td></tr>");
+        array_push($o,"<tr><td colspan=2 style='text-align:center'><font color='gray'>Mouseover a thumbnail to view a larger image.</font></td></tr>");
+      }
     }
     else if (preg_match('/rutgers/',$_REQUEST['u'])) {
       $html = file_get_contents($_REQUEST['u']);
@@ -83,8 +85,10 @@
           $td = array();
         }
       }
-      array_push($o,"<tr><td colspan=2><table>"."<tr>".implode('</tr><tr>',$tr)."</tr>"."</table></td></tr>");
-      array_push($o,"<tr><td colspan=2 style='text-align:center'><font color='gray'>Mouseover a thumbnail to view a larger image.</font></td></tr>");
+      if (implode('</tr><tr>',$tr) != '') {
+        array_push($o,"<tr><td colspan=2><table>"."<tr>".implode('</tr><tr>',$tr)."</tr>"."</table></td></tr>");
+        array_push($o,"<tr><td colspan=2 style='text-align:center'><font color='gray'>Mouseover a thumbnail to view a larger image.</font></td></tr>");
+      }
     }
     array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='".$_REQUEST['u']."'>More observations and glider information</a></td></tr>");
   }
