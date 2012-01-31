@@ -2750,7 +2750,7 @@ function initMap() {
             sto.add(new sto.recordType({year : availableTimes[i].getUTCFullYear()}));
           }
         }
-        sto.add(new sto.recordType({year : 'ALL (may slow performance; Slocum n/a)'}));
+        // sto.add(new sto.recordType({year : 'ALL (may slow performance; Slocum n/a)'}));
         Ext.getCmp('glidersYearsComboBox').setValue(sto.getAt(0).get('year'));
         syncGliders(true);
       }
