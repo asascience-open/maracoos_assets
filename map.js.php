@@ -71,7 +71,7 @@ var lineColors = [
   ,['#99e9ae','#1d8538']
 ];
 var gliderTracks = {
-   'Slocum gliders' : '#ffff00'
+   'Slocum gliders' : 'purple'
   ,'Spray gliders'  : '#EB342F'
   ,'Sea gliders'    : '#ff0000'
 };
@@ -1548,6 +1548,33 @@ function init() {
     ]
   });
 
+  var glidersYearsFormPanel = new Ext.FormPanel({
+      id              : 'glidersYearsFormPanel'
+     ,hidden          : hideGlidersYearsFormPanel
+     ,title           : 'Filter by year'
+     ,height          : 52
+     ,layout          : 'fit'
+     ,border          : false
+     ,bodyStyle       : {paddingTop : '2px'}
+     ,items           : new Ext.form.ComboBox({
+       store : new Ext.data.ArrayStore({
+          fields : ['year']
+       })
+       ,id             : 'glidersYearsComboBox'
+       ,displayField   : 'year'
+       ,valueField     : 'year'
+       ,mode           : 'local'
+       ,forceSelection : true
+       ,triggerAction  : 'all'
+       ,editable       : false
+       ,listeners      : {
+         select : function(combo,rec) {
+           syncGliders(true);
+         }
+       }
+     })
+  });
+
   var glidersProvidersSelModel = new Ext.grid.CheckboxSelectionModel({
     header : ''
   });
@@ -1853,6 +1880,7 @@ function init() {
      introPanel
     ,assetsGridPanel
     ,glidersGridPanel
+    ,glidersYearsFormPanel
     ,glidersProvidersGridPanel
     ,glatosStudiesGridPanel
     ,glatosSeasonalGridPanel
@@ -2714,6 +2742,16 @@ function initMap() {
         Ext.getCmp('timeSlider').setMaxValue(availableTimes.length - 1);
         Ext.getCmp('timeSlider').resumeEvents();
         configTimeSlider(true);
+        var sto = Ext.getCmp('glidersYearsComboBox').getStore();
+        var years = {}; 
+        for (var i = availableTimes.length - 1; i >= 0; i--) {
+          if (!years[availableTimes[i].getUTCFullYear()]) {
+            years[availableTimes[i].getUTCFullYear()] = true;
+            sto.add(new sto.recordType({year : availableTimes[i].getUTCFullYear()}));
+          }
+        }
+        Ext.getCmp('glidersYearsComboBox').setValue(sto.getAt(0).get('year'));
+        syncGliders(true);
       }
     });
   }
@@ -4007,13 +4045,12 @@ function syncObs(l,force) {
                 if (provider == 'Drifters') {
                   vec.attributes.strokeColor = 'rgb(6,170,61)';
                 }
+                vec.attributes.strokeDashstyle = 'solid';
                 if (obs.data[loc][loc][i].active) {
                   vec.attributes.strokeOpacity   = 0.80;
-                  vec.attributes.strokeDashstyle = 'solid';
                 }
                 else {
                   vec.attributes.strokeOpacity   = 0.50;
-                  vec.attributes.strokeDashstyle = 'dot';
                 }
                 map.layers[lyrIdx].addFeatures(vec);
                 var f = new OpenLayers.Feature.Vector(pts[pts.length - 1]);
@@ -4941,11 +4978,11 @@ function shiftSlider(n) {
 }
 
 function getDateRange() {
-  if (config == 'gliders') {
-    var min = Ext.getCmp('timeSlider').getValues()[0];
-    var max = Ext.getCmp('timeSlider').getValues()[1];
-    var t0 = availableTimes[min].getUTCFullYear() + '-' + String.leftPad(availableTimes[min].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[min].getUTCDate(),2,'0') + ' ' + String.leftPad(availableTimes[min].getUTCHours(),2,'0') + ':00';
-    var t1 = availableTimes[max].getUTCFullYear() + '-' + String.leftPad(availableTimes[max].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[max].getUTCDate(),2,'0') + ' ' + String.leftPad(availableTimes[max].getUTCHours(),2,'0') + ':00';
+  if (config == 'gliders' && Ext.getCmp('glidersYearsComboBox') && Ext.getCmp('glidersYearsComboBox').getStore().getCount() > 0) {
+    var min = new Date(Ext.getCmp('glidersYearsComboBox').getValue(),0,0,0,0,0,0);
+    var max = new Date(Ext.getCmp('glidersYearsComboBox').getValue() + 1,0,0,0,0,0,0);
+    var t0 = min.getUTCFullYear() + '-' + String.leftPad(min.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(min.getUTCDate(),2,'0') + ' ' + String.leftPad(min.getUTCHours(),2,'0') + ':00';
+    var t1 = max.getUTCFullYear() + '-' + String.leftPad(max.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(max.getUTCDate(),2,'0') + ' ' + String.leftPad(max.getUTCHours(),2,'0') + ':00';
     return '&t0=' + t0 + '&t1=' + t1;
   }
   else {

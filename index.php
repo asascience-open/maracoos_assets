@@ -58,6 +58,7 @@
       var managerPanelCollapsible   = true;
       var hideTimestampLabel        = false;
       var hideMouseControl          = false;
+      var hideGlidersYearsFormPanel = true;
       var introPanelHtmlOverride;
       var introPanelHeightOverride;
       var maxZoomLevel;
@@ -115,19 +116,21 @@
           ,'Spray gliders'       : true
           ,'Unknown gliders'     : true
         };
+        hideGlidersYearsFormPanel = false;
         hideTimeseriesPanel       = true;
         hideAssetsGridPanel       = true;
         hideModelsGridPanel       = true;
         hideObservationsGridPanel = true;
+        hideTimeSlider            = true;
         hideGlidersGridPanel      = false;
         showHelpOnStartup         = false;
         managerPanelCollapsible   = false;
         hideTimestampLabel        = true;
 
-        defaultBasemap            = 'Google Satellite';
+        defaultBasemap            = 'ESRI Ocean';
 
-        defaultCenter  = [0,0];
-        defaultZoom    = 1;
+        defaultCenter  = [-10429775.084004,3815773.3314648];
+        defaultZoom    = 3;
       }
 
       if (config == 'glatos') {

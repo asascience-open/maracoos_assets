@@ -85,6 +85,10 @@
   background-image : url('img/blank.png');
 }
 
+#glidersYearsFormPanel {
+  border-top: 1px solid #99BBE8;
+}
+
 #glidersProvidersGridPanel {
   border-top: 1px solid #99BBE8;
 }
