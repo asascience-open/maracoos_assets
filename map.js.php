@@ -2750,6 +2750,7 @@ function initMap() {
             sto.add(new sto.recordType({year : availableTimes[i].getUTCFullYear()}));
           }
         }
+        sto.add(new sto.recordType({year : 'ALL (may slow performance; Slocum n/a)'}));
         Ext.getCmp('glidersYearsComboBox').setValue(sto.getAt(0).get('year'));
         syncGliders(true);
       }
@@ -4983,6 +4984,10 @@ function getDateRange() {
   if (config == 'gliders' && Ext.getCmp('glidersYearsComboBox') && Ext.getCmp('glidersYearsComboBox').getStore().getCount() > 0) {
     var min = new Date(Ext.getCmp('glidersYearsComboBox').getValue(),0,0,0,0,0,0);
     var max = new Date(Ext.getCmp('glidersYearsComboBox').getValue() + 1,0,0,0,0,0,0);
+    if (new RegExp(/^ALL/).test(Ext.getCmp('glidersYearsComboBox').getValue())) {
+      min = new Date(0);
+      max = new Date();
+    }
     var t0 = min.getUTCFullYear() + '-' + String.leftPad(min.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(min.getUTCDate(),2,'0') + ' ' + String.leftPad(min.getUTCHours(),2,'0') + ':00';
     var t1 = max.getUTCFullYear() + '-' + String.leftPad(max.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(max.getUTCDate(),2,'0') + ' ' + String.leftPad(max.getUTCHours(),2,'0') + ':00';
     return '&t0=' + t0 + '&t1=' + t1;
