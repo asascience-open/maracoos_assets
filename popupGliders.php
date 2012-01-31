@@ -21,7 +21,7 @@
         $img[$i-1] = array();
         foreach ($varlist as $var) {
           array_push($img[$i-1]
-            ,'<a onmouseover="var caption = \'Hi\';overlib(\'<table><tr><td><img src='
+            ,'<a onmouseover="overlib(\'<table><tr><td><img src='
               .sprintf($largeplotbase,$mission,$var,$i)
               .'></td></tr></table>\',VAUTO,HAUTO,FGCOLOR,\'#8EAACE\')"><img width=25 src="'
               .sprintf($plotbase,$mission,$var,$i)
@@ -33,6 +33,31 @@
         $rows .= '<tr><td>'.implode('</td><td>',$img[$i]).'</td></tr>'."\n";
       }
       array_push($o,"<tr><td colspan=2><table>".$rows."</table></td></tr>");
+      array_push($o,"<tr><td colspan=2 style='text-align:center'><font color='gray'>Mouseover a thumbnail to view a larger image.</font></td></tr>");
+    }
+    else if (preg_match('/washington/',$_REQUEST['u'])) {
+      $u = substr($_REQUEST['u'],0,strrpos($_REQUEST['u'],'/') + 1);
+      $html = file_get_contents($_REQUEST['u']);
+      preg_match_all('/<img src="(pngplot[^"]*)"/',$html,$matches);
+      $td = array();
+      $tr = array();
+      for ($i = 0; $i < count($matches[1]); $i++) {
+        $img = $u.$matches[1][$i];
+        $big_img = preg_replace('/&scale=([^&]*)/','&scale=0.5',$img);
+        array_push($td
+          ,'<a onmouseover="overlib(\'<table><tr><td><img src='
+            .$big_img
+            .'></td></tr></table>\',VAUTO,HAUTO,FGCOLOR,\'#8EAACE\')"><img width=25 src="'
+            .$img
+          .'" onmouseout=\'nd()\' ></a>'
+        );
+        if (($i + 1) % 8 == 0 || $i == count($matches[1]) - 1) {
+          array_push($tr,'<td>'.implode('</td><td>',$td).'</td>');
+          $td = array();
+        }
+      }
+      array_push($o,"<tr><td colspan=2><table>"."<tr>".implode('</tr><tr>',$tr)."</tr>"."</table></td></tr>");
+      array_push($o,"<tr><td colspan=2 style='text-align:center'><font color='gray'>Mouseover a thumbnail to view a larger image.</font></td></tr>");
     }
     array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='".$_REQUEST['u']."'>More observations and glider information</a></td></tr>");
   }
