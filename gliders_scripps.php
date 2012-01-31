@@ -52,6 +52,7 @@
             ,'provider'   => 'scripps'
             ,'type'       => 'spray'
             ,'track'      => $g['track']
+            ,'url'        => $g['info']
           );
         }
       }

@@ -260,7 +260,7 @@
     }
   }
 
-  if (preg_match('/gliders$/',$_REQUEST['provider'])) {
+  if (preg_match('/gliders$/',$_REQUEST['provider']) && isset($_REQUEST['t0']) && isset($_REQUEST['t1'])) {
     $type = '';
     if ($_REQUEST['provider'] == 'Sea gliders') {
       $type = 'seaglider';
@@ -275,12 +275,18 @@
       $type = 'unknown';
     }
 
-    $json = json_decode(file_get_contents(str_replace(' ','%20',"http://marine.rutgers.edu/cool/auvs/track.php?service=track&type[]=$type&t0=".$_REQUEST['t0']."&t1=".$_REQUEST['t1'].$_REQUEST['filterProvider'])));
+    $json          = array();
+    $json_metadata = array();
     if ($type == 'spray') {
       $json = json_decode(file_get_contents(str_replace(' ','%20','http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/')).'/gliders_scripps.php?t0='.$_REQUEST['t0'].'&t1='.$_REQUEST['t1'])));
     }
     else if ($type == 'seaglider') {
       $json = json_decode(file_get_contents(str_replace(' ','%20','http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/')).'/gliders_uw.php?t0='.$_REQUEST['t0'].'&t1='.$_REQUEST['t1'])));
+    }
+    else {
+      // rutgers keeps main glider metdata separate
+      $json_metadata = json_decode(file_get_contents(str_replace(' ','%20',"http://marine.rutgers.edu/cool/auvs/deployments.php?t0=".$_REQUEST['t0']."&t1=".$_REQUEST['t1'].$_REQUEST['filterProvider'])),true);
+      $json = json_decode(file_get_contents(str_replace(' ','%20',"http://marine.rutgers.edu/cool/auvs/track.php?service=track&type[]=$type&t0=".$_REQUEST['t0']."&t1=".$_REQUEST['t1'].$_REQUEST['filterProvider'])));
     }
 
     foreach ($json as $k => $v) {
@@ -316,13 +322,17 @@
           $d['url'] = $depVal;
         }
       }
+      if ($json_metadata[$k]['url'] != '') {
+        $d['url'] = $json_metadata[$k]['url'];
+      }
       if (!$d['active']) {
         $d['descr'] .= ' (inactive)';
       }
       $d['descr'] = $d['provider'].' '.$d['descr'];
       $d['url'] = "popupGliders.php"
         .'?id='.$d['id']
-        .'&t='.$d['t'][0].' to '.$d['t'][count($d['t']) - 1];
+        .'&t='.$d['t'][0].' to '.$d['t'][count($d['t']) - 1]
+        .(array_key_exists('url',$d) ? '&u='.urlencode($d['url']) : '');
 
       // push to $metadata straight up
       $metadata[$_REQUEST['provider'].'.'.$d['id']][$_REQUEST['provider'].'.'.$d['id']] = array($d);

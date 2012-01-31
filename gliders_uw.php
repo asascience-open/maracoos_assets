@@ -25,6 +25,9 @@
                     $g['start'] = date("Y-m-d",strtotime(preg_replace('/GPS fix at |Dive finished /','',sprintf("%s",$p->{'description'}))));
                   }
                   $g['end'] = date("Y-m-d",strtotime(preg_replace('/GPS fix at |Dive finished /','',sprintf("%s",$p->{'description'}))));
+                  if (preg_match('/href="(.*)"/',sprintf("%s",$p->{'Style'}[0]->{'BalloonStyle'}[0]->{'text'}),$matches)) {
+                    $g['info'] = $matches[1];
+                  }
                 }
               }
             }
@@ -37,6 +40,7 @@
             ,'provider'   => 'uw'
             ,'type'       => 'seaglider'
             ,'track'      => $g['track']
+            ,'url'        => $g['info']
           );
         }
       }
