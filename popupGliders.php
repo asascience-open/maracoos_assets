@@ -33,7 +33,9 @@
         $rows .= '<tr><td>'.implode('</td><td>',$img[$i]).'</td></tr>'."\n";
       }
       array_push($o,"<tr><td colspan=2><table>".$rows."</table></td></tr>");
-      array_push($o,"<tr><td colspan=2 style='text-align:center'><font color='gray'>Mouseover a thumbnail to view a larger image.</font></td></tr>");
+      if ($rows != '') {
+        array_push($o,"<tr><td colspan=2 style='text-align:center'><font color='gray'>Mouseover a thumbnail to view a larger image.</font></td></tr>");
+      }
     }
     else if (preg_match('/washington/',$_REQUEST['u'])) {
       $u = substr($_REQUEST['u'],0,strrpos($_REQUEST['u'],'/') + 1);
