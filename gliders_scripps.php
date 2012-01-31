@@ -52,7 +52,7 @@
             ,'provider'   => 'scripps'
             ,'type'       => 'spray'
             ,'track'      => $g['track']
-            ,'url'        => $g['info']
+            ,'url'        => $g['info'].(time() - strtotime($g['end']) < 5 * 24 * 3600 ? 'act' : '')
           );
         }
       }
