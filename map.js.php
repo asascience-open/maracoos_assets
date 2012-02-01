@@ -2042,9 +2042,6 @@ function init() {
                       lyr.redraw();
                     }
   
-                    // special case foresri ocean
-                    esriOcean.setVisibility(rec.get('name') == 'ESRI Ocean');
-                    esriOcean.setOpacity(1);
                     // special case for nav charts
                     navCharts.setVisibility(rec.get('name') == 'Navigational Charts');
                     navCharts.setOpacity(1);
@@ -2331,7 +2328,7 @@ function initMap() {
   esriOcean = new OpenLayers.Layer.XYZ(
      'ESRI Ocean'
     ,'http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/${z}/${y}/${x}.jpg'
-    ,{sphericalMercator: true,visibility : defaultBasemap == 'ESRI Ocean',isBaseLayer : false,opacity : defaultOpacities['ESRI Ocean'] / 100,wrapDateLine : true,attribution : "GEBCO, NOAA, National Geographic, AND data by <a href='http://www.arcgis.com/home/item.html?id=6348e67824504fc9a62976434bf0d8d5'>ESRI</a>"}
+    ,{sphericalMercator: true,visibility : defaultBasemap == 'ESRI Ocean',isBaseLayer : true,opacity : defaultOpacities['ESRI Ocean'] / 100,wrapDateLine : true,attribution : "GEBCO, NOAA, National Geographic, AND data by <a href='http://www.arcgis.com/home/item.html?id=6348e67824504fc9a62976434bf0d8d5'>ESRI</a>"}
   );
 
   navCharts = new OpenLayers.Layer.WMS(
@@ -2388,12 +2385,6 @@ function initMap() {
     ]
   });
 
-  esriOcean.events.register('visibilitychanged',this,function() {
-    if (esriOcean.visibility) {
-      openStreetMap.setOpacity(1);
-      map.setBaseLayer(openStreetMap);
-    }
-  });
   navCharts.events.register('visibilitychanged',this,function() {
     if (navCharts.visibility) {
       openStreetMap.setOpacity(1);
@@ -2460,10 +2451,7 @@ function initMap() {
   });
   map.events.register('changelayer',this,function(e) {
     if (e.property == 'opacity') {
-      if (e.layer.name == 'ESRI Ocean') {
-        openStreetMap.setOpacity(esriOcean.opacity);
-      }
-      else if (e.layer.name == 'Navigational Charts') {
+      if (e.layer.name == 'Navigational Charts') {
         openStreetMap.setOpacity(navCharts.opacity);
       }
     }
