@@ -1549,30 +1549,31 @@ function init() {
   });
 
   var glidersYearsFormPanel = new Ext.FormPanel({
-      id              : 'glidersYearsFormPanel'
-     ,hidden          : hideGlidersYearsFormPanel
-     ,title           : 'Filter by year'
-     ,height          : 52
-     ,layout          : 'fit'
-     ,border          : false
-     ,bodyStyle       : {paddingTop : '2px'}
-     ,items           : new Ext.form.ComboBox({
-       store : new Ext.data.ArrayStore({
-          fields : ['year']
-       })
-       ,id             : 'glidersYearsComboBox'
-       ,displayField   : 'year'
-       ,valueField     : 'year'
-       ,mode           : 'local'
-       ,forceSelection : true
-       ,triggerAction  : 'all'
-       ,editable       : false
-       ,listeners      : {
-         select : function(combo,rec) {
-           syncGliders(true);
-         }
-       }
-     })
+     id              : 'glidersYearsFormPanel'
+    ,hidden          : hideGlidersYearsFormPanel
+    ,collapsible     : true
+    ,title           : 'Filter by year'
+    ,height          : 52
+    ,layout          : 'fit'
+    ,border          : false
+    ,bodyStyle       : {paddingTop : '2px'}
+    ,items           : new Ext.form.ComboBox({
+      store : new Ext.data.ArrayStore({
+         fields : ['year']
+      })
+      ,id             : 'glidersYearsComboBox'
+      ,displayField   : 'year'
+      ,valueField     : 'year'
+      ,mode           : 'local'
+      ,forceSelection : true
+      ,triggerAction  : 'all'
+      ,editable       : false
+      ,listeners      : {
+        select : function(combo,rec) {
+          syncGliders(true);
+        }
+      }
+    })
   });
 
   var glidersProvidersSelModel = new Ext.grid.CheckboxSelectionModel({
@@ -1581,6 +1582,7 @@ function init() {
   var glidersProvidersGridPanel = new Ext.grid.GridPanel({
      id               : 'glidersProvidersGridPanel'
     ,hidden           : hideGlidersGridPanel
+    ,collapsible     : true
     ,title            : 'Filter by provider'
     ,store            : glidersMetadataStore
     ,height           : 200
