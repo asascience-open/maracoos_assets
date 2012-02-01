@@ -71,7 +71,7 @@ var lineColors = [
   ,['#99e9ae','#1d8538']
 ];
 var gliderTracks = {
-   'Slocum gliders' : 'purple'
+   'Slocum gliders' : '#ff00ff'
   ,'Spray gliders'  : '#EB342F'
   ,'Sea gliders'    : '#ff0000'
 };
@@ -162,6 +162,118 @@ function init() {
     ]
     ,data  : [
       [
+         'gliders'
+        ,'Sea gliders'
+        ,'Sea gliders'
+        ,'off'
+        ,defaultLayers['Sea gliders'] ? 'on' : 'off'
+        ,''
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Sea gliders.html')))?>'
+        ,''
+        ,typeof defaultOpacities['Sea gliders'] != 'undefined' && defaultOpacities['Sea gliders'] != '' ? defaultOpacities['Sea gliders'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'false'
+        ,'-135,0,-50,50'
+        ,'false'
+        ,''
+        ,''
+      ]
+      ,[
+         'gliders'
+        ,'Slocum gliders'
+        ,'Slocum gliders'
+        ,'off'
+        ,defaultLayers['Slocum gliders'] ? 'on' : 'off'
+        ,''
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Slocum gliders.html')))?>'
+        ,''
+        ,typeof defaultOpacities['Slocum gliders'] != 'undefined' && defaultOpacities['Slocum gliders'] != '' ? defaultOpacities['Slocum gliders'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'false'
+        ,'-135,0,-50,50'
+        ,'false'
+        ,''
+        ,''
+      ]
+      ,[
+         'gliders'
+        ,'Spray gliders'
+        ,'Spray gliders'
+        ,'off'
+        ,defaultLayers['Spray gliders'] ? 'on' : 'off'
+        ,''
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Spray gliders.html')))?>'
+        ,''
+        ,typeof defaultOpacities['Spray gliders'] != 'undefined' && defaultOpacities['Spray gliders'] != '' ? defaultOpacities['Spray gliders'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'false'
+        ,'-135,0,-50,50'
+        ,'false'
+        ,''
+        ,''
+      ]
+      ,[
+         'gliders'
+        ,'Unknown gliders'
+        ,'Unknown gliders'
+        ,'off'
+        ,defaultLayers['Unknown gliders'] ? 'on' : 'off'
+        ,''
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Unknown gliders.html')))?>'
+        ,''
+        ,typeof defaultOpacities['Unknown gliders'] != 'undefined' && defaultOpacities['Unknown gliders'] != '' ? defaultOpacities['Unknown gliders'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'false'
+        ,'-135,0,-50,50'
+        ,'false'
+        ,''
+        ,''
+      ]
+      ,[
          'asset'
         ,'NDBC'    
         ,'NDBC buoys'
@@ -901,118 +1013,6 @@ function init() {
         ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Zones.html')))?>'
         ,''
         ,typeof defaultOpacities['Zones'] != 'undefined' && defaultOpacities['Zones'] != '' ? defaultOpacities['Zones'] : 100
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,'false'
-        ,'-135,0,-50,50'
-        ,'false'
-        ,''
-        ,''
-      ]
-      ,[
-         'gliders'
-        ,'Sea gliders'
-        ,'Sea gliders'
-        ,'off'
-        ,defaultLayers['Sea gliders'] ? 'on' : 'off'
-        ,''
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Sea gliders.html')))?>'
-        ,''
-        ,typeof defaultOpacities['Sea gliders'] != 'undefined' && defaultOpacities['Sea gliders'] != '' ? defaultOpacities['Sea gliders'] : 100
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,'false'
-        ,'-135,0,-50,50'
-        ,'false'
-        ,''
-        ,''
-      ]
-      ,[
-         'gliders'
-        ,'Slocum gliders'
-        ,'Slocum gliders'
-        ,'off'
-        ,defaultLayers['Slocum gliders'] ? 'on' : 'off'
-        ,''
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Slocum gliders.html')))?>'
-        ,''
-        ,typeof defaultOpacities['Slocum gliders'] != 'undefined' && defaultOpacities['Slocum gliders'] != '' ? defaultOpacities['Slocum gliders'] : 100
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,'false'
-        ,'-135,0,-50,50'
-        ,'false'
-        ,''
-        ,''
-      ]
-      ,[
-         'gliders'
-        ,'Spray gliders'
-        ,'Spray gliders'
-        ,'off'
-        ,defaultLayers['Spray gliders'] ? 'on' : 'off'
-        ,''
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Spray gliders.html')))?>'
-        ,''
-        ,typeof defaultOpacities['Spray gliders'] != 'undefined' && defaultOpacities['Spray gliders'] != '' ? defaultOpacities['Spray gliders'] : 100
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,'false'
-        ,'-135,0,-50,50'
-        ,'false'
-        ,''
-        ,''
-      ]
-      ,[
-         'gliders'
-        ,'Unknown gliders'
-        ,'Unknown gliders'
-        ,'off'
-        ,defaultLayers['Unknown gliders'] ? 'on' : 'off'
-        ,''
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Unknown gliders.html')))?>'
-        ,''
-        ,typeof defaultOpacities['Unknown gliders'] != 'undefined' && defaultOpacities['Unknown gliders'] != '' ? defaultOpacities['Unknown gliders'] : 100
         ,''
         ,''
         ,''
@@ -2735,7 +2735,7 @@ function initMap() {
         glidersMetadataStore.loadData(data);
         glidersMetadataStore.sort('description','ASC');
         Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().selectAll();
-        Ext.getCmp('glidersProvidersGridPanel').setHeight(glidersMetadataStore.getCount() * 21.1 + 26 + 11 + 25);
+        Ext.getCmp('glidersProvidersGridPanel').setHeight(Math.min(glidersMetadataStore.getCount(),8) * 21.1 + 26 + 11 + 25);
         var ymd = json.timespan.start.split(' ')[0].split('-');
         makeAvailableTimes(new Date(ymd[0],ymd[1] - 1,ymd[2]));
         Ext.getCmp('timeSlider').suspendEvents();
@@ -2753,6 +2753,13 @@ function initMap() {
         // sto.add(new sto.recordType({year : 'ALL (may slow performance; Slocum n/a)'}));
         Ext.getCmp('glidersYearsComboBox').setValue(sto.getAt(0).get('year'));
         syncGliders(true);
+        // hard wire a nice T for the WMS layers
+        for (var i = 0; i < map.layers.length; i++) {
+          // WMS layers only
+          if (map.layers[i].DEFAULT_PARAMS) {
+            map.layers[i].mergeNewParams({TIME : '2012-01-31T05:00'});
+          }
+        }
       }
     });
   }
@@ -4050,10 +4057,10 @@ function syncObs(l,force) {
                 }
                 vec.attributes.strokeDashstyle = 'solid';
                 if (obs.data[loc][loc][i].active) {
-                  vec.attributes.strokeOpacity   = 0.80;
+                  vec.attributes.strokeOpacity   = 0.90; // 0.80;
                 }
                 else {
-                  vec.attributes.strokeOpacity   = 0.50;
+                  vec.attributes.strokeOpacity   = 0.90; // 0.50;
                 }
                 map.layers[lyrIdx].addFeatures(vec);
                 var f = new OpenLayers.Feature.Vector(pts[pts.length - 1]);

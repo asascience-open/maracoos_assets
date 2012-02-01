@@ -4,7 +4,7 @@
   $title = 'MARACOOS Assets';
   if (isset($_REQUEST['config'])) {
     if ($_REQUEST['config'] == 'gliders') {
-      $title = 'IOOS Gliders';
+      $title = 'IOOS Glider';
     }
     else if ($_REQUEST['config'] == 'marine') {
       $title = 'MARACOOS Marine';
@@ -42,6 +42,20 @@
         ,'NERRS'            : true
         ,'NCOM currents'    : true
         ,'WWIII waves'      : true
+      };
+      var defaultStyles = {
+         'Satellite water temperature' : 'boxfill/rainbow'
+        ,'ROMS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+        ,'ROMS ESPRESSO'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+        ,'STPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+        ,'UMass'                       : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+        ,'Stevens NYHOPS'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+        ,'NCOM currents'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+        ,'HYCOM currents'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+        ,'NAM winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45'
+        ,'HF radar currents'           : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+        ,'WWIII waves'                 : ''
+        ,'NCOM SST'                    : ''
       };
       var hideLegendsGridPanel      = false;
       var hideTimeseriesPanel       = false;
@@ -115,12 +129,14 @@
           ,'Slocum gliders'      : true
           ,'Spray gliders'       : true
           ,'Unknown gliders'     : true
+          ,'HF radar currents'           : true
+          ,'Satellite water temperature' : true
         };
+        defaultStyles['HF radar currents'] = 'CURRENTS_RAMP-Jet-False-4-True-0-2';
         hideGlidersYearsFormPanel = false;
         hideTimeseriesPanel       = true;
         hideAssetsGridPanel       = true;
         hideModelsGridPanel       = true;
-        hideObservationsGridPanel = true;
         hideTimeSlider            = true;
         hideGlidersGridPanel      = false;
         showHelpOnStartup         = false;
@@ -178,20 +194,6 @@
 ?>
       }
 
-      var defaultStyles = {
-         'Satellite water temperature' : 'boxfill/rainbow'
-        ,'ROMS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'ROMS ESPRESSO'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'STPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'UMass'                       : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'Stevens NYHOPS'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'NCOM currents'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'HYCOM currents'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'NAM winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45'
-        ,'HF radar currents'           : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'WWIII waves'                 : ''
-        ,'NCOM SST'                    : ''
-      };
       var defaultLayerLayers = {
         'Satellite water temperature' : 'sst-seven/mcsst'
       };
