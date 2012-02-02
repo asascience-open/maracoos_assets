@@ -73,6 +73,7 @@
       var hideTimestampLabel        = false;
       var hideMouseControl          = false;
       var hideGlidersYearsFormPanel = true;
+      var hideRealtimeAlert         = true;
       var introPanelHtmlOverride;
       var introPanelHeightOverride;
       var maxZoomLevel;
@@ -143,6 +144,7 @@
         showHelpOnStartup         = false;
         managerPanelCollapsible   = false;
         hideTimestampLabel        = true;
+        hideRealtimeAlert         = false;
 
         defaultBasemap            = 'ESRI Ocean';
 

@@ -413,6 +413,20 @@ div.olControlMousePosition {
   z-index : 1000;
 }
 
+#notRealtimeAlert {
+  font : 13px/15px tahoma,helvetica,sans-serif !important;
+  background-image : url('img/semiClearYellow.png');
+  border : 1px dashed black;
+  position : absolute;
+  top : 12px;
+  left : 50px;
+  padding : 5px;
+  width : 175px !important;
+  text-align : justify !important;
+  z-index : 1000;
+  visibility : hidden;
+}
+
 #timestampImage {
   position : absolute;
   bottom : 0px;

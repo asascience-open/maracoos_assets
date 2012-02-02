@@ -1570,6 +1570,7 @@ function init() {
       ,editable       : false
       ,listeners      : {
         select : function(combo,rec) {
+          checkRealtimeAlert();
           syncGliders(true);
         }
       }
@@ -1919,7 +1920,9 @@ function init() {
         ,layout    : 'border'
         ,items     : [
           {
-             html      : '<div id="map"></div>' + (!hideTimestampLabel ? '<div id="timestampLabel">' + shortDateString(dNow) + '</div><img id="timestampImage" src="img/asterick_orange_small.png">' : '')
+             html      : '<div id="map"></div>'
+              + (!hideTimestampLabel ? '<div id="timestampLabel">' + shortDateString(dNow) + '</div><img id="timestampImage" src="img/asterick_orange_small.png">' : '')
+              + '<div id="notRealtimeAlert">The environmental overlays display near real time data only. By selecting a year other than the most recent available, you are encouraged to turn all environmental overlays off to avoid confusion.</div>'
             ,region    : 'center'
             ,border    : false
             ,tbar      : [
@@ -3392,6 +3395,7 @@ function addLayer(lyr,timeSensitive) {
         }
       }
     }
+    checkRealtimeAlert();
   });
   lyr.events.register('loadstart',this,function(e) {
     var idx = legendsStore.find('name',lyr.name);
@@ -5100,4 +5104,23 @@ function lineColor2VectorColor(l) {
     }
   }
   return lineColors[0][1];
+}
+
+function checkRealtimeAlert() {
+  if (hideRealtimeAlert) {
+    return;
+  }
+  var vizCount = 0;
+  for (var i = 0; i < map.layers.length; i++) {
+    // WMS layers only
+    if (map.layers[i].DEFAULT_PARAMS && map.layers[i].visibility) {
+      vizCount++;
+    }
+  }
+  if (Ext.getCmp('glidersYearsComboBox').getValue() != Ext.getCmp('glidersYearsComboBox').getStore().getAt(0).get('year') && vizCount > 0) {
+    document.getElementById('notRealtimeAlert').style.visibility = 'visible';
+  }
+  else {
+    document.getElementById('notRealtimeAlert').style.visibility = 'hidden';
+  }
 }
