@@ -725,6 +725,34 @@ function init() {
       ]
       ,[
          'model'
+        ,'HOPS'
+        ,'MARACOOS HOPS currents'
+        ,'off'
+        ,defaultLayers['HOPS'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HOPS.html')))?>'
+        ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
+        ,typeof defaultOpacities['HOPS'] != 'undefined' && defaultOpacities['HOPS'] != '' ? defaultOpacities['HOPS'] : 100
+        ,defaultImageTypes['HOPS']
+        ,''
+        ,defaultStyles['HOPS'].split('-')[0]
+        ,defaultStyles['HOPS'].split('-')[1]
+        ,defaultStyles['HOPS'].split('-')[3]
+        ,defaultStyles['HOPS'].split('-')[2]
+        ,defaultStyles['HOPS'].split('-')[4]
+        ,defaultStyles['HOPS'].split('-')[5]
+        ,defaultStyles['HOPS'].split('-')[6]
+        ,'0-6'
+        ,''
+        ,'http://services.asascience.com/ecop/wms.aspx?LAYERS=PESHELF_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HOPS'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=PESHELF_CURRENTS'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'currentsVelocity'
+      ]
+      ,[
+         'model'
         ,'NCOM currents'
         ,'NCOM currents'
         ,'off'
@@ -2566,6 +2594,15 @@ function initMap() {
     ,layers : 'ESPRESSO_CURRENTS'
     ,format : 'image/' + defaultImageTypes['ROMS ESPRESSO']
     ,styles : defaultStyles['ROMS ESPRESSO']
+    ,singleTile : true
+    ,projection : proj3857
+  });
+  addWMS({
+     name   : 'HOPS'
+    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+    ,layers : 'PESHELF_CURRENTS'
+    ,format : 'image/' + defaultImageTypes['HOPS']
+    ,styles : defaultStyles['HOPS']
     ,singleTile : true
     ,projection : proj3857
   });

@@ -46,6 +46,7 @@
       var defaultStyles = {
          'Satellite water temperature' : 'boxfill/rainbow'
         ,'ROMS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+        ,'HOPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
         ,'ROMS ESPRESSO'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
         ,'STPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
         ,'UMass'                       : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
@@ -203,6 +204,7 @@
       var guaranteeDefaultStyles = defaultStyles;
       var defaultOpacities = {
          'ROMS'                        : 100
+        ,'HOPS'                        : 100
         ,'STPS'                        : 100
         ,'Stevens NYHOPS'              : 100
         ,'UMass'                       : 100
@@ -233,6 +235,7 @@
          'NCOM SST'             : 'png'
         ,'WWIII waves'          : 'png'
         ,'ROMS'                 : 'png'
+        ,'HOPS'                 : 'png'
         ,'ROMS ESPRESSO'        : 'png'
         ,'STPS'                 : 'png'
         ,'UMass'                : 'png'
