@@ -9,9 +9,6 @@
     else if ($_REQUEST['config'] == 'marine') {
       $title = 'MARACOOS Marine';
     }
-    else if ($_REQUEST['config'] == 'glatos') {
-      $title = 'GLATOSWeb Explore Tool';
-    }
   }
 ?>
     <title><?php echo $title?> Explorer</title>
@@ -30,9 +27,6 @@
 <?php
   if (isset($_REQUEST['config'])) {
     echo 'config = "'.$_REQUEST['config'].'"'.";\n";
-    if ($_REQUEST['config'] == 'glatos') {
-      echo "globalTitleOverride = 'GLATOSWeb Explore Tool';\n";
-    }
   }
 ?>
 
@@ -151,51 +145,6 @@
 
         defaultCenter  = [-10429775.084004,3815773.3314648];
         defaultZoom    = 3;
-      }
-
-      if (config == 'glatos') {
-        helpUnavailable = true;
-        fdbkUnavailable = true
-
-        defaultLayers = {
-          'Receivers' : true
-        };
-        restrictLayers = {
-          'Receivers' : true
-        };
-        hideLegendsGridPanel      = true;
-        hideTimeseriesPanel       = true;
-        hideAssetsGridPanel       = true;
-        hideModelsGridPanel       = true;
-        hideObservationsGridPanel = true;
-        hideGlatosGridPanel       = false;
-        showHelpOnStartup         = false;
-        hideMapToolbar            = true;
-        hideMapTitle              = true;
-        managerPanelCollapsible   = false;
-        hideTimestampLabel        = true;
-        hideTimeSlider            = true;
-        hideMouseControl          = true;
-
-        introPanelHtmlOverride   = '<table class="smallFont" width="100%"><tr><td align=justify>Place your curser over points on the map to view additional information about projects and receivers.  Use the tools below to filter receivers by project, operating schedule, acoustic frequency, and status.</td></tr></table>';
-        introPanelHeightOverride = 65;
-
-        mapBanner = {
-           html      : ''
-          ,height    : 81
-          ,bodyStyle : 'text-align : center;background:url("img/glatosBanner.jpg") no-repeat center top'
-          ,hidden    : false
-        };
-
-        defaultBasemap            = 'Google Hybrid';
-
-        defaultCenter  = [-9367578.6331264,5443194.7163551];
-        defaultZoom    = 6;
-<?php
-  if (isset($_REQUEST['maxZoomLevel'])) {
-    echo 'maxZoomLevel = '.$_REQUEST['maxZoomLevel'].";\n";
-  }
-?>
       }
 
       var defaultLayerLayers = {
