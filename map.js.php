@@ -276,34 +276,6 @@ function init() {
 ,<?php echo populateMainStoreOverlays('model',$models)?>
 ,<?php echo populateMainStoreOverlays('observation',$observations)?>
       ,[
-         'observation'
-        ,'Satellite water temperature'
-        ,'Satellite water temperature'
-        ,'off'
-        ,defaultLayers['Satellite water temperature'] ? 'on' : 'off'
-        ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Satellite water temperature.html')))?>'
-        ,'palette'
-        ,typeof defaultOpacities['Satellite water temperature'] != 'undefined' && defaultOpacities['Satellite water temperature'] != '' ? defaultOpacities['Satellite water temperature'] : 100
-        ,''
-        ,defaultStyles['Satellite water temperature']
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=' + (typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'sst-seven/mcsst') + '&PALETTE=' + defaultStyles['Satellite water temperature'].split('/')[1] + '&TIME=' + dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00' + '&GetMetadata'
-        ,''
-        ,'-78,35.5,-62,44'
-        ,'true'
-        ,typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'sst-seven/mcsst'
-        ,'temperature'
-      ]
-      ,[
          'n/a'
         ,'Bathymetry contours'
         ,'Bathymetry contours'

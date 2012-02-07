@@ -68,9 +68,9 @@
       ,'displayName'          => 'Chesapeake currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
-      ,'defaultImageType'     => 'png'
-      ,'legend'               => true
+      ,'legend'               => 'wms'
       ,'bbox'                 => '-79,35.5,-74,40'
       ,'queryable'            => true
       ,'category'             => 'currentsVelocity'
@@ -78,6 +78,9 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'NOSCBOFSCUR_CURRENTS'
+        ,'legend' => array(
+          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        )
       )
     )
     ,array(
@@ -85,9 +88,9 @@
       ,'displayName'          => 'STPS currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
-      ,'defaultImageType'     => 'png'
-      ,'legend'               => true
+      ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
       ,'category'             => 'currentsVelocity'
@@ -95,6 +98,9 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'CODARSTPS_CURRENTS'
+        ,'legend' => array(
+          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        )
       )
     )
     ,array(
@@ -102,9 +108,9 @@
       ,'displayName'          => 'Stevens NYHOPS currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
-      ,'defaultImageType'     => 'png'
-      ,'legend'               => true
+      ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
       ,'category'             => 'currentsVelocity'
@@ -112,6 +118,9 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'NYHOPSCUR_currents'
+        ,'legend' => array(
+          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        )
       )
     )
     ,array(
@@ -119,9 +128,9 @@
       ,'displayName'          => 'ROMS ESPRESSO currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
-      ,'defaultImageType'     => 'png'
-      ,'legend'               => true
+      ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
       ,'category'             => 'currentsVelocity'
@@ -129,6 +138,9 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'ESPRESSO_CURRENTS'
+        ,'legend' => array(
+          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        )
       )
     )
     ,array(
@@ -136,9 +148,9 @@
       ,'displayName'          => 'MARACOOS HOPS currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
-      ,'defaultImageType'     => 'png'
-      ,'legend'               => true
+      ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
       ,'category'             => 'currentsVelocity'
@@ -146,6 +158,9 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'PESHELF_CURRENTS'
+        ,'legend' => array(
+          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        )
       )
     )
     ,array(
@@ -153,9 +168,9 @@
       ,'displayName'          => 'NCOM currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
-      ,'defaultImageType'     => 'png'
-      ,'legend'               => true
+      ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
       ,'category'             => 'currentsVelocity'
@@ -163,6 +178,9 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'NCOM_CURRENTS'
+        ,'legend' => array(
+          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        )
       )
     )
     ,array(
@@ -170,9 +188,9 @@
       ,'displayName'          => 'HYCOM currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
-      ,'defaultImageType'     => 'png'
-      ,'legend'               => true
+      ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
       ,'category'             => 'currentsVelocity'
@@ -180,6 +198,9 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'HYCOM_CURRENTS'
+        ,'legend' => array(
+          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        )
       )
     )
     ,array(
@@ -187,9 +208,9 @@
       ,'displayName'          => 'NAM winds'
       ,'settingsParam'        => 'baseStyle,barbLabel,striding,min,max'
       ,'defaultStyle'         => 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45'
+      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-70'
-      ,'defaultImageType'     => 'png'
-      ,'legend'               => true
+      ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
       ,'category'             => 'windsVelocity'
@@ -197,6 +218,9 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'NAM_WINDS'
+        ,'legend' => array(
+          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        )
       )
     )
     ,array(
@@ -204,9 +228,9 @@
       ,'displayName'          => 'WWIII waves'
       ,'settingsParam'        => ''
       ,'defaultStyle'         => ''
+      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => ''
-      ,'defaultImageType'     => 'png'
-      ,'legend'               => true
+      ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
       ,'category'             => 'wavesElevation'
@@ -214,6 +238,9 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'WW3_WAVE_HEIGHT'
+        ,'legend' => array(
+          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        )
       )
     )
     ,array(
@@ -221,9 +248,9 @@
       ,'displayName'          => 'NCOM water temperature'
       ,'settingsParam'        => ''
       ,'defaultStyle'         => ''
+      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => ''
-      ,'defaultImageType'     => 'png'
-      ,'legend'               => true
+      ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
       ,'category'             => 'temperature'
@@ -231,19 +258,43 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'NCOM_SST'
+        ,'legend' => array(
+          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        )
       )
     )
   );
 
   $observations = array(
     array(
+       'name'                 => 'Satellite water temperature'
+      ,'displayName'          => 'Satellite water temperature'
+      ,'settingsParam'        => 'palette'
+      ,'defaultStyle'         => ''
+      ,'settingsPalette'      => true
+      ,'settingsMinMaxBounds' => ''
+      ,'settingsLayers'       => true
+      ,'legend'               => 'wms'
+      ,'bbox'                 => '-78,35.5,-62,44'
+      ,'queryable'            => true
+      ,'category'             => 'temperature'
+      ,'timestamp'            => true
+      ,'wms'                  => array(
+         'url'    => 'http://tds.maracoos.org/ncWMS/wms?'
+        ,'layers' => 'sst-seven/mcsst'
+        ,'legend' => array(
+          'params' => array('REQUEST','LAYER','PALETTE','TIME','GetMetadata')
+        )
+      )
+    )
+    ,array(
        'name'                 => 'HF radar currents'
       ,'displayName'          => 'HF radar currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
-      ,'defaultImageType'     => 'png'
-      ,'legend'               => true
+      ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
       ,'category'             => 'currentsVelocity'
@@ -251,6 +302,9 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'MARCOOSHFRADAR_CURRENTS'
+        ,'legend' => array(
+          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        )
       )
     )
     ,array(
@@ -258,8 +312,8 @@
       ,'displayName'          => 'GOES visible imagery'
       ,'settingsParam'        => ''
       ,'defaultStyle'         => ''
+      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => ''
-      ,'defaultImageType'     => 'png'
       ,'legend'               => false
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => false
@@ -268,6 +322,9 @@
       ,'wms'                  => array(
          'url'    => 'http://mesonet.agron.iastate.edu/cgi-bin/wms/goes/conus_vis.cgi?'
         ,'layers' => 'conus_vis_1km_900913'
+        ,'legend' => array(
+           'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        )
       )
     )
     ,array(
@@ -275,8 +332,8 @@
       ,'displayName'          => 'NHC storm tracks'
       ,'settingsParam'        => ''
       ,'defaultStyle'         => ''
+      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => ''
-      ,'defaultImageType'     => 'png'
       ,'legend'               => false
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => false
@@ -332,6 +389,54 @@
     return implode(',',$a);
   }
 
+  function makeLegendUrl($olay) {
+    $a = array($olay['wms']['url']);
+    for ($i = 0; $i < count($olay['wms']['legend']['params']); $i++) {
+      switch ($olay['wms']['legend']['params'][$i]) {
+        case 'LAYERS' :
+          array_push($a,'LAYERS='.$olay['wms']['layers']);
+        break;
+        case 'FORMAT' :
+          array_push($a,'FORMAT=image/png');
+        break;
+        case 'TRANSPARENT' :
+          array_push($a,'TRANSPARENT=TRUE');
+        break;
+        case 'STYLES' : // special case for tds
+          array_push($a,'STYLES=\''." + defaultStyles['".$olay['name']."'] + '");  // add open quote to close off auto added quote
+        break;
+        case 'SERVICE' :
+          array_push($a,'SERVICE=WMS');
+        break;
+        case 'VERSION' :
+          array_push($a,'VERSION=1.1.1');
+        break;
+        case 'REQUEST' :
+          array_push($a,'REQUEST=GetLegendGraphic');
+        break;
+        case 'TIME' :
+          array_push($a,'TIME=\''." + dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00' + '"); // add open quote to close off auto added quote
+        break;
+        case 'SRS' :
+          array_push($a,'SRS=EPSG:3857');
+        break;
+        // special case for tds
+        case 'LAYER' : // special case for tds
+          array_push($a,'LAYER=\''." + (typeof defaultLayerLayers['".$olay['name']."'] != 'undefined' && defaultLayerLayers['".$olay['name']."'] != '' ? defaultLayerLayers['".$olay['name']."'] : '".$olay['wms']['layers']."') + '"); // add open quote to close off auto added quote
+        break;
+        // special case for tds
+        case 'PALETTE' :
+          array_push($a,'PALETTE=\''." + defaultStyles['".$olay['name']."'].split('/')[1] + '"); // add open quote to close off auto added quote
+        break;
+        // special case for tds
+        case 'GetMetadata' :
+          array_push($a,'GetMetadata');
+        break;
+      }
+    }
+    return "'".implode("' + '&' + '",$a)."'";
+  }
+
   function populateMainStoreOverlays($type,$overlays) {
     $a = array();
     for ($i = 0; $i < count($overlays); $i++) {
@@ -353,7 +458,7 @@
           ." && defaultOpacities['".$overlays[$i]['name']."'] != ''"
           ." ? defaultOpacities['".$overlays[$i]['name']."'] : 100"                                                    // settingsOpacity
         ,"defaultImageTypes['".$overlays[$i]['name']."']"                                                              // settingsImageType
-        ,"''"                                                                                                          // settingsPalette
+        ,$overlays[$i]['name']['settingsPalette'] ? "defaultStyles['".$overlays[$i]['name']."']" : "''"                 // settingsPalette
         ,array_key_exists('baseStyle',$spcol2idx)
           ? "defaultStyles['".$overlays[$i]['name']."'].split('-')[".$spcol2idx['baseStyle']."]" : "''"                // settingsBaseStyle
         ,array_key_exists('colorMap',$spcol2idx)
@@ -370,17 +475,11 @@
           ? "defaultStyles['".$overlays[$i]['name']."'].split('-')[".$spcol2idx['max']."]" : "''"                      // settingsMax
         ,"'".$overlays[$i]['settingsMinMaxBounds']."'"                                                                 // settingsMinMaxBounds
         ,"''"                                                                                                          // rank
-        ,$overlays[$i]['legend'] ?
-          sprintf("'%sLAYERS=%s&LAYER=%s&FORMAT=image/png&TRANSPARENT=TRUE&STYLES=%s&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG:3857'"
-            ,$overlays[$i]['wms']['url']
-            ,$overlays[$i]['wms']['layers']
-            ,$overlays[$i]['wms']['layers']
-            ,"' + defaultStyles['".$overlays[$i]['name']."'] + '"
-          ) : "''"                                                                                                     // legend
+        ,$overlays[$i]['legend'] == 'wms' ? makeLegendUrl($overlays[$i]) : "''"                                        // legend
         ,!$overlays[$i]['timestamp'] ? "'false'" : "''"                                                                // timestamp
         ,"'".$overlays[$i]['bbox']."'"                                                                                 // bbox
         ,"'".($overlays[$i]['queryable'] ? 'true' : 'false')."'"                                                       // queryable
-        ,"''"                                                                                                          // settingsLayers
+        ,$overlays[$i]['settingsLayers'] ? "typeof defaultLayerLayers['".$overlays[$i]['name']."'] != 'undefined' && defaultLayerLayers['".$overlays[$i]['name']."'] != '' ? defaultLayerLayers['".$overlays[$i]['name']."'] : '".$overlays[$i]['wms']['layers']."'" : "''"                                                    // settingsLayers
         ,"'".$overlays[$i]['category']."'"                                                                             // category
       )).']');
     }
