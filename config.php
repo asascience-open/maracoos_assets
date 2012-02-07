@@ -458,7 +458,7 @@
           ." && defaultOpacities['".$overlays[$i]['name']."'] != ''"
           ." ? defaultOpacities['".$overlays[$i]['name']."'] : 100"                                                    // settingsOpacity
         ,"defaultImageTypes['".$overlays[$i]['name']."']"                                                              // settingsImageType
-        ,$overlays[$i]['name']['settingsPalette'] ? "defaultStyles['".$overlays[$i]['name']."']" : "''"                 // settingsPalette
+        ,$overlays[$i]['settingsPalette'] ? "defaultStyles['".$overlays[$i]['name']."']" : "''"                        // settingsPalette
         ,array_key_exists('baseStyle',$spcol2idx)
           ? "defaultStyles['".$overlays[$i]['name']."'].split('-')[".$spcol2idx['baseStyle']."]" : "''"                // settingsBaseStyle
         ,array_key_exists('colorMap',$spcol2idx)
