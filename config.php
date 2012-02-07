@@ -68,7 +68,6 @@
       ,'displayName'          => 'Chesapeake currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
       ,'legend'               => 'wms'
       ,'bbox'                 => '-79,35.5,-74,40'
@@ -86,7 +85,6 @@
       ,'displayName'          => 'STPS currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
       ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
@@ -104,7 +102,6 @@
       ,'displayName'          => 'Stevens NYHOPS currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
       ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
@@ -122,7 +119,6 @@
       ,'displayName'          => 'ROMS ESPRESSO currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
       ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
@@ -140,7 +136,6 @@
       ,'displayName'          => 'MARACOOS HOPS currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
       ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
@@ -158,7 +153,6 @@
       ,'displayName'          => 'NCOM currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
       ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
@@ -176,7 +170,6 @@
       ,'displayName'          => 'HYCOM currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
       ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
@@ -194,7 +187,6 @@
       ,'displayName'          => 'NAM winds'
       ,'settingsParam'        => 'baseStyle,barbLabel,striding,min,max'
       ,'defaultStyle'         => 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45'
-      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-70'
       ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
@@ -210,10 +202,6 @@
     ,array(
        'name'                 => 'WWIII waves'
       ,'displayName'          => 'WWIII waves'
-      ,'settingsParam'        => ''
-      ,'defaultStyle'         => ''
-      ,'settingsPalette'      => false
-      ,'settingsMinMaxBounds' => ''
       ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
@@ -228,10 +216,6 @@
     ,array(
        'name'                 => 'NCOM SST'
       ,'displayName'          => 'NCOM water temperature'
-      ,'settingsParam'        => ''
-      ,'defaultStyle'         => ''
-      ,'settingsPalette'      => false
-      ,'settingsMinMaxBounds' => ''
       ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
@@ -250,9 +234,7 @@
        'name'                 => 'Satellite water temperature'
       ,'displayName'          => 'Satellite water temperature'
       ,'settingsParam'        => 'palette'
-      ,'defaultStyle'         => ''
       ,'settingsPalette'      => true
-      ,'settingsMinMaxBounds' => ''
       ,'settingsLayers'       => true
       ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
@@ -270,7 +252,6 @@
       ,'displayName'          => 'HF radar currents'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-      ,'settingsPalette'      => false
       ,'settingsMinMaxBounds' => '0-6'
       ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
@@ -286,15 +267,7 @@
     ,array(
        'name'                 => 'GOES visible imagery'
       ,'displayName'          => 'GOES visible imagery'
-      ,'settingsParam'        => ''
-      ,'defaultStyle'         => ''
-      ,'settingsPalette'      => false
-      ,'settingsMinMaxBounds' => ''
-      ,'legend'               => false
       ,'bbox'                 => '-78,35.5,-62,44'
-      ,'queryable'            => false
-      ,'category'             => ''
-      ,'timestamp'            => false
       ,'wms'                  => array(
          'url'    => 'http://mesonet.agron.iastate.edu/cgi-bin/wms/goes/conus_vis.cgi?'
         ,'layers' => 'conus_vis_1km_900913'
@@ -304,15 +277,7 @@
     ,array(
        'name'                 => 'NHC storm tracks'
       ,'displayName'          => 'NHC storm tracks'
-      ,'settingsParam'        => ''
-      ,'defaultStyle'         => ''
-      ,'settingsPalette'      => false
-      ,'settingsMinMaxBounds' => ''
-      ,'legend'               => false
       ,'bbox'                 => '-78,35.5,-62,44'
-      ,'queryable'            => false
-      ,'category'             => ''
-      ,'timestamp'            => false
       ,'wms'                  => array(
          'url'    => 'http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/wwa?BGCOLOR=0xCCCCFE&'
         ,'layers' => 'NHC_TRACK_POLY,NHC_TRACK_LIN,NHC_TRACK_PT,NHC_TRACK_PT_72DATE,NHC_TRACK_PT_120DATE,NHC_TRACK_PT_0NAMEDATE,NHC_TRACK_PT_MSLPLABELS,NHC_TRACK_PT_72WLBL,NHC_TRACK_PT_120WLBL,NHC_TRACK_PT_72CAT,NHC_TRACK_PT_120CAT'
@@ -416,6 +381,14 @@
     for ($i = 0; $i < count($overlays); $i++) {
       // tidy up any loose ends
       !array_key_exists('settingsLayers',$overlays[$i]) ? $overlays[$i]['settingsLayers'] = '' : 1;
+      !array_key_exists('settingsPalette',$overlays[$i]) ? $overlays[$i]['settingsPalette'] = false : 1;
+      !array_key_exists('legend',$overlays[$i]) ? $overlays[$i]['legend'] = false : 1;
+      !array_key_exists('queryable',$overlays[$i]) ? $overlays[$i]['queryable'] = false : 1;
+      !array_key_exists('timestamp',$overlays[$i]) ? $overlays[$i]['timestamp'] = false : 1;
+      !array_key_exists('settingsParam',$overlays[$i]) ? $overlays[$i]['settingsParam'] = '' : 1;
+      !array_key_exists('defaultStyle',$overlays[$i]) ? $overlays[$i]['defaultStyle'] = '' : 1;
+      !array_key_exists('settingsMinMaxBounds',$overlays[$i]) ? $overlays[$i]['settingsMinMaxBounds'] = '' : 1;
+      !array_key_exists('category',$overlays[$i]) ? $overlays[$i]['category'] = '' : 1;
 
       // get the settingsParam mapping
       $sp = explode(',',$overlays[$i]['settingsParam']);
