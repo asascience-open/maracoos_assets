@@ -2918,6 +2918,10 @@ function syncObs(l,force) {
                 boundsEqual = false;
               }
             }
+            if (boundsEqual) {
+              map.layers[lyrIdx].featureFactor = 1;
+              map.layers[lyrIdx].addFeatures(f);
+            }
           }
         }
         map.layers[lyrIdx].events.triggerEvent('loadend');
