@@ -1770,7 +1770,7 @@ function setLayerSettings(layerName,on) {
         }
       })
     ];
-    if (mainStore.getAt(idx).get('settingsImageType') != '') {
+    if (mainStore.getAt(idx).get('settingsImageType') != '' && false) {
       height += 27;
       items.push(
         new Ext.form.ComboBox({
