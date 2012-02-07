@@ -2519,6 +2519,9 @@ function initMap() {
       }
     });
   }
+  else {
+    configTimeSlider(true);
+  }
 }
 
 function setLayerInfo(layerName,on) {
