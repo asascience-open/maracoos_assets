@@ -414,11 +414,16 @@
   function populateMainStoreOverlays($type,$overlays) {
     $a = array();
     for ($i = 0; $i < count($overlays); $i++) {
+      // tidy up any loose ends
+      !array_key_exists('settingsLayers',$overlays[$i]) ? $overlays[$i]['settingsLayers'] = '' : 1;
+
+      // get the settingsParam mapping
       $sp = explode(',',$overlays[$i]['settingsParam']);
       $spcol2idx = array();
       for ($j = 0; $j < count($sp); $j++) {
         $spcol2idx[$sp[$j]] = $j;
       }
+
       array_push($a,'['.implode("\n,",array(
          "'$type'"                                                                                                     // type
         ,"'".$overlays[$i]['name']."'"                                                                                 // name
