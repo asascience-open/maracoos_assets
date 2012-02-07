@@ -78,9 +78,7 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'NOSCBOFSCUR_CURRENTS'
-        ,'legend' => array(
-          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        )
+        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
       )
     )
     ,array(
@@ -98,9 +96,7 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'CODARSTPS_CURRENTS'
-        ,'legend' => array(
-          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        )
+        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
       )
     )
     ,array(
@@ -118,9 +114,7 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'NYHOPSCUR_currents'
-        ,'legend' => array(
-          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        )
+        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
       )
     )
     ,array(
@@ -138,9 +132,7 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'ESPRESSO_CURRENTS'
-        ,'legend' => array(
-          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        )
+        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
       )
     )
     ,array(
@@ -158,9 +150,7 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'PESHELF_CURRENTS'
-        ,'legend' => array(
-          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        )
+        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
       )
     )
     ,array(
@@ -178,9 +168,7 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'NCOM_CURRENTS'
-        ,'legend' => array(
-          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        )
+        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
       )
     )
     ,array(
@@ -198,9 +186,7 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'HYCOM_CURRENTS'
-        ,'legend' => array(
-          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        )
+        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
       )
     )
     ,array(
@@ -218,9 +204,7 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'NAM_WINDS'
-        ,'legend' => array(
-          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        )
+        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
       )
     )
     ,array(
@@ -238,9 +222,7 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'WW3_WAVE_HEIGHT'
-        ,'legend' => array(
-          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        )
+        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
       )
     )
     ,array(
@@ -258,9 +240,7 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'NCOM_SST'
-        ,'legend' => array(
-          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        )
+        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
       )
     )
   );
@@ -282,9 +262,7 @@
       ,'wms'                  => array(
          'url'    => 'http://tds.maracoos.org/ncWMS/wms?'
         ,'layers' => 'sst-seven/mcsst'
-        ,'legend' => array(
-          'params' => array('REQUEST','LAYER','PALETTE','TIME','GetMetadata')
-        )
+        ,'legend' => array('REQUEST','LAYER','PALETTE','TIME','GetMetadata')
       )
     )
     ,array(
@@ -302,9 +280,7 @@
       ,'wms'                  => array(
          'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
         ,'layers' => 'MARCOOSHFRADAR_CURRENTS'
-        ,'legend' => array(
-          'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        )
+        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
       )
     )
     ,array(
@@ -322,9 +298,7 @@
       ,'wms'                  => array(
          'url'    => 'http://mesonet.agron.iastate.edu/cgi-bin/wms/goes/conus_vis.cgi?'
         ,'layers' => 'conus_vis_1km_900913'
-        ,'legend' => array(
-           'params' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        )
+        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
       )
     )
     ,array(
@@ -391,8 +365,8 @@
 
   function makeLegendUrl($olay) {
     $a = array($olay['wms']['url']);
-    for ($i = 0; $i < count($olay['wms']['legend']['params']); $i++) {
-      switch ($olay['wms']['legend']['params'][$i]) {
+    for ($i = 0; $i < count($olay['wms']['legend']); $i++) {
+      switch ($olay['wms']['legend'][$i]) {
         case 'LAYERS' :
           array_push($a,'LAYERS='.$olay['wms']['layers']);
         break;
