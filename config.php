@@ -75,9 +75,11 @@
       ,'category'             => 'currentsVelocity'
       ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers' => 'NOSCBOFSCUR_CURRENTS'
-        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'NOSCBOFSCUR_CURRENTS'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
       )
     )
     ,array(
@@ -92,9 +94,11 @@
       ,'category'             => 'currentsVelocity'
       ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers' => 'CODARSTPS_CURRENTS'
-        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'CODARSTPS_CURRENTS'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
       )
     )
     ,array(
@@ -109,9 +113,11 @@
       ,'category'             => 'currentsVelocity'
       ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers' => 'NYHOPSCUR_currents'
-        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'NYHOPSCUR_currents'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
       )
     )
     ,array(
@@ -126,9 +132,11 @@
       ,'category'             => 'currentsVelocity'
       ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers' => 'ESPRESSO_CURRENTS'
-        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'ESPRESSO_CURRENTS'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
       )
     )
     ,array(
@@ -143,9 +151,11 @@
       ,'category'             => 'currentsVelocity'
       ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers' => 'PESHELF_CURRENTS'
-        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'PESHELF_CURRENTS'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
       )
     )
     ,array(
@@ -160,9 +170,11 @@
       ,'category'             => 'currentsVelocity'
       ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers' => 'NCOM_CURRENTS'
-        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'NCOM_CURRENTS'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
       )
     )
     ,array(
@@ -177,9 +189,11 @@
       ,'category'             => 'currentsVelocity'
       ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers' => 'HYCOM_CURRENTS'
-        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'HYCOM_CURRENTS'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
       )
     )
     ,array(
@@ -194,9 +208,11 @@
       ,'category'             => 'windsVelocity'
       ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers' => 'NAM_WINDS'
-        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'NAM_WINDS'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
       )
     )
     ,array(
@@ -208,9 +224,11 @@
       ,'category'             => 'wavesElevation'
       ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers' => 'WW3_WAVE_HEIGHT'
-        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'WW3_WAVE_HEIGHT'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
       )
     )
     ,array(
@@ -237,16 +255,16 @@
       ,'displayName'          => 'Satellite water temperature'
       ,'settingsParam'        => 'palette'
       ,'settingsPalette'      => true
-      ,'settingsLayers'       => true
+      ,'settingsLayers'       => true  // this triggers some exception (initialization) handling
       ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
       ,'category'             => 'temperature'
       ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'    => 'http://tds.maracoos.org/ncWMS/wms?GFI_TIME=min/max&'
-        ,'layers' => 'sst-seven/mcsst'
-        ,'legend' => array('REQUEST','LAYER','PALETTE','TIME','GetMetadata')
+         'url'        => 'http://tds.maracoos.org/ncWMS/wms?GFI_TIME=min/max&'
+        ,'layers'     => 'sst-seven/mcsst'
+        ,'legend'     => array('REQUEST','LAYER','PALETTE','TIME','GetMetadata')
         ,'projection' => 'proj3857'
         ,'styles'     =>  true
       )
@@ -263,9 +281,11 @@
       ,'category'             => 'currentsVelocity'
       ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers' => 'MARCOOSHFRADAR_CURRENTS'
-        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'MARCOOSHFRADAR_CURRENTS'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
       )
     )
     ,array(
@@ -273,9 +293,10 @@
       ,'displayName'          => 'GOES visible imagery'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'wms'                  => array(
-         'url'    => 'http://mesonet.agron.iastate.edu/cgi-bin/wms/goes/conus_vis.cgi?'
-        ,'layers' => 'conus_vis_1km_900913'
-        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+         'url'        => 'http://mesonet.agron.iastate.edu/cgi-bin/wms/goes/conus_vis.cgi?'
+        ,'layers'     => 'conus_vis_1km_900913'
+        ,'singleTile' => true
+        ,'projection' => 'proj3857'
       )
     )
     ,array(
@@ -283,8 +304,10 @@
       ,'displayName'          => 'NHC storm tracks'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'wms'                  => array(
-         'url'    => 'http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/wwa?BGCOLOR=0xCCCCFE&'
-        ,'layers' => 'NHC_TRACK_POLY,NHC_TRACK_LIN,NHC_TRACK_PT,NHC_TRACK_PT_72DATE,NHC_TRACK_PT_120DATE,NHC_TRACK_PT_0NAMEDATE,NHC_TRACK_PT_MSLPLABELS,NHC_TRACK_PT_72WLBL,NHC_TRACK_PT_120WLBL,NHC_TRACK_PT_72CAT,NHC_TRACK_PT_120CAT'
+         'url'        => 'http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/wwa?BGCOLOR=0xCCCCFE&'
+        ,'layers'     => 'NHC_TRACK_POLY,NHC_TRACK_LIN,NHC_TRACK_PT,NHC_TRACK_PT_72DATE,NHC_TRACK_PT_120DATE,NHC_TRACK_PT_0NAMEDATE,NHC_TRACK_PT_MSLPLABELS,NHC_TRACK_PT_72WLBL,NHC_TRACK_PT_120WLBL,NHC_TRACK_PT_72CAT,NHC_TRACK_PT_120CAT'
+        ,'singleTile' => true
+        ,'projection' => 'proj900913'
       )
     )
   );
@@ -295,8 +318,9 @@
       ,'displayName'          => 'Bathymetry contours'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'tilecache'            => array(
-         'url'   => 'http://assets.maracoos.org/tilecache/'
-        ,'layer' => 'bathy'
+         'url'        => 'http://assets.maracoos.org/tilecache/'
+        ,'layer'      => 'bathy'
+        ,'projection' => 'proj900913'
       )
     )
   );
@@ -304,6 +328,29 @@
   $mapStack = array(
      findLayer('NCOM SST',$models)
     ,findLayer('Satellite water temperature',$observations)
+    ,findLayer('WWIII waves',$models)
+    ,findLayer('GOES visible imagery',$observations)
+    ,findLayer('ROMS',$models)
+    ,findLayer('STPS',$models)
+    ,findLayer('Stevens NYHOPS',$models)
+    ,findLayer('ROMS ESPRESSO',$models)
+    ,findLayer('HOPS',$models)
+    ,findLayer('NCOM currents',$models)
+    ,findLayer('HYCOM currents',$models)
+    ,findLayer('NAM winds',$models)
+    ,findLayer('HF radar currents',$observations)
+    ,findLayer('NHC storm tracks',$observations)
+    ,findLayer('Bathymetry contours',$backgrounds)
+    ,findLayer('NDBC',$assets)
+    ,findLayer('CO-OPS',$assets)
+    ,findLayer('USGS',$assets)
+    ,findLayer('Ship',$assets)
+    ,findLayer('NERRS',$assets)
+    ,findLayer('HRECOS',$assets)
+    ,findLayer('HF Radar',$assets)
+    ,findLayer('Satellites',$assets)
+    ,findLayer('Gliders',$assets)
+    ,findLayer('Drifters',$assets)
   );
 
   function findLayer($name,$a) {
@@ -319,17 +366,33 @@
     for ($i = 0; $i < count($mapStack); $i++) {
       if (array_key_exists('wms',$mapStack[$i])) {
         // tidy up any missing elements
-        !array_key_exists('styles',$mapStack[$i]['wms']) ? $mapStack[$i]['styles']['wms'] = false : 1;
-        !array_key_exists('singleTile',$mapStack[$i]['wms']) ? $mapStack[$i]['singleTile']['wms'] = false : 1;
+        !array_key_exists('styles',$mapStack[$i]['wms']) ? $mapStack[$i]['wms']['styles'] = false : 1;
+        !array_key_exists('singleTile',$mapStack[$i]['wms']) ? $mapStack[$i]['wms']['singleTile'] = false : 1;
+        !array_key_exists('settingsLayers',$mapStack[$i]) ? $mapStack[$i]['settingsLayers'] = '' : 1;
 
         array_push($a,"addWMS({\n".implode("\n,",array(
            "name        : '".$mapStack[$i]['name']."'"
           ,"url         : '".$mapStack[$i]['wms']['url']."'"
-          ,"layers      : '".$mapStack[$i]['wms']['layers']."'"
+          ,"layers      : ".($mapStack[$i]['settingsLayers'] ? "defaultLayerLayers['".$mapStack[$i]['name']."']" : "'".$mapStack[$i]['wms']['layers']."'")
           ,"format      : 'image/' + defaultImageTypes['".$mapStack[$i]['name']."']"
           ,"styles      : ".($mapStack[$i]['wms']['styles'] ? "defaultStyles['".$mapStack[$i]['name']."']" : "''")
           ,"singleTile  : ".($mapStack[$i]['wms']['singleTile'] ? "true" : "false")
           ,"projection  : ".$mapStack[$i]['wms']['projection']
+        ))."});");
+      }
+      else if (array_key_exists('tilecache',$mapStack[$i])) {
+        array_push($a,"addTileCache({\n".implode("\n,",array(
+           "name        : '".$mapStack[$i]['name']."'"
+          ,"url         : '".$mapStack[$i]['tilecache']['url']."'"
+          ,"layer       : '".$mapStack[$i]['tilecache']['layer']."'"
+          ,"projection  : ".$mapStack[$i]['tilecache']['projection']
+        ))."});");
+      }
+      else {
+        // this is an asset
+        array_push($a,"addObs({\n".implode("\n,",array(
+           "name        : '".$mapStack[$i]['name']."'"
+          ,"visibility  : typeof  defaultLayers['".$mapStack[$i]['name']."'] != 'undefined'"
         ))."});");
       }
     }
