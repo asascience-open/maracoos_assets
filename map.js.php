@@ -62,8 +62,6 @@ var lastMapClick = {
 };
 var timeControlsHeight = 42;
 var checkPrintTimer;
-var refreshWWATimer;
-var refreshWWAInterval = 60000;
 var lineColors = [
    ['#99BBE8','#1558BB']
   ,['#e8bb99','#b56529']
@@ -1036,7 +1034,7 @@ function init() {
                 ,hidden  : true
                 ,handler : function() {
                   if (lyrQueryPts.features.length > 0) {
-                    mapClick(lastMapClick['xy'],true,false,true);
+                    mapClick(lastMapClick['xy'],true,true);
                   }
                 }
               }
@@ -1277,7 +1275,7 @@ function initMap() {
   }
 
   map.events.register('click',this,function(e) {
-    mapClick(e.xy,true,true,true);
+    mapClick(e.xy,true,true);
   });
 
   map.events.register('addlayer',this,function() {
@@ -2686,7 +2684,7 @@ function showObsTimeseries(href) {
     Ext.getCmp('chartLayerCombo').getStore().each(function(rec) {
       if (p['cat'] == mainStore.getAt(mainStore.find('name',rec.get('name'))).get('category')) {
         Ext.getCmp('chartLayerCombo').setValue(rec.get('name'));
-        a = mapClick({x : pix.x,y : pix.y},true,false,false) || [];
+        a = mapClick({x : pix.x,y : pix.y},true,false) || [];
       }
     });
   }
@@ -2876,14 +2874,13 @@ function restoreDefaultStyles(l,items) {
   }
 }
 
-function mapClick(xy,doWMS,doWWA,chartIt) {
+function mapClick(xy,doWMS,chartIt) {
   lastMapClick['xy'] = xy;
   lyrQueryPts.removeFeatures(lyrQueryPts.features);
 
   var modelQueryLyr = map.getLayersByName(Ext.getCmp('chartLayerCombo').getValue())[0];
   var modelQueryRec = mainStore.getAt(mainStore.find('name',modelQueryLyr.name));
-  var wwaLyr        = map.getLayersByName('WWA')[0];
-  if ((modelQueryLyr && modelQueryLyr.visibility && modelQueryLyr.DEFAULT_PARAMS) || (wwaLyr && wwaLyr.visibility)) {
+  if ((modelQueryLyr && modelQueryLyr.visibility && modelQueryLyr.DEFAULT_PARAMS)) {
     var lonLat = map.getLonLatFromPixel(xy);
     var f = new OpenLayers.Feature.Vector(new OpenLayers.Geometry.Point(lonLat.lon,lonLat.lat));
     f.attributes.img = 'Delete-icon.png';
@@ -2904,9 +2901,6 @@ function mapClick(xy,doWMS,doWWA,chartIt) {
       }
     });
     return queryWMS(xy,queryLyrs,chartIt);
-  }
-  if (doWWA && wwaLyr && wwaLyr.visibility) {
-    queryWWA(xy,f);
   }
 }
 
@@ -2951,91 +2945,6 @@ function queryWMS(xy,a,chartIt) {
     makeChart('model',targets);
   }
   return targets;
-}
-
-function queryWWA(xy,f) {
-  var lonLat = map.getLonLatFromPixel(xy).transform(map.getProjectionObject(),proj4326);
-  var target = 'OpenLayers.Geometry.Point_' + (Number(f.id.split('_')[f.id.split('_').length - 1]) - 1);
-  if (popupObs) {
-    popupObs.hide();
-  }
-  popupObs = new Ext.ToolTip({
-     title     : 'Hazards and forecasts'
-    ,id        : 'wwa.' + f.id
-    ,anchor    : 'right'
-    ,width     : 345 + 70
-    ,target    : target
-    ,autoHide  : false
-    ,closable  : true
-    ,items     : new Ext.Panel({id : 'hazardsForecastsPanel',bodyCssClass : 'wwaPopup',items : {id : 'wwaLegend',border : false,html : "<span id ='" + target + ".data'><table style='width:100%'><tr><td style='text-align:center'><img width=44 height=44 src='img/spinner.gif'></td></tr></table></span>"}})
-    ,listeners : {
-      hide    : function() {
-        this.destroy();
-        popupObs = null;
-      }
-    }
-  });
-  popupObs.show();
-  OpenLayers.Request.GET({
-     url      : 'getWWAremote.php'
-      + '?lon=' + lonLat.lon
-      + '&lat=' + lonLat.lat
-    ,callback : OpenLayers.Function.bind(wwaPopupCallback,null,target)
-  });
-}
-
-function wwaPopupCallback(target,r) {
-  var json = new OpenLayers.Format.GeoJSON();
-  var features = json.read(r.responseText);
-  var tr = [];
-  var offshoreFC;
-  var pointFC;
-  for (var i = 0; i < features.length; i++) {
-    var td = [];
-    if (!features[i].attributes.dummy) {
-      var color = (features[i].attributes.significance == 'W' ? 'FF0000' : (features[i].attributes.significance == 'A' ? 'FF9933' : 'FFFF00'));
-      var borderColor;
-      if (features[i].attributes.significance == 'W') switch(features[i].attributes.phenomenon) {
-        case "TO":
-          borderColor = "CC0099";
-          break;
-        case "SV":
-        case "SM":
-          borderColor = "0000FF";
-          break;
-        case "FF":
-          borderColor = "00FF00";
-          break;
-        default:
-          borderColor = undefined;
-          break;
-      }
-      var site   = features[i].attributes.office.substr(1).toLowerCase();
-      var url    = 'http://forecast.weather.gov/product.php?site=' + site + '&issuedby=' + site + '&product=' + features[i].attributes.pil;
-      var hdln   = features[i].attributes.phenomenon_string + ' ' + features[i].attributes.significance_string;
-      var dBegin = new Date(features[i].attributes.begin*1000);
-      var time   = dateToFriendlyString(dBegin);
-      if (features[i].attributes.end) {
-        time += ' to ';
-        var dEnd = new Date(features[i].attributes.end*1000);
-        time += dateToFriendlyString(dEnd);
-      }
-      else {
-        time += ' until further notice';
-      }
-      td.push('<td style="border:1px solid #5a5a5a;width:20px;background-color:#' + color + '">&nbsp;</td>');
-      td.push('<td>&nbsp;<a target=_blank title="' + features[i].attributes.headline + '" href="' + url + '">' + hdln + '</a></td>');
-      tr.push(td.join(''));
-      tr.push('<td>&nbsp;</td><td>&nbsp;' + time + '</td>');
-    }
-  }
-  html = '<table class="obsDetails"><tr>' + tr.join('</tr><tr>') + '</tr></table>';
-  if (document.getElementById(target + '.data')) {
-    popupObs.suspendEvents();
-    popupObs.hide();
-    popupObs.show();
-    popupObs.resumeEvents();
-  }
 }
 
 function zoomToBbox(bbox) {
@@ -3493,19 +3402,6 @@ function getFilter() {
   else {
     return '';
   }
-}
-
-function refreshWWA() {
-  var lyr = map.getLayersByName('WWA')[0];
-  if (lyr && lyr.visibility) {
-    lyr.options.time = new Date().getTime();
-    lyr.spiralTileLoad();
-    lyr.redraw();
-    if (popupObs && popupObs.id.indexOf('wwa.') == 0) {
-      mapClick(lastMapClick['xy'],false,true);
-    }
-  }
-  setTimeout('refreshWWA()',refreshWWAInterval);
 }
 
 function syncGliders(force) {
