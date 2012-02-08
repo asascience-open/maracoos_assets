@@ -272,37 +272,10 @@ function init() {
         ,''
         ,''
       ]
-,<?php echo populateMainStoreAssets($assets)?>
-,<?php echo populateMainStoreOverlays('model',$models)?>
-,<?php echo populateMainStoreOverlays('observation',$observations)?>
-      ,[
-         'n/a'
-        ,'Bathymetry contours'
-        ,'Bathymetry contours'
-        ,'off'
-        ,defaultLayers['Bathymetry contours'] ? 'on' : 'off'
-        ,'off'
-        ,''
-        ,''
-        ,typeof defaultOpacities['Bathymetry contours'] != 'undefined' && defaultOpacities['Bathymetry contours'] != '' ? defaultOpacities['Bathymetry contours'] : 100
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,'false'
-        ,'-135,0,-50,50'
-        ,'false'
-        ,''
-        ,''
-      ]
+,<?php echo populateMainStoreAssets($assets);?>
+,<?php echo populateMainStoreOverlays('model',$models);?>
+,<?php echo populateMainStoreOverlays('observation',$observations);?>
+,<?php echo populateMainStoreBackgrounds($backgrounds);?>
     ]
   });
 

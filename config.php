@@ -242,7 +242,7 @@
       ,'category'             => 'temperature'
       ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'    => 'http://tds.maracoos.org/ncWMS/wms?'
+         'url'    => 'http://tds.maracoos.org/ncWMS/wms?GFI_TIME=min/max&'
         ,'layers' => 'sst-seven/mcsst'
         ,'legend' => array('REQUEST','LAYER','PALETTE','TIME','GetMetadata')
       )
@@ -285,10 +285,59 @@
     )
   );
 
+  $backgrounds = array(
+    array(
+       'name'                 => 'Bathymetry contours'
+      ,'displayName'          => 'Bathymetry contours'
+      ,'bbox'                 => '-78,35.5,-62,44'
+      ,'tilecache'            => array(
+         'url'   => 'http://assets.maracoos.org/tilecache/'
+        ,'layer' => 'bathy'
+      )
+    )
+  );
+
   function makeObsMinZoom($assets) {
     $a = array();
     for ($i = 0; $i < count($assets); $i++) {
       array_push($a,"'".$assets[$i]['name']."' : ".$assets[$i]['minZoom']);
+    }
+    return implode(',',$a);
+  }
+
+  function populateMainStoreBackgrounds($backgrounds) {
+    $a = array();
+    for ($i = 0; $i < count($backgrounds); $i++) {
+      array_push($a,'['.implode("\n,",array(
+         "'background'"                                                                                              // type
+        ,"'".$backgrounds[$i]['name']."'"                                                                            // name
+        ,"'".$backgrounds[$i]['displayName']."'"                                                                     // displayName
+        ,"'off'"                                                                                                     // info
+        ,"defaultLayers['".$backgrounds[$i]['name']."'] ? 'on' : 'off'"                                              // status
+        ,"'off'"                                                                                                     // settings
+        ,"''"                                                                                                        // infoBlurb
+        ,"''"                                                                                                        // settingsParam
+        ,"typeof defaultOpacities['".$backgrounds[$i]['name']."'] != 'undefined'"
+          ." && defaultOpacities['".$backgrounds[$i]['name']."'] != ''"
+          ." ? defaultOpacities['".$backgrounds[$i]['name']."'] : 100"                                               // settingsOpacity
+        ,"''"                                                                                                        // settingsImageType
+        ,"''"                                                                                                        // settingsPalette
+        ,"''"                                                                                                        // settingsBaseStyle
+        ,"''"                                                                                                        // settingsColorMap
+        ,"''"                                                                                                        // settingsStriding
+        ,"''"                                                                                                        // settingsBarbLabel
+        ,"''"                                                                                                        // settingsTailMag
+        ,"''"                                                                                                        // settingsMin
+        ,"''"                                                                                                        // settingsMax
+        ,"''"                                                                                                        // settingsMinMaxBounds
+        ,"''"                                                                                                        // rank
+        ,"''"                                                                                                        // legend
+        ,"'false'"                                                                                                   // timestamp
+        ,"'".$backgrounds[$i]['bbox']."'"                                                                            // bbox
+        ,"'false'"                                                                                                   // queryable
+        ,"''"                                                                                                        // settingsLayers
+        ,"''"                                                                                                        // category
+      )).']');
     }
     return implode(',',$a);
   }
