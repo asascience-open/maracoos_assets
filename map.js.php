@@ -1353,6 +1353,8 @@ function initMap() {
     }
   });
 
+<?php echo addLayers($mapStack);?>
+/*
   addWMS({
      name   : 'NCOM SST'
     ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
@@ -1371,6 +1373,7 @@ function initMap() {
     ,singleTile : false
     ,projection : proj3857
   });
+*/
   addWMS({
      name   : 'WWIII waves'
     ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'

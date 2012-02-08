@@ -165,6 +165,7 @@
         ,'HF radar currents'    : 'png'
         ,'GOES visible imagery' : 'png'
         ,'Navigational Charts'  : 'png'
+        ,'Satellite water temperature' : 'png'
       }
 <?php
   $layers = array();

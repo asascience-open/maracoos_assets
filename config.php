@@ -222,9 +222,11 @@
       ,'category'             => 'temperature'
       ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'    => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers' => 'NCOM_SST'
-        ,'legend' => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'NCOM_SST'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
       )
     )
   );
@@ -245,6 +247,8 @@
          'url'    => 'http://tds.maracoos.org/ncWMS/wms?GFI_TIME=min/max&'
         ,'layers' => 'sst-seven/mcsst'
         ,'legend' => array('REQUEST','LAYER','PALETTE','TIME','GetMetadata')
+        ,'projection' => 'proj3857'
+        ,'styles'     =>  true
       )
     )
     ,array(
@@ -296,6 +300,41 @@
       )
     )
   );
+
+  $mapStack = array(
+     findLayer('NCOM SST',$models)
+    ,findLayer('Satellite water temperature',$observations)
+  );
+
+  function findLayer($name,$a) {
+    for ($i = 0; $i < count($a); $i++) {
+      if ($a[$i]['name'] == $name) {
+        return $a[$i];
+      }
+    }
+  }
+
+  function addLayers($mapStack) {
+    $a = array();
+    for ($i = 0; $i < count($mapStack); $i++) {
+      if (array_key_exists('wms',$mapStack[$i])) {
+        // tidy up any missing elements
+        !array_key_exists('styles',$mapStack[$i]['wms']) ? $mapStack[$i]['styles']['wms'] = false : 1;
+        !array_key_exists('singleTile',$mapStack[$i]['wms']) ? $mapStack[$i]['singleTile']['wms'] = false : 1;
+
+        array_push($a,"addWMS({\n".implode("\n,",array(
+           "name        : '".$mapStack[$i]['name']."'"
+          ,"url         : '".$mapStack[$i]['wms']['url']."'"
+          ,"layers      : '".$mapStack[$i]['wms']['layers']."'"
+          ,"format      : 'image/' + defaultImageTypes['".$mapStack[$i]['name']."']"
+          ,"styles      : ".($mapStack[$i]['wms']['styles'] ? "defaultStyles['".$mapStack[$i]['name']."']" : "''")
+          ,"singleTile  : ".($mapStack[$i]['wms']['singleTile'] ? "true" : "false")
+          ,"projection  : ".$mapStack[$i]['wms']['projection']
+        ))."});");
+      }
+    }
+    return implode("\n",$a);
+  }
 
   function makeObsMinZoom($assets) {
     $a = array();
@@ -486,4 +525,6 @@
     }
     return implode(',',$a);
   }
+
+//  echo addLayers($mapStack);
 ?>
