@@ -1,34 +1,10 @@
 <?php
   $assets = array(
     array(
-       'name'        => 'NDBC'
-      ,'displayName' => 'NDBC buoys'
+       'name'        => 'Drifters'
+      ,'displayName' => 'Drifters'
       ,'bbox'        => '-78,35.5,-62,44'
-      ,'minZoom'     => 6
-    )
-    ,array(
-       'name'        => 'CO-OPS'
-      ,'displayName' => 'CO-OPS stations'
-      ,'bbox'        => '-78,35.5,-62,44'
-      ,'minZoom'     => 7
-    )
-    ,array(
-       'name'        => 'HRECOS'
-      ,'displayName' => 'HRECOS stations'
-      ,'bbox'        => '-75,40.5,-73,43'
       ,'minZoom'     => 0
-    )
-    ,array(
-       'name'        => 'NERRS'
-      ,'displayName' => 'NERRS stations'
-      ,'bbox'        => '-78,35.5,-62,44'
-      ,'minZoom'     => 5
-    )
-    ,array(
-       'name'        => 'USGS'
-      ,'displayName' => 'USGS stations'
-      ,'bbox'        => '-78,35.5,-62,44'
-      ,'minZoom'     => 10
     )
     ,array(
        'name'        => 'Gliders'
@@ -37,10 +13,34 @@
       ,'minZoom'     => 0
     )
     ,array(
-       'name'        => 'Drifters'
-      ,'displayName' => 'Drifters'
+       'name'        => 'CO-OPS'
+      ,'displayName' => 'Stations : CO-OPS'
       ,'bbox'        => '-78,35.5,-62,44'
+      ,'minZoom'     => 7
+    )
+    ,array(
+       'name'        => 'HRECOS'
+      ,'displayName' => 'Stations : HRECOS'
+      ,'bbox'        => '-75,40.5,-73,43'
       ,'minZoom'     => 0
+    )
+    ,array(
+       'name'        => 'NERRS'
+      ,'displayName' => 'Stations : NERRS'
+      ,'bbox'        => '-78,35.5,-62,44'
+      ,'minZoom'     => 5
+    )
+    ,array(
+       'name'        => 'NDBC'
+      ,'displayName' => 'Stations : NDBC'
+      ,'bbox'        => '-78,35.5,-62,44'
+      ,'minZoom'     => 6
+    )
+    ,array(
+       'name'        => 'USGS'
+      ,'displayName' => 'Stations : USGS'
+      ,'bbox'        => '-78,35.5,-62,44'
+      ,'minZoom'     => 10
     )
     ,array(
        'name'        => 'Ship'
@@ -49,14 +49,14 @@
       ,'minZoom'     => 5
     )
     ,array(
-       'name'        => 'Satellites'
-      ,'displayName' => 'Satellite ground stations'
+       'name'        => 'HF Radar'
+      ,'displayName' => 'Ground stations : HF radar'
       ,'bbox'        => '-78,35.5,-62,44'
       ,'minZoom'     => 0
     )
     ,array(
-       'name'        => 'HF Radar'
-      ,'displayName' => 'HF radar ground stations'
+       'name'        => 'Satellites'
+      ,'displayName' => 'Ground stations : Satellite'
       ,'bbox'        => '-78,35.5,-62,44'
       ,'minZoom'     => 0
     )
@@ -65,7 +65,7 @@
   $models = array(
     array(
        'name'                 => 'ROMS'
-      ,'displayName'          => 'Chesapeake currents'
+      ,'displayName'          => 'Currents : Chesapeake'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
       ,'settingsMinMaxBounds' => '0-6'
@@ -83,8 +83,8 @@
       )
     )
     ,array(
-       'name'                 => 'STPS'
-      ,'displayName'          => 'STPS currents'
+       'name'                 => 'HYCOM currents'
+      ,'displayName'          => 'Currents : HYCOM'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
       ,'settingsMinMaxBounds' => '0-6'
@@ -95,45 +95,7 @@
       ,'timestamp'            => true
       ,'wms'                  => array(
          'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers'     => 'CODARSTPS_CURRENTS'
-        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        ,'projection' => 'proj3857'
-        ,'singleTile' => true
-      )
-    )
-    ,array(
-       'name'                 => 'Stevens NYHOPS'
-      ,'displayName'          => 'Stevens NYHOPS currents'
-      ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
-      ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-      ,'settingsMinMaxBounds' => '0-6'
-      ,'legend'               => 'wms'
-      ,'bbox'                 => '-78,35.5,-62,44'
-      ,'queryable'            => true
-      ,'category'             => 'currentsVelocity'
-      ,'timestamp'            => true
-      ,'wms'                  => array(
-         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers'     => 'NYHOPSCUR_currents'
-        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        ,'projection' => 'proj3857'
-        ,'singleTile' => true
-      )
-    )
-    ,array(
-       'name'                 => 'ROMS ESPRESSO'
-      ,'displayName'          => 'ROMS ESPRESSO currents'
-      ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
-      ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-      ,'settingsMinMaxBounds' => '0-6'
-      ,'legend'               => 'wms'
-      ,'bbox'                 => '-78,35.5,-62,44'
-      ,'queryable'            => true
-      ,'category'             => 'currentsVelocity'
-      ,'timestamp'            => true
-      ,'wms'                  => array(
-         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers'     => 'ESPRESSO_CURRENTS'
+        ,'layers'     => 'HYCOM_CURRENTS'
         ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
         ,'projection' => 'proj3857'
         ,'singleTile' => true
@@ -141,7 +103,7 @@
     )
     ,array(
        'name'                 => 'HOPS'
-      ,'displayName'          => 'MARACOOS HOPS currents'
+      ,'displayName'          => 'Currents : MARACOOS HOPS'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
       ,'settingsMinMaxBounds' => '0-6'
@@ -160,7 +122,7 @@
     )
     ,array(
        'name'                 => 'NCOM currents'
-      ,'displayName'          => 'NCOM currents'
+      ,'displayName'          => 'Currents : NCOM'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
       ,'settingsMinMaxBounds' => '0-6'
@@ -178,8 +140,8 @@
       )
     )
     ,array(
-       'name'                 => 'HYCOM currents'
-      ,'displayName'          => 'HYCOM currents'
+       'name'                 => 'ROMS ESPRESSO'
+      ,'displayName'          => 'Currents : ROMS ESPRESSO'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
       ,'settingsMinMaxBounds' => '0-6'
@@ -190,7 +152,61 @@
       ,'timestamp'            => true
       ,'wms'                  => array(
          'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers'     => 'HYCOM_CURRENTS'
+        ,'layers'     => 'ESPRESSO_CURRENTS'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
+      )
+    )
+    ,array(
+       'name'                 => 'Stevens NYHOPS'
+      ,'displayName'          => 'Currents : Stevens NYHOPS'
+      ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
+      ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+      ,'settingsMinMaxBounds' => '0-6'
+      ,'legend'               => 'wms'
+      ,'bbox'                 => '-78,35.5,-62,44'
+      ,'queryable'            => true
+      ,'category'             => 'currentsVelocity'
+      ,'timestamp'            => true
+      ,'wms'                  => array(
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'NYHOPSCUR_currents'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
+      )
+    )
+    ,array(
+       'name'                 => 'STPS'
+      ,'displayName'          => 'Currents : STPS'
+      ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
+      ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+      ,'settingsMinMaxBounds' => '0-6'
+      ,'legend'               => 'wms'
+      ,'bbox'                 => '-78,35.5,-62,44'
+      ,'queryable'            => true
+      ,'category'             => 'currentsVelocity'
+      ,'timestamp'            => true
+      ,'wms'                  => array(
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'CODARSTPS_CURRENTS'
+        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
+        ,'projection' => 'proj3857'
+        ,'singleTile' => true
+      )
+    )
+    ,array(
+       'name'                 => 'WWIII waves'
+      ,'displayName'          => 'Waves : WWIII'
+      ,'legend'               => 'wms'
+      ,'bbox'                 => '-78,35.5,-62,44'
+      ,'queryable'            => true
+      ,'category'             => 'wavesElevation'
+      ,'timestamp'            => true
+      ,'wms'                  => array(
+         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
+        ,'layers'     => 'WW3_WAVE_HEIGHT'
         ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
         ,'projection' => 'proj3857'
         ,'singleTile' => true
@@ -198,7 +214,7 @@
     )
     ,array(
        'name'                 => 'NAM winds'
-      ,'displayName'          => 'NAM winds'
+      ,'displayName'          => 'Winds : NAM'
       ,'settingsParam'        => 'baseStyle,barbLabel,striding,min,max'
       ,'defaultStyle'         => 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45'
       ,'settingsMinMaxBounds' => '0-70'
@@ -216,24 +232,8 @@
       )
     )
     ,array(
-       'name'                 => 'WWIII waves'
-      ,'displayName'          => 'WWIII waves'
-      ,'legend'               => 'wms'
-      ,'bbox'                 => '-78,35.5,-62,44'
-      ,'queryable'            => true
-      ,'category'             => 'wavesElevation'
-      ,'timestamp'            => true
-      ,'wms'                  => array(
-         'url'        => 'http://services.asascience.com/ecop/wms.aspx?'
-        ,'layers'     => 'WW3_WAVE_HEIGHT'
-        ,'legend'     => array('LAYERS','FORMAT','TRANSPARENT','STYLES','SERVICE','WMS','VERSION','REQUEST','TIME','SRS')
-        ,'projection' => 'proj3857'
-        ,'singleTile' => true
-      )
-    )
-    ,array(
        'name'                 => 'NCOM SST'
-      ,'displayName'          => 'NCOM water temperature'
+      ,'displayName'          => 'Water temperature : NCOM'
       ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'queryable'            => true
@@ -251,27 +251,8 @@
 
   $observations = array(
     array(
-       'name'                 => 'Satellite water temperature'
-      ,'displayName'          => 'Satellite water temperature'
-      ,'settingsParam'        => 'palette'
-      ,'settingsPalette'      => true
-      ,'settingsLayers'       => true  // this triggers some exception (initialization) handling
-      ,'legend'               => 'wms'
-      ,'bbox'                 => '-78,35.5,-62,44'
-      ,'queryable'            => true
-      ,'category'             => 'temperature'
-      ,'timestamp'            => true
-      ,'wms'                  => array(
-         'url'        => 'http://tds.maracoos.org/ncWMS/wms?GFI_TIME=min/max&'
-        ,'layers'     => 'sst-seven/mcsst'
-        ,'legend'     => array('REQUEST','LAYER','PALETTE','TIME','GetMetadata')
-        ,'projection' => 'proj3857'
-        ,'styles'     =>  true
-      )
-    )
-    ,array(
        'name'                 => 'HF radar currents'
-      ,'displayName'          => 'HF radar currents'
+      ,'displayName'          => 'Currents : HF radar'
       ,'settingsParam'        => 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
       ,'defaultStyle'         => 'CURRENTS_RAMP-Jet-False-1-True-0-2'
       ,'settingsMinMaxBounds' => '0-6'
@@ -289,8 +270,19 @@
       )
     )
     ,array(
+       'name'                 => 'NHC storm tracks'
+      ,'displayName'          => 'Storm tracks : NHC'
+      ,'bbox'                 => '-78,35.5,-62,44'
+      ,'wms'                  => array(
+         'url'        => 'http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/wwa?BGCOLOR=0xCCCCFE&'
+        ,'layers'     => 'NHC_TRACK_POLY,NHC_TRACK_LIN,NHC_TRACK_PT,NHC_TRACK_PT_72DATE,NHC_TRACK_PT_120DATE,NHC_TRACK_PT_0NAMEDATE,NHC_TRACK_PT_MSLPLABELS,NHC_TRACK_PT_72WLBL,NHC_TRACK_PT_120WLBL,NHC_TRACK_PT_72CAT,NHC_TRACK_PT_120CAT'
+        ,'singleTile' => true
+        ,'projection' => 'proj900913'
+      )
+    )
+    ,array(
        'name'                 => 'GOES visible imagery'
-      ,'displayName'          => 'GOES visible imagery'
+      ,'displayName'          => 'Visible imagery : GOES'
       ,'bbox'                 => '-78,35.5,-62,44'
       ,'wms'                  => array(
          'url'        => 'http://mesonet.agron.iastate.edu/cgi-bin/wms/goes/conus_vis.cgi?'
@@ -300,14 +292,22 @@
       )
     )
     ,array(
-       'name'                 => 'NHC storm tracks'
-      ,'displayName'          => 'NHC storm tracks'
+       'name'                 => 'Satellite water temperature'
+      ,'displayName'          => 'Water temperature : Satellite'
+      ,'settingsParam'        => 'palette'
+      ,'settingsPalette'      => true
+      ,'settingsLayers'       => true  // this triggers some exception (initialization) handling
+      ,'legend'               => 'wms'
       ,'bbox'                 => '-78,35.5,-62,44'
+      ,'queryable'            => true
+      ,'category'             => 'temperature'
+      ,'timestamp'            => true
       ,'wms'                  => array(
-         'url'        => 'http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/wwa?BGCOLOR=0xCCCCFE&'
-        ,'layers'     => 'NHC_TRACK_POLY,NHC_TRACK_LIN,NHC_TRACK_PT,NHC_TRACK_PT_72DATE,NHC_TRACK_PT_120DATE,NHC_TRACK_PT_0NAMEDATE,NHC_TRACK_PT_MSLPLABELS,NHC_TRACK_PT_72WLBL,NHC_TRACK_PT_120WLBL,NHC_TRACK_PT_72CAT,NHC_TRACK_PT_120CAT'
-        ,'singleTile' => true
-        ,'projection' => 'proj900913'
+         'url'        => 'http://tds.maracoos.org/ncWMS/wms?GFI_TIME=min/max&'
+        ,'layers'     => 'sst-seven/mcsst'
+        ,'legend'     => array('REQUEST','LAYER','PALETTE','TIME','GetMetadata')
+        ,'projection' => 'proj3857'
+        ,'styles'     =>  true
       )
     )
   );
@@ -589,5 +589,23 @@
     return implode(',',$a);
   }
 
-//  echo addLayers($mapStack);
+  function addToMenu($olay) {
+    $a = array();
+    for ($i = 0; $i < count($olay); $i++) {
+      if ($i > 0) {
+        $aPrev = explode(' ',$olay[$i - 1]['displayName']);
+        $aCurr = explode(' ',$olay[$i]['displayName']);
+        if ($aPrev[0] != $aCurr[0]) {
+          array_push($a,'new Ext.menu.Separator()');
+        }
+      }
+      array_push($a,'{'.implode("\n,",array(
+         "text    : '".$olay[$i]['displayName']."'"
+        ,"icon    : 'img/".$olay[$i]['name'].".thumb.png'"
+        ,"handler : function() {map.getLayersByName('".$olay[$i]['name']."')[0].setVisibility(true)}"
+        ,"menu    : {items : new Ext.Panel({width : 300,bodyCssClass : 'popup',html : showInfo('".$olay[$i]['name']."')})}"
+      )).'}');
+    }
+    return implode("\n,",$a);
+  }
 ?>

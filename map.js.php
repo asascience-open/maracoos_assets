@@ -1,7 +1,6 @@
 <?php
   include_once('config.php');
 ?>
-
 var cp;
 var map;
 var legendImages = {};
@@ -32,7 +31,6 @@ var obsMinZoom = {
   ,'USGS'        : 5 + 5
   ,'Ship'        : 0 + 5
   ,'NERRS'       : 0 + 5
-//  ,'Weatherflow' : 3 + 5
   ,'HRECOS'      : 0
   ,'HF Radar'    : 0
   ,'Satellites'  : 0
@@ -72,7 +70,6 @@ var gliderTracks = {
   ,'Spray gliders'  : '#EB342F'
   ,'Sea gliders'    : '#ff0000'
 };
-
 
 function init() {
   var loadingMask = Ext.get('loading-mask');
@@ -730,29 +727,55 @@ function init() {
     ]
   });
 
+  var legendsSelModel = new Ext.grid.CheckboxSelectionModel({
+     header    : ''
+    ,checkOnly : true
+    ,listeners : {
+      rowdeselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
+      }
+      ,rowselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
+      }
+    }
+  })
   var legendsGridPanel = new Ext.grid.GridPanel({
      id               : 'legendsGridPanel'
     ,hidden           : hideLegendsGridPanel
     ,region           : 'east'
-    ,width            : 180
+    ,width            : 230
     ,title            : 'Legends'
     ,collapsible      : true
     ,store            : legendsStore
     ,split            : true
+    ,selModel         : legendsSelModel
     ,columns          : [
        {id : 'status',dataIndex : 'status',renderer : renderLayerStatus}
       ,{id : 'legend',dataIndex : 'name'  ,renderer : renderLegend}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
-    ,listeners        : {afterrender : function() {
-      this.addListener('bodyresize',function(p,w,h) {
-        this.getColumnModel().setConfig([
-           {id : 'status',dataIndex : 'status',renderer : renderLayerStatus,width : (config == 'gliders' ? 42 : 30)}
-          ,{id : 'legend',dataIndex : 'name'  ,renderer : renderLegend     ,width : w - 4 - 42}
-        ]);
-      });
-    }}
+    ,listeners        : {
+      afterrender : function() {
+        this.addListener('bodyresize',function(p,w,h) {
+          this.getColumnModel().setConfig([
+             legendsSelModel
+            ,{id : 'status',dataIndex : 'status',renderer : renderLayerStatus,width : (config == 'gliders' ? 42 : 30)}
+            ,{id : 'legend',dataIndex : 'name'  ,renderer : renderLegend     ,width : w - 4 - 42 - 40}
+            ,{id : 'removeLayer'                ,renderer : renderRemoveLayer,width : 20}
+          ]);
+        });
+      }
+      ,viewready : function(grid) {
+        grid.getSelectionModel().selectAll();
+        grid.getStore().addListener('add',function(sto,rec,idx) {
+          function sel(idx) {
+            grid.getSelectionModel().selectRow(idx,true);
+          }
+          sel.defer(1,this,[idx]);
+        });
+      }
+    }
   });
 
   var managerItems = [
@@ -770,52 +793,37 @@ function init() {
     ,items  : [
       new Ext.Panel({
          region    : 'north'
-        ,html      : mapBanner.html
-        ,height    : mapBanner.height
-        ,border    : false
-        ,bodyStyle : mapBanner.bodyStyle
-        ,hidden    : !mapBanner
-      })
-      ,new Ext.Panel({
-         region      : 'west'
-        ,width       : 250
-        ,title       : globalTitleOverride ? globalTitleOverride : globalTitle + ' Manager'
-        ,collapsible : managerPanelCollapsible
-        ,autoScroll  : true
-        ,items       : managerItems
-      })
-      ,new Ext.Panel({
-         region    : 'center'
-        ,title     : !hideMapTitle ? globalTitle + ' Explorer' : ''
-        ,layout    : 'border'
-        ,items     : [
-          {
-             html      : '<div id="map"></div>'
-              + (!hideTimestampLabel ? '<div id="timestampLabel">' + shortDateString(dNow) + '</div><img id="timestampImage" src="img/asterick_orange_small.png">' : '')
-              + '<div id="notRealtimeAlert">The environmental overlays display near real time data only. By selecting a year other than the most recent available, you are encouraged to turn all environmental overlays off to avoid confusion.</div>'
-            ,region    : 'center'
-            ,border    : false
-            ,tbar      : [
+        ,tbar      : [
+          new Ext.ButtonGroup({
+             title   : 'Session'
+            ,columns : 3
+            ,items   : [
               {
-                 icon    : 'img/printer.png'
-                ,text    : 'Print'
-                ,tooltip : 'Print active map'
-                ,handler : function() {
-                  printSaveMap('print');
-                }
-              }
-              ,{
-                 icon    : 'img/disk.png'
-                ,text    : 'Save'
+                 text    : 'Save'
+                ,scale   : 'large'
                 ,tooltip : 'Save active map'
+                ,icon    : 'img/disk.png'
+                ,width   : 75
                 ,handler : function() {
                   printSaveMap('save');
                 }
               }
               ,{
-                 icon    : 'img/Places-bookmarks-icon.png'
-                ,text    : 'Bookmark'
+                 text    : 'Print'
+                ,scale   : 'large'
+                ,tooltip : 'Print active map'
+                ,icon    : 'img/printer.png'
+                ,width   : 75
+                ,handler : function() {
+                  printSaveMap('print');
+                }
+              }
+              ,{
+                 text    : 'Bookmark'
+                ,scale   : 'large'
                 ,tooltip : 'Bookmark active map'
+                ,icon    : 'img/bookmark.png'
+                ,width   : 90
                 ,handler : function() {
                   var p = {
                      'center'  : map.getCenter().lon + ',' + map.getCenter().lat
@@ -868,70 +876,184 @@ function init() {
                   for (var i in p) {
                     u.push(i + '=' + p[i]);
                   }
-                  var url = "<?php echo 'http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/'))?>?" + u.join('&');
+                  var url = "http://assets.maracoos.org?" + u.join('&');
                   Ext.Msg.alert('Bookmark','The following link will launch the ' + globalTitle + ' Explorer with your current confiuration and may be used as a bookmark. <a target=_blank href="' + url.replace(/ /g,'%20') + '">Link to my ' + globalTitle + ' Explorer</a>');
                 }
               }
-              ,{
-                 icon    : 'img/comments.png'
-                ,text    : 'Feedback'
-                ,tooltip : 'Provide feedback'
-                ,handler : function() {
-                  if (fdbkUnavailable) {
-                    Ext.Msg.alert('Help',"We're sorry, but feedback is currently unavailable.");
-                    return;
-                  }
-                  Ext.Msg.alert('Feedback','We are very interested in your feedback.  Please send us an email at this address, <a href="mailto:maracoosinfo@udel.edu">maracoosinfo@udel.edu</a>.');
-                }
+            ]
+          })
+          ,new Ext.ButtonGroup({
+             title   : 'Overlays'
+            ,id      : 'overlaysButtonGroup'
+            ,columns : 4
+            ,items   : [
+              {
+                 text    : 'Assets'
+                ,scale   : 'large'
+                ,tooltip : 'Show assets'
+                ,icon    : 'img/assets.png'
+                ,width   : 110
+                ,menu    : {items : [
+<?php echo addToMenu($assets)?>
+                ]}
               }
-              ,'->'
-              ,{text : 'Map options',icon : 'img/layers_map.png',menu : {items : [
-                {
-                   text         : 'Show bathymetry contours?'
-                  ,checked      : typeof defaultLayers['Bathymetry contours'] != 'undefined'
-                  ,hideOnClick  : false
-                  ,checkHandler : function(cbox,checked) {
-                    map.getLayersByName('Bathymetry contours')[0].setVisibility(checked);
-                  }
-                }
-                ,'<b class="menu-title" style="margin-left:27px">Select a basemap</b>'
-                ,new Ext.form.ComboBox({
-                   store          : new Ext.data.ArrayStore({
-                     fields : ['name']
-                    ,data   : [['ESRI Ocean'],['Google Satellite'],['Google Terrain'],['Google Hybrid']]
-                  })
-                  ,iconCls        : 'no-icon'
-                  ,valueField     : 'name'
-                  ,displayField   : 'name'
-                  ,editable       : false
-                  ,triggerAction  : 'all'
-                  ,mode           : 'local'
-                  ,width          : 140
-                  ,value          : defaultBasemap
-                  ,forceSelection : true
-                  ,listeners      : {select : function(comboBox,rec) {
-                    var lyr = map.getLayersByName(rec.get('name'))[0];
-                    if (lyr.isBaseLayer) {
-                      lyr.setOpacity(1);
-                      map.setBaseLayer(lyr);
-                      lyr.redraw();
-                    }
-  
-                    // special case for nav charts
-                    navCharts.setVisibility(rec.get('name') == 'Navigational Charts');
-                    navCharts.setOpacity(1);
-                  }}
-                })
-              ]}}
               ,{
-                 icon    : 'img/help-icon.png'
-                ,text    : 'Help'
-                ,tooltip : 'View help tutorial'
-                ,handler : function() {
-                  showHelp(true);
-                }
+                 text    : 'Models'
+                ,scale   : 'large'
+                ,tooltip : 'Show models'
+                ,icon    : 'img/cluster.gif'
+                ,width   : 110
+                ,menu    : {items : [
+<?php echo addToMenu($models)?>
+                ]}
+              }
+              ,{
+                 text    : 'Observations'
+                ,scale   : 'large'
+                ,tooltip : 'Show observations'
+                ,icon    : 'img/satellite.png'
+                ,width   : 110
+                ,menu    : {items : [
+<?php echo addToMenu($observations)?>
+                ]}
+              }
+              ,{
+                 text    : 'Backgrounds'
+                ,scale   : 'large'
+                ,tooltip : 'Show backgrounds'
+                ,icon    : 'img/map.png'
+                ,width   : 110
+                ,menu    : {items : [
+                  {
+                     text         : 'Show bathymetry contours?'
+                    ,checked      : typeof defaultLayers['Bathymetry contours'] != 'undefined'
+                    ,checkHandler : function(item,checked) {
+                      map.getLayersByName('Bathymetry contours')[0].setVisibility(checked);
+                    }
+                  }
+                  ,{
+                     text        : '<b>Choose a basemap from the options below</b>'
+                    ,canActivate : false
+                    ,cls         : 'menuHeader'
+                  }
+                  ,{
+                     text         : 'ESRI Ocean'
+                    ,group        : 'basemap'
+                    ,checked      : defaultBasemap == 'ESRI Ocean'
+                    ,checkHandler : function(item,checked) {
+                      if (checked) {
+                        var lyr = map.getLayersByName(this.text)[0];
+                        lyr.setOpacity(1);
+                        map.setBaseLayer(lyr);
+                        lyr.redraw();
+                      }
+                    }
+                  }
+                  ,{
+                     text         : 'Google Hybrid'
+                    ,group        : 'basemap'
+                    ,checked      : defaultBasemap == 'Google Hybrid'
+                    ,checkHandler : function(item,checked) {
+                      if (checked) {
+                        var lyr = map.getLayersByName(this.text)[0];
+                        lyr.setOpacity(1);
+                        map.setBaseLayer(lyr);
+                        lyr.redraw();
+                      }
+                    }
+                  }
+                  ,{
+                     text         : 'Google Satellite'
+                    ,group        : 'basemap'
+                    ,checked      : defaultBasemap == 'Google Satellite'
+                    ,checkHandler : function(item,checked) {
+                      if (checked) {
+                        var lyr = map.getLayersByName(this.text)[0];
+                        lyr.setOpacity(1);
+                        map.setBaseLayer(lyr);
+                        lyr.redraw();
+                      }
+                    }
+                  }
+                  ,{
+                     text         : 'Google Terrain'
+                    ,group        : 'basemap'
+                    ,checked      : defaultBasemap == 'Google Terrain'
+                    ,checkHandler : function(item,checked) {
+                      if (checked) {
+                        var lyr = map.getLayersByName(this.text)[0];
+                        lyr.setOpacity(1);
+                        map.setBaseLayer(lyr);
+                        lyr.redraw();
+                      }
+                    }
+                  }
+                ]}
               }
             ]
+          })
+          ,'->'
+          ,new Ext.ButtonGroup({
+             title   : 'Feedback'
+            ,tooltip : 'Provide feedback'
+            ,columns : 1
+            ,items : {
+               scale : 'large'
+              ,icon  : 'img/contact_email.png'
+              ,width : 75
+              ,handler : function() {
+                if (fdbkUnavailable) {
+                  Ext.Msg.alert('Help',"We're sorry, but feedback is currently unavailable.");
+                  return;
+                }
+                Ext.Msg.alert('Feedback','We are very interested in your feedback.  Please send us an email at this address, <a href="mailto:maracoosinfo@udel.edu">maracoosinfo@udel.edu</a>.');
+              }
+            }
+          })
+          ,new Ext.ButtonGroup({
+             title   : 'Help'
+            ,tooltip : 'Show help'
+            ,columns : 1
+            ,items : {
+               scale : 'large'
+              ,icon  : 'img/help.png'
+              ,width : 75
+              ,handler : function() {
+                showHelp(true);
+              }
+            }
+          })
+        ]
+        ,border : false
+        ,items  : [
+          {
+             html   : '<div id="bannerContainer"><div id="banner"></div></div>'
+            ,border : false
+          }
+        ]
+        ,height : 189
+      })
+/*
+      ,new Ext.Panel({
+         region      : 'west'
+        ,width       : 250
+        ,title       : globalTitleOverride ? globalTitleOverride : globalTitle + ' Manager'
+        ,collapsible : managerPanelCollapsible
+        ,autoScroll  : true
+        ,items       : managerItems
+      })
+*/
+      ,new Ext.Panel({
+         region    : 'center'
+        ,title     : !hideMapTitle ? globalTitle + ' Explorer' : ''
+        ,layout    : 'border'
+        ,items     : [
+          {
+             html      : '<div id="map"></div>'
+              + (!hideTimestampLabel ? '<div id="timestampLabel">' + shortDateString(dNow) + '</div><img id="timestampImage" src="img/asterick_orange_small.png">' : '')
+              + '<div id="notRealtimeAlert">The environmental overlays display near real time data only. By selecting a year other than the most recent available, you are encouraged to turn all environmental overlays off to avoid confusion.</div>'
+            ,region    : 'center'
+            ,border    : false
             ,bbar      : {
                xtype    : 'container'
               ,hidden   : hideTimeSlider
@@ -1930,6 +2052,10 @@ function renderGlidersDescription(val,metdata,rec) {
   return val + ' (' + rec.get('name') + ')';
 }
 
+function renderRemoveLayer(val,metdata,rec) {
+  return '<a href="javascript:removeLayer(\'' + rec.get('name') + '\')"><img style="margin-top:1px" title="Remove overlay" src="img/remove.png">';
+}
+
 function renderReceiversProject(val) {
   if (val.indexOf('Lake Sturgeon') >= 0) {
     return 'Lake Sturgeon movement/habitat';
@@ -1962,11 +2088,7 @@ function renderDate(val) {
 function addLayer(lyr,timeSensitive) {
   lyr.events.register('visibilitychanged',this,function(e) {
     if (!lyr.visibility) {
-      var idx = legendsStore.find('name',lyr.name);
-      if (idx >= 0) {
-        legendsStore.removeAt(idx);
-      }
-      idx = chartLayerStore.find('name',lyr.name);
+      var idx = chartLayerStore.find('name',lyr.name);
       if (idx >= 0) {
         chartLayerStore.removeAt(idx);
         if (Ext.getCmp('chartLayerCombo').getValue() == lyr.name) {
@@ -2246,13 +2368,7 @@ function addObs(l) {
   );
 
   lyr.events.register('visibilitychanged',this,function(e) {
-    if (!lyr.visibility) {
-      var idx = legendsStore.find('name',lyr.name);
-      if (idx >= 0) {
-        legendsStore.removeAt(idx);
-      }
-    }
-    else {
+    if (lyr.visibility) {
       syncObs({name : lyr.name});
     }
   });
@@ -3445,4 +3561,13 @@ function checkRealtimeAlert() {
   else {
     document.getElementById('notRealtimeAlert').style.visibility = 'hidden';
   }
+}
+
+function removeLayer(name) {
+  legendsStore.remove(legendsStore.getAt(legendsStore.find('name',name)));
+  map.getLayersByName(name)[0].setVisibility(false);
+}
+
+function showInfo(name) {
+  return mainStore.getAt(mainStore.find('name',name)).get('infoBlurb');
 }

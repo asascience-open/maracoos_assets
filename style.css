@@ -22,8 +22,8 @@
   font-size: 12px;
 }
 
-#map .olLayerGoogleCopyright {
-  z-index : -1 !important;
+div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
+  display: none !important;
 }
 
 .smallFont {
@@ -333,13 +333,33 @@
 #legendsGridPanel .x-grid3-row {
   border-color   : #ffffff;
 }
-#legendsGridPanel .x-grid3-row td, .x-grid3-summary-row td {
-  font            : 12px tahoma,helvetica,sans-serif;
+#legendsGridPanel .x-grid3-row-over {
+  background-color : transparent !important;
+  background-image : url('img/blank.png');
+  border-color     : transparent;
 }
-#legendsGridPanel a:link {
+#legendsGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
+  padding : 0px;
+}
+#legendsGridPanel .x-grid3-row td, .x-grid3-summary-row td {
+  font : 11px arial,tahoma,sans-serif;
+}
+#legendsGridPanel a {
   text-decoration : none;
-  font            : 11px tahoma,helvetica,sans-serif;
+  font            : 11px arial,tahoma,sans-serif;
   color           : rgb(74,134,214);
+}
+#legendsGridPanel a:hover {
+  color : rgb(255,0,0);
+}
+#legendsGridPanel .x-grid3-row-selected {
+  background-color : transparent !important;
+}
+#legendsGridPanel .x-grid3-body .x-grid3-row-selected .x-grid3-td-numberer, .x-grid3-body .x-grid3-row-selected .x-grid3-td-checker, .x-grid3-body .x-grid3-row-selected .x-grid3-td-expander {
+  background-image : url('img/blank.png');
+}
+#legendsGridPanel .x-grid3-body .x-grid3-td-checker {
+  background-image : url('img/blank.png');
 }
 #legendsGridPanel a:hover {
   color : rgb(255,0,0);
@@ -521,4 +541,50 @@ div.olControlMousePosition {
 
 .x-toolbar-cell .x-form-checkbox, .x-toolbar-cell .x-form-radio {
     margin-top: 0;
+}
+
+.menuHeader {
+  background : #C2D8F0;
+}
+
+#overlaysButtonGroup .x-btn-group-tc {
+  background-image: url('img/group-tb.gif');
+}
+#overlaysButtonGroup .x-btn-group-tl {
+  background-image: url('img/group-cs.gif');
+}
+#overlaysButtonGroup .x-btn-group-tr {
+  background-image: url('img/group-cs.gif');
+}
+#overlaysButtonGroup .x-btn-group-header {
+  color : #FBF1F1;
+}
+#overlaysButtonGroup .x-btn-group-bc {
+  background-image: url('img/group-tb.gif');
+}
+#overlaysButtonGroup .x-btn-group-bl {
+  background-image: url('img/group-cs.gif');
+}
+#overlaysButtonGroup .x-btn-group-br {
+  background-image: url('img/group-cs.gif');
+}
+#overlaysButtonGroup .x-btn-group-ml {
+  background-image: url('img/group-lr.gif');
+}
+#overlaysButtonGroup .x-btn-group-mr {
+  background-image: url('img/group-lr.gif');
+}
+
+#banner {
+    background-image: url("img/maracoos_ioos_banner.gif");
+    background-repeat: no-repeat;
+    height: 122px;
+    position: relative;
+    width: 1024px;
+}
+#bannerContainer {
+    background-color: #E7E7E9;
+    background-image: url("img/maracoos_ioos_bg.gif");
+    background-position: center top;
+    background-repeat: repeat-x;
 }
