@@ -3125,7 +3125,7 @@ function printSaveMap(printSave) {
     return;
   }
 
-  if (map.baseLayer.name != 'Open StreetMap') {
+  if (map.baseLayer.name != 'ESRI Ocean') {
     Ext.Msg.alert('Basemap error','Due to copyright limitations, only the ESRI Ocean baselayer may be printed or saved.  Please change your basemap selection and try again.');
     return;
   }

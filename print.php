@@ -8,7 +8,7 @@
   $tracks   = json_decode($_REQUEST['trk'],true);
   $basemap  = json_decode($_REQUEST['bm'],true);
 
-  $tmp_dir = '/tmp/';
+  $tmp_dir = '/var/www/html/tmp/';
   $tmp_url = '/tmp/';
   $id      = time().'.'.rand();
 
@@ -123,7 +123,7 @@ $html = "
 </html>
 ";
 
-$handle = fopen($tmp_url.$id.'.html','w');
+$handle = fopen($tmp_dir.$id.'.html','w');
 fwrite($handle,$html);
 fclose($handle);
 
