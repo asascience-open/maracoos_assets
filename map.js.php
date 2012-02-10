@@ -2383,10 +2383,6 @@ function initMap() {
      name       : 'Unknown gliders'
     ,visibility : typeof defaultLayers['Unknown gliders'] != 'undefined'
   });
-  addObs({
-     name       : 'Receivers'
-    ,visibility : typeof defaultLayers['Receivers'] != 'undefined'
-  });
 
   if (config == 'gliders') {
     glidersMetadataStore.fireEvent('beforeload');
@@ -2947,35 +2943,6 @@ function renderLegend(val,metadata,rec) {
 
 function renderGlidersDescription(val,metdata,rec) {
   return val + ' (' + rec.get('name') + ')';
-}
-
-function renderReceiversProject(val) {
-  if (val.indexOf('Lake Sturgeon') >= 0) {
-    return 'Lake Sturgeon movement/habitat';
-  }
-  else if (val.indexOf('Sea Lamprey') >= 0) {
-    return 'Tracking Sea Lamprey';
-  }
-  else if (val.indexOf('Walleye') >= 0) {
-    return 'Tracking Walleye';
-  }
-  else if (val.indexOf('Lake Trout') >= 0) {
-    return 'Understanding Lake Trout';
-  }
-  return val;
-}
-
-function renderReceiversCount(val,metadata,rec) {
-  if (val == 'loading') {
-    return "<img height=12 src='img/loading.gif'>";
-  }
-  else {
-    return val + ' on map';
-  }
-}
-
-function renderDate(val) {
-  return val ? val.dateFormat('M d, Y') : '';
 }
 
 function addLayer(lyr,timeSensitive) {
@@ -4428,10 +4395,6 @@ function syncGliders(force) {
   syncObs({name : 'Slocum gliders'},force);
   syncObs({name : 'Spray gliders'},force);
   syncObs({name : 'Unknown gliders'},force);
-}
-
-function syncGlatos(force) {
-  syncObs({name : 'Receivers'},force);
 }
 
 function mkTbar() {
