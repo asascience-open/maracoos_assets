@@ -2315,13 +2315,6 @@ function initMap() {
   });
 
   addTileCache({
-     name   : 'Zones'
-    ,url    : 'http://assets.maracoos.org/tilecache/'
-    ,layer  : 'marine_zones'
-    ,projection : proj900913
-  });
-
-  addTileCache({
      name   : 'Bathymetry contours'
     ,url    : 'http://assets.maracoos.org/tilecache/'
     ,layer  : 'bathy'
