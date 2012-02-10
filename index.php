@@ -6,9 +6,6 @@
     if ($_REQUEST['config'] == 'gliders') {
       $title = 'IOOS Glider';
     }
-    else if ($_REQUEST['config'] == 'marine') {
-      $title = 'MARACOOS Marine';
-    }
   }
 ?>
     <title><?php echo $title?> Explorer</title>
@@ -81,33 +78,6 @@
       var defaultZoom    = 6;
 
       var showHelpOnStartup = true;
-
-      if (config == 'marine') {
-        helpUnavailable = true;
-        fdbkUnavailable = true;
-
-        defaultLayers = {
-           'NDBC'  : true
-          ,'NERRS' : true
-          ,'WWA'   : true
-          ,'Zones' : true
-        };
-        restrictLayers = {
-           'Bathymetry contours' : true
-          ,'NDBC'                : true
-          ,'NERRS'               : true
-          ,'WWA'                 : true
-          ,'Zones'               : true
-        };
-        hideTimeseriesPanel       = true;
-        hideModelsGridPanel       = true;
-        hideObservationsGridPanel = true;
-        hideTimeSlider            = true;
-        hideMarineGridPanel       = false;
-        showHelpOnStartup         = false;
-        managerPanelCollapsible   = false;
-        hideTimestampLabel        = true;
-      }
 
       if (config == 'gliders') {
         introPanelHtmlOverride  = '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://www.ioos.gov/"><img title="Go to the IOOS home page" src="img/ioos.gif"></a></td></tr></table>';
