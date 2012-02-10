@@ -2519,6 +2519,9 @@ function initMap() {
       }
     });
   }
+  else {
+    configTimeSlider(true);
+  }
 }
 
 function setLayerInfo(layerName,on) {
@@ -3748,6 +3751,10 @@ function syncObs(l,force) {
               if (obs.realBbox[i] != map.getExtent().transform(map.getProjectionObject(),proj4326).toArray()[i]) {
                 boundsEqual = false;
               }
+            }
+            if (boundsEqual) {
+              map.layers[lyrIdx].featureFactor = 1;
+              map.layers[lyrIdx].addFeatures(f);
             }
           }
         }
