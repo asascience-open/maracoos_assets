@@ -22,8 +22,8 @@
   font-size: 12px;
 }
 
-#map .olLayerGoogleCopyright {
-  z-index : -1 !important;
+div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
+  display: none !important;
 }
 
 .smallFont {

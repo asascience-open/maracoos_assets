@@ -47,8 +47,6 @@ var lyrQueryPts;
 var chartData;
 var chartLayerStore;
 var esriOcean;     // special case for this layer
-var navCharts;     // special case for this layer
-var openStreetMap; // special case for this layer
 var dNow = new Date();
 dNow.setMinutes(0);
 dNow.setSeconds(0);
@@ -69,7 +67,18 @@ var gliderTracks = {
   ,'Spray gliders'  : '#EB342F'
   ,'Sea gliders'    : '#ff0000'
 };
-
+var basemapResolutions = [
+   156543.03390625
+  ,78271.516953125
+  ,39135.7584765625
+  ,19567.87923828125
+  ,9783.939619140625
+  ,4891.9698095703125
+  ,2445.9849047851562
+  ,1222.9924523925781
+  ,611.4962261962891
+  ,305.74811309814453
+];
 
 function init() {
   var loadingMask = Ext.get('loading-mask');
@@ -796,7 +805,7 @@ function init() {
         ,''
         ,'http://services.asascience.com/ecop/wms.aspx?LAYERS=HYCOM_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HYCOM currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=HYCOM_CURRENTS'
         ,''
-        ,'-78,35.5,-62,44'
+        ,'-180,-90,180,90' // '-78,35.5,-62,44'
         ,'true'
         ,''
         ,'currentsVelocity'
@@ -1652,7 +1661,6 @@ function init() {
                     ,'opcty'   : []
                     ,'imgTyps' : []
                     ,'esriO'   : esriOcean.visibility ? esriOcean.opacity * 100 : ''
-                    ,'navC'    : navCharts.visibility ? navCharts.opacity * 100 : ''
                     ,'lyrLyrs' : []
                   };
                   for (var i = 0; i < map.layers.length; i++) {
@@ -1742,10 +1750,6 @@ function init() {
                       map.setBaseLayer(lyr);
                       lyr.redraw();
                     }
-  
-                    // special case for nav charts
-                    navCharts.setVisibility(rec.get('name') == 'Navigational Charts');
-                    navCharts.setOpacity(1);
                   }}
                 })
               ]}}
@@ -2029,68 +2033,35 @@ function initMap() {
   esriOcean = new OpenLayers.Layer.XYZ(
      'ESRI Ocean'
     ,'http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/${z}/${y}/${x}.jpg'
-    ,{sphericalMercator: true,visibility : defaultBasemap == 'ESRI Ocean',isBaseLayer : true,opacity : defaultOpacities['ESRI Ocean'] / 100,wrapDateLine : true,attribution : "GEBCO, NOAA, National Geographic, AND data by <a href='http://www.arcgis.com/home/item.html?id=6348e67824504fc9a62976434bf0d8d5'>ESRI</a>"}
-  );
-
-  navCharts = new OpenLayers.Layer.WMS(
-     'Navigational Charts'
-    ,'http://egisws02.nos.noaa.gov/ArcGIS/services/RNC/NOAA_RNC/ImageServer/WMSServer?'
-    ,{
-       layers      : '1'
-      ,format      : 'image/' + defaultImageTypes['Navigational Charts']
-      ,transparent : true
-    }
-    ,{
-       isBaseLayer : false
-      ,projection  : proj3857
-      ,visibility  : defaultBasemap == 'Navigational Charts'
-      ,opacity     : defaultOpacities['Navigational Charts'] / 100
-    }
-  );
-
-  openStreetMap = new OpenLayers.Layer.OSM(
-     'Open StreetMap'
-    ,'http://tile.openstreetmap.org/${z}/${x}/${y}.png'
-    ,{opacity : defaultOpacities['Open StreetMap'] / 100,visibility : defaultBasemap == 'Open StreetMap' || defaultBasemap == 'ESRI Ocean'}
+    ,{sphericalMercator: true,visibility : defaultBasemap == 'ESRI Ocean',isBaseLayer : true,opacity : defaultOpacities['ESRI Ocean'] / 100,wrapDateLine : true,attribution : "GEBCO, NOAA, National Geographic, AND data by <a href='http://www.arcgis.com/home/item.html?id=6348e67824504fc9a62976434bf0d8d5'>ESRI</a>",serverResolutions : basemapResolutions,resolutions : basemapResolutions.slice(1)}
   );
 
   map = new OpenLayers.Map('map',{
-     projection        : proj900913
-    ,displayProjection : proj4326
-    ,units             : "m"
-    ,maxExtent         : new OpenLayers.Bounds(-20037508,-20037508,20037508,20037508.34)
-    ,layers            : [
-       openStreetMap
-      ,esriOcean
-      ,navCharts
+    layers            : [
+       esriOcean
       ,new OpenLayers.Layer.Google('Google Hybrid',{
          type          : google.maps.MapTypeId.HYBRID
         ,projection    : proj900913
         ,opacity       : defaultOpacities['Google Hybrid'] / 100
         ,visibility    : defaultBasemap == 'Google Hybrid'
-        ,maxZoomLevel  : maxZoomLevel ? maxZoomLevel : 10
+        ,minZoomLevel  : 2
       })
       ,new OpenLayers.Layer.Google('Google Satellite',{
          type          : google.maps.MapTypeId.SATELLITE
         ,projection    : proj900913
         ,opacity       : defaultOpacities['Google Satellite'] / 100
         ,visibility    : defaultBasemap == 'Google Satellite'
+        ,minZoomLevel  : 2
       })
       ,new OpenLayers.Layer.Google('Google Terrain',{
          type          : google.maps.MapTypeId.TERRAIN
         ,projection    : proj900913
         ,opacity       : defaultOpacities['Google Terrain'] / 100
         ,visibility    : defaultBasemap == 'Google Terrain'
+        ,minZoomLevel  : 2
       })
       ,lyrQueryPts
     ]
-  });
-
-  navCharts.events.register('visibilitychanged',this,function() {
-    if (navCharts.visibility) {
-      openStreetMap.setOpacity(1);
-      map.setBaseLayer(openStreetMap);
-    }
   });
 
   for (var i = 0; i < map.layers.length; i++) {
@@ -2151,12 +2122,7 @@ function initMap() {
     }
   });
   map.events.register('changelayer',this,function(e) {
-    if (e.property == 'opacity') {
-      if (e.layer.name == 'Navigational Charts') {
-        openStreetMap.setOpacity(navCharts.opacity);
-      }
-    }
-    else if (e.property == 'params') {
+    if (e.property == 'params') {
       // keep legend in sync if a GetLegendGraphic legend
       var idx = mainStore.find('name',e.layer.name);
       if (idx >= 0 && mainStore.getAt(idx).get('legend').indexOf('GetLegendGraphic') >= 0) {
@@ -2321,6 +2287,7 @@ function initMap() {
     ,projection : proj900913
   });
 
+if (includeObs) {
   addObs({
      name       : 'NDBC'
     ,visibility : typeof defaultLayers['NDBC'] != 'undefined'
@@ -2383,6 +2350,7 @@ function initMap() {
      name       : 'Unknown gliders'
     ,visibility : typeof defaultLayers['Unknown gliders'] != 'undefined'
   });
+}
 
   if (config == 'gliders') {
     glidersMetadataStore.fireEvent('beforeload');
@@ -3754,8 +3722,7 @@ function makeChart(type,a) {
 }
 
 function zoomOffset() {
-  // not relying on OSM, but leave here for later, just in case
-  return 0; // map.getLayersByName('Open StreetMap')[0].visibility ? -5 : 0;
+  return 1;
 }
 
 function showToolTip(x,y,contents) {
@@ -4082,9 +4049,6 @@ function printSaveMap(printSave) {
 
   var basemap = [];
   var baseLayer = esriOcean;
-  if (map.getScale() <= 433344.01634946937) {
-    baseLayer = openStreetMap;
-  }
   for (tilerow in baseLayer.grid) {
     for (tilei in baseLayer.grid[tilerow]) {
       var tile = baseLayer.grid[tilerow][tilei];

@@ -3,8 +3,9 @@
 <?php
   $title = 'MARACOOS Assets';
   if (isset($_REQUEST['config'])) {
-    if ($_REQUEST['config'] == 'gliders') {
-      $title = 'IOOS Glider';
+    switch ($_REQUEST['config']) {
+      case 'gliders' : $title = 'IOOS Glider'; break;
+      case 'ecop'    : $title = 'ECOP'; break;
     }
   }
 ?>
@@ -26,7 +27,7 @@
     echo 'config = "'.$_REQUEST['config'].'"'.";\n";
   }
 ?>
-
+      var includeObs    = true;
       var restrictLayers;
       var defaultLayers = {
          'NDBC'             : true
@@ -68,14 +69,13 @@
       var hideRealtimeAlert         = true;
       var introPanelHtmlOverride;
       var introPanelHeightOverride;
-      var maxZoomLevel;
 
       var mapBanner = {hidden : true};
 
       var defaultBasemap = 'ESRI Ocean';
 
       var defaultCenter  = [-7792364.3544444,4865942.2788258];
-      var defaultZoom    = 6;
+      var defaultZoom    = 4;
 
       var showHelpOnStartup = true;
 
@@ -115,6 +115,11 @@
 
         defaultCenter  = [-10429775.084004,3815773.3314648];
         defaultZoom    = 3;
+      }
+      else if (config == 'ecop') {
+        includeObs          = false;
+        hideAssetsGridPanel = true;
+        defaultLayers       = {};
       }
 
       var defaultLayerLayers = {
@@ -224,12 +229,6 @@
     echo "defaultBasemap = 'ESRI Ocean';\n"; 
     echo "defaultOpacities['ESRI Ocean'] = '".$_REQUEST['esriO']."';\n";
     echo "defaultOpacities['Open StreetMap'] = '".$_REQUEST['esriO']."';\n";
-  }
-
-  if (isset($_REQUEST['navC']) && $_REQUEST['navC'] != '') {
-    echo "defaultBasemap = 'Navigational Charts';\n";
-    echo "defaultOpacities['Navigational Charts'] = '".$_REQUEST['navC']."';\n";
-    echo "defaultOpacities['Open StreetMap'] = '".$_REQUEST['navC']."';\n";
   }
 ?>
       for (var s in guaranteeDefaultStyles) {
