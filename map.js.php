@@ -2062,6 +2062,10 @@ function initMap() {
       })
       ,lyrQueryPts
     ]
+    ,projection        : proj900913
+    ,displayProjection : proj4326
+    ,units             : "m"
+    ,maxExtent         : new OpenLayers.Bounds(-20037508,-20037508,20037508,20037508.34)
   });
 
   for (var i = 0; i < map.layers.length; i++) {
