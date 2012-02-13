@@ -1379,66 +1379,6 @@ function init() {
     ]
   });
 
-  var marineSelModel = new Ext.grid.CheckboxSelectionModel({
-     header    : ''
-    ,checkOnly : true
-    ,listeners : {
-      rowdeselect : function(sm,idx,rec) {
-        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
-      }
-      ,rowselect : function(sm,idx,rec) {
-        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
-      }
-    }
-  });
-  var marineGridPanel = new Ext.grid.GridPanel({
-     id               : 'marineGridPanel'
-    ,hidden           : hideMarineGridPanel
-    ,height           : marineStore.getCount() * 21.1 + 26 + 11 + 25
-    ,title            : 'National Weather Service'
-    ,collapsible      : true
-    ,store            : marineStore
-    ,border           : false
-    ,selModel         : marineSelModel
-    ,columns          : [
-       marineSelModel
-      ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
-      ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
-      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
-      // ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
-    ]
-    ,hideHeaders      : true
-    ,disableSelection : true
-    ,listeners        : {viewready : function(grid) {
-      marineSelModel.suspendEvents();
-      var i = 0;
-      marineStore.each(function(rec) {
-        if (rec.get('status') == 'on') {
-          marineSelModel.selectRow(i,true);
-        }
-        i++;
-      });
-      marineSelModel.resumeEvents();
-    }}
-    ,tbar             : [
-      {
-         text    : 'Turn all NWS off'
-        ,icon    : 'img/delete.png'
-        ,handler : function() {
-          marineSelModel.clearSelections();
-        }
-      }
-      ,'->'
-      ,{
-         text    : 'Turn all NWS on'
-        ,icon    : 'img/add.png'
-        ,handler : function() {
-          marineSelModel.selectAll();
-        }
-      }
-    ]
-  });
-
   var glidersSelModel = new Ext.grid.CheckboxSelectionModel({
      header    : ''
     ,checkOnly : true
@@ -1597,7 +1537,6 @@ function init() {
     ,glidersProvidersGridPanel
     ,modelsGridPanel
     ,observationsGridPanel
-    ,marineGridPanel
   ];
 
   new Ext.Viewport({
