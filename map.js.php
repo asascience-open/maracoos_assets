@@ -17,7 +17,6 @@ var mainStore;
 var assetsStore          = new Ext.data.ArrayStore({fields : []}); 
 var modelsStore          = new Ext.data.ArrayStore({fields : []});
 var observationsStore    = new Ext.data.ArrayStore({fields : []});
-var marineStore          = new Ext.data.ArrayStore({fields : []});
 var glidersStore         = new Ext.data.ArrayStore({fields : []});
 var glidersMetadataStore = new Ext.data.ArrayStore({fields : ['name','description']});
 var legendsStore;
@@ -1037,14 +1036,6 @@ function init() {
     ]
   });
 
-  if (config == 'assets') {
-    mainStore.each(function(rec) {
-      if (rec.get('type') == 'marine') {
-        mainStore.remove(rec);
-      }
-    });
-  }
-
   mainStore.each(function(rec) {
     if (restrictLayers && !restrictLayers[rec.get('name')]) {
       mainStore.remove(rec);
@@ -1072,12 +1063,6 @@ function init() {
   mainStore.each(function(rec) {
     if (rec.get('type') == 'observation') {
       observationsStore.add(rec);
-    }
-  });
-
-  mainStore.each(function(rec) {
-    if (rec.get('type') == 'marine') {
-      marineStore.add(rec);
     }
   });
 
