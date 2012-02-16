@@ -23,7 +23,7 @@ var colorMapStore;
 var stridingStore;
 var barbLabelStore;
 var tailMagStore;
-var imageTypesStore;
+var imageQualityStore;
 var mainStore;
 var assetsStore          = new Ext.data.ArrayStore({fields : []}); 
 var currentsStore        = new Ext.data.ArrayStore({fields : []});
@@ -1095,8 +1095,8 @@ function init() {
       for (var i = 0; i < ecop.availableLayers[layerType].length; i++) {
         if (layerType == 'currents') {
           if (typeof defaultStyles[ecop.availableLayers[layerType][i].title] != 'string') {
-            defaultStyles[ecop.availableLayers[layerType][i].title]          = 'CURRENTS_RAMP-Jet-False-1-True-0-2';
-            guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = 'CURRENTS_RAMP-Jet-False-1-True-0-2';
+            defaultStyles[ecop.availableLayers[layerType][i].title]          = 'CURRENTS_RAMP-Jet-False-1-True-0-2-Low';
+            guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = 'CURRENTS_RAMP-Jet-False-1-True-0-2-Low';
           }
           mainStore.add(new mainStore.recordType({
              'type'                 : 'currents'
@@ -1130,8 +1130,8 @@ function init() {
         }
         else if (layerType == 'winds') {
           if (typeof defaultStyles[ecop.availableLayers[layerType][i].title] != 'string') {
-            defaultStyles[ecop.availableLayers[layerType][i].title]          = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45';
-            guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45';
+            defaultStyles[ecop.availableLayers[layerType][i].title]          = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-Low';
+            guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-Low';
           }
           mainStore.add(new mainStore.recordType({
              'type'                 : 'winds'
@@ -1165,8 +1165,8 @@ function init() {
         }
         else if (layerType == 'winds') {
           if (typeof defaultStyles[ecop.availableLayers[layerType][i].title] != 'string') {
-            defaultStyles[ecop.availableLayers[layerType][i].title]          = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45';
-            guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45';
+            defaultStyles[ecop.availableLayers[layerType][i].title]          = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-Low';
+            guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-Low';
           }
           mainStore.add(new mainStore.recordType({
              'type'                 : 'winds'
@@ -1448,14 +1448,14 @@ function init() {
     ]
   });
 
-  imageTypesStore = new Ext.data.ArrayStore({
+  imageQualityStore = new Ext.data.ArrayStore({
     fields : [
       'name'
      ,'value'
     ]
     ,data : [
-       ['low','gif']
-      ,['high','png']
+       ['low','Low']
+      ,['high','High']
     ]
   });
 
@@ -2896,16 +2896,16 @@ function setLayerSettings(layerName,on) {
         }
       })
     ];
-    if (mainStore.getAt(idx).get('settingsImageType') != '') {
+    if (mainStore.getAt(idx).get('settingsImageQuality') != '') {
       height += 27;
       items.push(
         new Ext.form.ComboBox({
-           fieldLabel     : 'Image quality<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.resolution' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.resolution' + '" src="img/info.png"></a>'
+           fieldLabel     : 'Image quality<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.imageQuality' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.imageQuality' + '" src="img/info.png"></a>'
           ,id             : 'imageType'
-          ,store          : imageTypesStore
+          ,store          : imageQualityStore
           ,displayField   : 'name'
           ,valueField     : 'value'
-          ,value          : mainStore.getAt(idx).get('settingsImageType')
+          ,value          : mainStore.getAt(idx).get('settingsImageQuality')
           ,editable       : false
           ,triggerAction  : 'all'
           ,mode           : 'local'
@@ -2914,15 +2914,15 @@ function setLayerSettings(layerName,on) {
           ,listeners      : {
             afterrender : function() {
               new Ext.ToolTip({
-                 id     : 'tooltip.' + id + '.resolution'
-                ,target : id + '.resolution'
+                 id     : 'tooltip.' + id + '.imageQuality'
+                ,target : id + '.imageQuality'
                 ,html   : "Selecting high quality may result in longer download times."
               });
             }
             ,select : function(comboBox,rec) {
-              mainStore.getAt(idx).set('settingsImageType',rec.get('value'));
+              mainStore.getAt(idx).set('settingsImageQuality',rec.get('value'));
               mainStore.getAt(idx).commit();
-              map.getLayersByName(mainStore.getAt(idx).get('name'))[0].mergeNewParams({FORMAT : 'image/' + rec.get('value')});
+              setCustomStyles(mainStore.getAt(idx));
             }
           }
         })
@@ -4179,6 +4179,11 @@ function setCustomStyles(rec) {
     // record the action on google analytics
     pageTracker._trackEvent('setStyle','maxVal',rec.get('name'));
   }
+  if (rec.get('settingsImageQuality') != '') {
+    styles.push(rec.get('settingsImageQuality'));
+    // record the action on google analytics
+    pageTracker._trackEvent('setStyle','imageQuality',rec.get('name'));
+  }
   map.getLayersByName(rec.get('name'))[0].mergeNewParams({STYLES : styles.join('-')});
 }
 
@@ -4198,7 +4203,7 @@ function restoreDefaultStyles(l,items) {
     }
     else if (items[i].id == 'imageType') {
       cmp.setValue('png');
-      cmp.fireEvent('select',cmp,new imageTypesStore.recordType({value : 'png'}));
+      cmp.fireEvent('select',cmp,new imageQualityStore.recordType({value : 'png'}));
     }
     else if (items[i].id == 'palette') {
       cmp.setValue(settings['palette']);
