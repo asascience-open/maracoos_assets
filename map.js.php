@@ -1730,7 +1730,7 @@ function init() {
      id               : 'temperaturesGridPanel'
     ,hidden           : hideTemperaturesGridPanel
     ,height           : Math.min(temperaturesStore.getCount(),5) * 21.1 + 26 + 11 + 25
-    ,title            : 'Water temperature'
+    ,title            : 'Water temperatures'
     ,collapsible      : true
     ,store            : temperaturesStore
     ,border           : false
@@ -1756,7 +1756,7 @@ function init() {
     }}
     ,tbar             : [
       {
-         text    : 'Turn all temperature off'
+         text    : 'Turn all temperatures off'
         ,icon    : 'img/delete.png'
         ,handler : function() {
           temperaturesSelModel.clearSelections();
