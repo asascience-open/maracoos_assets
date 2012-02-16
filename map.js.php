@@ -29,6 +29,7 @@ var assetsStore          = new Ext.data.ArrayStore({fields : []});
 var currentsStore        = new Ext.data.ArrayStore({fields : []});
 var windsStore           = new Ext.data.ArrayStore({fields : []});
 var wavesStore           = new Ext.data.ArrayStore({fields : []});
+var temperaturesStore    = new Ext.data.ArrayStore({fields : []});
 var otherStore           = new Ext.data.ArrayStore({fields : []});
 var modelsStore          = new Ext.data.ArrayStore({fields : []});
 var observationsStore    = new Ext.data.ArrayStore({fields : []});
@@ -1233,6 +1234,41 @@ function init() {
             ,'category'             : 'wavesElevation'
           }));
         }
+        else if (layerType == 'temperature') {
+          if (typeof defaultStyles[ecop.availableLayers[layerType][i].title] != 'string') {
+            defaultStyles[ecop.availableLayers[layerType][i].title]          = '';
+            guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = '';
+          }
+          mainStore.add(new mainStore.recordType({
+             'type'                 : 'temperature'
+            ,'name'                 : ecop.availableLayers[layerType][i].title
+            ,'displayName'          : ecop.availableLayers[layerType][i].title
+            ,'info'                 : 'off'
+            ,'status'               : defaultLayers[ecop.availableLayers[layerType][i].title] ? 'on' : 'off'
+            ,'settings'             : 'off'
+            ,'infoBlurb'            : ecop.availableLayers[layerType][i].abstract
+            ,'settingsParam'        : ''
+            ,'settingsOpacity'      : 100
+            ,'settingsImageQuality' : ''
+            ,'settingsImageType'    : 'png'
+            ,'settingsPalette'      : ''
+            ,'settingsBaseStyle'    : ''
+            ,'settingsColorMap'     : ''
+            ,'settingsStriding'     : ''
+            ,'settingsBarbLabel'    : ''
+            ,'settingsTailMag'      : ''
+            ,'settingsMin'          : ''
+            ,'settingsMax'          : ''
+            ,'settingsMinMaxBounds' : ''
+            ,'rank'                 : ''
+            ,'legend'               : 'http://coastmap.com/ecop/wms.aspx?LAYER=' + ecop.availableLayers[layerType][i].name + '&FORMAT=image/png&TRANSPARENT=TRUE&STYLES=' + defaultStyles[ecop.availableLayers[layerType][i].title] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG:3857&LAYERS=' + ecop.availableLayers[layerType][i].name
+            ,'timestamp'            : ''
+            ,'bbox'                 : ecop.availableLayers[layerType][i].bbox
+            ,'queryable'            : 'true'
+            ,'settingsLayers'       : ''
+            ,'category'             : 'temperature'
+          }));
+        }
         else {
           if (typeof defaultStyles[ecop.availableLayers[layerType][i].title] != 'string') {
             defaultStyles[ecop.availableLayers[layerType][i].title]          = '';
@@ -1304,6 +1340,12 @@ function init() {
   mainStore.each(function(rec) {
     if (rec.get('type') == 'waves') {
       wavesStore.add(rec);
+    }
+  });
+
+  mainStore.each(function(rec) {
+    if (rec.get('type') == 'temperature') {
+      temperaturesStore.add(rec);
     }
   });
 
@@ -1672,6 +1714,57 @@ function init() {
     ]
   });
 
+  var temperaturesSelModel = new Ext.grid.CheckboxSelectionModel({
+     header    : ''
+    ,checkOnly : true
+    ,listeners : {
+      rowdeselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
+      }
+      ,rowselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
+      }
+    }
+  });
+  var temperaturesGridPanel = new Ext.grid.GridPanel({
+     id               : 'temperaturesGridPanel'
+    ,hidden           : hideTemperaturesGridPanel
+    ,height           : Math.min(temperaturesStore.getCount(),5) * 21.1 + 26 + 11 + 25
+    ,title            : 'Water temperature'
+    ,collapsible      : true
+    ,store            : temperaturesStore
+    ,border           : false
+    ,selModel         : temperaturesSelModel
+    ,columns          : [
+       temperaturesSelModel
+      ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
+      ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+    ]
+    ,hideHeaders      : true
+    ,disableSelection : true
+    ,listeners        : {viewready : function(grid) {
+      temperaturesSelModel.suspendEvents();
+      var i = 0;
+      temperaturesStore.each(function(rec) {
+        if (rec.get('status') == 'on') {
+          temperaturesSelModel.selectRow(i,true);
+        }
+        i++;
+      });
+      temperaturesSelModel.resumeEvents();
+    }}
+    ,tbar             : [
+      {
+         text    : 'Turn all temperature off'
+        ,icon    : 'img/delete.png'
+        ,handler : function() {
+          temperaturesSelModel.clearSelections();
+        }
+      }
+    ]
+  });
+
   var otherSelModel = new Ext.grid.CheckboxSelectionModel({
      header    : ''
     ,checkOnly : true
@@ -1986,6 +2079,7 @@ function init() {
     ,currentsGridPanel
     ,windsGridPanel
     ,wavesGridPanel
+    ,temperaturesGridPanel
     ,otherGridPanel
     ,modelsGridPanel
     ,observationsGridPanel
@@ -2011,7 +2105,7 @@ function init() {
         ,listeners        : {afterrender : function() {
           if (config == 'ecop') {
             this.addListener('bodyresize',function(p,w,h) {
-              currentsGridPanel.setHeight(h - introPanel.getHeight() - windsGridPanel.getHeight() - wavesGridPanel.getHeight() - otherGridPanel.getHeight());
+              currentsGridPanel.setHeight(h - introPanel.getHeight() - windsGridPanel.getHeight() - temperaturesGridPanel.getHeight() - wavesGridPanel.getHeight() - otherGridPanel.getHeight());
             });
           }
         }}
@@ -2503,6 +2597,18 @@ function initMap() {
     }
   });
   map.events.register('moveend',this,function() {
+    if (config == 'ecop2') {
+      var a = [];
+      wavesStore.removeAll();
+      mainStore.each(function(rec) {
+        var bbox = String(rec.get('bbox')).split(',');
+        if (rec.get('type') == 'waves') {
+          if (map.getExtent().transform(map.getProjectionObject(),proj4326).intersectsBounds(new OpenLayers.Bounds(bbox[0],bbox[1],bbox[2],bbox[3]))) {
+            wavesStore.add(rec);
+          }
+        }
+      });
+    }
     if (navControl.controls[1].active) {
       navControl.controls[1].deactivate();
       navControl.draw();

@@ -59,6 +59,7 @@
       var hideCurrentsGridPanel     = true;
       var hideWindsGridPanel        = true;
       var hideWavesGridPanel        = true;
+      var hideTemperaturesGridPanel = true;
       var hideOtherGridPanel        = true;
       var hideModelsGridPanel       = false;
       var hideObservationsGridPanel = false;
@@ -130,6 +131,7 @@
         hideCurrentsGridPanel     = false;
         hideWindsGridPanel        = false;
         hideWavesGridPanel        = false;
+        hideTemperaturesGridPanel = false;
         hideOtherGridPanel        = false;
         defaultLayers             = {
            'WW3 Wave Hgt'  : true
