@@ -40,16 +40,16 @@
       };
       var defaultStyles = {
          'Satellite water temperature' : 'boxfill/rainbow'
-        ,'ROMS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'HOPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'ROMS ESPRESSO'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'STPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'UMass'                       : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'Stevens NYHOPS'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'NCOM currents'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'HYCOM currents'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
-        ,'NAM winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45'
-        ,'HF radar currents'           : 'CURRENTS_RAMP-Jet-False-1-True-0-2'
+        ,'ROMS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'HOPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'ROMS ESPRESSO'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'STPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'UMass'                       : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'Stevens NYHOPS'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'NCOM currents'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'HYCOM currents'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'NAM winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-High'
+        ,'HF radar currents'           : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'WWIII waves'                 : ''
         ,'NCOM SST'                    : ''
       };
@@ -135,6 +135,7 @@
            'WW3 Wave Hgt'  : true
           ,'NCOM Model'    : true
         };
+        defaultStyles             = {};
         defaultCenter  = [-10116593.566191,2817774.6103121];
         defaultZoom    = 2;
       }
