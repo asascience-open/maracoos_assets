@@ -3491,7 +3491,7 @@ function addLayer(lyr,timeSensitive) {
             + '&HEIGHT=' + map.getSize().h
             + '&BBOX=' +  map.getExtent().toArray().join(',')
             + '&' + new Date().getTime()
-            + '&drawing=false'
+            + '&drawImg=false'
           ,callback : function(r) {
             if (r.responseText == '') {
               rec.set('timestamp','<span class="alert">There was a problem<br/>drawing this layer.<span>');
