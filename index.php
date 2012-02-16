@@ -82,7 +82,7 @@
       var defaultBasemap = 'ESRI Ocean';
 
       var defaultCenter  = [-7792364.3544444,4865942.2788258];
-      var defaultZoom    = 4;
+      var defaultZoom    = 5;
 
       var showHelpOnStartup = true;
 
