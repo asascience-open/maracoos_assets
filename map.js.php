@@ -4144,7 +4144,7 @@ function makeChart(type,a) {
     if (obs && obs.error) {
       chartData.push({
          data   : []
-        ,label  : title + ': QUERY ERROR ' + obs.error
+        ,label  : title.split('||')[0] + ': QUERY ERROR ' + obs.error
         ,nowIdx : ''
       });
       // record the action on google analytics
@@ -4153,7 +4153,7 @@ function makeChart(type,a) {
     else if (!obs || obs.d == '' || obs.d.length == 0) {
       chartData.push({
          data   : []
-        ,label  : title + ': QUERY ERROR'
+        ,label  : title.split('||')[0] + ': QUERY ERROR'
         ,nowIdx : ''
       });
       // record the action on google analytics
