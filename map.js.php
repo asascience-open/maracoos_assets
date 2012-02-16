@@ -2040,6 +2040,27 @@ function init() {
             });
           }
         }}
+<?php
+  if ($_SESSION['config'] == 'ecop') {
+?>
+        ,tbar      : [
+           {
+             icon : 'img/blank.png'
+           }
+          ,'->'
+          ,'Only list & map layers in current extents?'
+          ,' '
+          ,new Ext.form.Checkbox({
+             checked   : false
+            ,id        : 'restrictLayersToBbox'
+            ,listeners : {check : function() {
+              syncLayersToBbox();
+            }}
+          })
+        ]
+<?php
+  }
+?>
       })
       ,new Ext.Panel({
          region    : 'center'
@@ -4859,6 +4880,7 @@ function syncLayersToBbox(l) {
           if (
             map.getExtent().transform(map.getProjectionObject(),proj4326).intersectsBounds(new OpenLayers.Bounds(bbox[0],bbox[1],bbox[2],bbox[3]))
             || new OpenLayers.Bounds(bbox[0],bbox[1],bbox[2],bbox[3]).containsBounds(map.getExtent().transform(map.getProjectionObject(),proj4326))
+            || !Ext.getCmp('restrictLayersToBbox').checked
           ) {
             sto.add(rec);
           }

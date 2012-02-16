@@ -125,6 +125,7 @@
         defaultZoom    = 3;
       }
       else if (config == 'ecop') {
+        introPanelHtmlOverride  = '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://www.uscg.mil/"><img title="Go to the U.S.C.G. home page" src="img/uscg.jpg"></a></td></tr></table>';
         hideModelsGridPanel       = true;
         hideAssetsGridPanel       = true;
         hideObservationsGridPanel = true;
