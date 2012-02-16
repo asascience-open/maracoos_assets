@@ -9,6 +9,9 @@
       if ($d == 'invalidBbox') {
         echo 'invalidBbox';
       }
+      else if ($d == 'DateNotAvailable') {
+        echo 'dateNotAvailable';
+      }
       else {
         if (substr($d,strlen($d)-1,1) != 'Z') {
           $d .= 'Z';

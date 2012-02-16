@@ -3472,6 +3472,9 @@ function addLayer(lyr,timeSensitive) {
             else if (r.responseText == 'invalidBbox') {
               rec.set('timestamp','<span class="alert">This layer\'s domain<br/>is out of bounds.<span>');
             }
+            else if (r.responseText == 'dateNotAvailable') {
+              rec.set('timestamp','');
+            }
             else {
               var prevTs = rec.get('timestamp');
               var newTs  = shortDateString(new Date(r.responseText * 1000));
