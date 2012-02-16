@@ -3442,7 +3442,7 @@ function addLayer(lyr,timeSensitive) {
         chartLayerStore.add(new chartLayerStore.recordType({
            rank        : mainStore.getAt(mainIdx).get('rank')
           ,name        : lyr.name
-          ,displayName : mainStore.getAt(mainIdx).get('displayName')
+          ,displayName : mainStore.getAt(mainIdx).get('displayName').split('||')[0]
           ,category    : mainStore.getAt(mainIdx).get('category')
         }));
       }
@@ -4190,7 +4190,7 @@ function makeChart(type,a) {
         // get the data
         chartData.push({
            data   : []
-          ,label  : title + ' : ' + v + ' (' + toEnglish({typ : 'title',src : obs.u[v],val : obs.u[v]}) + ')'
+          ,label  : title.split('||')[0] + ' : ' + v + ' (' + toEnglish({typ : 'title',src : obs.u[v],val : obs.u[v]}) + ')'
           ,yaxis  : yaxis
           ,lines  : {show : true}
           ,nowIdx : obs.d[v].length > 1 ? obs.nowIdx : ''
