@@ -2087,6 +2087,7 @@ function init() {
             ,region    : 'center'
             ,border    : false
             ,tbar      : [
+/*
               {
                  icon    : 'img/printer.png'
                 ,text    : 'Print'
@@ -2103,7 +2104,8 @@ function init() {
                   printSaveMap('save');
                 }
               }
-              ,{
+*/
+              {
                  icon    : 'img/Places-bookmarks-icon.png'
                 ,text    : 'Bookmark'
                 ,tooltip : 'Bookmark active map'
@@ -2906,7 +2908,7 @@ function setLayerInfo(layerName,on) {
   if (on && (!Ext.getCmp('info.popup.' + layerName) || !Ext.getCmp('info.popup.' + layerName).isVisible())) {
     new Ext.ToolTip({
        id        : 'info.popup.' + layerName
-      ,title     : mainStore.getAt(idx).get('displayName') + ' :: details'
+      ,title     : mainStore.getAt(idx).get('displayName').split('||')[0] + ' :: details'
       ,anchor    : 'bottom'
       ,target    : 'info.' + layerName 
       ,autoHide  : false
@@ -3331,7 +3333,7 @@ function renderLayerButton(val,metadata,rec) {
 }
 
 function renderLayerInfoLink(val,metadata,rec) {
-  return '<a id="info.' + rec.get('name') + '" href="javascript:setLayerInfo(\'' + rec.get('name')  + '\',\'' + rec.get('info') + '\' != \'on\')">' + val + '<img title="View layer metadata" style="margin-left:2px;margin-bottom:2px" src="img/info.png"></a>';
+  return '<a id="info.' + rec.get('name') + '" href="javascript:setLayerInfo(\'' + rec.get('name')  + '\',\'' + rec.get('info') + '\' != \'on\')">' + val.split('||')[0] + '<img title="View layer metadata" style="margin-left:2px;margin-bottom:2px" src="img/info.png"></a>';
 }
 
 function renderSettingsButton(val,metadata,rec) {
@@ -3367,7 +3369,7 @@ function renderLayerStatus(val,metadata,rec) {
 
 function renderLegend(val,metadata,rec) {
   var idx = mainStore.find('name',rec.get('name'));
-  var a = [rec.get('displayName')];
+  var a = [rec.get('displayName').split('||')[0]];
   if (rec.get('timestamp') && rec.get('timestamp') != '') {
     a.push(rec.get('timestamp'));
   }

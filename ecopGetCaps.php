@@ -23,16 +23,19 @@
     );
     if (preg_match('/_CURRENTS$/',$a['name'])) {
       $a['type']  = 'currents';
+      $a['title'] .= '||'.$a['type'];
       array_push($layerStack,$a);
       array_push($layers['currents'],$a);
     }
     else if (preg_match('/_WINDS$/',$a['name'])) {
       $a['type']  = 'winds';
+      $a['title'] .= '||'.$a['type'];
       array_push($layerStack,$a);
       array_push($layers['winds'],$a);
     }
     else if (preg_match('/_WAVE_/',$a['name'])) {
       $a['type']  = 'waves';
+      $a['title'] .= '||'.$a['type'];
       if (preg_match('/DIRECTION$/',$a['name'])) {
         array_push($layerStack,$a);
       }
@@ -43,11 +46,13 @@
     }
     else if (preg_match('/_(TEMP|SST)$/',$a['name'])) {
       $a['type']  = 'temperature';
+      $a['title'] .= '||'.$a['type'];
       array_unshift($layerStack,$a);
       array_push($layers['temperature'],$a);
     }
     else {
       $a['type']  = 'other';
+      $a['title'] .= '||'.$a['type'];
       array_unshift($layerStack,$a);
       array_push($layers['other'],$a);
     }

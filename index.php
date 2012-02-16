@@ -83,7 +83,7 @@
       var defaultBasemap = 'ESRI Ocean';
 
       var defaultCenter  = [-7792364.3544444,4865942.2788258];
-      var defaultZoom    = 5;
+      var defaultZoom    = 6;
 
       var showHelpOnStartup = true;
 
@@ -134,12 +134,12 @@
         hideTemperaturesGridPanel = false;
         hideOtherGridPanel        = false;
         defaultLayers             = {
-           'WW3 Wave Hgt'  : true
-          ,'NCOM Model'    : true
+           'WW3 Wave Hgt||waves'  : true
+          ,'NCOM Model||currents' : true
         };
         defaultStyles             = {};
         defaultCenter  = [-10116593.566191,2817774.6103121];
-        defaultZoom    = 2;
+        defaultZoom    = 3;
       }
 
       var defaultLayerLayers = {
