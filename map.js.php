@@ -1,3 +1,14 @@
+<?php
+  session_start();
+  if ($_SESSION['config'] == 'ecop') {
+    include_once('ecopGetCaps.php');
+    echo 'var ecop = '.json_encode(array(
+       'availableLayers' => $layers
+      ,'layerStack'      => $layerStack
+    )).";\n";
+  }
+?>
+
 var cp;
 var map;
 var legendImages = {};
@@ -15,6 +26,10 @@ var tailMagStore;
 var imageTypesStore;
 var mainStore;
 var assetsStore          = new Ext.data.ArrayStore({fields : []}); 
+var currentsStore        = new Ext.data.ArrayStore({fields : []});
+var windsStore           = new Ext.data.ArrayStore({fields : []});
+var wavesStore           = new Ext.data.ArrayStore({fields : []});
+var otherStore           = new Ext.data.ArrayStore({fields : []});
 var modelsStore          = new Ext.data.ArrayStore({fields : []});
 var observationsStore    = new Ext.data.ArrayStore({fields : []});
 var glidersStore         = new Ext.data.ArrayStore({fields : []});
@@ -1036,6 +1051,184 @@ function init() {
     ]
   });
 
+  if (config == 'ecop') {
+    mainStore.removeAll();
+    for (var layerType in ecop.availableLayers) {
+      for (var i = 0; i < ecop.availableLayers[layerType].length; i++) {
+        if (layerType == 'currents') {
+          if (typeof defaultStyles[ecop.availableLayers[layerType][i].title] != 'string') {
+            defaultStyles[ecop.availableLayers[layerType][i].title]          = 'CURRENTS_RAMP-Jet-False-1-True-0-2';
+            guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = 'CURRENTS_RAMP-Jet-False-1-True-0-2';
+          }
+          mainStore.add(new mainStore.recordType({
+             'type'                 : 'currents'
+            ,'name'                 : ecop.availableLayers[layerType][i].title
+            ,'displayName'          : ecop.availableLayers[layerType][i].title
+            ,'info'                 : 'off'
+            ,'status'               : defaultLayers[ecop.availableLayers[layerType][i].title] ? 'on' : 'off'
+            ,'settings'             : 'off'
+            ,'infoBlurb'            : ecop.availableLayers[layerType][i].abstract
+            ,'settingsParam'        : 'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
+            ,'settingsOpacity'      : 100
+            ,'settingsImageType'    : 'png'
+            ,'settingsPalette'      : ''
+            ,'settingsBaseStyle'    : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[0]
+            ,'settingsColorMap'     : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[1]
+            ,'settingsStriding'     : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[2]
+            ,'settingsBarbLabel'    : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[3]
+            ,'settingsTailMag'      : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[4]
+            ,'settingsMin'          : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[5]
+            ,'settingsMax'          : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[6]
+            ,'settingsMinMaxBounds' : '0-6'
+            ,'rank'                 : ''
+            ,'legend'               : 'http://services.asascience.com/ecop/wms.aspx?LAYER=' + ecop.availableLayers[layerType][i].name + '&FORMAT=image/png&TRANSPARENT=TRUE&STYLES=' + defaultStyles[ecop.availableLayers[layerType][i].title] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG:3857&LAYERS=' + ecop.availableLayers[layerType][i].name
+            ,'timestamp'            : ''
+            ,'bbox'                 : ecop.availableLayers[layerType][i].bbox
+            ,'queryable'            : 'true'
+            ,'settingsLayers'       : ''
+            ,'category'             : 'currentsVelocity'
+          }));
+        }
+        else if (layerType == 'winds') {
+          if (typeof defaultStyles[ecop.availableLayers[layerType][i].title] != 'string') {
+            defaultStyles[ecop.availableLayers[layerType][i].title]          = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45';
+            guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45';
+          }
+          mainStore.add(new mainStore.recordType({
+             'type'                 : 'winds'
+            ,'name'                 : ecop.availableLayers[layerType][i].title
+            ,'displayName'          : ecop.availableLayers[layerType][i].title
+            ,'info'                 : 'off'
+            ,'status'               : defaultLayers[ecop.availableLayers[layerType][i].title] ? 'on' : 'off'
+            ,'settings'             : 'off'
+            ,'infoBlurb'            : ecop.availableLayers[layerType][i].abstract
+            ,'settingsParam'        : 'baseStyle,barbLabel,striding,min,max'
+            ,'settingsOpacity'      : 100
+            ,'settingsImageType'    : 'png'
+            ,'settingsPalette'      : ''
+            ,'settingsBaseStyle'    : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[0]
+            ,'settingsColorMap'     : ''
+            ,'settingsStriding'     : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[2]
+            ,'settingsBarbLabel'    : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[1]
+            ,'settingsTailMag'      : ''
+            ,'settingsMin'          : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[3]
+            ,'settingsMax'          : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[4]
+            ,'settingsMinMaxBounds' : '0-70'
+            ,'rank'                 : ''
+            ,'legend'               : 'http://services.asascience.com/ecop/wms.aspx?LAYER=' + ecop.availableLayers[layerType][i].name + '&FORMAT=image/png&TRANSPARENT=TRUE&STYLES=' + defaultStyles[ecop.availableLayers[layerType][i].title] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG:3857&LAYERS=' + ecop.availableLayers[layerType][i].name
+            ,'timestamp'            : ''
+            ,'bbox'                 : ecop.availableLayers[layerType][i].bbox
+            ,'queryable'            : 'true'
+            ,'settingsLayers'       : ''
+            ,'category'             : 'windsVelocity'
+          }));
+        }
+        else if (layerType == 'winds') {
+          if (typeof defaultStyles[ecop.availableLayers[layerType][i].title] != 'string') {
+            defaultStyles[ecop.availableLayers[layerType][i].title]          = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45';
+            guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45';
+          }
+          mainStore.add(new mainStore.recordType({
+             'type'                 : 'winds'
+            ,'name'                 : ecop.availableLayers[layerType][i].title
+            ,'displayName'          : ecop.availableLayers[layerType][i].title
+            ,'info'                 : 'off'
+            ,'status'               : defaultLayers[ecop.availableLayers[layerType][i].title] ? 'on' : 'off'
+            ,'settings'             : 'off'
+            ,'infoBlurb'            : ecop.availableLayers[layerType][i].abstract
+            ,'settingsParam'        : 'baseStyle,barbLabel,striding,min,max'
+            ,'settingsOpacity'      : 100
+            ,'settingsImageType'    : 'png'
+            ,'settingsPalette'      : ''
+            ,'settingsBaseStyle'    : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[0]
+            ,'settingsColorMap'     : ''
+            ,'settingsStriding'     : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[2]
+            ,'settingsBarbLabel'    : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[1]
+            ,'settingsTailMag'      : ''
+            ,'settingsMin'          : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[3]
+            ,'settingsMax'          : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[4]
+            ,'settingsMinMaxBounds' : '0-70'
+            ,'rank'                 : ''
+            ,'legend'               : 'http://services.asascience.com/ecop/wms.aspx?LAYER=' + ecop.availableLayers[layerType][i].name + '&FORMAT=image/png&TRANSPARENT=TRUE&STYLES=' + defaultStyles[ecop.availableLayers[layerType][i].title] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG:3857&LAYERS=' + ecop.availableLayers[layerType][i].name
+            ,'timestamp'            : ''
+            ,'bbox'                 : ecop.availableLayers[layerType][i].bbox
+            ,'queryable'            : 'true'
+            ,'settingsLayers'       : ''
+            ,'category'             : 'windsVelocity'
+          }));
+        }
+        else if (layerType == 'waves') {
+          if (typeof defaultStyles[ecop.availableLayers[layerType][i].title] != 'string') {
+            defaultStyles[ecop.availableLayers[layerType][i].title]          = '';
+            guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = '';
+          }
+          mainStore.add(new mainStore.recordType({
+             'type'                 : 'waves'
+            ,'name'                 : ecop.availableLayers[layerType][i].title
+            ,'displayName'          : ecop.availableLayers[layerType][i].title
+            ,'info'                 : 'off'
+            ,'status'               : defaultLayers[ecop.availableLayers[layerType][i].title] ? 'on' : 'off'
+            ,'settings'             : 'off'
+            ,'infoBlurb'            : ecop.availableLayers[layerType][i].abstract
+            ,'settingsParam'        : ''
+            ,'settingsOpacity'      : 100
+            ,'settingsImageType'    : 'png'
+            ,'settingsPalette'      : ''
+            ,'settingsBaseStyle'    : ''
+            ,'settingsColorMap'     : ''
+            ,'settingsStriding'     : ''
+            ,'settingsBarbLabel'    : ''
+            ,'settingsTailMag'      : ''
+            ,'settingsMin'          : ''
+            ,'settingsMax'          : ''
+            ,'settingsMinMaxBounds' : ''
+            ,'rank'                 : ''
+            ,'legend'               : 'http://services.asascience.com/ecop/wms.aspx?LAYER=' + ecop.availableLayers[layerType][i].name + '&FORMAT=image/png&TRANSPARENT=TRUE&STYLES=' + defaultStyles[ecop.availableLayers[layerType][i].title] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG:3857&LAYERS=' + ecop.availableLayers[layerType][i].name
+            ,'timestamp'            : ''
+            ,'bbox'                 : ecop.availableLayers[layerType][i].bbox
+            ,'queryable'            : 'true'
+            ,'settingsLayers'       : ''
+            ,'category'             : 'wavesElevation'
+          }));
+        }
+        else {
+          if (typeof defaultStyles[ecop.availableLayers[layerType][i].title] != 'string') {
+            defaultStyles[ecop.availableLayers[layerType][i].title]          = '';
+            guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = '';
+          }
+          mainStore.add(new mainStore.recordType({
+             'type'                 : 'other'
+            ,'name'                 : ecop.availableLayers[layerType][i].title
+            ,'displayName'          : ecop.availableLayers[layerType][i].title
+            ,'info'                 : 'off'
+            ,'status'               : 'off'
+            ,'settings'             : 'off'
+            ,'infoBlurb'            : ecop.availableLayers[layerType][i].abstract
+            ,'settingsParam'        : ''
+            ,'settingsOpacity'      : 100
+            ,'settingsImageType'    : 'png'
+            ,'settingsPalette'      : ''
+            ,'settingsBaseStyle'    : ''
+            ,'settingsColorMap'     : ''
+            ,'settingsStriding'     : ''
+            ,'settingsBarbLabel'    : ''
+            ,'settingsTailMag'      : ''
+            ,'settingsMin'          : ''
+            ,'settingsMax'          : ''
+            ,'settingsMinMaxBounds' : ''
+            ,'rank'                 : ''
+            ,'legend'               : 'http://services.asascience.com/ecop/wms.aspx?LAYER=' + ecop.availableLayers[layerType][i].name + '&FORMAT=image/png&TRANSPARENT=TRUE&STYLES=' + defaultStyles[ecop.availableLayers[layerType][i].title] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG:3857&LAYERS=' + ecop.availableLayers[layerType][i].name
+            ,'timestamp'            : ''
+            ,'bbox'                 : ecop.availableLayers[layerType][i].bbox
+            ,'queryable'            : 'false'
+            ,'settingsLayers'       : ''
+            ,'category'             : ''
+          }));
+        }
+      }
+    }
+  }
+
   mainStore.each(function(rec) {
     if (restrictLayers && !restrictLayers[rec.get('name')]) {
       mainStore.remove(rec);
@@ -1051,6 +1244,30 @@ function init() {
   mainStore.each(function(rec) {
     if (rec.get('type') == 'asset') {
       assetsStore.add(rec);
+    }
+  });
+
+  mainStore.each(function(rec) {
+    if (rec.get('type') == 'currents') {
+      currentsStore.add(rec);
+    }
+  });
+
+  mainStore.each(function(rec) {
+    if (rec.get('type') == 'winds') {
+      windsStore.add(rec);
+    }
+  });
+
+  mainStore.each(function(rec) {
+    if (rec.get('type') == 'waves') {
+      wavesStore.add(rec);
+    }
+  });
+
+  mainStore.each(function(rec) {
+    if (rec.get('type') == 'other') {
+      otherStore.add(rec);
     }
   });
 
@@ -1255,6 +1472,210 @@ function init() {
         ,icon    : 'img/add.png'
         ,handler : function() {
           assetsSelModel.selectAll();
+        }
+      }
+    ]
+  });
+
+  var currentsSelModel = new Ext.grid.CheckboxSelectionModel({
+     header    : ''
+    ,checkOnly : true
+    ,listeners : {
+      rowdeselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
+      }
+      ,rowselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
+      }
+    }
+  });
+  var currentsGridPanel = new Ext.grid.GridPanel({
+     id               : 'currentsGridPanel'
+    ,hidden           : hideCurrentsGridPanel
+    ,height           : Math.min(currentsStore.getCount(),5) * 21.1 + 26 + 11 + 25
+    ,title            : 'Currents'
+    ,collapsible      : true
+    ,store            : currentsStore
+    ,border           : false
+    ,selModel         : currentsSelModel
+    ,columns          : [
+       currentsSelModel
+      ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
+      ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+    ]
+    ,hideHeaders      : true
+    ,disableSelection : true
+    ,listeners        : {viewready : function(grid) {
+      currentsSelModel.suspendEvents();
+      var i = 0;
+      currentsStore.each(function(rec) {
+        if (rec.get('status') == 'on') {
+          currentsSelModel.selectRow(i,true);
+        }
+        i++;
+      });
+      currentsSelModel.resumeEvents();
+    }}
+    ,tbar             : [
+      {
+         text    : 'Turn all currents off'
+        ,icon    : 'img/delete.png'
+        ,handler : function() {
+          currentsSelModel.clearSelections();
+        }
+      }
+    ]
+  });
+
+  var windsSelModel = new Ext.grid.CheckboxSelectionModel({
+     header    : ''
+    ,checkOnly : true
+    ,listeners : {
+      rowdeselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
+      }
+      ,rowselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
+      }
+    }
+  });
+  var windsGridPanel = new Ext.grid.GridPanel({
+     id               : 'windsGridPanel'
+    ,hidden           : hideWindsGridPanel
+    ,height           : Math.min(windsStore.getCount(),5) * 21.1 + 26 + 11 + 25
+    ,title            : 'Winds'
+    ,collapsible      : true
+    ,store            : windsStore
+    ,border           : false
+    ,selModel         : windsSelModel
+    ,columns          : [
+       windsSelModel
+      ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
+      ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+    ]
+    ,hideHeaders      : true
+    ,disableSelection : true
+    ,listeners        : {viewready : function(grid) {
+      windsSelModel.suspendEvents();
+      var i = 0;
+      windsStore.each(function(rec) {
+        if (rec.get('status') == 'on') {
+          windsSelModel.selectRow(i,true);
+        }
+        i++;
+      });
+      windsSelModel.resumeEvents();
+    }}
+    ,tbar             : [
+      {
+         text    : 'Turn all winds off'
+        ,icon    : 'img/delete.png'
+        ,handler : function() {
+          windsSelModel.clearSelections();
+        }
+      }
+    ]
+  });
+
+  var wavesSelModel = new Ext.grid.CheckboxSelectionModel({
+     header    : ''
+    ,checkOnly : true
+    ,listeners : {
+      rowdeselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
+      }
+      ,rowselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
+      }
+    }
+  });
+  var wavesGridPanel = new Ext.grid.GridPanel({
+     id               : 'wavesGridPanel'
+    ,hidden           : hideWavesGridPanel
+    ,height           : Math.min(wavesStore.getCount(),5) * 21.1 + 26 + 11 + 25
+    ,title            : 'Waves'
+    ,collapsible      : true
+    ,store            : wavesStore
+    ,border           : false
+    ,selModel         : wavesSelModel
+    ,columns          : [
+       wavesSelModel
+      ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
+      ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+    ]
+    ,hideHeaders      : true
+    ,disableSelection : true
+    ,listeners        : {viewready : function(grid) {
+      wavesSelModel.suspendEvents();
+      var i = 0;
+      wavesStore.each(function(rec) {
+        if (rec.get('status') == 'on') {
+          wavesSelModel.selectRow(i,true);
+        }
+        i++;
+      });
+      wavesSelModel.resumeEvents();
+    }}
+    ,tbar             : [
+      {
+         text    : 'Turn all waves off'
+        ,icon    : 'img/delete.png'
+        ,handler : function() {
+          wavesSelModel.clearSelections();
+        }
+      }
+    ]
+  });
+
+  var otherSelModel = new Ext.grid.CheckboxSelectionModel({
+     header    : ''
+    ,checkOnly : true
+    ,listeners : {
+      rowdeselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(false);
+      }
+      ,rowselect : function(sm,idx,rec) {
+        map.getLayersByName(rec.get('name'))[0].setVisibility(true);
+      }
+    }
+  });
+  var otherGridPanel = new Ext.grid.GridPanel({
+     id               : 'otherGridPanel'
+    ,hidden           : hideOtherGridPanel
+    ,height           : Math.min(otherStore.getCount(),5) * 21.1 + 26 + 11 + 25
+    ,title            : 'Other'
+    ,collapsible      : true
+    ,store            : otherStore
+    ,border           : false
+    ,selModel         : otherSelModel
+    ,columns          : [
+       otherSelModel
+      ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
+      ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+    ]
+    ,hideHeaders      : true
+    ,disableSelection : true
+    ,listeners        : {viewready : function(grid) {
+      otherSelModel.suspendEvents();
+      var i = 0;
+      otherStore.each(function(rec) {
+        if (rec.get('status') == 'on') {
+          otherSelModel.selectRow(i,true);
+        }
+        i++;
+      });
+      otherSelModel.resumeEvents();
+    }}
+    ,tbar             : [
+      {
+         text    : 'Turn all other off'
+        ,icon    : 'img/delete.png'
+        ,handler : function() {
+          otherSelModel.clearSelections();
         }
       }
     ]
@@ -1520,6 +1941,10 @@ function init() {
     ,glidersGridPanel
     ,glidersYearsFormPanel
     ,glidersProvidersGridPanel
+    ,currentsGridPanel
+    ,windsGridPanel
+    ,wavesGridPanel
+    ,otherGridPanel
     ,modelsGridPanel
     ,observationsGridPanel
   ];
@@ -1537,11 +1962,17 @@ function init() {
       })
       ,new Ext.Panel({
          region      : 'west'
-        ,width       : 250
+        ,width       : 255
         ,title       : globalTitleOverride ? globalTitleOverride : globalTitle + ' Manager'
         ,collapsible : managerPanelCollapsible
-        ,autoScroll  : true
         ,items       : managerItems
+        ,listeners        : {afterrender : function() {
+          if (config == 'ecop') {
+            this.addListener('bodyresize',function(p,w,h) {
+              currentsGridPanel.setHeight(h - introPanel.getHeight() - windsGridPanel.getHeight() - wavesGridPanel.getHeight() - otherGridPanel.getHeight());
+            });
+          }
+        }}
       })
       ,new Ext.Panel({
          region    : 'center'
@@ -1731,9 +2162,9 @@ function init() {
                   panel.getTopToolbar().hide();
                 }
                 new Ext.ToolTip({
-		   anchor   : 'bottom'
+       anchor   : 'bottom'
                   ,title    : 'Map timestamp'
-		  ,target   : 'timestampLabel'
+      ,target   : 'timestampLabel'
                   ,html     : 'This is the timestamp the map is attempting to display.  It is up to the data provider to determine what timestamp best matches what you have selected in the time slider below.  Individual layers report their timestamps in the legends panel.'
                   ,dismissDelay : 12000
                 });
@@ -1957,7 +2388,7 @@ function initMap() {
   esriOcean = new OpenLayers.Layer.XYZ(
      'ESRI Ocean'
     ,'http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/${z}/${y}/${x}.jpg'
-    ,{sphericalMercator: true,visibility : defaultBasemap == 'ESRI Ocean',isBaseLayer : true,opacity : defaultOpacities['ESRI Ocean'] / 100,wrapDateLine : true,attribution : "GEBCO, NOAA, National Geographic, AND data by <a href='http://www.arcgis.com/home/item.html?id=6348e67824504fc9a62976434bf0d8d5'>ESRI</a>",serverResolutions : basemapResolutions,resolutions : basemapResolutions.slice(1)}
+    ,{sphericalMercator: true,visibility : defaultBasemap == 'ESRI Ocean',isBaseLayer : true,opacity : defaultOpacities['ESRI Ocean'] / 100,wrapDateLine : true,attribution : "GEBCO, NOAA, National Geographic, AND data by <a href='http://www.arcgis.com/home/item.html?id=6348e67824504fc9a62976434bf0d8d5'>ESRI</a>"} // ,serverResolutions : basemapResolutions,resolutions : basemapResolutions.slice(1)}
   );
 
   map = new OpenLayers.Map('map',{
@@ -2059,226 +2490,243 @@ function initMap() {
           ,LAYER   : OpenLayers.Util.getParameters(e.layer.getFullRequestString({}))['LAYERS']
         };
         mainStore.getAt(idx).get('legend').indexOf('GetMetadata') >= 0 ? params.GetMetadata = '' : false;
+/*
         if (mainStore.getAt(idx).get('legend').indexOf('services.asascience.com') >= 0) {
           params['TIME'] = '';
           mainStore.getAt(idx).set('legend',e.layer.getFullRequestString(params).replace('new.coastmap.com','services.asascience.com'));
         }
         else {
+*/
           mainStore.getAt(idx).set('legend',e.layer.getFullRequestString(params));
+/*
         }
+*/
         mainStore.getAt(idx).commit();
       }
     }
   });
 
-  addWMS({
-     name   : 'NCOM SST'
-    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
-    ,layers : 'NCOM_SST'
-    ,format : 'image/' + defaultImageTypes['NCOM SST']
-    ,styles : ''
-    ,singleTile : true
-    ,projection : proj3857
-  });
-  addWMS({
-     name   : 'Satellite water temperature'
-    ,url    : 'http://tds.maracoos.org/ncWMS/wms?GFI_TIME=min/max'
-    ,layers : defaultLayerLayers['Satellite water temperature']
-    ,format : 'image/png'
-    ,styles : defaultStyles['Satellite water temperature']
-    ,singleTile : false
-    ,projection : proj3857
-  });
-  addWMS({
-     name   : 'WWIII waves'
-    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
-    ,layers : 'WW3_WAVE_HEIGHT'
-    ,format : 'image/' + defaultImageTypes['WWIII waves']
-    ,styles : ''
-    ,singleTile : true
-    ,projection : proj3857
-  });
-  addWMS({
-     name   : 'GOES visible imagery'
-    ,url    : 'http://mesonet.agron.iastate.edu/cgi-bin/wms/goes/conus_vis.cgi?'
-    ,layers : 'conus_vis_1km_900913'
-    ,format : 'image/' + defaultImageTypes['GOES visible imagery']
-    ,styles : ''
-    ,singleTile : true
-    ,projection : proj3857
-  });
+  if (config != 'ecop') {
+    addWMS({
+       name   : 'NCOM SST'
+      ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+      ,layers : 'NCOM_SST'
+      ,format : 'image/' + defaultImageTypes['NCOM SST']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'Satellite water temperature'
+      ,url    : 'http://tds.maracoos.org/ncWMS/wms?GFI_TIME=min/max'
+      ,layers : defaultLayerLayers['Satellite water temperature']
+      ,format : 'image/png'
+      ,styles : defaultStyles['Satellite water temperature']
+      ,singleTile : false
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'WWIII waves'
+      ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+      ,layers : 'WW3_WAVE_HEIGHT'
+      ,format : 'image/' + defaultImageTypes['WWIII waves']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'GOES visible imagery'
+      ,url    : 'http://mesonet.agron.iastate.edu/cgi-bin/wms/goes/conus_vis.cgi?'
+      ,layers : 'conus_vis_1km_900913'
+      ,format : 'image/' + defaultImageTypes['GOES visible imagery']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
 
-  addWMS({
-     name   : 'ROMS'
-    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
-    ,layers : 'NOSCBOFSCUR_CURRENTS'
-    ,format : 'image/' + defaultImageTypes['ROMS']
-    ,styles : defaultStyles['ROMS']
-    ,singleTile : true
-    ,projection : proj3857
-  });
-  addWMS({
-     name   : 'STPS'
-    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
-    ,layers : 'CODARSTPS_CURRENTS'
-    ,format : 'image/' + defaultImageTypes['STPS']
-    ,styles : defaultStyles['STPS']
-    ,singleTile : true
-    ,projection : proj3857
-  });
-  addWMS({
-     name   : 'Stevens NYHOPS'
-    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
-    ,layers : 'NYHOPSCUR_currents'
-    ,format : 'image/' + defaultImageTypes['Stevens NYHOPS']
-    ,styles : defaultStyles['Stevens NYHOPS']
-    ,singleTile : true
-    ,projection : proj3857
-  });
-  addWMS({
-     name   : 'ROMS ESPRESSO'
-    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
-    ,layers : 'ESPRESSO_CURRENTS'
-    ,format : 'image/' + defaultImageTypes['ROMS ESPRESSO']
-    ,styles : defaultStyles['ROMS ESPRESSO']
-    ,singleTile : true
-    ,projection : proj3857
-  });
-  addWMS({
-     name   : 'HOPS'
-    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
-    ,layers : 'PESHELF_CURRENTS'
-    ,format : 'image/' + defaultImageTypes['HOPS']
-    ,styles : defaultStyles['HOPS']
-    ,singleTile : true
-    ,projection : proj3857
-  });
-  addWMS({
-     name   : 'NCOM currents'
-    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
-    ,layers : 'NCOM_CURRENTS'
-    ,format : 'image/' + defaultImageTypes['NCOM currents']
-    ,styles : defaultStyles['NCOM currents']
-    ,singleTile : true
-    ,projection : proj3857
-  });
-  addWMS({
-     name   : 'HYCOM currents'
-    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
-    ,layers : 'HYCOM_CURRENTS'
-    ,format : 'image/' + defaultImageTypes['HYCOM currents']
-    ,styles : defaultStyles['HYCOM currents']
-    ,singleTile : true
-    ,projection : proj3857
-  });
-//  addWMS({
-//     name   : 'UMass'
-//    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
-//    ,layers : 'FVCOM_MASS_CURRENTS'
-//    ,format : 'image/' + defaultImageTypes['UMass']
-//    ,styles : defaultStyles['UMass']
-//    ,singleTile : true
-//    ,projection : proj3857
-//  });
-  addWMS({
-     name   : 'NAM winds'
-    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
-    ,layers : 'NAM_WINDS'
-    ,format : 'image/' + defaultImageTypes['NAM winds']
-    ,styles : defaultStyles['NAM winds']
-    ,singleTile : true
-    ,projection : proj3857
-  });
-  addWMS({
-     name   : 'HF radar currents'
-    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
-    ,layers : 'MARCOOSHFRADAR_CURRENTS'
-    ,format : 'image/' + defaultImageTypes['HF radar currents']
-    ,styles : defaultStyles['HF radar currents']
-    ,singleTile : true
-    ,projection : proj3857
-  });
-  addWMS({
-     name   : 'NHC storm tracks'
-    ,url    : 'http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/wwa?BGCOLOR=0xCCCCFE&'
-    ,layers : 'NHC_TRACK_POLY,NHC_TRACK_LIN,NHC_TRACK_PT,NHC_TRACK_PT_72DATE,NHC_TRACK_PT_120DATE,NHC_TRACK_PT_0NAMEDATE,NHC_TRACK_PT_MSLPLABELS,NHC_TRACK_PT_72WLBL,NHC_TRACK_PT_120WLBL,NHC_TRACK_PT_72CAT,NHC_TRACK_PT_120CAT'
-    ,format : 'image/png'
-    ,styles : ''
-    ,singleTile : true
-    ,projection : proj900913
-  });
+    addWMS({
+       name   : 'ROMS'
+      ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+      ,layers : 'NOSCBOFSCUR_CURRENTS'
+      ,format : 'image/' + defaultImageTypes['ROMS']
+      ,styles : defaultStyles['ROMS']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'STPS'
+      ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+      ,layers : 'CODARSTPS_CURRENTS'
+      ,format : 'image/' + defaultImageTypes['STPS']
+      ,styles : defaultStyles['STPS']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'Stevens NYHOPS'
+      ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+      ,layers : 'NYHOPSCUR_currents'
+      ,format : 'image/' + defaultImageTypes['Stevens NYHOPS']
+      ,styles : defaultStyles['Stevens NYHOPS']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'ROMS ESPRESSO'
+      ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+      ,layers : 'ESPRESSO_CURRENTS'
+      ,format : 'image/' + defaultImageTypes['ROMS ESPRESSO']
+      ,styles : defaultStyles['ROMS ESPRESSO']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'HOPS'
+      ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+      ,layers : 'PESHELF_CURRENTS'
+      ,format : 'image/' + defaultImageTypes['HOPS']
+      ,styles : defaultStyles['HOPS']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'NCOM currents'
+      ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+      ,layers : 'NCOM_CURRENTS'
+      ,format : 'image/' + defaultImageTypes['NCOM currents']
+      ,styles : defaultStyles['NCOM currents']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'HYCOM currents'
+      ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+      ,layers : 'HYCOM_CURRENTS'
+      ,format : 'image/' + defaultImageTypes['HYCOM currents']
+      ,styles : defaultStyles['HYCOM currents']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+  //  addWMS({
+  //     name   : 'UMass'
+  //    ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+  //    ,layers : 'FVCOM_MASS_CURRENTS'
+  //    ,format : 'image/' + defaultImageTypes['UMass']
+  //    ,styles : defaultStyles['UMass']
+  //    ,singleTile : true
+  //    ,projection : proj3857
+  //  });
+    addWMS({
+       name   : 'NAM winds'
+      ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+      ,layers : 'NAM_WINDS'
+      ,format : 'image/' + defaultImageTypes['NAM winds']
+      ,styles : defaultStyles['NAM winds']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'HF radar currents'
+      ,url    : 'http://new.coastmap.com/ecop/wms.aspx?'
+      ,layers : 'MARCOOSHFRADAR_CURRENTS'
+      ,format : 'image/' + defaultImageTypes['HF radar currents']
+      ,styles : defaultStyles['HF radar currents']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'NHC storm tracks'
+      ,url    : 'http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/wwa?BGCOLOR=0xCCCCFE&'
+      ,layers : 'NHC_TRACK_POLY,NHC_TRACK_LIN,NHC_TRACK_PT,NHC_TRACK_PT_72DATE,NHC_TRACK_PT_120DATE,NHC_TRACK_PT_0NAMEDATE,NHC_TRACK_PT_MSLPLABELS,NHC_TRACK_PT_72WLBL,NHC_TRACK_PT_120WLBL,NHC_TRACK_PT_72CAT,NHC_TRACK_PT_120CAT'
+      ,format : 'image/png'
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj900913
+    });
 
-  addTileCache({
-     name   : 'Bathymetry contours'
-    ,url    : 'http://assets.maracoos.org/tilecache/'
-    ,layer  : 'bathy'
-    ,projection : proj900913
-  });
+    addTileCache({
+       name   : 'Bathymetry contours'
+      ,url    : 'http://assets.maracoos.org/tilecache/'
+      ,layer  : 'bathy'
+      ,projection : proj900913
+    });
 
-if (includeObs) {
-  addObs({
-     name       : 'NDBC'
-    ,visibility : typeof defaultLayers['NDBC'] != 'undefined'
-  });
-  addObs({
-     name       : 'CO-OPS'
-    ,visibility : typeof defaultLayers['CO-OPS'] != 'undefined'
-  });
-  addObs({
-     name       : 'USGS'
-    ,visibility : typeof defaultLayers['USGS'] != 'undefined'
-  });
-  addObs({
-     name       : 'Ship'
-    ,visibility : typeof defaultLayers['Ship'] != 'undefined'
-  });
-  addObs({
-     name       : 'NERRS'
-    ,visibility : typeof defaultLayers['NERRS'] != 'undefined'
-  });
-/*
-  addObs({
-     name       : 'Weatherflow'
-    ,visibility : typeof defaultLayers['Weatherflow'] != 'undefined'
-  });
-*/
-  addObs({
-     name       : 'HRECOS'
-    ,visibility : typeof defaultLayers['HRECOS'] != 'undefined'
-  });
-  addObs({
-     name       : 'HF Radar'
-    ,visibility : typeof defaultLayers['HF Radar'] != 'undefined'
-  });
-  addObs({
-     name       : 'Satellites'
-    ,visibility : typeof defaultLayers['Satellites'] != 'undefined'
-  });
-  addObs({
-     name       : 'Gliders'
-    ,visibility : typeof defaultLayers['Gliders'] != 'undefined'
-  });
-  addObs({
-     name       : 'Drifters'
-    ,visibility : typeof defaultLayers['Drifters'] != 'undefined'
-  });
-  addObs({
-     name       : 'Sea gliders'
-    ,visibility : typeof defaultLayers['Sea gliders'] != 'undefined'
-  });
-  addObs({
-     name       : 'Slocum gliders'
-    ,visibility : typeof defaultLayers['Slocum gliders'] != 'undefined'
-  });
-  addObs({
-     name       : 'Spray gliders'
-    ,visibility : typeof defaultLayers['Spray gliders'] != 'undefined'
-  });
-  addObs({
-     name       : 'Unknown gliders'
-    ,visibility : typeof defaultLayers['Unknown gliders'] != 'undefined'
-  });
-}
+    addObs({
+       name       : 'NDBC'
+      ,visibility : typeof defaultLayers['NDBC'] != 'undefined'
+    });
+    addObs({
+       name       : 'CO-OPS'
+      ,visibility : typeof defaultLayers['CO-OPS'] != 'undefined'
+    });
+    addObs({
+       name       : 'USGS'
+      ,visibility : typeof defaultLayers['USGS'] != 'undefined'
+    });
+    addObs({
+       name       : 'Ship'
+      ,visibility : typeof defaultLayers['Ship'] != 'undefined'
+    });
+    addObs({
+       name       : 'NERRS'
+      ,visibility : typeof defaultLayers['NERRS'] != 'undefined'
+    });
+  /*
+    addObs({
+       name       : 'Weatherflow'
+      ,visibility : typeof defaultLayers['Weatherflow'] != 'undefined'
+    });
+  */
+    addObs({
+       name       : 'HRECOS'
+      ,visibility : typeof defaultLayers['HRECOS'] != 'undefined'
+    });
+    addObs({
+       name       : 'HF Radar'
+      ,visibility : typeof defaultLayers['HF Radar'] != 'undefined'
+    });
+    addObs({
+       name       : 'Satellites'
+      ,visibility : typeof defaultLayers['Satellites'] != 'undefined'
+    });
+    addObs({
+       name       : 'Gliders'
+      ,visibility : typeof defaultLayers['Gliders'] != 'undefined'
+    });
+    addObs({
+       name       : 'Drifters'
+      ,visibility : typeof defaultLayers['Drifters'] != 'undefined'
+    });
+    addObs({
+       name       : 'Sea gliders'
+      ,visibility : typeof defaultLayers['Sea gliders'] != 'undefined'
+    });
+    addObs({
+       name       : 'Slocum gliders'
+      ,visibility : typeof defaultLayers['Slocum gliders'] != 'undefined'
+    });
+    addObs({
+       name       : 'Spray gliders'
+      ,visibility : typeof defaultLayers['Spray gliders'] != 'undefined'
+    });
+    addObs({
+       name       : 'Unknown gliders'
+      ,visibility : typeof defaultLayers['Unknown gliders'] != 'undefined'
+    });
+  }
+  else {
+    for (var i = 0; i < ecop.layerStack.length; i++) {
+      addWMS({
+         name       : ecop.layerStack[i].title
+        ,url        : 'http://new.coastmap.com/ecop/wms.aspx?'
+        ,layers     : ecop.layerStack[i].name
+        ,format     : 'image/png'
+        ,styles     : defaultStyles[ecop.layerStack[i].title]
+        ,singleTile : true
+        ,projection : proj3857
+      });
+    }
+  }
 
   if (config == 'gliders') {
     glidersMetadataStore.fireEvent('beforeload');
@@ -2405,8 +2853,8 @@ function setLayerSettings(layerName,on) {
             new Ext.ToolTip({
                id     : 'tooltip.' + id + '.opacity'
               ,target : id + '.opacity'
-	      ,html   : "Use the slider to adjust the layer's opacity.  The lower the opacity, the greater the transparency."
-	    });
+        ,html   : "Use the slider to adjust the layer's opacity.  The lower the opacity, the greater the transparency."
+      });
           }
           ,change : function(slider,val) {
             mainStore.getAt(idx).set('settingsOpacity',val);
@@ -2950,6 +3398,7 @@ function addWMS(l) {
       ,singleTile  : l.singleTile
       ,visibility  : mainStore.getAt(mainStore.find('name',l.name)).get('status') == 'on'
       ,opacity     : mainStore.getAt(mainStore.find('name',l.name)).get('settingsOpacity') / 100
+      ,wrapDateLine : true
     }
   );
   addLayer(lyr,true);

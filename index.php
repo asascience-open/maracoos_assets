@@ -1,9 +1,13 @@
+<?php
+  session_start();
+?>
 <html>
   <head>
 <?php
-  $title = 'MARACOOS Assets';
+  $title  = 'MARACOOS Assets';
+  $_SESSION['config'] = isset($_REQUEST['config']) ? $_REQUEST['config'] : '';
   if (isset($_REQUEST['config'])) {
-    switch ($_REQUEST['config']) {
+    switch ($_SESSION['config']) {
       case 'gliders' : $title = 'IOOS Glider'; break;
       case 'ecop'    : $title = 'ECOP'; break;
     }
@@ -27,7 +31,6 @@
     echo 'config = "'.$_REQUEST['config'].'"'.";\n";
   }
 ?>
-      var includeObs    = true;
       var restrictLayers;
       var defaultLayers = {
          'NDBC'             : true
@@ -53,6 +56,10 @@
       var hideLegendsGridPanel      = false;
       var hideTimeseriesPanel       = false;
       var hideAssetsGridPanel       = false;
+      var hideCurrentsGridPanel     = true;
+      var hideWindsGridPanel        = true;
+      var hideWavesGridPanel        = true;
+      var hideOtherGridPanel        = true;
       var hideModelsGridPanel       = false;
       var hideObservationsGridPanel = false;
       var hideMarineGridPanel       = true;
@@ -117,9 +124,19 @@
         defaultZoom    = 3;
       }
       else if (config == 'ecop') {
-        includeObs          = false;
-        hideAssetsGridPanel = true;
-        defaultLayers       = {};
+        hideModelsGridPanel       = true;
+        hideAssetsGridPanel       = true;
+        hideObservationsGridPanel = true;
+        hideCurrentsGridPanel     = false;
+        hideWindsGridPanel        = false;
+        hideWavesGridPanel        = false;
+        hideOtherGridPanel        = false;
+        defaultLayers             = {
+           'WW3 Wave Hgt'  : true
+          ,'NCOM Model'    : true
+        };
+        defaultCenter  = [-10116593.566191,2817774.6103121];
+        defaultZoom    = 2;
       }
 
       var defaultLayerLayers = {
