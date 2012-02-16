@@ -3327,6 +3327,9 @@ function renderLayerButton(val,metadata,rec) {
   if (rec.get('type') == 'gliders') {
     return '<img  width=30 height=25 src="img/' + rec.get('name') + '.drawn.png">';
   }
+  else if (config == 'ecop') {
+    return '<img  width=20 height=20 src="img/DEFAULT.drawn.png">';
+  }
   else {
     return '<img  width=20 height=20 src="img/' + rec.get('name') + '.drawn.png">';
   }
@@ -3360,6 +3363,9 @@ function renderLayerStatus(val,metadata,rec) {
   else {
     if (rec.get('type') == 'gliders') {
       return '<img class="layerIconGlider" src="img/' + rec.get('name') + '.drawn.png">';
+    }
+    else if (config == 'ecop') {
+      return '<img class="layerIcon" src="img/DEFAULT.drawn.png">';
     }
     else {
       return '<img class="layerIcon" src="img/' + rec.get('name') + '.drawn.png">';
