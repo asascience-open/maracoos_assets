@@ -1164,41 +1164,6 @@ function init() {
             ,'category'             : 'windsVelocity'
           }));
         }
-        else if (layerType == 'winds') {
-          if (typeof defaultStyles[ecop.availableLayers[layerType][i].title] != 'string') {
-            defaultStyles[ecop.availableLayers[layerType][i].title]          = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-Low';
-            guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-Low';
-          }
-          mainStore.add(new mainStore.recordType({
-             'type'                 : 'winds'
-            ,'name'                 : ecop.availableLayers[layerType][i].title
-            ,'displayName'          : ecop.availableLayers[layerType][i].title
-            ,'info'                 : 'off'
-            ,'status'               : defaultLayers[ecop.availableLayers[layerType][i].title] ? 'on' : 'off'
-            ,'settings'             : 'off'
-            ,'infoBlurb'            : ecop.availableLayers[layerType][i].abstract
-            ,'settingsParam'        : 'baseStyle,barbLabel,striding,min,max'
-            ,'settingsOpacity'      : 100
-            ,'settingsImageQuality' : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[5]
-            ,'settingsImageType'    : 'png'
-            ,'settingsPalette'      : ''
-            ,'settingsBaseStyle'    : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[0]
-            ,'settingsColorMap'     : ''
-            ,'settingsStriding'     : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[2]
-            ,'settingsBarbLabel'    : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[1]
-            ,'settingsTailMag'      : ''
-            ,'settingsMin'          : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[3]
-            ,'settingsMax'          : defaultStyles[ecop.availableLayers[layerType][i].title].split('-')[4]
-            ,'settingsMinMaxBounds' : '0-70'
-            ,'rank'                 : ''
-            ,'legend'               : 'http://coastmap.com/ecop/wms.aspx?LAYER=' + ecop.availableLayers[layerType][i].name + '&FORMAT=image/png&TRANSPARENT=TRUE&STYLES=' + defaultStyles[ecop.availableLayers[layerType][i].title] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG:3857&LAYERS=' + ecop.availableLayers[layerType][i].name
-            ,'timestamp'            : ''
-            ,'bbox'                 : ecop.availableLayers[layerType][i].bbox
-            ,'queryable'            : 'true'
-            ,'settingsLayers'       : ''
-            ,'category'             : 'windsVelocity'
-          }));
-        }
         else if (layerType == 'waves') {
           if (typeof defaultStyles[ecop.availableLayers[layerType][i].title] != 'string') {
             defaultStyles[ecop.availableLayers[layerType][i].title]          = '';
