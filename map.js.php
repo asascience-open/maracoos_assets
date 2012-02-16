@@ -94,6 +94,7 @@ var basemapResolutions = [
   ,611.4962261962891
   ,305.74811309814453
 ];
+var layersToSyncBbox = {};
 
 function init() {
   var loadingMask = Ext.get('loading-mask');
@@ -1205,7 +1206,7 @@ function init() {
             guaranteeDefaultStyles[ecop.availableLayers[layerType][i].title] = '';
           }
           mainStore.add(new mainStore.recordType({
-             'type'                 : 'temperature'
+             'type'                 : 'temperatures'
             ,'name'                 : ecop.availableLayers[layerType][i].title
             ,'displayName'          : ecop.availableLayers[layerType][i].title
             ,'info'                 : 'off'
@@ -1309,7 +1310,7 @@ function init() {
   });
 
   mainStore.each(function(rec) {
-    if (rec.get('type') == 'temperature') {
+    if (rec.get('type') == 'temperatures') {
       temperaturesStore.add(rec);
     }
   });
@@ -1556,15 +1557,8 @@ function init() {
     ,hideHeaders      : true
     ,disableSelection : true
     ,listeners        : {viewready : function(grid) {
-      currentsSelModel.suspendEvents();
-      var i = 0;
-      currentsStore.each(function(rec) {
-        if (rec.get('status') == 'on') {
-          currentsSelModel.selectRow(i,true);
-        }
-        i++;
-      });
-      currentsSelModel.resumeEvents();
+      layersToSyncBbox['currents'] = true;
+      syncLayersToBbox('currents');
     }}
     ,tbar             : [
       {
@@ -1607,15 +1601,8 @@ function init() {
     ,hideHeaders      : true
     ,disableSelection : true
     ,listeners        : {viewready : function(grid) {
-      windsSelModel.suspendEvents();
-      var i = 0;
-      windsStore.each(function(rec) {
-        if (rec.get('status') == 'on') {
-          windsSelModel.selectRow(i,true);
-        }
-        i++;
-      });
-      windsSelModel.resumeEvents();
+      layersToSyncBbox['winds'] = true;
+      syncLayersToBbox('winds');
     }}
     ,tbar             : [
       {
@@ -1658,15 +1645,8 @@ function init() {
     ,hideHeaders      : true
     ,disableSelection : true
     ,listeners        : {viewready : function(grid) {
-      wavesSelModel.suspendEvents();
-      var i = 0;
-      wavesStore.each(function(rec) {
-        if (rec.get('status') == 'on') {
-          wavesSelModel.selectRow(i,true);
-        }
-        i++;
-      });
-      wavesSelModel.resumeEvents();
+      layersToSyncBbox['waves'] = true;
+      syncLayersToBbox('waves');
     }}
     ,tbar             : [
       {
@@ -1709,15 +1689,8 @@ function init() {
     ,hideHeaders      : true
     ,disableSelection : true
     ,listeners        : {viewready : function(grid) {
-      temperaturesSelModel.suspendEvents();
-      var i = 0;
-      temperaturesStore.each(function(rec) {
-        if (rec.get('status') == 'on') {
-          temperaturesSelModel.selectRow(i,true);
-        }
-        i++;
-      });
-      temperaturesSelModel.resumeEvents();
+      layersToSyncBbox['temperatures'] = true;
+      syncLayersToBbox('temperatures');
     }}
     ,tbar             : [
       {
@@ -1760,15 +1733,8 @@ function init() {
     ,hideHeaders      : true
     ,disableSelection : true
     ,listeners        : {viewready : function(grid) {
-      otherSelModel.suspendEvents();
-      var i = 0;
-      otherStore.each(function(rec) {
-        if (rec.get('status') == 'on') {
-          otherSelModel.selectRow(i,true);
-        }
-        i++;
-      });
-      otherSelModel.resumeEvents();
+      layersToSyncBbox['other'] = true;
+      syncLayersToBbox('other');
     }}
     ,tbar             : [
       {
@@ -2564,17 +2530,8 @@ function initMap() {
     }
   });
   map.events.register('moveend',this,function() {
-    if (config == 'ecop2') {
-      var a = [];
-      wavesStore.removeAll();
-      mainStore.each(function(rec) {
-        var bbox = String(rec.get('bbox')).split(',');
-        if (rec.get('type') == 'waves') {
-          if (map.getExtent().transform(map.getProjectionObject(),proj4326).intersectsBounds(new OpenLayers.Bounds(bbox[0],bbox[1],bbox[2],bbox[3]))) {
-            wavesStore.add(rec);
-          }
-        }
-      });
+    if (config == 'ecop') {
+      syncLayersToBbox();
     }
     if (navControl.controls[1].active) {
       navControl.controls[1].deactivate();
@@ -4886,5 +4843,38 @@ function checkRealtimeAlert() {
   }
   else {
     document.getElementById('notRealtimeAlert').style.visibility = 'hidden';
+  }
+}
+
+function syncLayersToBbox(l) {
+  for (var type in layersToSyncBbox) {
+    if ((typeof l == 'string' && l == type) || (typeof l != 'string')) {
+      var sto = Ext.getCmp(type + 'GridPanel').getStore();
+      var sm  = Ext.getCmp(type + 'GridPanel').getSelectionModel();
+      sm.suspendEvents();
+      sto.removeAll();
+      mainStore.each(function(rec) {
+        if (rec.get('type') == type) {
+          var bbox = String(rec.get('bbox')).split(',');
+          if (
+            map.getExtent().transform(map.getProjectionObject(),proj4326).intersectsBounds(new OpenLayers.Bounds(bbox[0],bbox[1],bbox[2],bbox[3]))
+            || new OpenLayers.Bounds(bbox[0],bbox[1],bbox[2],bbox[3]).containsBounds(map.getExtent().transform(map.getProjectionObject(),proj4326))
+          ) {
+            sto.add(rec);
+          }
+          else if (map.getLayersByName(rec.get('name'))[0].visibility) {
+            map.getLayersByName(rec.get('name'))[0].setVisibility(false);
+          }
+        }
+      });
+      var j = 0;
+      sto.each(function(rec) {
+        if (map.getLayersByName(rec.get('name'))[0].visibility) {
+          sm.selectRow(j,true);
+        }
+        j++;
+      });
+      sm.resumeEvents();
+    }
   }
 }
