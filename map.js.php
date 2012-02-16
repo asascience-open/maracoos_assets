@@ -3278,7 +3278,7 @@ function setLayerSettings(layerName,on) {
 
     new Ext.ToolTip({
        id        : 'settings.popup.' + layerName
-      ,title     : mainStore.getAt(idx).get('displayName') + ' :: settings'
+      ,title     : mainStore.getAt(idx).get('displayName').split('||')[0] + ' :: settings'
       ,anchor    : 'left'
       ,target    : 'settings.' + layerName
       ,autoHide  : false
