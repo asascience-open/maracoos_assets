@@ -139,8 +139,8 @@
           ,'NCOM Model||currents' : true
         };
         defaultStyles             = {};
-        defaultCenter  = [0,0];
-        defaultZoom    = 1;
+        defaultCenter  = [-2974317.6442192,821850.92800765];
+        defaultZoom    = 2;
       }
 
       var defaultLayerLayers = {
