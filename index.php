@@ -104,14 +104,18 @@
           ,'Slocum gliders'      : true
           ,'Spray gliders'       : true
           ,'Unknown gliders'     : true
-          ,'HF radar currents'           : true
-          ,'Satellite water temperature' : true
+          ,'WWIII waves'         : true
+          ,'NCOM SST'            : true
+          ,'NCOM currents'       : true
+          ,'GFS winds'           : true
         };
-        defaultStyles['HF radar currents'] = 'CURRENTS_RAMP-Jet-False-4-True-0-2';
+        defaultStyles['NCOM currents'] = 'CURRENTS_RAMP-Jet-False-1-True-0-2-High';
+        defaultStyles['GFS winds']     = 'WINDS_VERY_SPARSE_GRADIENT-False-2-0-45-High';
         hideGlidersYearsFormPanel = false;
         hideTimeseriesPanel       = true;
         hideAssetsGridPanel       = true;
-        hideModelsGridPanel       = true;
+        hideObservationsGridPanel = true;
+        // hideModelsGridPanel       = true;
         hideTimeSlider            = true;
         hideGlidersGridPanel      = false;
         showHelpOnStartup         = false;
@@ -121,8 +125,8 @@
 
         defaultBasemap            = 'ESRI Ocean';
 
-        defaultCenter  = [-10429775.084004,3815773.3314648];
-        defaultZoom    = 3;
+        defaultCenter  = [645644.564864,606641.13638696];
+        defaultZoom    = 1;
       }
       else if (config == 'ecop') {
         introPanelHtmlOverride  = '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://www.uscg.mil/"><img title="Go to the U.S.C.G. home page" src="img/uscg.jpg"></a></td></tr></table>';
