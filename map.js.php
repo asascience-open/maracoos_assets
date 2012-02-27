@@ -2897,13 +2897,6 @@ function initMap() {
           Ext.getCmp('glidersYearsComboBox').setValue(sto.getAt(1).get('year'));
         }
         syncGliders(true);
-        // hard wire a nice T for the WMS layers
-        for (var i = 0; i < map.layers.length; i++) {
-          // WMS layers only
-          if (map.layers[i].DEFAULT_PARAMS) {
-            map.layers[i].mergeNewParams({TIME : '2012-01-31T05:00'});
-          }
-        }
       }
     });
   }
