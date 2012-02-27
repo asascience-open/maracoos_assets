@@ -2836,6 +2836,7 @@ function initMap() {
         Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().selectAll();
         Ext.getCmp('glidersProvidersGridPanel').setHeight(Math.min(glidersMetadataStore.getCount(),8) * 21.1 + 26 + 11 + 25);
         var ymd = json.timespan.start.split(' ')[0].split('-');
+        // rutger's json has a min date of 2005 which is also scripp's min -- lucky me
         makeAvailableTimes(new Date(ymd[0],ymd[1] - 1,ymd[2]));
         Ext.getCmp('timeSlider').suspendEvents();
         Ext.getCmp('timeSlider').setMaxValue(availableTimes.length - 1);
@@ -2849,8 +2850,10 @@ function initMap() {
             sto.add(new sto.recordType({year : availableTimes[i].getUTCFullYear()}));
           }
         }
-        // sto.add(new sto.recordType({year : 'ALL (may slow performance; Slocum n/a)'}));
-        Ext.getCmp('glidersYearsComboBox').setValue(sto.getAt(0).get('year'));
+        sto.insert(0,(new sto.recordType({year : 'Currently deployed'})));
+        if (sto.getCount() > 1) {
+          Ext.getCmp('glidersYearsComboBox').setValue(sto.getAt(1).get('year'));
+        }
         syncGliders(true);
         // hard wire a nice T for the WMS layers
         for (var i = 0; i < map.layers.length; i++) {
@@ -3374,7 +3377,8 @@ function renderLegend(val,metadata,rec) {
   return a.join('<br/>');
 }
 
-function renderGlidersDescription(val,metdata,rec) {
+function renderGlidersDescription(val,metadata,rec) {
+  metadata.attr = 'ext:qtip="' + val + '"';
   return val + ' (' + rec.get('name') + ')';
 }
 
@@ -4801,8 +4805,8 @@ function getDateRange() {
   if (config == 'gliders' && Ext.getCmp('glidersYearsComboBox') && Ext.getCmp('glidersYearsComboBox').getStore().getCount() > 0) {
     var min = new Date(Ext.getCmp('glidersYearsComboBox').getValue(),0,0,0,0,0,0);
     var max = new Date(Ext.getCmp('glidersYearsComboBox').getValue() + 1,0,0,0,0,0,0);
-    if (new RegExp(/^ALL/).test(Ext.getCmp('glidersYearsComboBox').getValue())) {
-      min = new Date(0);
+    if (new RegExp(/^Current/).test(Ext.getCmp('glidersYearsComboBox').getValue())) {
+      min = new Date(new Date().getTime() - 1000 * 3600 * 24 * 5);
       max = new Date();
     }
     var t0 = min.getUTCFullYear() + '-' + String.leftPad(min.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(min.getUTCDate(),2,'0') + ' ' + String.leftPad(min.getUTCHours(),2,'0') + ':00';
