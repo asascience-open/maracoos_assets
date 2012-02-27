@@ -125,8 +125,8 @@
 
         defaultBasemap            = 'ESRI Ocean';
 
-        defaultCenter  = [645644.564864,606641.13638696];
-        defaultZoom    = 1;
+        defaultCenter  = [-4285461.0031831,802319.92876964];
+        defaultZoom    = 2;
       }
       else if (config == 'ecop') {
         introPanelHtmlOverride  = '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://www.uscg.mil/"><img title="Go to the U.S.C.G. home page" src="img/uscg.jpg"></a></td></tr></table>';
