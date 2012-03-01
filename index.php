@@ -115,7 +115,6 @@
         hideTimeseriesPanel       = true;
         hideAssetsGridPanel       = true;
         hideObservationsGridPanel = true;
-        // hideModelsGridPanel       = true;
         hideTimeSlider            = true;
         hideGlidersGridPanel      = false;
         showHelpOnStartup         = false;

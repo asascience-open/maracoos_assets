@@ -38,6 +38,8 @@ var glidersMetadataStore = new Ext.data.ArrayStore({fields : ['name','descriptio
 var legendsStore;
 var spot;
 var spotTooltip;
+var activeSettingsWindows = {};
+var activeInfoWindows = {};
 var obsMinZoom = {
    'NDBC'        : 1 + 5
   ,'CO-OPS'      : 2 + 5
@@ -1523,7 +1525,7 @@ function init() {
        assetsSelModel
       ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
-      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderLayerCalloutButton    ,width : 20}
       // ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
     ]
     ,hideHeaders      : true
@@ -1583,7 +1585,7 @@ function init() {
        currentsSelModel
       ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
-      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderLayerCalloutButton    ,width : 20}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
@@ -1627,7 +1629,7 @@ function init() {
        windsSelModel
       ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
-      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderLayerCalloutButton    ,width : 20}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
@@ -1671,7 +1673,7 @@ function init() {
        wavesSelModel
       ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
-      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderLayerCalloutButton    ,width : 20}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
@@ -1715,7 +1717,7 @@ function init() {
        temperaturesSelModel
       ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
-      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderLayerCalloutButton    ,width : 20}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
@@ -1759,7 +1761,7 @@ function init() {
        otherSelModel
       ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
-      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderLayerCalloutButton    ,width : 20}
     ]
     ,hideHeaders      : true
     ,disableSelection : true
@@ -1803,7 +1805,7 @@ function init() {
        modelsSelModel
       ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
-      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderLayerCalloutButton    ,width : 20}
       // ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
     ]
     ,hideHeaders      : true
@@ -1855,7 +1857,7 @@ function init() {
        observationsSelModel
       ,{id : 'status'     ,dataIndex : 'status'     ,renderer : renderLayerButton   ,width : 25}
       ,{id : 'displayName',dataIndex : 'displayName',renderer : renderLayerInfoLink ,width : 167}
-      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderBboxButton    ,width : 20}
+      ,{id : 'bbox'       ,dataIndex : 'bbox'       ,renderer : renderLayerCalloutButton    ,width : 20}
       // ,{id : 'settings'   ,dataIndex : 'settings'   ,renderer : renderSettingsButton,width : 25,align : 'right'}
     ]
     ,hideHeaders      : true
@@ -2905,10 +2907,25 @@ function initMap() {
   }
 }
 
+function showLayerInfo(layerName) {
+  if (!activeInfoWindows[layerName]) {
+    var idx = mainStore.find('name',layerName);
+    activeInfoWindows[layerName] = new Ext.Window({
+       width      : 400
+      ,autoScroll : true
+      ,title      : mainStore.getAt(idx).get('displayName').split('||')[0] + ' :: info'
+      ,items      : {border : false,bodyCssClass : 'popup',html : mainStore.getAt(idx).get('infoBlurb')}
+      ,listeners  : {hide : function() {
+        activeInfoWindows[layerName] = null;
+      }}
+    }).show();
+  }
+}
+
 function setLayerInfo(layerName,on) {
-  var idx = mainStore.find('name',layerName);
-  mainStore.getAt(idx).set('info',on ? 'on' : 'off');
-  mainStore.getAt(idx).commit();
+  var mainRec = mainStore.getAt(mainStore.find('name',layerName));
+  mainRec.set('info',on ? 'on' : 'off');
+  mainRec.commit();
 
   // only one popup can be displayed at a time
   mainStore.each(function(rec) {
@@ -2922,38 +2939,43 @@ function setLayerInfo(layerName,on) {
   });
 
   if (on && (!Ext.getCmp('info.popup.' + layerName) || !Ext.getCmp('info.popup.' + layerName).isVisible())) {
+    var customize = '<a class="blue-href-only" href="javascript:setLayerSettings(\'' + mainRec.get('name') + '\')"><img width=32 height=32 src="img/settings_tools_big.png"><br>Customize<br>appearance</a>';
+    if (new RegExp(/glider|asset/).test(mainRec.get('type'))) {
+      customize = '<img width=32 height=32 src="img/settings_tools_big_disabled.png"><br><font color="lightgray">Customize<br>appearance</font>';
+    }
     new Ext.ToolTip({
        id        : 'info.popup.' + layerName
-      ,title     : mainStore.getAt(idx).get('displayName').split('||')[0] + ' :: details'
-      ,anchor    : 'bottom'
+      ,title     : mainRec.get('displayName').split('||')[0]
+      ,anchor    : 'right'
       ,target    : 'info.' + layerName 
       ,autoHide  : false
       ,closable  : true
-      ,items     : {bodyCssClass : 'popup',html : mainStore.getAt(idx).get('infoBlurb')}
-      ,listeners : {hide : function() {
-        this.destroy();
-        mainStore.getAt(idx).set('info','off');
-        mainStore.getAt(idx).commit();
-      }}
+      ,width     : 250
+      ,items     : {
+         layout   : 'column'
+        ,defaults : {border : false}
+        ,height   : 75
+        ,bodyStyle : 'padding:6'
+        ,items    :  [
+           {columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : '<a class="blue-href-only" href="javascript:zoomToBbox(\'' + mainRec.get('bbox') + '\')"><img width=32 height=32 src="img/find_globe_big.png"><br>Find<br>on map</a>'}}}
+          ,{columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : customize}}}
+          ,{columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : '<a class="blue-href-only" href="javascript:showLayerInfo(\'' + mainRec.get('name') + '\')"><img width=32 height=32 src="img/information_big.png"><br>View<br>details</a>'}}}
+        ]
+      }
+      ,listeners : {
+        hide : function() {
+          this.destroy();
+          mainRec.set('info','off');
+          mainRec.commit();
+        }
+      }
     }).show();
   }
 }
 
-function setLayerSettings(layerName,on) {
-  var idx = mainStore.find('name',layerName);
-
-  // only one popup can be displayed at a time
-  mainStore.each(function(rec) {
-    if (rec.get('settings') == 'on') {
-      rec.set('settings','off');
-      rec.commit();
-      if (Ext.getCmp('settings.popup.' + rec.get('name'))) {
-        Ext.getCmp('settings.popup.' + rec.get('name')).destroy();
-      }
-    }
-  });
-
-  if (on && (!Ext.getCmp('settings.popup.' + layerName) || !Ext.getCmp('settings.popup.' + layerName).isVisible())) {
+function setLayerSettings(layerName) {
+  if (!activeSettingsWindows[layerName]) {
+    var idx = mainStore.find('name',layerName);
     var height = 26;
     var id = Ext.id();
     var items = [
@@ -3314,29 +3336,19 @@ function setLayerSettings(layerName,on) {
       )
     }
 
-    new Ext.ToolTip({
-       id        : 'settings.popup.' + layerName
+    activeSettingsWindows[layerName] = new Ext.Window({
+       bodyStyle : 'background:white;padding:5'
+      ,resizable : false
+      ,width     : 270
       ,title     : mainStore.getAt(idx).get('displayName').split('||')[0] + ' :: settings'
-      ,anchor    : 'left'
-      ,target    : 'settings.' + layerName
-      ,autoHide  : false
-      ,closable  : true
       ,items     : [
          new Ext.FormPanel({buttonAlign : 'center',border : false,bodyStyle : 'background:transparent',width : 240,height : height + 35,labelWidth : 100,labelSeparator : '',items : items,buttons : [{text : 'Restore default settings',width : 150,handler : function() {restoreDefaultStyles(layerName,items)}}]})
       ]
       ,listeners : {hide : function() {
-        if (spotTooltip && spotTooltip.isVisible()) {
-          spotTooltip.hide();
-        }
-        this.destroy();
-        mainStore.getAt(idx).set('settings','off');
-        mainStore.getAt(idx).commit();
+        activeSettingsWindows[layerName] = null;
       }}
     }).show();
   }
-
-  mainStore.getAt(idx).set('settings',on ? 'on' : 'off');
-  mainStore.getAt(idx).commit();
 }
 
 function renderLayerButton(val,metadata,rec) {
@@ -3352,6 +3364,7 @@ function renderLayerButton(val,metadata,rec) {
 }
 
 function renderLayerInfoLink(val,metadata,rec) {
+  return '<span class="name">' + val + '</span>';
   return '<a id="info.' + rec.get('name') + '" href="javascript:setLayerInfo(\'' + rec.get('name')  + '\',\'' + rec.get('info') + '\' != \'on\')">' + val.split('||')[0] + '<img title="View layer metadata" style="margin-left:2px;margin-bottom:2px" src="img/info.png"></a>';
 }
 
@@ -3361,10 +3374,8 @@ function renderSettingsButton(val,metadata,rec) {
   }
 }
 
-function renderBboxButton(val,metadata,rec) {
-  if (val != '') {
-    return '<a href="javascript:zoomToBbox(\'' + rec.get('bbox') + '\')"><img title="Zoom to layer" style="margin-top:2px" src="img/Search-Globe-icon.png"></a>';
-  }
+function renderLayerCalloutButton(val,metadata,rec) {
+  return '<a id="info.' + rec.get('name') + '" href="javascript:setLayerInfo(\'' + rec.get('name')  + '\',\'' + rec.get('info') + '\' != \'on\')"><img title="Customize layer appearance" style="margin-top:2px" src="img/page_go.png"></a>';
 }
 
 function renderLayerStatus(val,metadata,rec) {
@@ -3407,7 +3418,7 @@ function renderLegend(val,metadata,rec) {
       customize = '';
     }
 
-    a.push(customize + '<img src="getLegend.php?' + mainStore.getAt(idx).get('legend') + '">');
+    a.push('<img src="getLegend.php?' + mainStore.getAt(idx).get('legend') + '">');
   }
   return a.join('<br/>');
 }

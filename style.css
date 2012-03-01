@@ -40,14 +40,6 @@ div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
 #assetsGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
   padding : 0px;
 }
-#assetsGridPanel a:link {
-  text-decoration : none;
-  font            : 12px tahoma,helvetica,sans-serif;
-  color           : #000000;
-}
-#assetsGridPanel a:hover {
-  color : rgb(255,0,0);
-}
 #assetsGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
 }
@@ -66,14 +58,6 @@ div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
 }
 #glidersGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
   padding : 0px;
-}
-#glidersGridPanel a:link {
-  text-decoration : none;
-  font            : 12px tahoma,helvetica,sans-serif;
-  color           : #000000;
-}
-#glidersGridPanel a:hover {
-  color : rgb(255,0,0);
 }
 #glidersGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
@@ -111,14 +95,6 @@ div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
 #currentsGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
   padding : 0px;
 }
-#currentsGridPanel a:link {
-  text-decoration : none;
-  font            : 12px tahoma,helvetica,sans-serif;
-  color           : #000000;
-}
-#currentsGridPanel a:hover {
-  color : rgb(255,0,0);
-}
 #currentsGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
 }
@@ -137,14 +113,6 @@ div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
 }
 #windsGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
   padding : 0px;
-}
-#windsGridPanel a:link {
-  text-decoration : none;
-  font            : 12px tahoma,helvetica,sans-serif;
-  color           : #000000;
-}
-#windsGridPanel a:hover {
-  color : rgb(255,0,0);
 }
 #windsGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
@@ -165,14 +133,6 @@ div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
 #wavesGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
   padding : 0px;
 }
-#wavesGridPanel a:link {
-  text-decoration : none;
-  font            : 12px tahoma,helvetica,sans-serif;
-  color           : #000000;
-}
-#wavesGridPanel a:hover {
-  color : rgb(255,0,0);
-}
 #wavesGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
 }
@@ -191,14 +151,6 @@ div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
 }
 #temperaturesGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
   padding : 0px;
-}
-#temperaturesGridPanel a:link {
-  text-decoration : none;
-  font            : 12px tahoma,helvetica,sans-serif;
-  color           : #000000;
-}
-#temperaturesGridPanel a:hover {
-  color : rgb(255,0,0);
 }
 #temperaturesGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
@@ -219,14 +171,6 @@ div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
 #otherGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
   padding : 0px;
 }
-#otherGridPanel a:link {
-  text-decoration : none;
-  font            : 12px tahoma,helvetica,sans-serif;
-  color           : #000000;
-}
-#otherGridPanel a:hover {
-  color : rgb(255,0,0);
-}
 #otherGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
 }
@@ -246,14 +190,6 @@ div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
 #modelsGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
   padding : 0px;
 }
-#modelsGridPanel a:link {
-  text-decoration : none;
-  font            : 12px tahoma,helvetica,sans-serif;
-  color           : #000000;
-}
-#modelsGridPanel a:hover {
-  color : rgb(255,0,0);
-}
 #modelsGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
 }
@@ -272,14 +208,6 @@ div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
 }
 #observationsGridPanel .x-grid3-cell-inner, .x-grid3-hd-inner {
   padding : 0px;
-}
-#observationsGridPanel a:link {
-  text-decoration : none;
-  font            : 12px tahoma,helvetica,sans-serif;
-  color           : #000000;
-}
-#observationsGridPanel a:hover {
-  color : rgb(255,0,0);
 }
 #observationsGridPanel .x-grid3-row-selected {
   background-color : transparent !important;
@@ -355,9 +283,6 @@ div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
 
 #legendsGridPanel .x-grid3-row {
   border-color   : #ffffff;
-}
-#legendsGridPanel .x-grid3-row td, .x-grid3-summary-row td {
-  font            : 12px tahoma,helvetica,sans-serif;
 }
 #legendsGridPanel a:link {
   text-decoration : none;
@@ -544,4 +469,13 @@ div.olControlMousePosition {
 
 .x-toolbar-cell .x-form-checkbox, .x-toolbar-cell .x-form-radio {
     margin-top: 0;
+}
+
+.x-grid3-row td, .x-grid3-summary-row td {
+  font            : 12px tahoma,helvetica,sans-serif;
+}
+
+.blue-href-only {
+  text-decoration : none;
+  color : rgb(74,134,214);
 }
