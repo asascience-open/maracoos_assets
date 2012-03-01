@@ -3780,6 +3780,7 @@ function addObs(l) {
           ,inactive : 0
         };
         var providerHits = {};
+        var maxT;
         glidersMetadataStore.each(function(rec) {
           providerHits[rec.get('name')] = 0;
         });
@@ -3791,6 +3792,9 @@ function addObs(l) {
             activity['inactive']++;
           }
           providerHits[lyr.features[i].attributes.provider]++;
+          if (lyr.features[i].attributes.maxT) {
+            maxT = lyr.features[i].attributes.maxT;
+          }
         }
         if (lyr.features.length > 0) {
           a.push('<td>active</td><td align=right>' + activity['active'] + '</td>');
@@ -3802,6 +3806,10 @@ function addObs(l) {
             a.push('<td>' + rec.get('name') + '</td><td align=right>' + providerHits[rec.get('name')] + '</td>');
           }
         });
+        if (maxT) {
+          a.push('<td colspan=2 align=center>latest report</td>');
+          a.push('<td colspan=2 align=center>' + maxT + '</td>');
+        }
         rec.set('timestamp','<table><tr>' + a.join('</tr><tr>') + '</tr></table>');
       }
       mainStoreRec.commit();
@@ -4074,6 +4082,7 @@ function syncObs(l,force) {
                 f.attributes.provider            = provider;
                 f.attributes.data                = obs.data[loc];
                 f.attributes.active              = obs.data[loc][loc][i].active;
+                f.attributes.maxT                = obs.data[loc][loc][i].t[obs.data[loc][loc][i].t.length - 1]
                 f.attributes.graphicWidth        = 20;
                 f.attributes.graphicWidthBig     = 20 * 2;
                 f.attributes.graphicHeight       = 20;
@@ -4351,6 +4360,9 @@ function restoreDefaultStyles(l,items) {
 }
 
 function mapClick(xy,doWMS,chartIt) {
+  if (ignoreMapClick) {
+    return;
+  }
   lastMapClick['xy'] = xy;
   lyrQueryPts.removeFeatures(lyrQueryPts.features);
 

@@ -75,6 +75,7 @@
       var hideMouseControl          = false;
       var hideGlidersYearsFormPanel = true;
       var hideRealtimeAlert         = true;
+      var ignoreMapClick            = false;
       var introPanelHtmlOverride;
       var introPanelHeightOverride;
 
@@ -121,6 +122,7 @@
         managerPanelCollapsible   = false;
         hideTimestampLabel        = true;
         hideRealtimeAlert         = false;
+        ignoreMapClick            = true;
 
         defaultBasemap            = 'ESRI Ocean';
 
