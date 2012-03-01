@@ -2914,6 +2914,7 @@ function showLayerInfo(layerName) {
     activeInfoWindows[layerName] = new Ext.Window({
        width      : 400
       ,autoScroll : true
+      ,constrainHeader : true
       ,title      : mainStore.getAt(idx).get('displayName').split('||')[0] + ' :: info'
       ,items      : {border : false,bodyCssClass : 'popup',html : mainStore.getAt(idx).get('infoBlurb')}
       ,listeners  : {hide : function() {
@@ -3341,6 +3342,7 @@ function setLayerSettings(layerName) {
        bodyStyle : 'background:white;padding:5'
       ,resizable : false
       ,width     : 270
+      ,constrainHeader : true
       ,title     : mainStore.getAt(idx).get('displayName').split('||')[0] + ' :: settings'
       ,items     : [
          new Ext.FormPanel({buttonAlign : 'center',border : false,bodyStyle : 'background:transparent',width : 240,height : height + 35,labelWidth : 100,labelSeparator : '',items : items,buttons : [{text : 'Restore default settings',width : 150,handler : function() {restoreDefaultStyles(layerName,items)}}]})
