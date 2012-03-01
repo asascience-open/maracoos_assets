@@ -3364,8 +3364,7 @@ function renderLayerButton(val,metadata,rec) {
 }
 
 function renderLayerInfoLink(val,metadata,rec) {
-  return '<span class="name">' + val + '</span>';
-  return '<a id="info.' + rec.get('name') + '" href="javascript:setLayerInfo(\'' + rec.get('name')  + '\',\'' + rec.get('info') + '\' != \'on\')">' + val.split('||')[0] + '<img title="View layer metadata" style="margin-left:2px;margin-bottom:2px" src="img/info.png"></a>';
+  return '<span class="name">' + val.split('||')[0] + '</span>';
 }
 
 function renderSettingsButton(val,metadata,rec) {
