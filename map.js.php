@@ -1936,7 +1936,7 @@ function init() {
      id              : 'glidersYearsFormPanel'
     ,hidden          : hideGlidersYearsFormPanel
     ,collapsible     : true
-    ,title           : 'Filter by year'
+    ,title           : 'Filter by time'
     ,height          : 52
     ,layout          : 'fit'
     ,border          : false
