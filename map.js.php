@@ -1969,7 +1969,8 @@ function init() {
   var glidersProvidersGridPanel = new Ext.grid.GridPanel({
      id               : 'glidersProvidersGridPanel'
     ,hidden           : hideGlidersGridPanel
-    ,collapsible     : true
+    ,collapsible      : true
+    ,collapsed        : true
     ,title            : 'Filter by provider'
     ,store            : glidersMetadataStore
     ,height           : 200
