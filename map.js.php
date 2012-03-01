@@ -4082,7 +4082,9 @@ function syncObs(l,force) {
                 f.attributes.provider            = provider;
                 f.attributes.data                = obs.data[loc];
                 f.attributes.active              = obs.data[loc][loc][i].active;
-                f.attributes.maxT                = obs.data[loc][loc][i].t[obs.data[loc][loc][i].t.length - 1]
+                if (obs.data[loc][loc][i].t) {
+                  f.attributes.maxT = obs.data[loc][loc][i].t[obs.data[loc][loc][i].t.length - 1]
+                }
                 f.attributes.graphicWidth        = 20;
                 f.attributes.graphicWidthBig     = 20 * 2;
                 f.attributes.graphicHeight       = 20;
