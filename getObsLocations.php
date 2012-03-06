@@ -178,7 +178,8 @@
         addToStack($metadata,$bbox,$d[$col2idx['lon']],$d[$col2idx['lat']],$provider,array(
            'id'    => $d[$col2idx['id']]
           ,'descr' => "Satellite ground station"
-          ,'url'   => "popup$provider.php?"
+          ,'url'   => "popup$provider.php"
+            ."?descrip=".urlencode($d[$col2idx['descrip']])
         ));
       }
     }
