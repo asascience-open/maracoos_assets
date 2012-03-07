@@ -8,12 +8,18 @@
   $u = substr($_SERVER['REQUEST_URI'],strpos($_SERVER['REQUEST_URI'],'?')+1);
   if (isset($_REQUEST['GetMetadata'])) {
     $barSize = array(30,150);
-    $metaU = substr($u,0,strpos($u,'?'))
-      .'?item=layerDetails&request=GetMetadata'
-      .'&layerName='.$_REQUEST['LAYER']
-      .'&TIME='.$_REQUEST['TIME'];
-    $json = json_decode(@file_get_contents($metaU));
-    $scaleRange = $json->{'scaleRange'};
+    $scaleRange = array(0,0);
+    if (isset($_REQUEST['COLORSCALERANGE'])) {
+      $scaleRange = explode(',',$_REQUEST['COLORSCALERANGE']);
+    }
+    else {
+      $metaU = substr($u,0,strpos($u,'?'))
+        .'?item=layerDetails&request=GetMetadata'
+        .'&layerName='.$_REQUEST['LAYER']
+        .'&TIME='.$_REQUEST['TIME'];
+      $json = json_decode(@file_get_contents($metaU));
+      $scaleRange = $json->{'scaleRange'};
+    }
     $scaleRange[0] = $scaleRange[0] * 9/5 + 32;
     $scaleRange[1] = $scaleRange[1] * 9/5 + 32;
     $u .= '&COLORBARONLY=true&width='.$barSize[0].'&height='.$barSize[1];

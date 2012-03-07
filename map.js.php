@@ -993,7 +993,7 @@ function init() {
         ,''
         ,''
         ,''
-        ,'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=' + (typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'sst-seven/mcsst') + '&PALETTE=' + defaultStyles['Satellite water temperature'].split('/')[1] + '&TIME=' + dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00' + '&GetMetadata'
+        ,'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=' + (typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'sst-seven/mcsst') + '&PALETTE=' + defaultStyles['Satellite water temperature'].split('/')[1] + '&TIME=' + dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00' + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -2616,7 +2616,10 @@ function initMap() {
            REQUEST : 'GetLegendGraphic'
           ,LAYER   : OpenLayers.Util.getParameters(e.layer.getFullRequestString({}))['LAYERS']
         };
-        mainStore.getAt(idx).get('legend').indexOf('GetMetadata') >= 0 ? params.GetMetadata = '' : false;
+        if (mainStore.getAt(idx).get('legend').indexOf('GetMetadata') >= 0) {
+          params.GetMetadata     = '';
+          params.COLORSCALERANGE = getColorScaleRange();
+        }
         mainStore.getAt(idx).set('legend',e.layer.getFullRequestString(params));
         mainStore.getAt(idx).commit();
       }
@@ -3519,6 +3522,11 @@ function addLayer(lyr,timeSensitive) {
   });
   if (timeSensitive) {
     lyr.mergeNewParams({TIME : dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00'});
+    // the sat SST tds layer can be ID'ed by GFI_TIME -- this layer also needs COLORSCALERANGE
+    // I didn't want to make this part of the URL
+    if (lyr.url.indexOf('GFI_TIME') >= 0) {
+      lyr.mergeNewParams({COLORSCALERANGE : getColorScaleRange()}); 
+    }
   }
   map.addLayer(lyr);
 }
@@ -4746,6 +4754,9 @@ function configTimeSlider(initOnly) {
           // WMS layers only
           if (map.layers[j].DEFAULT_PARAMS) {
             map.layers[j].mergeNewParams({TIME : dStr,unique : new Date().getTime()});
+            if (OpenLayers.Util.getParameters(map.layers[j].getFullRequestString({}))['COLORSCALERANGE']) {
+              map.layers[j].mergeNewParams({COLORSCALERANGE : getColorScaleRange()});
+            }
             // record the action on google analytics
             if (mainStore.find('name',map.layers[i].name) >= 0) {
               pageTracker._trackEvent('timeSlider',mainStore.getAt(mainStore.find('name',map.layers[i].name)).get('displayName'));
@@ -4834,6 +4845,9 @@ function makeTimeSlider() {
           // WMS layers only
           if (map.layers[i].DEFAULT_PARAMS) {
             map.layers[i].mergeNewParams({TIME : dStr});
+            if (OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['COLORSCALERANGE']) {
+              map.layers[i].mergeNewParams({COLORSCALERANGE : getColorScaleRange()});
+            }
             // record the action on google analytics
             if (mainStore.find('name',map.layers[i].name) >= 0) {
               pageTracker._trackEvent('timeSlider',mainStore.getAt(mainStore.find('name',map.layers[i].name)).get('displayName'));
@@ -4965,4 +4979,80 @@ function syncLayersToBbox(l) {
       sm.resumeEvents();
     }
   }
+}
+
+function getColorScaleRange() {
+  var d = new Date();
+  d.setHours(0);
+  d.setMinutes(0);
+  d.setSeconds(0);
+  d.setMilliseconds(0);
+
+  d.setMonth(0);
+  d.setDate(4);
+  if (dNow < d) {
+    return '2,29';
+  }
+
+  d.setMonth(1);
+  d.setDate(2);
+  if (dNow < d) {
+    return '2,29';
+  }
+
+  d.setMonth(2);
+  d.setDate(8);
+  if (dNow < d) {
+    return '1,29';
+  }
+
+  d.setMonth(3);
+  d.setDate(16);
+  if (dNow < d) {
+    return '2,29';
+  }
+
+  d.setMonth(4);
+  d.setDate(12);
+  if (dNow < d) {
+    return '3,31';
+  }
+
+  d.setMonth(5);
+  d.setDate(11);
+  if (dNow < d) {
+    return '4,32';
+  }
+
+  d.setMonth(6);
+  d.setDate(12);
+  if (dNow < d) {
+    return '5,33';
+  }
+
+  d.setMonth(7);
+  d.setDate(10);
+  if (dNow < d) {
+    return '7,32';
+  }
+
+  d.setMonth(8);
+  d.setDate(1);
+  if (dNow < d) {
+    return '7,32';
+  }
+
+  d.setMonth(9);
+  d.setDate(13);
+  if (dNow < d) {
+    return '6,31';
+  }
+
+  d.setMonth(10);
+  d.setDate(9);
+  if (dNow < d) {
+    return '4,31';
+  }
+
+  return '3,29';
 }
