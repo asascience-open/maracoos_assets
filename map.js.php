@@ -3795,7 +3795,7 @@ function addObs(l) {
             activity['inactive']++;
           }
           providerHits[lyr.features[i].attributes.provider]++;
-          if (lyr.features[i].attributes.maxT) {
+          if (lyr.features[i].attributes.maxT && (!maxT || maxT < lyr.features[i].attributes.maxT)) {
             maxT = lyr.features[i].attributes.maxT;
           }
         }
