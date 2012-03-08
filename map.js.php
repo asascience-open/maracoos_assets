@@ -2238,7 +2238,7 @@ function init() {
                 ,width : 135
               }
               ,'->'
-              ,{text : 'Map options',scale : 'large',icon : 'img/layers_map.png',menu : {items : [
+              ,{text : 'Map options',scale : 'large',icon : 'img/layers_map_big.png',menu : {items : [
                 {
                    text         : 'Hide bathymetry contours'
                   ,checked      : typeof defaultLayers['Bathymetry contours'] == 'undefined'
