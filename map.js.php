@@ -65,8 +65,17 @@ var chartData;
 var chartLayerStore;
 var esriOcean;     // special case for this layer
 var dNow = new Date();
-dNow.setMinutes(0);
-dNow.setSeconds(0);
+dNow.setUTCMinutes(0);
+dNow.setUTCSeconds(0);
+dNow.setUTCMilliseconds(0);
+var dNow12Hours = new Date(dNow.getTime());
+dNow12Hours.setUTCHours(12);
+if (dNow.getHours() >= 12) {
+  dNow.setUTCHours(12);
+}
+else {
+  dNow.setUTCHours(0);
+}
 var lastMapClick = {
    layer : ''
   ,xy    : ''
@@ -2030,6 +2039,93 @@ function init() {
         ]);
       });
     }}
+    ,tbar : {items : [
+      {
+         icon    : 'img/Places-bookmarks-icon.png'
+        ,text    : 'Bookmark'
+        ,tooltip : 'Bookmark active map'
+        ,handler : function() {
+          var p = {
+             'center'  : map.getCenter().lon + ',' + map.getCenter().lat
+            ,'zoom'    : map.getZoom()
+            ,'base'    : ''
+            ,'lyrs'    : []
+            ,'styls'   : []
+            ,'opcty'   : []
+            ,'imgTyps' : []
+            ,'esriO'   : esriOcean.visibility ? esriOcean.opacity * 100 : ''
+            ,'lyrLyrs' : []
+          };
+          for (var i = 0; i < map.layers.length; i++) {
+            if (map.layers[i].visibility) {
+              if (map.layers[i].isBaseLayer) {
+                p['base'] = map.layers[i].name;
+                p['lyrs'].push(map.layers[i].name);
+                p['styls'].push('');
+                p['opcty'].push(map.layers[i].opacity * 100);
+                p['imgTyps'].push('');
+                p['lyrLyrs'].push('');
+              }
+              else if (mainStore.find('name',map.layers[i].name) >= 0) {
+                p['lyrs'].push(map.layers[i].name);
+                if (map.layers[i].DEFAULT_PARAMS) {
+                  p['styls'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['STYLES']);
+                  p['opcty'].push(map.layers[i].opacity * 100);
+                  p['lyrLyrs'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['LAYERS']);
+                  p['imgTyps'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['FORMAT'].split('/')[1]);
+                }
+                else if (map.layers[i].grid) {
+                  p['styls'].push('');
+                  p['opcty'].push(map.layers[i].opacity * 100);
+                  p['lyrLyrs'].push('');
+                  p['imgTyps'].push('');
+                }
+                else {
+                  p['styls'].push('');
+                  p['opcty'].push('');
+                  p['lyrLyrs'].push('');
+                  p['imgTyps'].push('');
+                }
+              }
+            }
+          }
+          p['lyrs']   = p['lyrs'].join(',');
+          p['config'] = config;
+          var u = [];
+          for (var i in p) {
+            u.push(i + '=' + p[i]);
+          }
+          var url = "<?php echo 'http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/'))?>?" + u.join('&');
+          Ext.Msg.alert('Bookmark','The following link will launch the ' + globalTitle + ' Explorer with your current confiuration and may be used as a bookmark. <a target=_blank href="' + url.replace(/ /g,'%20') + '">Link to my ' + globalTitle + ' Explorer</a>');
+        }
+      }
+      ,'->'
+      ,{
+         icon    : 'img/help-icon.png'
+        ,text    : 'Help'
+        ,tooltip : 'View a tutorial and provide feedback.'
+        ,menu    : {items : [
+          {
+             text    : 'View tutorial'
+            ,icon    : 'img/help-icon.png'
+            ,handler : function() {showHelp(true)}
+            ,tooltip : 'View help tutorial'
+          }
+          ,{
+             text    : 'Provide feedback'
+            ,icon    : 'img/comments.png'
+            ,tooltip : 'Provide feedback'
+            ,handler : function() {
+              if (fdbkUnavailable) {
+                Ext.Msg.alert('Help',"We're sorry, but feedback is currently unavailable.");
+                return;
+              }
+              Ext.Msg.alert('Feedback','We are very interested in your feedback.  Please send us an email at this address, <a href="mailto:maracoosinfo@udel.edu">maracoosinfo@udel.edu</a>.');
+            }
+          }
+        ]}
+      }
+    ]}
   });
 
   var managerItems = [
@@ -2049,16 +2145,9 @@ function init() {
 
   new Ext.Viewport({
      layout : 'border'
+    ,id     : 'viewport'
     ,items  : [
       new Ext.Panel({
-         region    : 'north'
-        ,html      : mapBanner.html
-        ,height    : mapBanner.height
-        ,border    : false
-        ,bodyStyle : mapBanner.bodyStyle
-        ,hidden    : !mapBanner
-      })
-      ,new Ext.Panel({
          region      : 'west'
         ,width       : 255
         ,title       : globalTitleOverride ? globalTitleOverride : globalTitle + ' Manager'
@@ -2100,163 +2189,150 @@ function init() {
         ,items     : [
           {
              html      : '<div id="map"></div>'
-              + (!hideTimestampLabel ? '<div id="timestampLabel">' + shortDateString(dNow) + '</div><img id="timestampImage" src="img/asterick_orange_small.png">' : '')
               + '<div id="notRealtimeAlert">The environmental overlays display near real time data only. By selecting a year other than the most recent available, you are encouraged to turn all environmental overlays off to avoid confusion.</div>'
             ,region    : 'center'
             ,border    : false
-            ,tbar      : [
-/*
+            ,bbar      : {hidden : hideTimeSlider,items : [
               {
-                 icon    : 'img/printer.png'
-                ,text    : 'Print'
-                ,tooltip : 'Print active map'
-                ,handler : function() {
-                  printSaveMap('print');
-                }
-              }
-              ,{
-                 icon    : 'img/disk.png'
-                ,text    : 'Save'
-                ,tooltip : 'Save active map'
-                ,handler : function() {
-                  printSaveMap('save');
-                }
-              }
-*/
-              {
-                 icon    : 'img/Places-bookmarks-icon.png'
-                ,text    : 'Bookmark'
-                ,tooltip : 'Bookmark active map'
-                ,handler : function() {
-                  var p = {
-                     'center'  : map.getCenter().lon + ',' + map.getCenter().lat
-                    ,'zoom'    : map.getZoom()
-                    ,'base'    : ''
-                    ,'lyrs'    : []
-                    ,'styls'   : []
-                    ,'opcty'   : []
-                    ,'imgTyps' : []
-                    ,'esriO'   : esriOcean.visibility ? esriOcean.opacity * 100 : ''
-                    ,'lyrLyrs' : []
-                  };
-                  for (var i = 0; i < map.layers.length; i++) {
-                    if (map.layers[i].visibility) {
-                      if (map.layers[i].isBaseLayer) {
-                        p['base'] = map.layers[i].name;
-                        p['lyrs'].push(map.layers[i].name);
-                        p['styls'].push('');
-                        p['opcty'].push(map.layers[i].opacity * 100);
-                        p['imgTyps'].push('');
-                        p['lyrLyrs'].push('');
-                      }
-                      else if (mainStore.find('name',map.layers[i].name) >= 0) {
-                        p['lyrs'].push(map.layers[i].name);
-                        if (map.layers[i].DEFAULT_PARAMS) {
-                          p['styls'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['STYLES']);
-                          p['opcty'].push(map.layers[i].opacity * 100);
-                          p['lyrLyrs'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['LAYERS']);
-                          p['imgTyps'].push(OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['FORMAT'].split('/')[1]);
-                        }
-                        else if (map.layers[i].grid) {
-                          p['styls'].push('');
-                          p['opcty'].push(map.layers[i].opacity * 100);
-                          p['lyrLyrs'].push('');
-                          p['imgTyps'].push('');
-                        }
-                        else {
-                          p['styls'].push('');
-                          p['opcty'].push('');
-                          p['lyrLyrs'].push('');
-                          p['imgTyps'].push('');
-                        }
+                 text : '<table><tr><td style="text-align : center">Change map<br>date & time</td></tr></table>'
+                ,tooltip : 'Change the map\'s date and time'
+                ,scale   : 'large'
+                ,icon : 'img/calendar_view_day.png'
+                ,width : 130
+                ,menu : new Ext.menu.Menu({showSeparator : false,items : [
+                  new Ext.DatePicker({
+                     value     : new Date(dNow.getTime() + dNow.getTimezoneOffset() * 60000)
+                    ,listeners : {
+                      select : function(picker,d) {
+                        d.setUTCHours(0);
+                        d.setUTCMinutes(0);
+                        d.setUTCSeconds(0);
+                        d.setUTCMilliseconds(0);
+                        dNow = d;
+                        setMapTime();
                       }
                     }
+                  })
+                  ,{
+                     xtype     : 'buttongroup'
+                    ,autoWidth : true
+                    ,columns   : 3
+                    ,id        : 'changeHoursButtonGroup'
+                    ,items : [
+                       {xtype : 'button',scale : 'medium',width : 84,text : '- 6h',iconAlign : 'right',icon : 'img/resultset_previous.png',handler : function() {dNow = new Date(dNow.getTime() - 6 * 3600000);setMapTime();}}
+                      ,new Ext.form.Label({html : '<img width=' + (Ext.isIE ? 14 : 9) + ' src="img/blank.png">'})
+                      ,{xtype : 'button',scale : 'medium',width : 84,text : '+ 6h',iconAlign : 'left',icon : 'img/resultset_next.png',handler : function() {dNow = new Date(dNow.getTime() + 6 * 3600000);setMapTime();}}
+                    ]
                   }
-                  p['lyrs']   = p['lyrs'].join(',');
-                  p['config'] = config;
-                  var u = [];
-                  for (var i in p) {
-                    u.push(i + '=' + p[i]);
-                  }
-                  var url = "<?php echo 'http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/'))?>?" + u.join('&');
-                  Ext.Msg.alert('Bookmark','The following link will launch the ' + globalTitle + ' Explorer with your current confiuration and may be used as a bookmark. <a target=_blank href="' + url.replace(/ /g,'%20') + '">Link to my ' + globalTitle + ' Explorer</a>');
-                }
+                ]})
               }
               ,{
-                 icon    : 'img/comments.png'
-                ,text    : 'Feedback'
-                ,tooltip : 'Provide feedback'
-                ,handler : function() {
-                  if (fdbkUnavailable) {
-                    Ext.Msg.alert('Help',"We're sorry, but feedback is currently unavailable.");
-                    return;
-                  }
-                  Ext.Msg.alert('Feedback','We are very interested in your feedback.  Please send us an email at this address, <a href="mailto:maracoosinfo@udel.edu">maracoosinfo@udel.edu</a>.');
-                }
+                 id    : 'mapTime'
+                ,scale : 'large'
+                ,text  : '<table><tr><td style="text-align : center"><b>Map date & time</b><br>' + dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + ' ' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00 UTC</td></tr></table>'
+                ,width : 135
+              }
+              ,{
+                 id    : 'currentTime'
+                ,scale : 'large'
+                ,width : 135
               }
               ,'->'
-              ,{text : 'Map options',icon : 'img/layers_map.png',menu : {items : [
+              ,{text : 'Map options',scale : 'large',icon : 'img/layers_map.png',menu : {items : [
                 {
-                   text         : 'Show bathymetry contours?'
-                  ,checked      : typeof defaultLayers['Bathymetry contours'] != 'undefined'
+                   text         : 'Hide bathymetry contours'
+                  ,checked      : typeof defaultLayers['Bathymetry contours'] == 'undefined'
                   ,hideOnClick  : false
-                  ,checkHandler : function(cbox,checked) {
-                    map.getLayersByName('Bathymetry contours')[0].setVisibility(checked);
+                  ,group        : 'bathy'
+                  ,handler      : function() {
+                    var lyr = map.getLayersByName('Bathymetry contours')[0];
+                    if (!lyr) {
+                      Ext.Msg.alert('Bathymetry contours',"We're sorry, but this layer is not available.");
+                    }
+                    else {
+                      lyr.setVisibility(false);
+                    }
                   }
                 }
-                ,'<b class="menu-title" style="margin-left:27px">Select a basemap</b>'
-                ,new Ext.form.ComboBox({
-                   store          : new Ext.data.ArrayStore({
-                     fields : ['name']
-                    ,data   : [['ESRI Ocean'],['Google Satellite'],['Google Terrain'],['Google Hybrid']]
-                  })
-                  ,iconCls        : 'no-icon'
-                  ,valueField     : 'name'
-                  ,displayField   : 'name'
-                  ,editable       : false
-                  ,triggerAction  : 'all'
-                  ,mode           : 'local'
-                  ,width          : 140
-                  ,value          : defaultBasemap
-                  ,forceSelection : true
-                  ,listeners      : {select : function(comboBox,rec) {
-                    var lyr = map.getLayersByName(rec.get('name'))[0];
+                ,{
+                   text         : 'Show bathymetry contours'
+                  ,checked      : typeof defaultLayers['Bathymetry contours'] != 'undefined'
+                  ,hideOnClick  : false
+                  ,group        : 'bathy'
+                  ,handler      : function() {
+                    var lyr = map.getLayersByName('Bathymetry contours')[0];
+                    if (!lyr) {
+                      Ext.Msg.alert('Bathymetry contours',"We're sorry, but this layer is not available.");
+                    }
+                    else {
+                      lyr.setVisibility(true);
+                    }
+                  }
+                }
+                ,'-'
+                ,{
+                   text         : 'Show ESRI Ocean basemap'
+                  ,checked      : defaultBasemap == 'ESRI Ocean'
+                  ,hideOnClick  : false
+                  ,group        : 'basemap'
+                  ,handler      : function() {
+                    var lyr = map.getLayersByName('ESRI Ocean')[0];
                     if (lyr.isBaseLayer) {
                       lyr.setOpacity(1);
                       map.setBaseLayer(lyr);
                       lyr.redraw();
                     }
-                  }}
-                })
-              ]}}
-              ,{
-                 icon    : 'img/help-icon.png'
-                ,text    : 'Help'
-                ,tooltip : 'View help tutorial'
-                ,handler : function() {
-                  showHelp(true);
+                  }
                 }
-              }
-            ]
+                ,{
+                   text         : 'Show Google Hybrid basemap'
+                  ,checked      : defaultBasemap == 'Google Hybrid'
+                  ,hideOnClick  : false
+                  ,group        : 'basemap'
+                  ,handler      : function() {
+                    var lyr = map.getLayersByName('Google Hybrid')[0];
+                    if (lyr.isBaseLayer) {
+                      lyr.setOpacity(1);
+                      map.setBaseLayer(lyr);
+                      lyr.redraw();
+                    }
+                  }
+                }
+                ,{
+                   text         : 'Show Google Satellite basemap'
+                  ,checked      : defaultBasemap == 'Google Satellite'
+                  ,hideOnClick  : false
+                  ,group        : 'basemap'
+                  ,handler      : function() {
+                    var lyr = map.getLayersByName('Google Satellite')[0];
+                    if (lyr.isBaseLayer) {
+                      lyr.setOpacity(1);
+                      map.setBaseLayer(lyr);
+                      lyr.redraw();
+                    }
+                  }
+                }
+                ,{
+                   text         : 'Show Google Terrain basemap'
+                  ,checked      : defaultBasemap == 'Google Terrain'
+                  ,hideOnClick  : false
+                  ,group        : 'basemap'
+                  ,handler      : function() {
+                    var lyr = map.getLayersByName('Google Terrain')[0];
+                    if (lyr.isBaseLayer) {
+                      lyr.setOpacity(1);
+                      map.setBaseLayer(lyr);
+                      lyr.redraw();
+                    }
+                  }
+                }
+              ]}}
+            ]}
             ,listeners : {
               afterrender : function(panel) {
                 if (hideMapToolbar) {
                   panel.getTopToolbar().hide();
                 }
-                new Ext.ToolTip({
-       anchor   : 'bottom'
-                  ,title    : 'Map timestamp'
-      ,target   : 'timestampLabel'
-                  ,html     : 'This is the timestamp the map is attempting to display.  It is up to the data provider to determine what timestamp best matches what you have selected in the time slider below.  Individual layers report their timestamps in the legends panel.'
-                  ,dismissDelay : 12000
-                });
-                new Ext.ToolTip({
-                   anchor   : 'bottom'
-                  ,title    : 'Map timestamp'
-                  ,target   : 'timestampImage'
-                  ,html     : 'This is the timestamp the map is attempting to display.  It is up to the data provider to determine what timestamp best matches what you have selected in the time slider below.  Individual layers report their timestamps in the legends panel.'
-                  ,dismissDelay : 12000
-                });
                 initMap();
               }
               ,bodyresize : function(p,w,h) {
@@ -2852,6 +2928,8 @@ function initMap() {
       }
     });
   }
+
+  refreshCurrentTime();
 }
 
 function showLayerInfo(layerName) {
@@ -4778,4 +4856,32 @@ function getColorScaleRange() {
   }
 
   return '3,29';
+}
+
+function setMapTime() {
+  Ext.getCmp('mapTime').setText('<b>Map date & time</b><br>' + dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + ' ' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00 UTC');
+  var dStr = dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00';
+  for (var i = 0; i < map.layers.length; i++) {
+    // WMS layers only
+    if (map.layers[i].DEFAULT_PARAMS) {
+      map.layers[i].mergeNewParams({TIME : dStr});
+      if (OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['COLORSCALERANGE']) {
+        map.layers[i].mergeNewParams({COLORSCALERANGE : getColorScaleRange()});
+      }
+      // record the action on google analytics
+      if (mainStore.find('name',map.layers[i].name) >= 0) {
+        pageTracker._trackEvent('timeSlider',mainStore.getAt(mainStore.find('name',map.layers[i].name)).get('displayName'));
+      }
+    }
+  }
+}
+
+function refreshCurrentTime() {
+  var now = new Date();
+  time = '<table><tr><td style="text-align : center"><b>Current date & time</b><br>' + now.getUTCFullYear() + '-' + String.leftPad(now.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(now.getUTCDate(),2,'0') + ' ' + String.leftPad(now.getUTCHours(),2,'0') + ':' + String.leftPad(now.getUTCMinutes(),2,'0') + ':' + String.leftPad(now.getUTCSeconds(),2,'0') + ' UTC</td></tr></table>';
+  var el = Ext.getCmp('currentTime');
+  if (el) {
+    el.setText(time);
+    setTimeout("refreshCurrentTime()", 1000);
+  }
 }

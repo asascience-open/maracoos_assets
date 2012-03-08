@@ -79,8 +79,6 @@
       var introPanelHtmlOverride;
       var introPanelHeightOverride;
 
-      var mapBanner = {hidden : true};
-
       var defaultBasemap = 'ESRI Ocean';
 
       var defaultCenter  = [-7792364.3544444,4865942.2788258];
