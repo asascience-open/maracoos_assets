@@ -2202,6 +2202,7 @@ function init() {
                 ,menu : new Ext.menu.Menu({showSeparator : false,items : [
                   new Ext.DatePicker({
                      value     : new Date(dNow.getTime() + dNow.getTimezoneOffset() * 60000)
+                    ,id        : 'datePicker'
                     ,listeners : {
                       select : function(picker,d) {
                         d.setUTCHours(0);
@@ -4873,6 +4874,13 @@ function setMapTime() {
         pageTracker._trackEvent('timeSlider',mainStore.getAt(mainStore.find('name',map.layers[i].name)).get('displayName'));
       }
     }
+  }
+
+  if (Ext.getCmp('datePicker')) {
+    var dp = Ext.getCmp('datePicker');
+    dp.suspendEvents();
+    dp.setValue(new Date(dNow.getTime() + dNow.getTimezoneOffset() * 60000));
+    dp.resumeEvents();
   }
 }
 
