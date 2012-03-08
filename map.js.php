@@ -67,7 +67,6 @@ var esriOcean;     // special case for this layer
 var dNow = new Date();
 dNow.setMinutes(0);
 dNow.setSeconds(0);
-var availableTimes = [dNow];
 var lastMapClick = {
    layer : ''
   ,xy    : ''
@@ -128,8 +127,6 @@ function init() {
   Ext.override(Ext.Component,{
     stateful : false
   });
-
-  makeAvailableTimes();
 
   chartLayerStore =  new Ext.data.ArrayStore({
      id        : 0
@@ -2241,45 +2238,6 @@ function init() {
                 }
               }
             ]
-            ,bbar      : {
-               xtype    : 'container'
-              ,hidden   : hideTimeSlider
-              ,height   : timeControlsHeight
-              ,defaults : {border : false,bodyStyle : 'background:transparent'}
-              ,cls      : 'x-toolbar'
-              ,id       : 'timeSliderContainer'
-              ,items : [
-                 new Ext.Panel({
-                   width       : 100
-                  ,height      : 15
-                  ,id          : 'sliderTics'
-                  ,html        : '<table id="sliderTicsTable"><tbody></tbody></table>'
-                })
-                ,new Ext.Panel({
-                   layout       : 'column'
-                  ,defaults     : {border : false,bodyStyle : 'background:transparent'}
-                  ,items        : [
-                    {html : '&nbsp;',width : 5}
-                    ,new Ext.Button({
-                       icon : 'img/control_rewind_blue.png'
-                      ,handler : function() {
-                        shiftSlider(-1);
-                      }
-                    })
-                    ,{html : '&nbsp;&nbsp;',width : 5}
-                    ,makeTimeSlider()
-                    ,{html : '&nbsp;&nbsp;',width : 5}
-                    ,new Ext.Button({
-                       icon    : 'img/control_fastforward_blue.png'
-                      ,handler : function() {
-                        shiftSlider(1);
-                      }
-                    })
-                    ,{html : '&nbsp;',width : 5}
-                  ]
-                })
-              ]
-            }
             ,listeners : {
               afterrender : function(panel) {
                 if (hideMapToolbar) {
@@ -2307,8 +2265,6 @@ function init() {
                   el.style.width = w;
                   el.style.height = h;
                   map.updateSize();
-                  Ext.getCmp('timeSlider').setWidth(w - 75);
-                  Ext.getCmp('sliderTics').setWidth(w - 48);
                 }
               }
             }
@@ -2884,19 +2840,9 @@ function initMap() {
         Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().selectAll();
         Ext.getCmp('glidersProvidersGridPanel').setHeight(Math.min(glidersMetadataStore.getCount(),8) * 21.1 + 26 + 11 + 25);
         var ymd = json.timespan.start.split(' ')[0].split('-');
-        // rutger's json has a min date of 2005 which is also scripp's min -- lucky me
-        makeAvailableTimes(new Date(ymd[0],ymd[1] - 1,ymd[2]));
-        Ext.getCmp('timeSlider').suspendEvents();
-        Ext.getCmp('timeSlider').setMaxValue(availableTimes.length - 1);
-        Ext.getCmp('timeSlider').resumeEvents();
-        configTimeSlider(true);
         var sto = Ext.getCmp('glidersYearsComboBox').getStore();
-        var years = {}; 
-        for (var i = availableTimes.length - 1; i >= 0; i--) {
-          if (!years[availableTimes[i].getUTCFullYear()]) {
-            years[availableTimes[i].getUTCFullYear()] = true;
-            sto.add(new sto.recordType({year : availableTimes[i].getUTCFullYear()}));
-          }
+        for (var i = json.timespan.end.split(' ')[0].split('-')[0]; i >= json.timespan.start.split(' ')[0].split('-')[0]; i--) {
+          sto.add(new sto.recordType({year : i}));
         }
         sto.insert(0,(new sto.recordType({year : 'Currently deployed'})));
         if (sto.getCount() > 1) {
@@ -2905,9 +2851,6 @@ function initMap() {
         syncGliders(true);
       }
     });
-  }
-  else {
-    configTimeSlider(true);
   }
 }
 
@@ -4094,7 +4037,7 @@ function syncObs(l,force) {
                 f.attributes.data                = obs.data[loc];
                 f.attributes.active              = obs.data[loc][loc][i].active;
                 if (obs.data[loc][loc][i].t) {
-                  f.attributes.maxT = obs.data[loc][loc][i].t[obs.data[loc][loc][i].t.length - 1]
+                  f.attributes.maxT = obs.data[loc][loc][i].t[obs.data[loc][loc][i].t.length - 1];
                 }
                 f.attributes.graphicWidth        = 20;
                 f.attributes.graphicWidthBig     = 20 * 2;
@@ -4655,226 +4598,6 @@ function printSaveMap(printSave) {
 function printErrorAlert() {
   Ext.MessageBox.hide();
   Ext.Msg.alert('Print/save error',"We're sorry, but a print/save error has occured.  Please try again.");
-}
-
-function makeAvailableTimes(dMin) {
-  // if no dMin is passed, the slider will center on now() and go out numTics's worth of ticIntervalHours in each direction
-  // otherwise, it will put dMin at the left side and now() at the right
-  dNow = new Date();
-  dNow.setMinutes(0);
-  dNow.setSeconds(0);
-
-  // since we want a '|' in the middle of the time slider, the LCD is 12h
-  var dNow12Hours = new Date(dNow.getTime());
-  dNow12Hours.setHours(12);
-
-  var ticIntervalHours = 12;
-  var numTics          = 4;
-  availableTimes       = [];
-  if (dMin) {
-    var dH = (dNow.getTime() - dMin.getTime()) / (1000 * 60 * 60);
-    if (dH > 24 * 7) {
-      numTics          = 10;
-      ticIntervalHours = Math.ceil(dH / (10 * 2));
-    }
-    for (var i = -2 * numTics; i <= 0; i++) {
-      availableTimes.push(new Date(dNow12Hours.getTime() + ticIntervalHours * i * 60 * 60 * 1000));
-    }
-  }
-  else {
-    for (var i = -numTics; i <= numTics; i++) {
-      availableTimes.push(new Date(dNow12Hours.getTime() + ticIntervalHours * i * 60 * 60 * 1000));
-    }
-  }
-
-  if (dNow.getHours() >= 12 || dMin) {
-    dNow.setHours(12);
-  }
-  else {
-    dNow.setHours(0);
-  }
-}
-
-function configTimeSlider(initOnly) {
-  if (!initOnly) {
-    makeAvailableTimes();
-  }
-
-  var tbody = document.getElementById('sliderTicsTable').getElementsByTagName('tbody')[0];
-  if (tbody.hasChildNodes()) {
-    while (tbody.childNodes.length >= 1) {
-      tbody.removeChild(tbody.firstChild);
-    }
-  }
-  var tr = document.createElement('tr');
-  for (var i = 0; i < availableTimes.length; i++) {
-    var td = document.createElement('td');
-    if (i % 2 == 1) {
-      td.innerHTML = zeroPad((availableTimes[i].getMonth() + 1),2) + '/' + zeroPad(availableTimes[i].getDate(),2);
-      // if the time span > 6 months and the first and last years are different, show mm/yyyy instead of mm/dd
-      if (
-        (availableTimes[availableTimes.length - 1].getTime() - availableTimes[0].getTime()) > 1000 * 60 * 60 * 24 * 30 * 6
-        && availableTimes[availableTimes.length - 1].getFullYear() != availableTimes[0].getFullYear()
-      ) {
-        td.innerHTML = zeroPad((availableTimes[i].getMonth() + 1),2) + '/' + availableTimes[i].getFullYear();
-      }
-    }
-    else {
-      td.innerHTML = '|';
-      td.style.color = '#6F94D2';
-      td.style.width = '1px';
-    }
-    tr.appendChild(td);
-    if (availableTimes[i].getTime() == dNow.getTime()) {
-      Ext.getCmp('timeSlider').suspendEvents();
-      if (config == 'gliders') {
-        Ext.getCmp('timeSlider').setValue(1,i);
-        var minT;
-        for (j = availableTimes.length - 1; j >= 0; j--) {
-          // set the slider a max of 1 year away from now
-          if (!minT && dNow.getTime() - availableTimes[j].getTime() > 365 * 24 * 60 * 60 * 1000) {
-            minT = j + 1;
-          }
-        }
-        if (!minT || minT >= availableTimes.length) {
-          minT = 0;
-        }
-        Ext.getCmp('timeSlider').setValue(0,minT);
-        if (config == 'gliders') {
-          syncGliders(true);
-        }
-      }
-      else {
-        Ext.getCmp('timeSlider').setValue(i);
-      }
-      Ext.getCmp('timeSlider').resumeEvents();
-      if (!initOnly) {
-        var dStr = dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00';
-        for (var j = 0; j < map.layers.length; j++) {
-          // WMS layers only
-          if (map.layers[j].DEFAULT_PARAMS) {
-            map.layers[j].mergeNewParams({TIME : dStr,unique : new Date().getTime()});
-            if (OpenLayers.Util.getParameters(map.layers[j].getFullRequestString({}))['COLORSCALERANGE']) {
-              map.layers[j].mergeNewParams({COLORSCALERANGE : getColorScaleRange()});
-            }
-            // record the action on google analytics
-            if (mainStore.find('name',map.layers[i].name) >= 0) {
-              pageTracker._trackEvent('timeSlider',mainStore.getAt(mainStore.find('name',map.layers[i].name)).get('displayName'));
-            }
-          }
-        }
-      }
-    }
-  }
-  tbody.appendChild(tr);
-}
-
-function makeTimeSlider() {
-  var slider;
-  if (config == 'gliders') {
-    slider = new Ext.slider.MultiSlider({
-       increment   : 1
-      ,minValue    : 0
-      ,maxValue    : availableTimes.length - 1
-      ,values      : [0,0]
-      ,width       : 100
-      ,id          : 'timeSlider'
-      ,plugins     : new Ext.slider.Tip({getText : function(thumb){
-        // time span longer than 2wks, we don't care about hours
-        if ((availableTimes[availableTimes.length - 1].getTime() - availableTimes[0].getTime()) > 1000 * 60 * 60 * 24 * 14) {
-          return shortDateStringNoTime(availableTimes[thumb.value]);
-        }
-        else {
-          return shortDateString(availableTimes[thumb.value]);
-        }
-      }})
-      ,listeners   : {change : function(slider) {
-        if (config == 'gliders' && availableTimes[slider.getValues()[1]].getTime() - availableTimes[slider.getValues()[0]].getTime() > 365 * 24 * 60 * 60 * 1000) {
-          if (!Ext.getCmp('sliderAlertTimespan')) {
-            new Ext.Window({
-               id              : 'sliderAlertTimespan'
-              ,resizable       : false
-              ,constrainHeader : true
-              ,bodyStyle       : 'background:white;padding:5'
-              ,title           : 'Time request error'
-              ,html            : "We're sorry, but the time span you have requested isn't supported.<br>The maximum time window we support is 1 year.  Please try again."
-              ,listeners       : {
-                afterrender : function(win) {
-                  win.setPosition(win.getPosition[0],slider.getPosition()[1] - win.getHeight() - 25);
-                }
-                ,hide       : function(win) {
-                  win.destroy();
-                }
-              }
-            }).show();
-          }
-        }
-        else {
-          if (Ext.getCmp('sliderAlertTimespan')) {
-            Ext.getCmp('sliderAlertTimespan').hide();
-          }
-          if (config == 'gliders') {
-            syncGliders(true);
-          }
-        }
-      }}
-    })
-  }
-  else {
-    slider = new Ext.Slider({
-       increment   : 1
-      ,minValue    : 0
-      ,maxValue    : availableTimes.length - 1
-      ,width       : 100
-      ,id          : 'timeSlider'
-      ,plugins     : new Ext.slider.Tip({getText : function(thumb){
-        // time span longer than 2wks, we don't care about hours
-        if ((availableTimes[availableTimes.length - 1].getTime() - availableTimes[0].getTime()) > 1000 * 60 * 60 * 24 * 14) {
-          return shortDateStringNoTime(availableTimes[thumb.value]);
-        }
-        else {
-          return shortDateString(availableTimes[thumb.value]);
-        }
-      }})
-      ,listeners   : {change : function(slider,val) {
-        var dStr = availableTimes[val].getUTCFullYear() + '-' + String.leftPad(availableTimes[val].getUTCMonth() + 1,2,'0') + '-' + String.leftPad(availableTimes[val].getUTCDate(),2,'0') + 'T' + String.leftPad(availableTimes[val].getUTCHours(),2,'0') + ':00';
-        if (document.getElementById('timestampLabel')) {
-          document.getElementById('timestampLabel').innerHTML = shortDateString(availableTimes[val]);
-        }
-        for (var i = 0; i < map.layers.length; i++) {
-          // WMS layers only
-          if (map.layers[i].DEFAULT_PARAMS) {
-            map.layers[i].mergeNewParams({TIME : dStr});
-            if (OpenLayers.Util.getParameters(map.layers[i].getFullRequestString({}))['COLORSCALERANGE']) {
-              map.layers[i].mergeNewParams({COLORSCALERANGE : getColorScaleRange()});
-            }
-            // record the action on google analytics
-            if (mainStore.find('name',map.layers[i].name) >= 0) {
-              pageTracker._trackEvent('timeSlider',mainStore.getAt(mainStore.find('name',map.layers[i].name)).get('displayName'));
-            }
-          }
-        }
-      }}
-    })
-  }
-
-  return slider;
-}
-
-function shiftSlider(n) {
-  var slider = Ext.getCmp('timeSlider');
-  if (config == 'gliders') {
-    // move both thumbs to shift the time window
-    if (slider.getValues()[0] + n >= slider.minValue && slider.getValues()[1] + n <= slider.maxValue) {
-      slider.suspendEvents();
-      slider.setValue(0,slider.getValues()[0] + n);
-      slider.resumeEvents();
-      slider.setValue(1,slider.getValues()[1] + n);
-    } 
-  }
-  else {
-    slider.setValue(slider.getValue() + n);
-  }
 }
 
 function getDateRange() {
