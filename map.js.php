@@ -2963,10 +2963,19 @@ function setLayerInfo(layerName,on) {
         Ext.getCmp('info.popup.' + rec.get('name')).destroy();
       }
     }
+    else if (layerName == rec.get('name') && rec.get('info') == 'off') {
+      rec.set('info','off');
+      rec.commit();
+      var el = Ext.getCmp('info.popup.' + layerName);
+      if (el) {
+        el.hide();
+        return;
+      }
+    }
   });
 
   if (on && (!Ext.getCmp('info.popup.' + layerName) || !Ext.getCmp('info.popup.' + layerName).isVisible())) {
-    var customize = '<a class="blue-href-only" href="javascript:setLayerSettings(\'' + mainRec.get('name') + '\')"><img width=32 height=32 src="img/settings_tools_big.png"><br>Customize<br>appearance</a>';
+    var customize = '<a class="blue-href-only" href="javascript:setLayerSettings(\'' + mainRec.get('name') + '\');setLayerInfo(\'' + layerName + '\',false)"><img width=32 height=32 src="img/settings_tools_big.png"><br>Customize<br>appearance</a>';
     if (new RegExp(/glider|asset/).test(mainRec.get('type'))) {
       customize = '<img width=32 height=32 src="img/settings_tools_big_disabled.png"><br><font color="lightgray">Customize<br>appearance</font>';
     }
@@ -2984,9 +2993,9 @@ function setLayerInfo(layerName,on) {
         ,height   : 75
         ,bodyStyle : 'padding:6'
         ,items    :  [
-           {columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : '<a class="blue-href-only" href="javascript:zoomToBbox(\'' + mainRec.get('bbox') + '\')"><img width=32 height=32 src="img/find_globe_big.png"><br>Find<br>on map</a>'}}}
+           {columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : '<a class="blue-href-only" href="javascript:zoomToBbox(\'' + mainRec.get('bbox') + '\');setLayerInfo(\'' + layerName + '\',false)"><img width=32 height=32 src="img/find_globe_big.png"><br>Find<br>on map</a>'}}}
           ,{columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : customize}}}
-          ,{columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : '<a class="blue-href-only" href="javascript:showLayerInfo(\'' + mainRec.get('name') + '\')"><img width=32 height=32 src="img/information_big.png"><br>View<br>details</a>'}}}
+          ,{columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : '<a class="blue-href-only" href="javascript:showLayerInfo(\'' + mainRec.get('name') + '\');setLayerInfo(\'' + layerName + '\',false)"><img width=32 height=32 src="img/information_big.png"><br>View<br>details</a>'}}}
         ]
       }
       ,listeners : {
@@ -3694,7 +3703,7 @@ function addTMS(l) {
         if (OpenLayers.Util.isArray(url)) {
             url = this.selectUrl(path, url);
         }
-        return url + path + '?time=' + this.options.time;;
+        return url + path + '?time=' + this.options.time;
       }
     }
   );
@@ -4069,7 +4078,7 @@ function syncObs(l,force) {
       ,callback : function(r) {
         map.layers[lyrIdx].removeFeatures(map.layers[lyrIdx].features);
         var obs = new OpenLayers.Format.JSON().read(r.responseText);
-        obsBbox[l.name] = new OpenLayers.Bounds(obs.bbox[0],obs.bbox[1],obs.bbox[2],obs.bbox[3]).transform(proj4326,map.getProjectionObject());;
+        obsBbox[l.name] = new OpenLayers.Bounds(obs.bbox[0],obs.bbox[1],obs.bbox[2],obs.bbox[3]).transform(proj4326,map.getProjectionObject());
         obsZoom[l.name] = obs.zoom;
         var boundsEqual = true;
         for (var loc in obs.data) {
