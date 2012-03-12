@@ -4682,7 +4682,7 @@ function printErrorAlert() {
 function getDateRange() {
   if (config == 'gliders' && Ext.getCmp('glidersYearsComboBox') && Ext.getCmp('glidersYearsComboBox').getStore().getCount() > 0) {
     var min = new Date(Ext.getCmp('glidersYearsComboBox').getValue(),0,0,0,0,0,0);
-    var max = new Date(Ext.getCmp('glidersYearsComboBox').getValue() + 1,0,0,0,0,0,0);
+    var max = new Date(Ext.getCmp('glidersYearsComboBox').getValue() * 1 + 1,0,0,0,0,0,0);
     if (new RegExp(/^Current/).test(Ext.getCmp('glidersYearsComboBox').getValue())) {
       min = new Date(new Date().getTime() - 1000 * 3600 * 24 * 5);
       max = new Date();
