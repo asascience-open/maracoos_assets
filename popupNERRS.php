@@ -62,7 +62,7 @@
   else {
     array_unshift($o,sprintf("<tr><td style='text-align:center' colspan=2><b>%s %s</b></td></tr>",date('M d G:i',strtotime($t)),'LST'));
     foreach ($stations as $s) {
-      array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='http://cdmo.baruch.sc.edu/QueryPages/realtime.cfm?Station_Code=$s'>More observations and station information</a></td></tr>");
+      array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='http://nerrsdata.org/get/realTime.cfm?stationCode=$s'>More observations and station information</a></td></tr>");
     }
     echo json_encode(Array('html' => '<table class="obsDetails">'.implode('',$o).'</table>'));
   }
