@@ -25,7 +25,7 @@ case "":
         ?>
 <html>
   <head>
-    <title>HMI Workboat Explorer</title>
+    <title>ECOP Explorer</title>
     <link href="http://horizonmarine.com/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body onload="document.getElementById('username').focus()">

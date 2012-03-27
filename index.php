@@ -3,12 +3,21 @@
   session_start();
   require_once('auth.php');
 
+  $title  = 'MARACOOS Assets';
+  $_SESSION['config'] = isset($_REQUEST['config']) ? $_REQUEST['config'] : '';
+  if (isset($_REQUEST['config'])) {
+    switch ($_SESSION['config']) {
+      case 'gliders' : $title = 'IOOS Glider'; break;
+      case 'ecop'    : $title = 'ECOP'; break;
+    }
+  }
+
   if ($_REQUEST['config'] == 'ecop' && !checkLoggedin()) {
 ?>
 <html>
   <head>
-    <title>HMI Workboat Explorer</title>
-    <link href="http://horizonmarine.com/style.css?v1.0" rel="stylesheet" type="text/css" />
+    <title><?php echo $title?></title>
+    <link href="http://horizonmarine.com/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <div id="mainwrap">
@@ -28,16 +37,6 @@
 
 <html>
   <head>
-<?php
-  $title  = 'MARACOOS Assets';
-  $_SESSION['config'] = isset($_REQUEST['config']) ? $_REQUEST['config'] : '';
-  if (isset($_REQUEST['config'])) {
-    switch ($_SESSION['config']) {
-      case 'gliders' : $title = 'IOOS Glider'; break;
-      case 'ecop'    : $title = 'ECOP'; break;
-    }
-  }
-?>
     <title><?php echo $title?> Explorer</title>
     <link rel="stylesheet" type="text/css" href="./js/ext-3.3.0/resources/css/ext-all.css"/>
     <link rel="stylesheet" type="text/css" href="style.css?v=4"/>
