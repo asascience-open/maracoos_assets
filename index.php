@@ -128,7 +128,8 @@
         defaultZoom    = 2;
       }
       else if (config == 'ecop') {
-        introPanelHtmlOverride  = '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://www.uscg.mil/"><img title="Go to the U.S.C.G. home page" src="img/uscg.jpg"></a></td></tr></table>';
+        introPanelHtmlOverride  = '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://www.asascience.com/"><img title="Go to ASA\'s home page" src="img/asa.jpg"></a></td></tr></table>';
+        introPanelHeightOverride  = 52;
         hideModelsGridPanel       = true;
         hideAssetsGridPanel       = true;
         hideObservationsGridPanel = true;
@@ -137,6 +138,7 @@
         hideWavesGridPanel        = false;
         hideTemperaturesGridPanel = false;
         hideOtherGridPanel        = false;
+        showHelpOnStartup         = false;
         defaultLayers             = {
            'WW3 Wave Hgt||waves'  : true
           ,'NCOM Model||currents' : true
