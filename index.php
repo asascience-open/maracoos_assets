@@ -17,9 +17,46 @@
 <html>
   <head>
     <title><?php echo $title?></title>
+    <link media="all" type="text/css" rel="stylesheet" href="http://asascience.com/css/all.css" /> 
+    <style>
+      #login {
+        position    : absolute;
+        top         : 11px;
+        right       : 5px;
+        font-size   : 14px;
+        font-weight : bold;
+        color       : #EBF1F6;
+      }
+      A:link {text-decoration: underline; color:#AEBB9B}
+      A:visited {text-decoration: underline; color:#AEBB9B}
+      A:active {text-decoration: underline; color:#AEBB9B}
+      A:hover {text-decoration: underline; color: #68BD45;}
+    </style>
   </head>
   <body>
-    You are not logged in. Login <a style="color:#E3CC6A" href="login.php">here</a>.</div>
+    <div class="page">
+      <div id="main" class="home-page"> 
+        <div class="bg-holder">
+                    <div id="header"> 
+                        <div class="opacity-holder"> 
+                            <!-- map box --> 
+                            <div class="map-box"> 
+                                <!-- map --> 
+                                <div class="map">&nbsp;</div> 
+                                <!-- city nav --> 
+                            </div>
+                            <br />
+                            <a href="#" class="logo" id="logo-us" style="display:block;"><span>ASA | science. services. solutions.</span></a>
+                            <div class="menu-line"> 
+                              <div id="login">
+You are not logged in. Login <a href="login.php">here</a>.
+                              </div>
+                            </div>
+                         </div>
+                    </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
 <?php
@@ -286,7 +323,7 @@
     </script>
     <script type="text/javascript">
       try{
-        var pageTracker = _gat._getTracker("UA-25332621-1");
+        var pageTracker = _gat._getTracker("UA-25332621-x");
         pageTracker._trackPageview();
       } catch(err) {}
     </script>

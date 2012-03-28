@@ -26,8 +26,40 @@ case "":
 <html>
   <head>
     <title>ECOP Explorer</title>
+    <link media="all" type="text/css" rel="stylesheet" href="http://asascience.com/css/all.css" />
+    <style>
+      #login {
+        position    : absolute;
+        top         : 3px;
+        right       : 1px;
+      }
+      #login td {
+        font-size   : 14px;
+        font-weight : bold;
+        color       : #EBF1F6;
+      }
+      A:link {text-decoration: underline; color:#AEBB9B}
+      A:visited {text-decoration: underline; color:#AEBB9B}
+      A:active {text-decoration: underline; color:#AEBB9B}
+      A:hover {text-decoration: underline; color: #68BD45;}
+    </style>
   </head>
   <body onload="document.getElementById('username').focus()">
+    <div class="page">
+      <div id="main" class="home-page">
+        <div class="bg-holder">
+                    <div id="header">
+                        <div class="opacity-holder">
+                            <!-- map box -->
+                            <div class="map-box">
+                                <!-- map -->
+                                <div class="map">&nbsp;</div>
+                                <!-- city nav -->
+                            </div>
+                            <br />
+                            <a href="#" class="logo" id="logo-us" style="display:block;"><span>ASA | science. services. solutions.</span></a>
+                            <div class="menu-line">
+                              <div id="login">
             <form NAME="login1" ACTION="login.php?do=login" METHOD="POST">
               <input TYPE="hidden" name="returnurl" value="<?php $returnurl?>">
               <table><tr>
@@ -39,6 +71,13 @@ case "":
                 <td><input style="padding:1px;border: 1px solid #343747;" TYPE="SUBMIT" name="submit" value="Login"></td>
               </tr></table>
             </form>
+                              </div>
+                            </div>
+                         </div>
+                    </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
     <?php
