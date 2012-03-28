@@ -17,17 +17,9 @@
 <html>
   <head>
     <title><?php echo $title?></title>
-    <link href="http://horizonmarine.com/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div id="mainwrap">
-      <div id="header">
-        <div id="horizonlogo"  onclick="location.href='http://www.horizonmarine.com';"></div>
-        <div id="nav">
-          <div id="bottomNav"><font color='#FBF1F1'>You are not logged in. Login <a style="color:#E3CC6A" href="login.php">here</a>.</font></div>
-        </div>
-      </div>
-    </div>
+    You are not logged in. Login <a style="color:#E3CC6A" href="login.php">here</a>.</div>
   </body>
 </html>
 <?php
