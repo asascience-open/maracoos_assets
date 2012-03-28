@@ -430,7 +430,7 @@ function init() {
       ,[
          'asset'
         ,'MDDNR'
-        ,'MDDNR stations'
+        ,'Maryland DNR stations'
         ,'off'
         ,defaultLayers['MDDNR'] ? 'on' : 'off'
         ,''
