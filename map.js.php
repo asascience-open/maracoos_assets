@@ -46,6 +46,7 @@ var obsMinZoom = {
   ,'USGS'        : 5 + 5
   ,'Ship'        : 0 + 5
   ,'NERRS'       : 0 + 5
+  ,'MDDNR'       : 0 + 5
 //  ,'Weatherflow' : 3 + 5
   ,'HRECOS'      : 0
   ,'HF Radar'    : 0
@@ -422,6 +423,35 @@ function init() {
         ,''
         ,''
         ,'-75,40.5,-73,43'
+        ,''
+        ,''
+        ,''
+      ]
+      ,[
+         'asset'
+        ,'MDDNR'
+        ,'MDDNR stations'
+        ,'off'
+        ,defaultLayers['MDDNR'] ? 'on' : 'off'
+        ,''
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/MDDNR.html')))?>'
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'-78,35.5,-62,44'
         ,''
         ,''
         ,''
@@ -1521,7 +1551,7 @@ function init() {
   var assetsGridPanel = new Ext.grid.GridPanel({
      id               : 'assetsGridPanel'
     ,hidden           : hideAssetsGridPanel
-    ,height           : assetsStore.getCount() * 21.1 + 26 + 11 + 25
+    ,height           : assetsStore.getCount() * 21.2 + 26 + 11 + 25
     ,title            : 'Assets'
     ,collapsible      : true
     ,store            : assetsStore
@@ -2630,6 +2660,7 @@ function initMap() {
     syncObs({name : 'USGS'});
     syncObs({name : 'Ship'});
     syncObs({name : 'NERRS'});
+    syncObs({name : 'MDDNR'});
 //    syncObs({name : 'Weatherflow'});
     syncObs({name : 'HRECOS'});
     syncObs({name : 'HF Radar'});
@@ -2819,6 +2850,10 @@ function initMap() {
     addObs({
        name       : 'Ship'
       ,visibility : typeof defaultLayers['Ship'] != 'undefined'
+    });
+    addObs({
+       name       : 'MDDNR'
+      ,visibility : typeof defaultLayers['MDDNR'] != 'undefined'
     });
     addObs({
        name       : 'NERRS'

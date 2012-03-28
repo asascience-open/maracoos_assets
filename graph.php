@@ -75,6 +75,20 @@
       }
     }
   }
+  // mddnr isn't either
+  else if (isset($_REQUEST['MDDNR'])) {
+    $a = getMDDNR(substr($_SERVER["REQUEST_URI"],strpos($_SERVER["REQUEST_URI"],'&MDDNR=')+7));
+    foreach ($a['data'][$_REQUEST['name']] as $k => $v) {
+      $newVal = convertUnits($v['value'],$v['units'],$_REQUEST['uom'] == 'english');
+      $val    = $newVal[0]['val'];
+      $uom    = $newVal[0]['uom'];
+      if (count($newVal) == 2 && isset($_REQUEST['uomB'])) {
+        $val = $newVal[1]['val'];
+        $uom = $newVal[1]['uom'];
+      }
+      $data[date('c',$k)] = $val;
+    }
+  }
   else {
     if ($_REQUEST['responseFormat'] != 'text/csv') {
       // This is INSANE but simplexml_load_* seems to bomb if there isn't a COMMENT STRING before the 1st entry.  WTF?!

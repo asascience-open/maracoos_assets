@@ -111,7 +111,31 @@
             ."?id=".$d[$col2idx['id']]
             ."&lon=".$d[$col2idx['lon']]
             ."&lat=".$d[$col2idx['lat']]
+        ));
+      }
+    }
+    fclose($f);
+  }
 
+  if ($_REQUEST['provider'] == 'MDDNR') {
+    $provider = 'MDDNR';
+    $f = fopen("http://mddnr.chesapeakebay.net/newmontech/contmon/MACOORA_Station.cfm",'r');
+    $col2idx = array();
+    $data = array();
+    while (($d = fgetcsv($f)) !== FALSE) {
+      if (count($col2idx) == 0) {
+        foreach ($d as $k => $v) {
+          $col2idx[$v] = count($col2idx);
+        }
+      }
+      else {
+        addToStack($metadata,$bbox,$d[$col2idx['Long']],$d[$col2idx['Lat']],$provider,array(
+           'id'       => $d[$col2idx['Shortname']]
+          ,'descr'    => sprintf("$provider Station %s",$d[$col2idx['Station_name']])
+          ,'url'      => "popup$provider.php"
+            ."?id=".$d[$col2idx['Shortname']]
+            ."&lon=".$d[$col2idx['Long']]
+            ."&lat=".$d[$col2idx['Lat']]
         ));
       }
     }
