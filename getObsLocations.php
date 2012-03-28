@@ -187,7 +187,7 @@
   }
 
   if ($_REQUEST['provider'] == 'Gliders') {
-    $json = json_decode(file_get_contents('http://marine.rutgers.edu/cool/auvs/deployments.php?t0='.date("Y-m-d H:i",time() - 365 / 2 * 24 * 3600)));
+    $json = json_decode(file_get_contents('http://marine.rutgers.edu/cool/auvs/track.php?service=track&&region=mab&t0='.date("Y-m-d H:i",time() - 365 / 2 * 24 * 3600)));
     foreach ($json as $k => $v) {
       $d = array(
          'id'     => ''
@@ -276,8 +276,7 @@
       $type = 'unknown';
     }
 
-    $json          = array();
-    $json_metadata = array();
+    $json = array();
     if ($type == 'spray') {
       $json = json_decode(file_get_contents(str_replace(' ','%20','http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/')).'/gliders_scripps.php?t0='.$_REQUEST['t0'].'&t1='.$_REQUEST['t1'])));
     }
@@ -285,8 +284,6 @@
       $json = json_decode(file_get_contents(str_replace(' ','%20','http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/')).'/gliders_uw.php?t0='.$_REQUEST['t0'].'&t1='.$_REQUEST['t1'])));
     }
     else {
-      // rutgers keeps main glider metdata separate
-      $json_metadata = json_decode(file_get_contents(str_replace(' ','%20',"http://marine.rutgers.edu/cool/auvs/deployments.php?t0=".$_REQUEST['t0']."&t1=".$_REQUEST['t1'].$_REQUEST['filterProvider'])),true);
       $json = json_decode(file_get_contents(str_replace(' ','%20',"http://marine.rutgers.edu/cool/auvs/track.php?service=track&type[]=$type&t0=".$_REQUEST['t0']."&t1=".$_REQUEST['t1'].$_REQUEST['filterProvider'])));
     }
 
@@ -322,9 +319,6 @@
         else if ($depKey == 'url') {
           $d['url'] = $depVal;
         }
-      }
-      if ($json_metadata[$k]['url'] != '') {
-        $d['url'] = $json_metadata[$k]['url'];
       }
       if (!$d['active']) {
         $d['descr'] .= ' (inactive)';
