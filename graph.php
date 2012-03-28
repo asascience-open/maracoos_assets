@@ -1,5 +1,4 @@
 <?php
-header('Content-Type:text/plain');
   include_once('util.php');
 
   date_default_timezone_set('UTC');
