@@ -214,7 +214,7 @@
                'value' => $csvData[$col2idx[$k]]
               ,'units' => $col2uom[$k]
             );
-            if (!preg_match("/Station|Date|Time/",$k)) {
+            if (!preg_match("/Station|Date|Time|DO/",$k)) {
               $maxT = strtotime($csvData[$col2idx['Date+Time (EST)']].' EST');
             }
           }
