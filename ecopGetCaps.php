@@ -8,7 +8,7 @@
     ,'other'       => array()
   );
   $layerStack = array();
-  $xml = @simplexml_load_file('http://coastmap.com/ecop/wms.aspx?service=WMS-999&version=1.1.1&request=getcapabilities');
+  $xml = @simplexml_load_file('http://coastmap.com/ecop/wms.aspx?service=WMS&version=1.1.1&request=getcapabilities&clientKey='.$_COOKIE['clientKey']);
   foreach ($xml->{'Capability'}[0]->{'Layer'}[0]->{'Layer'} as $l) {
     $a = array(
        'title'    => sprintf("%s",$l->{'Title'})

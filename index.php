@@ -50,7 +50,7 @@
                             <a href="#" class="logo" id="logo-us" style="display:block;"><span>ASA | science. services. solutions.</span></a>
                             <div class="menu-line"> 
                               <div id="login">
-You are not logged in. Login <a href="login.php">here</a>.
+You are not logged in. Login <a href="login.php">HERE</a>.
                               </div>
                             </div>
                          </div>
@@ -324,7 +324,7 @@ You are not logged in. Login <a href="login.php">here</a>.
     </script>
     <script type="text/javascript">
       try{
-        var pageTracker = _gat._getTracker("UA-25332621-x");
+        var pageTracker = _gat._getTracker("UA-25332621-1");
         pageTracker._trackPageview();
       } catch(err) {}
     </script>

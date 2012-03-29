@@ -2070,6 +2070,9 @@ function init() {
       });
     }}
     ,tbar : {items : [
+<?php
+  if ($_SESSION['config'] != 'ecop') {
+?>
       {
          icon    : 'img/Places-bookmarks-icon.png'
         ,text    : 'Bookmark'
@@ -2155,6 +2158,22 @@ function init() {
           }
         ]}
       }
+<?php
+  }
+  else {
+?>
+       '->'
+      ,{
+         icon    : 'img/door_out.png'
+        ,text    : 'Logout'
+        ,tooltip : 'Logout of this map session'
+        ,handler : function() {
+          document.location = 'logout.php';
+        }
+      }
+<?php
+  }
+?>
     ]}
   });
 
@@ -2626,6 +2645,13 @@ function initMap() {
   });
 
   map.setCenter(new OpenLayers.LonLat(defaultCenter[0],defaultCenter[1]),defaultZoom);
+<?php
+  if (($_SESSION['config'] == 'ecop') && isset($_COOKIE['bounds'])) {
+?>
+  map.zoomToExtent(new OpenLayers.Bounds(<?php echo $_COOKIE['bounds']?>).transform(proj4326,proj900913));
+<?php
+  }
+?>
 
   var navControl = new OpenLayers.Control.NavToolbar();
   map.addControl(navControl);

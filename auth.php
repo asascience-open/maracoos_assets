@@ -34,7 +34,15 @@ function confirmUser($username,$password)
     // $md5pass = md5($password); // Not needed any more as pointed by ted_chou12
     /* Validate from the database but as for now just demo username and password */
 
-    return true;
+    $xml = simplexml_load_file("http://coastmap.com/ecop/wms.aspx?&request=GetUserInfo&version=1.1.1&username=$username&pw=$password");
+    if (array_key_exists('Error',$xml)) {
+      return false;
+    }
+    else {
+      setcookie("clientKey",$xml->{'clientKey'});
+      setcookie("bounds"   ,$xml->{'bounds'});
+      return true;
+    }
 }
 
 function checkLoggedin()
