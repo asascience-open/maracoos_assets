@@ -3057,9 +3057,9 @@ function setLayerInfo(layerName,on) {
         ,height   : 75
         ,bodyStyle : 'padding:6'
         ,items    :  [
-           {columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : '<a class="blue-href-only" href="javascript:zoomToBbox(\'' + mainRec.get('bbox') + '\');setLayerInfo(\'' + layerName + '\',false)"><img width=32 height=32 src="img/find_globe_big.png"><br>Find<br>on map</a>'}}}
+           {columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : '<a class="blue-href-only" href="javascript:zoomToBbox(\'' + mainRec.get('bbox') + '\');setLayerInfo(\'' + layerName + '\',false)"><img width=32 height=32 src="img/find_globe_big.png"><br>Zoom<br>to layer</a>'}}}
           ,{columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : customize}}}
-          ,{columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : '<a class="blue-href-only" href="javascript:showLayerInfo(\'' + mainRec.get('name') + '\');setLayerInfo(\'' + layerName + '\',false)"><img width=32 height=32 src="img/information_big.png"><br>View<br>details</a>'}}}
+          ,{columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : '<a class="blue-href-only" href="javascript:showLayerInfo(\'' + mainRec.get('name') + '\');setLayerInfo(\'' + layerName + '\',false)"><img width=32 height=32 src="img/document_image.png"><br>Layer<br>information</a>'}}}
         ]
       }
       ,listeners : {
