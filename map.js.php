@@ -2997,8 +2997,11 @@ function initMap() {
 function showLayerInfo(layerName) {
   if (!activeInfoWindows[layerName]) {
     var idx = mainStore.find('name',layerName);
+    var pos = getOffset(document.getElementById('info.' + layerName));
     activeInfoWindows[layerName] = new Ext.Window({
        width      : 400
+      ,x          : pos.left
+      ,y          : pos.top
       ,autoScroll : true
       ,constrainHeader : true
       ,title      : mainStore.getAt(idx).get('displayName').split('||')[0] + ' :: info'
@@ -3072,6 +3075,7 @@ function setLayerInfo(layerName,on) {
 
 function setLayerSettings(layerName) {
   if (!activeSettingsWindows[layerName]) {
+    var pos = getOffset(document.getElementById('info.' + layerName));
     var idx = mainStore.find('name',layerName);
     var height = 26;
     var id = Ext.id();
@@ -3435,6 +3439,8 @@ function setLayerSettings(layerName) {
 
     activeSettingsWindows[layerName] = new Ext.Window({
        bodyStyle : 'background:white;padding:5'
+      ,x         : pos.left
+      ,y         : pos.top
       ,resizable : false
       ,width     : 270
       ,constrainHeader : true

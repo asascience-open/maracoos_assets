@@ -599,3 +599,14 @@ function greatCircle(lon1,lat1,lon2,lat2) {
           Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLon);
   return Math.atan2(y, x).toDeg();
 }
+
+function getOffset( el ) {
+    var _x = 0;
+    var _y = 0;
+    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+        _x += el.offsetLeft - el.scrollLeft;
+        _y += el.offsetTop - el.scrollTop;
+        el = el.offsetParent;
+    }
+    return { top: _y, left: _x };
+}
