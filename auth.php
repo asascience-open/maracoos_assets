@@ -36,9 +36,11 @@ function confirmUser($username,$password)
 
     $xml = simplexml_load_file("http://coastmap.com/ecop/wms.aspx?&request=GetUserInfo&version=1.1.1&username=$username&pw=$password");
     if (array_key_exists('Error',$xml)) {
+      setcookie("failedLogin",true);
       return false;
     }
     else {
+      setcookie("failedLogin");
       setcookie("clientKey",$xml->{'clientKey'});
       setcookie("bounds"   ,$xml->{'bounds'});
       return true;
@@ -58,7 +60,13 @@ function checkLoggedin()
         }
         else
         {
-            clearsessionscookies();
+            if ($_COOKIE['failedLogin']) {
+              clearsessionscookies();
+              setcookie("failedLogin",true);
+            }
+            else {
+              clearsessionscookies();
+            }
             return false;
         }
     }

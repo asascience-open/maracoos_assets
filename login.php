@@ -26,7 +26,7 @@ case "":
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <title>ECOP Explorer</title>
+    <title>CoastMap</title>
     <link media="all" type="text/css" rel="stylesheet" href="http://asascience.com/css/all.css" />
     <style>
       #login {
@@ -64,6 +64,12 @@ case "":
             <form NAME="login1" ACTION="login.php?do=login" METHOD="POST">
               <input TYPE="hidden" name="returnurl" value="<?php $returnurl?>">
               <table><tr>
+<?php
+  if ($_COOKIE['failedLogin']) {
+    echo '<td>LOGIN ERROR. PLEASE TRY AGAIN.&nbsp;&nbsp;</td>';
+    setcookie("failedLogin");
+  }
+?>
                 <td>Username&nbsp;&nbsp;</td>
                 <td><input TYPE="TEXT" id="username" NAME="username"><td>
                 <td>&nbsp;&nbsp;</td>
@@ -96,7 +102,7 @@ case "login":
     }
     else
     {
-        if(confirmuser($username,md5($password))) // As pointed out by asgard2005
+        if(confirmuser($username,$password)) // As pointed out by asgard2005
         {
             createsessions($username,$password);
             if ($returnurl<>"")

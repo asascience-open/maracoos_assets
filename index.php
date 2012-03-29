@@ -8,7 +8,7 @@
   if (isset($_REQUEST['config'])) {
     switch ($_SESSION['config']) {
       case 'gliders' : $title = 'IOOS Glider'; break;
-      case 'ecop'    : $title = 'ECOP'; break;
+      case 'ecop'    : $title = 'CoastMap'; break;
     }
   }
 
