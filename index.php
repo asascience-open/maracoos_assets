@@ -69,9 +69,9 @@ You are not logged in. Login <a href="login.php">HERE</a>.
   <head>
     <title><?php echo $title?> Explorer</title>
     <link rel="stylesheet" type="text/css" href="./js/ext-3.3.0/resources/css/ext-all.css"/>
-    <link rel="stylesheet" type="text/css" href="style.css?v=4"/>
+    <link rel="stylesheet" type="text/css" href="style.css?v=5"/>
     <!--[if IE]>
-      <link rel="stylesheet" type="text/css" href="style.ie.css?v=4" />
+      <link rel="stylesheet" type="text/css" href="style.ie.css?v=5" />
     <![endif]-->
 
     <script>

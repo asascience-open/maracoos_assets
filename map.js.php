@@ -63,6 +63,7 @@ var popupCtl;
 var hiliteCtl;
 var lyrQueryPts;
 var chartData;
+var chartUrls = {};
 var chartLayerStore;
 var esriOcean;     // special case for this layer
 var dNow = new Date();
@@ -2537,8 +2538,6 @@ function init() {
                     }
                   }
                   lyrQueryPts.features.length > 0 ? Ext.getCmp('requery').show() : Ext.getCmp('requery').hide();
-                  Ext.getCmp('graphAction').setText('Clear query');
-                  Ext.getCmp('graphAction').setIcon('img/trash-icon.png');
                 });
               }
             }
@@ -3545,10 +3544,12 @@ function addLayer(lyr,timeSensitive) {
           Ext.getCmp('chartLayerCombo').clearValue();
         }
       }
+      layerLoadendUnmask();
     }
     checkRealtimeAlert();
   });
   lyr.events.register('loadstart',this,function(e) {
+    layerLoadstartMask();
     var idx = legendsStore.find('name',lyr.name);
     if (idx >= 0) {
       var rec = legendsStore.getAt(idx);
@@ -3615,6 +3616,7 @@ function addLayer(lyr,timeSensitive) {
         });
       }
     }
+    layerLoadendUnmask();
     // record the action on google analytics
     pageTracker._trackEvent('layerView','loadEnd',mainStore.getAt(mainStore.find('name',lyr.name)).get('displayName'));
   });
@@ -3832,12 +3834,14 @@ function addObs(l) {
       if (idx >= 0) {
         legendsStore.removeAt(idx);
       }
+      layerLoadendUnmask(); 
     }
     else {
       syncObs({name : lyr.name});
     }
   });
   lyr.events.register('loadstart',this,function(e) {
+    layerLoadstartMask();
     var idx = legendsStore.find('name',lyr.name);
     if (idx >= 0) {
       var rec = legendsStore.getAt(idx);
@@ -3924,6 +3928,7 @@ function addObs(l) {
       mainStoreRec.commit();
       rec.commit();
     }
+    layerLoadendUnmask();
     // record the action on google analytics
     pageTracker._trackEvent('layerView','loadEnd',mainStore.getAt(mainStore.find('name',lyr.name)).get('displayName'));
   });
@@ -4261,8 +4266,7 @@ function syncObs(l,force) {
 }
 
 function showObsTimeseries(href) {
-  Ext.getCmp('graphAction').setText('Processing');
-  Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
+  graphLoadstartMask();
   var p = OpenLayers.Util.getParameters(href[0].split('http://')[href[0].split('http://').length - 1]);
   // USGS is differnent . . . of course
   if (href[0].indexOf('&USGS=') >= 0) {
@@ -4299,15 +4303,18 @@ function makeChart(type,a) {
     Ext.getCmp('chartLayerCombo').show();
     Ext.getCmp('activeLabel').setText('Active model query layer: ');
   }
+  for (var j = 0; j < a.length; j++) {
+    chartUrls[a[j].url] = true;
+  }
   chartData = [];
   var color;
   for (var j = 0; j < a.length; j++) {
     OpenLayers.Request.GET({
        url      : a[j].url
-      ,callback : OpenLayers.Function.bind(makeChartCallback,null,a[j].title,lineColors[(j + (a[j].dontAdvanceColor ? -1 : 0)) % lineColors.length][0],a[j].type)
+      ,callback : OpenLayers.Function.bind(makeChartCallback,null,a[j].title,lineColors[(j + (a[j].dontAdvanceColor ? -1 : 0)) % lineColors.length][0],a[j].type,a[j].url)
     });
   }
-  function makeChartCallback(title,lineColor,type,r) {
+  function makeChartCallback(title,lineColor,type,url,r) {
     var obs = new OpenLayers.Format.JSON().read(r.responseText);
     var yaxis = 1;
     if (obs && obs.error) {
@@ -4354,6 +4361,14 @@ function makeChart(type,a) {
       }
       // record the action on google analytics
       pageTracker._trackEvent('chartView',title,'ok');
+    }
+    delete chartUrls[url];
+    var hits = 0;
+    for (var i in chartUrls) {
+      hits++;
+    }
+    if (hits == 0) {
+      graphLoadendUnmask();
     }
     Ext.getCmp('timeseriesPanel').fireEvent('resize',Ext.getCmp('timeseriesPanel'));
   }
@@ -4506,8 +4521,7 @@ function mapClick(xy,doWMS,chartIt) {
 function queryWMS(xy,a,chartIt) {
   lastMapClick['layer'] = a[0].name;
   if (chartIt) {
-    Ext.getCmp('graphAction').setText('Processing');
-    Ext.getCmp('graphAction').setIcon('img/blueSpinner.gif');
+    graphLoadstartMask();
   }
   var targets = [];
   for (var i = 0; i < a.length; i++) {
@@ -4968,4 +4982,26 @@ function refreshCurrentTime() {
     el.setText(time);
     setTimeout("refreshCurrentTime()", 1000);
   }
+}
+
+function layerLoadstartMask() {
+  Ext.getCmp('legendsGridPanel').getEl().mask('<table><tr><td>Updating map...&nbsp;</td><td><img src="js/ext-3.3.0/resources/images/default/grid/loading.gif"></td></tr></table>','mask');
+}
+
+function layerLoadendUnmask() {
+  var stillLoading = 0;
+  legendsStore.each(function(rec) {
+    stillLoading += (rec.get('status') != 'drawn' ? 1 : 0);
+  });
+  if (stillLoading == 0) {
+    Ext.getCmp('legendsGridPanel').getEl().unmask();
+  }
+}
+
+function graphLoadstartMask() {
+  Ext.getCmp('timeseriesPanel').getEl().mask('<table><tr><td>Updating graph...&nbsp;</td><td><img src="js/ext-3.3.0/resources/images/default/grid/loading.gif"></td></tr></table>','mask');
+}
+
+function graphLoadendUnmask() {
+  Ext.getCmp('timeseriesPanel').getEl().unmask();
 }
