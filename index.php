@@ -4,15 +4,16 @@
   require_once('auth.php');
 
   $title  = 'MARACOOS Assets';
-  $_SESSION['config'] = isset($_REQUEST['config']) ? $_REQUEST['config'] : '';
-  if (isset($_REQUEST['config'])) {
-    switch ($_SESSION['config']) {
-      case 'gliders' : $title = 'IOOS Glider'; break;
-      case 'ecop'    : $title = 'CoastMap'; break;
-    }
+
+  $config = isset($_REQUEST['config']) ? $_REQUEST['config'] : (getenv('config') ? getenv('config') : null);
+  $_SESSION['config'] = $config;
+
+  switch ($config) {
+    case 'gliders' : $title = 'IOOS Glider'; break;
+    case 'ecop'    : $title = 'CoastMap'; break;
   }
 
-  if ($_REQUEST['config'] == 'ecop' && !checkLoggedin()) {
+  if ($config == 'ecop' && !checkLoggedin()) {
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -81,8 +82,8 @@ You are not logged in. Login <a href="login.php">HERE</a>.
       var helpUnavailable = false;
       var fdbkUnavailable = false;
 <?php
-  if (isset($_REQUEST['config'])) {
-    echo 'config = "'.$_REQUEST['config'].'"'.";\n";
+  if (isset($config)) {
+    echo "config = '$config';\n";
   }
 ?>
       var restrictLayers;
