@@ -3,5 +3,5 @@
   session_start();
   require_once("auth.php");
   clearsessionscookies();
-  header("location: ./?config=ecop");
+  header("location: .");
 ?>

@@ -109,7 +109,7 @@ case "login":
                 header("location: $returnurl");
             else
             {
-                header("Location: ./?config=ecop");
+                header("Location: .");
             }
         }
         else

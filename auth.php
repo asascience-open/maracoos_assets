@@ -41,8 +41,8 @@ function confirmUser($username,$password)
     }
     else {
       setcookie("failedLogin");
-      setcookie("clientKey",$xml->{'clientKey'});
-      setcookie("bounds"   ,$xml->{'bounds'});
+      setcookie("softwareKey",$xml->{'softwareKey'});
+      setcookie("bounds"     ,$xml->{'bounds'});
       return true;
     }
 }
