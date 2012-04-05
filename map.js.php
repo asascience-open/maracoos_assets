@@ -2268,11 +2268,22 @@ function init() {
                      xtype     : 'buttongroup'
                     ,autoWidth : true
                     ,columns   : 3
-                    ,id        : 'changeHoursButtonGroup'
+                    ,id        : 'changeHoursButtonGroup6h'
                     ,items : [
-                       {xtype : 'button',scale : 'medium',width : 84,text : '- 6h',iconAlign : 'right',icon : 'img/resultset_previous.png',handler : function() {dNow = new Date(dNow.getTime() - 6 * 3600000);setMapTime();}}
+                       {xtype : 'button',scale : 'medium',width : 84,text : '- 6h',iconAlign : 'right',icon : 'img/ButtonRewind.png',handler : function() {dNow = new Date(dNow.getTime() - 6 * 3600000);setMapTime();}}
                       ,new Ext.form.Label({html : '<img width=' + (Ext.isIE ? 14 : 9) + ' src="img/blank.png">'})
-                      ,{xtype : 'button',scale : 'medium',width : 84,text : '+ 6h',iconAlign : 'left',icon : 'img/resultset_next.png',handler : function() {dNow = new Date(dNow.getTime() + 6 * 3600000);setMapTime();}}
+                      ,{xtype : 'button',scale : 'medium',width : 84,text : '+ 6h',iconAlign : 'left',icon : 'img/ButtonForward.png',handler : function() {dNow = new Date(dNow.getTime() + 6 * 3600000);setMapTime();}}
+                    ]
+                  }
+                  ,{
+                     xtype     : 'buttongroup'
+                    ,autoWidth : true
+                    ,columns   : 3
+                    ,id        : 'changeHoursButtonGroup1h'
+                    ,items : [
+                       {xtype : 'button',scale : 'medium',width : 84,text : '- 1h',iconAlign : 'right',icon : 'img/ButtonPrevious.png',handler : function() {dNow = new Date(dNow.getTime() - 1 * 3600000);setMapTime();}}
+                      ,new Ext.form.Label({html : '<img width=' + (Ext.isIE ? 14 : 9) + ' src="img/blank.png">'})
+                      ,{xtype : 'button',scale : 'medium',width : 84,text : '+ 1h',iconAlign : 'left',icon : 'img/ButtonNext.png',handler : function() {dNow = new Date(dNow.getTime() + 1 * 3600000);setMapTime();}}
                     ]
                   }
                 ]})
