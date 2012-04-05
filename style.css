@@ -480,28 +480,53 @@ div.olControlMousePosition {
   color : rgb(74,134,214);
 }
 
-#changeHoursButtonGroup .x-btn-group-tc {
+#changeHoursButtonGroup6h .x-btn-group-tc {
   background-image: none;
 }
-#changeHoursButtonGroup .x-btn-group-tl {
+#changeHoursButtonGroup6h .x-btn-group-tl {
   background-image: none;
 }
-#changeHoursButtonGroup .x-btn-group-tr {
+#changeHoursButtonGroup6h .x-btn-group-tr {
   background-image: none;
 }
-#changeHoursButtonGroup .x-btn-group-bc {
+#changeHoursButtonGroup6h .x-btn-group-bc {
   background-image: none;
 }
-#changeHoursButtonGroup .x-btn-group-bl {
+#changeHoursButtonGroup6h .x-btn-group-bl {
   background-image: none;
 }
-#changeHoursButtonGroup .x-btn-group-br {
+#changeHoursButtonGroup6h .x-btn-group-br {
   background-image: none;
 }
-#changeHoursButtonGroup .x-btn-group-ml {
+#changeHoursButtonGroup6h .x-btn-group-ml {
   background-image: none;
 }
-#changeHoursButtonGroup .x-btn-group-mr {
+#changeHoursButtonGroup6h .x-btn-group-mr {
+  background-image: none;
+}
+
+#changeHoursButtonGroup1h .x-btn-group-tc {
+  background-image: none;
+}
+#changeHoursButtonGroup1h .x-btn-group-tl {
+  background-image: none;
+}
+#changeHoursButtonGroup1h .x-btn-group-tr {
+  background-image: none;
+}
+#changeHoursButtonGroup1h .x-btn-group-bc {
+  background-image: none;
+}
+#changeHoursButtonGroup1h .x-btn-group-bl {
+  background-image: none;
+}
+#changeHoursButtonGroup1h .x-btn-group-br {
+  background-image: none;
+}
+#changeHoursButtonGroup1h .x-btn-group-ml {
+  background-image: none;
+}
+#changeHoursButtonGroup1h .x-btn-group-mr {
   background-image: none;
 }
 
