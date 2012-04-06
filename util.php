@@ -186,6 +186,7 @@
   }
 
   function getMDDNR($url) {
+`echo "$url" >> /tmp/maplog`;
     date_default_timezone_set('UTC');
     $f = fopen($url,'r');
     $data    = array();
@@ -209,12 +210,17 @@
           if (preg_match("/(.*) \((.*)\)$/",$k,$matches)) {
             $idx = $matches[1];
           }
-          if ($csvData[$col2idx[$k]] != '' && count($matches) > 1 && $matches[2] != chr(176).'F') { // don't want temps coming in as both C and F
+          if (
+            $csvData[$col2idx[$k]] != '' 
+            && count($matches) > 1 
+            && !(array_key_exists('Temp ('.chr(176).'C)',$col2idx) && $matches[1] == 'Temp' && $matches[2] == chr(176).'F') // don't want temps coming in as both C and F
+            && !(array_key_exists('DO (%)',$col2idx)               && $matches[1] == 'DO'   && $matches[2] == '%')          // don't want DO as both conc. and %
+          ) {
             $data[$idx][strtotime($csvData[$col2idx['Date+Time (EST)']].' EST')] = array(
                'value' => $csvData[$col2idx[$k]]
               ,'units' => $col2uom[$k]
             );
-            if (!preg_match("/Station|Date|Time|DO/",$k)) {
+            if (!preg_match("/Station|Date|Time/",$k)) {
               $maxT = strtotime($csvData[$col2idx['Date+Time (EST)']].' EST');
             }
           }
