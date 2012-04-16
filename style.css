@@ -480,6 +480,32 @@ div.olControlMousePosition {
   color : rgb(74,134,214);
 }
 
+#changeHoursButtonGroup .x-btn-group-tc {
+  background-image: none;
+}
+#changeHoursButtonGroup .x-btn-group-tl {
+  background-image: none;
+}
+#changeHoursButtonGroup .x-btn-group-tr {
+  background-image: none;
+}
+#changeHoursButtonGroup .x-btn-group-bc {
+  background-image: none;
+}
+#changeHoursButtonGroup .x-btn-group-bl {
+  background-image: none;
+}
+#changeHoursButtonGroup .x-btn-group-br {
+  background-image: none;
+}
+#changeHoursButtonGroup .x-btn-group-ml {
+  background-image: none;
+}
+#changeHoursButtonGroup .x-btn-group-mr {
+  background-image: none;
+}
+
+
 #changeHoursButtonGroup6h .x-btn-group-tc {
   background-image: none;
 }
@@ -536,4 +562,11 @@ div.olControlMousePosition {
 
 .mask td {
   font : 11px/13px tahoma,helvetica,sans-serif;
+}
+
+#timeControls {
+  position : absolute;
+  left     : 165px;
+  bottom   : -4px;
+  z-index  : 10000;
 }

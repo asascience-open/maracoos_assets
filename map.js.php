@@ -2238,14 +2238,14 @@ function init() {
         ,layout    : 'border'
         ,items     : [
           {
-             html      : '<div id="map"></div>'
+             html      : '<div id="map"><div id="timeControls"></div></div>'
               + '<div id="notRealtimeAlert">The environmental overlays display near real time data only. By selecting a year other than the most recent available, you are encouraged to turn all environmental overlays off to avoid confusion.</div>'
             ,region    : 'center'
             ,border    : false
             ,bbar      : {hidden : hideTimeSlider,items : [
               {
-                 text : '<table><tr><td style="text-align : center">Change map<br>date & time</td></tr></table>'
-                ,tooltip : 'Change the map\'s date and time'
+                 text : '<table><tr><td style="text-align : center"><?php if ($_SESSION['config'] != 'ecop') {echo 'Change map<br>date & time';} else {echo 'Change<br>map date';}?></td></tr></table>'
+                ,tooltip : 'Change the map\'s date <?php if ($_SESSION['config'] != 'ecop') {echo 'and time';}?>'
                 ,scale   : 'large'
                 ,icon : 'img/calendar_view_day.png'
                 ,width : 130
@@ -2264,6 +2264,8 @@ function init() {
                       }
                     }
                   })
+<?php if ($_SESSION['config'] != 'ecop') {
+?>
                   ,{
                      xtype     : 'buttongroup'
                     ,autoWidth : true
@@ -2286,6 +2288,9 @@ function init() {
                       ,{xtype : 'button',scale : 'medium',width : 84,text : '+ 1h',iconAlign : 'left',icon : 'img/ButtonNext.png',handler : function() {dNow = new Date(dNow.getTime() + 1 * 3600000);setMapTime();}}
                     ]
                   }
+<?php
+}
+?>
                 ]})
               }
               ,{
@@ -3000,6 +3005,34 @@ function initMap() {
       }
     });
   }
+
+<?php if ($_SESSION['config'] == 'ecop') {
+?>
+  new Ext.Panel({
+     renderTo : 'timeControls'
+    ,border   : false
+    ,bodyStyle : 'background:transparent'
+    ,items    : [
+      {
+         xtype     : 'buttongroup'
+        ,autoWidth : true
+        ,columns   : 7
+        ,id        : 'changeHoursButtonGroup'
+        ,items : [
+           {xtype : 'button',scale : 'small',width : 50,text : '- 6h',iconAlign : 'right',icon : 'img/ButtonRewind.png',handler : function() {dNow = new Date(dNow.getTime() - 6 * 3600000);setMapTime();}}
+          ,new Ext.form.Label({html : '<img width=4 src="img/blank.png">'})
+          ,{xtype : 'button',scale : 'small',width : 50,text : '- 1h',iconAlign : 'right',icon : 'img/ButtonPrevious.png',handler : function() {dNow = new Date(dNow.getTime() - 1 * 3600000);setMapTime();}}
+          ,new Ext.form.Label({html : '<img width=4 src="img/blank.png">'})
+          ,{xtype : 'button',scale : 'small',width : 50,text : '+ 1h',iconAlign : 'left',icon : 'img/ButtonNext.png',handler : function() {dNow = new Date(dNow.getTime() + 1 * 3600000);setMapTime();}}
+          ,new Ext.form.Label({html : '<img width=4 src="img/blank.png">'})
+          ,{xtype : 'button',scale : 'small',width : 50,text : '+ 6h',iconAlign : 'left',icon : 'img/ButtonForward.png',handler : function() {dNow = new Date(dNow.getTime() + 6 * 3600000);setMapTime();}}
+        ]
+      }
+    ]
+  });
+<?php
+}
+?>
 
   refreshCurrentTime();
 }
@@ -4961,7 +4994,7 @@ function getColorScaleRange() {
 }
 
 function setMapTime() {
-  Ext.getCmp('mapTime').setText('<b>Map date & time</b><br>' + dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + ' ' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00 UTC');
+  Ext.getCmp('mapTime').setText('<table><tr><td style="text-align : center"><b>Map date & time</b><br>' + dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + ' ' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00 UTC</td></tr></table>');
   var dStr = dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00';
   for (var i = 0; i < map.layers.length; i++) {
     // WMS layers only
