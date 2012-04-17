@@ -27,65 +27,39 @@ case "":
 <html>
   <head>
     <title>CoastMap</title>
-    <link media="all" type="text/css" rel="stylesheet" href="http://asascience.com/css/all.css" />
     <style>
-      #login {
-        position    : absolute;
-        top         : 3px;
-        right       : 1px;
-      }
-      #login td {
-        font-size   : 14px;
-        font-weight : bold;
-        color       : #EBF1F6;
-      }
-      A:link {text-decoration: underline; color:#AEBB9B}
-      A:visited {text-decoration: underline; color:#AEBB9B}
-      A:active {text-decoration: underline; color:#AEBB9B}
-      A:hover {text-decoration: underline; color: #68BD45;}
+            body{margin: 0 0;padding: 0 0;font-family: Arial, Sans-Serif;font-weight: bold;background-color: #b5c0ca;background-image: url("_images/bg.png");background-repeat: no-repeat;background-position: top left;}
+            #main{width: 1020px;height: 855px;margin-left: auto;margin-right: auto;background-image: url("_images/bkgd_image.png");background-size: 1020px 855px;}
+            #content{width: 452px;margin-left: 56px;padding-top: 360px;color: #1b2930;font-size: 14px;}a{color: #1b2930;}
+            #login{background-image: url("_images/gradient.png");background-repeat: repeat-x;margin: -2px auto 0 auto;color: #3c4d57;border: 1px solid #3c4d57;font-size: 16px;line-height: 43px;width: 1018px;}
+            input[type="text"], input[type="password"]{background-image: url("_images/gradient.png");width: 266px;}
+            input[type="submit"]{margin-left: 60px;background-image: url("_images/button_gradient.png");width: 96px;font-weight: bold;color: #3c4d57;font-size: 16px;}
     </style>
   </head>
-  <body onload="document.getElementById('username').focus()">
-    <div class="page">
-      <div id="main" class="home-page">
-        <div class="bg-holder">
-                    <div id="header">
-                        <div class="opacity-holder">
-                            <!-- map box -->
-                            <div class="map-box">
-                                <!-- map -->
-                                <div class="map">&nbsp;</div>
-                                <!-- city nav -->
-                            </div>
-                            <br />
-                            <a href="#" class="logo" id="logo-us" style="display:block;"><span>ASA | science. services. solutions.</span></a>
-                            <div class="menu-line">
-                              <div id="login">
-            <form NAME="login1" ACTION="login.php?do=login" METHOD="POST">
-              <input TYPE="hidden" name="returnurl" value="<?php $returnurl?>">
-              <table><tr>
+        <div id="main">
+            <div id="content">
+                <p>CoastMap Explorer provides live access to ASA.s Environmental Data Server (EDS).</p>
+                <p>EDS is a data management infrastructure that manages vast amounts of ocean and meteorological observation and model data. The data is derived from government agencies as well as custom data from ASA.s modeling teams.</p>
+                <p>The data spans global to regional domains and this explorer web site provides a view into the data with maps and time series data.</p>
+                <p>Other applications such as OILMAP and SAROPS can access the server to obtain data for scientific analysis and marine emergency response.</p>
+                <p>For a demo user account, or subscription information, please contact <a href="mailto:&#097;&#115;&#097;&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#097;&#115;&#097;&#115;&#099;&#105;&#101;&#110;&#099;&#101;&#046;&#099;&#111;&#109;">&#097;&#115;&#097;&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#097;&#115;&#097;&#115;&#099;&#105;&#101;&#110;&#099;&#101;&#046;&#099;&#111;&#109;</a></p>
+            </div>
+        </div>
+        <div id="login">
+            <form id="form" NAME="login1" ACTION="login.php?do=login" METHOD="POST">
+                <input TYPE="hidden" name="returnurl" value="<?php $returnurl?>">
+                <span style="padding-left: 56px;"> Username <input type="text" name="username" id="username" /></span> <span style="padding-left: 34px;">Password <input type="password" name="password" id="password" /></span> <input type="submit" value="Login" />
+            </form>
+        </div>
+    </body>
 <?php
+/*
   if ($_COOKIE['failedLogin']) {
     echo '<td>LOGIN ERROR. PLEASE TRY AGAIN.&nbsp;&nbsp;</td>';
     setcookie("failedLogin");
   }
+*/
 ?>
-                <td>Username&nbsp;&nbsp;</td>
-                <td><input TYPE="TEXT" id="username" NAME="username"><td>
-                <td>&nbsp;&nbsp;</td>
-                <td>Password&nbsp;&nbsp;</td><td><input TYPE="PASSWORD" NAME="password"></td>
-                <td>&nbsp;&nbsp;</td>
-                <td><input style="padding:1px;border: 1px solid #343747;" TYPE="SUBMIT" name="submit" value="Login"></td>
-              </tr></table>
-            </form>
-                              </div>
-                            </div>
-                         </div>
-                    </div>
-        </div>
-      </div>
-    </div>
-  </body>
 </html>
     <?php
     }

@@ -14,54 +14,7 @@
   }
 
   if ($config == 'ecop' && !checkLoggedin()) {
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-  <head>
-    <title><?php echo $title?></title>
-    <link media="all" type="text/css" rel="stylesheet" href="http://asascience.com/css/all.css" /> 
-    <style>
-      #login {
-        position    : absolute;
-        top         : 11px;
-        right       : 5px;
-        font-size   : 14px;
-        font-weight : bold;
-        color       : #EBF1F6;
-      }
-      A:link {text-decoration: underline; color:#AEBB9B}
-      A:visited {text-decoration: underline; color:#AEBB9B}
-      A:active {text-decoration: underline; color:#AEBB9B}
-      A:hover {text-decoration: underline; color: #68BD45;}
-    </style>
-  </head>
-  <body>
-    <div class="page">
-      <div id="main" class="home-page"> 
-        <div class="bg-holder">
-                    <div id="header"> 
-                        <div class="opacity-holder"> 
-                            <!-- map box --> 
-                            <div class="map-box"> 
-                                <!-- map --> 
-                                <div class="map">&nbsp;</div> 
-                                <!-- city nav --> 
-                            </div>
-                            <br />
-                            <a href="#" class="logo" id="logo-us" style="display:block;"><span>ASA | science. services. solutions.</span></a>
-                            <div class="menu-line"> 
-                              <div id="login">
-You are not logged in. Login <a href="login.php">HERE</a>.
-                              </div>
-                            </div>
-                         </div>
-                    </div>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
-<?php
+    header('Location: login.php');
     return;
   }
 ?>
