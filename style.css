@@ -480,54 +480,8 @@ div.olControlMousePosition {
   color : rgb(74,134,214);
 }
 
-#changeHoursButtonGroup6h .x-btn-group-tc {
-  background-image: none;
-}
-#changeHoursButtonGroup6h .x-btn-group-tl {
-  background-image: none;
-}
-#changeHoursButtonGroup6h .x-btn-group-tr {
-  background-image: none;
-}
-#changeHoursButtonGroup6h .x-btn-group-bc {
-  background-image: none;
-}
-#changeHoursButtonGroup6h .x-btn-group-bl {
-  background-image: none;
-}
-#changeHoursButtonGroup6h .x-btn-group-br {
-  background-image: none;
-}
-#changeHoursButtonGroup6h .x-btn-group-ml {
-  background-image: none;
-}
-#changeHoursButtonGroup6h .x-btn-group-mr {
-  background-image: none;
-}
-
-#changeHoursButtonGroup1h .x-btn-group-tc {
-  background-image: none;
-}
-#changeHoursButtonGroup1h .x-btn-group-tl {
-  background-image: none;
-}
-#changeHoursButtonGroup1h .x-btn-group-tr {
-  background-image: none;
-}
-#changeHoursButtonGroup1h .x-btn-group-bc {
-  background-image: none;
-}
-#changeHoursButtonGroup1h .x-btn-group-bl {
-  background-image: none;
-}
-#changeHoursButtonGroup1h .x-btn-group-br {
-  background-image: none;
-}
-#changeHoursButtonGroup1h .x-btn-group-ml {
-  background-image: none;
-}
-#changeHoursButtonGroup1h .x-btn-group-mr {
-  background-image: none;
+#timeControlsButtonGroup .x-btn-group-header {
+  color : #333333;
 }
 
 .x-menu .x-color-palette, .x-menu .x-date-picker {

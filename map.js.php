@@ -2256,55 +2256,60 @@ function init() {
             ,border    : false
             ,bbar      : {hidden : hideTimeSlider,items : [
               {
-                 text : '<table><tr><td style="text-align : center">Change map<br>date & time</td></tr></table>'
-                ,tooltip : 'Change the map\'s date and time'
-                ,scale   : 'large'
-                ,icon : 'img/calendar_view_day.png'
-                ,width : 130
-                ,menu : new Ext.menu.Menu({showSeparator : false,items : [
-                  new Ext.DatePicker({
-                     value     : new Date(dNow.getTime() + dNow.getTimezoneOffset() * 60000)
-                    ,id        : 'datePicker'
-                    ,listeners : {
-                      select : function(picker,d) {
-                        d.setUTCHours(0);
-                        d.setUTCMinutes(0);
-                        d.setUTCSeconds(0);
-                        d.setUTCMilliseconds(0);
-                        dNow = d;
-                        setMapTime();
-                      }
-                    }
-                  })
-                  ,{
-                     xtype     : 'buttongroup'
-                    ,autoWidth : true
-                    ,columns   : 3
-                    ,id        : 'changeHoursButtonGroup6h'
-                    ,items : [
-                       {xtype : 'button',scale : 'medium',width : 84,text : '- 6h',iconAlign : 'right',icon : 'img/ButtonRewind.png',handler : function() {dNow = new Date(dNow.getTime() - 6 * 3600000);setMapTime();}}
-                      ,new Ext.form.Label({html : '<img width=' + (Ext.isIE ? 14 : 9) + ' src="img/blank.png">'})
-                      ,{xtype : 'button',scale : 'medium',width : 84,text : '+ 6h',iconAlign : 'left',icon : 'img/ButtonForward.png',handler : function() {dNow = new Date(dNow.getTime() + 6 * 3600000);setMapTime();}}
-                    ]
-                  }
-                  ,{
-                     xtype     : 'buttongroup'
-                    ,autoWidth : true
-                    ,columns   : 3
-                    ,id        : 'changeHoursButtonGroup1h'
-                    ,items : [
-                       {xtype : 'button',scale : 'medium',width : 84,text : '- 1h',iconAlign : 'right',icon : 'img/ButtonPlayBack.png',handler : function() {dNow = new Date(dNow.getTime() - 1 * 3600000);setMapTime();}}
-                      ,new Ext.form.Label({html : '<img width=' + (Ext.isIE ? 14 : 9) + ' src="img/blank.png">'})
-                      ,{xtype : 'button',scale : 'medium',width : 84,text : '+ 1h',iconAlign : 'left',icon : 'img/ButtonPlay.png',handler : function() {dNow = new Date(dNow.getTime() + 1 * 3600000);setMapTime();}}
-                    ]
-                  }
-                ]})
-              }
-              ,{
                  id    : 'mapTime'
                 ,scale : 'large'
                 ,text  : '<table><tr><td style="text-align : center"><b>Map date & time</b><br>' + dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + ' ' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00 UTC</td></tr></table>'
                 ,width : 135
+              }
+              ,{
+                 xtype     : 'buttongroup'
+                ,autoWidth : true
+                ,columns   : 5
+                ,title     : 'Change map date & time'
+                ,id        : 'timeControlsButtonGroup'
+                ,items     : [
+                   {
+                     text    : 'Date'
+                    ,tooltip : 'Change the map\'s date and time'
+                    ,icon    : 'img/calendar_view_day16.png'
+                    ,menu    : new Ext.menu.Menu({showSeparator : false,items : [
+                      new Ext.DatePicker({
+                         value     : new Date(dNow.getTime() + dNow.getTimezoneOffset() * 60000)
+                        ,id        : 'datePicker'
+                        ,listeners : {
+                          select : function(picker,d) {
+                            d.setUTCHours(0);
+                            d.setUTCMinutes(0);
+                            d.setUTCSeconds(0);
+                            d.setUTCMilliseconds(0);
+                            dNow = d;
+                            setMapTime();
+                          }
+                        }
+                      })
+                    ]})
+                  }
+                  ,{
+                     text    : '-6h'
+                    ,icon    : 'img/ButtonRewind.png'
+                    ,handler : function() {dNow = new Date(dNow.getTime() - 6 * 3600000);setMapTime();}
+                  }
+                  ,{
+                     text    : '-1h'
+                    ,icon    : 'img/ButtonPlayBack.png'
+                    ,handler : function() {dNow = new Date(dNow.getTime() - 1 * 3600000);setMapTime();}
+                  }
+                  ,{
+                     text    : '+1h'
+                    ,icon    : 'img/ButtonPlay.png'
+                    ,handler : function() {dNow = new Date(dNow.getTime() + 1 * 3600000);setMapTime();}
+                  }
+                  ,{
+                     text    : '+6h'
+                    ,icon    : 'img/ButtonForward.png'
+                    ,handler : function() {dNow = new Date(dNow.getTime() + 6 * 3600000);setMapTime();}
+                  }
+                ]
               }
               ,{
                  id    : 'currentTime'
