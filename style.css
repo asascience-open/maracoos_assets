@@ -568,5 +568,5 @@ div.olControlMousePosition {
   position : absolute;
   left     : 165px;
   bottom   : -4px;
-  z-index  : 10000;
+  z-index  : 1000;
 }
