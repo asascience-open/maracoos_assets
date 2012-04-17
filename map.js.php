@@ -107,6 +107,7 @@ var basemapResolutions = [
   ,305.74811309814453
 ];
 var layersToSyncBbox = {};
+var needToInitGridPanel = {};
 
 function init() {
   var loadingMask = Ext.get('loading-mask');
@@ -1628,6 +1629,7 @@ function init() {
     ,disableSelection : true
     ,listeners        : {viewready : function(grid) {
       layersToSyncBbox['currents'] = true;
+      needToInitGridPanel['currents'] = true;
       syncLayersToBbox('currents');
     }}
     ,tbar             : [
@@ -1672,6 +1674,7 @@ function init() {
     ,disableSelection : true
     ,listeners        : {viewready : function(grid) {
       layersToSyncBbox['winds'] = true;
+      needToInitGridPanel['winds'] = true;
       syncLayersToBbox('winds');
     }}
     ,tbar             : [
@@ -1716,6 +1719,7 @@ function init() {
     ,disableSelection : true
     ,listeners        : {viewready : function(grid) {
       layersToSyncBbox['waves'] = true;
+      needToInitGridPanel['waves'] = true;
       syncLayersToBbox('waves');
     }}
     ,tbar             : [
@@ -1760,6 +1764,7 @@ function init() {
     ,disableSelection : true
     ,listeners        : {viewready : function(grid) {
       layersToSyncBbox['temperatures'] = true;
+      needToInitGridPanel['temperatures'] = true;
       syncLayersToBbox('temperatures');
     }}
     ,tbar             : [
@@ -1804,6 +1809,7 @@ function init() {
     ,disableSelection : true
     ,listeners        : {viewready : function(grid) {
       layersToSyncBbox['other'] = true;
+      needToInitGridPanel['other'] = true;
       syncLayersToBbox('other');
     }}
     ,tbar             : [
@@ -2199,6 +2205,7 @@ function init() {
     ,items  : [
       new Ext.Panel({
          region      : 'west'
+        ,id          : 'managerPanel'
         ,width       : 255
         ,title       : globalTitleOverride ? globalTitleOverride : globalTitle + ' Manager'
         ,collapsible : managerPanelCollapsible
@@ -2206,7 +2213,12 @@ function init() {
         ,listeners        : {afterrender : function() {
           if (config == 'ecop') {
             this.addListener('bodyresize',function(p,w,h) {
-              currentsGridPanel.setHeight(h - introPanel.getHeight() - windsGridPanel.getHeight() - temperaturesGridPanel.getHeight() - wavesGridPanel.getHeight() - otherGridPanel.getHeight());
+              if (currentsGridPanel.getStore().getCount() > 10) {
+                currentsGridPanel.setHeight(h - introPanel.getHeight() - windsGridPanel.getHeight() - temperaturesGridPanel.getHeight() - wavesGridPanel.getHeight() - otherGridPanel.getHeight());
+              }
+              else {
+                otherGridPanel.setHeight(h - introPanel.getHeight() - currentsGridPanel.getHeight() - windsGridPanel.getHeight() - temperaturesGridPanel.getHeight() - wavesGridPanel.getHeight());
+              }
             });
           }
         }}
@@ -4886,8 +4898,15 @@ function checkRealtimeAlert() {
 function syncLayersToBbox(l) {
   for (var type in layersToSyncBbox) {
     if ((typeof l == 'string' && l == type) || (typeof l != 'string')) {
-      var sto = Ext.getCmp(type + 'GridPanel').getStore();
-      var sm  = Ext.getCmp(type + 'GridPanel').getSelectionModel();
+      var gp  = Ext.getCmp(type + 'GridPanel');
+      var sto = gp.getStore();
+      var sm  = gp.getSelectionModel();
+      if (needToInitGridPanel[type]) {
+        if (gp.isVisible() && sto.getCount() == 0) {
+          gp.hide();
+        }
+        needToInitGridPanel[type] = false;
+      }
       sm.suspendEvents();
       sto.removeAll();
       mainStore.each(function(rec) {
