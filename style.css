@@ -344,8 +344,10 @@ div.olControlMousePosition {
   font : 11px/13px tahoma,helvetica,sans-serif !important;
   background-image : url('img/semiClear.png');
   right : 0px !important;
+  top : 0px !important;
   padding : 2px;
   width : 175px !important;
+  height : 14px !important;
   text-align : center !important;
 }
 
@@ -407,7 +409,7 @@ div.olControlMousePosition {
 
 .olControlAttribution {
   font : 11px/13px tahoma,helvetica,sans-serif !important;
-  bottom : 20px !important;
+  bottom : 3px !important;
 }
 
 #tooltip {
