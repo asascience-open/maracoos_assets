@@ -1038,6 +1038,7 @@ function init() {
         ,typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'sst-seven/mcsst'
         ,'temperature'
       ]
+/*
       ,[
          'observation'
         ,'GOES visible imagery'
@@ -1096,6 +1097,7 @@ function init() {
         ,''
         ,''
       ]
+*/
       ,[
          'n/a'
         ,'Bathymetry contours'
@@ -1554,7 +1556,7 @@ function init() {
      id               : 'assetsGridPanel'
     ,hidden           : hideAssetsGridPanel
     ,height           : assetsStore.getCount() * 21.2 + 26 + 11 + 25
-    ,title            : 'Assets'
+    ,title            : 'Point observations'
     ,collapsible      : true
     ,store            : assetsStore
     ,border           : false
@@ -1891,7 +1893,7 @@ function init() {
      id               : 'observationsGridPanel'
     ,hidden           : hideObservationsGridPanel
     ,height           : observationsStore.getCount() * 21.1 + 26 + 11 + 25
-    ,title            : 'Observations'
+    ,title            : 'Spatial observations'
     ,collapsible      : true
     ,store            : observationsStore
     ,border           : false
@@ -2785,6 +2787,7 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
+/*
     addWMS({
        name   : 'GOES visible imagery'
       ,url    : 'http://mesonet.agron.iastate.edu/cgi-bin/wms/goes/conus_vis.cgi?'
@@ -2794,6 +2797,7 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
+*/
 
     addWMS({
        name   : 'ROMS'
@@ -2885,6 +2889,7 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
+/*
     addWMS({
        name   : 'NHC storm tracks'
       ,url    : 'http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/wwa?BGCOLOR=0xCCCCFE&'
@@ -2894,6 +2899,7 @@ function initMap() {
       ,singleTile : true
       ,projection : proj900913
     });
+*/
 
     addTileCache({
        name   : 'Bathymetry contours'
