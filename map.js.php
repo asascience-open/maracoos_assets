@@ -1556,7 +1556,7 @@ function init() {
      id               : 'assetsGridPanel'
     ,hidden           : hideAssetsGridPanel
     ,height           : assetsStore.getCount() * 21.2 + 26 + 11 + 25
-    ,title            : 'Point observations'
+    ,title            : 'Point Observations'
     ,collapsible      : true
     ,store            : assetsStore
     ,border           : false
@@ -1893,7 +1893,7 @@ function init() {
      id               : 'observationsGridPanel'
     ,hidden           : hideObservationsGridPanel
     ,height           : observationsStore.getCount() * 21.1 + 26 + 11 + 25
-    ,title            : 'Spatial observations'
+    ,title            : 'Spatial Observations'
     ,collapsible      : true
     ,store            : observationsStore
     ,border           : false
