@@ -29,11 +29,22 @@ case "":
     <title>CoastMap</title>
     <style>
             body{margin: 0 0;padding: 0 0;font-family: Arial, Sans-Serif;font-weight: bold;background-color: #b5c0ca;background-image: url("_images/bg.png");background-repeat: no-repeat;background-position: top left;}
-            #main{width: 1020px;height: 855px;margin-left: auto;margin-right: auto;background-image: url("_images/bkgd_image.png");background-size: 1020px 855px;}
-            #content{width: 452px;margin-left: 56px;padding-top: 360px;color: #1b2930;font-size: 14px;}a{color: #1b2930;}
-            #login{background-image: url("_images/gradient.png");background-repeat: repeat-x;margin: -2px auto 0 auto;color: #3c4d57;border: 1px solid #3c4d57;font-size: 16px;line-height: 43px;width: 1018px;}
-            input[type="text"], input[type="password"]{background-image: url("_images/gradient.png");width: 266px;}
-            input[type="submit"]{margin-left: 60px;background-image: url("_images/button_gradient.png");width: 96px;font-weight: bold;color: #3c4d57;font-size: 16px;}
+            #main{width: 1020px;height: 582px;margin: 25px auto 0 auto;background-image: url("_images/bkgd_image.png");background-size: 1020px 582px;}
+            #content{width: 452px;margin-left: 56px;padding-top: 140px;color: #00374C;font-size: 14px;}a{color: #00374C;}
+            #login{background-image: url("_images/gradient.png");background-repeat: repeat-x;margin: 14px auto 0 auto;color: #3c4d57;border: 1px solid #3c4d57;font-size: 16px;line-height: 43px;width: 1018px;}
+            input[type="text"], input[type="password"]{background-image: url("_images/gradient.png");width: 226px;}
+<?php
+  if ($_COOKIE['failedLogin']) {
+?>
+            input[type="submit"]{margin-left: 59px;background-image: url("_images/button_gradient.png");width: 80px;font-weight: bold;color: #3c4d57;font-size: 14px;}
+<?php
+  }
+  else {
+?>
+            input[type="submit"]{margin-left: 175px;background-image: url("_images/button_gradient.png");width: 80px;font-weight: bold;color: #3c4d57;font-size: 14px;}
+<?php
+  }
+?>
     </style>
   </head>
         <div id="main">
@@ -48,18 +59,17 @@ case "":
         <div id="login">
             <form id="form" NAME="login1" ACTION="login.php?do=login" METHOD="POST">
                 <input TYPE="hidden" name="returnurl" value="<?php $returnurl?>">
-                <span style="padding-left: 56px;"> Username <input type="text" name="username" id="username" /></span> <span style="padding-left: 34px;">Password <input type="password" name="password" id="password" /></span> <input type="submit" value="Login" />
+<?php
+  $failed = '';
+  if ($_COOKIE['failedLogin']) {
+    $failed = '&nbsp;&nbsp;&nbsp;&nbsp;<font style="color:#276BA6">Invalid login.</font>';
+    setcookie("failedLogin");
+  }
+?>
+                <span style="padding-left: 56px;"> Username <input type="text" name="username" id="username" /></span> <span style="padding-left: 34px;">Password <input type="password" name="password" id="password" /></span> <span><?php echo $failed?></span><input type="submit" value="Login" />
             </form>
         </div>
     </body>
-<?php
-/*
-  if ($_COOKIE['failedLogin']) {
-    echo '<td>LOGIN ERROR. PLEASE TRY AGAIN.&nbsp;&nbsp;</td>';
-    setcookie("failedLogin");
-  }
-*/
-?>
 </html>
     <?php
     }
