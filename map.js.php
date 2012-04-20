@@ -4888,6 +4888,9 @@ function checkRealtimeAlert() {
 }
 
 function syncLayersToBbox(l) {
+  if (!Ext.getCmp('restrictLayersToBbox').checked) {
+    return;
+  }
   for (var type in layersToSyncBbox) {
     if ((typeof l == 'string' && l == type) || (typeof l != 'string')) {
       var gp  = Ext.getCmp(type + 'GridPanel');
