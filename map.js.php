@@ -3129,7 +3129,7 @@ function setLayerSettings(layerName) {
     var items = [
       new Ext.Slider({
          fieldLabel : 'Opacity<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.opacity' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.opacity' + '" src="img/info.png"></a>'
-        ,id       : 'opacity'
+        ,id       : 'opacity.' + id
         ,width    : 130
         ,minValue : 0
         ,maxValue : 100
@@ -3160,7 +3160,7 @@ function setLayerSettings(layerName) {
       items.push(
         new Ext.form.ComboBox({
            fieldLabel     : 'Image quality<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.imageQuality' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.imageQuality' + '" src="img/info.png"></a>'
-          ,id             : 'imageType'
+          ,id             : 'imageType.' + id
           ,store          : imageQualityStore
           ,displayField   : 'name'
           ,valueField     : 'value'
@@ -3192,7 +3192,7 @@ function setLayerSettings(layerName) {
       items.push(
         new Ext.form.ComboBox({
            fieldLabel     : 'Palette<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.palette' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.palette' + '" src="img/info.png"></a>'
-          ,id             : 'palette'
+          ,id             : 'palette.' + id
           ,store          : palettesStore[layerName]
           ,displayField   : 'name'
           ,valueField     : 'name'
@@ -3226,7 +3226,7 @@ function setLayerSettings(layerName) {
       items.push(
         new Ext.form.ComboBox({
            fieldLabel     : 'Compositing<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.layers' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.layers' + '" src="img/info.png"></a>'
-          ,id             : 'layers'
+          ,id             : 'layers.' + id
           ,store          : layersStore[layerName]
           ,displayField   : 'name'
           ,valueField     : 'wmsName'
@@ -3259,7 +3259,7 @@ function setLayerSettings(layerName) {
       items.push(
         new Ext.form.ComboBox({
            fieldLabel     : 'Base style<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.baseStyle' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.baseStyle' + '" src="img/info.png"></a>'
-          ,id             : 'baseStyle'
+          ,id             : 'baseStyle.' + id
           ,store          : baseStylesStore
           ,displayField   : 'name'
           ,valueField     : 'value'
@@ -3301,7 +3301,7 @@ function setLayerSettings(layerName) {
       items.push(
         new Ext.form.ComboBox({
            fieldLabel     : 'Colormap<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.colormap' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.colormap' + '" src="img/info.png"></a>'
-          ,id             : 'colorMap'
+          ,id             : 'colorMap.' + id
           ,disabled       : mainStore.getAt(idx).get('settingsBaseStyle') == 'CURRENTS_STATIC_BLACK'
           ,store          : colorMapStore
           ,displayField   : 'name'
@@ -3341,7 +3341,7 @@ function setLayerSettings(layerName) {
       items.push(
         new Ext.slider.MultiSlider({
            fieldLabel : 'Min/max<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.minMax' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.minMax' + '" src="img/info.png"></a>'
-          ,id       : 'minMax'
+          ,id       : 'minMax.' + id
           ,width    : 130
           ,minValue : mainStore.getAt(idx).get('settingsMinMaxBounds').split('-')[0]
           ,maxValue : mainStore.getAt(idx).get('settingsMinMaxBounds').split('-')[1]
@@ -3375,7 +3375,7 @@ function setLayerSettings(layerName) {
       items.push(
         new Ext.Slider({
            fieldLabel : 'Data density<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.striding' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.striding' + '" src="img/info.png"></a>'
-          ,id       : 'striding'
+          ,id       : 'striding.' + id
           ,width    : 130
           ,minValue : 0
           ,maxValue : stridingStore.getCount() - 1
@@ -3424,7 +3424,7 @@ function setLayerSettings(layerName) {
       items.push(
         new Ext.form.ComboBox({
            fieldLabel     : 'Tail magnitude<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.tailMagnitude' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.tailMagnitude' + '" src="img/info.png"></a>'
-          ,id             : 'tailMag'
+          ,id             : 'tailMag.' + id
           ,store          : tailMagStore
           ,displayField   : 'name'
           ,valueField     : 'name'
@@ -3456,7 +3456,7 @@ function setLayerSettings(layerName) {
       items.push(
         new Ext.form.ComboBox({
            fieldLabel     : 'Magnitude label<a href="javascript:Ext.getCmp(\'tooltip.' + id + '.magnitudeLabel' + '\').show()"><img style="margin-left:2px;margin-bottom:2px" id="' + id + '.magnitudeLabel' + '" src="img/info.png"></a>'
-          ,id             : 'barbLabel'
+          ,id             : 'barbLabel.' + id
           ,store          : barbLabelStore
           ,displayField   : 'name'
           ,valueField     : 'name'
@@ -3493,7 +3493,7 @@ function setLayerSettings(layerName) {
       ,constrainHeader : true
       ,title     : mainStore.getAt(idx).get('displayName').split('||')[0] + ' :: settings'
       ,items     : [
-         new Ext.FormPanel({buttonAlign : 'center',border : false,bodyStyle : 'background:transparent',width : 240,height : height + 35,labelWidth : 100,labelSeparator : '',items : items,buttons : [{text : 'Restore default settings',width : 150,handler : function() {restoreDefaultStyles(layerName,items)}}]})
+         new Ext.FormPanel({buttonAlign : 'center',border : false,bodyStyle : 'background:transparent',width : 240,height : height + 35,labelWidth : 100,labelSeparator : '',items : items,buttons : [{text : 'Restore default settings',width : 150,handler : function() {restoreDefaultStyles(layerName,items,id)}}]})
       ]
       ,listeners : {hide : function() {
         activeSettingsWindows[layerName] = null;
@@ -4479,7 +4479,7 @@ function setCustomStyles(rec) {
   map.getLayersByName(rec.get('name'))[0].mergeNewParams({STYLES : styles.join('-')});
 }
 
-function restoreDefaultStyles(l,items) {
+function restoreDefaultStyles(l,items,id) {
   var rec = mainStore.getAt(mainStore.find('name',l));
   var settingsParam = rec.get('settingsParam').split(',');
   var settings = {};
@@ -4490,42 +4490,42 @@ function restoreDefaultStyles(l,items) {
   }
   for (var i = 0; i < items.length; i++) {
     var cmp = Ext.getCmp(items[i].id);
-    if (items[i].id == 'opacity') {
+    if (items[i].id == 'opacity.' + id) {
       cmp.setValue(guaranteeDefaultOpacities[l]);
     }
-    else if (items[i].id == 'imageType') {
+    else if (items[i].id == 'imageType.' + id) {
       cmp.setValue('png');
       cmp.fireEvent('select',cmp,new imageQualityStore.recordType({value : 'png'}));
     }
-    else if (items[i].id == 'palette') {
+    else if (items[i].id == 'palette.' + id) {
       cmp.setValue(settings['palette']);
       cmp.fireEvent('select',cmp,new palettesStore[l].recordType({name : settings['palette']}));
     }
-    else if (items[i].id == 'layers') {
+    else if (items[i].id == 'layers.' + id) {
       cmp.setValue(defaultLayerLayers[l]);
       cmp.fireEvent('select',cmp,new layersStore[l].recordType({wmsName : defaultLayerLayers[l]}));
     }
-    else if (items[i].id == 'baseStyle') {
+    else if (items[i].id == 'baseStyle.' + id) {
       cmp.setValue(settings['baseStyle']);
       cmp.fireEvent('select',cmp,new baseStylesStore.recordType({value : settings['baseStyle']}));
     }
-    else if (items[i].id == 'colorMap') {
+    else if (items[i].id == 'colorMap.' + id) {
       cmp.setValue(settings['colorMap']);
       cmp.fireEvent('select',cmp,new colorMapStore.recordType({name : settings['colorMap']}));
     }
-    else if (items[i].id == 'striding') {
+    else if (items[i].id == 'striding.' + id) {
       cmp.setValue(stridingStore.find('param',settings['striding']));
       cmp.fireEvent('change',cmp,stridingStore.find('param',settings['striding']));
     }
-    else if (items[i].id == 'tailMag') {
+    else if (items[i].id == 'tailMag.' + id) {
       cmp.setValue(settings['tailMag']);
       cmp.fireEvent('select',cmp,new tailMagStore.recordType({name : settings['tailMag']}));
     }
-    else if (items[i].id == 'barbLabel') {
+    else if (items[i].id == 'barbLabel.' + id) {
       cmp.setValue(settings['barbLabel']);
       cmp.fireEvent('select',cmp,new barbLabelStore.recordType({name : settings['barbLabel']}));
     }
-    else if (items[i].id == 'minMax') {
+    else if (items[i].id == 'minMax.' + id) {
       cmp.setValue(0,settings['min']);
       cmp.setValue(1,settings['max']);
       cmp.fireEvent('change',cmp);
