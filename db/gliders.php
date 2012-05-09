@@ -1,6 +1,4 @@
 <?php
-  header('Content-type: text/plain');
-  $dbh = new PDO('sqlite:gliders.sqlite');
-  $q = $dbh->exec(file_get_contents('gliders.sql'));
-  echo $dbh->errorCode();
+  $dbh = sqlite_open('gliders.db',0666,$error);
+  sqlite_exec($dbh,file_get_contents('gliders.sql'));
 ?>

@@ -1,7 +1,7 @@
-drop table track;
-drop table deployment;
-drop table provider;
-drop table type;
+-- drop table track;
+-- drop table deployment;
+-- drop table provider;
+-- drop table type;
 
 create table provider(
    seq integer primary key asc

@@ -1,11 +1,12 @@
 <?php
   // chmod 777 db
-  // cat db/gliders.sql | sqlite db/gliders.db ; chmod 666 db/gliders.db
+
+  date_default_timezone_set('UTC');
 
   $t0 = '2005-01-01';
   $t1 = '2011-12-31';
 
-  $json = json_decode(file_get_contents("http://localhost/maracoos_assets/gliders_scripps.php?t0=$t0&t1=$t1"),true);
+  $json = json_decode(file_get_contents("http://assets.maracoos.org/gliders_scripps.php?t0=$t0&t1=$t1"),true);
 
   $dbh = sqlite_open('db/gliders.db',0666,$error);
   if ($error) {
