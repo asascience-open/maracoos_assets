@@ -19,7 +19,7 @@
 
   # wget 'http://www.nefsc.noaa.gov/drifter/drift_X.xml' -O xml/drifters.xml
 
-  # wget --user=2creek_madis_public --password=aA0Z1089nI4p 'https://madis-data.noaa.gov/madisPublic/cgi-bin/madisXmlPublicDir?rdr=&time=0&minbck=-180&minfwd=0&recwin=3&dfltrsel=0&state=AK&latll=0.0&lonll=0.0&latur=90.0&lonur=0.0&stanam=&stasel=0&pvdrsel=1&varsel=1&qcsel=1&xml=1&csvmiss=0&pvd=MARITIME&nvars=SLP&nvars=T&nvars=DD&nvars=FF&nvars=FFGUST&nvars=PSWDIR&nvars=PSWHT&nvars=PSWPER&nvars=SST&nvars=WAVEHT&nvars=WAVEPER' -O xml/shipobs.xml
+  # wget --user=2creek_madis_public --password='6s;3L-8@^|)685' 'https://madis-data.noaa.gov/madisPublic/cgi-bin/madisXmlPublicDir?rdr=&time=0&minbck=-180&minfwd=0&recwin=3&dfltrsel=0&state=AK&latll=0.0&lonll=0.0&latur=90.0&lonur=0.0&stanam=&stasel=0&pvdrsel=1&varsel=1&qcsel=1&xml=1&csvmiss=0&pvd=MARITIME&nvars=SLP&nvars=T&nvars=DD&nvars=FF&nvars=FFGUST&nvars=PSWDIR&nvars=PSWHT&nvars=PSWPER&nvars=SST&nvars=WAVEHT&nvars=WAVEPER' -O xml/shipobs.xml
 
   $f = fopen('coastal_counties.csv','r');
   $col2idx = Array();
