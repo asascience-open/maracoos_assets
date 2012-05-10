@@ -154,10 +154,13 @@
         }
       }
       else {
-        addToStack($metadata,$bbox,$d[$col2idx['lon']],$d[$col2idx['lat']],$provider,array(
+        addToStack($metadata,$bbox,$d[$col2idx['Longitude']],$d[$col2idx['Latitude']],$provider,array(
            'id'    => $d[$col2idx['id']]
           ,'descr' => "HF Radar ground station"
-          ,'url'   => "popup$provider.php?"
+          ,'url'   => "popup$provider.php"
+            ."?name=".urlencode($d[$col2idx['Name']])
+            ."&owner=".urlencode($d[$col2idx['Radar Owner']])
+            ."&model=".urlencode($d[$col2idx['Model']])
         ));
       }
     }
