@@ -49,7 +49,7 @@ var obsMinZoom = {
   ,'MDDNR'       : 0 + 5
 //  ,'Weatherflow' : 3 + 5
   ,'HRECOS'      : 0
-  ,'HF Radar'    : 1 + 5
+  ,'HF Radar'    : 0
   ,'Satellites'  : 0
   ,'Gliders'     : 0
   ,'Drifters'    : 0
