@@ -1038,7 +1038,6 @@ function init() {
         ,typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'sst-seven/mcsst'
         ,'temperature'
       ]
-/*
       ,[
          'observation'
         ,'GOES visible imagery'
@@ -1097,7 +1096,6 @@ function init() {
         ,''
         ,''
       ]
-*/
       ,[
          'n/a'
         ,'Bathymetry contours'
@@ -2787,7 +2785,6 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
-/*
     addWMS({
        name   : 'GOES visible imagery'
       ,url    : 'http://mesonet.agron.iastate.edu/cgi-bin/wms/goes/conus_vis.cgi?'
@@ -2797,7 +2794,6 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
-*/
 
     addWMS({
        name   : 'ROMS'
@@ -2889,7 +2885,6 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
-/*
     addWMS({
        name   : 'NHC storm tracks'
       ,url    : 'http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/wwa?BGCOLOR=0xCCCCFE&'
@@ -2899,7 +2894,6 @@ function initMap() {
       ,singleTile : true
       ,projection : proj900913
     });
-*/
 
     addTileCache({
        name   : 'Bathymetry contours'
