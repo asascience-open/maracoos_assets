@@ -48,6 +48,7 @@
       };
       var defaultStyles = {
          'Satellite water temperature' : 'boxfill/rainbow'
+        ,'Chlorophyll concentration'   : 'boxfill/rainbow'
         ,'ROMS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'HOPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS ESPRESSO'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
@@ -157,7 +158,8 @@
       }
 
       var defaultLayerLayers = {
-        'Satellite water temperature' : 'sst-seven/mcsst'
+         'Chlorophyll concentration'   : 'modis-seven/chl_oc3'
+        ,'Satellite water temperature' : 'sst-seven/mcsst'
       };
       var guaranteeDefaultStyles = defaultStyles;
       var defaultOpacities = {
@@ -173,6 +175,7 @@
         ,'WWIII waves'                 : 100
         ,'NCOM SST'                    : 100
         ,'HF radar currents'           : 100
+        ,'Chlorophyll concentration'   : 100
         ,'Satellite water temperature' : 100
         ,'GOES visible imagery'        : 100
         ,'NHC storm tracks'            :  65

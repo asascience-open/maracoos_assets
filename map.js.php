@@ -1011,6 +1011,35 @@ function init() {
       ]
       ,[
          'observation'
+        ,'Chlorophyll concentration'
+        ,'Chlorophyll concentration'
+        ,'off'
+        ,defaultLayers['Chlorophyll concentration'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Chlorophyll concentration.html')))?>'
+        ,'palette'
+        ,typeof defaultOpacities['Chlorophyll concentration'] != 'undefined' && defaultOpacities['Chlorophyll concentration'] != '' ? defaultOpacities['Chlorophyll concentration'] : 100
+        ,''
+        ,''
+        ,defaultStyles['Chlorophyll concentration']
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=' + (typeof defaultLayerLayers['Chlorophyll concentration'] != 'undefined' && defaultLayerLayers['Chlorophyll concentration'] != '' ? defaultLayerLayers['Chlorophyll concentration'] : 'modis-seven/chl_oc3') + '&PALETTE=' + defaultStyles['Chlorophyll concentration'].split('/')[1] + '&TIME=' + dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,typeof defaultLayerLayers['Chlorophyll concentration'] != 'undefined' && defaultLayerLayers['Chlorophyll concentration'] != '' ? defaultLayerLayers['Chlorophyll concentration'] : 'modis-seven/chl_oc3'
+        ,''
+      ]
+      ,[
+         'observation'
         ,'Satellite water temperature'
         ,'Satellite water temperature'
         ,'off'
@@ -1454,6 +1483,38 @@ function init() {
       ,['1-day composite','sst-one/mcsst','sst-masked/mcsst']
       ,['Single pass declouded','sst-masked/mcsst','sst-masked/mcsst']
       ,['Single pass','sst/mcsst','sst/mcsst']
+    ]
+  });
+
+  palettesStore['Chlorophyll concentration'] = new Ext.data.ArrayStore({
+    fields : [
+      'name'
+     ,'icon'
+    ]
+    ,data : [
+       ['boxfill/redblue','redblue']
+      ,['boxfill/alg','alg']
+      ,['boxfill/ncview','ncview']
+      ,['boxfill/alg2','alg2']
+      ,['boxfill/greyscale','greyscale']
+      ,['boxfill/occam','occam']
+      ,['boxfill/rainbow','rainbow']
+      ,['boxfill/sst_36','sst_36']
+      ,['boxfill/occam_pastel-30','occam_pastel-30']
+      ,['boxfill/ferret','ferret']
+    ]
+  });
+  layersStore['Chlorophyll concentration'] = new Ext.data.ArrayStore({
+    fields : [
+      'name'
+     ,'wmsName'
+     ,'queryName'
+    ]
+    ,data : [
+       ['7-day composite','modis-seven/chl_oc3','modis/chl_oc3']
+      ,['3-day composite','modis-three/chl_oc3','modis/chl_oc3']
+      ,['1-day composite','modis-one/chl_oc3','modis/chl_oc3']
+      ,['Single pass','modis/chl_oc3','modis/chl_oc3']
     ]
   });
 
@@ -2794,6 +2855,15 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
+    addWMS({
+       name   : 'Chlorophyll concentration'
+      ,url    : 'http://tds.maracoos.org/ncWMS/wms?GFI_TIME=min/max'
+      ,layers : defaultLayerLayers['Chlorophyll concentration']
+      ,format : 'image/png'
+      ,styles : defaultStyles['Chlorophyll concentration']
+      ,singleTile : false
+      ,projection : proj3857
+    });
 
     addWMS({
        name   : 'ROMS'
@@ -3666,7 +3736,7 @@ function addLayer(lyr,timeSensitive) {
     lyr.mergeNewParams({TIME : dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00'});
     // the sat SST tds layer can be ID'ed by GFI_TIME -- this layer also needs COLORSCALERANGE
     // I didn't want to make this part of the URL
-    if (lyr.url.indexOf('GFI_TIME') >= 0) {
+    if (lyr.url.indexOf('GFI_TIME') >= 0 && lyr.name != 'Chlorophyll concentration') {
       lyr.mergeNewParams({COLORSCALERANGE : getColorScaleRange()}); 
     }
   }
@@ -4882,7 +4952,7 @@ function checkRealtimeAlert() {
 }
 
 function syncLayersToBbox(l) {
-  if (!Ext.getCmp('restrictLayersToBbox').checked) {
+  if (!Ext.getCmp('restrictLayersToBbox') || !Ext.getCmp('restrictLayersToBbox').checked) {
     return;
   }
   for (var type in layersToSyncBbox) {
