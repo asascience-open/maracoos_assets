@@ -30,7 +30,7 @@
             ,'active'     => time() - strtotime($d['end']) < 5 * 24 * 3600 ? 1 : 0
             ,'provider'   => 'osu'
             ,'type'       => $d['type']
-            ,'track'      => mkTrack(explode(' ',sprintf("%s",$placemark->{'LineString'}[0]->{'coordinates'})),$d['start'],$d['end'])
+            ,'track'      => mkTrack(str_replace("\n",'',explode(' ',sprintf("%s",$placemark->{'LineString'}[0]->{'coordinates'}))),$d['start'],$d['end'])
             ,'url'        => '' // getUrl($d['description'])
           );
         }
