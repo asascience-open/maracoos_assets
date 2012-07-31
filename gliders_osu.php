@@ -3,7 +3,7 @@
 
   $gliders = array();
 
-  $xml = simplexml_load_file("xml/gliders_osu.kml");
+  $xml = simplexml_load_file("xml/gliders_osu/OSU_Glider_Tracks.kml");
   foreach ($xml->{'Document'}->{'Folder'} as $activeArchive) {
     foreach ($activeArchive->{'Placemark'} as $placemark) {
       if (preg_match("/^Mission (.*)$/",sprintf("%s",$placemark->{'name'}),$matches)) {
