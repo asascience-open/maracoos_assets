@@ -3080,6 +3080,9 @@ function initMap() {
       })
       ,callback : function(r) {
         var json = new OpenLayers.Format.JSON().read(r.responseText);
+        if (!json) {
+          return;
+        }
         var menu = [];
         var data = [];
         for (var i in json.providers) {
