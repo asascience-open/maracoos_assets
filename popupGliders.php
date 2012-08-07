@@ -80,25 +80,28 @@
     $varlist = explode(',',preg_replace('/"| /','',$matches[1]));
     // not sure why this is showing up 2x
     array_pop($varlist);
-    preg_match('/plotRoot: "(.*)"/',$html,$matches);
-    $plotRoot = $matches[1];
+    preg_match('/plotbase: "(.*)"/',$html,$matches);
+    $plotRoot = count($matches) == 2 ? $matches[1] : '';
 
     $img = array();
     for ($i = 1; $i <= $lastleg; $i++) {
       $img[$i-1] = array();
       foreach ($varlist as $var) {
-        $c = get_headers(sprintf("%s%s_%s_%s_large.png",$plotRoot,$mission,$var,$i));
-        $notFound = false;
-        for ($j = 0; $j < count($c); $j++) {
-          $notFound = $notFound || preg_match('/404 Not Found/i',$c[$j]);
-        }
-        if (!$notFound) {
-          array_push($img[$i-1]
-            ,'<a onmouseover="overlib(\'<table><tr><td><img src='
-              .sprintf("%s%s_%s_%s_large.png",$plotRoot,$mission,$var,$i)
-              .'></td></tr></table>\',VAUTO,HAUTO,FGCOLOR,\'#8EAACE\')"><img height=19 src="'
-              .sprintf("%s%s_%s_%s.png",$plotRoot,$mission,$var,$i)
-            .'" onmouseout=\'nd()\' ></a>');
+        $imgUrl = sprintf($plotRoot,$mission,$var,$i);
+        if (preg_match('/^http:\/\//',$imgUrl)) {
+          $c = get_headers($imgUrl);
+          $notFound = false;
+          for ($j = 0; $j < count($c); $j++) {
+            $notFound = $notFound || preg_match('/404 Not Found/i',$c[$j]);
+          }
+          if (!$notFound) {
+            array_push($img[$i-1]
+              ,'<a onmouseover="overlib(\'<table><tr><td><img src='
+                .sprintf($plotRoot,$mission,$var,$i)
+                .'></td></tr></table>\',VAUTO,HAUTO,FGCOLOR,\'#8EAACE\')"><img height=19 src="'
+                .sprintf($plotRoot,$mission,$var,$i)
+              .'" onmouseout=\'nd()\' ></a>');
+          }
         }
       }
     }

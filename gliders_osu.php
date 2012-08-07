@@ -49,11 +49,13 @@
     for ($i = 0; $i < count($coords); $i++) {
       if ($coords[$i] != '') {
         $p = explode(',',$coords[$i]);
-        array_push($trk,array(
-           'timestamp' => $startTime
-          ,'lat'       => $p[1]
-          ,'lon'       => $p[0]
-        ));
+        if (count($p) == 2) {
+          array_push($trk,array(
+             'timestamp' => $startTime
+            ,'lat'       => $p[1]
+            ,'lon'       => $p[0]
+          ));
+        }
       }
     }
     if (count($trk) > 0) {

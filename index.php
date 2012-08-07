@@ -217,7 +217,11 @@
     echo "defaultLayers = {".implode(',',$layers)."};\n";
   }
 
-  $layers = explode(',',$_REQUEST['lyrs']);
+  $layers = array();
+  if (isset($_REQUEST['lyrs'])) {
+    $layers = explode(',',$_REQUEST['lyrs']);
+  }
+
   $styles = array();
   if (isset($_REQUEST['styls'])) {
     foreach (explode(',',$_REQUEST['styls']) as $s) {

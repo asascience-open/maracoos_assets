@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if ($_SESSION['config'] == 'ecop') {
+  if (isset($_SESSION['config']) && $_SESSION['config'] == 'ecop') {
     include_once('ecopGetCaps.php');
     echo 'var ecop = '.json_encode(array(
        'availableLayers' => $layers
@@ -197,7 +197,7 @@ function init() {
       ,'category'
     ]
 <?php
-  if ($_SESSION['config'] != 'ecop') {
+  if ((isset($_SESSION['config']) && $_SESSION['config'] != 'ecop') || !isset($_SESSION['config'])) {
 ?>
     ,data  : [
       [
@@ -2144,7 +2144,7 @@ function init() {
     }}
     ,tbar : {items : [
 <?php
-  if ($_SESSION['config'] != 'ecop') {
+  if ((isset($_SESSION['config']) && $_SESSION['config'] != 'ecop') || !isset($_SESSION['config'])) {
 ?>
       {
          icon    : 'img/Places-bookmarks-icon.png'
@@ -2289,7 +2289,7 @@ function init() {
           }
         }}
 <?php
-  if ($_SESSION['config'] == 'ecop') {
+  if (isset($_SESSION['config']) && $_SESSION['config'] == 'ecop') {
 ?>
         ,tbar      : [
            {
@@ -2753,7 +2753,7 @@ function initMap() {
 
   map.setCenter(new OpenLayers.LonLat(defaultCenter[0],defaultCenter[1]),defaultZoom);
 <?php
-  if (($_SESSION['config'] == 'ecop') && isset($_COOKIE['bounds'])) {
+  if ((isset($_SESSION['config']) && $_SESSION['config'] == 'ecop') && isset($_COOKIE['bounds'])) {
 ?>
   map.zoomToExtent(new OpenLayers.Bounds(<?php echo $_COOKIE['bounds']?>).transform(proj4326,proj900913));
 <?php

@@ -33,33 +33,33 @@
     $a = Array();
     if ($toEnglish) {
       if ($uom == 'm/s') {
-        array_push($a,Array('val' => sprintf("%.02f",$val * 1.943844),'uom' => 'knots','cat' => $english_category[$uom]));
-        array_push($a,Array('val' => sprintf("%.02f",$val * 2.23693629),'uom' => 'mph','cat' => $english_category[$uom]));
+        array_push($a,Array('val' => sprintf("%.02f",$val * 1.943844),'uom' => 'knots','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
+        array_push($a,Array('val' => sprintf("%.02f",$val * 2.23693629),'uom' => 'mph','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
       else if ($uom == 'm') {
-        array_push($a,Array('val' => sprintf("%.02f",$val * 3.2808399),'uom' => 'ft','cat' => $english_category[$uom]));
+        array_push($a,Array('val' => sprintf("%.02f",$val * 3.2808399),'uom' => 'ft','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
       else if ($uom == 'm below land surface') {
-        array_push($a,Array('val' => sprintf("%.02f",$val * 3.2808399),'uom' => 'ft below land surface','cat' => $english_category[$uom]));
+        array_push($a,Array('val' => sprintf("%.02f",$val * 3.2808399),'uom' => 'ft below land surface','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
       else if ($uom == 'C') {
-        array_push($a,Array('val' => sprintf("%.02f",9/5*$val + 32),'uom' => 'F','cat' => $english_category[$uom]));
+        array_push($a,Array('val' => sprintf("%.02f",9/5*$val + 32),'uom' => 'F','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
       else if ($uom == 'mm') {
-        array_push($a,Array('val' => sprintf("%.02f",$val * 0.0393700787),'uom' => 'in','cat' => $english_category[$uom]));
+        array_push($a,Array('val' => sprintf("%.02f",$val * 0.0393700787),'uom' => 'in','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
       else if ($uom == 'kelvin') {
-        array_push($a,Array('val' => sprintf("%.02f",($val - 272.15) * 9 / 5 + 32),'uom' => 'F','cat' => $english_category[$uom]));
+        array_push($a,Array('val' => sprintf("%.02f",($val - 272.15) * 9 / 5 + 32),'uom' => 'F','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
       else if ($uom == 'bar') {
-        array_push($a,Array('val' => sprintf("%.02f",$val / 1000),'uom' => 'hPa','cat' => $english_category[$uom]));
+        array_push($a,Array('val' => sprintf("%.02f",$val / 1000),'uom' => 'hPa','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
       else {
-        return Array(Array('val' => $val,'uom' => $uom,'cat' => $english_category[$uom]));
+        return Array(Array('val' => $val,'uom' => $uom,'cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
     }
     else {
-      return Array(Array('val' => $val,'uom' => $uom,'cat' => $english_category[$uom]));
+      return Array(Array('val' => $val,'uom' => $uom,'cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
     }
     return $a;
   }
