@@ -31,7 +31,7 @@
           <ows:Voice>228-688-2805</ows:Voice>
         </ows:Phone>
         <ows:Address>
-          <ows:DeliveryPoint>1007 Balch Blvd.</ows:DeliveryPoint>
+          <ows:DeliveryPoint>Bldg. 3205</ows:DeliveryPoint>
           <ows:City>Stennis Space Center</ows:City>
           <ows:AdministrativeArea>MS</ows:AdministrativeArea>
           <ows:PostalCode>39529</ows:PostalCode>
@@ -118,10 +118,11 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2006-08-01T16:10:00Z</gml:beginPosition>
+            <gml:beginPosition>2006-07-27T21:10:00Z</gml:beginPosition>
             <gml:endPosition indeterminatePosition="now"/>
           </gml:TimePeriod>
         </time>
+        <procedure xlink:href="urn:ioos:station:wmo:0y2w3"/>
         <procedure xlink:href="urn:ioos:station:wmo:21401"/>
         <procedure xlink:href="urn:ioos:station:wmo:21413"/>
         <procedure xlink:href="urn:ioos:station:wmo:21414"/>
@@ -131,12 +132,15 @@
         <procedure xlink:href="urn:ioos:station:wmo:21418"/>
         <procedure xlink:href="urn:ioos:station:wmo:21419"/>
         <procedure xlink:href="urn:ioos:station:wmo:23020"/>
+        <procedure xlink:href="urn:ioos:station:wmo:23227"/>
+        <procedure xlink:href="urn:ioos:station:wmo:23228"/>
         <procedure xlink:href="urn:ioos:station:wmo:23401"/>
         <procedure xlink:href="urn:ioos:station:wmo:28900"/>
         <procedure xlink:href="urn:ioos:station:wmo:28901"/>
         <procedure xlink:href="urn:ioos:station:wmo:28902"/>
         <procedure xlink:href="urn:ioos:station:wmo:28903"/>
         <procedure xlink:href="urn:ioos:station:wmo:28904"/>
+        <procedure xlink:href="urn:ioos:station:wmo:28905"/>
         <procedure xlink:href="urn:ioos:station:wmo:32012"/>
         <procedure xlink:href="urn:ioos:station:wmo:32303"/>
         <procedure xlink:href="urn:ioos:station:wmo:32304"/>
@@ -185,6 +189,7 @@
         <procedure xlink:href="urn:ioos:station:wmo:41052"/>
         <procedure xlink:href="urn:ioos:station:wmo:41053"/>
         <procedure xlink:href="urn:ioos:station:wmo:41060"/>
+        <procedure xlink:href="urn:ioos:station:wmo:41109"/>
         <procedure xlink:href="urn:ioos:station:wmo:41110"/>
         <procedure xlink:href="urn:ioos:station:wmo:41112"/>
         <procedure xlink:href="urn:ioos:station:wmo:41113"/>
@@ -316,9 +321,14 @@
         <procedure xlink:href="urn:ioos:station:wmo:42918"/>
         <procedure xlink:href="urn:ioos:station:wmo:42919"/>
         <procedure xlink:href="urn:ioos:station:wmo:42921"/>
+        <procedure xlink:href="urn:ioos:station:wmo:42922"/>
         <procedure xlink:href="urn:ioos:station:wmo:42923"/>
+        <procedure xlink:href="urn:ioos:station:wmo:42924"/>
         <procedure xlink:href="urn:ioos:station:wmo:42925"/>
         <procedure xlink:href="urn:ioos:station:wmo:42926"/>
+        <procedure xlink:href="urn:ioos:station:wmo:42927"/>
+        <procedure xlink:href="urn:ioos:station:wmo:42928"/>
+        <procedure xlink:href="urn:ioos:station:wmo:42929"/>
         <procedure xlink:href="urn:ioos:station:wmo:43001"/>
         <procedure xlink:href="urn:ioos:station:wmo:43301"/>
         <procedure xlink:href="urn:ioos:station:wmo:43412"/>
@@ -367,6 +377,8 @@
         <procedure xlink:href="urn:ioos:station:wmo:44066"/>
         <procedure xlink:href="urn:ioos:station:wmo:44067"/>
         <procedure xlink:href="urn:ioos:station:wmo:44070"/>
+        <procedure xlink:href="urn:ioos:station:wmo:44095"/>
+        <procedure xlink:href="urn:ioos:station:wmo:44096"/>
         <procedure xlink:href="urn:ioos:station:wmo:44097"/>
         <procedure xlink:href="urn:ioos:station:wmo:44098"/>
         <procedure xlink:href="urn:ioos:station:wmo:44099"/>
@@ -393,10 +405,13 @@
         <procedure xlink:href="urn:ioos:station:wmo:45021"/>
         <procedure xlink:href="urn:ioos:station:wmo:45022"/>
         <procedure xlink:href="urn:ioos:station:wmo:45023"/>
+        <procedure xlink:href="urn:ioos:station:wmo:45024"/>
         <procedure xlink:href="urn:ioos:station:wmo:45025"/>
         <procedure xlink:href="urn:ioos:station:wmo:45026"/>
         <procedure xlink:href="urn:ioos:station:wmo:45027"/>
         <procedure xlink:href="urn:ioos:station:wmo:45028"/>
+        <procedure xlink:href="urn:ioos:station:wmo:45162"/>
+        <procedure xlink:href="urn:ioos:station:wmo:45163"/>
         <procedure xlink:href="urn:ioos:station:wmo:46001"/>
         <procedure xlink:href="urn:ioos:station:wmo:46002"/>
         <procedure xlink:href="urn:ioos:station:wmo:46005"/>
@@ -460,7 +475,14 @@
         <procedure xlink:href="urn:ioos:station:wmo:46113"/>
         <procedure xlink:href="urn:ioos:station:wmo:46114"/>
         <procedure xlink:href="urn:ioos:station:wmo:46115"/>
+        <procedure xlink:href="urn:ioos:station:wmo:46120"/>
+        <procedure xlink:href="urn:ioos:station:wmo:46121"/>
+        <procedure xlink:href="urn:ioos:station:wmo:46122"/>
+        <procedure xlink:href="urn:ioos:station:wmo:46123"/>
+        <procedure xlink:href="urn:ioos:station:wmo:46124"/>
+        <procedure xlink:href="urn:ioos:station:wmo:46125"/>
         <procedure xlink:href="urn:ioos:station:wmo:46138"/>
+        <procedure xlink:href="urn:ioos:station:wmo:46139"/>
         <procedure xlink:href="urn:ioos:station:wmo:46211"/>
         <procedure xlink:href="urn:ioos:station:wmo:46212"/>
         <procedure xlink:href="urn:ioos:station:wmo:46213"/>
@@ -554,12 +576,15 @@
         <procedure xlink:href="urn:ioos:station:wmo:51177"/>
         <procedure xlink:href="urn:ioos:station:wmo:51178"/>
         <procedure xlink:href="urn:ioos:station:wmo:51179"/>
+        <procedure xlink:href="urn:ioos:station:wmo:51180"/>
         <procedure xlink:href="urn:ioos:station:wmo:51181"/>
         <procedure xlink:href="urn:ioos:station:wmo:51200"/>
         <procedure xlink:href="urn:ioos:station:wmo:51201"/>
         <procedure xlink:href="urn:ioos:station:wmo:51202"/>
         <procedure xlink:href="urn:ioos:station:wmo:51203"/>
         <procedure xlink:href="urn:ioos:station:wmo:51204"/>
+        <procedure xlink:href="urn:ioos:station:wmo:51205"/>
+        <procedure xlink:href="urn:ioos:station:wmo:51206"/>
         <procedure xlink:href="urn:ioos:station:wmo:51301"/>
         <procedure xlink:href="urn:ioos:station:wmo:51302"/>
         <procedure xlink:href="urn:ioos:station:wmo:51303"/>
@@ -606,6 +631,7 @@
         <procedure xlink:href="urn:ioos:station:wmo:52404"/>
         <procedure xlink:href="urn:ioos:station:wmo:52405"/>
         <procedure xlink:href="urn:ioos:station:wmo:52406"/>
+        <procedure xlink:href="urn:ioos:station:wmo:53046"/>
         <procedure xlink:href="urn:ioos:station:wmo:54401"/>
         <procedure xlink:href="urn:ioos:station:wmo:55012"/>
         <procedure xlink:href="urn:ioos:station:wmo:55013"/>
@@ -620,6 +646,7 @@
         <procedure xlink:href="urn:ioos:station:wmo:58902"/>
         <procedure xlink:href="urn:ioos:station:wmo:58903"/>
         <procedure xlink:href="urn:ioos:station:wmo:58904"/>
+        <procedure xlink:href="urn:ioos:station:wmo:58905"/>
         <procedure xlink:href="urn:ioos:station:wmo:58951"/>
         <procedure xlink:href="urn:ioos:station:wmo:58952"/>
         <procedure xlink:href="urn:ioos:station:wmo:58953"/>
@@ -662,6 +689,7 @@
         <procedure xlink:href="urn:ioos:station:wmo:buzm3"/>
         <procedure xlink:href="urn:ioos:station:wmo:bvqw1"/>
         <procedure xlink:href="urn:ioos:station:wmo:bwsf1"/>
+        <procedure xlink:href="urn:ioos:station:wmo:c58w3"/>
         <procedure xlink:href="urn:ioos:station:wmo:camf1"/>
         <procedure xlink:href="urn:ioos:station:wmo:canf1"/>
         <procedure xlink:href="urn:ioos:station:wmo:caro3"/>
@@ -677,11 +705,13 @@
         <procedure xlink:href="urn:ioos:station:wmo:clkn7"/>
         <procedure xlink:href="urn:ioos:station:wmo:clsm4"/>
         <procedure xlink:href="urn:ioos:station:wmo:cnbf1"/>
+        <procedure xlink:href="urn:ioos:station:wmo:cnii2"/>
         <procedure xlink:href="urn:ioos:station:wmo:cpnt2"/>
         <procedure xlink:href="urn:ioos:station:wmo:cpxc1"/>
         <procedure xlink:href="urn:ioos:station:wmo:crta1"/>
         <procedure xlink:href="urn:ioos:station:wmo:cspa2"/>
         <procedure xlink:href="urn:ioos:station:wmo:cvqv2"/>
+        <procedure xlink:href="urn:ioos:station:wmo:cwaf1"/>
         <procedure xlink:href="urn:ioos:station:wmo:cwqo3"/>
         <procedure xlink:href="urn:ioos:station:wmo:cygm4"/>
         <procedure xlink:href="urn:ioos:station:wmo:dbln6"/>
@@ -799,6 +829,7 @@
         <procedure xlink:href="urn:ioos:station:wmo:lonf1"/>
         <procedure xlink:href="urn:ioos:station:wmo:lopl1"/>
         <procedure xlink:href="urn:ioos:station:wmo:lprp4"/>
+        <procedure xlink:href="urn:ioos:station:wmo:lrif1"/>
         <procedure xlink:href="urn:ioos:station:wmo:lrkf1"/>
         <procedure xlink:href="urn:ioos:station:wmo:lscm4"/>
         <procedure xlink:href="urn:ioos:station:wmo:lsnf1"/>
@@ -854,6 +885,7 @@
         <procedure xlink:href="urn:ioos:station:wmo:pngw3"/>
         <procedure xlink:href="urn:ioos:station:wmo:port2"/>
         <procedure xlink:href="urn:ioos:station:wmo:pota2"/>
+        <procedure xlink:href="urn:ioos:station:wmo:ppta1"/>
         <procedure xlink:href="urn:ioos:station:wmo:prim4"/>
         <procedure xlink:href="urn:ioos:station:wmo:prta2"/>
         <procedure xlink:href="urn:ioos:station:wmo:pscm4"/>
@@ -900,6 +932,7 @@
         <procedure xlink:href="urn:ioos:station:wmo:sptm4"/>
         <procedure xlink:href="urn:ioos:station:wmo:srbv3"/>
         <procedure xlink:href="urn:ioos:station:wmo:srst2"/>
+        <procedure xlink:href="urn:ioos:station:wmo:ssbn7"/>
         <procedure xlink:href="urn:ioos:station:wmo:stdm4"/>
         <procedure xlink:href="urn:ioos:station:wmo:supn6"/>
         <procedure xlink:href="urn:ioos:station:wmo:svnm4"/>
@@ -920,6 +953,7 @@
         <procedure xlink:href="urn:ioos:station:wmo:trbl1"/>
         <procedure xlink:href="urn:ioos:station:wmo:trrf1"/>
         <procedure xlink:href="urn:ioos:station:wmo:ttiw1"/>
+        <procedure xlink:href="urn:ioos:station:wmo:vcat2"/>
         <procedure xlink:href="urn:ioos:station:wmo:venf1"/>
         <procedure xlink:href="urn:ioos:station:wmo:verv4"/>
         <procedure xlink:href="urn:ioos:station:wmo:vqsp4"/>
@@ -937,6 +971,7 @@
         <procedure xlink:href="urn:ioos:station:wmo:wplf1"/>
         <procedure xlink:href="urn:ioos:station:wmo:wpow1"/>
         <procedure xlink:href="urn:ioos:station:wmo:wrbf1"/>
+        <procedure xlink:href="urn:ioos:station:wmo:wwef1"/>
         <procedure xlink:href="urn:ioos:station:wmo:yabp4"/>
         <procedure xlink:href="urn:ioos:station:wmo:ygnn6"/>
         <procedure xlink:href="urn:ioos:station:wmo:yrsv2"/>
@@ -1492,6 +1527,129 @@
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20110926015200_46407"/>
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20110926223245_46407"/>
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20110927112815_46407"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20110928114000_46407"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20110929001630_46407"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20110930133345_46407"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20110930213409_51406"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111001033400_46407"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111002020315_46407"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111006095300_55012"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111007082615_46402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111015145830_55012"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111031012500_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111101022600_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111106083109_51406"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111108115900_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111109025745_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111109140445_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111110191945_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111111181330_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111112201730_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111113184945_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111114141430_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111115030445_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111117013215_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111118122045_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111125014354_51406"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111128111624_51406"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111201120630_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111203085630_56001"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111204123845_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111205123845_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111207063230_56001"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111208001845_56001"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111209004130_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111212162600_52402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111213020030_52402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111213071200_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111214061415_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111217011315_56001"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111219041845_55012"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20111229044215_52402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120107111939_51406"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120112162554_51406"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120113015739_51406"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120126104400_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120127105730_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120127135730_52402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120128022515_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120128063715_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120128145930_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120129070030_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120129185800_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120129234815_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120130161800_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120130203800_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120131004430_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120131175645_52402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120201023015_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120201060600_52402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120201063130_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120202022445_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120202203645_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120203045715_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120203175453_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120204194915_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120205074015_32401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120206030045_55012"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120206081800_55012"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120207035000_52402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120207134545_52402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120209142445_52402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120217231545_52402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120227055400_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120227144854_51406"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120227203315_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120228144854_51406"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120228221830_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120307202745_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120308231830_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120309062615_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120309233015_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120312035945_52402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120314160415_52402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120316075130_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120316130500_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120317034145_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120318020630_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120318092115_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120318231315_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120319080745_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120320061845_21401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120320072730_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120320113615_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120320195830_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120321063045_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120322152645_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120324041100_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120324124845_21401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120325030000_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120325110800_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120326135345_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120326215500_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120327131800_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120327221945_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120328144415_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120329014300_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120331035215_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120331203645_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120401191400_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120402034415_56001"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120402091815_56001"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120402153301_56001"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120402223430_56001"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120403025115_56001"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120403102900_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120403104500_56001"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120403193800_56001"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120404062545_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120404173345_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120405121915_46419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120411085215_56003"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120411091915_55015"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120417133045_55012"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120419171130_52406"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::false:20120508095100_55012"/>
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20080828124000_46419"/>
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20080911002400_21418"/>
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20080924023545_43412"/>
@@ -1726,6 +1884,26 @@
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20110909194315_46419"/>
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20110916192945_21418"/>
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20110916194115_21401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20111021180200_51426"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20111028191315_32412"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120110184530_23227"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120206040300_52405"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120314091345_21419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120314091715_21401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120314092830_21413"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120320180630_43413"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120411084100_23227"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120411084215_23401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120411084430_56001"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120411085215_52405"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120411085630_23228"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120411091015_52401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120411091030_52402"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120411091245_21413"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120411091345_21419"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120411091515_21401"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120411092030_21416"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::geophysical:20120412072145_46412"/>
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::manual:20080929173245_54401"/>
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::manual:20081209234800_41421"/>
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::manual:20090112164815_44401"/>
@@ -1888,6 +2066,39 @@
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::manual:20110727212400_52404"/>
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::manual:20110902113230_46402"/>
         <featureOfInterest xlink:href="urn:ioos:event:tsunami::manual:20110905214030_52404"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::manual:20120217130230_32413"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::manual:20120227170815_32411"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::manual:20120411143830_56001"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::manual:20120411143915_56003"/>
+        <featureOfInterest xlink:href="urn:ioos:event:tsunami::manual:20120429115400_42407"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-0y2w3">
+        <gml:description>Sturgeon Bay CG Station, WS</gml:description>
+        <gml:name>urn:ioos:station:wmo:0y2w3</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>44.794 -87.313</gml:lowerCorner>
+            <gml:upperCorner>44.794 -87.313</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-05-31T23:40:00Z</gml:beginPosition>
+            <gml:endPosition>2012-07-12T02:45:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:0y2w3"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
         <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
         <responseFormat>text/csv</responseFormat>
@@ -1909,7 +2120,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-11-15T18:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-24T07:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:21401"/>
@@ -2139,6 +2350,60 @@
         <resultModel>om:Observation</resultModel>
         <responseMode>inline</responseMode>
       </ObservationOffering>
+      <ObservationOffering gml:id="station-23227">
+        <gml:description>Bay of Bengal</gml:description>
+        <gml:name>urn:ioos:station:wmo:23227</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>6.255 88.792</gml:lowerCorner>
+            <gml:upperCorner>6.255 88.792</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-10-27T12:15:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:23227"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_floor_depth_below_sea_surface"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-23228">
+        <gml:description>Arabian Sea</gml:description>
+        <gml:name>urn:ioos:station:wmo:23228</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>20.799 65.347</gml:lowerCorner>
+            <gml:upperCorner>20.799 65.347</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-10-27T12:15:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:23228"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_floor_depth_below_sea_surface"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
       <ObservationOffering gml:id="station-23401">
         <gml:description>600 NM West-Northwest of Phuket, Thailand</gml:description>
         <gml:name>urn:ioos:station:wmo:23401</gml:name>
@@ -2172,14 +2437,14 @@
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
           <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
-            <gml:lowerCorner>21.311 125.993</gml:lowerCorner>
+            <gml:lowerCorner>17.843 122.155</gml:lowerCorner>
             <gml:upperCorner>24.527 127.219</gml:upperCorner>
           </gml:Envelope>
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-22T11:11:00Z</gml:beginPosition>
-            <gml:endPosition>2010-11-13T07:44:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:28900"/>
@@ -2197,14 +2462,14 @@
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
           <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
-            <gml:lowerCorner>21.303 125.741</gml:lowerCorner>
+            <gml:lowerCorner>21.303 120.994</gml:lowerCorner>
             <gml:upperCorner>24.525 127.108</gml:upperCorner>
           </gml:Envelope>
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-22T11:44:00Z</gml:beginPosition>
-            <gml:endPosition>2010-11-13T07:42:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:28901"/>
@@ -2222,14 +2487,14 @@
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
           <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
-            <gml:lowerCorner>21.301 125.891</gml:lowerCorner>
+            <gml:lowerCorner>17.834 122.282</gml:lowerCorner>
             <gml:upperCorner>24.509 127.162</gml:upperCorner>
           </gml:Envelope>
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-23T01:43:00Z</gml:beginPosition>
-            <gml:endPosition>2010-11-13T08:10:00Z</gml:endPosition>
+            <gml:endPosition>2012-06-28T15:46:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:28902"/>
@@ -2272,17 +2537,42 @@
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
           <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
-            <gml:lowerCorner>23.042 126.831</gml:lowerCorner>
-            <gml:upperCorner>23.073 127.087</gml:upperCorner>
+            <gml:lowerCorner>23.042 121.426</gml:lowerCorner>
+            <gml:upperCorner>23.622 127.087</gml:upperCorner>
           </gml:Envelope>
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-30T02:37:00Z</gml:beginPosition>
-            <gml:endPosition>2010-10-07T03:14:00Z</gml:endPosition>
+            <gml:endPosition>2012-03-15T05:33:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:28904"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_salinity"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-28905">
+        <gml:description>Glider</gml:description>
+        <gml:name>urn:ioos:station:wmo:28905</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>22.005 120.325</gml:lowerCorner>
+            <gml:upperCorner>22.029 120.33</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-03-15T07:53:00Z</gml:beginPosition>
+            <gml:endPosition>2012-03-15T11:27:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:28905"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_salinity"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
@@ -2330,8 +2620,8 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2007-02-12T12:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T09:00:00Z</gml:endPosition>
+            <gml:beginPosition>2007-02-12T10:00:00Z</gml:beginPosition>
+            <gml:endPosition>2012-07-12T08:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32303"/>
@@ -2358,8 +2648,8 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2008-02-09T11:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T08:00:00Z</gml:endPosition>
+            <gml:beginPosition>2007-02-12T09:00:00Z</gml:beginPosition>
+            <gml:endPosition>2012-05-25T08:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32304"/>
@@ -2387,7 +2677,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T13:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T09:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32305"/>
@@ -2414,8 +2704,8 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2007-10-03T09:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T08:00:00Z</gml:endPosition>
+            <gml:beginPosition>2007-02-12T10:00:00Z</gml:beginPosition>
+            <gml:endPosition>2012-07-12T09:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32315"/>
@@ -2443,7 +2733,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T11:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T08:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-12T08:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32316"/>
@@ -2471,7 +2761,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T13:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T08:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-05-23T16:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32317"/>
@@ -2499,7 +2789,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-07-31T11:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T08:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-12T08:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32318"/>
@@ -2527,7 +2817,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-15T20:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T08:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-12T09:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32319"/>
@@ -2555,7 +2845,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T10:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T09:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-03-09T09:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32320"/>
@@ -2583,7 +2873,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T10:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T09:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-02T21:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32321"/>
@@ -2611,7 +2901,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-04-23T12:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-07-29T00:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-12T08:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32322"/>
@@ -2639,7 +2929,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T07:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T10:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-05-02T04:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32323"/>
@@ -2667,7 +2957,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition>2011-08-25T22:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32401"/>
@@ -2694,7 +2984,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-05-12T18:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32411"/>
@@ -2831,7 +3121,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-14T06:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T15:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-12T10:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:32st0"/>
@@ -2860,7 +3150,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:50:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-13T10:50:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:41001"/>
@@ -2896,6 +3186,8 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:41002"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
@@ -3144,7 +3436,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:50:00Z</gml:beginPosition>
-            <gml:endPosition>2011-08-12T09:50:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:41025"/>
@@ -3233,7 +3525,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-11-02T00:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-09T08:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-10T21:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:41033"/>
@@ -3295,7 +3587,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-11-02T00:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-12T01:20:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:41036"/>
@@ -3698,10 +3990,38 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-12-10T19:40:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-10T06:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:41060"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-41109">
+        <gml:description>New River Inlet, NC - 190</gml:description>
+        <gml:name>urn:ioos:station:wmo:41109</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>35.483 -77.3</gml:lowerCorner>
+            <gml:upperCorner>35.483 -77.3</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-04-16T15:54:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:41109"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
@@ -4003,7 +4323,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-05-12T06:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:41421"/>
@@ -4030,7 +4350,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-14T13:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-06-03T00:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:41424"/>
@@ -4057,7 +4377,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-07-19T07:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-05-08T10:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:41nt0"/>
@@ -4238,7 +4558,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T15:50:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-24T01:50:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42012"/>
@@ -4300,7 +4620,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:50:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-03-21T18:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42019"/>
@@ -4363,7 +4683,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-10-01T17:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-12T02:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42021"/>
@@ -4394,10 +4714,12 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T18:59:00Z</gml:beginPosition>
-            <gml:endPosition>2008-09-26T21:59:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42022"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
@@ -4541,7 +4863,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:50:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-10T10:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42039"/>
@@ -4603,7 +4925,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-13T19:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-12T05:30:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42043"/>
@@ -4633,7 +4955,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-12-06T10:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-12T09:30:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42044"/>
@@ -4664,7 +4986,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-13T19:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-03-18T02:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42045"/>
@@ -4694,7 +5016,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-13T19:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-12T03:30:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42046"/>
@@ -4723,7 +5045,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-06-18T12:30:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-05-03T07:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42047"/>
@@ -5020,7 +5342,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-06-02T22:50:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-02-29T05:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42065"/>
@@ -5051,7 +5373,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-06-03T19:40:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2011-12-20T00:40:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42067"/>
@@ -5201,7 +5523,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-11-04T00:08:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-12T19:30:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42361"/>
@@ -5325,7 +5647,9 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42365"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
         <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
@@ -5348,7 +5672,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-06-09T00:19:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2011-11-09T16:20:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42366"/>
@@ -5402,7 +5726,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:10:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-06T21:39:00Z</gml:endPosition>
+            <gml:endPosition>2012-06-22T17:49:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42368"/>
@@ -5429,7 +5753,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-01-21T03:29:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-10T18:40:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42369"/>
@@ -5487,7 +5811,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-01-21T03:27:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-12T09:25:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42372"/>
@@ -5541,7 +5865,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-01-21T03:20:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-24T15:04:00Z</gml:endPosition>
+            <gml:endPosition>2012-05-14T20:40:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42374"/>
@@ -5600,7 +5924,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-12-09T14:45:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-10T18:40:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42376"/>
@@ -5657,7 +5981,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-01-21T03:03:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-05T19:38:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42379"/>
@@ -5711,7 +6035,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-12-09T18:08:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T17:25:00Z</gml:endPosition>
+            <gml:endPosition>2012-06-22T17:53:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42381"/>
@@ -5819,7 +6143,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-10-31T18:19:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-02T17:08:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42385"/>
@@ -5846,7 +6170,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-17T16:54:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-20T21:21:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42386"/>
@@ -5900,7 +6224,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-11-01T20:17:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-06T10:20:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42388"/>
@@ -5927,11 +6251,14 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-04-13T17:55:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-24T17:03:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42390"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
         <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
@@ -5954,7 +6281,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-04-12T18:29:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-05-18T18:09:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42391"/>
@@ -5981,7 +6308,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-08-26T11:07:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-02-27T14:52:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42393"/>
@@ -6062,7 +6389,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T12:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-04-28T10:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42409"/>
@@ -6089,7 +6416,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T15:21:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-11T19:17:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42861"/>
@@ -6143,7 +6470,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-24T00:10:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-13T08:13:00Z</gml:endPosition>
+            <gml:endPosition>2012-04-20T09:21:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42863"/>
@@ -6251,7 +6578,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-01-25T17:34:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-24T06:05:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42867"/>
@@ -6278,7 +6605,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:19:00Z</gml:beginPosition>
-            <gml:endPosition>2010-09-18T19:08:00Z</gml:endPosition>
+            <gml:endPosition>2012-06-23T18:29:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42868"/>
@@ -6359,7 +6686,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-01-21T03:07:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T00:03:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-06T15:02:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42871"/>
@@ -6440,7 +6767,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-06-12T18:20:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-24T13:34:00Z</gml:endPosition>
+            <gml:endPosition>2012-03-22T17:53:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42875"/>
@@ -6656,7 +6983,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:02:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-02-20T10:19:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42886"/>
@@ -6712,7 +7039,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-01-21T03:04:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-29T18:42:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42889"/>
@@ -7063,7 +7390,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T14:44:00Z</gml:beginPosition>
-            <gml:endPosition>2010-05-28T14:03:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-12T04:22:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42908"/>
@@ -7117,7 +7444,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-06-09T14:58:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T14:10:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-11T20:26:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42910"/>
@@ -7225,7 +7552,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-11-19T20:48:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-17T14:19:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42914"/>
@@ -7252,7 +7579,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-11-05T01:06:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-04T02:51:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42915"/>
@@ -7306,7 +7633,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-01-31T00:36:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-07T23:41:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-06T17:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42917"/>
@@ -7333,7 +7660,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-06-05T04:59:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-07T21:36:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42918"/>
@@ -7360,7 +7687,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-03-02T16:57:00Z</gml:beginPosition>
-            <gml:endPosition>2010-12-17T19:14:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-05T06:01:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42919"/>
@@ -7401,6 +7728,33 @@
         <resultModel>om:Observation</resultModel>
         <responseMode>inline</responseMode>
       </ObservationOffering>
+      <ObservationOffering gml:id="station-42922">
+        <gml:description>Noble Jim Day - Garden Banks 506</gml:description>
+        <gml:name>urn:ioos:station:wmo:42922</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>27.476 -92.858</gml:lowerCorner>
+            <gml:upperCorner>27.476 -92.858</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-05-08T21:30:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:42922"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
       <ObservationOffering gml:id="station-42923">
         <gml:description>Ensco 8502</gml:description>
         <gml:name>urn:ioos:station:wmo:42923</gml:name>
@@ -7428,6 +7782,33 @@
         <resultModel>om:Observation</resultModel>
         <responseMode>inline</responseMode>
       </ObservationOffering>
+      <ObservationOffering gml:id="station-42924">
+        <gml:description>Ensco 8503 - Green Canyon 814</gml:description>
+        <gml:name>urn:ioos:station:wmo:42924</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>27.149 -90.861</gml:lowerCorner>
+            <gml:upperCorner>27.149 -90.861</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-01-01T00:24:00Z</gml:beginPosition>
+            <gml:endPosition>2012-06-22T13:06:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:42924"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
       <ObservationOffering gml:id="station-42925">
         <gml:description>Deep Ocean Mendocino - Walker Ridge 249</gml:description>
         <gml:name>urn:ioos:station:wmo:42925</gml:name>
@@ -7441,7 +7822,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-08-26T13:17:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-01T02:21:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42925"/>
@@ -7468,10 +7849,91 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-10-26T19:04:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-26T20:44:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:42926"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-42927">
+        <gml:description>Noble Bully 1 - Green Canyon 434</gml:description>
+        <gml:name>urn:ioos:station:wmo:42927</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>27.555 -90.07</gml:lowerCorner>
+            <gml:upperCorner>27.555 -90.07</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-03-13T16:36:00Z</gml:beginPosition>
+            <gml:endPosition>2012-07-11T19:48:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:42927"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-42928">
+        <gml:description>ENSCO 8505 - Walker Ridge 54</gml:description>
+        <gml:name>urn:ioos:station:wmo:42928</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>26.927 -91.564</gml:lowerCorner>
+            <gml:upperCorner>26.927 -91.564</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-05-25T16:16:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:42928"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-42929">
+        <gml:description>Pacific Santa Ana - Walker Ridge 98</gml:description>
+        <gml:name>urn:ioos:station:wmo:42929</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>26.846 -91.438</gml:lowerCorner>
+            <gml:upperCorner>26.846 -91.438</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-06-22T16:10:00Z</gml:beginPosition>
+            <gml:endPosition>2012-06-27T17:10:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:42929"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
@@ -7495,7 +7957,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T09:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T10:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-12T09:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:43001"/>
@@ -7522,8 +7984,8 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2007-04-07T09:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T09:00:00Z</gml:endPosition>
+            <gml:beginPosition>2007-02-12T07:00:00Z</gml:beginPosition>
+            <gml:endPosition>2012-03-04T06:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:43301"/>
@@ -7551,7 +8013,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition>2011-05-16T08:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-24T11:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:43412"/>
@@ -7641,6 +8103,7 @@
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:44005"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
@@ -8014,7 +8477,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:50:00Z</gml:beginPosition>
-            <gml:endPosition>2011-07-31T01:50:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:44025"/>
@@ -8046,12 +8509,13 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:50:00Z</gml:beginPosition>
-            <gml:endPosition>2011-03-13T23:50:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:44027"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/currents"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
@@ -8359,7 +8823,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-04-30T23:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-06T23:53:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:44039"/>
@@ -8541,7 +9005,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T16:30:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-02-23T22:30:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:44055"/>
@@ -8688,7 +9152,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-03-24T15:30:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:44060"/>
@@ -8810,7 +9274,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-08-26T18:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-08-28T09:20:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:44064"/>
@@ -8872,12 +9336,13 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-06-19T17:50:00Z</gml:beginPosition>
-            <gml:endPosition>2011-01-24T01:50:00Z</gml:endPosition>
+            <gml:endPosition>2012-02-26T13:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:44066"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
@@ -8902,7 +9367,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-05-26T02:58:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-27T15:46:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:44067"/>
@@ -8945,6 +9410,62 @@
         <resultModel>om:Observation</resultModel>
         <responseMode>inline</responseMode>
       </ObservationOffering>
+      <ObservationOffering gml:id="station-44095">
+        <gml:description>Oregon Inlet, NC  - 192</gml:description>
+        <gml:name>urn:ioos:station:wmo:44095</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>35.583 -75.317</gml:lowerCorner>
+            <gml:upperCorner>35.583 -75.317</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-04-09T21:20:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:44095"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-44096">
+        <gml:description>Cape Charles, VA - 186</gml:description>
+        <gml:name>urn:ioos:station:wmo:44096</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>37.023 -75.81</gml:lowerCorner>
+            <gml:upperCorner>37.023 -75.81</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-02-23T21:07:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:44096"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
       <ObservationOffering gml:id="station-44097">
         <gml:description>Block Island, RI  (154)</gml:description>
         <gml:name>urn:ioos:station:wmo:44097</gml:name>
@@ -8958,7 +9479,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-10-22T00:31:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-16T04:02:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:44097"/>
@@ -9070,7 +9591,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-06-23T14:32:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-05-28T12:01:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:44172"/>
@@ -9459,7 +9980,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-08-10T15:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-18T17:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:45015"/>
@@ -9487,7 +10008,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-08-10T15:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-18T09:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:45016"/>
@@ -9543,7 +10064,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-08-10T15:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-18T17:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:45018"/>
@@ -9685,13 +10206,42 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-07-12T18:20:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-22T20:30:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:45023"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-45024">
+        <gml:description>Ludington, MI</gml:description>
+        <gml:name>urn:ioos:station:wmo:45024</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>43.977 -86.56</gml:lowerCorner>
+            <gml:upperCorner>43.977 -86.56</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-05-10T16:40:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:45024"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
@@ -9716,7 +10266,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-06-14T15:30:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-23T20:50:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:45025"/>
@@ -9747,7 +10297,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-06-22T18:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-21T01:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:45026"/>
@@ -9777,7 +10327,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-05-24T19:30:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-11T19:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:45027"/>
@@ -9807,12 +10357,70 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-07-23T08:50:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-11T19:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:45028"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-45162">
+        <gml:description>Alpena, MI</gml:description>
+        <gml:name>urn:ioos:station:wmo:45162</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>44.984 -83.269</gml:lowerCorner>
+            <gml:upperCorner>44.984 -83.269</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-05-18T14:59:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:45162"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-45163">
+        <gml:description>Saginaw Bay, MI</gml:description>
+        <gml:name>urn:ioos:station:wmo:45163</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>43.988 -83.599</gml:lowerCorner>
+            <gml:upperCorner>43.988 -83.599</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-05-18T15:00:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:45163"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
@@ -9901,7 +10509,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:50:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-01T08:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46005"/>
@@ -10090,7 +10698,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-01-21T06:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2011-12-06T22:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46015"/>
@@ -10124,7 +10732,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-01-21T06:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-08-26T13:50:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46022"/>
@@ -10189,7 +10797,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:50:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-04-11T09:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46025"/>
@@ -10594,7 +11202,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-01-21T07:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-02-09T08:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46060"/>
@@ -10779,10 +11387,12 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:50:00Z</gml:beginPosition>
-            <gml:endPosition>2009-11-22T05:50:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46071"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
@@ -10964,7 +11574,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-08-05T20:50:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T14:50:00Z</gml:endPosition>
+            <gml:endPosition>2012-01-18T05:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46078"/>
@@ -11026,7 +11636,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-08-05T19:50:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2011-12-04T18:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46081"/>
@@ -11154,7 +11764,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-21T20:50:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-23T19:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46085"/>
@@ -11314,7 +11924,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T17:12:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-03-23T14:12:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46091"/>
@@ -11344,7 +11954,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-18T18:16:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T11:58:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46092"/>
@@ -11404,7 +12014,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-09-04T19:50:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-12T10:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46094"/>
@@ -11433,7 +12043,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-07-13T19:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-01T06:30:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46096"/>
@@ -11462,7 +12072,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-10-28T13:50:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-01-16T19:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46105"/>
@@ -11546,7 +12156,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-05-10T16:31:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-12T12:31:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46108"/>
@@ -11633,7 +12243,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-05-26T02:59:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-20T04:42:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46111"/>
@@ -11663,7 +12273,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-05-26T02:59:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-02T19:54:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46112"/>
@@ -11692,7 +12302,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-05-26T02:11:00Z</gml:beginPosition>
-            <gml:endPosition>2011-08-11T08:31:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46113"/>
@@ -11764,6 +12374,170 @@
         <resultModel>om:Observation</resultModel>
         <responseMode>inline</responseMode>
       </ObservationOffering>
+      <ObservationOffering gml:id="station-46120">
+        <gml:description>Pt Wells, WA (U of Wash)</gml:description>
+        <gml:name>urn:ioos:station:wmo:46120</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>47.761 -122.397</gml:lowerCorner>
+            <gml:upperCorner>47.761 -122.397</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-04-11T19:23:00Z</gml:beginPosition>
+            <gml:endPosition>2012-04-25T23:26:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:46120"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-46121">
+        <gml:description>Carr Inlet, WA (U of Wash) </gml:description>
+        <gml:name>urn:ioos:station:wmo:46121</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>47.28 -122.73</gml:lowerCorner>
+            <gml:upperCorner>47.28 -122.73</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-04-11T19:24:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:46121"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-46122">
+        <gml:description>Dabob Bay, WA (U of Wash)</gml:description>
+        <gml:name>urn:ioos:station:wmo:46122</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>47.803 -122.803</gml:lowerCorner>
+            <gml:upperCorner>47.803 -122.803</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-04-11T19:21:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:46122"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-46123">
+        <gml:description>Twanoh - Hood Canal, WA (U of Wash)</gml:description>
+        <gml:name>urn:ioos:station:wmo:46123</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>47.375 -123.008</gml:lowerCorner>
+            <gml:upperCorner>47.375 -123.008</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-04-11T19:25:00Z</gml:beginPosition>
+            <gml:endPosition>2012-04-16T15:19:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:46123"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-46124">
+        <gml:description>Hoodsport - Hood Canal, WA (U of Wash)</gml:description>
+        <gml:name>urn:ioos:station:wmo:46124</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>47.422 -123.112</gml:lowerCorner>
+            <gml:upperCorner>47.422 -123.112</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-04-17T13:26:00Z</gml:beginPosition>
+            <gml:endPosition>2012-04-24T18:09:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:46124"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-46125">
+        <gml:description>Hansville - Hood Canal, WA</gml:description>
+        <gml:name>urn:ioos:station:wmo:46125</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>47.907 -122.627</gml:lowerCorner>
+            <gml:upperCorner>47.907 -122.627</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-04-11T20:50:00Z</gml:beginPosition>
+            <gml:endPosition>2012-04-18T23:34:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:46125"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
       <ObservationOffering gml:id="station-46138">
         <gml:description>South Hecate Strait, Canada (174)</gml:description>
         <gml:name>urn:ioos:station:wmo:46138</gml:name>
@@ -11781,6 +12555,34 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46138"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-46139">
+        <gml:description>La Perouse Bank DWR, Canada  (215)</gml:description>
+        <gml:name>urn:ioos:station:wmo:46139</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>48.84 -126</gml:lowerCorner>
+            <gml:upperCorner>48.84 -126</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-05-03T19:42:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:46139"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
@@ -12029,7 +12831,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-21T19:56:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-02T07:58:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46219"/>
@@ -12420,7 +13222,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T15:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-10T00:51:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46240"/>
@@ -12782,7 +13584,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2011-12-26T18:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46404"/>
@@ -12809,7 +13611,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-04-30T12:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-04-30T21:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46407"/>
@@ -12836,7 +13638,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-08T12:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46408"/>
@@ -12944,7 +13746,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-26T20:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:46412"/>
@@ -13502,7 +14304,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-01-22T16:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-03T19:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51004"/>
@@ -13534,7 +14336,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-12-25T08:45:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T06:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51006"/>
@@ -13562,7 +14364,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T13:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-22T15:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-04-21T18:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51007"/>
@@ -13590,7 +14392,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T09:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-22T06:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-22T06:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51008"/>
@@ -13618,7 +14420,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T07:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-22T06:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-22T06:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51009"/>
@@ -13646,7 +14448,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T11:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-22T08:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-22T08:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51010"/>
@@ -13674,7 +14476,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-04-12T09:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-22T09:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-22T05:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51011"/>
@@ -13730,7 +14532,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-03-19T01:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-22T05:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-22T05:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51015"/>
@@ -13758,7 +14560,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T09:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-22T05:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-20T20:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51016"/>
@@ -13786,7 +14588,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-09-10T03:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-22T05:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-22T05:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51017"/>
@@ -13814,7 +14616,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-03-26T14:10:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-22T16:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-01-11T13:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51018"/>
@@ -13870,7 +14672,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-02-12T06:45:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-22T07:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-02-23T07:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51020"/>
@@ -14010,7 +14812,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T17:50:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-01-30T15:50:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51100"/>
@@ -14099,7 +14901,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-26T16:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T15:55:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-11T23:52:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51169"/>
@@ -14126,7 +14928,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-26T16:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T15:49:00Z</gml:endPosition>
+            <gml:endPosition>2012-04-19T00:01:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51170"/>
@@ -14153,7 +14955,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-26T16:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-06-25T15:52:00Z</gml:endPosition>
+            <gml:endPosition>2012-02-27T07:46:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51171"/>
@@ -14180,7 +14982,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-26T17:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T16:10:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-12T00:14:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51172"/>
@@ -14207,7 +15009,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-26T17:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T16:11:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-12T00:11:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51173"/>
@@ -14234,7 +15036,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-26T16:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T15:56:00Z</gml:endPosition>
+            <gml:endPosition>2012-06-14T23:54:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51174"/>
@@ -14261,7 +15063,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-26T17:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T16:07:00Z</gml:endPosition>
+            <gml:endPosition>2012-01-21T20:14:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51176"/>
@@ -14288,7 +15090,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-26T16:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T15:58:00Z</gml:endPosition>
+            <gml:endPosition>2011-11-16T18:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51177"/>
@@ -14315,7 +15117,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-26T16:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T15:58:00Z</gml:endPosition>
+            <gml:endPosition>2012-06-07T08:02:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51178"/>
@@ -14342,10 +15144,37 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-26T17:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T16:02:00Z</gml:endPosition>
+            <gml:endPosition>2012-04-19T00:07:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51179"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-51180">
+        <gml:description>Western Tutuila Island, American Samoa  (TUT 004)</gml:description>
+        <gml:name>urn:ioos:station:wmo:51180</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>-14.284 -170.722</gml:lowerCorner>
+            <gml:upperCorner>-14.284 -170.722</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-04-20T07:00:00Z</gml:beginPosition>
+            <gml:endPosition>2012-05-17T00:07:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:51180"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
@@ -14369,7 +15198,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-26T16:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T15:55:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-11T23:59:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51181"/>
@@ -14523,6 +15352,62 @@
         <resultModel>om:Observation</resultModel>
         <responseMode>inline</responseMode>
       </ObservationOffering>
+      <ObservationOffering gml:id="station-51205">
+        <gml:description>Pauwela, Maui, HI (187)</gml:description>
+        <gml:name>urn:ioos:station:wmo:51205</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>21.019 -156.427</gml:lowerCorner>
+            <gml:upperCorner>21.019 -156.427</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-12-05T17:48:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:51205"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-51206">
+        <gml:description>Hilo, Hawaii, HI - 188</gml:description>
+        <gml:name>urn:ioos:station:wmo:51206</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>19.78 -154.97</gml:lowerCorner>
+            <gml:upperCorner>19.78 -154.97</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-04-12T15:16:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:51206"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
       <ObservationOffering gml:id="station-51301">
         <gml:description>8N 155W</gml:description>
         <gml:name>urn:ioos:station:wmo:51301</gml:name>
@@ -14564,7 +15449,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T07:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-22T16:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-22T12:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51302"/>
@@ -14648,7 +15533,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2006-08-01T16:10:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-22T16:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-22T12:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51305"/>
@@ -14704,7 +15589,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-06-15T00:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-18T08:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-08T15:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51307"/>
@@ -14732,7 +15617,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T08:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-18T05:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-22T05:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51308"/>
@@ -14788,7 +15673,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T11:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-18T08:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-02-23T08:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51310"/>
@@ -14816,7 +15701,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-09-04T03:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-18T06:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-22T06:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51311"/>
@@ -14925,7 +15810,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2011-12-16T12:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51426"/>
@@ -14952,7 +15837,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-07-19T06:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T15:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-12T10:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:51wh0"/>
@@ -15035,8 +15920,8 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2008-09-22T01:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-18T09:00:00Z</gml:endPosition>
+            <gml:beginPosition>2008-08-21T14:10:00Z</gml:beginPosition>
+            <gml:endPosition>2011-12-22T12:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52002"/>
@@ -15063,8 +15948,8 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2007-02-12T12:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-18T09:00:00Z</gml:endPosition>
+            <gml:beginPosition>2006-08-01T17:10:00Z</gml:beginPosition>
+            <gml:endPosition>2011-12-22T12:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52003"/>
@@ -15092,7 +15977,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T10:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-18T09:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-12-22T09:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52004"/>
@@ -15147,8 +16032,8 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2007-04-24T09:15:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-18T09:00:00Z</gml:endPosition>
+            <gml:beginPosition>2006-07-31T07:10:00Z</gml:beginPosition>
+            <gml:endPosition>2011-12-22T12:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52007"/>
@@ -15232,7 +16117,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-06-09T17:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T15:57:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-11T23:49:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52243"/>
@@ -15259,7 +16144,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-06-09T17:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T16:06:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-11T20:13:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52244"/>
@@ -15286,7 +16171,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-06-09T17:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T16:04:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-12T00:02:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52245"/>
@@ -15313,7 +16198,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-06-09T17:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T16:05:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-11T20:13:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52246"/>
@@ -15367,7 +16252,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-06-09T17:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T16:04:00Z</gml:endPosition>
+            <gml:endPosition>2012-01-12T00:06:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52248"/>
@@ -15394,7 +16279,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-26T17:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T16:27:00Z</gml:endPosition>
+            <gml:endPosition>2012-04-19T07:07:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52249"/>
@@ -15449,7 +16334,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T07:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-18T09:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-11-27T03:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52310"/>
@@ -15476,8 +16361,8 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2007-02-12T10:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-18T09:00:00Z</gml:endPosition>
+            <gml:beginPosition>2007-01-12T23:10:00Z</gml:beginPosition>
+            <gml:endPosition>2011-12-22T12:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52311"/>
@@ -15504,8 +16389,8 @@
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
-            <gml:beginPosition>2007-02-12T08:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-18T09:00:00Z</gml:endPosition>
+            <gml:beginPosition>2006-07-27T21:10:00Z</gml:beginPosition>
+            <gml:endPosition>2011-12-22T12:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52312"/>
@@ -15561,7 +16446,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2007-02-12T13:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-18T08:00:00Z</gml:endPosition>
+            <gml:endPosition>2011-11-30T02:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52315"/>
@@ -15699,7 +16584,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-02-12T15:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52403"/>
@@ -15726,7 +16611,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition>2011-08-30T05:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-02-05T17:30:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52404"/>
@@ -15753,7 +16638,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T12:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:52405"/>
@@ -15794,6 +16679,33 @@
         <resultModel>om:Observation</resultModel>
         <responseMode>inline</responseMode>
       </ObservationOffering>
+      <ObservationOffering gml:id="station-53046">
+        <gml:description>South Bali</gml:description>
+        <gml:name>urn:ioos:station:wmo:53046</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>-11.445 113.607</gml:lowerCorner>
+            <gml:upperCorner>-11.445 113.607</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-04-18T18:15:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:53046"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_floor_depth_below_sea_surface"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
       <ObservationOffering gml:id="station-54401">
         <gml:description>640NM Northeast of Auckland, New Zealand</gml:description>
         <gml:name>urn:ioos:station:wmo:54401</gml:name>
@@ -15807,7 +16719,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-07-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-04-03T14:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:54401"/>
@@ -15861,7 +16773,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-10-16T18:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-12T10:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:55013"/>
@@ -15942,7 +16854,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-09-23T12:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-02-02T02:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:55023"/>
@@ -15969,7 +16881,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-04-27T12:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2011-12-16T06:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:55042"/>
@@ -16100,7 +17012,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-23T19:13:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T05:14:00Z</gml:endPosition>
+            <gml:endPosition>2011-11-08T23:36:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:58902"/>
@@ -16125,7 +17037,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-24T10:47:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T03:26:00Z</gml:endPosition>
+            <gml:endPosition>2011-11-13T07:43:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:58903"/>
@@ -16143,17 +17055,42 @@
         <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
         <gml:boundedBy>
           <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
-            <gml:lowerCorner>22.012 120.313</gml:lowerCorner>
-            <gml:upperCorner>22.018 120.326</gml:upperCorner>
+            <gml:lowerCorner>19.384 -122.414</gml:lowerCorner>
+            <gml:upperCorner>47.722 120.326</gml:upperCorner>
           </gml:Envelope>
         </gml:boundedBy>
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-06-12T08:17:00Z</gml:beginPosition>
-            <gml:endPosition>2011-06-12T09:11:00Z</gml:endPosition>
+            <gml:endPosition>2012-05-19T18:14:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:58904"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_salinity"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-58905">
+        <gml:description>Glider</gml:description>
+        <gml:name>urn:ioos:station:wmo:58905</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>18.63 119.891</gml:lowerCorner>
+            <gml:upperCorner>22.014 120.539</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-02-07T15:28:00Z</gml:beginPosition>
+            <gml:endPosition>2012-03-15T14:02:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:58905"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_salinity"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
@@ -16250,7 +17187,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-12-07T19:28:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2011-12-25T19:04:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:78900"/>
@@ -16275,7 +17212,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-12-09T04:04:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2011-12-08T09:24:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:78901"/>
@@ -16558,7 +17495,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T15:45:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-03T18:45:00Z</gml:endPosition>
+            <gml:endPosition>2012-06-05T14:30:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:anrn6"/>
@@ -16615,7 +17552,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T14:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-05-01T01:15:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:apqf1"/>
@@ -17277,7 +18214,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-10-07T16:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-16T18:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:buzm3"/>
@@ -17341,6 +18278,33 @@
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:bwsf1"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-c58w3">
+        <gml:description>Two Rivers CG Station, WI</gml:description>
+        <gml:name>urn:ioos:station:wmo:c58w3</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>44.146 -87.563</gml:lowerCorner>
+            <gml:upperCorner>44.146 -87.563</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-06-22T21:35:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:c58w3"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
         <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
@@ -17707,7 +18671,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-11-12T01:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-30T17:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:clkn7"/>
@@ -17779,6 +18743,34 @@
         <resultModel>om:Observation</resultModel>
         <responseMode>inline</responseMode>
       </ObservationOffering>
+      <ObservationOffering gml:id="station-cnii2">
+        <gml:description>Northerly Island, IL</gml:description>
+        <gml:name>urn:ioos:station:wmo:cnii2</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>41.856 -87.609</gml:lowerCorner>
+            <gml:upperCorner>41.856 -87.609</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-05-26T19:57:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:cnii2"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
       <ObservationOffering gml:id="station-cpnt2">
         <gml:description>Copano Bay, TX</gml:description>
         <gml:name>urn:ioos:station:wmo:cpnt2</gml:name>
@@ -17819,7 +18811,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T15:03:00Z</gml:beginPosition>
-            <gml:endPosition>2010-08-08T22:13:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:cpxc1"/>
@@ -17877,7 +18869,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T15:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-01-02T23:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:cspa2"/>
@@ -17922,6 +18914,33 @@
         <resultModel>om:Observation</resultModel>
         <responseMode>inline</responseMode>
       </ObservationOffering>
+      <ObservationOffering gml:id="station-cwaf1">
+        <gml:description>Clear Water Pass, FL </gml:description>
+        <gml:name>urn:ioos:station:wmo:cwaf1</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>25.295 -81.013</gml:lowerCorner>
+            <gml:upperCorner>25.295 -81.013</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-01-25T23:00:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:cwaf1"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
       <ObservationOffering gml:id="station-cwqo3">
         <gml:description>Charleston Bridge, South Slough Reserve, OR</gml:description>
         <gml:name>urn:ioos:station:wmo:cwqo3</gml:name>
@@ -17935,7 +18954,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T15:30:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-24T06:15:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:cwqo3"/>
@@ -18020,7 +19039,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-28T07:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-05-28T14:45:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:dbqs1"/>
@@ -18304,7 +19323,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T15:30:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-03-27T00:15:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:elqc1"/>
@@ -18651,7 +19670,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-10-07T16:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-30T17:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:fwyf1"/>
@@ -18681,7 +19700,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-07-08T18:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-24T11:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:gbif1"/>
@@ -18792,7 +19811,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-06-17T10:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-27T16:15:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:gdqm6"/>
@@ -18821,7 +19840,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-07-27T12:30:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-18T14:15:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-03T12:45:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:gdwv2"/>
@@ -19247,7 +20266,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T14:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-03T18:15:00Z</gml:endPosition>
+            <gml:endPosition>2012-05-03T21:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:huqn6"/>
@@ -19276,7 +20295,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-13T22:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T13:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-06-26T09:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:ildl1"/>
@@ -19590,7 +20609,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-09T14:35:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-13T18:55:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:kbbf"/>
@@ -19646,7 +20665,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T14:30:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-25T14:30:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-11T10:15:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:kcha2"/>
@@ -19731,7 +20750,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-23T18:10:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-26T13:15:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:kdlp"/>
@@ -19815,7 +20834,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-09T14:35:00Z</gml:beginPosition>
-            <gml:endPosition>2011-08-30T16:55:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:kemk"/>
@@ -20011,7 +21030,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-07-24T16:15:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-05-09T13:15:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:khhv"/>
@@ -20067,7 +21086,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-09T14:35:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-26T11:45:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:kipn"/>
@@ -20123,7 +21142,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-07-05T19:55:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-12T07:30:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:kmis"/>
@@ -20151,7 +21170,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-09T14:35:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-05-31T14:20:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:kmiu"/>
@@ -20207,7 +21226,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-09T14:35:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-08T04:45:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:kmzg"/>
@@ -20235,7 +21254,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T14:30:00Z</gml:beginPosition>
-            <gml:endPosition>2011-08-10T09:09:00Z</gml:endPosition>
+            <gml:endPosition>2012-01-18T15:30:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:knoh1"/>
@@ -20377,7 +21396,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-09T14:51:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-29T05:51:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:kp59"/>
@@ -20406,7 +21425,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-09T14:35:00Z</gml:beginPosition>
-            <gml:endPosition>2011-08-16T22:15:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:kscf"/>
@@ -20462,7 +21481,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-08-25T14:55:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-29T13:25:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:kstz"/>
@@ -20490,7 +21509,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-10-07T16:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-04T06:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:ktnf1"/>
@@ -20575,7 +21594,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-07-05T19:55:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-28T22:15:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:kvky"/>
@@ -20797,7 +21816,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-07-31T16:10:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-04T10:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:lciy2"/>
@@ -20827,7 +21846,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-06-05T03:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2011-12-26T22:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:lcna2"/>
@@ -20999,7 +22018,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-09-13T20:30:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-02T19:06:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:llbp7"/>
@@ -21141,7 +22160,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T15:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T11:20:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-12T00:20:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:lmss1"/>
@@ -21208,6 +22227,7 @@
         <procedure xlink:href="urn:ioos:station:wmo:lopl1"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
@@ -21231,7 +22251,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T17:10:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-04-16T19:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:lprp4"/>
@@ -21239,6 +22259,33 @@
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-lrif1">
+        <gml:description>Lane River, FL </gml:description>
+        <gml:name>urn:ioos:station:wmo:lrif1</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>25.284 -80.894</gml:lowerCorner>
+            <gml:upperCorner>25.284 -80.894</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-01-25T23:00:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:lrif1"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
         <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
@@ -21288,7 +22335,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-10-07T16:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-08T22:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:lscm4"/>
@@ -21465,6 +22512,7 @@
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:mbla1"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
@@ -21751,7 +22799,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-01T00:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-12T13:15:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:mlww3"/>
@@ -21814,6 +22862,8 @@
         <procedure xlink:href="urn:ioos:station:wmo:mrsl1"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
@@ -21922,7 +22972,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T14:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-02T15:45:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:naxr1"/>
@@ -22011,6 +23061,7 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:nglt2"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
@@ -22356,7 +23407,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-08-30T12:45:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-03T16:15:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-01T13:15:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:owqo1"/>
@@ -22499,7 +23550,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-06-20T02:35:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2011-12-25T01:35:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:pbpa2"/>
@@ -22527,10 +23578,11 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2011-10-06T20:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-20T10:54:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:pcgt2"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
@@ -22590,6 +23642,7 @@
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:pcnt2"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
@@ -22614,7 +23667,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-10-07T15:30:00Z</gml:beginPosition>
-            <gml:endPosition>2011-05-16T12:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:pila2"/>
@@ -22643,7 +23696,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-10-07T16:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-19T00:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:pilm4"/>
@@ -22699,7 +23752,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-10-07T16:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-08-30T18:00:00Z</gml:endPosition>
+            <gml:endPosition>2012-07-10T10:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:plsf1"/>
@@ -22728,7 +23781,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T15:12:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-23T20:06:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:plsp4"/>
@@ -22787,7 +23840,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T22:06:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T13:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:port2"/>
@@ -22819,6 +23872,35 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:pota2"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-ppta1">
+        <gml:description>Perdido Key, AL</gml:description>
+        <gml:name>urn:ioos:station:wmo:ppta1</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>30.279 -87.556</gml:lowerCorner>
+            <gml:upperCorner>30.279 -87.556</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2011-11-23T02:00:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:ppta1"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
@@ -22900,10 +23982,12 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T15:22:00Z</gml:beginPosition>
-            <gml:endPosition>2009-11-09T16:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:pscm4"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
@@ -22956,7 +24040,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-10-07T16:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-05-19T18:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:ptat2"/>
@@ -23104,7 +24188,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T14:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-05T17:45:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:rkqf1"/>
@@ -23166,6 +24250,7 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:rlot2"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
@@ -23277,7 +24362,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T23:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-21T18:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:rtat2"/>
@@ -23335,7 +24420,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-10-07T16:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-30T17:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:sanf1"/>
@@ -23393,7 +24478,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-02-15T06:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-06-12T20:00:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:sauf1"/>
@@ -23599,6 +24684,7 @@
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:sdrt2"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
@@ -23827,7 +24913,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-01-01T00:50:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T13:38:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:sjom4"/>
@@ -24024,7 +25110,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2008-11-14T09:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-30T17:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:spgf1"/>
@@ -24053,7 +25139,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T15:00:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-28T14:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:spll1"/>
@@ -24148,6 +25234,33 @@
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_temperature"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/air_pressure_at_sea_level"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-ssbn7">
+        <gml:description>Sunset Beach Nearshore Waves</gml:description>
+        <gml:name>urn:ioos:station:wmo:ssbn7</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>33.842 -78.476</gml:lowerCorner>
+            <gml:upperCorner>33.842 -78.476</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-04-04T14:59:00Z</gml:beginPosition>
+            <gml:endPosition>2012-06-15T09:39:00Z</gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:ssbn7"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/waves"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
         <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
@@ -24480,7 +25593,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T15:12:00Z</gml:beginPosition>
-            <gml:endPosition>2011-10-19T06:24:00Z</gml:endPosition>
+            <gml:endPosition>2012-05-31T23:06:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:tibc1"/>
@@ -24509,7 +25622,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-15T00:15:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-27T20:00:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:tiqc1"/>
@@ -24725,6 +25838,33 @@
         <resultModel>om:Observation</resultModel>
         <responseMode>inline</responseMode>
       </ObservationOffering>
+      <ObservationOffering gml:id="station-vcat2">
+        <gml:description>8773259 - Port Lavaca, TX </gml:description>
+        <gml:name>urn:ioos:station:wmo:vcat2</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>28.64 -96.595</gml:lowerCorner>
+            <gml:upperCorner>28.64 -96.595</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-04-26T15:00:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:vcat2"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
       <ObservationOffering gml:id="station-venf1">
         <gml:description>Venice, FL</gml:description>
         <gml:name>urn:ioos:station:wmo:venf1</gml:name>
@@ -24797,7 +25937,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-05-14T15:36:00Z</gml:beginPosition>
-            <gml:endPosition>2011-09-21T15:30:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:vqsp4"/>
@@ -24913,7 +26053,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2009-11-25T19:30:00Z</gml:beginPosition>
-            <gml:endPosition>2010-11-06T11:30:00Z</gml:endPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:wdel1"/>
@@ -25202,6 +26342,34 @@
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:wrbf1"/>
         <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/winds"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <responseFormat>text/csv</responseFormat>
+        <responseFormat>text/tab-separated-values</responseFormat>
+        <responseFormat>application/vnd.google-earth.kml+xml</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+      <ObservationOffering gml:id="station-wwef1">
+        <gml:description>White Water -West, FL</gml:description>
+        <gml:name>urn:ioos:station:wmo:wwef1</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>25.23 -80.939</gml:lowerCorner>
+            <gml:upperCorner>25.23 -80.939</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>2012-01-25T23:00:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+          </gml:TimePeriod>
+        </time>
+        <procedure xlink:href="urn:ioos:station:wmo:wwef1"/>
+        <observedProperty xlink:href="http://mmisw.org/ont/cf/parameter/sea_water_temperature"/>
         <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
         <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
         <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
@@ -25311,7 +26479,7 @@
         <time>
           <gml:TimePeriod>
             <gml:beginPosition>2010-09-28T06:00:00Z</gml:beginPosition>
-            <gml:endPosition indeterminatePosition="now"></gml:endPosition>
+            <gml:endPosition>2012-07-12T08:45:00Z</gml:endPosition>
           </gml:TimePeriod>
         </time>
         <procedure xlink:href="urn:ioos:station:wmo:zbqn7"/>
