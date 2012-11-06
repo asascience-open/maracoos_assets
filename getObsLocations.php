@@ -155,7 +155,7 @@
       }
       else {
         addToStack($metadata,$bbox,$d[$col2idx['Longitude']],$d[$col2idx['Latitude']],$provider,array(
-           'id'    => $d[$col2idx['id']]
+           'id'    => array_key_exists('id',$col2idx) ? $d[$col2idx['id']] : ''
           ,'descr' => "HF Radar ground station"
           ,'url'   => "popup$provider.php"
             ."?name=".urlencode($d[$col2idx['Name']])
@@ -203,7 +203,7 @@
       }
       else {
         addToStack($metadata,$bbox,$d[$col2idx['lon']],$d[$col2idx['lat']],$provider,array(
-           'id'    => $d[$col2idx['id']]
+           'id'    => array_key_exists('id',$col2idx) ? $d[$col2idx['id']] : ''
           ,'descr' => "Satellite ground station"
           ,'url'   => "popup$provider.php"
             ."?descrip=".urlencode($d[$col2idx['descrip']])
