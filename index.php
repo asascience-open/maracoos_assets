@@ -45,6 +45,7 @@
         ,'NERRS'            : true
         ,'NCOM currents'    : true
         ,'WWIII waves'      : true
+        ,'NHC storm tracks' : true
       };
       var defaultStyles = {
          'Satellite water temperature' : 'boxfill/rainbow'
