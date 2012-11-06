@@ -1075,7 +1075,7 @@ function init() {
       ,[
          'observation'
         ,'GOES visible imagery'
-        ,'GOES visible imagery'
+        ,'MODIS true color imagery'
         ,'off'
         ,defaultLayers['GOES visible imagery'] ? 'on' : 'off'
         ,'off'
@@ -2851,6 +2851,7 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
+/*
     addWMS({
        name   : 'GOES visible imagery'
       ,url    : 'http://mesonet.agron.iastate.edu/cgi-bin/wms/goes/conus_vis.cgi?'
@@ -2860,6 +2861,24 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
+*/
+    map.addLayer(
+      new OpenLayers.Layer.Image(
+         'GOES visible imagery'
+        ,'http://modata.ceoe.udel.edu/MODISA_RGB/current.png'
+        ,new OpenLayers.Bounds(-99,16.55877,-50,52).transform(proj4326,proj900913)
+        ,new OpenLayers.Size(2500,2250)
+        ,{
+           isBaseLayer      : false
+          ,projection       : proj900913
+          ,singleTile       : true
+          ,maxResolution    : 156543.0339
+          ,visibility       : mainStore.find('name','GOES visible imagery') >= 0 ? (mainStore.getAt(mainStore.find('name','GOES visible imagery')).get('status') == 'on') : false
+          ,opacity          : mainStore.find('name','GOES visible imagery') >= 0 ? (mainStore.getAt(mainStore.find('name','GOES visible imagery')).get('settingsOpacity') / 100) : 1
+
+        }
+      )
+    );
     addWMS({
        name   : 'Chlorophyll concentration'
       ,url    : 'http://tds.maracoos.org/ncWMS/wms?GFI_TIME=min/max'
