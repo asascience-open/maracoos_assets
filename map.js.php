@@ -2862,7 +2862,7 @@ function initMap() {
   if (config != 'ecop') {
     addWMS({
        name   : 'NCOM SST'
-      ,url    : 'http://coastmap.com/ecop/wms.aspx?'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'NCOM_SST'
       ,format : 'image/' + defaultImageTypes['NCOM SST']
       ,styles : ''
@@ -2880,7 +2880,7 @@ function initMap() {
     });
     addWMS({
        name   : 'WWIII waves'
-      ,url    : 'http://coastmap.com/ecop/wms.aspx?'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'WW3_WAVE_HEIGHT'
       ,format : 'image/' + defaultImageTypes['WWIII waves']
       ,styles : ''
@@ -2927,7 +2927,7 @@ function initMap() {
 
     addWMS({
        name   : 'ROMS'
-      ,url    : 'http://coastmap.com/ecop/wms.aspx?'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'NOSCBOFSCUR_CURRENTS'
       ,format : 'image/' + defaultImageTypes['ROMS']
       ,styles : defaultStyles['ROMS']
@@ -2936,7 +2936,7 @@ function initMap() {
     });
     addWMS({
        name   : 'STPS'
-      ,url    : 'http://coastmap.com/ecop/wms.aspx?'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'CODARSTPS_CURRENTS'
       ,format : 'image/' + defaultImageTypes['STPS']
       ,styles : defaultStyles['STPS']
@@ -2945,7 +2945,7 @@ function initMap() {
     });
     addWMS({
        name   : 'Stevens NYHOPS'
-      ,url    : 'http://coastmap.com/ecop/wms.aspx?'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'NYHOPSCUR_currents'
       ,format : 'image/' + defaultImageTypes['Stevens NYHOPS']
       ,styles : defaultStyles['Stevens NYHOPS']
@@ -2954,7 +2954,7 @@ function initMap() {
     });
     addWMS({
        name   : 'ROMS ESPRESSO'
-      ,url    : 'http://coastmap.com/ecop/wms.aspx?'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'ESPRESSO_CURRENTS'
       ,format : 'image/' + defaultImageTypes['ROMS ESPRESSO']
       ,styles : defaultStyles['ROMS ESPRESSO']
@@ -2963,7 +2963,7 @@ function initMap() {
     });
     addWMS({
        name   : 'HOPS'
-      ,url    : 'http://coastmap.com/ecop/wms.aspx?'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'PESHELF_CURRENTS'
       ,format : 'image/' + defaultImageTypes['HOPS']
       ,styles : defaultStyles['HOPS']
@@ -2972,7 +2972,7 @@ function initMap() {
     });
     addWMS({
        name   : 'NCOM currents'
-      ,url    : 'http://coastmap.com/ecop/wms.aspx?'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'NCOM_CURRENTS'
       ,format : 'image/' + defaultImageTypes['NCOM currents']
       ,styles : defaultStyles['NCOM currents']
@@ -2981,7 +2981,7 @@ function initMap() {
     });
     addWMS({
        name   : 'HYCOM currents'
-      ,url    : 'http://coastmap.com/ecop/wms.aspx?'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'HYCOM_CURRENTS'
       ,format : 'image/' + defaultImageTypes['HYCOM currents']
       ,styles : defaultStyles['HYCOM currents']
@@ -2999,7 +2999,7 @@ function initMap() {
   //  });
     addWMS({
        name   : 'NAM winds'
-      ,url    : 'http://coastmap.com/ecop/wms.aspx?'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'NAM_WINDS'
       ,format : 'image/' + defaultImageTypes['NAM winds']
       ,styles : defaultStyles['NAM winds']
@@ -3008,7 +3008,7 @@ function initMap() {
     });
     addWMS({
        name   : 'HF radar currents'
-      ,url    : 'http://coastmap.com/ecop/wms.aspx?'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'MARCOOSHFRADAR_CURRENTS'
       ,format : 'image/' + defaultImageTypes['HF radar currents']
       ,styles : defaultStyles['HF radar currents']
@@ -3101,7 +3101,7 @@ function initMap() {
     if (config == 'gliders') {
       addWMS({
          name   : 'GFS winds'
-        ,url    : 'http://coastmap.com/ecop/wms.aspx?'
+        ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
         ,layers : 'GFS_WINDS'
         ,format : 'image/' + defaultImageTypes['GFS winds']
         ,styles : defaultStyles['GFS winds']
@@ -3114,7 +3114,7 @@ function initMap() {
     for (var i = 0; i < ecop.layerStack.length; i++) {
       addWMS({
          name       : ecop.layerStack[i].title
-        ,url        : 'http://coastmap.com/ecop/wms.aspx?'
+        ,url        : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
         ,layers     : ecop.layerStack[i].name
         ,format     : 'image/png'
         ,styles     : defaultStyles[ecop.layerStack[i].title]
