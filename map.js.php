@@ -4720,7 +4720,7 @@ function queryWMS(xy,a,chartIt) {
       ,QUERY_LAYERS  : forceQueryLayers(a[i].name,paramOrig['LAYERS'])
     };
     if (paramOrig['GFI_TIME'] == 'min/max') {
-      dMin = new Date(dNow.getTime() - 12 * 60 * 60 * 1000);
+      dMin = new Date(dNow.getTime() - 16 * 60 * 60 * 1000);
       dMax = new Date(dNow.getTime() + 24 * 60 * 60 * 1000);
       paramNew['TIME'] =
           dMin.getUTCFullYear() + '-' + String.leftPad(dMin.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMin.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z'
