@@ -1618,6 +1618,7 @@ function init() {
   });
   var assetsGridPanel = new Ext.grid.GridPanel({
      id               : 'assetsGridPanel'
+    ,cls              : 'horizontal-scrolling-fix'
     ,hidden           : hideAssetsGridPanel
     ,height           : assetsStore.getCount() * 21.2 + 26 + 11 + 25
     ,title            : 'Point Observations'
@@ -1911,6 +1912,7 @@ function init() {
   });
   var modelsGridPanel = new Ext.grid.GridPanel({
      id               : 'modelsGridPanel'
+    ,cls              : 'horizontal-scrolling-fix'
     ,hidden           : hideModelsGridPanel
     ,height           : modelsStore.getCount() * 21.1 + 26 + 11 + 25
     ,title            : 'Models'
@@ -1971,6 +1973,7 @@ function init() {
   });
   var observationsGridPanel = new Ext.grid.GridPanel({
      id               : 'observationsGridPanel'
+    ,cls              : 'horizontal-scrolling-fix'
     ,hidden           : hideObservationsGridPanel
     ,height           : observationsStore.getCount() * 21.1 + 26 + 11 + 25
     ,title            : 'Spatial Observations'
@@ -2302,7 +2305,7 @@ function init() {
         ,items       : managerItems
         ,listeners        : {afterrender : function() {
           this.addListener('bodyresize',function() {
-            var h = this.getHeight() - 26 - introPanel.getHeight();
+            var h = this.getHeight() - introPanel.getHeight() - 22 - 3 * 8;
             var c = {
                'assets'       : Ext.getCmp('assetsGridPanel').getStore().getCount() * (Ext.getCmp('assetsGridPanel').collapsed ? 0 : 1)
               ,'models'       : Ext.getCmp('modelsGridPanel').getStore().getCount() * (Ext.getCmp('modelsGridPanel').collapsed ? 0 : 1)
@@ -2310,27 +2313,14 @@ function init() {
             };
             var hits = 0;
             for (var i in c) {
+              c[i] += c[i] == 0 ? 1 : 0;
               hits += c[i];
             }
             if (hits == 0) {
               hits = 10000000000000;
             }
-            var targetH = {
-               'assets'       : h * c['assets'] * (Ext.getCmp('assetsGridPanel').collapsed ? 0 : 1) / hits
-              ,'models'       : h * c['models'] * (Ext.getCmp('modelsGridPanel').collapsed ? 0 : 1) / hits
-              ,'observations' : h * c['observations'] * (Ext.getCmp('observationsGridPanel').collapsed ? 0 : 1) / hits
-            };
-            var offset = 0;
-            hits = 0;
-            for (var i in targetH) {
-              hits++;
-              if (targetH[i] < 80) {
-                offset += 80 - targetH[i];
-                targetH[i] = 80;
-              }
-            }
-            for (var i in targetH) {
-              Ext.getCmp(i + 'GridPanel').setHeight(targetH[i] - offset / hits);
+            for (var i in c) {
+              Ext.getCmp(i + 'GridPanel').setHeight(h * c[i] / hits + 8);
             }
           });
         }}

@@ -489,3 +489,7 @@ div.olControlMousePosition {
 .mask td {
   font : 11px/13px tahoma,helvetica,sans-serif;
 }
+
+.ext-chrome .horizontal-scrolling-fix .x-grid3-scroller {
+   overflow-x: hidden;
+}
