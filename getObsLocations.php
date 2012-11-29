@@ -27,7 +27,7 @@
           );
         }
       }
-      foreach ($xml->{'Contents'}[0]->{'ObservationOfferingList'}[0]->{'ObservationOffering'} as $o) {
+      foreach ($xml->children('http://www.opengis.net/sos/1.0')->{'Contents'}[0]->children('http://www.opengis.net/sos/1.0')->{'ObservationOfferingList'}[0]->children('http://www.opengis.net/sos/1.0')->{'ObservationOffering'} as $o) {
         $chld = $o->children('http://www.opengis.net/gml');
         $id = str_replace('station-','',sprintf("%s",$o->attributes('http://www.opengis.net/gml')->{'id'}));
         $loc = explode(' ',sprintf("%s",$chld->{'boundedBy'}[0]->{'Envelope'}[0]->{'lowerCorner'}));
