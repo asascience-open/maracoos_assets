@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo scripps start `date`
+if [ ! -f /tmp/lock_scripps ]; then
+  touch /tmp/lock_scripps
+
+  wget 'http://sccoos.org/data/spray/real.kml' -O /var/www/html/assets/xml/gliders_scripps/real.kml
+
+  # cd /data/glider_data/scripps
+  # find . -name "*.kmz" -exec cp {} /var/www/html/assets/xml/gliders_scripps/{}\.kml \;
+
+  rm -f /tmp/lock_scripps
+fi
+echo scripps end `date`

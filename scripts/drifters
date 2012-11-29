@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo drifters start `date`
+if [ ! -f /tmp/lock_drifters ]; then
+  touch /tmp/lock_drifters
+
+  cd /var/www/html/assets
+  wget http://www.nefsc.noaa.gov/drifter/drift_X.xml -O xml/drifters.xml
+
+  rm -f /tmp/lock_drifters
+fi
+echo drifters end `date`
