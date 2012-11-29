@@ -1634,17 +1634,25 @@ function init() {
     ]
     ,hideHeaders      : true
     ,disableSelection : true
-    ,listeners        : {viewready : function(grid) {
-      assetsSelModel.suspendEvents();
-      var i = 0;
-      assetsStore.each(function(rec) {
-        if (rec.get('status') == 'on') {
-          assetsSelModel.selectRow(i,true);
-        }
-        i++;
-      });
-      assetsSelModel.resumeEvents();
-    }}
+    ,listeners        : {
+      viewready : function(grid) {
+        assetsSelModel.suspendEvents();
+        var i = 0;
+        assetsStore.each(function(rec) {
+          if (rec.get('status') == 'on') {
+            assetsSelModel.selectRow(i,true);
+          }
+          i++;
+        });
+        assetsSelModel.resumeEvents();
+      }
+      ,expand : function() {
+        Ext.defer(function() {Ext.getCmp('managerPanel').fireEvent('bodyresize')},100);
+      }
+      ,collapse : function() {
+        Ext.defer(function() {Ext.getCmp('managerPanel').fireEvent('bodyresize')},100);
+      }
+}
     ,tbar             : [
       {
          text    : 'Turn all assets off'
@@ -1919,17 +1927,25 @@ function init() {
     ]
     ,hideHeaders      : true
     ,disableSelection : true
-    ,listeners        : {viewready : function(grid) {
-      modelsSelModel.suspendEvents();
-      var i = 0;
-      modelsStore.each(function(rec) {
-        if (rec.get('status') == 'on') {
-          modelsSelModel.selectRow(i,true);
-        }
-        i++;
-      });
-      modelsSelModel.resumeEvents();
-    }}
+    ,listeners        : {
+      viewready : function(grid) {
+        modelsSelModel.suspendEvents();
+        var i = 0;
+        modelsStore.each(function(rec) {
+          if (rec.get('status') == 'on') {
+            modelsSelModel.selectRow(i,true);
+          }
+          i++;
+        });
+        modelsSelModel.resumeEvents();
+      }
+      ,expand : function() {
+        Ext.defer(function() {Ext.getCmp('managerPanel').fireEvent('bodyresize')},100);
+      }
+      ,collapse : function() {
+        Ext.defer(function() {Ext.getCmp('managerPanel').fireEvent('bodyresize')},100);
+      }
+    }
     ,tbar             : [
       {
          text    : 'Turn all models off'
@@ -1971,17 +1987,25 @@ function init() {
     ]
     ,hideHeaders      : true
     ,disableSelection : true
-    ,listeners        : {viewready : function(grid) {
-      observationsSelModel.suspendEvents();
-      var i = 0;
-      observationsStore.each(function(rec) {
-        if (rec.get('status') == 'on') {
-          observationsSelModel.selectRow(i,true);
-        }
-        i++;
-      });
-      observationsSelModel.resumeEvents();
-    }}
+    ,listeners        : {
+      viewready : function(grid) {
+        observationsSelModel.suspendEvents();
+        var i = 0;
+        observationsStore.each(function(rec) {
+          if (rec.get('status') == 'on') {
+            observationsSelModel.selectRow(i,true);
+          }
+          i++;
+        });
+        observationsSelModel.resumeEvents();
+      }
+      ,expand : function() {
+        Ext.defer(function() {Ext.getCmp('managerPanel').fireEvent('bodyresize')},100);
+      }
+      ,collapse : function() {
+        Ext.defer(function() {Ext.getCmp('managerPanel').fireEvent('bodyresize')},100);
+      }
+    }
     ,tbar             : [
       {
          text    : 'Turn all observations off'
@@ -2277,16 +2301,38 @@ function init() {
         ,collapsible : managerPanelCollapsible
         ,items       : managerItems
         ,listeners        : {afterrender : function() {
-          if (config == 'ecop') {
-            this.addListener('bodyresize',function(p,w,h) {
-              if (currentsGridPanel.getStore().getCount() > 10) {
-                currentsGridPanel.setHeight(h - introPanel.getHeight() - windsGridPanel.getHeight() - temperaturesGridPanel.getHeight() - wavesGridPanel.getHeight() - otherGridPanel.getHeight());
+          this.addListener('bodyresize',function() {
+            var h = this.getHeight() - 26 - introPanel.getHeight();
+            var c = {
+               'assets'       : Ext.getCmp('assetsGridPanel').getStore().getCount() * (Ext.getCmp('assetsGridPanel').collapsed ? 0 : 1)
+              ,'models'       : Ext.getCmp('modelsGridPanel').getStore().getCount() * (Ext.getCmp('modelsGridPanel').collapsed ? 0 : 1)
+              ,'observations' : Ext.getCmp('observationsGridPanel').getStore().getCount() * (Ext.getCmp('observationsGridPanel').collapsed ? 0 : 1)
+            };
+            var hits = 0;
+            for (var i in c) {
+              hits += c[i];
+            }
+            if (hits == 0) {
+              hits = 10000000000000;
+            }
+            var targetH = {
+               'assets'       : h * c['assets'] * (Ext.getCmp('assetsGridPanel').collapsed ? 0 : 1) / hits
+              ,'models'       : h * c['models'] * (Ext.getCmp('modelsGridPanel').collapsed ? 0 : 1) / hits
+              ,'observations' : h * c['observations'] * (Ext.getCmp('observationsGridPanel').collapsed ? 0 : 1) / hits
+            };
+            var offset = 0;
+            hits = 0;
+            for (var i in targetH) {
+              hits++;
+              if (targetH[i] < 80) {
+                offset += 80 - targetH[i];
+                targetH[i] = 80;
               }
-              else {
-                otherGridPanel.setHeight(h - introPanel.getHeight() - currentsGridPanel.getHeight() - windsGridPanel.getHeight() - temperaturesGridPanel.getHeight() - wavesGridPanel.getHeight());
-              }
-            });
-          }
+            }
+            for (var i in targetH) {
+              Ext.getCmp(i + 'GridPanel').setHeight(targetH[i] - offset / hits);
+            }
+          });
         }}
 <?php
   if (isset($_SESSION['config']) && $_SESSION['config'] == 'ecop') {
