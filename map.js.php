@@ -2772,6 +2772,8 @@ function initMap() {
     ,maxExtent         : new OpenLayers.Bounds(-20037508,-20037508,20037508,20037508.34)
   });
 
+  map.obsId = {};
+
   for (var i = 0; i < map.layers.length; i++) {
     var lyr = map.getLayersByName(defaultBasemap)[0];
     if (!lyr.visibility) {
@@ -4314,6 +4316,7 @@ function syncObs(l,force) {
     if (map.getZoom() + zoomOffset() < obsMinZoom[l.name]) {
       everyNth = Math.pow(2,(obsMinZoom[l.name] - (map.getZoom() + zoomOffset())));
     }
+    map.obsId[l.name] = Ext.id();
     OpenLayers.Request.GET({
        url      : 'getObsLocations.php'
          + '?bbox='        + bigExtent.clone().transform(map.getProjectionObject(),proj4326).toArray() 
@@ -4321,14 +4324,17 @@ function syncObs(l,force) {
          + '&zoom='        + (map.getZoom() + zoomOffset())
          + '&provider='    + l.name
          + '&everyNth='    + everyNth
+         + '&obsId='       + map.obsId[l.name]
          + getDateRange()
          + getFilter()
       ,callback : function(r) {
-        map.layers[lyrIdx].removeFeatures(map.layers[lyrIdx].features);
         var obs = new OpenLayers.Format.JSON().read(r.responseText);
+        if (obs.obsId != map.obsId[obs.provider]) {
+          return;
+        }
+        map.layers[lyrIdx].removeFeatures(map.layers[lyrIdx].features);
         obsBbox[l.name] = new OpenLayers.Bounds(obs.bbox[0],obs.bbox[1],obs.bbox[2],obs.bbox[3]).transform(proj4326,map.getProjectionObject());
         obsZoom[l.name] = obs.zoom;
-        var boundsEqual = true;
         for (var loc in obs.data) {
           if (loc == 'remove' || loc == 'indexOf') {
             // not sure why this is coming back in the json 
@@ -4345,60 +4351,53 @@ function syncObs(l,force) {
                 pts.push(new OpenLayers.Geometry.Point(obs.data[loc][loc][i].track[j][0],obs.data[loc][loc][i].track[j][1]).transform(proj4326,map.getProjectionObject()));
               }
               var ls = new OpenLayers.Geometry.LineString(pts);
-              for (var k = 0; k < 4; k++) {
-                if (obs.realBbox[k] != map.getExtent().transform(map.getProjectionObject(),proj4326).toArray()[k]) {
-                  boundsEqual = false;
+              var vec = new OpenLayers.Feature.Vector(ls);
+              vec.attributes.provider      = provider;
+              vec.attributes.active        = obs.data[loc][loc][i].active;
+              vec.attributes.strokeWidth   = 2;
+              vec.attributes.strokeColor   = gliderTracks[l.name] ? gliderTracks[l.name] : '#ffff00';
+              if (provider == 'Drifters') {
+                vec.attributes.strokeColor = 'rgb(6,170,61)';
+              }
+              vec.attributes.strokeDashstyle = 'solid';
+              if (obs.data[loc][loc][i].active) {
+                vec.attributes.strokeOpacity   = 0.90; // 0.80;
+              }
+              else {
+                vec.attributes.strokeOpacity   = 0.90; // 0.50;
+              }
+              map.layers[lyrIdx].addFeatures(vec);
+              var f = new OpenLayers.Feature.Vector(pts[pts.length - 1]);
+              f.attributes.featureId           = f.id;
+              f.attributes.provider            = provider;
+              f.attributes.data                = obs.data[loc];
+              f.attributes.active              = obs.data[loc][loc][i].active;
+              if (obs.data[loc][loc][i].t) {
+                f.attributes.maxT = obs.data[loc][loc][i].t[obs.data[loc][loc][i].t.length - 1];
+              }
+              f.attributes.graphicWidth        = 20;
+              f.attributes.graphicWidthBig     = 20 * 2;
+              f.attributes.graphicHeight       = 20;
+              f.attributes.graphicHeightBig    = 20 * 2;
+              f.attributes.rotation            = 0;
+              f.attributes.inactive            = !f.attributes.active ? '.inactive' : '';
+              if (loc.indexOf('gliders') >= 0) {
+                f.attributes.provider            = obs.data[loc][loc][i].provider;
+                f.attributes.graphicWidth        = 30;
+                f.attributes.graphicWidthBig     = 45;
+                f.attributes.graphicHeight       = 25;
+                f.attributes.graphicHeightBig    = 38;
+                if (pts.length >= 2) {
+                  f.attributes.rotation = greatCircle(
+                     obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 1][0]
+                    ,obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 1][1]
+                    ,obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 2][0]
+                    ,obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 2][1]
+                  ) + 90;
                 }
               }
-              if (boundsEqual) {
-                var vec = new OpenLayers.Feature.Vector(ls);
-                vec.attributes.provider      = provider;
-                vec.attributes.active        = obs.data[loc][loc][i].active;
-                vec.attributes.strokeWidth   = 2;
-                vec.attributes.strokeColor   = gliderTracks[l.name] ? gliderTracks[l.name] : '#ffff00';
-                if (provider == 'Drifters') {
-                  vec.attributes.strokeColor = 'rgb(6,170,61)';
-                }
-                vec.attributes.strokeDashstyle = 'solid';
-                if (obs.data[loc][loc][i].active) {
-                  vec.attributes.strokeOpacity   = 0.90; // 0.80;
-                }
-                else {
-                  vec.attributes.strokeOpacity   = 0.90; // 0.50;
-                }
-                map.layers[lyrIdx].addFeatures(vec);
-                var f = new OpenLayers.Feature.Vector(pts[pts.length - 1]);
-                f.attributes.featureId           = f.id;
-                f.attributes.provider            = provider;
-                f.attributes.data                = obs.data[loc];
-                f.attributes.active              = obs.data[loc][loc][i].active;
-                if (obs.data[loc][loc][i].t) {
-                  f.attributes.maxT = obs.data[loc][loc][i].t[obs.data[loc][loc][i].t.length - 1];
-                }
-                f.attributes.graphicWidth        = 20;
-                f.attributes.graphicWidthBig     = 20 * 2;
-                f.attributes.graphicHeight       = 20;
-                f.attributes.graphicHeightBig    = 20 * 2;
-                f.attributes.rotation            = 0;
-                f.attributes.inactive            = !f.attributes.active ? '.inactive' : '';
-                if (loc.indexOf('gliders') >= 0) {
-                  f.attributes.provider            = obs.data[loc][loc][i].provider;
-                  f.attributes.graphicWidth        = 30;
-                  f.attributes.graphicWidthBig     = 45;
-                  f.attributes.graphicHeight       = 25;
-                  f.attributes.graphicHeightBig    = 38;
-                  if (pts.length >= 2) {
-                    f.attributes.rotation = greatCircle(
-                       obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 1][0]
-                      ,obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 1][1]
-                      ,obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 2][0]
-                      ,obs.data[loc][loc][i].track[obs.data[loc][loc][i].track.length - 2][1]
-                    ) + 90;
-                  }
-                }
-                map.layers[lyrIdx].featureFactor = 0.5;
-                map.layers[lyrIdx].addFeatures(f);
-              }
+              map.layers[lyrIdx].featureFactor = 0.5;
+              map.layers[lyrIdx].addFeatures(f);
             }
           }
           else {
@@ -4420,16 +4419,8 @@ function syncObs(l,force) {
             }
             // this is leftover from when all providers could be merged into 1 -- now we're only fetching 1 provider @ a time
             f.attributes.provider = p.join('-',p.sort());
-            // make sure that a previous request doesn't overwrite this one
-            for (var i = 0; i < 4; i++) {
-              if (obs.realBbox[i] != map.getExtent().transform(map.getProjectionObject(),proj4326).toArray()[i]) {
-                boundsEqual = false;
-              }
-            }
-            if (boundsEqual) {
-              map.layers[lyrIdx].featureFactor = 1;
-              map.layers[lyrIdx].addFeatures(f);
-            }
+            map.layers[lyrIdx].featureFactor = 1;
+            map.layers[lyrIdx].addFeatures(f);
           }
         }
         map.layers[lyrIdx].events.triggerEvent('loadend');

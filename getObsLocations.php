@@ -504,5 +504,7 @@
     ,'realBbox' => explode(',',$_REQUEST['realBbox'])
     ,'data'     => $outMetadata
     ,'zoom'     => $_REQUEST['zoom']
+    ,'provider' => $_REQUEST['provider']
+    ,'obsId'    => $_REQUEST['obsId']
   ));
 ?>
