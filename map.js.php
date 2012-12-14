@@ -1481,13 +1481,14 @@ function init() {
       'name'
      ,'wmsName'
      ,'queryName'
+     ,'dMinHours'
     ]
     ,data : [
-       ['7-day composite','sst-seven/mcsst','sst-masked/mcsst']
-      ,['3-day composite','sst-three/mcsst','sst-masked/mcsst']
-      ,['1-day composite','sst-one/mcsst','sst-masked/mcsst']
-      ,['Single pass declouded','sst-masked/mcsst','sst-masked/mcsst']
-      ,['Single pass','sst/mcsst','sst/mcsst']
+       ['7-day composite','sst-seven/mcsst','sst-masked/mcsst',7 * 24]
+      ,['3-day composite','sst-three/mcsst','sst-masked/mcsst',3 * 24]
+      ,['1-day composite','sst-one/mcsst','sst-masked/mcsst',1 * 24]
+      ,['Single pass declouded','sst-masked/mcsst','sst-masked/mcsst',-999]
+      ,['Single pass','sst/mcsst','sst/mcsst',-999]
     ]
   });
 
@@ -1514,12 +1515,13 @@ function init() {
       'name'
      ,'wmsName'
      ,'queryName'
+     ,'dMinHours'
     ]
     ,data : [
-       ['7-day composite','modis-seven/chl_oc3','modis/chl_oc3']
-      ,['3-day composite','modis-three/chl_oc3','modis/chl_oc3']
-      ,['1-day composite','modis-one/chl_oc3','modis/chl_oc3']
-      ,['Single pass','modis/chl_oc3','modis/chl_oc3']
+       ['7-day composite','modis-seven/chl_oc3','modis/chl_oc3',7 * 24]
+      ,['3-day composite','modis-three/chl_oc3','modis/chl_oc3',3 * 24]
+      ,['1-day composite','modis-one/chl_oc3','modis/chl_oc3',1 * 24]
+      ,['Single pass','modis/chl_oc3','modis/chl_oc3',-999]
     ]
   });
 
@@ -4711,8 +4713,8 @@ function queryWMS(xy,a,chartIt) {
       ,QUERY_LAYERS  : forceQueryLayers(a[i].name,paramOrig['LAYERS'])
     };
     if (paramOrig['GFI_TIME'] == 'min/max') {
-      dMin = new Date(dNow.getTime() - 16 * 60 * 60 * 1000);
-      dMax = new Date(dNow.getTime() + 24 * 60 * 60 * 1000);
+      var dMin = getTimeBounds(a[i].name,paramOrig['LAYERS'],16,24).dMin; // new Date(dNow.getTime() - 16 * 60 * 60 * 1000);
+      var dMax = getTimeBounds(a[i].name,paramOrig['LAYERS'],16,24).dMax; // new Date(dNow.getTime() + 24 * 60 * 60 * 1000);
       paramNew['TIME'] =
           dMin.getUTCFullYear() + '-' + String.leftPad(dMin.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMin.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z'
         + '/'
@@ -4761,6 +4763,22 @@ function forceQueryLayers(name,layer) {
     return layersStore[name].getAt(layersStore[name].find('wmsName',layer)).get('queryName');
   }
   return layer;
+}
+
+function getTimeBounds(name,layer,dMinH,dMaxH) {
+  var dMin = new Date(dNow.getTime() - dMinH * 60 * 60 * 1000);
+  var dMax = new Date(dNow.getTime() + dMaxH * 60 * 60 * 1000);
+  if (layersStore[name]) {
+    var dMinHours = layersStore[name].getAt(layersStore[name].find('wmsName',layer)).get('dMinHours');
+    if (dMinHours != -999) {
+      dMin = new Date(dNow.getTime() - dMinHours * 60 * 60 * 1000);
+      dMax = new Date(dNow.getTime() + 0 * 60 * 60 * 1000);
+    }
+  }
+  return {
+     dMin : dMin
+    ,dMax : dMax
+  };
 }
 
 function toEnglish(v) {
