@@ -239,12 +239,16 @@
     echo "defaultOpacities = {".implode(',',$opacities)."};\n";
   }
 
-  $layerLayers = array();
+  $i = 0;
   if (isset($_REQUEST['lyrLyrs'])) {
     foreach (explode(',',$_REQUEST['lyrLyrs']) as $o) {
-      array_push($layerLayers,"'".$layers[count($layerLayers)]."' : '$o'");
+?>
+       if (defaultLayerLayers[<?php echo json_encode($layers[$i])?>]) {
+         defaultLayerLayers[<?php echo json_encode($layers[$i])?>] = <?php echo json_encode($o)?>; 
+       }
+<?php
+      $i++;
     }
-    echo "defaultLayerLayers = {".implode(',',$layerLayers)."};\n";
   }
 
   $i = 0;
