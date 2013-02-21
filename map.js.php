@@ -842,35 +842,6 @@ function init() {
       ]
       ,[
          'model'
-        ,'NCOM currents'
-        ,'NCOM currents'
-        ,'off'
-        ,defaultLayers['NCOM currents'] ? 'on' : 'off'
-        ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NCOM currents.html')))?>'
-        ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
-        ,typeof defaultOpacities['NCOM currents'] != 'undefined' && defaultOpacities['NCOM currents'] != '' ? defaultOpacities['NCOM currents'] : 100
-        ,defaultStyles['NCOM currents'].split('-')[7]
-        ,defaultImageTypes['NCOM currents']
-        ,''
-        ,defaultStyles['NCOM currents'].split('-')[0]
-        ,defaultStyles['NCOM currents'].split('-')[1]
-        ,defaultStyles['NCOM currents'].split('-')[3]
-        ,defaultStyles['NCOM currents'].split('-')[2]
-        ,defaultStyles['NCOM currents'].split('-')[4]
-        ,defaultStyles['NCOM currents'].split('-')[5]
-        ,defaultStyles['NCOM currents'].split('-')[6]
-        ,'0-6'
-        ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_CURRENTS'
-        ,''
-        ,'-78,35.5,-62,44'
-        ,'true'
-        ,''
-        ,'currentsVelocity'
-      ]
-      ,[
-         'model'
         ,'HYCOM currents'
         ,'HYCOM currents'
         ,'off'
@@ -2971,15 +2942,6 @@ function initMap() {
       ,layers : 'PESHELF_CURRENTS'
       ,format : 'image/' + defaultImageTypes['HOPS']
       ,styles : defaultStyles['HOPS']
-      ,singleTile : true
-      ,projection : proj3857
-    });
-    addWMS({
-       name   : 'NCOM currents'
-      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
-      ,layers : 'NCOM_CURRENTS'
-      ,format : 'image/' + defaultImageTypes['NCOM currents']
-      ,styles : defaultStyles['NCOM currents']
       ,singleTile : true
       ,projection : proj3857
     });
