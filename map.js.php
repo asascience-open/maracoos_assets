@@ -1026,7 +1026,6 @@ function init() {
         ,typeof defaultOpacities['Satellite water temperature'] != 'undefined' && defaultOpacities['Satellite water temperature'] != '' ? defaultOpacities['Satellite water temperature'] : 100
         ,''
         ,''
-        ,defaultStyles['Satellite water temperature']
         ,''
         ,''
         ,''
@@ -1036,11 +1035,12 @@ function init() {
         ,''
         ,''
         ,''
-        ,'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=' + (typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'sst-seven/mcsst') + '&PALETTE=' + defaultStyles['Satellite water temperature'].split('/')[1] + '&TIME=' + dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00' + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
         ,''
+        ,(typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=mcsst&STYLES=' + defaultStyles['Satellite water temperature'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
+        ,'false'
         ,'-78,35.5,-62,44'
         ,'true'
-        ,typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'sst-seven/mcsst'
+        ,typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
         ,'temperature'
       ]
       ,[
@@ -1455,11 +1455,11 @@ function init() {
      ,'dMinHours'
     ]
     ,data : [
-       ['7-day composite','sst-seven/mcsst','sst-masked/mcsst',7 * 24]
-      ,['3-day composite','sst-three/mcsst','sst-masked/mcsst',3 * 24]
-      ,['1-day composite','sst-one/mcsst','sst-masked/mcsst',1 * 24]
-      ,['Single pass declouded','sst-masked/mcsst','sst-masked/mcsst',-999]
-      ,['Single pass','sst/mcsst','sst/mcsst',-999]
+       ['7-day composite'      ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',7 * 24]
+      ,['3-day composite'      ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',3 * 24]
+      ,['1-day composite'      ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'   ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',1 * 24]
+      ,['Single pass declouded','http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&','http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',-999]
+      ,['Single pass'          ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'       ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',-999]
     ]
   });
 
@@ -2846,11 +2846,11 @@ function initMap() {
     });
     addWMS({
        name   : 'Satellite water temperature'
-      ,url    : 'http://tds.maracoos.org/ncWMS/wms?GFI_TIME=min/max'
-      ,layers : defaultLayerLayers['Satellite water temperature']
+      ,url    : defaultLayerLayers['Satellite water temperature']
+      ,layers : 'mcsst'
       ,format : 'image/png'
       ,styles : defaultStyles['Satellite water temperature']
-      ,singleTile : false
+      ,singleTile : true
       ,projection : proj3857
     });
     addWMS({
@@ -3342,7 +3342,13 @@ function setLayerSettings(layerName) {
               mainStore.getAt(idx).set('settingsLayers',rec.get('wmsName'));
               mainStore.getAt(idx).commit();
               var lyr = map.getLayersByName(mainStore.getAt(idx).get('name'))[0];
-              lyr.mergeNewParams({LAYERS : rec.get('wmsName')});
+              if (lyr.url.indexOf('8080') >= 0) {
+                lyr.setUrl(rec.get('wmsName'));
+                lyr.redraw();
+              }
+              else {
+                lyr.mergeNewParams({LAYERS : rec.get('wmsName')});
+              }
             }
           }
         })
@@ -4668,22 +4674,28 @@ function queryWMS(xy,a,chartIt) {
       ,BBOX          : map.getExtent().toBBOX()
       ,X             : xy.x
       ,Y             : xy.y
-      ,INFO_FORMAT   : 'text/xml'
+      ,INFO_FORMAT   : 'text/' + (a[i].url.indexOf('8080') >= 0 ? 'csv' : 'xml')
       ,FEATURE_COUNT : 1
       ,WIDTH         : map.size.w
       ,HEIGHT        : map.size.h
-      ,QUERY_LAYERS  : forceQueryLayers(a[i].name,paramOrig['LAYERS'])
+      ,QUERY_LAYERS  : (a[i].url.indexOf('8080') >= 0 ? paramOrig['LAYERS'] : forceQueryLayers(a[i].name,paramOrig['LAYERS']))
     };
     if (paramOrig['GFI_TIME'] == 'min/max') {
-      var dMin = getTimeBounds(a[i].name,paramOrig['LAYERS'],16,24).dMin; // new Date(dNow.getTime() - 16 * 60 * 60 * 1000);
-      var dMax = getTimeBounds(a[i].name,paramOrig['LAYERS'],16,24).dMax; // new Date(dNow.getTime() + 24 * 60 * 60 * 1000);
+// foo
+      var dMin = getTimeBounds(a[i].name,(a[i].url.indexOf('8080') >= 0 ? a[i].url : paramOrig['LAYERS']),16,24).dMin; // new Date(dNow.getTime() - 16 * 60 * 60 * 1000);
+      var dMax = getTimeBounds(a[i].name,(a[i].url.indexOf('8080') >= 0 ? a[i].url : paramOrig['LAYERS']),16,24).dMax; // new Date(dNow.getTime() + 24 * 60 * 60 * 1000);
       paramNew['TIME'] =
           dMin.getUTCFullYear() + '-' + String.leftPad(dMin.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMin.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z'
         + '/'
         + dMax.getUTCFullYear() + '-' + String.leftPad(dMax.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dMax.getUTCDate(),2,'0') + 'T' + String.leftPad(dMin.getUTCHours(),2,'0') + ':00Z';
       paramNew['GFI_TIME'] = 'min/max';
     }
-    targets.push({url : a[i].getFullRequestString(paramNew,'getFeatureInfo.php?' + a[i].url + '&tz=' + new Date().getTimezoneOffset() + mapTime),title : mainStore.getAt(mainStore.find('name',a[i].name)).get('displayName'),type : 'model'});
+    if (a[i].url.indexOf('8080') >= 0) {
+      targets.push({url : a[i].getFullRequestString(paramNew,'getFeatureInfo.php?' + forceQueryLayers(a[i].name,a[i].url) + '&tz=' + new Date().getTimezoneOffset() + mapTime),title : mainStore.getAt(mainStore.find('name',a[i].name)).get('displayName'),type : 'model'});
+    }
+    else {
+      targets.push({url : a[i].getFullRequestString(paramNew,'getFeatureInfo.php?' + a[i].url + '&tz=' + new Date().getTimezoneOffset() + mapTime),title : mainStore.getAt(mainStore.find('name',a[i].name)).get('displayName'),type : 'model'});
+    }
   }
   if (chartIt) {
     makeChart('model',targets);
@@ -4720,18 +4732,19 @@ function showHelp(fromButton) {
   }
 }
 
-function forceQueryLayers(name,layer) {
+function forceQueryLayers(name,url) {
+console.dir([name,url]);
   if (layersStore[name]) {
-    return layersStore[name].getAt(layersStore[name].find('wmsName',layer)).get('queryName');
+    return layersStore[name].getAt(layersStore[name].find('wmsName',url)).get('queryName');
   }
-  return layer;
+  return url;
 }
 
-function getTimeBounds(name,layer,dMinH,dMaxH) {
+function getTimeBounds(name,s,dMinH,dMaxH) {
   var dMin = new Date(dNow.getTime() - dMinH * 60 * 60 * 1000);
   var dMax = new Date(dNow.getTime() + dMaxH * 60 * 60 * 1000);
   if (layersStore[name]) {
-    var dMinHours = layersStore[name].getAt(layersStore[name].find('wmsName',layer)).get('dMinHours');
+    var dMinHours = layersStore[name].getAt(layersStore[name].find('wmsName',s)).get('dMinHours');
     if (dMinHours != -999) {
       dMin = new Date(dNow.getTime() - dMinHours * 60 * 60 * 1000);
       dMax = new Date(dNow.getTime() + 0 * 60 * 60 * 1000);

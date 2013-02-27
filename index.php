@@ -48,7 +48,7 @@
         ,'NHC storm tracks' : true
       };
       var defaultStyles = {
-         'Satellite water temperature' : 'boxfill/rainbow'
+         'Satellite water temperature' : 'pcolor_average_jet_5_20_node_False'
         ,'Chlorophyll concentration'   : 'boxfill/rainbow'
         ,'ROMS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'HOPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
@@ -160,7 +160,7 @@
 
       var defaultLayerLayers = {
          'Chlorophyll concentration'   : 'modis-seven/chl_oc3'
-        ,'Satellite water temperature' : 'sst-seven/mcsst'
+        ,'Satellite water temperature' : 'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
       };
       var guaranteeDefaultStyles = defaultStyles;
       var defaultOpacities = {
