@@ -927,6 +927,7 @@ function init() {
         ,''
         ,'wavesElevation'
       ]
+/*
       ,[
          'model'
         ,'NCOM SST'
@@ -956,6 +957,7 @@ function init() {
         ,''
         ,'temperature'
       ]
+*/
       ,[
          'observation'
         ,'HF radar currents'
@@ -2835,6 +2837,7 @@ function initMap() {
   });
 
   if (config != 'ecop') {
+/*
     addWMS({
        name   : 'NCOM SST'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
@@ -2844,6 +2847,7 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
+*/
     addWMS({
        name   : 'Satellite water temperature'
       ,url    : defaultLayerLayers['Satellite water temperature']
