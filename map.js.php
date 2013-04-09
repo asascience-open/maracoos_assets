@@ -930,7 +930,7 @@ function init() {
       ,[
          'model'
         ,'HYCOM SST'
-        ,'NCOM water temperature'
+        ,'HYCOM water temperature'
         ,'off'
         ,defaultLayers['HYCOM SST'] ? 'on' : 'off'
         ,'off'
