@@ -927,21 +927,18 @@ function init() {
         ,''
         ,'wavesElevation'
       ]
-/*
       ,[
          'model'
-        ,'NCOM SST'
+        ,'HYCOM SST'
         ,'NCOM water temperature'
         ,'off'
-        ,defaultLayers['NCOM SST'] ? 'on' : 'off'
+        ,defaultLayers['HYCOM SST'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NCOM SST.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HYCOM SST.html')))?>'
         ,''
-        ,typeof defaultOpacities['NCOM SST'] != 'undefined' && defaultOpacities['NCOM SST'] != '' ? defaultOpacities['NCOM SST'] : 100
+        ,typeof defaultOpacities['HYCOM SST'] != 'undefined' && defaultOpacities['HYCOM SST'] != '' ? defaultOpacities['HYCOM SST'] : 100
         ,''
-        ,defaultImageTypes['NCOM SST']
-        ,''
-        ,''
+        ,defaultImageTypes['HYCOM SST']
         ,''
         ,''
         ,''
@@ -950,14 +947,15 @@ function init() {
         ,''
         ,''
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_SST&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM SST'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_SST'
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=HYCOM_GLOBAL_NAVY_SST&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HYCOM SST'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=HYCOM_GLOBAL_NAVY_SST'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
         ,''
         ,'temperature'
       ]
-*/
       ,[
          'observation'
         ,'HF radar currents'
@@ -2837,17 +2835,15 @@ function initMap() {
   });
 
   if (config != 'ecop') {
-/*
     addWMS({
-       name   : 'NCOM SST'
+       name   : 'HYCOM SST'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
-      ,layers : 'NCOM_SST'
-      ,format : 'image/' + defaultImageTypes['NCOM SST']
+      ,layers : 'HYCOM_GLOBAL_NAVY_SST'
+      ,format : 'image/' + defaultImageTypes['HYCOM SST']
       ,styles : ''
       ,singleTile : true
       ,projection : proj3857
     });
-*/
     addWMS({
        name   : 'Satellite water temperature'
       ,url    : defaultLayerLayers['Satellite water temperature']

@@ -61,7 +61,7 @@
         ,'NAM winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-High'
         ,'HF radar currents'           : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'WWIII waves'                 : ''
-        ,'NCOM SST'                    : ''
+        ,'HYCOM SST'                   : ''
       };
       var hideLegendsGridPanel      = false;
       var hideTimeseriesPanel       = false;
