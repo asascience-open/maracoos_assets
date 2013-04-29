@@ -48,7 +48,7 @@
         ,'NHC storm tracks' : true
       };
       var defaultStyles = {
-         'Satellite water temperature' : 'pcolor_average_jet_5_20_node_False'
+         'Satellite water temperature' : 'pcolor_average_jet_5_27_node_False'
         ,'Chlorophyll concentration'   : 'boxfill/rainbow'
         ,'ROMS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'HOPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
