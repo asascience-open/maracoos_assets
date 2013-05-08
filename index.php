@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
   ob_start();
   session_start();
@@ -21,6 +22,7 @@
 
 <html>
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8; IE=7;">
     <title><?php echo $title?> Explorer</title>
     <link rel="stylesheet" type="text/css" href="./js/ext-3.3.0/resources/css/ext-all.css"/>
     <link rel="stylesheet" type="text/css" href="style.css?v=7"/>

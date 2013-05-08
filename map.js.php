@@ -2325,7 +2325,7 @@ function init() {
         ,layout    : 'border'
         ,items     : [
           {
-             html      : '<div id="map"></div>'
+             html      : '<div style="height:100%;width:100%" id="map"></div>'
               + '<div id="notRealtimeAlert">The environmental overlays display near real time data only. By selecting a year other than the most recent available, you are encouraged to turn all environmental overlays off to avoid confusion.</div>'
             ,region    : 'center'
             ,border    : false
@@ -2592,8 +2592,8 @@ function init() {
                 });
                 win.addListener('resize',function(win) {
                   var ts = document.getElementById('tsResults');
-                  ts.style.width  = win.getWidth() - 15;
-                  ts.style.height = win.getHeight() - 55;
+                  ts.style.width  = (win.getWidth() - 15) + 'px';
+                  ts.style.height = (win.getHeight() - 55) + 'px';
                   var spd = [];
                   var dir = []; 
                   if (!chartData || chartData.length <= 0) {
