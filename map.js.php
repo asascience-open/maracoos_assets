@@ -4733,7 +4733,6 @@ function showHelp(fromButton) {
 }
 
 function forceQueryLayers(name,url) {
-console.dir([name,url]);
   if (layersStore[name]) {
     return layersStore[name].getAt(layersStore[name].find('wmsName',url)).get('queryName');
   }
