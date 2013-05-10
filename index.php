@@ -308,8 +308,9 @@
     <script type="text/javascript" src="./js/ext-3.3.0/ext-all.js"></script>
     <script type="text/javascript" src="./js/ext-3.3.0/Spotlight.js"></script>
     <script type="text/javascript" src="./js/OpenLayers-2.11-rc2/OpenLayers.js"></script>
-    <script type="text/javascript" src="./js/jquery/jquery.js"></script>
-    <script type="text/javascript" src="./js/jquery/jquery.flot.js"></script>
+	 <script type="text/javascript" src="./js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="./js/jquery/jquery.flot.js"></script>
+    <script type="text/javascript" src="./js/jquery/jquery.flot.time.js"></script>
     <script type="text/javascript" src="./js/jquery/jquery.flot.crosshair.js"></script>
     <script type="text/javascript" src="./js/jquery/jquery.flot.navigate.js"></script>
     <script type="text/javascript" src="./js/jquery/excanvas.js"></script>
