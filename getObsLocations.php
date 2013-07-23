@@ -325,6 +325,9 @@
         ,preg_match('/&provider\[\]=osu/',$_REQUEST['filterProvider']) ?
           (array)json_decode(file_get_contents(str_replace(' ','%20','http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/')).'/gliders_osu.php?t0='.$_REQUEST['t0'].'&t1='.$_REQUEST['t1'].'&type=slocum')))
           : array()
+        ,preg_match('/&provider\[\]=gerg/',$_REQUEST['filterProvider']) ?
+          (array)json_decode(file_get_contents(str_replace(' ','%20','http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/')).'/gliders_gerg.php?t0='.$_REQUEST['t0'].'&t1='.$_REQUEST['t1'].'&type=slocum')))
+          : array()
       );
     }
     else {
