@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo gerg start `date`
+if [ ! -f /tmp/lock_gerg ]; then
+  touch /tmp/lock_gerg
+
+  sshpass -p Gulf0fM3x1c0 sftp gcoosftp@gcoosmaps.tamu.edu:/IOOS/gcoos_glider_path.kml /var/www/html/assets/xml/gliders_gerg/real.kml
+
+  rm -f /tmp/lock_gerg
+fi
+echo gerg end `date`

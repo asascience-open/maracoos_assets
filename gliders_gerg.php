@@ -15,7 +15,7 @@
     if (dateIntersects(strtotime($_REQUEST['t0']),strtotime($_REQUEST['t1']),strtotime($d['start']),strtotime($d['end']))) {
       $gliders[$d['id']] = array(
          'deployment' => $d['id']
-        ,'active'     => time() - strtotime($d['end']) < 5 * 24 * 3600 ? 1 : 0
+        ,'active'     => $d['end'] != '' ? (time() - strtotime($d['end']) < 5 * 24 * 3600 ? 1 : 0) : 1
         ,'provider'   => 'gerg'
         ,'type'       => 'slocum'
         ,'track'      => mkTrack(explode(' ',sprintf("%s",$placemark->{'LineString'}[0]->{'coordinates'})),$d['start'],$d['end'])
