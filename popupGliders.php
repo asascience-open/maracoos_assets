@@ -14,6 +14,31 @@
         array_push($o,$a[0],$a[1]);
       }
     }
+    else if (preg_match('/abcmgr/',$requestUrl)) {
+      $u = substr($requestUrl,0,strrpos($requestUrl,'/') + 1);
+      $html = file_get_contents($requestUrl);
+      preg_match_all('/<img src="([^"]*)"/',$html,$matches);
+      $td = array();
+      $tr = array();
+      for ($i = 0; $i < count($matches[1]); $i++) {
+        $img = $matches[1][$i];
+        array_push($td
+          ,'<a onmouseover="overlib(\'<table><tr><td><img src='
+            .$u.'/'.$img
+            .'></td></tr></table>\',VAUTO,HAUTO,FGCOLOR,\'#8EAACE\')"><img height=75 src="'
+            .$u.'/'.$img
+          .'" onmouseout=\'nd()\' ></a>'
+        );
+        if (($i + 1) % 8 == 0 || $i == count($matches[1]) - 1) {
+          array_push($tr,'<td>'.implode('</td><td>',$td).'</td>');
+          $td = array();
+        }
+      }
+      if (implode('</tr><tr>',$tr) != '') {
+        array_push($o,"<tr><td colspan=2><table>"."<tr>".implode('</tr><tr>',$tr)."</tr>"."</table></td></tr>");
+        array_push($o,"<tr><td colspan=2 style='text-align:center'><font color='gray'>Mouseover a thumbnail to view a larger image.</font></td></tr>");
+      }
+    }
     else if (preg_match('/washington/',$requestUrl)) {
       $u = substr($requestUrl,0,strrpos($requestUrl,'/') + 1);
       $html = file_get_contents($requestUrl);

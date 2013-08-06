@@ -1,0 +1,26 @@
+#!/usr/bin/perl
+
+use Net::SFTP::Foreign;
+use strict;
+
+if (-e '/tmp/lock_gerg') {
+  exit;
+}
+
+`touch /tmp/lock_gerg`;
+
+my $sftp = Net::SFTP::Foreign->new(
+   'gcoosmaps.tamu.edu'
+  ,user     => 'gcoosftp'
+  ,password => 'Gulf0fM3x1c0'
+);
+
+$sftp->get(
+   '/IOOS/gcoos_glider_path.kml'
+  ,'/var/www/html/assets/xml/gliders_gerg/real.kml'
+);
+if ($sftp->error) {
+  print $sftp->error."\n";
+}
+
+`rm -f /tmp/lock_gerg`;

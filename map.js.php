@@ -3114,6 +3114,7 @@ function initMap() {
         data.push(['scripps','Scripps Institution of Oceanography']);
         data.push(['uw','University of Washington']);
         data.push(['osu','Oregon State University']);
+        data.push(['gerg','GERG-TAMU-GCOOS']);
         glidersMetadataStore.loadData(data);
         glidersMetadataStore.sort('description','ASC');
         Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().selectAll();
