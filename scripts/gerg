@@ -1,11 +1,26 @@
-#!/bin/bash
+#!/usr/bin/perl
 
-echo gerg start `date`
-if [ ! -f /tmp/lock_gerg ]; then
-  touch /tmp/lock_gerg
+use Net::SFTP::Foreign;
+use strict;
 
-  sshpass -p Gulf0fM3x1c0 sftp gcoosftp@gcoosmaps.tamu.edu:/IOOS/gcoos_glider_path.kml /var/www/html/assets/xml/gliders_gerg/real.kml
+if (-e '/tmp/lock_gerg') {
+  exit;
+}
 
-  rm -f /tmp/lock_gerg
-fi
-echo gerg end `date`
+`touch /tmp/lock_gerg`;
+
+my $sftp = Net::SFTP::Foreign->new(
+   'gcoosmaps.tamu.edu'
+  ,user     => 'gcoosftp'
+  ,password => 'Gulf0fM3x1c0'
+);
+
+$sftp->get(
+   '/IOOS/gcoos_glider_path.kml'
+  ,'/var/www/html/assets/xml/gliders_gerg/real.kml'
+);
+if ($sftp->error) {
+  print $sftp->error."\n";
+}
+
+`rm -f /tmp/lock_gerg`;
