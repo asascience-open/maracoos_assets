@@ -247,7 +247,7 @@
       }
       $d['url'] = "popupGliders.php"
         .'?id='.$d['id']
-        .'&t='.$d['t'][0]
+        .'&t=from '.$d['t'][0]
         .($d['t'][count($d['t']) - 1] != '' ? (' to '.$d['t'][count($d['t']) - 1]) : ' (active)')
         .'&u='.$d['url'];
 
@@ -374,7 +374,7 @@
       $d['descr'] = $d['provider'].' '.$d['descr'];
       $d['url'] = "popupGliders.php"
         .'?id='.$d['id']
-        .'&t='.$d['t'][0]
+        .'&t=from '.$d['t'][0]
         .($d['t'][count($d['t']) - 1] != '' ? (' to '.$d['t'][count($d['t']) - 1]) : ' (active)')
         .(array_key_exists('url',$d) ? '&u='.urlencode($d['url']) : '');
 
