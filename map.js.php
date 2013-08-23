@@ -957,6 +957,35 @@ function init() {
         ,'temperature'
       ]
       ,[
+         'model'
+        ,'Bottom water temperature'
+        ,'Bottom water temperature'
+        ,'off'
+        ,defaultLayers['Bottom water temperature'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Bottom water temperature.html')))?>'
+        ,'palette'
+        ,typeof defaultOpacities['Bottom water temperature'] != 'undefined' && defaultOpacities['Bottom water temperature'] != '' ? defaultOpacities['Bottom water temperature'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,(typeof defaultLayerLayers['Bottom water temperature'] != 'undefined' && defaultLayerLayers['Bottom water temperature'] != '' ? defaultLayerLayers['Bottom water temperature'] : 'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=temp&STYLES=' + defaultStyles['Bottom water temperature'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
+        ,'false'
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'temperature'
+      ]
+      ,[
          'observation'
         ,'HF radar currents'
         ,'HF radar currents'
@@ -2841,6 +2870,15 @@ function initMap() {
       ,layers : 'HYCOM_GLOBAL_NAVY_SST'
       ,format : 'image/' + defaultImageTypes['HYCOM SST']
       ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'Bottom water temperature'
+      ,url    : 'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&'
+      ,layers : 'temp'
+      ,format : 'image/' + defaultImageTypes['Bottom water temperature']
+      ,styles : defaultStyles['Bottom water temperature']
       ,singleTile : true
       ,projection : proj3857
     });
