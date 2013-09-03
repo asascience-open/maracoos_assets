@@ -64,7 +64,7 @@
         ,'HF radar currents'           : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'WWIII waves'                 : ''
         ,'HYCOM SST'                   : ''
-        ,'Bottom water temperature'    : 'pcolor_average_jet_10_32_node_False'
+        ,'ESPRESSO bottom temperature'    : 'pcolor_average_jet_0_30_grid_False'
       };
       var hideLegendsGridPanel      = false;
       var hideTimeseriesPanel       = false;
@@ -211,7 +211,7 @@
         ,'HF radar currents'    : 'png'
         ,'GOES visible imagery' : 'png'
         ,'Navigational Charts'  : 'png'
-        ,'Bottom water temperature' : 'png'
+        ,'ESPRESSO bottom temperature' : 'png'
       }
 <?php
   $layers = array();
