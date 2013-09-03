@@ -958,14 +958,14 @@ function init() {
       ]
       ,[
          'model'
-        ,'Bottom water temperature'
-        ,'Bottom water temperature'
+        ,'ESPRESSO bottom temperature'
+        ,'ESPRESSO bottom temperature'
         ,'off'
-        ,defaultLayers['Bottom water temperature'] ? 'on' : 'off'
+        ,defaultLayers['ESPRESSO bottom temperature'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Bottom water temperature.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/ESPRESSO bottom temperature.html')))?>'
         ,'palette'
-        ,typeof defaultOpacities['Bottom water temperature'] != 'undefined' && defaultOpacities['Bottom water temperature'] != '' ? defaultOpacities['Bottom water temperature'] : 100
+        ,typeof defaultOpacities['ESPRESSO bottom temperature'] != 'undefined' && defaultOpacities['ESPRESSO bottom temperature'] != '' ? defaultOpacities['ESPRESSO bottom temperature'] : 100
         ,''
         ,''
         ,''
@@ -978,7 +978,7 @@ function init() {
         ,''
         ,''
         ,''
-        ,(typeof defaultLayerLayers['Bottom water temperature'] != 'undefined' && defaultLayerLayers['Bottom water temperature'] != '' ? defaultLayerLayers['Bottom water temperature'] : 'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=temp&STYLES=' + defaultStyles['Bottom water temperature'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
+        ,(typeof defaultLayerLayers['ESPRESSO bottom temperature'] != 'undefined' && defaultLayerLayers['ESPRESSO bottom temperature'] != '' ? defaultLayerLayers['ESPRESSO bottom temperature'] : 'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=temp&STYLES=' + defaultStyles['ESPRESSO bottom temperature'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
         ,'false'
         ,'-78,35.5,-62,44'
         ,'true'
@@ -2874,11 +2874,11 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
-       name   : 'Bottom water temperature'
+       name   : 'ESPRESSO bottom temperature'
       ,url    : 'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&'
       ,layers : 'temp'
-      ,format : 'image/' + defaultImageTypes['Bottom water temperature']
-      ,styles : defaultStyles['Bottom water temperature']
+      ,format : 'image/' + defaultImageTypes['ESPRESSO bottom temperature']
+      ,styles : defaultStyles['ESPRESSO bottom temperature']
       ,singleTile : true
       ,projection : proj3857
     });
