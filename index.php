@@ -163,7 +163,7 @@
 
       var defaultLayerLayers = {
          'Chlorophyll concentration'   : 'modis-seven/chl_oc3'
-        ,'Satellite water temperature' : 'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'Satellite water temperature' : 'http://64.72.74.107:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
       };
       var guaranteeDefaultStyles = defaultStyles;
       var defaultOpacities = {

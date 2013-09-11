@@ -978,7 +978,7 @@ function init() {
         ,''
         ,''
         ,''
-        ,(typeof defaultLayerLayers['ESPRESSO bottom temperature'] != 'undefined' && defaultLayerLayers['ESPRESSO bottom temperature'] != '' ? defaultLayerLayers['ESPRESSO bottom temperature'] : 'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=temp&STYLES=' + defaultStyles['ESPRESSO bottom temperature'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
+        ,(typeof defaultLayerLayers['ESPRESSO bottom temperature'] != 'undefined' && defaultLayerLayers['ESPRESSO bottom temperature'] != '' ? defaultLayerLayers['ESPRESSO bottom temperature'] : 'http://64.72.74.107:8080/wms/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=temp&STYLES=' + defaultStyles['ESPRESSO bottom temperature'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
         ,'false'
         ,'-78,35.5,-62,44'
         ,'true'
@@ -1065,11 +1065,11 @@ function init() {
         ,''
         ,''
         ,''
-        ,(typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=mcsst&STYLES=' + defaultStyles['Satellite water temperature'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
+        ,(typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'http://64.72.74.107:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=mcsst&STYLES=' + defaultStyles['Satellite water temperature'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
         ,'false'
         ,'-78,35.5,-62,44'
         ,'true'
-        ,typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'http://64.72.74.107:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
         ,'temperature'
       ]
       ,[
@@ -1484,11 +1484,11 @@ function init() {
      ,'dMinHours'
     ]
     ,data : [
-       ['7-day composite'      ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',7 * 24]
-      ,['3-day composite'      ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',3 * 24]
-      ,['1-day composite'      ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'   ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',1 * 24]
-      ,['Single pass declouded','http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&','http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',-999]
-      ,['Single pass'          ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'       ,'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',-999]
+       ['7-day composite'      ,'http://64.72.74.107:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://64.72.74.107:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',7 * 24]
+      ,['3-day composite'      ,'http://64.72.74.107:8080/wms/maracoos_SST_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://64.72.74.107:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',3 * 24]
+      ,['1-day composite'      ,'http://64.72.74.107:8080/wms/maracoos_SST_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'   ,'http://64.72.74.107:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',1 * 24]
+      ,['Single pass declouded','http://64.72.74.107:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&','http://64.72.74.107:8080/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',-999]
+      ,['Single pass'          ,'http://64.72.74.107:8080/wms/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'       ,'http://64.72.74.107:8080/wms/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',-999]
     ]
   });
 
@@ -2875,7 +2875,7 @@ function initMap() {
     });
     addWMS({
        name   : 'ESPRESSO bottom temperature'
-      ,url    : 'http://ec2-107-21-136-52.compute-1.amazonaws.com:8080/wms/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&'
+      ,url    : 'http://64.72.74.107:8080/wms/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&'
       ,layers : 'temp'
       ,format : 'image/' + defaultImageTypes['ESPRESSO bottom temperature']
       ,styles : defaultStyles['ESPRESSO bottom temperature']
