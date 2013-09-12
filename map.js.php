@@ -4410,6 +4410,9 @@ function syncObs(l,force) {
               if (provider == 'Drifters') {
                 vec.attributes.strokeColor = 'rgb(6,170,61)';
               }
+              else if (l.name == 'ESPRESSOSimFloats') {
+                vec.attributes.strokeColor = '#ff69b4';
+              }
               vec.attributes.strokeDashstyle = (provider == 'Gliders' && config != 'gliders') ? (obs.data[loc][loc][i].active ? 'solid' : 'dot') : 'solid';
               if (obs.data[loc][loc][i].active) {
                 vec.attributes.strokeOpacity   = 0.90; // 0.80;
