@@ -272,7 +272,7 @@
         ,'url'    => sprintf('popupESPRESSOSimFloats.php'
           ."?id=%s"
           ."&t=from %s to %s"
-          ."&u="
+          ."&u=%s"
           ,$f['properties']['title'].' '.$f['id']
           ,$f['properties']['time_coverage_start']
           ,$f['properties']['time_coverage_end']
