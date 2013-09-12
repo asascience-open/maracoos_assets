@@ -216,6 +216,7 @@
   if ($_REQUEST['provider'] == 'Gliders') {
     $json = json_decode(file_get_contents('http://marine.rutgers.edu/cool/auvs/track.php?service=track&&region=mab&t0='.date("Y-m-d H:i",time() - 365 / 2 * 24 * 3600)));
     foreach ($json as $k => $v) {
+      $active = false; // honor what is marked as active
       $d = array(
          'id'     => ''
         ,'track'  => array()
@@ -237,6 +238,7 @@
         }
         else if ($depKey == 'active' && $depVal == 1) {
           $d['active'] = true;
+          $active = true;
         }
         else if ($depKey == 'url') {
           $d['url'] = $depVal;
@@ -250,6 +252,34 @@
         .'&t=from '.$d['t'][0]
         .($d['t'][count($d['t']) - 1] != '' ? (' to '.$d['t'][count($d['t']) - 1]) : ' (active)')
         .'&u='.$d['url'];
+
+      // push to $metadata straight up (only active ones)
+      if ($active) {
+        $metadata['Gliders.'.$d['id']]['Gliders.'.$d['id']] = array($d);
+      }
+    }
+  }
+
+  if ($_REQUEST['provider'] == 'ESPRESSOSimFloats') {
+    $u = 'http://64.72.74.107/geojson/http://tds.marine.rutgers.edu/thredds/dodsC/floats/espresso_flt_'.date("Ymd",time() - 3 * 24 * 3600).'.nc';
+    $json = json_decode(file_get_contents($u),true);
+
+    foreach ($json['features'] as $f) {
+      $d = array(
+         'id'     => $f['id']
+        ,'track'  => $f['geometry']['coordinates']
+        ,'active' => true
+        ,'url'    => sprintf('popupESPRESSOSimFloats.php'
+          ."?id=%s"
+          ."&t=from %s to %s"
+          ."&u="
+          ,$f['properties']['title'].' '.$f['id']
+          ,$f['properties']['time_coverage_start']
+          ,$f['properties']['time_coverage_end']
+          ,'http://tds.marine.rutgers.edu/thredds/catalog/floats/catalog.html'
+        )
+        ,'descr'  => $f['properties']['title'].' '.$f['id']
+      );
 
       // push to $metadata straight up
       $metadata['Gliders.'.$d['id']]['Gliders.'.$d['id']] = array($d);
