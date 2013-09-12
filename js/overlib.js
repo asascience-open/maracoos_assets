@@ -209,20 +209,6 @@ if (olNs4) {
 	window.onresize = function() { if (oW != window.innerWidth || oH != window.innerHeight) location.reload(); }
 }
 
-// Microsoft Stupidity Check(tm).
-if (olIe4) {
-	var agent = navigator.userAgent;
-	if (/MSIE/.test(agent)) {
-		var versNum = parseFloat(agent.match(/MSIE[ ](\d\.\d+)\.*/i)[1]);
-		if (versNum >= 5){
-			olIe5=true;
-			olIe55=(versNum>=5.5&&!olOp) ? true : false;
-			if (olNs6) olNs6=false;
-		}
-	}
-	if (olNs6) olIe4 = false;
-}
-
 // Check for compatability mode.
 if (document.compatMode && document.compatMode == 'CSS1Compat') {
 	docRoot= ((olIe4 && !olOp) ? 'document.documentElement' : docRoot);
