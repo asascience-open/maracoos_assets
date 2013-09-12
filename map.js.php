@@ -53,6 +53,7 @@ var obsMinZoom = {
   ,'Satellites'  : 0
   ,'Gliders'     : 0
   ,'Drifters'    : 0
+  ,'ESPRESSOSimFloats'   : 0
 };
 var obsBbox = {};
 var obsZoom = {};
@@ -984,6 +985,36 @@ function init() {
         ,'true'
         ,''
         ,'temperature'
+      ]
+      ,[
+// charlton
+         'model'
+        ,'ESPRESSOSimFloats'
+        ,'ESPRESSO simulated floats'
+        ,'off'
+        ,defaultLayers['ESPRESSOSimFloats'] ? 'on' : 'off'
+        ,''
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/ESPRESSOSimFloats.html')))?>'
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'legends/ESPRESSOSimFloats.png'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,''
+        ,''
+        ,''
       ]
       ,[
          'observation'
@@ -2840,6 +2871,7 @@ function initMap() {
     syncObs({name : 'Satellites'});
     syncObs({name : 'Gliders'});
     syncObs({name : 'Drifters'});
+    syncObs({name : 'ESPRESSOSimFloats'});
     if (popupObs && !popupObs.isDestroyed) {
       popupObs.show();
     }
@@ -3083,6 +3115,10 @@ function initMap() {
       ,visibility : typeof defaultLayers['Gliders'] != 'undefined'
     });
     addObs({
+       name       : 'ESPRESSOSimFloats'
+      ,visibility : typeof defaultLayers['ESPRESSOSimFloats'] != 'undefined'
+    });
+    addObs({
        name       : 'Drifters'
       ,visibility : typeof defaultLayers['Drifters'] != 'undefined'
     });
@@ -3220,7 +3256,7 @@ function setLayerInfo(layerName,on) {
 
   if (on && (!Ext.getCmp('info.popup.' + layerName) || !Ext.getCmp('info.popup.' + layerName).isVisible())) {
     var customize = '<a class="blue-href-only" href="javascript:setLayerSettings(\'' + mainRec.get('name') + '\');setLayerInfo(\'' + layerName + '\',false)"><img width=32 height=32 src="img/settings_tools_big.png"><br>Customize<br>appearance</a>';
-    if (new RegExp(/glider|asset/).test(mainRec.get('type'))) {
+    if (new RegExp(/glider|asset/).test(mainRec.get('type')) || mainRec.get('name') == 'ESPRESSOSimFloats') {
       customize = '<img width=32 height=32 src="img/settings_tools_big_disabled.png"><br><font color="lightgray">Customize<br>appearance</font>';
     }
     new Ext.ToolTip({
@@ -3677,7 +3713,7 @@ function renderLayerStatus(val,metadata,rec) {
     }
   }
   else {
-    if (rec.get('type') == 'gliders') {
+    if (rec.get('type') == 'gliders' || rec.get('name') == 'ESPRESSOSimFloats') {
       return '<img class="layerIconGlider" src="img/' + rec.get('name') + '.drawn.png">';
     }
     else if (config == 'ecop') {
@@ -4052,6 +4088,7 @@ function addObs(l) {
     var idx          = legendsStore.find('name',lyr.name);
     var assetsIndex  = assetsStore.find('name',lyr.name);
     var glidersIndex = glidersStore.find('name',lyr.name);
+    var simIndex     = modelsStore.find('name',lyr.name);
     if (idx >= 0) {
       var rec = legendsStore.getAt(idx);
       rec.set('status','drawn');
@@ -4066,6 +4103,11 @@ function addObs(l) {
           leg = '';
         }
         mainStoreRec.set('legend',leg);
+        rec.set('timestamp',(lyr.featureFactor ? lyr.features.length * lyr.featureFactor : 0) + ' site(s) fetched');
+      }
+      else if (simIndex >= 0 && lyr.name == 'ESPRESSOSimFloats') {
+        var leg = modelsStore.getAt(simIndex).get('legend');
+        mainStoreRec.set('legend','');
         rec.set('timestamp',(lyr.featureFactor ? lyr.features.length * lyr.featureFactor : 0) + ' site(s) fetched');
       }
       else if (glidersIndex >= 0) {
