@@ -3714,13 +3714,13 @@ function renderLayerStatus(val,metadata,rec) {
   }
   else {
     if (rec.get('type') == 'gliders' || rec.get('name') == 'ESPRESSOSimFloats') {
-      return '<img class="layerIconGlider" src="img/' + rec.get('name') + '.drawn.png?<?echo $_REQUEST['v']?>">';
+      return '<img class="layerIconGlider" src="img/' + rec.get('name') + '.drawn.png?<?php echo $_REQUEST['v']?>">';
     }
     else if (config == 'ecop') {
       return '<img class="layerIcon" src="img/DEFAULT.drawn.png">';
     }
     else {
-      return '<img class="layerIcon" src="img/' + rec.get('name') + '.drawn.png?<?echo $_REQUEST['v']?>">';
+      return '<img class="layerIcon" src="img/' + rec.get('name') + '.drawn.png?<?php echo $_REQUEST['v']?>">';
     }
   }
 }
