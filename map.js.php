@@ -3679,13 +3679,13 @@ function setLayerSettings(layerName) {
 
 function renderLayerButton(val,metadata,rec) {
   if (rec.get('type') == 'gliders') {
-    return '<img  width=30 height=25 src="img/' + rec.get('name') + '.drawn.png">';
+    return '<img  width=30 height=25 src="img/' + rec.get('name') + '.drawn.png?<?php echo $_REQUEST['v']?>">';
   }
   else if (config == 'ecop') {
-    return '<img  width=20 height=20 src="img/DEFAULT.drawn.png">';
+    return '<img  width=20 height=20 src="img/DEFAULT.drawn.png?<?php echo $_REQUEST['v']?>">';
   }
   else {
-    return '<img  width=20 height=20 src="img/' + rec.get('name') + '.drawn.png">';
+    return '<img  width=20 height=20 src="img/' + rec.get('name') + '.drawn.png?<?php echo $_REQUEST['v']?>">';
   }
 }
 
@@ -4011,7 +4011,7 @@ function addObs(l) {
     ,{
       styleMap : new OpenLayers.StyleMap({
         'default' : new OpenLayers.Style(OpenLayers.Util.applyDefaults({
-           externalGraphic : 'img/' + l.name + '.png'
+           externalGraphic : 'img/' + l.name + '.png?<?php echo $_REQUEST['v']?>'
           ,pointRadius     : 8
           ,graphicWidth    : '${graphicWidth}'
           ,graphicHeight   : '${graphicHeight}'
@@ -4023,7 +4023,7 @@ function addObs(l) {
           ,strokeDashstyle : '${strokeDashstyle}'
         }))
         ,'select' : new OpenLayers.Style(OpenLayers.Util.applyDefaults({
-           externalGraphic : 'img/' + l.name + '.select.png'
+           externalGraphic : 'img/' + l.name + '.select.png?<?php echo $_REQUEST['v']?>'
           ,pointRadius     : 8
           ,graphicWidth    : '${graphicWidthBig}'
           ,graphicHeight   : '${graphicHeightBig}'
@@ -4035,7 +4035,7 @@ function addObs(l) {
           ,strokeDashstyle : '${strokeDashstyle}'
         }))
         ,'temporary' : new OpenLayers.Style(OpenLayers.Util.applyDefaults({
-           externalGraphic : 'img/' + l.name + '.hilite.png'
+           externalGraphic : 'img/' + l.name + '.hilite.png?<?php echo $_REQUEST['v']?>'
           ,pointRadius     : 8
           ,graphicWidth    : '${graphicWidthBig}'
           ,graphicHeight   : '${graphicHeightBig}'

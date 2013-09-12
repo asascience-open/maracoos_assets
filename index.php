@@ -5,6 +5,7 @@
   require_once('auth.php');
 
   $title  = 'MARACOOS Assets';
+  $version = '0.001';
 
   $config = isset($_REQUEST['config']) ? $_REQUEST['config'] : (getenv('config') ? getenv('config') : null);
   $_SESSION['config'] = $config;
@@ -25,9 +26,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=8; IE=7;">
     <title><?php echo $title?> Explorer</title>
     <link rel="stylesheet" type="text/css" href="./js/ext-3.3.0/resources/css/ext-all.css"/>
-    <link rel="stylesheet" type="text/css" href="style.css?v=7"/>
+    <link rel="stylesheet" type="text/css" href="style.css?v=<?php echo $version?>"/>
     <!--[if IE]>
-      <link rel="stylesheet" type="text/css" href="style.ie.css?v=7" />
+      <link rel="stylesheet" type="text/css" href="style.ie.css?v=<?php echo $version?>" />
     <![endif]-->
 
     <script>
@@ -316,8 +317,8 @@
     <script type="text/javascript" src="./js/jquery/jquery.flot.navigate.js"></script>
     <script type="text/javascript" src="./js/jquery/excanvas.js"></script>
     <script type="text/javascript" src="./js/overlib.js"></script>
-    <script type="text/javascript" src="misc.js?v=7"></script>
-    <script type="text/javascript" src="map.js.php?v=7"></script>
+    <script type="text/javascript" src="misc.js?v=<?php echo $version?>"></script>
+    <script type="text/javascript" src="map.js.php?v=<?php echo $version?>"></script>
     <div id="overDiv" class="overStyle" style="position:absolute;visibility:hidden;z-index:1000000;"></div>
   </body>
 </html>
