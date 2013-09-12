@@ -44,11 +44,10 @@
 ?>
       var restrictLayers;
       var defaultLayers = {
-         'NDBC'             : true
-        ,'NERRS'            : true
-        ,'NCOM currents'    : true
-        ,'WWIII waves'      : true
-        ,'NHC storm tracks' : true
+         'Gliders'           : true
+        ,'ESPRESSOSimFloats' : true
+        ,'HF radar currents' : true
+        ,'NHC storm tracks'  : true
       };
       var defaultStyles = {
          'Satellite water temperature' : 'pcolor_average_jet_10_32_node_False'
