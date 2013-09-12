@@ -544,7 +544,7 @@ function init() {
         ,''
         ,''
         ,''
-        ,'legends/Gliders.png'
+        ,''
         ,''
         ,'-78,35.5,-62,44'
         ,''
