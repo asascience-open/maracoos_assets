@@ -1050,7 +1050,6 @@ function init() {
         ,typeof defaultOpacities['Chlorophyll concentration'] != 'undefined' && defaultOpacities['Chlorophyll concentration'] != '' ? defaultOpacities['Chlorophyll concentration'] : 100
         ,''
         ,''
-        ,defaultStyles['Chlorophyll concentration']
         ,''
         ,''
         ,''
@@ -1060,12 +1059,13 @@ function init() {
         ,''
         ,''
         ,''
-        ,'http://tds.maracoos.org/ncWMS/wms?REQUEST=GetLegendGraphic&LAYER=' + (typeof defaultLayerLayers['Chlorophyll concentration'] != 'undefined' && defaultLayerLayers['Chlorophyll concentration'] != '' ? defaultLayerLayers['Chlorophyll concentration'] : 'modis-seven/chl_oc3') + '&PALETTE=' + defaultStyles['Chlorophyll concentration'].split('/')[1] + '&TIME=' + dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00'
         ,''
+        ,(typeof defaultLayerLayers['Chlorophyll concentration'] != 'undefined' && defaultLayerLayers['Chlorophyll concentration'] != '' ? defaultLayerLayers['Chlorophyll concentration'] : 'http://64.72.74.107:8080/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=chl_oc3&STYLES=' + defaultStyles['Chlorophyll concentration'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
+        ,'false'
         ,'-78,35.5,-62,44'
         ,'true'
-        ,typeof defaultLayerLayers['Chlorophyll concentration'] != 'undefined' && defaultLayerLayers['Chlorophyll concentration'] != '' ? defaultLayerLayers['Chlorophyll concentration'] : 'modis-seven/chl_oc3'
-        ,''
+        ,typeof defaultLayerLayers['Chlorophyll concentration'] != 'undefined' && defaultLayerLayers['Chlorophyll concentration'] != '' ? defaultLayerLayers['Chlorophyll concentration'] : 'http://64.72.74.107:8080/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'temperature'
       ]
       ,[
          'observation'
@@ -1542,10 +1542,9 @@ function init() {
      ,'dMinHours'
     ]
     ,data : [
-       ['7-day composite','modis-seven/chl_oc3','modis/chl_oc3',7 * 24]
-      ,['3-day composite','modis-three/chl_oc3','modis/chl_oc3',3 * 24]
-      ,['1-day composite','modis-one/chl_oc3','modis/chl_oc3',1 * 24]
-      ,['Single pass','modis/chl_oc3','modis/chl_oc3',-999]
+       ['8-day composite'      ,'http://64.72.74.107:8080/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://64.72.74.107:8080/wms/MODIS_One_Agg/?GFI_TIME=min/max&ELEVATION=0&',8 * 24]
+      ,['3-day composite'      ,'http://64.72.74.107:8080/wms/MODIS_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://64.72.74.107:8080/wms/MODIS_One_Agg/?GFI_TIME=min/max&ELEVATION=0&',3 * 24]
+      ,['1-day composite'      ,'http://64.72.74.107:8080/wms/MODIS_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'   ,'http://64.72.74.107:8080/wms/MODIS_One_Agg/?GFI_TIME=min/max&ELEVATION=0&',1 * 24]
     ]
   });
 
@@ -2955,14 +2954,13 @@ function initMap() {
     );
     addWMS({
        name   : 'Chlorophyll concentration'
-      ,url    : 'http://tds.maracoos.org/ncWMS/wms?GFI_TIME=min/max'
-      ,layers : defaultLayerLayers['Chlorophyll concentration']
+      ,url    : defaultLayerLayers['Chlorophyll concentration']
+      ,layers : 'chl_oc3'
       ,format : 'image/png'
       ,styles : defaultStyles['Chlorophyll concentration']
-      ,singleTile : false
+      ,singleTile : true
       ,projection : proj3857
     });
-
     addWMS({
        name   : 'ROMS'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'

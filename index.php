@@ -5,7 +5,7 @@
   require_once('auth.php');
 
   $title  = 'MARACOOS Assets';
-  $version = '0.002';
+  $version = '0.003';
 
   $config = isset($_REQUEST['config']) ? $_REQUEST['config'] : (getenv('config') ? getenv('config') : null);
   $_SESSION['config'] = $config;
@@ -51,7 +51,7 @@
       };
       var defaultStyles = {
          'Satellite water temperature' : 'pcolor_average_jet_10_32_node_False'
-        ,'Chlorophyll concentration'   : 'boxfill/rainbow'
+        ,'Chlorophyll concentration'   : 'pcolor_average_jet_0_20_node_Log'
         ,'ROMS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'HOPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS ESPRESSO'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
@@ -162,7 +162,7 @@
       }
 
       var defaultLayerLayers = {
-         'Chlorophyll concentration'   : 'modis-seven/chl_oc3'
+         'Chlorophyll concentration'   : 'http://64.72.74.107:8080/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&'
         ,'Satellite water temperature' : 'http://64.72.74.107:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
       };
       var guaranteeDefaultStyles = defaultStyles;
@@ -294,7 +294,7 @@
     </script>
     <script type="text/javascript">
       try{
-        var pageTracker = _gat._getTracker("UA-25332621-1");
+        var pageTracker = _gat._getTracker("UA-25332621-1x");
         pageTracker._trackPageview();
       } catch(err) {}
     </script>
