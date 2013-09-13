@@ -71,14 +71,7 @@ var dNow = new Date();
 dNow.setUTCMinutes(0);
 dNow.setUTCSeconds(0);
 dNow.setUTCMilliseconds(0);
-var dNow12Hours = new Date(dNow.getTime());
-dNow12Hours.setUTCHours(12);
-if (dNow.getHours() >= 12) {
-  dNow.setUTCHours(12);
-}
-else {
-  dNow.setUTCHours(0);
-}
+dNow.setUTCHours(dNow.getUTCHours() - dNow.getUTCHours() % 3);
 var lastMapClick = {
    layer : ''
   ,xy    : ''
