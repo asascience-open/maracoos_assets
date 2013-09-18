@@ -1542,9 +1542,9 @@ function init() {
      ,'dMinHours'
     ]
     ,data : [
-       ['8-day composite'      ,'http://wms.maracoos.org/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://wms.maracoos.org/wms/MODIS_One_Agg/?GFI_TIME=min/max&ELEVATION=0&',8 * 24]
-      ,['3-day composite'      ,'http://wms.maracoos.org/wms/MODIS_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://wms.maracoos.org/wms/MODIS_One_Agg/?GFI_TIME=min/max&ELEVATION=0&',3 * 24]
-      ,['1-day composite'      ,'http://wms.maracoos.org/wms/MODIS_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'   ,'http://wms.maracoos.org/wms/MODIS_One_Agg/?GFI_TIME=min/max&ELEVATION=0&',1 * 24]
+       ['8-day composite'      ,'http://wms.maracoos.org/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://wms.maracoos.org/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&',8 * 24]
+      ,['3-day composite'      ,'http://wms.maracoos.org/wms/MODIS_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://wms.maracoos.org/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&',3 * 24]
+      ,['1-day composite'      ,'http://wms.maracoos.org/wms/MODIS_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'   ,'http://wms.maracoos.org/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&',1 * 24]
     ]
   });
 
