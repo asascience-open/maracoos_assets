@@ -51,7 +51,7 @@
       };
       var defaultStyles = {
          'Satellite water temperature' : 'pcolor_average_jet_10_32_node_False'
-        ,'Chlorophyll concentration'   : 'pcolor_average_jet_0_20_node_Log'
+        ,'Chlorophyll concentration'   : 'pcolor_average_jet_0_10_node_Log'
         ,'ROMS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'HOPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS ESPRESSO'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
