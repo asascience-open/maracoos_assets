@@ -162,8 +162,8 @@
       }
 
       var defaultLayerLayers = {
-         'Chlorophyll concentration'   : 'http://64.72.74.107:8080/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&'
-        ,'Satellite water temperature' : 'http://64.72.74.107:8080/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+         'Chlorophyll concentration'   : 'http://wms.maracoos.org/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'Satellite water temperature' : 'http://wms.maracoos.org/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
       };
       var guaranteeDefaultStyles = defaultStyles;
       var defaultOpacities = {

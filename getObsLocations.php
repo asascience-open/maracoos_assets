@@ -261,7 +261,7 @@
   }
 
   if ($_REQUEST['provider'] == 'ESPRESSOSimFloats') {
-    $u = 'http://64.72.74.107/geojson/http://tds.marine.rutgers.edu/thredds/dodsC/floats/latest.nc';
+    $u = 'http://glidertraj.maracoos.org/geojson/http://tds.marine.rutgers.edu/thredds/dodsC/floats/latest.nc';
     $json = json_decode(file_get_contents($u),true);
 
     foreach ($json['features'] as $f) {
