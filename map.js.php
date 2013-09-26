@@ -2651,7 +2651,7 @@ function init() {
                   if (!chartData || chartData.length <= 0) {
                     ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><img width=3 height=3 src="img/blank.png"><br/><img width=8 height=1 src="img/blank.png">Click anywhere on the map or on a dot to view a time-series graph of model or observation output.<br/><img width=8 height=1 src="img/blank.png"><img src="info/graph_primer.png"></td></tr></table>';
                   }
-                  else if (chartData && chartData.length > 0 && typeof chartData[0] == 'string' && chartData[0].indexOf('QUERY ERROR') == 0) {
+                  else if (chartData && chartData.length > 0 && typeof chartData[0] == 'string' && chartData[0].indexOf('QUERY NOTICE') == 0) {
                     ts.innerHTML = '<table class="obsPopup timeSeries"><tr><td><img width=3 height=3 src="img/blank.png"><br/><font color="red">' + chartData[0] + '</font><br/>' + '<img width=8 height=1 src="img/blank.png">Click anywhere on the map or on a dot to view a time-series graph of model or observation output.<br/><img width=8 height=1 src="img/blank.png"><img src="info/graph_primer.png"></td></tr></table>'; 
                   }
                   else {
@@ -4532,7 +4532,7 @@ function makeChart(type,a) {
     if (obs && obs.error) {
       chartData.push({
          data   : []
-        ,label  : title.split('||')[0] + ': QUERY ERROR ' + obs.error
+        ,label  : title.split('||')[0] + ': QUERY NOTICE ' + obs.error
         ,nowIdx : ''
       });
       // record the action on google analytics
@@ -4541,7 +4541,7 @@ function makeChart(type,a) {
     else if (!obs || obs.d == '' || obs.d.length == 0) {
       chartData.push({
          data   : []
-        ,label  : title.split('||')[0] + ': QUERY ERROR'
+        ,label  : title.split('||')[0] + ': QUERY NOTICE'
         ,nowIdx : ''
       });
       // record the action on google analytics
@@ -4549,7 +4549,7 @@ function makeChart(type,a) {
     }
     else {
       // get rid of any errors if good, new data has arrived
-      if (chartData.length == 1 && String(chartData[0]).indexOf('QUERY ERROR') == 0) {
+      if (chartData.length == 1 && String(chartData[0]).indexOf('QUERY NOTICE') == 0) {
         chartData.pop();
       }
       for (var v in obs.d) {

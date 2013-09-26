@@ -30,6 +30,9 @@
               array_push($data['d'][$a[1]],sprintf("%f",$csv[$i][$vStr]));
             }
           }
+          else {
+            $data['error'] = 'No data at location';
+          }
         }
       }
       if ($hits > 0) {
