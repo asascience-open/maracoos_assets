@@ -46,7 +46,7 @@
       var defaultLayers = {
          'Gliders'           : true
         ,'ESPRESSOSimFloats' : true
-        ,'HF radar currents' : true
+        ,'HYCOM currents'    : true
         ,'NHC storm tracks'  : true
       };
       var defaultStyles = {
@@ -59,7 +59,7 @@
         ,'UMass'                       : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'Stevens NYHOPS'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'NCOM currents'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
-        ,'HYCOM currents'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'HYCOM currents'              : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'NAM winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-High'
         ,'HF radar currents'           : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'WWIII waves'                 : ''
