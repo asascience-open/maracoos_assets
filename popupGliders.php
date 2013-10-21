@@ -25,7 +25,7 @@
         array_push($td
           ,'<a onmouseover="overlib(\'<table><tr><td><img src='
             .$u.'/'.$img
-            .'></td></tr></table>\',VAUTO,HAUTO,FGCOLOR,\'#8EAACE\')"><img height=75 src="'
+            .'></td></tr></table>\',VAUTO,HAUTO,FGCOLOR,\'#8EAACE\')"><img width=75 src="'
             .$u.'/'.$img
           .'" onmouseout=\'nd()\' ></a>'
         );
