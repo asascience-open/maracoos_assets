@@ -27,7 +27,7 @@
   echo json_encode($gliders);
 
   function dateIntersects($r1start,$r1end,$r2start,$r2end) {
-    return ($r1start == $r2start) || ($r1start > $r2start ? $r1start <= $r2end : $r2start <= $r1end);
+    return $r2end == '' || (($r1start == $r2start) || ($r1start > $r2start ? $r1start <= $r2end : $r2start <= $r1end));
   }
 
   function mkTrack($coords,$startTime,$endTime) {
