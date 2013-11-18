@@ -78,7 +78,8 @@
   }
   else {
     array_unshift($o,sprintf("<tr><td colspan=2 style='text-align:center'><b>%s-%02d</b></td></tr>",date('M d G:i e',strtotime($t) - $_REQUEST['tz'] * 60),$_REQUEST['tz']/60));
-    array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='http://www.weatherflow.com'>Provider information</a></td></tr>");
+    array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='http://www.windalert.com/spot/$_REQUEST[id]'>Station information</a></td></tr>");
+    // array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='http://www.weatherflow.com'>Provider information</a></td></tr>");
     echo json_encode(Array('html' => '<table class="obsDetails">'.implode('',$o).'</table>'));
   }
 ?>
