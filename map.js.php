@@ -47,7 +47,7 @@ var obsMinZoom = {
   ,'Ship'        : 0 + 5
   ,'NERRS'       : 0 + 5
   ,'MDDNR'       : 0 + 5
-//  ,'Weatherflow' : 3 + 5
+  ,'Weatherflow' : 0 + 5
   ,'HRECOS'      : 0
   ,'HF Radar'    : 0
   ,'Satellites'  : 0
@@ -368,7 +368,6 @@ function init() {
         ,''
         ,''
       ]
-/*
       ,[
          'asset'
         ,'Weatherflow'
@@ -398,7 +397,6 @@ function init() {
         ,''
         ,''
       ]
-*/
       ,[
          'asset'
         ,'HRECOS'
@@ -2857,7 +2855,7 @@ function initMap() {
     syncObs({name : 'Ship'});
     syncObs({name : 'NERRS'});
     syncObs({name : 'MDDNR'});
-//    syncObs({name : 'Weatherflow'});
+    syncObs({name : 'Weatherflow'});
     syncObs({name : 'HRECOS'});
     syncObs({name : 'HF Radar'});
     syncObs({name : 'Satellites'});
@@ -3083,12 +3081,10 @@ function initMap() {
        name       : 'NERRS'
       ,visibility : typeof defaultLayers['NERRS'] != 'undefined'
     });
-  /*
     addObs({
        name       : 'Weatherflow'
       ,visibility : typeof defaultLayers['Weatherflow'] != 'undefined'
     });
-  */
     addObs({
        name       : 'HRECOS'
       ,visibility : typeof defaultLayers['HRECOS'] != 'undefined'
