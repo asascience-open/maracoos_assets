@@ -78,7 +78,7 @@
   else if (isset($_REQUEST['BOB'])) {
   $dbh = new PDO('sqlite:bob.db');
   $sql = <<<EOSQL
-select
+select distinct
    station.id
   ,station.name
   ,station.lon
@@ -94,7 +94,8 @@ where
   obs.station = station.seq
   and station.id = '$_REQUEST[station]'
   and obs.var = '$_REQUEST[name]'
-  and obs.t >= strftime('%s','now','-1 month')
+  and obs.t >= strftime('%s','$_REQUEST[startDt]')
+  and obs.t <= strftime('%s','$_REQUEST[endDt]')
 order by
   obs.t;
 EOSQL;
