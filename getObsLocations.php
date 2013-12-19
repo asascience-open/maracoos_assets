@@ -190,6 +190,51 @@
     fclose($f);
   }
 
+  if ($_REQUEST['provider'] == 'BOB') {
+    $provider = 'BOB';
+    $dbh = new PDO('sqlite:bob.db');
+    $sql = <<<EOSQL
+select 
+   station.id
+  ,station.name
+  ,station.lon
+  ,station.lat
+  ,obs.var
+  ,obs.uom
+  ,obs.t
+  ,obs
+  .val 
+from 
+  obs
+ ,(
+    select 
+      station
+     ,var
+     ,max(t) as t 
+    from 
+      obs 
+    group by 
+      station
+     ,var
+  ) as top_obs 
+  ,station
+where 
+  obs.var = top_obs.var 
+  and obs.station = top_obs.station
+  and obs.station = station.seq
+  and obs.t = top_obs.t
+  and obs.t >= strftime('%s','now','-1 month');
+EOSQL;
+    foreach ($dbh->query($sql) as $row) {
+      addToStack($metadata,$bbox,$row['lon'],$row['lat'],$provider,array(
+         'id'    => $row['id']
+        ,'descr' => $row['name']
+        ,'url'   => "popup$provider.php"
+          ."?id=".$row['id']
+      ));
+    }
+  }    
+
   if ($_REQUEST['provider'] == 'Satellites') {
     $provider = 'Satellites';
     $f = fopen("xml/satellites.csv",'r');

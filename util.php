@@ -186,7 +186,6 @@
   }
 
   function getMDDNR($url) {
-`echo "$url" >> /tmp/maplog`;
     date_default_timezone_set('UTC');
     $f = fopen($url,'r');
     $data    = array();

@@ -75,6 +75,43 @@
       }
     }
   }
+  else if (isset($_REQUEST['BOB'])) {
+  $dbh = new PDO('sqlite:bob.db');
+  $sql = <<<EOSQL
+select
+   station.id
+  ,station.name
+  ,station.lon
+  ,station.lat
+  ,obs.var
+  ,obs.uom
+  ,obs.t
+  ,obs.val
+from
+   obs
+  ,station
+where
+  obs.station = station.seq
+  and station.id = '$_REQUEST[station]'
+  and obs.var = '$_REQUEST[name]'
+  and obs.t >= strftime('%s','now','-1 month')
+order by
+  obs.t;
+EOSQL;
+    foreach ($dbh->query($sql) as $row) {
+      $t = $row['t'];
+      $n = $row['var'];
+      $a = convertUnits($row['val'],$row['uom'],$_REQUEST['uom'] == 'english');
+      $u = $a[0]["uom"];
+      $v = $a[0]["val"];
+      if (count($a) == 2 && isset($_REQUEST['uomB'])) {
+        $v = $a[1]['val'];
+        $u = $a[1]['uom'];
+      }
+      $uom = $u;
+      $data[date('r',$t)] = $v;
+    }
+  }
   // mddnr isn't either
   else if (isset($_REQUEST['MDDNR'])) {
     $a = getMDDNR(substr($_SERVER["REQUEST_URI"],strpos($_SERVER["REQUEST_URI"],'&MDDNR=')+7));
