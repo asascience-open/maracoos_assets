@@ -7,7 +7,7 @@
 
   $dbh = new PDO('sqlite:bob.db');
   $sql = <<<EOSQL
-select
+select distinct
    station.id
   ,station.name
   ,station.lon
@@ -43,13 +43,13 @@ EOSQL;
     $a = convertUnits($row['val'],$row['uom'],$_REQUEST['uom'] == 'english');
     $u = $a[0]["uom"];
     $v = $a[0]["val"];
+    $dEnd   = date('Y-m-d\TH:i\Z');
+    $dBegin = date('Y-m-d\TH:i\Z',time() - 60 * 60 * (24 * 30 + 1));
     $uEscape = str_replace('"','\\"',"graph.php?station=$row[id]&name=$n&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&cat='.$a[0]['cat']."&BOB&startDt=$dBegin&endDt=$dEnd");
     $extra = '';
     if (count($a) == 2) {
       $extra = "<br><a href='javascript:showObsTimeseries([\"".str_replace('graph.php?','graph.php?uomB&',$uEscape)."\"])'><img src='img/graph.png' width=10 height=10></a> ".$a[1]["val"].' '.$a[1]["uom"];
     }
-    $dEnd   = date('Y-m-d\TH:i\Z');
-    $dBegin = date('Y-m-d\TH:i\Z',time() - 60 * 60 * (24 * 1 + 1));
     if ($v != '') {
       array_push($o,sprintf("<tr><td><b>%s</b></td><td><a href='javascript:showObsTimeseries([\"$uEscape\"])'><img src='img/graph.png' width=10 height=10></a> $v $u$extra</td></tr>",$n));
     }
