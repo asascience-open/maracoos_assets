@@ -48,7 +48,8 @@ var obsMinZoom = {
   ,'NERRS'       : 0 + 5
   ,'MDDNR'       : 0 + 5
   ,'Weatherflow' : 0 + 5
-  ,'HRECOS'      : 0
+  ,'HRECOS'      : 0 
+  ,'BOB'         : 0
   ,'HF Radar'    : 0
   ,'Satellites'  : 0
   ,'Gliders'     : 0
@@ -405,6 +406,35 @@ function init() {
         ,defaultLayers['HRECOS'] ? 'on' : 'off'
         ,''
         ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HRECOS.html')))?>'
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'-75,40.5,-73,43'
+        ,''
+        ,''
+        ,''
+      ]
+      ,[
+         'asset'
+        ,'BOB'
+        ,'BOB stations'
+        ,'off'
+        ,defaultLayers['BOB'] ? 'on' : 'off'
+        ,''
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/BOB.html')))?>'
         ,''
         ,''
         ,''
@@ -2857,6 +2887,7 @@ function initMap() {
     syncObs({name : 'MDDNR'});
     syncObs({name : 'Weatherflow'});
     syncObs({name : 'HRECOS'});
+    syncObs({name : 'BOB'});
     syncObs({name : 'HF Radar'});
     syncObs({name : 'Satellites'});
     syncObs({name : 'Gliders'});
@@ -3088,6 +3119,10 @@ function initMap() {
     addObs({
        name       : 'HRECOS'
       ,visibility : typeof defaultLayers['HRECOS'] != 'undefined'
+    });
+    addObs({
+       name       : 'BOB'
+      ,visibility : typeof defaultLayers['BOB'] != 'undefined'
     });
     addObs({
        name       : 'HF Radar'

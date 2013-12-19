@@ -1,7 +1,8 @@
-cgalvarino@ubuntu:/var/www/assets/misc/big$ cp bullet_black.hilite.png ../../img/Weatherflow.hilite.png
-cgalvarino@ubuntu:/var/www/assets/misc/big$ cp bullet_black.select.png ../../img/Weatherflow.select.png
+cgalvarino@ubuntu:/var/www/assets/misc/big$ ./go triangle_blue
+cgalvarino@ubuntu:/var/www/assets/misc/big$ cp triangle_blue.hilite.png ../../img/BOB.hilite.png
+cgalvarino@ubuntu:/var/www/assets/misc/big$ cp triangle_blue.select.png ../../img/BOB.select.png
 
-cgalvarino@ubuntu:/var/www/assets/misc$ convert -size 20x20 xc:transparent ../img/Weatherflow.drawn.png
-cgalvarino@ubuntu:/var/www/assets/misc$ composite bullet_black.png -gravity center ../img/Weatherflow.drawn.png ../img/Weatherflow.drawn.png
+cgalvarino@ubuntu:/var/www/assets/misc$ convert -size 20x20 xc:transparent ../img/BOB.drawn.png
+cgalvarino@ubuntu:/var/www/assets/misc$ composite triangle_blue.png -gravity center ../img/BOB.drawn.png ../img/BOB.drawn.png
 
-convert ../img/Weatherflow.drawn.png \(  +clone               -channel A  -blur 0x2.5 -level 0,50% +channel               +level-colors white             \) -compose DstOver  -composite    ../img/Weatherflow.png
+convert ../img/BOB.drawn.png \(  +clone               -channel A  -blur 0x2.5 -level 0,50% +channel               +level-colors white             \) -compose DstOver  -composite    ../img/BOB.png
