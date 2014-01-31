@@ -4778,8 +4778,8 @@ function queryWMS(xy,a,chartIt) {
        REQUEST       : 'GetFeatureInfo'
       ,EXCEPTIONS    : 'application/vnd.ogc.se_xml'
       ,BBOX          : map.getExtent().toBBOX()
-      ,X             : xy.x
-      ,Y             : xy.y
+      ,X             : Math.round(xy.x)
+      ,Y             : Math.round(xy.y)
       ,INFO_FORMAT   : 'text/' + (a[i].url.indexOf('wms.maracoos.org') >= 0 ? 'csv' : 'xml')
       ,FEATURE_COUNT : 1
       ,WIDTH         : map.size.w
