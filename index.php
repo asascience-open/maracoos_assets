@@ -99,8 +99,9 @@
       var showHelpOnStartup = true;
 
       if (config == 'cari') {
+        showHelpOnStartup = false;
         helpUnavailable = true;
-        fdbkUnavailable = true
+        fdbkUnavailable = true;
 
         defaultLayers = {
            'NDBC'     : true
