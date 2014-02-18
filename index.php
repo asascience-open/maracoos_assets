@@ -13,6 +13,7 @@
   switch ($config) {
     case 'gliders' : $title = 'IOOS Glider'; break;
     case 'ecop'    : $title = 'CoastMap'; break;
+    case 'cari'    : $title = 'CariCOOS'; break;
   }
 
   if ($config == 'ecop' && !checkLoggedin()) {
@@ -44,10 +45,8 @@
 ?>
       var restrictLayers;
       var defaultLayers = {
-         'Gliders'           : true
-        ,'ESPRESSOSimFloats' : true
+         'NDBC'           : true
         ,'HYCOM currents'    : true
-        ,'NHC storm tracks'  : true
       };
       var defaultStyles = {
          'Satellite water temperature' : 'pcolor_average_jet_10_32_node_False'
@@ -75,7 +74,7 @@
       var hideTemperaturesGridPanel = true;
       var hideOtherGridPanel        = true;
       var hideModelsGridPanel       = false;
-      var hideObservationsGridPanel = false;
+      var hideObservationsGridPanel = true;
       var hideMarineGridPanel       = true;
       var hideGlidersGridPanel      = true;
       var hideGlatosGridPanel       = true;
@@ -98,6 +97,23 @@
       var defaultZoom    = 6;
 
       var showHelpOnStartup = true;
+
+      if (config == 'cari') {
+        helpUnavailable = true;
+        fdbkUnavailable = true
+
+        defaultLayers = {
+           'NDBC'     : true
+          ,'HYCOM currents'    : true
+        };
+        restrictLayers = {
+           'NDBC'     : true
+          ,'HYCOM currents'    : true
+        };
+
+        defaultCenter = [-8035739.8524704,2352692.7891591];
+        defaultZoom   = 5;
+      }
 
       if (config == 'gliders') {
         introPanelHtmlOverride  = '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://www.ioos.gov/"><img title="Go to the IOOS home page" src="img/ioos.gif"></a></td></tr></table>';
