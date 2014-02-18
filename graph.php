@@ -94,8 +94,8 @@ where
   obs.station = station.seq
   and station.id = '$_REQUEST[station]'
   and obs.var = '$_REQUEST[name]'
-  and obs.t >= strftime('%s','$_REQUEST[startDt]')
-  and obs.t <= strftime('%s','$_REQUEST[endDt]')
+--  and obs.t >= strftime('%s','$_REQUEST[startDt]')
+--  and obs.t <= strftime('%s','$_REQUEST[endDt]')
 order by
   obs.t;
 EOSQL;

@@ -35,7 +35,7 @@ where
   and obs.station = top_obs.station
   and obs.station = station.seq
   and obs.t = top_obs.t
-  and obs.t >= strftime('%s','now','-1 month');
+  and obs.t >= strftime('%s','now','-3 months');
 EOSQL;
   foreach ($dbh->query($sql) as $row) {
     $t = $row['t'];
