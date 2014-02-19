@@ -99,6 +99,7 @@
       var showHelpOnStartup = true;
 
       if (config == 'cari') {
+        introPanelHtmlOverride  = '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://www.caricoos.org/"><img title="Go to the CariCOOS home page" src="img/caricoos.png"></a></td></tr></table>';
         helpUnavailable = true;
         fdbkUnavailable = true
 
