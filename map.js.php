@@ -2851,6 +2851,24 @@ function initMap() {
   }
 ?>
 
+  map.addControl(new OpenLayers.Control.Graticule({
+     labelFormat     : 'dms'
+    ,layerName       : 'grid'
+    ,labelSymbolizer : {
+       fontColor   : "#333"
+      ,fontSize    : "10px"
+      ,fontFamily  : "tahoma,helvetica,sans-serif"
+    }
+    ,lineSymbolizer  : {
+       strokeWidth     : 0.40
+      ,strokeOpacity   : 0.90
+      ,strokeColor     : "#777777"
+      ,strokeDashstyle : "dash"
+    }
+    ,autoActivate    : true
+  }));
+
+
   var navControl = new OpenLayers.Control.NavToolbar();
   map.addControl(navControl);
   // only need 1 zoom wheel responder!
