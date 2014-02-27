@@ -79,7 +79,7 @@
       var hideTemperaturesGridPanel = true;
       var hideOtherGridPanel        = true;
       var hideModelsGridPanel       = false;
-      var hideObservationsGridPanel = true;
+      var hideObservationsGridPanel = false;
       var hideMarineGridPanel       = true;
       var hideGlidersGridPanel      = true;
       var hideGlatosGridPanel       = true;
