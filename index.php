@@ -59,6 +59,7 @@
         ,'Stevens NYHOPS'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'NCOM currents'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'HYCOM currents'              : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
+        ,'NCOM currents'               : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'HYCOM Navy currents'         : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'HYCOM Navy elevation'        : ''
         ,'NAM winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-High'
@@ -68,6 +69,9 @@
         ,'WWIII wave direction'        : ''
         ,'WWIII wave period'           : ''
         ,'HYCOM SST'                   : ''
+        ,'NCOM SST'                    : ''
+        ,'NCOM salinity'               : ''
+        ,'VIIRSN chlorophyll'          : ''
         ,'ESPRESSO bottom temperature'    : 'pcolor_average_jet_0_30_grid_False'
       };
       var hideLegendsGridPanel      = false;
@@ -108,6 +112,7 @@
         showHelpOnStartup = false;
         helpUnavailable = true;
         fdbkUnavailable = true;
+        hideObservationsGridPanel = true;
 
         defaultLayers = {
            'NDBC'     : true
@@ -116,12 +121,16 @@
         restrictLayers = {
            'NDBC'                 : true
           ,'HYCOM Navy currents'  : true
+          ,'NCOM currents'        : true
           ,'SWAN waves'           : true
           ,'WWIII waves'          : true
           ,'WWIII wave direction' : true
           ,'WWIII wave period'    : true
           ,'HYCOM Navy elevation' : true
           ,'HYCOM SST'            : true
+          ,'NCOM SST'             : true
+          ,'NCOM salinity'        : true
+          ,'VIIRSN chlorophyll'   : true
         };
 
         defaultCenter = [-8035739.8524704,2352692.7891591];

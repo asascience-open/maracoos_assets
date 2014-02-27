@@ -922,6 +922,35 @@ function init() {
       ]
       ,[
          'model'
+        ,'NCOM currents'
+        ,'NCOM currents'
+        ,'off'
+        ,defaultLayers['NCOM currents'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NCOM currents.html')))?>'
+        ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
+        ,typeof defaultOpacities['NCOM currents'] != 'undefined' && defaultOpacities['NCOM currents'] != '' ? defaultOpacities['NCOM currents'] : 100
+        ,defaultStyles['NCOM currents'].split('-')[7]
+        ,defaultImageTypes['NCOM currents']
+        ,''
+        ,defaultStyles['NCOM currents'].split('-')[0]
+        ,defaultStyles['NCOM currents'].split('-')[1]
+        ,defaultStyles['NCOM currents'].split('-')[3]
+        ,defaultStyles['NCOM currents'].split('-')[2]
+        ,defaultStyles['NCOM currents'].split('-')[4]
+        ,defaultStyles['NCOM currents'].split('-')[5]
+        ,defaultStyles['NCOM currents'].split('-')[6]
+        ,'0-6'
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_CURRENTS'
+        ,''
+        ,'-180,-90,180,90' // '-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'currentsVelocity'
+      ]
+      ,[
+         'model'
         ,'NAM winds'
         ,'NAM winds'
         ,'off'
@@ -1122,6 +1151,93 @@ function init() {
         ,'true'
         ,''
         ,'temperature'
+      ]
+      ,[
+         'model'
+        ,'NCOM SST'
+        ,'NCOM water temperature'
+        ,'off'
+        ,defaultLayers['NCOM SST'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NCOM SST.html')))?>'
+        ,''
+        ,typeof defaultOpacities['NCOM SST'] != 'undefined' && defaultOpacities['NCOM SST'] != '' ? defaultOpacities['NCOM SST'] : 100
+        ,''
+        ,defaultImageTypes['NCOM SST']
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_SST&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM SST'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_SST'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'temperature'
+      ]
+      ,[
+         'model'
+        ,'VIIRSN chlorophyll'
+        ,'VIIRSN chlorophyll'
+        ,'off'
+        ,defaultLayers['VIIRSN chlorophyll'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/VIIRSN chlorophyll.html')))?>'
+        ,''
+        ,typeof defaultOpacities['VIIRSN chlorophyll'] != 'undefined' && defaultOpacities['VIIRSN chlorophyll'] != '' ? defaultOpacities['VIIRSN chlorophyll'] : 100
+        ,''
+        ,defaultImageTypes['VIIRSN chlorophyll']
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=VIIRSN_CHLOROPHYLL&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['VIIRSN chlorophyll'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=VIIRSN_CHLOROPHYLL'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'chlorophyll'
+      ]
+      ,[
+         'model'
+        ,'NCOM salinity'
+        ,'NCOM salinity'
+        ,'off'
+        ,defaultLayers['NCOM salinity'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NCOM salinity.html')))?>'
+        ,''
+        ,typeof defaultOpacities['NCOM salinity'] != 'undefined' && defaultOpacities['NCOM salinity'] != '' ? defaultOpacities['NCOM salinity'] : 100
+        ,''
+        ,defaultImageTypes['NCOM salinity']
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_SALINITY&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM salinity'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_SALINITY'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'salinity'
       ]
       ,[
          'model'
@@ -2518,7 +2634,7 @@ function init() {
               hits = 10000000000000;
             }
             for (var i in c) {
-              Ext.getCmp(i + 'GridPanel').setHeight(h * c[i] / hits + 8);
+              Ext.getCmp(i + 'GridPanel').setHeight(h * c[i] / hits + 12);
             }
           });
         }}
@@ -3099,6 +3215,33 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
+       name   : 'NCOM SST'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'NCOM_AM_SEA_SST'
+      ,format : 'image/' + defaultImageTypes['NCOM SST']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'NCOM salinity'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'NCOM_AM_SEA_SALINITY'
+      ,format : 'image/' + defaultImageTypes['NCOM salinity']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'VIIRSN chlorophyll'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'VIIRSN_CHLOROPHYLL'
+      ,format : 'image/' + defaultImageTypes['VIIRSN chlorophyll']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
        name   : 'ESPRESSO bottom temperature'
       ,url    : 'http://wms.maracoos.org/wms/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&'
       ,layers : 'temp'
@@ -3249,6 +3392,15 @@ function initMap() {
       ,layers : 'HYCOM_GLOBAL_NAVY_CURRENTS'
       ,format : 'image/' + defaultImageTypes['HYCOM Navy currents']
       ,styles : defaultStyles['HYCOM Navy currents']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'NCOM currents'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'NCOM_AM_SEA_CURRENTS'
+      ,format : 'image/' + defaultImageTypes['NCOM currents']
+      ,styles : defaultStyles['NCOM currents']
       ,singleTile : true
       ,projection : proj3857
     });
