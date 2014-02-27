@@ -1692,7 +1692,7 @@ function init() {
   }
 
   mainStore.each(function(rec) {
-    if (restrictLayers && !restrictLayers[rec.get('name')]) {
+    if (filterOutLayers && filterOutLayers[rec.get('name')] || restrictLayers && !restrictLayers[rec.get('name')]) {
       mainStore.remove(rec);
     }
   });
@@ -4237,7 +4237,7 @@ function addLayer(lyr,timeSensitive) {
 }
 
 function addWMS(l) {
-  if (restrictLayers && !restrictLayers[l.name]) {
+  if (filterOutLayers && filterOutLayers[l.name] || restrictLayers && !restrictLayers[l.name]) {
     return;
   }
   var lyr = new OpenLayers.Layer.WMS(
@@ -4262,7 +4262,7 @@ function addWMS(l) {
 }
 
 function addTileCache(l) {
-  if (restrictLayers && !restrictLayers[l.name]) {
+  if (filterOutLayers && filterOutLayers[l.name] || restrictLayers && !restrictLayers[l.name]) { 
     return;
   }
   var lyr = new OpenLayers.Layer.TileCache(
@@ -4337,7 +4337,7 @@ function addTileCache(l) {
 }
 
 function addTMS(l) {
-  if (restrictLayers && !restrictLayers[l.name]) {
+  if (filterOutLayers && filterOutLayers[l.name] || restrictLayers && !restrictLayers[l.name]) { 
     return;
   }
   var lyr = new OpenLayers.Layer.TMS(
@@ -4385,7 +4385,7 @@ function addTMS(l) {
 }
 
 function addObs(l) {
-  if (restrictLayers && !restrictLayers[l.name]) {
+  if (filterOutLayers && filterOutLayers[l.name] || restrictLayers && !restrictLayers[l.name]) { 
     return;
   }
   var lyr = new OpenLayers.Layer.Vector(

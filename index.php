@@ -48,6 +48,18 @@
          'NDBC'           : true
         ,'HYCOM currents'    : true
       };
+      var filterOutLayers = {
+         'HYCOM Navy currents'  : true
+        ,'NCOM currents'        : true
+        ,'SWAN waves'           : true
+        ,'WWIII wave direction' : true
+        ,'WWIII wave period'    : true
+        ,'HYCOM Navy elevation' : true
+        ,'HYCOM SST'            : true
+        ,'NCOM SST'             : true
+        ,'NCOM salinity'        : true
+        ,'VIIRSN chlorophyll'   : true
+      };
       var defaultStyles = {
          'Satellite water temperature' : 'pcolor_average_jet_10_32_node_False'
         ,'Chlorophyll concentration'   : 'pcolor_average_jet_0.01_15_node_Log'
@@ -132,6 +144,7 @@
           ,'NCOM salinity'        : true
           ,'VIIRSN chlorophyll'   : true
         };
+        filterOutLayers = {};
 
         defaultCenter = [-8035739.8524704,2352692.7891591];
         defaultZoom   = 5;
