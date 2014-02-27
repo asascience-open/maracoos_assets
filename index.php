@@ -59,9 +59,14 @@
         ,'Stevens NYHOPS'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'NCOM currents'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'HYCOM currents'              : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
+        ,'HYCOM Navy currents'         : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
+        ,'HYCOM Navy elevation'        : ''
         ,'NAM winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-High'
         ,'HF radar currents'           : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'SWAN waves'                  : ''
         ,'WWIII waves'                 : ''
+        ,'WWIII wave dir'              : ''
+        ,'WWIII wave period'           : ''
         ,'HYCOM SST'                   : ''
         ,'ESPRESSO bottom temperature'    : 'pcolor_average_jet_0_30_grid_False'
       };
@@ -106,11 +111,16 @@
 
         defaultLayers = {
            'NDBC'     : true
-          ,'HYCOM currents'    : true
+          ,'HYCOM Navy currents'    : true
         };
         restrictLayers = {
-           'NDBC'     : true
-          ,'HYCOM currents'    : true
+           'NDBC'                 : true
+          ,'HYCOM Navy currents'  : true
+          ,'SWAN waves'           : true
+          ,'WWIII waves'          : true
+          ,'WWIII wave dir'       : true
+          ,'WWIII wave period'    : true
+          ,'HYCOM Navy elevation' : true
         };
 
         defaultCenter = [-8035739.8524704,2352692.7891591];

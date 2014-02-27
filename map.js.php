@@ -893,6 +893,35 @@ function init() {
       ]
       ,[
          'model'
+        ,'HYCOM Navy currents'
+        ,'HYCOM Navy currents'
+        ,'off'
+        ,defaultLayers['HYCOM Navy currents'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HYCOM Navy currents.html')))?>'
+        ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
+        ,typeof defaultOpacities['HYCOM Navy currents'] != 'undefined' && defaultOpacities['HYCOM Navy currents'] != '' ? defaultOpacities['HYCOM Navy currents'] : 100
+        ,defaultStyles['HYCOM Navy currents'].split('-')[7]
+        ,defaultImageTypes['HYCOM Navy currents']
+        ,''
+        ,defaultStyles['HYCOM Navy currents'].split('-')[0]
+        ,defaultStyles['HYCOM Navy currents'].split('-')[1]
+        ,defaultStyles['HYCOM Navy currents'].split('-')[3]
+        ,defaultStyles['HYCOM Navy currents'].split('-')[2]
+        ,defaultStyles['HYCOM Navy currents'].split('-')[4]
+        ,defaultStyles['HYCOM Navy currents'].split('-')[5]
+        ,defaultStyles['HYCOM Navy currents'].split('-')[6]
+        ,'0-6'
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=HYCOM_GLOBAL_NAVY_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HYCOM Navy currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=HYCOM_GLOBAL_NAVY_CURRENTS'
+        ,''
+        ,'-180,-90,180,90' // '-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'currentsVelocity'
+      ]
+      ,[
+         'model'
         ,'NAM winds'
         ,'NAM winds'
         ,'off'
@@ -922,6 +951,35 @@ function init() {
       ]
       ,[
          'model'
+        ,'SWAN waves'
+        ,'SWAN waves'
+        ,'off'
+        ,defaultLayers['SWAN waves'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/SWAN waves.html')))?>'
+        ,''
+        ,typeof defaultOpacities['SWAN waves'] != 'undefined' && defaultOpacities['SWAN waves'] != '' ? defaultOpacities['SWAN waves'] : 100
+        ,''
+        ,defaultImageTypes['SWAN waves']
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_SWAN_WAVE_HEIGHT&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['SWAN waves'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_SWAN_WAVE_HEIGHT'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'wavesElevation'
+      ]
+      ,[
+         'model'
         ,'WWIII waves'
         ,'WWIII waves'
         ,'off'
@@ -948,6 +1006,93 @@ function init() {
         ,'true'
         ,''
         ,'wavesElevation'
+      ]
+      ,[
+         'model'
+        ,'WWIII wave dir'
+        ,'WWIII wave dir'
+        ,'off'
+        ,defaultLayers['WWIII wave dir'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/WWIII wave dir.html')))?>'
+        ,''
+        ,typeof defaultOpacities['WWIII wave dir'] != 'undefined' && defaultOpacities['WWIII wave dir'] != '' ? defaultOpacities['WWIII wave dir'] : 100
+        ,''
+        ,defaultImageTypes['WWIII wave dir']
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=WW3_WAVE_DIRECTION&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['WWIII wave dir'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=WW3_WAVE_DIRECTION'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'wavesDirection'
+      ]
+      ,[
+         'model'
+        ,'WWIII wave period'
+        ,'WWIII wave period'
+        ,'off'
+        ,defaultLayers['WWIII wave period'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/WWIII wave period.html')))?>'
+        ,''
+        ,typeof defaultOpacities['WWIII wave period'] != 'undefined' && defaultOpacities['WWIII wave period'] != '' ? defaultOpacities['WWIII wave period'] : 100
+        ,''
+        ,defaultImageTypes['WWIII wave period']
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=WW3_WAVE_PERIOD&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['WWIII wave period'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=WW3_WAVE_PERIOD'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'wavesPeriod'
+      ]
+      ,[
+         'model'
+        ,'HYCOM Navy elevation'
+        ,'HYCOM Navy elevation'
+        ,'off'
+        ,defaultLayers['HYCOM Navy elevation'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HYCOM Navy elevation.html')))?>'
+        ,''
+        ,typeof defaultOpacities['HYCOM Navy elevation'] != 'undefined' && defaultOpacities['HYCOM Navy elevation'] != '' ? defaultOpacities['HYCOM Navy elevation'] : 100
+        ,''
+        ,defaultImageTypes['HYCOM Navy elevation']
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=HYCOM_GLOBAL_NAVY_ELEVATION&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HYCOM Navy elevation'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=HYCOM_GLOBAL_NAVY_ELEVATION'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'waterElevation'
       ]
       ,[
          'model'
@@ -2936,6 +3081,15 @@ function initMap() {
 
   if (config != 'ecop') {
     addWMS({
+       name   : 'HYCOM Navy elevation'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'HYCOM_GLOBAL_NAVY_ELEVATION'
+      ,format : 'image/' + defaultImageTypes['HYCOM Navy elevation']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
        name   : 'HYCOM SST'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'HYCOM_GLOBAL_NAVY_SST'
@@ -2963,10 +3117,37 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
+       name   : 'SWAN waves'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'CARIB_SWAN_WAVE_HEIGHT'
+      ,format : 'image/' + defaultImageTypes['SWAN waves']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
        name   : 'WWIII waves'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'WW3_WAVE_HEIGHT'
       ,format : 'image/' + defaultImageTypes['WWIII waves']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'WWIII wave dir'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'WW3_WAVE_DIRECTION'
+      ,format : 'image/' + defaultImageTypes['WWIII wave dir']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'WWIII wave period'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'WW3_WAVE_PERIOD'
+      ,format : 'image/' + defaultImageTypes['WWIII wave period']
       ,styles : ''
       ,singleTile : true
       ,projection : proj3857
@@ -3059,6 +3240,15 @@ function initMap() {
       ,layers : 'HYCOM_CURRENTS'
       ,format : 'image/' + defaultImageTypes['HYCOM currents']
       ,styles : defaultStyles['HYCOM currents']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'HYCOM Navy currents'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'HYCOM_GLOBAL_NAVY_CURRENTS'
+      ,format : 'image/' + defaultImageTypes['HYCOM Navy currents']
+      ,styles : defaultStyles['HYCOM Navy currents']
       ,singleTile : true
       ,projection : proj3857
     });
