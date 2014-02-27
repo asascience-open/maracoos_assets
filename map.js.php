@@ -1009,18 +1009,16 @@ function init() {
       ]
       ,[
          'model'
-        ,'WWIII wave dir'
-        ,'WWIII wave dir'
+        ,'WWIII wave direction'
+        ,'WWIII wave direction'
         ,'off'
-        ,defaultLayers['WWIII wave dir'] ? 'on' : 'off'
+        ,defaultLayers['WWIII wave direction'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/WWIII wave dir.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/WWIII wave direction.html')))?>'
         ,''
-        ,typeof defaultOpacities['WWIII wave dir'] != 'undefined' && defaultOpacities['WWIII wave dir'] != '' ? defaultOpacities['WWIII wave dir'] : 100
+        ,typeof defaultOpacities['WWIII wave direction'] != 'undefined' && defaultOpacities['WWIII wave direction'] != '' ? defaultOpacities['WWIII wave direction'] : 100
         ,''
-        ,defaultImageTypes['WWIII wave dir']
-        ,''
-        ,''
+        ,defaultImageTypes['WWIII wave direction']
         ,''
         ,''
         ,''
@@ -1029,7 +1027,9 @@ function init() {
         ,''
         ,''
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=WW3_WAVE_DIRECTION&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['WWIII wave dir'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=WW3_WAVE_DIRECTION'
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=WW3_WAVE_DIRECTION&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['WWIII wave direction'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=WW3_WAVE_DIRECTION'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -3135,10 +3135,10 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
-       name   : 'WWIII wave dir'
+       name   : 'WWIII wave direction'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'WW3_WAVE_DIRECTION'
-      ,format : 'image/' + defaultImageTypes['WWIII wave dir']
+      ,format : 'image/' + defaultImageTypes['WWIII wave direction']
       ,styles : ''
       ,singleTile : true
       ,projection : proj3857

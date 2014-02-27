@@ -65,7 +65,7 @@
         ,'HF radar currents'           : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'SWAN waves'                  : ''
         ,'WWIII waves'                 : ''
-        ,'WWIII wave dir'              : ''
+        ,'WWIII wave direction'        : ''
         ,'WWIII wave period'           : ''
         ,'HYCOM SST'                   : ''
         ,'ESPRESSO bottom temperature'    : 'pcolor_average_jet_0_30_grid_False'
@@ -118,9 +118,10 @@
           ,'HYCOM Navy currents'  : true
           ,'SWAN waves'           : true
           ,'WWIII waves'          : true
-          ,'WWIII wave dir'       : true
+          ,'WWIII wave direction' : true
           ,'WWIII wave period'    : true
           ,'HYCOM Navy elevation' : true
+          ,'HYCOM SST'            : true
         };
 
         defaultCenter = [-8035739.8524704,2352692.7891591];
