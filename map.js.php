@@ -158,7 +158,7 @@ function init() {
   var introPanel = new Ext.Panel({
      height : introPanelHeightOverride ? introPanelHeightOverride : 48
     ,border : false
-    ,html   : introPanelHtmlOverride ? introPanelHtmlOverride : '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://maracoos.org/"><img title="Go to the MARACOOS home page" src="img/maracoos.jpg"></a></td><td align=center><a target=_blank href="http://www.ioos.gov/"><img title="Go to the IOOS home page" src="img/ioos.gif"></a></td></tr></table>'
+    ,html   : introPanelHtmlOverride ? introPanelHtmlOverride : '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://maracoos.org/"><img title="Go to the MARACOOS home page" src="img/maracoos.jpg"></a></td><td align=center><a target=_blank href="http://www.ioos.noaa.gov/"><img title="Go to the IOOS home page" src="img/ioos.gif"></a></td></tr></table>'
   });
 
   mainStore = new Ext.data.ArrayStore({
