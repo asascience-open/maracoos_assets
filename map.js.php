@@ -2521,7 +2521,7 @@ function init() {
   var glidersGridPanel = new Ext.grid.GridPanel({
      id               : 'glidersGridPanel'
     ,hidden           : hideGlidersGridPanel
-    ,height           : glidersStore.getCount() * 25.1 + 26 + 11 + 25
+    ,height           : glidersStore.getCount() * 25.1 + 26 + 11 + 40
     ,title            : 'Gliders'
     ,collapsible      : true
     ,store            : glidersStore
@@ -4296,6 +4296,7 @@ function renderLayerButton(val,metadata,rec) {
 }
 
 function renderLayerInfoLink(val,metadata,rec) {
+  metadata.attr = 'ext:qtip="' + val.split('||')[0] + '"';
   return '<span class="name">' + val.split('||')[0] + '</span>';
 }
 
