@@ -61,6 +61,7 @@
         ,'NCOM SST'                : true
         ,'NCOM salinity'           : true
         ,'VIIRSN chlorophyll'      : true
+        ,'GFS winds'               : true
       };
       var defaultStyles = {
          'Satellite water temperature' : 'pcolor_average_jet_10_32_node_False'
@@ -87,7 +88,8 @@
         ,'NCOM SST'                    : ''
         ,'NCOM salinity'               : ''
         ,'VIIRSN chlorophyll'          : ''
-        ,'ESPRESSO bottom temperature'    : 'pcolor_average_jet_0_30_grid_False'
+        ,'ESPRESSO bottom temperature' : 'pcolor_average_jet_0_30_grid_False'
+        ,'GFS winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-2-0-45-High'
       };
       var hideLegendsGridPanel      = false;
       var hideTimeseriesPanel       = false;
@@ -129,8 +131,8 @@
         fdbkUnavailable = true;
 
         defaultLayers = {
-           'NDBC'     : true
-          ,'HYCOM Navy currents'    : true
+           'NDBC'               : true
+          ,'HYCOM Navy currents': true
         };
         restrictLayers = {
            'NDBC'                    : true
@@ -147,6 +149,7 @@
           ,'NCOM SST'                : true
           ,'NCOM salinity'           : true
           ,'VIIRSN chlorophyll'      : true
+          ,'GFS winds'               : true
         };
         filterOutLayers = {};
 
@@ -176,8 +179,8 @@
           ,'NCOM currents'       : true
           ,'GFS winds'           : true
         };
-        defaultStyles['NCOM currents'] = 'CURRENTS_RAMP-Jet-False-1-True-0-2-High';
-        defaultStyles['GFS winds']     = 'WINDS_VERY_SPARSE_GRADIENT-False-2-0-45-High';
+        filterOutLayers = {};
+
         hideGlidersYearsFormPanel = false;
         hideTimeseriesPanel       = true;
         hideAssetsGridPanel       = true;

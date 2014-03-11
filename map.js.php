@@ -1125,6 +1125,35 @@ function init() {
       ]
       ,[
          'model'
+        ,'GFS winds'
+        ,'GFS winds'
+        ,'off'
+        ,defaultLayers['GFS winds'] ? 'on' : 'off'
+        ,'off'
+        ,'No information currently available.'
+        ,'baseStyle,barbLabel,striding,min,max'
+        ,typeof defaultOpacities['GFS winds'] != 'undefined' && defaultOpacities['GFS winds'] != '' ? defaultOpacities['GFS winds'] : 100
+        ,defaultStyles['GFS winds'].split('-')[5]
+        ,defaultImageTypes['GFS winds']
+        ,''
+        ,defaultStyles['GFS winds'].split('-')[0]
+        ,''
+        ,defaultStyles['GFS winds'].split('-')[2]
+        ,defaultStyles['GFS winds'].split('-')[1]
+        ,''
+        ,defaultStyles['GFS winds'].split('-')[3]
+        ,defaultStyles['GFS winds'].split('-')[4]
+        ,'0-70'
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NAM_WINDS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['GFS winds'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NAM_WINDS'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'windsVelocity'
+      ]
+      ,[
+         'model'
         ,'HYCOM Navy elevation'
         ,'HYCOM Navy elevation'
         ,'off'
@@ -1716,37 +1745,6 @@ function init() {
         }
       }
     }
-  }
-  else if (config == 'gliders') {
-    mainStore.add(new mainStore.recordType({
-       'type'                 : 'model'
-      ,'name'                 : 'GFS winds'
-      ,'displayName'          : 'GFS winds'
-      ,'info'                 : 'off'
-      ,'status'               : defaultLayers['GFS winds'] ? 'on' : 'off'
-      ,'settings'             : 'off'
-      ,'infoBlurb'            : 'No information currently available.'
-      ,'settingsParam'        : 'baseStyle,barbLabel,striding,min,max'
-      ,'settingsOpacity'      : typeof defaultOpacities['GFS winds'] != 'undefined' && defaultOpacities['GFS winds'] != '' ? defaultOpacities['GFS winds'] : 100
-      ,'settingsImageQuality' : defaultStyles['GFS winds'].split('-')[5]
-      ,'settingsImageType'    : defaultImageTypes['GFS winds']
-      ,'settingsPalette'      : ''
-      ,'settingsBaseStyle'    : defaultStyles['GFS winds'].split('-')[0]
-      ,'settingsColorMap'     : ''
-      ,'settingsStriding'     : defaultStyles['GFS winds'].split('-')[2]
-      ,'settingsBarbLabel'    : defaultStyles['GFS winds'].split('-')[1]
-      ,'settingsTailMag'      : ''
-      ,'settingsMin'          : defaultStyles['GFS winds'].split('-')[3]
-      ,'settingsMax'          : defaultStyles['GFS winds'].split('-')[4]
-      ,'settingsMinMaxBounds' : '0-70'
-      ,'rank'                 : ''
-      ,'legend'               : 'http://coastmap.com/ecop/wms.aspx?LAYERS=NAM_WINDS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['GFS winds'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NAM_WINDS'
-      ,'timestamp'            : ''
-      ,'bbox'                 : '-78,35.5,-62,44'
-      ,'queryable'            : 'true'
-      ,'settingsLayers'       : ''
-      ,'category'             : 'windsVelocity'
-    }));
   }
 
   mainStore.each(function(rec) {
@@ -3596,17 +3594,15 @@ function initMap() {
        name       : 'Unknown gliders'
       ,visibility : typeof defaultLayers['Unknown gliders'] != 'undefined'
     });
-    if (config == 'gliders') {
-      addWMS({
-         name   : 'GFS winds'
-        ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
-        ,layers : 'GFS_WINDS'
-        ,format : 'image/' + defaultImageTypes['GFS winds']
-        ,styles : defaultStyles['GFS winds']
-        ,singleTile : true
-        ,projection : proj3857
-      });
-    }
+    addWMS({
+       name   : 'GFS winds'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'GFS_WINDS'
+      ,format : 'image/' + defaultImageTypes['GFS winds']
+      ,styles : defaultStyles['GFS winds']
+      ,singleTile : true
+      ,projection : proj3857
+    });
   }
   else {
     for (var i = 0; i < ecop.layerStack.length; i++) {
