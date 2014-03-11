@@ -68,7 +68,7 @@
         ,'WRF winds (Caribbean)'   : true
       };
       var defaultStyles = {
-         'Chlorophyll concentration (VIIRS)'  : ''
+         'Chlorophyll concentration (VIIRS)'  : 'SST_USCG-0-2'
         ,'Chlorophyll concentration'          : 'pcolor_average_jet_0.01_15_node_Log'
         ,'ESPRESSO bottom temperature'        : 'pcolor_average_jet_0_30_grid_False'
         ,'GFS winds'                          : 'WINDS_VERY_SPARSE_GRADIENT-False-2-0-45-High'
@@ -77,13 +77,13 @@
         ,'HOPS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'HYCOM currents (global)'            : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'HYCOM currents'                     : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
-        ,'HYCOM elevation (global)'           : ''
-        ,'HYCOM salinity (global)'            : ''
-        ,'HYCOM SST'                          : ''
+        ,'HYCOM elevation (global)'           : 'WATER_ELEVATION_STYLE-0-2'
+        ,'HYCOM salinity (global)'            : 'SST_USCG-0-50'
+        ,'HYCOM SST'                          : 'WATER_TEMP-0-35'
         ,'NAM winds'                          : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-High'
         ,'NCOM currents (S Atlantic)'         : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
-        ,'NCOM salinity (S Atlantic)'         : ''
-        ,'NCOM SST'                           : ''
+        ,'NCOM salinity (S Atlantic)'         : 'SST_USCG-0-50'
+        ,'NCOM SST'                           : 'SST_USCG-0-50'
         ,'ROMS currents (Caribeean)'          : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS ESPRESSO'                      : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
@@ -91,13 +91,13 @@
         ,'Stevens NYHOPS'                     : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'STPS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'SWAN wave direction (Caribbean)'    : ''
-        ,'SWAN wave height (Caribbean)'       : ''
-        ,'SWAN wave period (Caribbean)'       : ''
+        ,'SWAN wave height (Caribbean)'       : 'WAVE_HEIGHT_STYLE-0-7'
+        ,'SWAN wave period (Caribbean)'       : 'WAVE_PERIOD_STYLE-0-17'
         ,'UMass'                              : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'WRF winds (Caribbean)'              : 'WINDS_VERY_SPARSE_GRADIENT-False-2-0-45-High'
         ,'WWIII wave direction'               : ''
         ,'WWIII wave height'                  : 'WAVE_HEIGHT_STYLE-0-7'
-        ,'WWIII wave period'                  : ''
+        ,'WWIII wave period'                  : 'WAVE_PERIOD_STYLE-0-17'
       };
       var hideLegendsGridPanel      = false;
       var hideTimeseriesPanel       = false;
