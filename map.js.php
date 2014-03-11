@@ -922,27 +922,27 @@ function init() {
       ]
       ,[
          'model'
-        ,'NCOM currents'
-        ,'NCOM currents'
+        ,'NCOM currents (Southern Atlantic)'
+        ,'NCOM currents (Southern Atlantic)'
         ,'off'
-        ,defaultLayers['NCOM currents'] ? 'on' : 'off'
+        ,defaultLayers['NCOM currents (Southern Atlantic)'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NCOM currents.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NCOM currents (Southern Atlantic).html')))?>'
         ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
-        ,typeof defaultOpacities['NCOM currents'] != 'undefined' && defaultOpacities['NCOM currents'] != '' ? defaultOpacities['NCOM currents'] : 100
-        ,defaultStyles['NCOM currents'].split('-')[7]
-        ,defaultImageTypes['NCOM currents']
+        ,typeof defaultOpacities['NCOM currents (Southern Atlantic)'] != 'undefined' && defaultOpacities['NCOM currents (Southern Atlantic)'] != '' ? defaultOpacities['NCOM currents (Southern Atlantic)'] : 100
+        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[7]
+        ,defaultImageTypes['NCOM currents (Southern Atlantic)']
         ,''
-        ,defaultStyles['NCOM currents'].split('-')[0]
-        ,defaultStyles['NCOM currents'].split('-')[1]
-        ,defaultStyles['NCOM currents'].split('-')[3]
-        ,defaultStyles['NCOM currents'].split('-')[2]
-        ,defaultStyles['NCOM currents'].split('-')[4]
-        ,defaultStyles['NCOM currents'].split('-')[5]
-        ,defaultStyles['NCOM currents'].split('-')[6]
+        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[0]
+        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[1]
+        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[3]
+        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[2]
+        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[4]
+        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[5]
+        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[6]
         ,'0-6'
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_CURRENTS'
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM currents (Southern Atlantic)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_CURRENTS'
         ,''
         ,'-180,-90,180,90' // '-78,35.5,-62,44'
         ,'true'
@@ -951,27 +951,27 @@ function init() {
       ]
       ,[
          'model'
-        ,'ROMS Caribbean currents'
-        ,'ROMS Caribbean currents'
+        ,'ROMS currents (Caribeean)'
+        ,'ROMS currents (Caribeean)'
         ,'off'
-        ,defaultLayers['ROMS Caribbean currents'] ? 'on' : 'off'
+        ,defaultLayers['ROMS currents (Caribeean)'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/ROMS Caribbean currents.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/ROMS currents (Caribeean).html')))?>'
         ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
-        ,typeof defaultOpacities['ROMS Caribbean currents'] != 'undefined' && defaultOpacities['ROMS Caribbean currents'] != '' ? defaultOpacities['ROMS Caribbean currents'] : 100
-        ,defaultStyles['ROMS Caribbean currents'].split('-')[7]
-        ,defaultImageTypes['ROMS Caribbean currents']
+        ,typeof defaultOpacities['ROMS currents (Caribeean)'] != 'undefined' && defaultOpacities['ROMS currents (Caribeean)'] != '' ? defaultOpacities['ROMS currents (Caribeean)'] : 100
+        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[7]
+        ,defaultImageTypes['ROMS currents (Caribeean)']
         ,''
-        ,defaultStyles['ROMS Caribbean currents'].split('-')[0]
-        ,defaultStyles['ROMS Caribbean currents'].split('-')[1]
-        ,defaultStyles['ROMS Caribbean currents'].split('-')[3]
-        ,defaultStyles['ROMS Caribbean currents'].split('-')[2]
-        ,defaultStyles['ROMS Caribbean currents'].split('-')[4]
-        ,defaultStyles['ROMS Caribbean currents'].split('-')[5]
-        ,defaultStyles['ROMS Caribbean currents'].split('-')[6]
+        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[0]
+        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[1]
+        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[3]
+        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[2]
+        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[4]
+        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[5]
+        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[6]
         ,'0-6'
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_ROMSR1_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['ROMS Caribbean currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_ROMSR1_CURRENTS'
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_ROMSR1_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['ROMS currents (Caribeean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_ROMSR1_CURRENTS'
         ,''
         ,'-180,-90,180,90' // '-78,35.5,-62,44'
         ,'true'
@@ -1387,27 +1387,27 @@ function init() {
       ]
       ,[
          'observation'
-        ,'HF radar PRVI currents'
-        ,'HF radar PRVI currents'
+        ,'HF radar currents (PR-VI)'
+        ,'HF radar currents (PR-VI)'
         ,'off'
-        ,defaultLayers['HF radar PRVI currents'] ? 'on' : 'off'
+        ,defaultLayers['HF radar currents (PR-VI)'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HF radar PRVI currents.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HF radar currents (PR-VI).html')))?>'
         ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
-        ,typeof defaultOpacities['HF radar PRVI currents'] != 'undefined' && defaultOpacities['HF radar PRVI currents'] != '' ? defaultOpacities['HF radar PRVI currents'] : 100
-        ,defaultStyles['HF radar PRVI currents'].split('-')[7]
-        ,defaultImageTypes['HF radar PRVI currents']
+        ,typeof defaultOpacities['HF radar currents (PR-VI)'] != 'undefined' && defaultOpacities['HF radar currents (PR-VI)'] != '' ? defaultOpacities['HF radar currents (PR-VI)'] : 100
+        ,defaultStyles['HF radar currents (PR-VI)'].split('-')[7]
+        ,defaultImageTypes['HF radar currents (PR-VI)']
         ,''
-        ,defaultStyles['HF radar PRVI currents'].split('-')[0]
-        ,defaultStyles['HF radar PRVI currents'].split('-')[1]
-        ,defaultStyles['HF radar PRVI currents'].split('-')[3]
-        ,defaultStyles['HF radar PRVI currents'].split('-')[2]
-        ,defaultStyles['HF radar PRVI currents'].split('-')[4]
-        ,defaultStyles['HF radar PRVI currents'].split('-')[5]
-        ,defaultStyles['HF radar PRVI currents'].split('-')[6]
+        ,defaultStyles['HF radar currents (PR-VI)'].split('-')[0]
+        ,defaultStyles['HF radar currents (PR-VI)'].split('-')[1]
+        ,defaultStyles['HF radar currents (PR-VI)'].split('-')[3]
+        ,defaultStyles['HF radar currents (PR-VI)'].split('-')[2]
+        ,defaultStyles['HF radar currents (PR-VI)'].split('-')[4]
+        ,defaultStyles['HF radar currents (PR-VI)'].split('-')[5]
+        ,defaultStyles['HF radar currents (PR-VI)'].split('-')[6]
         ,'0-6'
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=HFRADAR_PRVICUR_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HF radar PRVI currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=HFRADAR_PRVICUR_CURRENTS'
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=HFRADAR_PRVICUR_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HF radar currents (PR-VI)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=HFRADAR_PRVICUR_CURRENTS'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -3452,20 +3452,20 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
-       name   : 'NCOM currents'
+       name   : 'NCOM currents (Southern Atlantic)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'NCOM_AM_SEA_CURRENTS'
-      ,format : 'image/' + defaultImageTypes['NCOM currents']
-      ,styles : defaultStyles['NCOM currents']
+      ,format : 'image/' + defaultImageTypes['NCOM currents (Southern Atlantic)']
+      ,styles : defaultStyles['NCOM currents (Southern Atlantic)']
       ,singleTile : true
       ,projection : proj3857
     });
     addWMS({
-       name   : 'ROMS Caribbean currents'
+       name   : 'ROMS currents (Caribeean)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'CARIB_ROMSR1_CURRENTS'
-      ,format : 'image/' + defaultImageTypes['ROMS Caribbean currents']
-      ,styles : defaultStyles['ROMS Caribbean currents']
+      ,format : 'image/' + defaultImageTypes['ROMS currents (Caribeean)']
+      ,styles : defaultStyles['ROMS currents (Caribeean)']
       ,singleTile : true
       ,projection : proj3857
     });
@@ -3497,11 +3497,11 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
-       name   : 'HF radar PRVI currents'
+       name   : 'HF radar currents (PR-VI)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'HFRADAR_PRVICUR_CURRENTS'
-      ,format : 'image/' + defaultImageTypes['HF radar PRVI currents']
-      ,styles : defaultStyles['HF radar PRVI currents']
+      ,format : 'image/' + defaultImageTypes['HF radar currents (PR-VI)']
+      ,styles : defaultStyles['HF radar currents (PR-VI)']
       ,singleTile : true
       ,projection : proj3857
     });

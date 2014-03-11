@@ -50,9 +50,9 @@
       };
       var filterOutLayers = {
          'HYCOM Navy currents'     : true
-        ,'NCOM currents'           : true
-        ,'ROMS Caribbean currents' : true
-        ,'HF radar PRVI currents'  : true
+        ,'NCOM currents (Southern Atlantic)'           : true
+        ,'ROMS currents (Caribeean)' : true
+        ,'HF radar currents (PR-VI)'  : true
         ,'SWAN waves'              : true
         ,'WWIII wave direction'    : true
         ,'WWIII wave period'       : true
@@ -72,10 +72,10 @@
         ,'STPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'UMass'                       : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'Stevens NYHOPS'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
-        ,'NCOM currents'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
-        ,'ROMS Caribbean currents'     : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'NCOM currents (Southern Atlantic)'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'ROMS currents (Caribeean)'     : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'HYCOM currents'              : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
-        ,'HF radar PRVI currents'      : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
+        ,'HF radar currents (PR-VI)'      : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'HYCOM Navy currents'         : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'HYCOM Navy elevation'        : ''
         ,'NAM winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-High'
@@ -137,9 +137,9 @@
         restrictLayers = {
            'NDBC'                    : true
           ,'HYCOM Navy currents'     : true
-          ,'NCOM currents'           : true
-          ,'ROMS Caribbean currents' : true
-          ,'HF radar PRVI currents'  : true
+          ,'NCOM currents (Southern Atlantic)'           : true
+          ,'ROMS currents (Caribeean)' : true
+          ,'HF radar currents (PR-VI)'  : true
           ,'SWAN waves'              : true
           ,'WWIII waves'             : true
           ,'WWIII wave direction'    : true
@@ -176,7 +176,7 @@
           ,'Unknown gliders'     : true
           ,'WWIII waves'         : true
           ,'NCOM SST'            : true
-          ,'NCOM currents'       : true
+          ,'NCOM currents (Southern Atlantic)'       : true
           ,'GFS winds'           : true
         };
         filterOutLayers = {};
@@ -231,7 +231,7 @@
         ,'Stevens NYHOPS'              : 100
         ,'UMass'                       : 100
         ,'ROMS ESPRESSO'               : 100
-        ,'NCOM currents'               : 100
+        ,'NCOM currents (Southern Atlantic)'               : 100
         ,'HYCOM currents'              : 100
         ,'NAM winds'                   : 100
         ,'WWIII waves'                 : 100
@@ -263,7 +263,7 @@
         ,'STPS'                 : 'png'
         ,'UMass'                : 'png'
         ,'Stevens NYHOPS'       : 'png'
-        ,'NCOM currents'        : 'png'
+        ,'NCOM currents (Southern Atlantic)'        : 'png'
         ,'HYCOM currents'       : 'png'
         ,'NAM winds'            : 'png'
         ,'HF radar currents'    : 'png'
