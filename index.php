@@ -49,16 +49,18 @@
         ,'HYCOM currents'    : true
       };
       var filterOutLayers = {
-         'HYCOM Navy currents'  : true
-        ,'NCOM currents'        : true
-        ,'SWAN waves'           : true
-        ,'WWIII wave direction' : true
-        ,'WWIII wave period'    : true
-        ,'HYCOM Navy elevation' : true
-        ,'HYCOM SST'            : true
-        ,'NCOM SST'             : true
-        ,'NCOM salinity'        : true
-        ,'VIIRSN chlorophyll'   : true
+         'HYCOM Navy currents'     : true
+        ,'NCOM currents'           : true
+        ,'ROMS Caribbean currents' : true
+        ,'HF radar PRVI currents'  : true
+        ,'SWAN waves'              : true
+        ,'WWIII wave direction'    : true
+        ,'WWIII wave period'       : true
+        ,'HYCOM Navy elevation'    : true
+        ,'HYCOM SST'               : true
+        ,'NCOM SST'                : true
+        ,'NCOM salinity'           : true
+        ,'VIIRSN chlorophyll'      : true
       };
       var defaultStyles = {
          'Satellite water temperature' : 'pcolor_average_jet_10_32_node_False'
@@ -70,8 +72,9 @@
         ,'UMass'                       : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'Stevens NYHOPS'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'NCOM currents'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'ROMS Caribbean currents'     : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'HYCOM currents'              : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
-        ,'NCOM currents'               : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
+        ,'HF radar PRVI currents'      : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'HYCOM Navy currents'         : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'HYCOM Navy elevation'        : ''
         ,'NAM winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-High'
@@ -124,25 +127,26 @@
         showHelpOnStartup = false;
         helpUnavailable = true;
         fdbkUnavailable = true;
-        hideObservationsGridPanel = true;
 
         defaultLayers = {
            'NDBC'     : true
           ,'HYCOM Navy currents'    : true
         };
         restrictLayers = {
-           'NDBC'                 : true
-          ,'HYCOM Navy currents'  : true
-          ,'NCOM currents'        : true
-          ,'SWAN waves'           : true
-          ,'WWIII waves'          : true
-          ,'WWIII wave direction' : true
-          ,'WWIII wave period'    : true
-          ,'HYCOM Navy elevation' : true
-          ,'HYCOM SST'            : true
-          ,'NCOM SST'             : true
-          ,'NCOM salinity'        : true
-          ,'VIIRSN chlorophyll'   : true
+           'NDBC'                    : true
+          ,'HYCOM Navy currents'     : true
+          ,'NCOM currents'           : true
+          ,'ROMS Caribbean currents' : true
+          ,'HF radar PRVI currents'  : true
+          ,'SWAN waves'              : true
+          ,'WWIII waves'             : true
+          ,'WWIII wave direction'    : true
+          ,'WWIII wave period'       : true
+          ,'HYCOM Navy elevation'    : true
+          ,'HYCOM SST'               : true
+          ,'NCOM SST'                : true
+          ,'NCOM salinity'           : true
+          ,'VIIRSN chlorophyll'      : true
         };
         filterOutLayers = {};
 

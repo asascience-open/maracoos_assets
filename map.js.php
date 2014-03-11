@@ -951,6 +951,35 @@ function init() {
       ]
       ,[
          'model'
+        ,'ROMS Caribbean currents'
+        ,'ROMS Caribbean currents'
+        ,'off'
+        ,defaultLayers['ROMS Caribbean currents'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/ROMS Caribbean currents.html')))?>'
+        ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
+        ,typeof defaultOpacities['ROMS Caribbean currents'] != 'undefined' && defaultOpacities['ROMS Caribbean currents'] != '' ? defaultOpacities['ROMS Caribbean currents'] : 100
+        ,defaultStyles['ROMS Caribbean currents'].split('-')[7]
+        ,defaultImageTypes['ROMS Caribbean currents']
+        ,''
+        ,defaultStyles['ROMS Caribbean currents'].split('-')[0]
+        ,defaultStyles['ROMS Caribbean currents'].split('-')[1]
+        ,defaultStyles['ROMS Caribbean currents'].split('-')[3]
+        ,defaultStyles['ROMS Caribbean currents'].split('-')[2]
+        ,defaultStyles['ROMS Caribbean currents'].split('-')[4]
+        ,defaultStyles['ROMS Caribbean currents'].split('-')[5]
+        ,defaultStyles['ROMS Caribbean currents'].split('-')[6]
+        ,'0-6'
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_ROMSR1_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['ROMS Caribbean currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_ROMSR1_CURRENTS'
+        ,''
+        ,'-180,-90,180,90' // '-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'currentsVelocity'
+      ]
+      ,[
+         'model'
         ,'NAM winds'
         ,'NAM winds'
         ,'off'
@@ -1321,6 +1350,35 @@ function init() {
         ,'0-6'
         ,''
         ,'http://coastmap.com/ecop/wms.aspx?LAYERS=MARCOOSHFRADAR_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HF radar currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=MARCOOSHFRADAR_CURRENTS'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'currentsVelocity'
+      ]
+      ,[
+         'observation'
+        ,'HF radar PRVI currents'
+        ,'HF radar PRVI currents'
+        ,'off'
+        ,defaultLayers['HF radar PRVI currents'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HF radar PRVI currents.html')))?>'
+        ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
+        ,typeof defaultOpacities['HF radar PRVI currents'] != 'undefined' && defaultOpacities['HF radar PRVI currents'] != '' ? defaultOpacities['HF radar PRVI currents'] : 100
+        ,defaultStyles['HF radar PRVI currents'].split('-')[7]
+        ,defaultImageTypes['HF radar PRVI currents']
+        ,''
+        ,defaultStyles['HF radar PRVI currents'].split('-')[0]
+        ,defaultStyles['HF radar PRVI currents'].split('-')[1]
+        ,defaultStyles['HF radar PRVI currents'].split('-')[3]
+        ,defaultStyles['HF radar PRVI currents'].split('-')[2]
+        ,defaultStyles['HF radar PRVI currents'].split('-')[4]
+        ,defaultStyles['HF radar PRVI currents'].split('-')[5]
+        ,defaultStyles['HF radar PRVI currents'].split('-')[6]
+        ,'0-6'
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=HFRADAR_PRVICUR_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HF radar PRVI currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=HFRADAR_PRVICUR_CURRENTS'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -3404,6 +3462,15 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
+    addWMS({
+       name   : 'ROMS Caribbean currents'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'CARIB_ROMSR1_CURRENTS'
+      ,format : 'image/' + defaultImageTypes['ROMS Caribbean currents']
+      ,styles : defaultStyles['ROMS Caribbean currents']
+      ,singleTile : true
+      ,projection : proj3857
+    });
   //  addWMS({
   //     name   : 'UMass'
   //    ,url    : 'http://coastmap.com/ecop/wms.aspx?'
@@ -3428,6 +3495,15 @@ function initMap() {
       ,layers : 'MARCOOSHFRADAR_CURRENTS'
       ,format : 'image/' + defaultImageTypes['HF radar currents']
       ,styles : defaultStyles['HF radar currents']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'HF radar PRVI currents'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'HFRADAR_PRVICUR_CURRENTS'
+      ,format : 'image/' + defaultImageTypes['HF radar PRVI currents']
+      ,styles : defaultStyles['HF radar PRVI currents']
       ,singleTile : true
       ,projection : proj3857
     });
