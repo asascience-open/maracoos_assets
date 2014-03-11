@@ -1160,19 +1160,19 @@ function init() {
         ,defaultLayers['WWIII wave height'] ? 'on' : 'off'
         ,'off'
         ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/WWIII wave height.html')))?>'
-        ,''
+        ,'baseStyle,min,max'
         ,typeof defaultOpacities['WWIII wave height'] != 'undefined' && defaultOpacities['WWIII wave height'] != '' ? defaultOpacities['WWIII wave height'] : 100
         ,''
         ,defaultImageTypes['WWIII wave height']
         ,''
+        ,defaultStyles['WWIII wave height'].split('-')[0]
         ,''
         ,''
         ,''
         ,''
-        ,''
-        ,''
-        ,''
-        ,''
+        ,defaultStyles['WWIII wave height'].split('-')[1]
+        ,defaultStyles['WWIII wave height'].split('-')[2]
+        ,'0-7'
         ,''
         ,'http://coastmap.com/ecop/wms.aspx?LAYERS=WW3_WAVE_HEIGHT&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['WWIII wave height'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=WW3_WAVE_HEIGHT'
         ,''
@@ -3877,7 +3877,7 @@ function setLayerInfo(layerName,on) {
          layout   : 'column'
         ,defaults : {border : false}
         ,height   : 75
-        ,bodyStyle : 'padding:6'
+        ,bodyStyle : 'padding-top:7px'
         ,items    :  [
            {columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : '<a class="blue-href-only" href="javascript:zoomToBbox(\'' + mainRec.get('bbox') + '\');setLayerInfo(\'' + layerName + '\',false)"><img width=32 height=32 src="img/find_globe_big.png"><br>Zoom<br>to layer</a>'}}}
           ,{columnWidth : 0.33,items : {xtype : 'container',autoEl : {tag : 'center'},items : {border : false,html : customize}}}
@@ -4274,7 +4274,7 @@ function setLayerSettings(layerName) {
       ,constrainHeader : true
       ,title     : mainStore.getAt(idx).get('displayName').split('||')[0] + ' :: settings'
       ,items     : [
-         new Ext.FormPanel({buttonAlign : 'center',border : false,bodyStyle : 'background:transparent',width : 240,height : height + 35,labelWidth : 100,labelSeparator : '',items : items,buttons : [{text : 'Restore default settings',width : 150,handler : function() {restoreDefaultStyles(layerName,items,id)}}]})
+         new Ext.FormPanel({buttonAlign : 'center',border : false,bodyStyle : 'background:transparent;padding-left:5px',width : 240,height : height + 35,labelWidth : 100,labelSeparator : '',items : items,buttons : [{text : 'Restore default settings',width : 150,handler : function() {restoreDefaultStyles(layerName,items,id)}}]})
       ]
       ,listeners : {hide : function() {
         activeSettingsWindows[layerName] = null;

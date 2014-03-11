@@ -40,7 +40,7 @@
     <ows:Operation name="GetCapabilities">
       <ows:DCP>
         <ows:HTTP>
-          <ows:Get xlink:href="http://www.weatherflow.com/sos.pl"/>
+          <ows:Get xlink:href="http://www.weatherflow.com/sos_asa.pl"/>
         </ows:HTTP>
       </ows:DCP>
       <ows:Parameter name="Sections">
@@ -57,7 +57,7 @@
     <ows:Operation name="GetObservation">
       <ows:DCP>
         <ows:HTTP>
-          <ows:Get xlink:href="http://www.weatherflow.com/sos.pl"/>
+          <ows:Get xlink:href="http://www.weatherflow.com/sos_asa.pl"/>
         </ows:HTTP>
       </ows:DCP>
       <ows:Parameter name="observedProperty">
@@ -71,7 +71,7 @@
     <ows:Operation name="DescribeSensor">
       <ows:DCP>
         <ows:HTTP>
-          <ows:Get xlink:href="http://www.weatherflow.com/sos.pl"/>
+          <ows:Get xlink:href="http://www.weatherflow.com/sos_asa.pl"/>
         </ows:HTTP>
       </ows:DCP>
       <ows:Parameter name="outputFormat">
