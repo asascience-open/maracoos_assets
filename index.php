@@ -138,6 +138,7 @@
         };
         restrictLayers = {
            'NDBC'                    : true
+          ,'Weatherflow'             : true
           ,'HYCOM currents (global)'     : true
           ,'NCOM currents (Southern Atlantic)'           : true
           ,'ROMS currents (Caribeean)' : true

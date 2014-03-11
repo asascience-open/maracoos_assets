@@ -4868,6 +4868,7 @@ function syncObs(l,force) {
          + '&provider='    + l.name
          + '&everyNth='    + everyNth
          + '&obsId='       + map.obsId[l.name]
+         + '&config='      + config
          + getDateRange()
          + getFilter()
       ,callback : function(r) {

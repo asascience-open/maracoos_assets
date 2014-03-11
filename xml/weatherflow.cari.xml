@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Capabilities xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:swe="http://www.opengis.net/swe/1.0.1" xmlns:om="http://www.opengis.net/om/1.0" xmlns="http://www.opengis.net/sos/1.0" xmlns:sos="http://www.opengis.net/sos/1.0" xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:ogc="http://www.opengis.net/ogc" xmlns:tml="http://www.opengis.net/tml" xmlns:sml="http://www.opengis.net/sensorML/1.0.1" xmlns:myorg="http://www.myorg.org/features" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/sos/1.0 http://schemas.opengis.net/sos/1.0.0/sosAll.xsd" version="1.0.0">
+<!-- This is a PROTOTYPE service.  The information in this response is NOT complete. -->
+  <ows:ServiceIdentification>
+    <ows:Title>Weatherflow, Inc. SOS</ows:Title>
+    <ows:Abstract>Weatherflow, Inc. SOS</ows:Abstract>
+    <ows:Keywords>
+      <ows:Keyword>Weather</ows:Keyword>
+      <ows:Keyword>Winds</ows:Keyword>
+      <ows:Keyword>Air Temperature</ows:Keyword>
+      <ows:Keyword>Pressure</ows:Keyword>
+    </ows:Keywords>
+
+    <ows:ServiceType codeSpace="http://opengeospatial.net">OGC:SOS</ows:ServiceType>
+    <ows:ServiceTypeVersion>1.0.0</ows:ServiceTypeVersion>
+    <ows:Fees>NONE</ows:Fees>
+    <ows:AccessConstraints>NONE</ows:AccessConstraints>
+  </ows:ServiceIdentification>
+  <ows:ServiceProvider>
+    <ows:ProviderName>Weatherflow, Inc.</ows:ProviderName>
+    <ows:ProviderSite xlink:href="http://www.weatherflow.com/"/>
+    <ows:ServiceContact>
+      <ows:IndividualName>Webmaster</ows:IndividualName>
+      <ows:ContactInfo>
+        <ows:Phone>
+          <ows:Voice>800-946-3225 x153</ows:Voice>
+        </ows:Phone>
+        <ows:Address>
+          <ows:DeliveryPoint>1407 West Canal St</ows:DeliveryPoint>
+          <ows:City>New Smyrna Beach</ows:City>
+          <ows:AdministrativeArea>FL</ows:AdministrativeArea>
+          <ows:PostalCode>32168</ows:PostalCode>
+          <ows:Country>USA</ows:Country>
+          <ows:ElectronicMailAddress>rderr@weatherflow.com</ows:ElectronicMailAddress>
+        </ows:Address>
+      </ows:ContactInfo>
+    </ows:ServiceContact>
+  </ows:ServiceProvider>
+  <ows:OperationsMetadata>
+    <ows:Operation name="GetCapabilities">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:href="http://www.weatherflow.com/sos.pl"/>
+        </ows:HTTP>
+      </ows:DCP>
+      <ows:Parameter name="Sections">
+        <ows:AllowedValues>
+          <ows:Value>ServiceIdentification</ows:Value>
+          <ows:Value>ServiceProvider</ows:Value>
+          <ows:Value>OperationsMetadata</ows:Value>
+
+          <ows:Value>Contents</ows:Value>
+          <ows:Value>All</ows:Value>
+        </ows:AllowedValues>
+      </ows:Parameter>
+    </ows:Operation>
+    <ows:Operation name="GetObservation">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:href="http://www.weatherflow.com/sos.pl"/>
+        </ows:HTTP>
+      </ows:DCP>
+      <ows:Parameter name="observedProperty">
+        <ows:AllowedValues>
+          <ows:Value>watertemperature</ows:Value>
+          <ows:Value>winds</ows:Value>
+        </ows:AllowedValues>
+      </ows:Parameter>
+    </ows:Operation>
+
+    <ows:Operation name="DescribeSensor">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:href="http://www.weatherflow.com/sos.pl"/>
+        </ows:HTTP>
+      </ows:DCP>
+      <ows:Parameter name="outputFormat">
+        <ows:AllowedValues>
+          <ows:Value>text/xml;subtype="sensorML/1.0.0"</ows:Value>
+        </ows:AllowedValues>
+      </ows:Parameter>
+    </ows:Operation>
+    <ows:Parameter name="service">
+      <ows:AllowedValues>
+        <ows:Value>SOS</ows:Value>
+      </ows:AllowedValues>
+    </ows:Parameter>
+    <ows:Parameter name="version">
+      <ows:AllowedValues>
+        <ows:Value>1.0.0</ows:Value>
+      </ows:AllowedValues>
+    </ows:Parameter>
+  </ows:OperationsMetadata>
+
+<Contents>
+  <ObservationOfferingList>
+      <ObservationOffering gml:id="network-all">
+        <gml:description>All stations in the Weatherflow Network</gml:description>
+        <gml:name>urn:x-weatherflow:def:network:weatherflow.com::all</gml:name>
+        <gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+        <gml:boundedBy>
+          <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+            <gml:lowerCorner>17.932122 -158.20743</gml:lowerCorner>
+            <gml:upperCorner>49.796 -64.816667</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <time>
+          <gml:TimePeriod>
+            <gml:beginPosition>1987-04-01T05:00Z</gml:beginPosition>
+            <gml:endPosition indeterminatePosition="now"/>
+          </gml:TimePeriod>
+        </time>
+	<procedure xlink:href="urn:x-weatherflow:def:station:weatherflow.com::48649"/>
+<procedure xlink:href="urn:x-weatherflow:def:station:weatherflow.com::48650"/>
+<procedure xlink:href="urn:x-weatherflow:def:station:weatherflow.com::48685"/>
+<procedure xlink:href="urn:x-weatherflow:def:station:weatherflow.com::48686"/>
+<procedure xlink:href="urn:x-weatherflow:def:station:weatherflow.com::48687"/>
+<procedure xlink:href="urn:x-weatherflow:def:station:weatherflow.com::48688"/>
+<procedure xlink:href="urn:x-weatherflow:def:station:weatherflow.com::48689"/>
+<procedure xlink:href="urn:x-weatherflow:def:station:weatherflow.com::48690"/>
+<procedure xlink:href="urn:x-weatherflow:def:station:weatherflow.com::48691"/>
+<procedure xlink:href="urn:x-weatherflow:def:station:weatherflow.com::48693"/>
+<procedure xlink:href="urn:x-weatherflow:def:station:weatherflow.com::48694"/>
+<procedure xlink:href="urn:x-weatherflow:def:station:weatherflow.com::48692"/>
+
+        <observedProperty xlink:href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/IOOS/0.6.1/dictionaries/phenomenaDictionary.xml#Winds"/>
+        <featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+        <responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+        <responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+        <resultModel>om:Observation</resultModel>
+        <responseMode>inline</responseMode>
+      </ObservationOffering>
+
+		<ObservationOffering gml:id="station-48649">
+
+			<gml:description>GetCapabilities</gml:description>
+
+			<gml:name>urn:x-weatherflow:def:station:weatherflow.com::48649</gml:name>
+			<gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+			<gml:boundedBy>
+			  <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+			    <gml:lowerCorner>18.45512 -66.12846</gml:lowerCorner>
+			    <gml:upperCorner>18.45512 -66.12846</gml:upperCorner>
+			  </gml:Envelope>
+
+			</gml:boundedBy>
+			<time>
+			  <gml:TimePeriod>
+			    <gml:beginPosition>2009-02-25T19:30Z</gml:beginPosition>
+			    <gml:endPosition>2014-03-11T18:10Z</gml:endPosition>
+			  </gml:TimePeriod>
+			</time>
+			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48649:anemometer1"/>
+
+			<observedProperty xlink:href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/IOOS/0.6.1/dictionaries/phenomenaDictionary.xml#Winds"/>
+			<featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+			<responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+			<responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+			<resultModel>om:Observation</resultModel>
+			<responseMode>inline</responseMode>
+
+		</ObservationOffering>
+		
+		<ObservationOffering gml:id="station-48650">
+
+			<gml:description>GetCapabilities</gml:description>
+
+			<gml:name>urn:x-weatherflow:def:station:weatherflow.com::48650</gml:name>
+			<gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+			<gml:boundedBy>
+			  <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+			    <gml:lowerCorner>18.05245 -65.82809</gml:lowerCorner>
+			    <gml:upperCorner>18.05245 -65.82809</gml:upperCorner>
+			  </gml:Envelope>
+
+			</gml:boundedBy>
+			<time>
+			  <gml:TimePeriod>
+			    <gml:beginPosition>2009-03-04T15:35Z</gml:beginPosition>
+			    <gml:endPosition>2014-03-11T18:05Z</gml:endPosition>
+			  </gml:TimePeriod>
+			</time>
+			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48650:anemometer1"/>
+
+			<observedProperty xlink:href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/IOOS/0.6.1/dictionaries/phenomenaDictionary.xml#Winds"/>
+			<featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+			<responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+			<responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+			<resultModel>om:Observation</resultModel>
+			<responseMode>inline</responseMode>
+
+		</ObservationOffering>
+		
+		<ObservationOffering gml:id="station-48685">
+
+			<gml:description>GetCapabilities</gml:description>
+
+			<gml:name>urn:x-weatherflow:def:station:weatherflow.com::48685</gml:name>
+			<gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+			<gml:boundedBy>
+			  <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+			    <gml:lowerCorner>17.92859 -66.1597</gml:lowerCorner>
+			    <gml:upperCorner>17.92859 -66.1597</gml:upperCorner>
+			  </gml:Envelope>
+
+			</gml:boundedBy>
+			<time>
+			  <gml:TimePeriod>
+			    <gml:beginPosition></gml:beginPosition>
+			    <gml:endPosition>2014-03-11T18:05Z</gml:endPosition>
+			  </gml:TimePeriod>
+			</time>
+			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48685:anemometer1"/>
+
+			<observedProperty xlink:href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/IOOS/0.6.1/dictionaries/phenomenaDictionary.xml#Winds"/>
+			<featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+			<responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+			<responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+			<resultModel>om:Observation</resultModel>
+			<responseMode>inline</responseMode>
+
+		</ObservationOffering>
+		
+		<ObservationOffering gml:id="station-48686">
+
+			<gml:description>GetCapabilities</gml:description>
+
+			<gml:name>urn:x-weatherflow:def:station:weatherflow.com::48686</gml:name>
+			<gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+			<gml:boundedBy>
+			  <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+			    <gml:lowerCorner>18.28938 -65.632</gml:lowerCorner>
+			    <gml:upperCorner>18.28938 -65.632</gml:upperCorner>
+			  </gml:Envelope>
+
+			</gml:boundedBy>
+			<time>
+			  <gml:TimePeriod>
+			    <gml:beginPosition>2009-02-28T14:10Z</gml:beginPosition>
+			    <gml:endPosition>2014-03-11T18:05Z</gml:endPosition>
+			  </gml:TimePeriod>
+			</time>
+			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48686:anemometer1"/>
+
+			<observedProperty xlink:href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/IOOS/0.6.1/dictionaries/phenomenaDictionary.xml#Winds"/>
+			<featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+			<responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+			<responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+			<resultModel>om:Observation</resultModel>
+			<responseMode>inline</responseMode>
+
+		</ObservationOffering>
+		
+		<ObservationOffering gml:id="station-48687">
+
+			<gml:description>GetCapabilities</gml:description>
+
+			<gml:name>urn:x-weatherflow:def:station:weatherflow.com::48687</gml:name>
+			<gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+			<gml:boundedBy>
+			  <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+			    <gml:lowerCorner>18.43295 -67.15663</gml:lowerCorner>
+			    <gml:upperCorner>18.43295 -67.15663</gml:upperCorner>
+			  </gml:Envelope>
+
+			</gml:boundedBy>
+			<time>
+			  <gml:TimePeriod>
+			    <gml:beginPosition>2009-02-28T15:15Z</gml:beginPosition>
+			    <gml:endPosition>2014-03-11T18:05Z</gml:endPosition>
+			  </gml:TimePeriod>
+			</time>
+			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48687:anemometer1"/>
+
+			<observedProperty xlink:href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/IOOS/0.6.1/dictionaries/phenomenaDictionary.xml#Winds"/>
+			<featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+			<responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+			<responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+			<resultModel>om:Observation</resultModel>
+			<responseMode>inline</responseMode>
+
+		</ObservationOffering>
+		
+		<ObservationOffering gml:id="station-48688">
+
+			<gml:description>GetCapabilities</gml:description>
+
+			<gml:name>urn:x-weatherflow:def:station:weatherflow.com::48688</gml:name>
+			<gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+			<gml:boundedBy>
+			  <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+			    <gml:lowerCorner>18.09995 -67.18887</gml:lowerCorner>
+			    <gml:upperCorner>18.09995 -67.18887</gml:upperCorner>
+			  </gml:Envelope>
+
+			</gml:boundedBy>
+			<time>
+			  <gml:TimePeriod>
+			    <gml:beginPosition>2009-03-04T02:00Z</gml:beginPosition>
+			    <gml:endPosition>2014-03-11T18:00Z</gml:endPosition>
+			  </gml:TimePeriod>
+			</time>
+			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48688:anemometer1"/>
+
+			<observedProperty xlink:href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/IOOS/0.6.1/dictionaries/phenomenaDictionary.xml#Winds"/>
+			<featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+			<responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+			<responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+			<resultModel>om:Observation</resultModel>
+			<responseMode>inline</responseMode>
+
+		</ObservationOffering>
+		
+		<ObservationOffering gml:id="station-48689">
+
+			<gml:description>GetCapabilities</gml:description>
+
+			<gml:name>urn:x-weatherflow:def:station:weatherflow.com::48689</gml:name>
+			<gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+			<gml:boundedBy>
+			  <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+			    <gml:lowerCorner>18.25623 -65.99167</gml:lowerCorner>
+			    <gml:upperCorner>18.25623 -65.99167</gml:upperCorner>
+			  </gml:Envelope>
+
+			</gml:boundedBy>
+			<time>
+			  <gml:TimePeriod>
+			    <gml:beginPosition>2009-02-25T19:45Z</gml:beginPosition>
+			    <gml:endPosition>2014-03-11T18:00Z</gml:endPosition>
+			  </gml:TimePeriod>
+			</time>
+			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48689:anemometer1"/>
+
+			<observedProperty xlink:href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/IOOS/0.6.1/dictionaries/phenomenaDictionary.xml#Winds"/>
+			<featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+			<responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+			<responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+			<resultModel>om:Observation</resultModel>
+			<responseMode>inline</responseMode>
+
+		</ObservationOffering>
+		
+		<ObservationOffering gml:id="station-48690">
+
+			<gml:description>GetCapabilities</gml:description>
+
+			<gml:name>urn:x-weatherflow:def:station:weatherflow.com::48690</gml:name>
+			<gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+			<gml:boundedBy>
+			  <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+			    <gml:lowerCorner>18.33737 -65.083</gml:lowerCorner>
+			    <gml:upperCorner>18.33737 -65.083</gml:upperCorner>
+			  </gml:Envelope>
+
+			</gml:boundedBy>
+			<time>
+			  <gml:TimePeriod>
+			    <gml:beginPosition>2009-02-22T14:45Z</gml:beginPosition>
+			    <gml:endPosition>2014-03-11T18:05Z</gml:endPosition>
+			  </gml:TimePeriod>
+			</time>
+			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48690:anemometer1"/>
+
+			<observedProperty xlink:href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/IOOS/0.6.1/dictionaries/phenomenaDictionary.xml#Winds"/>
+			<featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+			<responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+			<responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+			<resultModel>om:Observation</resultModel>
+			<responseMode>inline</responseMode>
+
+		</ObservationOffering>
+		
+		<ObservationOffering gml:id="station-48691">
+
+			<gml:description>GetCapabilities</gml:description>
+
+			<gml:name>urn:x-weatherflow:def:station:weatherflow.com::48691</gml:name>
+			<gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+			<gml:boundedBy>
+			  <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+			    <gml:lowerCorner>18.27823 -64.8926</gml:lowerCorner>
+			    <gml:upperCorner>18.27823 -64.8926</gml:upperCorner>
+			  </gml:Envelope>
+
+			</gml:boundedBy>
+			<time>
+			  <gml:TimePeriod>
+			    <gml:beginPosition>2009-02-22T14:20Z</gml:beginPosition>
+			    <gml:endPosition>2014-03-11T18:05Z</gml:endPosition>
+			  </gml:TimePeriod>
+			</time>
+			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48691:anemometer1"/>
+
+			<observedProperty xlink:href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/IOOS/0.6.1/dictionaries/phenomenaDictionary.xml#Winds"/>
+			<featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+			<responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+			<responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+			<resultModel>om:Observation</resultModel>
+			<responseMode>inline</responseMode>
+
+		</ObservationOffering>
+		
+		<ObservationOffering gml:id="station-48693">
+
+			<gml:description>GetCapabilities</gml:description>
+
+			<gml:name>urn:x-weatherflow:def:station:weatherflow.com::48693</gml:name>
+			<gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+			<gml:boundedBy>
+			  <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+			    <gml:lowerCorner>18.35537 -64.96693</gml:lowerCorner>
+			    <gml:upperCorner>18.35537 -64.96693</gml:upperCorner>
+			  </gml:Envelope>
+
+			</gml:boundedBy>
+			<time>
+			  <gml:TimePeriod>
+			    <gml:beginPosition>2009-02-23T20:40Z</gml:beginPosition>
+			    <gml:endPosition>2014-03-11T18:00Z</gml:endPosition>
+			  </gml:TimePeriod>
+			</time>
+			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48693:anemometer1"/>
+
+			<observedProperty xlink:href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/IOOS/0.6.1/dictionaries/phenomenaDictionary.xml#Winds"/>
+			<featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+			<responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+			<responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+			<resultModel>om:Observation</resultModel>
+			<responseMode>inline</responseMode>
+
+		</ObservationOffering>
+		
+		<ObservationOffering gml:id="station-48694">
+
+			<gml:description>GetCapabilities</gml:description>
+
+			<gml:name>urn:x-weatherflow:def:station:weatherflow.com::48694</gml:name>
+			<gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+			<gml:boundedBy>
+			  <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+			    <gml:lowerCorner>18.34291 -64.8173</gml:lowerCorner>
+			    <gml:upperCorner>18.34291 -64.8173</gml:upperCorner>
+			  </gml:Envelope>
+
+			</gml:boundedBy>
+			<time>
+			  <gml:TimePeriod>
+			    <gml:beginPosition></gml:beginPosition>
+			    <gml:endPosition>2014-03-11T18:07Z</gml:endPosition>
+			  </gml:TimePeriod>
+			</time>
+			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48694:anemometer1"/>
+
+			<observedProperty xlink:href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/IOOS/0.6.1/dictionaries/phenomenaDictionary.xml#Winds"/>
+			<featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+			<responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+			<responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+			<resultModel>om:Observation</resultModel>
+			<responseMode>inline</responseMode>
+
+		</ObservationOffering>
+		
+		<ObservationOffering gml:id="station-48692">
+
+			<gml:description>GetCapabilities</gml:description>
+
+			<gml:name>urn:x-weatherflow:def:station:weatherflow.com::48692</gml:name>
+			<gml:srsName>urn:ogc:def:crs:epsg::4326</gml:srsName>
+			<gml:boundedBy>
+			  <gml:Envelope srsName="urn:ogc:def:crs:epsg::4326">
+			    <gml:lowerCorner>17.67771 -64.89989</gml:lowerCorner>
+			    <gml:upperCorner>17.67771 -64.89989</gml:upperCorner>
+			  </gml:Envelope>
+
+			</gml:boundedBy>
+			<time>
+			  <gml:TimePeriod>
+			    <gml:beginPosition></gml:beginPosition>
+			    <gml:endPosition>2013-12-30T18:55Z</gml:endPosition>
+			  </gml:TimePeriod>
+			</time>
+			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48692:anemometer1"/>
+
+			<observedProperty xlink:href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/IOOS/0.6.1/dictionaries/phenomenaDictionary.xml#Winds"/>
+			<featureOfInterest xlink:href="urn:cgi:Feature:CGI:EarthOcean"/>
+			<responseFormat>text/xml;schema="ioos/0.6.1"</responseFormat>
+			<responseFormat>application/ioos+xml;version=0.6.1</responseFormat>
+			<resultModel>om:Observation</resultModel>
+			<responseMode>inline</responseMode>
+
+		</ObservationOffering>
+		
+    </ObservationOfferingList>
+  </Contents>
+</Capabilities>

@@ -10,7 +10,7 @@
   $sosProviders = array(
      'NDBC'        => 'xml/ndbc.xml'
     ,'CO-OPS'      => 'xml/co-ops.xml'
-    ,'Weatherflow' => 'xml/weatherflow.xml'
+    ,'Weatherflow' => 'xml/weatherflow'.(isset($_REQUEST['config']) ? '.'.$_REQUEST['config'] : '').'.xml'
   );
 
   foreach ($sosProviders as $provider => $xmlLoc) {
