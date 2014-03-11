@@ -2793,9 +2793,9 @@ function init() {
           this.addListener('bodyresize',function() {
             var h = this.getHeight() - introPanel.getHeight() - 22;
             var c = {
-               'assets'       : (Ext.getCmp('assetsGridPanel').getStore().getCount() + 1) * (Ext.getCmp('assetsGridPanel').collapsed ? 0 : 1)
-              ,'models'       : (Ext.getCmp('modelsGridPanel').getStore().getCount() + 1) * (Ext.getCmp('modelsGridPanel').collapsed ? 0 : 1)
-              ,'observations' : (Ext.getCmp('observationsGridPanel').getStore().getCount() + 1) * (Ext.getCmp('observationsGridPanel').collapsed ? 0 : 1)
+               'assets'       : (Ext.getCmp('assetsGridPanel').getStore().getCount() + 2) * (Ext.getCmp('assetsGridPanel').collapsed ? 0 : 1)
+              ,'models'       : (Ext.getCmp('modelsGridPanel').getStore().getCount() + 2) * (Ext.getCmp('modelsGridPanel').collapsed ? 0 : 1)
+              ,'observations' : (Ext.getCmp('observationsGridPanel').getStore().getCount() + 2) * (Ext.getCmp('observationsGridPanel').collapsed ? 0 : 1)
             };
             var hits = 0;
             for (var i in c) {
