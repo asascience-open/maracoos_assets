@@ -49,18 +49,18 @@
         ,'HYCOM currents'    : true
       };
       var filterOutLayers = {
-         'HYCOM Navy currents'     : true
+         'HYCOM currents (global)'     : true
         ,'NCOM currents (Southern Atlantic)'           : true
         ,'ROMS currents (Caribeean)' : true
         ,'HF radar currents (PR-VI)'  : true
-        ,'SWAN waves'              : true
+        ,'SWAN wave height (Caribbean)'              : true
         ,'WWIII wave direction'    : true
         ,'WWIII wave period'       : true
-        ,'HYCOM Navy elevation'    : true
+        ,'HYCOM elevation (global)'    : true
         ,'HYCOM SST'               : true
         ,'NCOM SST'                : true
-        ,'NCOM salinity'           : true
-        ,'VIIRSN chlorophyll'      : true
+        ,'NCOM salinity (Caribbean)'           : true
+        ,'Chlorophyll concentration (VIIRS)'      : true
         ,'GFS winds'               : true
       };
       var defaultStyles = {
@@ -76,18 +76,18 @@
         ,'ROMS currents (Caribeean)'     : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'HYCOM currents'              : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'HF radar currents (PR-VI)'      : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
-        ,'HYCOM Navy currents'         : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
-        ,'HYCOM Navy elevation'        : ''
+        ,'HYCOM currents (global)'         : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
+        ,'HYCOM elevation (global)'        : ''
         ,'NAM winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-High'
         ,'HF radar currents'           : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
-        ,'SWAN waves'                  : ''
-        ,'WWIII waves'                 : ''
+        ,'SWAN wave height (Caribbean)'                  : ''
+        ,'WWIII wave height'                 : ''
         ,'WWIII wave direction'        : ''
         ,'WWIII wave period'           : ''
         ,'HYCOM SST'                   : ''
         ,'NCOM SST'                    : ''
-        ,'NCOM salinity'               : ''
-        ,'VIIRSN chlorophyll'          : ''
+        ,'NCOM salinity (Caribbean)'               : ''
+        ,'Chlorophyll concentration (VIIRS)'          : ''
         ,'ESPRESSO bottom temperature' : 'pcolor_average_jet_0_30_grid_False'
         ,'GFS winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-2-0-45-High'
       };
@@ -132,23 +132,23 @@
 
         defaultLayers = {
            'NDBC'               : true
-          ,'HYCOM Navy currents': true
+          ,'HYCOM currents (global)': true
         };
         restrictLayers = {
            'NDBC'                    : true
-          ,'HYCOM Navy currents'     : true
+          ,'HYCOM currents (global)'     : true
           ,'NCOM currents (Southern Atlantic)'           : true
           ,'ROMS currents (Caribeean)' : true
           ,'HF radar currents (PR-VI)'  : true
-          ,'SWAN waves'              : true
-          ,'WWIII waves'             : true
+          ,'SWAN wave height (Caribbean)'              : true
+          ,'WWIII wave height'             : true
           ,'WWIII wave direction'    : true
           ,'WWIII wave period'       : true
-          ,'HYCOM Navy elevation'    : true
+          ,'HYCOM elevation (global)'    : true
           ,'HYCOM SST'               : true
           ,'NCOM SST'                : true
-          ,'NCOM salinity'           : true
-          ,'VIIRSN chlorophyll'      : true
+          ,'NCOM salinity (Caribbean)'           : true
+          ,'Chlorophyll concentration (VIIRS)'      : true
           ,'GFS winds'               : true
         };
         filterOutLayers = {};
@@ -174,7 +174,7 @@
           ,'Slocum gliders'      : true
           ,'Spray gliders'       : true
           ,'Unknown gliders'     : true
-          ,'WWIII waves'         : true
+          ,'WWIII wave height'         : true
           ,'NCOM SST'            : true
           ,'NCOM currents (Southern Atlantic)'       : true
           ,'GFS winds'           : true
@@ -234,7 +234,7 @@
         ,'NCOM currents (Southern Atlantic)'               : 100
         ,'HYCOM currents'              : 100
         ,'NAM winds'                   : 100
-        ,'WWIII waves'                 : 100
+        ,'WWIII wave height'                 : 100
         ,'NCOM SST'                    : 100
         ,'HF radar currents'           : 100
         ,'Chlorophyll concentration'   : 100
@@ -256,7 +256,7 @@
       var guaranteeDefaultOpacities = defaultOpacities;
       var defaultImageTypes = {
          'NCOM SST'             : 'png'
-        ,'WWIII waves'          : 'png'
+        ,'WWIII wave height'          : 'png'
         ,'ROMS'                 : 'png'
         ,'HOPS'                 : 'png'
         ,'ROMS ESPRESSO'        : 'png'

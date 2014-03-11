@@ -893,27 +893,27 @@ function init() {
       ]
       ,[
          'model'
-        ,'HYCOM Navy currents'
-        ,'HYCOM Navy currents'
+        ,'HYCOM currents (global)'
+        ,'HYCOM currents (global)'
         ,'off'
-        ,defaultLayers['HYCOM Navy currents'] ? 'on' : 'off'
+        ,defaultLayers['HYCOM currents (global)'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HYCOM Navy currents.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HYCOM currents (global).html')))?>'
         ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
-        ,typeof defaultOpacities['HYCOM Navy currents'] != 'undefined' && defaultOpacities['HYCOM Navy currents'] != '' ? defaultOpacities['HYCOM Navy currents'] : 100
-        ,defaultStyles['HYCOM Navy currents'].split('-')[7]
-        ,defaultImageTypes['HYCOM Navy currents']
+        ,typeof defaultOpacities['HYCOM currents (global)'] != 'undefined' && defaultOpacities['HYCOM currents (global)'] != '' ? defaultOpacities['HYCOM currents (global)'] : 100
+        ,defaultStyles['HYCOM currents (global)'].split('-')[7]
+        ,defaultImageTypes['HYCOM currents (global)']
         ,''
-        ,defaultStyles['HYCOM Navy currents'].split('-')[0]
-        ,defaultStyles['HYCOM Navy currents'].split('-')[1]
-        ,defaultStyles['HYCOM Navy currents'].split('-')[3]
-        ,defaultStyles['HYCOM Navy currents'].split('-')[2]
-        ,defaultStyles['HYCOM Navy currents'].split('-')[4]
-        ,defaultStyles['HYCOM Navy currents'].split('-')[5]
-        ,defaultStyles['HYCOM Navy currents'].split('-')[6]
+        ,defaultStyles['HYCOM currents (global)'].split('-')[0]
+        ,defaultStyles['HYCOM currents (global)'].split('-')[1]
+        ,defaultStyles['HYCOM currents (global)'].split('-')[3]
+        ,defaultStyles['HYCOM currents (global)'].split('-')[2]
+        ,defaultStyles['HYCOM currents (global)'].split('-')[4]
+        ,defaultStyles['HYCOM currents (global)'].split('-')[5]
+        ,defaultStyles['HYCOM currents (global)'].split('-')[6]
         ,'0-6'
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=HYCOM_GLOBAL_NAVY_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HYCOM Navy currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=HYCOM_GLOBAL_NAVY_CURRENTS'
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=HYCOM_GLOBAL_NAVY_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HYCOM currents (global)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=HYCOM_GLOBAL_NAVY_CURRENTS'
         ,''
         ,'-180,-90,180,90' // '-78,35.5,-62,44'
         ,'true'
@@ -1009,18 +1009,16 @@ function init() {
       ]
       ,[
          'model'
-        ,'SWAN waves'
-        ,'SWAN waves'
+        ,'SWAN wave height (Caribbean)'
+        ,'SWAN wave height (Caribbean)'
         ,'off'
-        ,defaultLayers['SWAN waves'] ? 'on' : 'off'
+        ,defaultLayers['SWAN wave height (Caribbean)'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/SWAN waves.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/SWAN wave height (Caribbean).html')))?>'
         ,''
-        ,typeof defaultOpacities['SWAN waves'] != 'undefined' && defaultOpacities['SWAN waves'] != '' ? defaultOpacities['SWAN waves'] : 100
+        ,typeof defaultOpacities['SWAN wave height (Caribbean)'] != 'undefined' && defaultOpacities['SWAN wave height (Caribbean)'] != '' ? defaultOpacities['SWAN wave height (Caribbean)'] : 100
         ,''
-        ,defaultImageTypes['SWAN waves']
-        ,''
-        ,''
+        ,defaultImageTypes['SWAN wave height (Caribbean)']
         ,''
         ,''
         ,''
@@ -1029,7 +1027,9 @@ function init() {
         ,''
         ,''
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_SWAN_WAVE_HEIGHT&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['SWAN waves'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_SWAN_WAVE_HEIGHT'
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_SWAN_WAVE_HEIGHT&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['SWAN wave height (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_SWAN_WAVE_HEIGHT'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -1038,18 +1038,16 @@ function init() {
       ]
       ,[
          'model'
-        ,'WWIII waves'
-        ,'WWIII waves'
+        ,'WWIII wave height'
+        ,'WWIII wave height'
         ,'off'
-        ,defaultLayers['WWIII waves'] ? 'on' : 'off'
+        ,defaultLayers['WWIII wave height'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/WWIII waves.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/WWIII wave height.html')))?>'
         ,''
-        ,typeof defaultOpacities['WWIII waves'] != 'undefined' && defaultOpacities['WWIII waves'] != '' ? defaultOpacities['WWIII waves'] : 100
+        ,typeof defaultOpacities['WWIII wave height'] != 'undefined' && defaultOpacities['WWIII wave height'] != '' ? defaultOpacities['WWIII wave height'] : 100
         ,''
-        ,defaultImageTypes['WWIII waves']
-        ,''
-        ,''
+        ,defaultImageTypes['WWIII wave height']
         ,''
         ,''
         ,''
@@ -1058,7 +1056,9 @@ function init() {
         ,''
         ,''
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=WW3_WAVE_HEIGHT&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['WWIII waves'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=WW3_WAVE_HEIGHT'
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=WW3_WAVE_HEIGHT&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['WWIII wave height'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=WW3_WAVE_HEIGHT'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -1154,18 +1154,16 @@ function init() {
       ]
       ,[
          'model'
-        ,'HYCOM Navy elevation'
-        ,'HYCOM Navy elevation'
+        ,'HYCOM elevation (global)'
+        ,'HYCOM elevation (global)'
         ,'off'
-        ,defaultLayers['HYCOM Navy elevation'] ? 'on' : 'off'
+        ,defaultLayers['HYCOM elevation (global)'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HYCOM Navy elevation.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HYCOM elevation (global).html')))?>'
         ,''
-        ,typeof defaultOpacities['HYCOM Navy elevation'] != 'undefined' && defaultOpacities['HYCOM Navy elevation'] != '' ? defaultOpacities['HYCOM Navy elevation'] : 100
+        ,typeof defaultOpacities['HYCOM elevation (global)'] != 'undefined' && defaultOpacities['HYCOM elevation (global)'] != '' ? defaultOpacities['HYCOM elevation (global)'] : 100
         ,''
-        ,defaultImageTypes['HYCOM Navy elevation']
-        ,''
-        ,''
+        ,defaultImageTypes['HYCOM elevation (global)']
         ,''
         ,''
         ,''
@@ -1174,7 +1172,9 @@ function init() {
         ,''
         ,''
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=HYCOM_GLOBAL_NAVY_ELEVATION&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HYCOM Navy elevation'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=HYCOM_GLOBAL_NAVY_ELEVATION'
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=HYCOM_GLOBAL_NAVY_ELEVATION&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HYCOM elevation (global)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=HYCOM_GLOBAL_NAVY_ELEVATION'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -1184,7 +1184,7 @@ function init() {
       ,[
          'model'
         ,'HYCOM SST'
-        ,'HYCOM water temperature'
+        ,'HYCOM water temp (global)'
         ,'off'
         ,defaultLayers['HYCOM SST'] ? 'on' : 'off'
         ,'off'
@@ -1213,7 +1213,7 @@ function init() {
       ,[
          'model'
         ,'NCOM SST'
-        ,'NCOM water temperature'
+        ,'NCOM water temp (S Atlantic)'
         ,'off'
         ,defaultLayers['NCOM SST'] ? 'on' : 'off'
         ,'off'
@@ -1241,45 +1241,16 @@ function init() {
       ]
       ,[
          'model'
-        ,'VIIRSN chlorophyll'
-        ,'VIIRSN chlorophyll'
+        ,'NCOM salinity (Caribbean)'
+        ,'NCOM salinity (Caribbean)'
         ,'off'
-        ,defaultLayers['VIIRSN chlorophyll'] ? 'on' : 'off'
+        ,defaultLayers['NCOM salinity (Caribbean)'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/VIIRSN chlorophyll.html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NCOM salinity (Caribbean).html')))?>'
         ,''
-        ,typeof defaultOpacities['VIIRSN chlorophyll'] != 'undefined' && defaultOpacities['VIIRSN chlorophyll'] != '' ? defaultOpacities['VIIRSN chlorophyll'] : 100
+        ,typeof defaultOpacities['NCOM salinity (Caribbean)'] != 'undefined' && defaultOpacities['NCOM salinity (Caribbean)'] != '' ? defaultOpacities['NCOM salinity (Caribbean)'] : 100
         ,''
-        ,defaultImageTypes['VIIRSN chlorophyll']
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=VIIRSN_CHLOROPHYLL&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['VIIRSN chlorophyll'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=VIIRSN_CHLOROPHYLL'
-        ,''
-        ,'-78,35.5,-62,44'
-        ,'true'
-        ,''
-        ,'chlorophyll'
-      ]
-      ,[
-         'model'
-        ,'NCOM salinity'
-        ,'NCOM salinity'
-        ,'off'
-        ,defaultLayers['NCOM salinity'] ? 'on' : 'off'
-        ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NCOM salinity.html')))?>'
-        ,''
-        ,typeof defaultOpacities['NCOM salinity'] != 'undefined' && defaultOpacities['NCOM salinity'] != '' ? defaultOpacities['NCOM salinity'] : 100
-        ,''
-        ,defaultImageTypes['NCOM salinity']
+        ,defaultImageTypes['NCOM salinity (Caribbean)']
         ,''
         ,''
         ,''
@@ -1290,7 +1261,7 @@ function init() {
         ,''
         ,''
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_SALINITY&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM salinity'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_SALINITY'
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_SALINITY&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM salinity (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_SALINITY'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -1413,6 +1384,35 @@ function init() {
         ,'true'
         ,''
         ,'currentsVelocity'
+      ]
+      ,[
+         'observation'
+        ,'Chlorophyll concentration (VIIRS)'
+        ,'Chlorophyll concentration (VIIRS)'
+        ,'off'
+        ,defaultLayers['Chlorophyll concentration (VIIRS)'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/Chlorophyll concentration (VIIRS).html')))?>'
+        ,''
+        ,typeof defaultOpacities['Chlorophyll concentration (VIIRS)'] != 'undefined' && defaultOpacities['Chlorophyll concentration (VIIRS)'] != '' ? defaultOpacities['Chlorophyll concentration (VIIRS)'] : 100
+        ,''
+        ,defaultImageTypes['Chlorophyll concentration (VIIRS)']
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=VIIRSN_CHLOROPHYLL&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['Chlorophyll concentration (VIIRS)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=VIIRSN_CHLOROPHYLL'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'chlorophyll'
       ]
       ,[
          'observation'
@@ -3253,10 +3253,10 @@ function initMap() {
 
   if (config != 'ecop') {
     addWMS({
-       name   : 'HYCOM Navy elevation'
+       name   : 'HYCOM elevation (global)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'HYCOM_GLOBAL_NAVY_ELEVATION'
-      ,format : 'image/' + defaultImageTypes['HYCOM Navy elevation']
+      ,format : 'image/' + defaultImageTypes['HYCOM elevation (global)']
       ,styles : ''
       ,singleTile : true
       ,projection : proj3857
@@ -3280,19 +3280,19 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
-       name   : 'NCOM salinity'
+       name   : 'NCOM salinity (Caribbean)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'NCOM_AM_SEA_SALINITY'
-      ,format : 'image/' + defaultImageTypes['NCOM salinity']
+      ,format : 'image/' + defaultImageTypes['NCOM salinity (Caribbean)']
       ,styles : ''
       ,singleTile : true
       ,projection : proj3857
     });
     addWMS({
-       name   : 'VIIRSN chlorophyll'
+       name   : 'Chlorophyll concentration (VIIRS)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'VIIRSN_CHLOROPHYLL'
-      ,format : 'image/' + defaultImageTypes['VIIRSN chlorophyll']
+      ,format : 'image/' + defaultImageTypes['Chlorophyll concentration (VIIRS)']
       ,styles : ''
       ,singleTile : true
       ,projection : proj3857
@@ -3316,19 +3316,19 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
-       name   : 'SWAN waves'
+       name   : 'SWAN wave height (Caribbean)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'CARIB_SWAN_WAVE_HEIGHT'
-      ,format : 'image/' + defaultImageTypes['SWAN waves']
+      ,format : 'image/' + defaultImageTypes['SWAN wave height (Caribbean)']
       ,styles : ''
       ,singleTile : true
       ,projection : proj3857
     });
     addWMS({
-       name   : 'WWIII waves'
+       name   : 'WWIII wave height'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'WW3_WAVE_HEIGHT'
-      ,format : 'image/' + defaultImageTypes['WWIII waves']
+      ,format : 'image/' + defaultImageTypes['WWIII wave height']
       ,styles : ''
       ,singleTile : true
       ,projection : proj3857
@@ -3443,11 +3443,11 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
-       name   : 'HYCOM Navy currents'
+       name   : 'HYCOM currents (global)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'HYCOM_GLOBAL_NAVY_CURRENTS'
-      ,format : 'image/' + defaultImageTypes['HYCOM Navy currents']
-      ,styles : defaultStyles['HYCOM Navy currents']
+      ,format : 'image/' + defaultImageTypes['HYCOM currents (global)']
+      ,styles : defaultStyles['HYCOM currents (global)']
       ,singleTile : true
       ,projection : proj3857
     });
