@@ -59,6 +59,7 @@
         ,'HYCOM elevation (global)'    : true
         ,'HYCOM SST'               : true
         ,'NCOM SST'                : true
+        ,'HYCOM salinity (global)' : true
         ,'NCOM salinity (Caribbean)'           : true
         ,'Chlorophyll concentration (VIIRS)'      : true
         ,'GFS winds'               : true
@@ -87,6 +88,7 @@
         ,'HYCOM SST'                   : ''
         ,'NCOM SST'                    : ''
         ,'NCOM salinity (Caribbean)'               : ''
+        ,'HYCOM salinity (global)'     : ''
         ,'Chlorophyll concentration (VIIRS)'          : ''
         ,'ESPRESSO bottom temperature' : 'pcolor_average_jet_0_30_grid_False'
         ,'GFS winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-2-0-45-High'
@@ -147,6 +149,7 @@
           ,'HYCOM elevation (global)'    : true
           ,'HYCOM SST'               : true
           ,'NCOM SST'                : true
+          ,'HYCOM salinity (global)' : true
           ,'NCOM salinity (Caribbean)'           : true
           ,'Chlorophyll concentration (VIIRS)'      : true
           ,'GFS winds'               : true

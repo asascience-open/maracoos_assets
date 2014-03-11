@@ -690,6 +690,35 @@ function init() {
       ]
       ,[
          'model'
+        ,'GFS winds'
+        ,'GFS winds'
+        ,'off'
+        ,defaultLayers['GFS winds'] ? 'on' : 'off'
+        ,'off'
+        ,'No information currently available.'
+        ,'baseStyle,barbLabel,striding,min,max'
+        ,typeof defaultOpacities['GFS winds'] != 'undefined' && defaultOpacities['GFS winds'] != '' ? defaultOpacities['GFS winds'] : 100
+        ,defaultStyles['GFS winds'].split('-')[5]
+        ,defaultImageTypes['GFS winds']
+        ,''
+        ,defaultStyles['GFS winds'].split('-')[0]
+        ,''
+        ,defaultStyles['GFS winds'].split('-')[2]
+        ,defaultStyles['GFS winds'].split('-')[1]
+        ,''
+        ,defaultStyles['GFS winds'].split('-')[3]
+        ,defaultStyles['GFS winds'].split('-')[4]
+        ,'0-70'
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NAM_WINDS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['GFS winds'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NAM_WINDS'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'windsVelocity'
+      ]
+      ,[
+         'model'
         ,'ROMS'    
         ,'Chesapeake currents'
         ,'off'
@@ -1125,35 +1154,6 @@ function init() {
       ]
       ,[
          'model'
-        ,'GFS winds'
-        ,'GFS winds'
-        ,'off'
-        ,defaultLayers['GFS winds'] ? 'on' : 'off'
-        ,'off'
-        ,'No information currently available.'
-        ,'baseStyle,barbLabel,striding,min,max'
-        ,typeof defaultOpacities['GFS winds'] != 'undefined' && defaultOpacities['GFS winds'] != '' ? defaultOpacities['GFS winds'] : 100
-        ,defaultStyles['GFS winds'].split('-')[5]
-        ,defaultImageTypes['GFS winds']
-        ,''
-        ,defaultStyles['GFS winds'].split('-')[0]
-        ,''
-        ,defaultStyles['GFS winds'].split('-')[2]
-        ,defaultStyles['GFS winds'].split('-')[1]
-        ,''
-        ,defaultStyles['GFS winds'].split('-')[3]
-        ,defaultStyles['GFS winds'].split('-')[4]
-        ,'0-70'
-        ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NAM_WINDS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['GFS winds'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NAM_WINDS'
-        ,''
-        ,'-78,35.5,-62,44'
-        ,'true'
-        ,''
-        ,'windsVelocity'
-      ]
-      ,[
-         'model'
         ,'HYCOM elevation (global)'
         ,'HYCOM elevation (global)'
         ,'off'
@@ -1238,6 +1238,35 @@ function init() {
         ,'true'
         ,''
         ,'temperature'
+      ]
+      ,[
+         'model'
+        ,'HYCOM salinity (global)'
+        ,'HYCOM salinity (global)'
+        ,'off'
+        ,defaultLayers['HYCOM salinity (global)'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HYCOM salinity (global).html')))?>'
+        ,''
+        ,typeof defaultOpacities['HYCOM salinity (global)'] != 'undefined' && defaultOpacities['HYCOM salinity (global)'] != '' ? defaultOpacities['HYCOM salinity (global)'] : 100
+        ,''
+        ,defaultImageTypes['HYCOM salinity (global)']
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=HYCOM_GLOBAL_NAVY_SALINITY&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HYCOM salinity (global)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=HYCOM_GLOBAL_NAVY_SALINITY'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'salinity'
       ]
       ,[
          'model'
@@ -2675,11 +2704,11 @@ function init() {
         ,items       : managerItems
         ,listeners        : {afterrender : function() {
           this.addListener('bodyresize',function() {
-            var h = this.getHeight() - introPanel.getHeight() - 22 - 3 * 8;
+            var h = this.getHeight() - introPanel.getHeight() - 22;
             var c = {
-               'assets'       : Ext.getCmp('assetsGridPanel').getStore().getCount() * (Ext.getCmp('assetsGridPanel').collapsed ? 0 : 1)
-              ,'models'       : Ext.getCmp('modelsGridPanel').getStore().getCount() * (Ext.getCmp('modelsGridPanel').collapsed ? 0 : 1)
-              ,'observations' : Ext.getCmp('observationsGridPanel').getStore().getCount() * (Ext.getCmp('observationsGridPanel').collapsed ? 0 : 1)
+               'assets'       : (Ext.getCmp('assetsGridPanel').getStore().getCount() + 1) * (Ext.getCmp('assetsGridPanel').collapsed ? 0 : 1)
+              ,'models'       : (Ext.getCmp('modelsGridPanel').getStore().getCount() + 1) * (Ext.getCmp('modelsGridPanel').collapsed ? 0 : 1)
+              ,'observations' : (Ext.getCmp('observationsGridPanel').getStore().getCount() + 1) * (Ext.getCmp('observationsGridPanel').collapsed ? 0 : 1)
             };
             var hits = 0;
             for (var i in c) {
@@ -2690,7 +2719,7 @@ function init() {
               hits = 10000000000000;
             }
             for (var i in c) {
-              Ext.getCmp(i + 'GridPanel').setHeight(h * c[i] / hits + 12);
+              Ext.getCmp(i + 'GridPanel').setHeight(h * c[i] / hits);
             }
           });
         }}
@@ -3275,6 +3304,15 @@ function initMap() {
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'NCOM_AM_SEA_SST'
       ,format : 'image/' + defaultImageTypes['NCOM SST']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'HYCOM salinity (global)'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'HYCOM_GLOBAL_NAVY_SALINITY'
+      ,format : 'image/' + defaultImageTypes['HYCOM salinity (global)']
       ,styles : ''
       ,singleTile : true
       ,projection : proj3857
