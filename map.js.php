@@ -1523,7 +1523,7 @@ function init() {
         ,''
         ,''
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=VIIRSN_CHLOROPHYLL&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['Chlorophyll concentration (VIIRS)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=VIIRSN_CHLOROPHYLL'
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=VIIRS_CHLOROPHYLL&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['Chlorophyll concentration (VIIRS)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=VIIRS_CHLOROPHYLL'
         ,''
         ,'-78,35.5,-62,44'
         ,'true'
@@ -3416,7 +3416,7 @@ function initMap() {
     addWMS({
        name   : 'Chlorophyll concentration (VIIRS)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
-      ,layers : 'VIIRSN_CHLOROPHYLL'
+      ,layers : 'VIIRS_CHLOROPHYLL'
       ,format : 'image/' + defaultImageTypes['Chlorophyll concentration (VIIRS)']
       ,styles : ''
       ,singleTile : true
