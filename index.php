@@ -14,6 +14,7 @@
     case 'gliders' : $title = 'IOOS Glider'; break;
     case 'ecop'    : $title = 'CoastMap'; break;
     case 'cari'    : $title = 'CariCOOS'; break;
+    case 'pr'      : $title = 'CariCOOS'; $config = 'cari'; break;
   }
 
   if ($config == 'ecop' && !checkLoggedin()) {
@@ -168,6 +169,15 @@
 
         defaultCenter = [-8035739.8524704,2352692.7891591];
         defaultZoom   = 5;
+
+<?php
+  if (isset($_REQUEST['config']) && $_REQUEST['config'] == 'pr') {
+?>
+          defaultCenter = [-7388330.11319,2068143.2633338];
+          defaultZoom   = 8;
+<?php
+  }
+?>
       }
 
       if (config == 'gliders') {
