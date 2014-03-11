@@ -719,6 +719,35 @@ function init() {
       ]
       ,[
          'model'
+        ,'WRF winds (Caribbean)'
+        ,'WRF winds (Caribbean)'
+        ,'off'
+        ,defaultLayers['WRF winds (Caribbean)'] ? 'on' : 'off'
+        ,'off'
+        ,'No information currently available.'
+        ,'baseStyle,barbLabel,striding,min,max'
+        ,typeof defaultOpacities['WRF winds (Caribbean)'] != 'undefined' && defaultOpacities['WRF winds (Caribbean)'] != '' ? defaultOpacities['WRF winds (Caribbean)'] : 100
+        ,defaultStyles['WRF winds (Caribbean)'].split('-')[5]
+        ,defaultImageTypes['WRF winds (Caribbean)']
+        ,''
+        ,defaultStyles['WRF winds (Caribbean)'].split('-')[0]
+        ,''
+        ,defaultStyles['WRF winds (Caribbean)'].split('-')[2]
+        ,defaultStyles['WRF winds (Caribbean)'].split('-')[1]
+        ,''
+        ,defaultStyles['WRF winds (Caribbean)'].split('-')[3]
+        ,defaultStyles['WRF winds (Caribbean)'].split('-')[4]
+        ,'0-70'
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_WRF_WINDS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['WRF winds (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_WRF_WINDS'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'windsVelocity'
+      ]
+      ,[
+         'model'
         ,'ROMS'    
         ,'Chesapeake currents'
         ,'off'
@@ -1064,6 +1093,64 @@ function init() {
         ,'true'
         ,''
         ,'wavesElevation'
+      ]
+      ,[
+         'model'
+        ,'SWAN wave direction (Caribbean)'
+        ,'SWAN wave direction (Caribbean)'
+        ,'off'
+        ,defaultLayers['SWAN wave direction (Caribbean)'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/SWAN wave direction (Caribbean).html')))?>'
+        ,''
+        ,typeof defaultOpacities['SWAN wave direction (Caribbean)'] != 'undefined' && defaultOpacities['SWAN wave direction (Caribbean)'] != '' ? defaultOpacities['SWAN wave direction (Caribbean)'] : 100
+        ,''
+        ,defaultImageTypes['SWAN wave direction (Caribbean)']
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_SWAN_WAVE_DIRECTION&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['SWAN wave direction (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_SWAN_WAVE_DIRECTION'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'wavesDirection'
+      ]
+      ,[
+         'model'
+        ,'SWAN wave period (Caribbean)'
+        ,'SWAN wave period (Caribbean)'
+        ,'off'
+        ,defaultLayers['SWAN wave period (Caribbean)'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/SWAN wave period (Caribbean).html')))?>'
+        ,''
+        ,typeof defaultOpacities['SWAN wave period (Caribbean)'] != 'undefined' && defaultOpacities['SWAN wave period (Caribbean)'] != '' ? defaultOpacities['SWAN wave period (Caribbean)'] : 100
+        ,''
+        ,defaultImageTypes['SWAN wave period (Caribbean)']
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_SWAN_WAVE_PERIOD&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['SWAN wave period (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_SWAN_WAVE_PERIOD'
+        ,''
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'wavesPeriod'
       ]
       ,[
          'model'
@@ -3363,6 +3450,24 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
+       name   : 'SWAN wave direction (Caribbean)'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'CARIB_SWAN_WAVE_DIRECTION'
+      ,format : 'image/' + defaultImageTypes['SWAN wave direction (Caribbean)']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'SWAN wave period (Caribbean)'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'CARIB_SWAN_WAVE_PERIOD'
+      ,format : 'image/' + defaultImageTypes['SWAN wave period (Caribbean)']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
        name   : 'WWIII wave height'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'WW3_WAVE_HEIGHT'
@@ -3638,6 +3743,15 @@ function initMap() {
       ,layers : 'GFS_WINDS'
       ,format : 'image/' + defaultImageTypes['GFS winds']
       ,styles : defaultStyles['GFS winds']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'WRF winds (Caribbean)'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'CARIB_WRF_WINDS'
+      ,format : 'image/' + defaultImageTypes['WRF winds (Caribbean)']
+      ,styles : defaultStyles['WRF winds (Caribbean)']
       ,singleTile : true
       ,projection : proj3857
     });

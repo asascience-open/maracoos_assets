@@ -1,7 +1,6 @@
 <?php
   date_default_timezone_set('UTC');
   header('Content-type: application/json');
-  file_put_contents('/tmp/maplog',substr($_SERVER["REQUEST_URI"],strpos($_SERVER["REQUEST_URI"],'?')+1)."\n",FILE_APPEND);
 
   $mapTime = $_REQUEST['mapTime'] != 'undefined' ? $_REQUEST['mapTime'] : '';
 

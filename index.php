@@ -54,6 +54,8 @@
         ,'ROMS currents (Caribeean)' : true
         ,'HF radar currents (PR-VI)'  : true
         ,'SWAN wave height (Caribbean)'              : true
+        ,'SWAN wave direction (Caribbean)' : true
+        ,'SWAN wave period (Caribbean)' : true
         ,'WWIII wave direction'    : true
         ,'WWIII wave period'       : true
         ,'HYCOM elevation (global)'    : true
@@ -63,6 +65,7 @@
         ,'NCOM salinity (Caribbean)'           : true
         ,'Chlorophyll concentration (VIIRS)'      : true
         ,'GFS winds'               : true
+        ,'WRF winds (Caribbean)'   : true
       };
       var defaultStyles = {
          'Satellite water temperature' : 'pcolor_average_jet_10_32_node_False'
@@ -82,6 +85,8 @@
         ,'NAM winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-High'
         ,'HF radar currents'           : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'SWAN wave height (Caribbean)'                  : ''
+        ,'SWAN wave direction (Caribbean)' : ''
+        ,'SWAN wave period (Caribbean)' : ''
         ,'WWIII wave height'                 : ''
         ,'WWIII wave direction'        : ''
         ,'WWIII wave period'           : ''
@@ -92,6 +97,7 @@
         ,'Chlorophyll concentration (VIIRS)'          : ''
         ,'ESPRESSO bottom temperature' : 'pcolor_average_jet_0_30_grid_False'
         ,'GFS winds'                   : 'WINDS_VERY_SPARSE_GRADIENT-False-2-0-45-High'
+        ,'WRF winds (Caribbean)'       : 'WINDS_VERY_SPARSE_GRADIENT-False-2-0-45-High'
       };
       var hideLegendsGridPanel      = false;
       var hideTimeseriesPanel       = false;
@@ -144,6 +150,8 @@
           ,'ROMS currents (Caribeean)' : true
           ,'HF radar currents (PR-VI)'  : true
           ,'SWAN wave height (Caribbean)'              : true
+          ,'SWAN wave direction (Caribbean)' : true
+          ,'SWAN wave period (Caribbean)' : true
           ,'WWIII wave height'             : true
           ,'WWIII wave direction'    : true
           ,'WWIII wave period'       : true
@@ -154,6 +162,7 @@
           ,'NCOM salinity (Caribbean)'           : true
           ,'Chlorophyll concentration (VIIRS)'      : true
           ,'GFS winds'               : true
+          ,'WRF winds (Caribbean)'   : true
         };
         filterOutLayers = {};
 
