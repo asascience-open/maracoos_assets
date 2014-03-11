@@ -50,7 +50,7 @@
       };
       var filterOutLayers = {
          'HYCOM currents (global)'     : true
-        ,'NCOM currents (Southern Atlantic)'           : true
+        ,'NCOM currents (S Atlantic)'           : true
         ,'ROMS currents (Caribeean)' : true
         ,'HF radar currents (PR-VI)'  : true
         ,'SWAN wave height (Caribbean)'              : true
@@ -62,7 +62,7 @@
         ,'HYCOM SST'               : true
         ,'NCOM SST'                : true
         ,'HYCOM salinity (global)' : true
-        ,'NCOM salinity (Caribbean)'           : true
+        ,'NCOM salinity (S Atlantic)'           : true
         ,'Chlorophyll concentration (VIIRS)'      : true
         ,'GFS winds'               : true
         ,'WRF winds (Caribbean)'   : true
@@ -76,7 +76,7 @@
         ,'STPS'                        : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'UMass'                       : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'Stevens NYHOPS'              : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
-        ,'NCOM currents (Southern Atlantic)'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'NCOM currents (S Atlantic)'               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS currents (Caribeean)'     : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'HYCOM currents'              : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'HF radar currents (PR-VI)'      : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
@@ -92,7 +92,7 @@
         ,'WWIII wave period'           : ''
         ,'HYCOM SST'                   : ''
         ,'NCOM SST'                    : ''
-        ,'NCOM salinity (Caribbean)'               : ''
+        ,'NCOM salinity (S Atlantic)'               : ''
         ,'HYCOM salinity (global)'     : ''
         ,'Chlorophyll concentration (VIIRS)'          : ''
         ,'ESPRESSO bottom temperature' : 'pcolor_average_jet_0_30_grid_False'
@@ -146,7 +146,7 @@
            'NDBC'                    : true
           ,'Weatherflow'             : true
           ,'HYCOM currents (global)'     : true
-          ,'NCOM currents (Southern Atlantic)'           : true
+          ,'NCOM currents (S Atlantic)'           : true
           ,'ROMS currents (Caribeean)' : true
           ,'HF radar currents (PR-VI)'  : true
           ,'SWAN wave height (Caribbean)'              : true
@@ -159,7 +159,7 @@
           ,'HYCOM SST'               : true
           ,'NCOM SST'                : true
           ,'HYCOM salinity (global)' : true
-          ,'NCOM salinity (Caribbean)'           : true
+          ,'NCOM salinity (S Atlantic)'           : true
           ,'Chlorophyll concentration (VIIRS)'      : true
           ,'GFS winds'               : true
           ,'WRF winds (Caribbean)'   : true
@@ -189,7 +189,7 @@
           ,'Unknown gliders'     : true
           ,'WWIII wave height'         : true
           ,'NCOM SST'            : true
-          ,'NCOM currents (Southern Atlantic)'       : true
+          ,'NCOM currents (S Atlantic)'       : true
           ,'GFS winds'           : true
         };
         filterOutLayers = {};
@@ -244,7 +244,7 @@
         ,'Stevens NYHOPS'              : 100
         ,'UMass'                       : 100
         ,'ROMS ESPRESSO'               : 100
-        ,'NCOM currents (Southern Atlantic)'               : 100
+        ,'NCOM currents (S Atlantic)'               : 100
         ,'HYCOM currents'              : 100
         ,'NAM winds'                   : 100
         ,'WWIII wave height'                 : 100
@@ -276,7 +276,7 @@
         ,'STPS'                 : 'png'
         ,'UMass'                : 'png'
         ,'Stevens NYHOPS'       : 'png'
-        ,'NCOM currents (Southern Atlantic)'        : 'png'
+        ,'NCOM currents (S Atlantic)'        : 'png'
         ,'HYCOM currents'       : 'png'
         ,'NAM winds'            : 'png'
         ,'HF radar currents'    : 'png'

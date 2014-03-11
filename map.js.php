@@ -393,7 +393,7 @@ function init() {
         ,''
         ,''
         ,''
-        ,'-78,35.5,-62,44'
+        ,(config == 'cari' ? '-67.5,17,-64,19' : '-78,35.5,-62,44')
         ,''
         ,''
         ,''
@@ -712,7 +712,7 @@ function init() {
         ,''
         ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NAM_WINDS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['GFS winds'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NAM_WINDS'
         ,''
-        ,'-78,35.5,-62,44'
+        ,'-180,-90,180,90'
         ,'true'
         ,''
         ,'windsVelocity'
@@ -741,7 +741,7 @@ function init() {
         ,''
         ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_WRF_WINDS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['WRF winds (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_WRF_WINDS'
         ,''
-        ,'-78,35.5,-62,44'
+        ,'-68,17,-63.9,19.5'
         ,'true'
         ,''
         ,'windsVelocity'
@@ -980,29 +980,29 @@ function init() {
       ]
       ,[
          'model'
-        ,'NCOM currents (Southern Atlantic)'
-        ,'NCOM currents (Southern Atlantic)'
+        ,'NCOM currents (S Atlantic)'
+        ,'NCOM currents (S Atlantic)'
         ,'off'
-        ,defaultLayers['NCOM currents (Southern Atlantic)'] ? 'on' : 'off'
+        ,defaultLayers['NCOM currents (S Atlantic)'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NCOM currents (Southern Atlantic).html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NCOM currents (S Atlantic).html')))?>'
         ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
-        ,typeof defaultOpacities['NCOM currents (Southern Atlantic)'] != 'undefined' && defaultOpacities['NCOM currents (Southern Atlantic)'] != '' ? defaultOpacities['NCOM currents (Southern Atlantic)'] : 100
-        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[7]
-        ,defaultImageTypes['NCOM currents (Southern Atlantic)']
+        ,typeof defaultOpacities['NCOM currents (S Atlantic)'] != 'undefined' && defaultOpacities['NCOM currents (S Atlantic)'] != '' ? defaultOpacities['NCOM currents (S Atlantic)'] : 100
+        ,defaultStyles['NCOM currents (S Atlantic)'].split('-')[7]
+        ,defaultImageTypes['NCOM currents (S Atlantic)']
         ,''
-        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[0]
-        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[1]
-        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[3]
-        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[2]
-        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[4]
-        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[5]
-        ,defaultStyles['NCOM currents (Southern Atlantic)'].split('-')[6]
+        ,defaultStyles['NCOM currents (S Atlantic)'].split('-')[0]
+        ,defaultStyles['NCOM currents (S Atlantic)'].split('-')[1]
+        ,defaultStyles['NCOM currents (S Atlantic)'].split('-')[3]
+        ,defaultStyles['NCOM currents (S Atlantic)'].split('-')[2]
+        ,defaultStyles['NCOM currents (S Atlantic)'].split('-')[4]
+        ,defaultStyles['NCOM currents (S Atlantic)'].split('-')[5]
+        ,defaultStyles['NCOM currents (S Atlantic)'].split('-')[6]
         ,'0-6'
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM currents (Southern Atlantic)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_CURRENTS'
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM currents (S Atlantic)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_CURRENTS'
         ,''
-        ,'-180,-90,180,90' // '-78,35.5,-62,44'
+        ,'-100,5,-55,32'
         ,'true'
         ,''
         ,'currentsVelocity'
@@ -1031,7 +1031,7 @@ function init() {
         ,''
         ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_ROMSR1_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['ROMS currents (Caribeean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_ROMSR1_CURRENTS'
         ,''
-        ,'-180,-90,180,90' // '-78,35.5,-62,44'
+        ,'-68,17,-63.9,19.5'
         ,'true'
         ,''
         ,'currentsVelocity'
@@ -1089,7 +1089,7 @@ function init() {
         ,''
         ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_SWAN_WAVE_HEIGHT&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['SWAN wave height (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_SWAN_WAVE_HEIGHT'
         ,''
-        ,'-78,35.5,-62,44'
+        ,'-68,17,-63.9,19.5'
         ,'true'
         ,''
         ,'wavesElevation'
@@ -1118,7 +1118,7 @@ function init() {
         ,''
         ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_SWAN_WAVE_DIRECTION&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['SWAN wave direction (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_SWAN_WAVE_DIRECTION'
         ,''
-        ,'-78,35.5,-62,44'
+        ,'-68,17,-63.9,19.5'
         ,'true'
         ,''
         ,'wavesDirection'
@@ -1147,7 +1147,7 @@ function init() {
         ,''
         ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_SWAN_WAVE_PERIOD&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['SWAN wave period (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_SWAN_WAVE_PERIOD'
         ,''
-        ,'-78,35.5,-62,44'
+        ,'-68,17,-63.9,19.5'
         ,'true'
         ,''
         ,'wavesPeriod'
@@ -1321,7 +1321,7 @@ function init() {
         ,''
         ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_SST&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM SST'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_SST'
         ,''
-        ,'-78,35.5,-62,44'
+        ,'-100,5,-55,32'
         ,'true'
         ,''
         ,'temperature'
@@ -1357,18 +1357,16 @@ function init() {
       ]
       ,[
          'model'
-        ,'NCOM salinity (Caribbean)'
-        ,'NCOM salinity (Caribbean)'
+        ,'NCOM salinity (S Atlantic)'
+        ,'NCOM salinity (S Atlantic)'
         ,'off'
-        ,defaultLayers['NCOM salinity (Caribbean)'] ? 'on' : 'off'
+        ,defaultLayers['NCOM salinity (S Atlantic)'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NCOM salinity (Caribbean).html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NCOM salinity (S Atlantic).html')))?>'
         ,''
-        ,typeof defaultOpacities['NCOM salinity (Caribbean)'] != 'undefined' && defaultOpacities['NCOM salinity (Caribbean)'] != '' ? defaultOpacities['NCOM salinity (Caribbean)'] : 100
+        ,typeof defaultOpacities['NCOM salinity (S Atlantic)'] != 'undefined' && defaultOpacities['NCOM salinity (S Atlantic)'] != '' ? defaultOpacities['NCOM salinity (S Atlantic)'] : 100
         ,''
-        ,defaultImageTypes['NCOM salinity (Caribbean)']
-        ,''
-        ,''
+        ,defaultImageTypes['NCOM salinity (S Atlantic)']
         ,''
         ,''
         ,''
@@ -1377,9 +1375,11 @@ function init() {
         ,''
         ,''
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_SALINITY&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM salinity (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_SALINITY'
         ,''
-        ,'-78,35.5,-62,44'
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_SALINITY&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM salinity (S Atlantic)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_SALINITY'
+        ,''
+        ,'-100,5,-55,32'
         ,'true'
         ,''
         ,'salinity'
@@ -1496,7 +1496,7 @@ function init() {
         ,''
         ,'http://coastmap.com/ecop/wms.aspx?LAYERS=HFRADAR_PRVICUR_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HF radar currents (PR-VI)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=HFRADAR_PRVICUR_CURRENTS'
         ,''
-        ,'-78,35.5,-62,44'
+        ,'-67.919570922854,17.709983912454,-67.022811889651,18.507495834109'
         ,'true'
         ,''
         ,'currentsVelocity'
@@ -1525,7 +1525,7 @@ function init() {
         ,''
         ,'http://coastmap.com/ecop/wms.aspx?LAYERS=VIIRS_CHLOROPHYLL&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['Chlorophyll concentration (VIIRS)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=VIIRS_CHLOROPHYLL'
         ,''
-        ,'-78,35.5,-62,44'
+        ,'-180,-90,180,90'
         ,'true'
         ,''
         ,'chlorophyll'
@@ -3405,10 +3405,10 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
-       name   : 'NCOM salinity (Caribbean)'
+       name   : 'NCOM salinity (S Atlantic)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'NCOM_AM_SEA_SALINITY'
-      ,format : 'image/' + defaultImageTypes['NCOM salinity (Caribbean)']
+      ,format : 'image/' + defaultImageTypes['NCOM salinity (S Atlantic)']
       ,styles : ''
       ,singleTile : true
       ,projection : proj3857
@@ -3595,11 +3595,11 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
-       name   : 'NCOM currents (Southern Atlantic)'
+       name   : 'NCOM currents (S Atlantic)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'NCOM_AM_SEA_CURRENTS'
-      ,format : 'image/' + defaultImageTypes['NCOM currents (Southern Atlantic)']
-      ,styles : defaultStyles['NCOM currents (Southern Atlantic)']
+      ,format : 'image/' + defaultImageTypes['NCOM currents (S Atlantic)']
+      ,styles : defaultStyles['NCOM currents (S Atlantic)']
       ,singleTile : true
       ,projection : proj3857
     });
