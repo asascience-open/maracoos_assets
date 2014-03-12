@@ -62,8 +62,10 @@
         ,'HYCOM elevation (global)'    : true
         ,'HYCOM SST'               : true
         ,'NCOM SST'                : true
+        ,'ROMS SST'                : true
         ,'HYCOM salinity (global)' : true
         ,'NCOM salinity (S Atlantic)'           : true
+        ,'ROMS salinity (Caribbean)' : true
         ,'Chlorophyll concentration (VIIRS)'      : true
         ,'GFS winds'               : true
         ,'WRF winds (Caribbean)'   : true
@@ -84,7 +86,9 @@
         ,'NAM winds'                          : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-High'
         ,'NCOM currents (S Atlantic)'         : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'NCOM salinity (S Atlantic)'         : 'SST_USCG-0-50'
+        ,'ROMS salinity (Caribbean)'          : 'SST_USCG-0-50'
         ,'NCOM SST'                           : 'SST_USCG-0-50'
+        ,'ROMS SST'                           : 'SST_USCG-0-50'
         ,'ROMS currents (Caribeean)'          : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS ESPRESSO'                      : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
@@ -159,8 +163,10 @@
           ,'HYCOM elevation (global)'    : true
           ,'HYCOM SST'               : true
           ,'NCOM SST'                : true
+          ,'ROMS SST'                : true
           ,'HYCOM salinity (global)' : true
           ,'NCOM salinity (S Atlantic)'           : true
+          ,'ROMS salinity (Caribbean)' : true
           ,'Chlorophyll concentration (VIIRS)'      : true
           ,'GFS winds'               : true
           ,'WRF winds (Caribbean)'   : true

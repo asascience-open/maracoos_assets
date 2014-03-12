@@ -1328,6 +1328,35 @@ function init() {
       ]
       ,[
          'model'
+        ,'ROMS SST'
+        ,'ROMS water temp (Caribbean)'
+        ,'off'
+        ,defaultLayers['ROMS SST'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/ROMS SST.html')))?>'
+        ,'baseStyle,min,max'
+        ,typeof defaultOpacities['ROMS SST'] != 'undefined' && defaultOpacities['ROMS SST'] != '' ? defaultOpacities['ROMS SST'] : 100
+        ,''
+        ,defaultImageTypes['ROMS SST']
+        ,''
+        ,defaultStyles['ROMS SST'].split('-')[0]
+        ,''
+        ,''
+        ,''
+        ,''
+        ,defaultStyles['ROMS SST'].split('-')[1]
+        ,defaultStyles['ROMS SST'].split('-')[2]
+        ,'0-35'
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_ROMSR1_SST&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['ROMS SST'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_ROMSR1_SST'
+        ,''
+        ,'-68,17,-63.9,19.5'
+        ,'true'
+        ,''
+        ,'temperature'
+      ]
+      ,[
+         'model'
         ,'HYCOM salinity (global)'
         ,'HYCOM salinity (global)'
         ,'off'
@@ -1380,6 +1409,35 @@ function init() {
         ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_SALINITY&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM salinity (S Atlantic)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_SALINITY'
         ,''
         ,'-100,5,-55,32'
+        ,'true'
+        ,''
+        ,'salinity'
+      ]
+      ,[
+         'model'
+        ,'ROMS salinity (Caribbean)'
+        ,'ROMS salinity (Caribbean)'
+        ,'off'
+        ,defaultLayers['ROMS salinity (Caribbean)'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/ROMS salinity (Caribbean).html')))?>'
+        ,'baseStyle,min,max'
+        ,typeof defaultOpacities['ROMS salinity (Caribbean)'] != 'undefined' && defaultOpacities['ROMS salinity (Caribbean)'] != '' ? defaultOpacities['ROMS salinity (Caribbean)'] : 100
+        ,''
+        ,defaultImageTypes['ROMS salinity (Caribbean)']
+        ,''
+        ,defaultStyles['ROMS salinity (Caribbean)'].split('-')[0]
+        ,''
+        ,''
+        ,''
+        ,''
+        ,defaultStyles['ROMS salinity (Caribbean)'].split('-')[1]
+        ,defaultStyles['ROMS salinity (Caribbean)'].split('-')[2]
+        ,'0-50'
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_ROMSR1_SALINITY&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['ROMS salinity (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_ROMSR1_SALINITY'
+        ,''
+        ,'-68,17,-63.9,19.5'
         ,'true'
         ,''
         ,'salinity'
@@ -3396,6 +3454,15 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
+       name   : 'ROMS SST'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'CARIB_ROMSR1_SST'
+      ,format : 'image/' + defaultImageTypes['ROMS SST']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
        name   : 'HYCOM salinity (global)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'HYCOM_GLOBAL_NAVY_SALINITY'
@@ -3409,6 +3476,15 @@ function initMap() {
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'NCOM_AM_SEA_SALINITY'
       ,format : 'image/' + defaultImageTypes['NCOM salinity (S Atlantic)']
+      ,styles : ''
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'ROMS salinity (Caribbean)'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'CARIB_ROMSR1_SALINITY'
+      ,format : 'image/' + defaultImageTypes['ROMS salinity (Caribbean)']
       ,styles : ''
       ,singleTile : true
       ,projection : proj3857
