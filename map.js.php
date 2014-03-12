@@ -1009,27 +1009,27 @@ function init() {
       ]
       ,[
          'model'
-        ,'ROMS currents (Caribeean)'
-        ,'ROMS currents (Caribeean)'
+        ,'ROMS currents (Caribbean)'
+        ,'ROMS currents (Caribbean)'
         ,'off'
-        ,defaultLayers['ROMS currents (Caribeean)'] ? 'on' : 'off'
+        ,defaultLayers['ROMS currents (Caribbean)'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/ROMS currents (Caribeean).html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/ROMS currents (Caribbean).html')))?>'
         ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
-        ,typeof defaultOpacities['ROMS currents (Caribeean)'] != 'undefined' && defaultOpacities['ROMS currents (Caribeean)'] != '' ? defaultOpacities['ROMS currents (Caribeean)'] : 100
-        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[7]
-        ,defaultImageTypes['ROMS currents (Caribeean)']
+        ,typeof defaultOpacities['ROMS currents (Caribbean)'] != 'undefined' && defaultOpacities['ROMS currents (Caribbean)'] != '' ? defaultOpacities['ROMS currents (Caribbean)'] : 100
+        ,defaultStyles['ROMS currents (Caribbean)'].split('-')[7]
+        ,defaultImageTypes['ROMS currents (Caribbean)']
         ,''
-        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[0]
-        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[1]
-        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[3]
-        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[2]
-        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[4]
-        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[5]
-        ,defaultStyles['ROMS currents (Caribeean)'].split('-')[6]
+        ,defaultStyles['ROMS currents (Caribbean)'].split('-')[0]
+        ,defaultStyles['ROMS currents (Caribbean)'].split('-')[1]
+        ,defaultStyles['ROMS currents (Caribbean)'].split('-')[3]
+        ,defaultStyles['ROMS currents (Caribbean)'].split('-')[2]
+        ,defaultStyles['ROMS currents (Caribbean)'].split('-')[4]
+        ,defaultStyles['ROMS currents (Caribbean)'].split('-')[5]
+        ,defaultStyles['ROMS currents (Caribbean)'].split('-')[6]
         ,'0-6'
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_ROMSR1_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['ROMS currents (Caribeean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_ROMSR1_CURRENTS'
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_ROMSR1_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['ROMS currents (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_ROMSR1_CURRENTS'
         ,''
         ,'-68,17,-63.9,19.5'
         ,'true'
@@ -3680,11 +3680,11 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
-       name   : 'ROMS currents (Caribeean)'
+       name   : 'ROMS currents (Caribbean)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'CARIB_ROMSR1_CURRENTS'
-      ,format : 'image/' + defaultImageTypes['ROMS currents (Caribeean)']
-      ,styles : defaultStyles['ROMS currents (Caribeean)']
+      ,format : 'image/' + defaultImageTypes['ROMS currents (Caribbean)']
+      ,styles : defaultStyles['ROMS currents (Caribbean)']
       ,singleTile : true
       ,projection : proj3857
     });

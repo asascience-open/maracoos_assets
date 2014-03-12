@@ -52,7 +52,7 @@
       var filterOutLayers = {
          'HYCOM currents (global)'     : true
         ,'NCOM currents (S Atlantic)'           : true
-        ,'ROMS currents (Caribeean)' : true
+        ,'ROMS currents (Caribbean)' : true
         ,'HF radar currents (PR-VI)'  : true
         ,'SWAN wave height (Caribbean)'              : true
         ,'SWAN wave direction (Caribbean)' : true
@@ -89,7 +89,7 @@
         ,'ROMS salinity (Caribbean)'          : 'SST_USCG-0-50'
         ,'NCOM SST'                           : 'SST_USCG-0-50'
         ,'ROMS SST'                           : 'SST_USCG-0-50'
-        ,'ROMS currents (Caribeean)'          : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'ROMS currents (Caribbean)'          : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS ESPRESSO'                      : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'Satellite water temperature'        : 'pcolor_average_jet_10_32_node_False'
@@ -152,7 +152,7 @@
           ,'Weatherflow'             : true
           ,'HYCOM currents (global)'     : true
           ,'NCOM currents (S Atlantic)'           : true
-          ,'ROMS currents (Caribeean)' : true
+          ,'ROMS currents (Caribbean)' : true
           ,'HF radar currents (PR-VI)'  : true
           ,'SWAN wave height (Caribbean)'              : true
           ,'SWAN wave direction (Caribbean)' : true
