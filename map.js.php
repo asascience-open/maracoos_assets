@@ -427,6 +427,7 @@ function init() {
         ,''
         ,''
       ]
+/*
       ,[
          'asset'
         ,'BOB'
@@ -456,6 +457,7 @@ function init() {
         ,''
         ,''
       ]
+*/
       ,[
          'asset'
         ,'MDDNR'
@@ -1471,8 +1473,8 @@ function init() {
         ,''
         ,'temperature'
       ]
+/*
       ,[
-// charlton
          'model'
         ,'ESPRESSOSimFloats'
         ,'ESPRESSO simulated floats'
@@ -1501,6 +1503,7 @@ function init() {
         ,''
         ,''
       ]
+*/
       ,[
          'observation'
         ,'HF radar currents'
@@ -3396,12 +3399,12 @@ function initMap() {
     syncObs({name : 'MDDNR'});
     syncObs({name : 'Weatherflow'});
     syncObs({name : 'HRECOS'});
-    syncObs({name : 'BOB'});
+//    syncObs({name : 'BOB'});
     syncObs({name : 'HF Radar'});
     syncObs({name : 'Satellites'});
     syncObs({name : 'Gliders'});
     syncObs({name : 'Drifters'});
-    syncObs({name : 'ESPRESSOSimFloats'});
+//    syncObs({name : 'ESPRESSOSimFloats'});
     if (popupObs && !popupObs.isDestroyed) {
       popupObs.show();
     }
@@ -3773,10 +3776,12 @@ function initMap() {
        name       : 'HRECOS'
       ,visibility : typeof defaultLayers['HRECOS'] != 'undefined'
     });
+/*
     addObs({
        name       : 'BOB'
       ,visibility : typeof defaultLayers['BOB'] != 'undefined'
     });
+*/
     addObs({
        name       : 'HF Radar'
       ,visibility : typeof defaultLayers['HF Radar'] != 'undefined'
@@ -3789,10 +3794,12 @@ function initMap() {
        name       : 'Gliders'
       ,visibility : typeof defaultLayers['Gliders'] != 'undefined'
     });
+/*
     addObs({
        name       : 'ESPRESSOSimFloats'
       ,visibility : typeof defaultLayers['ESPRESSOSimFloats'] != 'undefined'
     });
+*/
     addObs({
        name       : 'Drifters'
       ,visibility : typeof defaultLayers['Drifters'] != 'undefined'
