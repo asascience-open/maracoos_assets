@@ -92,7 +92,7 @@
         ,'ROMS currents (Caribbean)'          : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS ESPRESSO'                      : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
-        ,'Satellite water temperature'        : 'pcolor_average_jet_10_32_node_False'
+        ,'Satellite water temperature'        : 'pcolor_average_jet_5_32_node_False'
         ,'Stevens NYHOPS'                     : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'STPS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'SWAN wave direction (Caribbean)'    : ''
