@@ -3087,64 +3087,71 @@ function init() {
               }
             }
           }
-          ,new Ext.Panel({
+          ,new Ext.TabPanel({
              region      : 'south'
-            ,hidden      : hideTimeseriesPanel
             ,id          : 'timeseriesPanel'
-            ,title       : 'Time-Series Query Results'
-            ,tbar        : [
-              {
-                 text : 'Active model query layer: '
-                ,id   : 'activeLabel'
-              }
-              ,' '
-              ,new Ext.form.ComboBox({
-                 mode           : 'local'
-                ,id             : 'chartLayerCombo'
-                ,width          : 300
-                ,store          : chartLayerStore
-                ,displayField   : 'displayName'
-                ,valueField     : 'name'
-                ,forceSelection : true
-                ,triggerAction  : 'all'
-                ,editable       : false
-              })
-              ,'->'
-              ,{
-                 text    : 'Requery'
-                ,icon    : 'img/arrow_refresh.png'
-                ,id      : 'requery'
-                ,hidden  : true
-                ,handler : function() {
-                  if (lyrQueryPts.features.length > 0) {
-                    mapClick(lastMapClick['xy'],true,true);
+            ,activeTab   : 0
+            ,deferredRender: false
+            ,items       : [{
+              title: 'Time-Series Query Results',
+              html: '<div style="width:10;height:10" id="tsResults"/>',
+              tbar        : [
+                {
+                   text : 'Active model query layer: '
+                  ,id   : 'activeLabel'
+                }
+                ,' '
+                ,new Ext.form.ComboBox({
+                   mode           : 'local'
+                  ,id             : 'chartLayerCombo'
+                  ,width          : 300
+                  ,store          : chartLayerStore
+                  ,displayField   : 'displayName'
+                  ,valueField     : 'name'
+                  ,forceSelection : true
+                  ,triggerAction  : 'all'
+                  ,editable       : false
+                })
+                ,'->'
+                ,{
+                   text    : 'Requery'
+                  ,icon    : 'img/arrow_refresh.png'
+                  ,id      : 'requery'
+                  ,hidden  : true
+                  ,handler : function() {
+                    if (lyrQueryPts.features.length > 0) {
+                      mapClick(lastMapClick['xy'],true,true);
+                    }
                   }
                 }
-              }
-              ,{
-                 text    : 'Clear query'
-                ,icon    : 'img/trash-icon.png'
-                ,id      : 'graphAction'
-                ,width   : 90
-                ,handler : function() {
-                  if (this.icon == 'img/blueSpinner.gif') {
-                    return;
+                ,{
+                   text    : 'Clear query'
+                  ,icon    : 'img/trash-icon.png'
+                  ,id      : 'graphAction'
+                  ,width   : 90
+                  ,handler : function() {
+                    if (this.icon == 'img/blueSpinner.gif') {
+                      return;
+                    }
+                    lyrQueryPts.removeFeatures(lyrQueryPts.features);
+                    Ext.getCmp('requery').hide();
+                    document.getElementById('tsResults').innerHTML = '<table class="obsPopup timeSeries"><tr><td><img width=3 height=3 src="img/blank.png"><br/><img width=8 height=1 src="img/blank.png">Click anywhere on the map or on a dot to view a time-series graph of model or observation output.<br/><img width=8 height=1 src="img/blank.png"><img src="info/graph_primer.png"></td></tr></table>';
+                    chartData = [];
+                    $('#tooltip').remove();
+                    Ext.getCmp('chartLayerCombo').show();
+                    Ext.getCmp('activeLabel').setText('Active model query layer: ');
                   }
-                  lyrQueryPts.removeFeatures(lyrQueryPts.features);
-                  Ext.getCmp('requery').hide();
-                  document.getElementById('tsResults').innerHTML = '<table class="obsPopup timeSeries"><tr><td><img width=3 height=3 src="img/blank.png"><br/><img width=8 height=1 src="img/blank.png">Click anywhere on the map or on a dot to view a time-series graph of model or observation output.<br/><img width=8 height=1 src="img/blank.png"><img src="info/graph_primer.png"></td></tr></table>';
-                  chartData = [];
-                  $('#tooltip').remove();
-                  Ext.getCmp('chartLayerCombo').show();
-                  Ext.getCmp('activeLabel').setText('Active model query layer: ');
                 }
-              }
-            ]
+              ]
+            },
+                            {
+                              title: 'Service Status'
+                              ,html: '<div><table id="tableHeader"><thead><tr><th>type</th><th>name</th><th>Last Response Time</th><th>Last Update</th><th>Last Operational Status</th></tr></thead></table></div><div id="tableWrapper"><table></table></div>'
+                            }]
             ,border      : false
             ,height      : 220
             ,collapsible : true
             ,split       : true
-            ,items       : {border : false,html : '<div style="width:10;height:10" id="tsResults"/>'}
             ,listeners   : {
               afterrender : function(win) {
                 var prevPt;
@@ -3162,6 +3169,30 @@ function init() {
                   else {
                     $('#tooltip').remove();
                     prevPoint = null;
+                  }
+                });
+                $.ajax({
+                  url: 'http://catalog.ioos.us/services/filter/MARACOOS/null/json',
+                  dataType: 'json',
+                  success: function(data){
+                    if (data.services.length > 0){
+                      var rows = '';
+                      for (var i = 0; i < data.services.length; i++) {
+                        var service = data.services[i];
+                        var status = '&empty;';
+                        if (service.last_operational_status) {
+                          status = '&#10004;';
+                          rows += '<tr><td>';
+                        }
+                        else
+                          rows += '<tr style="background-color:#f2dede!important;"><td>';
+                        rows += service.service_type + '</td><td style="width:694px!important;">' + service.name + '</td><td>' + service.last_response_time + '</td><td>' + new Date(service.last_update.$date).toLocaleDateString() + '</td><td>' + status + '</td></tr>';
+                      }
+                      $('div#tableWrapper > table').append(rows);
+                    }
+                  },
+                  error: function(e){
+                    console.log('error: ' + e.toString());
                   }
                 });
                 win.addListener('resize',function(win) {
@@ -3229,6 +3260,7 @@ function init() {
                     }
                   }
                   lyrQueryPts.features.length > 0 ? Ext.getCmp('requery').show() : Ext.getCmp('requery').hide();
+                  $('#tableWrapper').height(win.getHeight() - 54);
                 });
               }
             }
