@@ -3159,7 +3159,7 @@ function init() {
                   defaults: {menuDisabled: true, sortable: true, align: 'center'},
                   columns:[
                     { header: 'Type'          ,dataIndex: 'service_type'            ,width: 7   },
-                    { header: 'Name'          ,dataIndex: 'name'                    ,align: 'left' },
+                    { header: 'Name'          ,dataIndex: 'name'                    ,align: 'left'  , renderer : function(val,metadata,rec) {return'<div ext:qtip="' + val + '">' + val + '</div>';} },
                     { header: 'Response Time' ,dataIndex: 'last_response_time'      ,width: 13  },
                     { header: 'Last Updated'  ,dataIndex: 'last_update.$date'       ,width: 13, xtype: 'datecolumn', format: 'm/d/Y' },
                     { header: 'Status'        ,dataIndex: 'last_operational_status' ,width: 7,  renderer: function(val,metadata,rec){return val ? '&#10004;' : '&empty;';}
