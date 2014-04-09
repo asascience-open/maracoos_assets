@@ -3144,10 +3144,29 @@ function init() {
                 }
               ]
             },
-                            {
-                              title: 'Service Status'
-                              ,html: '<div><table id="tableHeader"><thead><tr><th>type</th><th>name</th><th>Last Response Time</th><th>Last Update</th><th>Last Operational Status</th></tr></thead></table></div><div id="tableWrapper"><table></table></div>'
-                            }]
+            new Ext.grid.GridPanel({
+                title: 'Service Status',
+                store:   new Ext.data.JsonStore ({
+                   url: 'http://catalog.ioos.us/services/filter/MARACOOS/null/json'
+                  ,root: 'services'
+                  ,fields: ['service_type', 'name', 'last_response_time', {name: 'last_update.$date', type: 'date', dateFormat: 'time'}, 'last_operational_status']
+                  ,autoLoad: true
+                  ,sortInfo: { field: 'name', direction: 'ASC'}
+                }),
+                disableSelection : true,
+                viewConfig: { forceFit: true },
+                colModel: new Ext.grid.ColumnModel({
+                  defaults: {menuDisabled: true, sortable: true, align: 'center'},
+                  columns:[
+                    { header: 'Type'          ,dataIndex: 'service_type'            ,width: 7   },
+                    { header: 'Name'          ,dataIndex: 'name'                    ,align: 'left' },
+                    { header: 'Response Time' ,dataIndex: 'last_response_time'      ,width: 13  },
+                    { header: 'Last Updated'  ,dataIndex: 'last_update.$date'       ,width: 13, xtype: 'datecolumn', format: 'm/d/Y' },
+                    { header: 'Status'        ,dataIndex: 'last_operational_status' ,width: 7,  renderer: function(val,metadata,rec){return val ? '&#10004;' : '&empty;';}
+                  }]
+                })
+              })
+            ]
             ,border      : false
             ,height      : 220
             ,collapsible : true
@@ -3169,30 +3188,6 @@ function init() {
                   else {
                     $('#tooltip').remove();
                     prevPoint = null;
-                  }
-                });
-                $.ajax({
-                  url: 'http://catalog.ioos.us/services/filter/MARACOOS/null/json',
-                  dataType: 'json',
-                  success: function(data){
-                    if (data.services.length > 0){
-                      var rows = '';
-                      for (var i = 0; i < data.services.length; i++) {
-                        var service = data.services[i];
-                        var status = '&empty;';
-                        if (service.last_operational_status) {
-                          status = '&#10004;';
-                          rows += '<tr><td>';
-                        }
-                        else
-                          rows += '<tr style="background-color:#f2dede!important;"><td>';
-                        rows += service.service_type + '</td><td style="width:694px!important;">' + service.name + '</td><td>' + service.last_response_time + '</td><td>' + new Date(service.last_update.$date).toLocaleDateString() + '</td><td>' + status + '</td></tr>';
-                      }
-                      $('div#tableWrapper > table').append(rows);
-                    }
-                  },
-                  error: function(e){
-                    console.log('error: ' + e.toString());
                   }
                 });
                 win.addListener('resize',function(win) {
