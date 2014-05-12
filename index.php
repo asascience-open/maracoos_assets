@@ -151,7 +151,6 @@
            'NDBC'                    : true
           ,'Weatherflow'             : true
           ,'HYCOM currents (global)'     : true
-          ,'NCOM currents (S Atlantic)'           : true
           ,'ROMS currents (Caribbean)' : true
           ,'HF radar currents (PR-VI)'  : true
           ,'SWAN wave height (Caribbean)'              : true
@@ -162,10 +161,8 @@
           ,'WWIII wave period'       : true
           ,'HYCOM elevation (global)'    : true
           ,'HYCOM SST'               : true
-          ,'NCOM SST'                : true
           ,'ROMS SST'                : true
           ,'HYCOM salinity (global)' : true
-          ,'NCOM salinity (S Atlantic)'           : true
           ,'ROMS salinity (Caribbean)' : true
           ,'Chlorophyll concentration (VIIRS)'      : true
           ,'GFS winds'               : true
