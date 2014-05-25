@@ -3878,6 +3878,7 @@ function initMap() {
         data.push(['uw','University of Washington']);
         data.push(['osu','Oregon State University']);
         data.push(['gerg','GERG-TAMU-GCOOS']);
+        data.push(['glos','GLOS']);
         glidersMetadataStore.loadData(data);
         glidersMetadataStore.sort('description','ASC');
         Ext.getCmp('glidersProvidersGridPanel').getSelectionModel().selectAll();
