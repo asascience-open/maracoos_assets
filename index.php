@@ -5,7 +5,7 @@
   require_once('auth.php');
 
   $title  = 'MARACOOS Assets';
-  $version = '0.005';
+  $version = '0.006';
 
   $config = isset($_REQUEST['config']) ? $_REQUEST['config'] : (getenv('config') ? getenv('config') : null);
   $_SESSION['config'] = $config;
