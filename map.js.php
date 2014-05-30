@@ -430,7 +430,7 @@ function init() {
       ,[
          'asset'
         ,'BOB'
-        ,'BOB stations'
+        ,'CRWO stations'
         ,'off'
         ,defaultLayers['BOB'] ? 'on' : 'off'
         ,''
