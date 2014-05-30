@@ -6,7 +6,7 @@
   $o = Array();
 
   $dBegin = date('Y-m-d',time() - 60 * 60 * (24 * 7 + 1));
-  $json = json_decode(file_get_contents('http://pro-bob.com/data/api/records?min_time='.$dBegin.'&format=arrays&buoy='.$_REQUEST['id']),true);
+  $json = json_decode(file_get_contents('http://pro-bob.com/data/api/records?min_time='.$dBegin.'&format=arrays&errorcode=False&buoy='.$_REQUEST['id']),true);
 
   foreach ($json[$_REQUEST['id']] as $var) {
     $t = strtotime(array_pop($var['times']));

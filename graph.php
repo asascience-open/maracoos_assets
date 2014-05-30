@@ -76,7 +76,7 @@
     }
   }
   else if (isset($_REQUEST['BOB'])) {
-    $json = json_decode(file_get_contents('http://pro-bob.com/data/api/records?min_time='.$_REQUEST['startDt'].'&format=arrays&buoy='.$_REQUEST['station']),true);
+    $json = json_decode(file_get_contents('http://pro-bob.com/data/api/records?min_time='.$_REQUEST['startDt'].'&format=arrays&errorcode=False&buoy='.$_REQUEST['station']),true);
     foreach ($json[$_REQUEST['station']] as $var) {
       if ($var['variable']['name'] == $_REQUEST['name']) {
         for ($i = 0; $i < count($var['values']); $i++) {
