@@ -31,6 +31,9 @@
       return Array(Array('val' => '','uom' => '','cat' => ''));
     }
     $a = Array();
+    $uom = str_replace(chr(194).chr(176),'deg ',$uom);
+    $uom = str_replace(chr(194).chr(181),'micro ',$uom);
+    $uom = str_replace('%','&#37;',$uom);
     if ($toEnglish) {
       if ($uom == 'm/s') {
         array_push($a,Array('val' => sprintf("%.02f",$val * 1.943844),'uom' => 'knots','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
@@ -42,7 +45,7 @@
       else if ($uom == 'm below land surface') {
         array_push($a,Array('val' => sprintf("%.02f",$val * 3.2808399),'uom' => 'ft below land surface','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
-      else if ($uom == 'C' || ord($uom) == 194) {
+      else if ($uom == 'C' || $uom == 'deg C') {
         array_push($a,Array('val' => sprintf("%.02f",9/5*$val + 32),'uom' => 'F','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
       else if ($uom == 'mm') {
