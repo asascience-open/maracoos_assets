@@ -192,46 +192,17 @@
 
   if ($_REQUEST['provider'] == 'BOB') {
     $provider = 'BOB';
-    $dbh = new PDO('sqlite:bob.db');
-    $sql = <<<EOSQL
-select 
-   station.id
-  ,station.name
-  ,station.lon
-  ,station.lat
-  ,obs.var
-  ,obs.uom
-  ,obs.t
-  ,obs
-  .val 
-from 
-  obs
- ,(
-    select 
-      station
-     ,var
-     ,max(t) as t 
-    from 
-      obs 
-    group by 
-      station
-     ,var
-  ) as top_obs 
-  ,station
-where 
-  obs.var = top_obs.var 
-  and obs.station = top_obs.station
-  and obs.station = station.seq
-  and obs.t = top_obs.t
-  and obs.t >= strftime('%s','now','-3 months');
-EOSQL;
-    foreach ($dbh->query($sql) as $row) {
-      addToStack($metadata,$bbox,$row['lon'],$row['lat'],$provider,array(
-         'id'    => $row['id']
-        ,'descr' => $row['name']
-        ,'url'   => "popup$provider.php"
-          ."?id=".$row['id']
-      ));
+    $json = json_decode(file_get_contents('http://pro-bob.com/data/api/buoys?format=json'),true);
+    foreach ($json as $slug) {
+      foreach ($slug['deployments'] as $dep) {
+        addToStack($metadata,$bbox,$dep['location']['coordinates'][0],$dep['location']['coordinates'][1],$provider,array(
+           'id'    => $slug['slug']
+          ,'descr' => $dep['name']
+          ,'url'   => "popup$provider.php"
+            ."?id=".$slug['slug']
+            ."&descrip=".urlencode($dep['name'])
+        ));
+      }
     }
   }    
 

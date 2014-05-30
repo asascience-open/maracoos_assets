@@ -5,47 +5,17 @@
   $t = ''; // assume same time for all obs
   $o = Array();
 
-  $dbh = new PDO('sqlite:bob.db');
-  $sql = <<<EOSQL
-select distinct
-   station.id
-  ,station.name
-  ,station.lon
-  ,station.lat
-  ,obs.var
-  ,obs.uom
-  ,obs.t
-  ,obs.val
-from
-   obs
-  ,(
-    select
-      station
-     ,var
-     ,max(t) as t
-    from
-      obs
-    group by
-      station
-     ,var
-  ) as top_obs
-  ,station
-where
-  obs.var = top_obs.var
-  and obs.station = top_obs.station
-  and obs.station = station.seq
-  and obs.t = top_obs.t
-  and obs.t >= strftime('%s','now','-3 months');
-EOSQL;
-  foreach ($dbh->query($sql) as $row) {
-    $t = $row['t'];
-    $n = $row['var'];
-    $a = convertUnits($row['val'],$row['uom'],$_REQUEST['uom'] == 'english');
+  $dBegin = date('Y-m-d',time() - 60 * 60 * (24 * 7 + 1));
+  $json = json_decode(file_get_contents('http://pro-bob.com/data/api/records?min_time='.$dBegin.'&format=arrays&buoy='.$_REQUEST['id']),true);
+
+  foreach ($json[$_REQUEST['id']] as $var) {
+    $t = strtotime(array_pop($var['times']));
+    $n = $var['variable']['name'];
+    $a = convertUnits(array_pop($var['values']),$var['variable']['unit'],$_REQUEST['uom'] == 'english');
     $u = $a[0]["uom"];
     $v = $a[0]["val"];
-    $dEnd   = date('Y-m-d\TH:i\Z');
-    $dBegin = date('Y-m-d\TH:i\Z',time() - 60 * 60 * (24 * 30 + 1));
-    $uEscape = str_replace('"','\\"',"graph.php?station=$row[id]&name=$n&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&cat='.$a[0]['cat']."&BOB&startDt=$dBegin&endDt=$dEnd");
+    $dBegin = date('Y-m-d',time() - 60 * 60 * (24 * 7 + 1));
+    $uEscape = str_replace('"','\\"',"graph.php?station=".$_REQUEST['id']."&name=$n&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&cat='.$a[0]['cat']."&BOB&startDt=$dBegin");
     $extra = '';
     if (count($a) == 2) {
       $extra = "<br><a href='javascript:showObsTimeseries([\"".str_replace('graph.php?','graph.php?uomB&',$uEscape)."\"])'><img src='img/graph.png' width=10 height=10></a> ".$a[1]["val"].' '.$a[1]["uom"];
@@ -60,8 +30,7 @@ EOSQL;
   }
   else {
     array_unshift($o,sprintf("<tr><td colspan=2 style='text-align:center'><b>%s-%02d</b></td></tr>",date('M d G:i e',$t - $_REQUEST['tz'] * 60),$_REQUEST['tz']/60));
-    // array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='http://www.windalert.com/spot/$_REQUEST[id]'>Station information</a></td></tr>");
-    // array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='http://www.weatherflow.com'>Provider information</a></td></tr>");
+    array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='http://pro-bob.com/data/api/buoys'>More observations and station information</a></td></tr>");
     echo json_encode(Array('html' => '<table class="obsDetails">'.implode('',$o).'</table>'));
   }
 ?>

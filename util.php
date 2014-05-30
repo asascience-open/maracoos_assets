@@ -42,7 +42,7 @@
       else if ($uom == 'm below land surface') {
         array_push($a,Array('val' => sprintf("%.02f",$val * 3.2808399),'uom' => 'ft below land surface','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
-      else if ($uom == 'C') {
+      else if ($uom == 'C' || ord($uom) == 194) {
         array_push($a,Array('val' => sprintf("%.02f",9/5*$val + 32),'uom' => 'F','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
       else if ($uom == 'mm') {

@@ -76,41 +76,24 @@
     }
   }
   else if (isset($_REQUEST['BOB'])) {
-  $dbh = new PDO('sqlite:bob.db');
-  $sql = <<<EOSQL
-select distinct
-   station.id
-  ,station.name
-  ,station.lon
-  ,station.lat
-  ,obs.var
-  ,obs.uom
-  ,obs.t
-  ,obs.val
-from
-   obs
-  ,station
-where
-  obs.station = station.seq
-  and station.id = '$_REQUEST[station]'
-  and obs.var = '$_REQUEST[name]'
---  and obs.t >= strftime('%s','$_REQUEST[startDt]')
---  and obs.t <= strftime('%s','$_REQUEST[endDt]')
-order by
-  obs.t;
-EOSQL;
-    foreach ($dbh->query($sql) as $row) {
-      $t = $row['t'];
-      $n = $row['var'];
-      $a = convertUnits($row['val'],$row['uom'],$_REQUEST['uom'] == 'english');
-      $u = $a[0]["uom"];
-      $v = $a[0]["val"];
-      if (count($a) == 2 && isset($_REQUEST['uomB'])) {
-        $v = $a[1]['val'];
-        $u = $a[1]['uom'];
+    $json = json_decode(file_get_contents('http://pro-bob.com/data/api/records?min_time='.$_REQUEST['startDt'].'&format=arrays&buoy='.$_REQUEST['station']),true);
+file_put_contents('/tmp/maplog','http://pro-bob.com/data/api/records?min_time='.$_REQUEST['startDt'].'&format=arrays&buoy='.$_REQUEST['station']."\n",FILE_APPEND);
+    foreach ($json[$_REQUEST['station']] as $var) {
+      if ($var['variable']['name'] == $_REQUEST['name']) {
+        for ($i = 0; $i < count($var['values']); $i++) {
+          $t = $var['times'][$i];
+          $n = $var['variable']['name'];
+          $a = convertUnits($var['values'][$i],$var['variable']['unit'],$_REQUEST['uom'] == 'english');
+          $u = $a[0]["uom"];
+          $v = $a[0]["val"];
+          if (count($a) == 2 && isset($_REQUEST['uomB'])) {
+            $v = $a[1]['val'];
+            $u = $a[1]['uom'];
+          }
+          $uom = $u;
+          $data[$t] = $v;
+        }
       }
-      $uom = $u;
-      $data[date('r',$t)] = $v;
     }
   }
   // mddnr isn't either
