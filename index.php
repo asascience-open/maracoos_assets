@@ -48,6 +48,7 @@
       var defaultLayers = {
          'NDBC'           : true
         ,'HYCOM currents'    : true
+        ,'NHC storm tracks'  : true
       };
       var filterOutLayers = {
          'HYCOM currents (global)'     : true
