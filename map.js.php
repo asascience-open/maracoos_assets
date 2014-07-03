@@ -1706,6 +1706,35 @@ function init() {
         ,''
       ]
       ,[
+         'observation'
+        ,'NHC inundation'
+        ,'NHC inundation'
+        ,'off'
+        ,defaultLayers['NHC inundation'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NHC inundation.html')))?>'
+        ,''
+        ,typeof defaultOpacities['NHC inundation'] != 'undefined' && defaultOpacities['NHC inundation'] != '' ? defaultOpacities['NHC inundation'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'legends/NHC inundation.png'
+        ,'false'
+        ,'-78,35.5,-62,44'
+        ,'false'
+        ,''
+        ,''
+      ]
+      ,[
          'n/a'
         ,'Bathymetry contours'
         ,'Bathymetry contours'
@@ -3735,6 +3764,11 @@ function initMap() {
       ,projection : proj900913
     });
 
+    addXYZ({
+       name : 'NHC inundation'
+      ,url  : 'http://www.nhc.noaa.gov/storm_graphics/AT01/inundation/L${z}/' + stm1 + '_${x}i_${y}j.png'
+    });
+
     addTileCache({
        name   : 'Bathymetry contours'
       ,url    : 'http://assets.maracoos.org/tilecache/'
@@ -4638,6 +4672,24 @@ function addTileCache(l) {
     url = (url.charAt(url.length - 1) == '/') ? url : url + '/';
     return url + path;
   };
+  addLayer(lyr,false);
+}
+
+function addXYZ(l) {
+  if (filterOutLayers && filterOutLayers[l.name] || restrictLayers && !restrictLayers[l.name]) {
+    return;
+  }
+  var lyr = new OpenLayers.Layer.XYZ(
+     l.name
+    ,l.url
+    ,{
+       sphericalMercator : true
+      ,isBaseLayer       : false
+      ,wrapDateLine      : true
+      ,visibility        : mainStore.find('name',l.name) >= 0 ? mainStore.getAt(mainStore.find('name',l.name)).get('status') == 'on' : false
+    }
+  );
+
   addLayer(lyr,false);
 }
 
