@@ -1705,6 +1705,7 @@ function init() {
         ,''
         ,''
       ]
+/*
       ,[
          'observation'
         ,'NHC inundation'
@@ -1734,6 +1735,7 @@ function init() {
         ,''
         ,''
       ]
+*/
       ,[
          'n/a'
         ,'Bathymetry contours'
@@ -3764,10 +3766,12 @@ function initMap() {
       ,projection : proj900913
     });
 
+/*
     addXYZ({
        name : 'NHC inundation'
       ,url  : 'http://www.nhc.noaa.gov/storm_graphics/AT01/inundation/L${z}/' + stm1 + '_${x}i_${y}j.png'
     });
+*/
 
     addTileCache({
        name   : 'Bathymetry contours'
