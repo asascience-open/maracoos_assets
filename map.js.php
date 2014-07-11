@@ -2059,11 +2059,36 @@ function init() {
      ,'dMinHours'
     ]
     ,data : [
-       ['7-day composite'      ,'http://wms.maracoos.org/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://wms.maracoos.org/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',7 * 24]
-      ,['3-day composite'      ,'http://wms.maracoos.org/wms/maracoos_SST_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://wms.maracoos.org/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',3 * 24]
-      ,['1-day composite'      ,'http://wms.maracoos.org/wms/maracoos_SST_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'   ,'http://wms.maracoos.org/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',1 * 24]
-      ,['Single pass declouded','http://wms.maracoos.org/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&','http://wms.maracoos.org/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',-999]
-      ,['Single pass'          ,'http://wms.maracoos.org/wms/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'       ,'http://wms.maracoos.org/wms/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&',-999]
+      [
+         '7-day composite'
+        ,'http://wms.maracoos.org/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,7 * 24
+      ]
+      ,[
+         '3-day composite'
+        ,'http://wms.maracoos.org/wms/maracoos_SST_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/maracoos_SST_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,3 * 24
+      ]
+      ,[
+         '1-day composite'
+        ,'http://wms.maracoos.org/wms/maracoos_SST_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/maracoos_SST_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,1 * 24
+      ]
+      ,[
+         'Single pass declouded'
+        ,'http://wms.maracoos.org/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,-999
+      ]
+      ,[
+         'Single pass'
+        ,'http://wms.maracoos.org/wms/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,-999
+      ]
     ]
   });
 
