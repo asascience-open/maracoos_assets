@@ -93,6 +93,7 @@
         ,'ROMS currents (Caribbean)'          : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS ESPRESSO'                      : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
+        ,'SABGOM currents'                    : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'Satellite water temperature'        : 'pcolor_average_jet_5_32_node_False'
         ,'Stevens NYHOPS'                     : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'STPS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
@@ -258,10 +259,11 @@
         ,'Stevens NYHOPS'              : 100
         ,'UMass'                       : 100
         ,'ROMS ESPRESSO'               : 100
-        ,'NCOM currents (S Atlantic)'               : 100
+        ,'NCOM currents (S Atlantic)'  : 100
         ,'HYCOM currents'              : 100
+        ,'SABGOM currents'             : 100
         ,'NAM winds'                   : 100
-        ,'WWIII wave height'                 : 100
+        ,'WWIII wave height'           : 100
         ,'NCOM SST'                    : 100
         ,'HF radar currents'           : 100
         ,'Chlorophyll concentration'   : 100
@@ -292,6 +294,7 @@
         ,'Stevens NYHOPS'       : 'png'
         ,'NCOM currents (S Atlantic)'        : 'png'
         ,'HYCOM currents'       : 'png'
+        ,'SABGOM currents'      : 'png'
         ,'NAM winds'            : 'png'
         ,'HF radar currents'    : 'png'
         ,'GOES visible imagery' : 'png'

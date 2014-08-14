@@ -1038,6 +1038,35 @@ function init() {
       ]
       ,[
          'model'
+        ,'SABGOM currents'
+        ,'SABGOM currents'
+        ,'off'
+        ,defaultLayers['SABGOM currents'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/SABGOM currents.html')))?>'
+        ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
+        ,typeof defaultOpacities['SABGOM currents'] != 'undefined' && defaultOpacities['SABGOM currents'] != '' ? defaultOpacities['SABGOM currents'] : 100
+        ,defaultStyles['SABGOM currents'].split('-')[7]
+        ,defaultImageTypes['SABGOM currents']
+        ,''
+        ,defaultStyles['SABGOM currents'].split('-')[0]
+        ,defaultStyles['SABGOM currents'].split('-')[1]
+        ,defaultStyles['SABGOM currents'].split('-')[3]
+        ,defaultStyles['SABGOM currents'].split('-')[2]
+        ,defaultStyles['SABGOM currents'].split('-')[4]
+        ,defaultStyles['SABGOM currents'].split('-')[5]
+        ,defaultStyles['SABGOM currents'].split('-')[6]
+        ,'0-6'
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=SAB_GOM_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['SABGOM currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=SAB_GOM_CURRENTS'
+        ,''
+        ,'-99.000000,13.000000,-76.000000,40.000000'
+        ,'true'
+        ,''
+        ,'currentsVelocity'
+      ]
+      ,[
+         'model'
         ,'NAM winds'
         ,'NAM winds'
         ,'off'
@@ -3742,6 +3771,15 @@ function initMap() {
       ,layers : 'CARIB_ROMSR1_CURRENTS'
       ,format : 'image/' + defaultImageTypes['ROMS currents (Caribbean)']
       ,styles : defaultStyles['ROMS currents (Caribbean)']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'SABGOM currents'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'SAB_GOM_CURRENTS'
+      ,format : 'image/' + defaultImageTypes['SABGOM currents']
+      ,styles : defaultStyles['SABGOM currents']
       ,singleTile : true
       ,projection : proj3857
     });
