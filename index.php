@@ -94,6 +94,7 @@
         ,'ROMS ESPRESSO'                      : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'SABGOM currents'                    : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
+        ,'NW_ATL currents'                    : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'Satellite water temperature'        : 'pcolor_average_jet_5_32_node_False'
         ,'Stevens NYHOPS'                     : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'STPS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
@@ -262,6 +263,7 @@
         ,'NCOM currents (S Atlantic)'  : 100
         ,'HYCOM currents'              : 100
         ,'SABGOM currents'             : 100
+        ,'NW_ATL currents'             : 100
         ,'NAM winds'                   : 100
         ,'WWIII wave height'           : 100
         ,'NCOM SST'                    : 100
@@ -295,6 +297,7 @@
         ,'NCOM currents (S Atlantic)'        : 'png'
         ,'HYCOM currents'       : 'png'
         ,'SABGOM currents'      : 'png'
+        ,'NW_ATL currents'      : 'png'
         ,'NAM winds'            : 'png'
         ,'HF radar currents'    : 'png'
         ,'GOES visible imagery' : 'png'

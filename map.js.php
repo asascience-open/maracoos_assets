@@ -1038,8 +1038,37 @@ function init() {
       ]
       ,[
          'model'
+        ,'NW_ATL currents'
+        ,'ROMS currents: Northwest Atlantic Ocean'
+        ,'off'
+        ,defaultLayers['NW_ATL currents'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NW_ATL currents.html')))?>'
+        ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
+        ,typeof defaultOpacities['NW_ATL currents'] != 'undefined' && defaultOpacities['NW_ATL currents'] != '' ? defaultOpacities['NW_ATL currents'] : 100
+        ,defaultStyles['NW_ATL currents'].split('-')[7]
+        ,defaultImageTypes['NW_ATL currents']
+        ,''
+        ,defaultStyles['NW_ATL currents'].split('-')[0]
+        ,defaultStyles['NW_ATL currents'].split('-')[1]
+        ,defaultStyles['NW_ATL currents'].split('-')[3]
+        ,defaultStyles['NW_ATL currents'].split('-')[2]
+        ,defaultStyles['NW_ATL currents'].split('-')[4]
+        ,defaultStyles['NW_ATL currents'].split('-')[5]
+        ,defaultStyles['NW_ATL currents'].split('-')[6]
+        ,'0-6'
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NW_ATL_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NW_ATL currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NW_ATL_CURRENTS'
+        ,''
+        ,'-99.000000,8.000000,-60.000000,47.000000'
+        ,'true'
+        ,''
+        ,'currentsVelocity'
+      ]
+      ,[
+         'model'
         ,'SABGOM currents'
-        ,'SABGOM currents'
+        ,'ROMS currents: South Atlantic Bight and Gulf of Mexico'
         ,'off'
         ,defaultLayers['SABGOM currents'] ? 'on' : 'off'
         ,'off'
@@ -3771,6 +3800,15 @@ function initMap() {
       ,layers : 'CARIB_ROMSR1_CURRENTS'
       ,format : 'image/' + defaultImageTypes['ROMS currents (Caribbean)']
       ,styles : defaultStyles['ROMS currents (Caribbean)']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'NW_ATL currents'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'NW_ATL_CURRENTS'
+      ,format : 'image/' + defaultImageTypes['NW_ATL currents']
+      ,styles : defaultStyles['NW_ATL currents']
       ,singleTile : true
       ,projection : proj3857
     });
