@@ -2934,6 +2934,12 @@ function init() {
   }
 ?>
     ]}
+    ,bbar : {items : [
+       '->' 
+      ,{text : 'Disclaimer',handler : function() {
+        Ext.Msg.alert('Disclaimer','All products published on this website are prototype products and are not intended to be used for navigational or operational purposes. <a href="http://maracoos.org/content/full-disclaimer" target=_blank>View full disclaimer</a>');
+      }}
+    ]}
   });
 
   var managerItems = [
