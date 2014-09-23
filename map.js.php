@@ -1036,6 +1036,7 @@ function init() {
         ,''
         ,'currentsVelocity'
       ]
+/*
       ,[
          'model'
         ,'NW_ATL currents'
@@ -1065,6 +1066,7 @@ function init() {
         ,''
         ,'currentsVelocity'
       ]
+*/
       ,[
          'model'
         ,'SABGOM currents'
@@ -3809,6 +3811,7 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
+/*
     addWMS({
        name   : 'NW_ATL currents'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
@@ -3818,6 +3821,7 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
+*/
     addWMS({
        name   : 'SABGOM currents'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
