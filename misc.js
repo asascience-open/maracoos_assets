@@ -520,19 +520,18 @@ function zeroPad(number, length) {
 }
 
 function shortDateString(d) {
-  return (d.getMonth() + 1)
-    + '/' + d.getDate() 
-    + '/' + d.getFullYear()
-    + ' ' + zeroPad(d.getHours(),2) 
-    + ':' + zeroPad(d.getMinutes(),2) 
-    + ' UTC' + (d.getTimezoneOffset() * -1 < 0 ? '-' : '+')
-    + zeroPad(d.getTimezoneOffset()/60,2);
+  return (d.getUTCMonth() + 1)
+    + '/' + d.getUTCDate() 
+    + '/' + d.getUTCFullYear()
+    + ' ' + zeroPad(d.getUTCHours(),2) 
+    + ':' + zeroPad(d.getUTCMinutes(),2) 
+    + ' UTC';
 }
 
 function shortDateStringNoTime(d) {
-  return (d.getMonth() + 1)
-    + '/' + d.getDate()
-    + '/' + d.getFullYear();
+  return (d.getUTCMonth() + 1)
+    + '/' + d.getUTCDate()
+    + '/' + d.getUTCFullYear();
 }
 
 function shortDateToDate(s) {
