@@ -73,6 +73,7 @@ dNow.setUTCMinutes(0);
 dNow.setUTCSeconds(0);
 dNow.setUTCMilliseconds(0);
 dNow.setUTCHours(dNow.getUTCHours() - dNow.getUTCHours() % 3);
+var tzOffset = 0; // dNow.getTimezoneOffset()
 var lastMapClick = {
    layer : ''
   ,xy    : ''
@@ -3270,12 +3271,12 @@ function init() {
                 var prevPt;
                 $('#tsResults').bind('plothover',function(event,pos,item) {
                   if (item) {
-                    var x = new Date(item.datapoint[0] + new Date().getTimezoneOffset() * 60 * 1000);
+                    var x = new Date(item.datapoint[0] + tzOffset * 60 * 1000);
                     var y = item.datapoint[1];
                     var label = item.series.label ? item.series.label + ' : ' : 'Map Time : ';
                     if (prevPoint != item.dataIndex) {
                       $('#tooltip').remove();
-                      showToolTip(item.pageX,item.pageY,x + '<br/>' + label + y);
+                      showToolTip(item.pageX,item.pageY,new Date(x).format('UTC:yyyy-mm-dd HH:00"Z"') + '<br/>' + label + y);
                     }
                     prevPoint = item.dataIndex;
                   }
@@ -3310,7 +3311,7 @@ function init() {
                        $('#tsResults')
                       ,spd.length > 0 && dir.length > 0 ? spd : chartData
                       ,{
-                         xaxis     : {mode  : "time"}
+                         xaxis     : {mode  : "time",timeformat : "%b %d\n%H:%MZ"}
                         ,crosshair : {mode  : 'x'   }
                         ,grid      : {backgroundColor : {colors : ['#fff','#eee']},borderWidth : 1,borderColor : '#99BBE8',hoverable : true}
                         ,zoom      : {interactive : false}
@@ -5146,7 +5147,7 @@ function addObs(l) {
                 for (var i in e.feature.attributes.data) {
                   for (var j = 0; j < e.feature.attributes.data[i].length; j++) {
                     OpenLayers.Request.GET({
-                       url      : e.feature.attributes.data[i][0].url + '&tz=' + new Date().getTimezoneOffset() + '&uom=english'
+                       url      : e.feature.attributes.data[i][0].url + '&tz=' + tzOffset + '&uom=english'
                       ,callback : OpenLayers.Function.bind(obsPopupCallback,null,target)
                     });
                   }
@@ -5604,7 +5605,7 @@ function queryWMS(xy,a,chartIt) {
     var mapTime;
     var legIdx = legendsStore.find('name',a[i].name);
     if (legIdx >= 0 && legendsStore.getAt(legIdx).get('timestamp') && String(legendsStore.getAt(legIdx).get('timestamp')).indexOf('alert') < 0) {
-      mapTime = '&mapTime=' + (new Date(shortDateToDate(legendsStore.getAt(legIdx).get('timestamp')).getTime() - new Date().getTimezoneOffset() * 60000) / 1000);
+      mapTime = '&mapTime=' + (new Date(shortDateToDate(legendsStore.getAt(legIdx).get('timestamp')).getTime() - tzOffset * 60000) / 1000);
     }
     var paramOrig = OpenLayers.Util.getParameters(a[i].getFullRequestString({}));
     var paramNew = {
@@ -5630,10 +5631,10 @@ function queryWMS(xy,a,chartIt) {
       paramNew['GFI_TIME'] = 'min/max';
     }
     if (a[i].url.indexOf('wms.maracoos.org') >= 0) {
-      targets.push({url : a[i].getFullRequestString(paramNew,'getFeatureInfo.php?' + forceQueryLayers(a[i].name,a[i].url) + '&tz=' + new Date().getTimezoneOffset() + mapTime),title : mainStore.getAt(mainStore.find('name',a[i].name)).get('displayName'),type : 'model'});
+      targets.push({url : a[i].getFullRequestString(paramNew,'getFeatureInfo.php?' + forceQueryLayers(a[i].name,a[i].url) + '&tz=' + tzOffset + mapTime),title : mainStore.getAt(mainStore.find('name',a[i].name)).get('displayName'),type : 'model'});
     }
     else {
-      targets.push({url : a[i].getFullRequestString(paramNew,'getFeatureInfo.php?' + a[i].url + '&tz=' + new Date().getTimezoneOffset() + mapTime),title : mainStore.getAt(mainStore.find('name',a[i].name)).get('displayName'),type : 'model'});
+      targets.push({url : a[i].getFullRequestString(paramNew,'getFeatureInfo.php?' + a[i].url + '&tz=' + tzOffset + mapTime),title : mainStore.getAt(mainStore.find('name',a[i].name)).get('displayName'),type : 'model'});
     }
   }
   if (chartIt) {

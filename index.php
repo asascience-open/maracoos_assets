@@ -409,6 +409,7 @@
     <script type="text/javascript" src="./js/jquery/jquery.flot.navigate.js"></script>
     <script type="text/javascript" src="./js/jquery/excanvas.js"></script>
     <script type="text/javascript" src="./js/overlib.js"></script>
+    <script type="text/javascript" src="./js/dateFormat.js"></script>
     <script type="text/javascript" src="misc.js?v=<?php echo $version?>"></script>
     <script type="text/javascript" src="map.js.php?v=<?php echo $version?>"></script>
     <div id="overDiv" class="overStyle" style="position:absolute;visibility:hidden;z-index:1000000;"></div>
