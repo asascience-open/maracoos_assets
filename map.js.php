@@ -3346,7 +3346,7 @@ function init() {
                     if (chartData[0].nowIdx != '' && chartData[0].data[chartData[0].nowIdx]) {
                       var imageSize = 16;
                       var o = p.pointOffset({x : chartData[0].data[chartData[0].nowIdx][0],y : chartData[0].data[chartData[0].nowIdx][1]});
-                      $('#tsResults').prepend('<div class="dir" style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'img/asterisk_orange.png\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
+                      $('#tsResults').prepend('<div style="position:absolute;left:' + (o.left-imageSize/2) + 'px;top:' + (o.top-(imageSize/2)) + 'px;background-image:url(\'img/asterisk_orange.png\');width:' + imageSize + 'px;height:' + imageSize + 'px;"></div>');
                     }
                   }
                   lyrQueryPts.features.length > 0 ? Ext.getCmp('requery').show() : Ext.getCmp('requery').hide();
@@ -5465,6 +5465,7 @@ function showToolTip(x,y,contents) {
     ,padding            : '2px'
     ,'background-color' : '#fff'
     ,opacity            : 0.80
+   ,'z-index'           : 10000001
   }).appendTo("body").fadeIn(200);
 }
 

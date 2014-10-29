@@ -280,6 +280,10 @@ div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
 .legendLabel {
   font : 10px/13px tahoma,helvetica,sans-serif;
 }
+.legend {
+  z-index: 100;
+  pointer-events: none;
+}
 
 #legendsGridPanel .x-grid3-row {
   border-color   : #ffffff;
@@ -493,6 +497,12 @@ div.olControlMousePosition {
 .ext-chrome .horizontal-scrolling-fix .x-grid3-scroller {
    overflow-x: hidden;
 }
-.dir{
-   z-index:100;
+
+#tsResults {
+  z-index: 100;
+}
+
+.dir {
+  z-index: 101;
+  pointer-events: none;
 }
