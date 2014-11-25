@@ -36,7 +36,7 @@
   }
   // nerrs isn't sos either
   else if (isset($_REQUEST['NERRS'])) {
-    require_once('/usr/local/nusoap/lib/nusoap.php');
+    require_once('./nusoap/lib/nusoap.php');
     nusoap_base::setGlobalDebugLevel(0);
     $wsdl = new nusoap_client('http://cdmo.baruch.sc.edu/webservices2/requests.cfc?wsdl');
     $result = $wsdl->call('exportAllParamsDateRangeXML',array('tbl'=>$_REQUEST['NERRS'],'mindate'=>$_REQUEST['startDt'],'maxdate'=>$_REQUEST['endDt'],'fieldlist'=>$_REQUEST['name']));

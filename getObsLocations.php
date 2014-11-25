@@ -483,7 +483,7 @@
   }
 
   if ($_REQUEST['provider'] == 'NERRS') {
-    require_once('/usr/local/nusoap/lib/nusoap.php');
+    require_once('./nusoap/lib/nusoap.php');
     nusoap_base::setGlobalDebugLevel(0);
     $u      = substr($_SERVER['PHP_SELF'],0,strrpos($_SERVER['PHP_SELF'],'/'));
     $wsdl   = new nusoap_client('http://cdmo.baruch.sc.edu/webservices2/requests.cfc?wsdl','wsdl');
