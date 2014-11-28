@@ -4,7 +4,7 @@ echo osu start `date`
 if [ ! -f /tmp/lock_osu ]; then
   touch /tmp/lock_osu
 
-  wget 'ftp://ftp.coas.oregonstate.edu/pub/erofeev/OSU_Glider_Tracks/OSU_Glider_Tracks.kml' -O /var/www/html/assets/xml/gliders_osu/OSU_Glider_Tracks.kml
+  wget 'ftp://ftp.coas.oregonstate.edu/pub/erofeev/OSU_Glider_Tracks/OSU_Glider_Tracks_11-26-2014.kml' -O /var/www/html/assets/xml/gliders_osu/OSU_Glider_Tracks.kml
 
   rm -f /tmp/lock_osu
 fi
