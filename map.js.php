@@ -428,6 +428,7 @@ function init() {
         ,''
         ,''
       ]
+/*
       ,[
          'asset'
         ,'BOB'
@@ -457,6 +458,7 @@ function init() {
         ,''
         ,''
       ]
+*/
       ,[
          'asset'
         ,'MDDNR'
@@ -3520,7 +3522,9 @@ function initMap() {
     syncObs({name : 'MDDNR'});
     syncObs({name : 'Weatherflow'});
     syncObs({name : 'HRECOS'});
+/*
     syncObs({name : 'BOB'});
+*/
     syncObs({name : 'HF Radar'});
     syncObs({name : 'Satellites'});
     syncObs({name : 'Gliders'});
@@ -3924,10 +3928,12 @@ function initMap() {
        name       : 'HRECOS'
       ,visibility : typeof defaultLayers['HRECOS'] != 'undefined'
     });
+/*
     addObs({
        name       : 'BOB'
       ,visibility : typeof defaultLayers['BOB'] != 'undefined'
     });
+*/
     addObs({
        name       : 'HF Radar'
       ,visibility : typeof defaultLayers['HF Radar'] != 'undefined'
