@@ -1334,7 +1334,7 @@ function init() {
       ,[
          'model'
         ,'HYCOM SST'
-        ,'HYCOM water temp (global)'
+        ,'HYCOM surface temperature'
         ,'off'
         ,defaultLayers['HYCOM SST'] ? 'on' : 'off'
         ,'off'

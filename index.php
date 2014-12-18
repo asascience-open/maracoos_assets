@@ -61,7 +61,6 @@
         ,'WWIII wave direction'    : true
         ,'WWIII wave period'       : true
         ,'HYCOM elevation (global)'    : true
-        ,'HYCOM SST'               : true
         ,'NCOM SST'                : true
         ,'ROMS SST'                : true
         ,'HYCOM salinity (global)' : true
