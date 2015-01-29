@@ -431,7 +431,7 @@ function init() {
       ,[
          'asset'
         ,'BOB'
-        ,'CRWO stations'
+        ,'PRO-BOB buoy system'
         ,'off'
         ,defaultLayers['BOB'] ? 'on' : 'off'
         ,''
