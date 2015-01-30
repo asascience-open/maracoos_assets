@@ -30,7 +30,7 @@
   }
   else {
     array_unshift($o,sprintf("<tr><td colspan=2 style='text-align:center'><b>%s-%02d</b></td></tr>",date('M d G:i e',$t - $_REQUEST['tz'] * 60),$_REQUEST['tz']/60));
-    array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='http://pro-bob.com/data/api/buoys'>More observations and station information</a></td></tr>");
+    array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='http://pro-bob.com/'>More observations and station information</a></td></tr>");
     echo json_encode(Array('html' => '<table class="obsDetails">'.implode('',$o).'</table>'));
   }
 ?>
