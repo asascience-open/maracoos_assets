@@ -1525,7 +1525,7 @@ function init() {
         ,''
         ,''
         ,''
-        ,(typeof defaultLayerLayers['ESPRESSO bottom temperature'] != 'undefined' && defaultLayerLayers['ESPRESSO bottom temperature'] != '' ? defaultLayerLayers['ESPRESSO bottom temperature'] : 'http://wms.maracoos.org/wms/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=temp&STYLES=' + defaultStyles['ESPRESSO bottom temperature'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
+        ,(typeof defaultLayerLayers['ESPRESSO bottom temperature'] != 'undefined' && defaultLayerLayers['ESPRESSO bottom temperature'] != '' ? defaultLayerLayers['ESPRESSO bottom temperature'] : 'http://wms.maracoos.org/wms/datasets/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=sea_water_potential_temperature&STYLES=' + defaultStyles['ESPRESSO bottom temperature'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
         ,'false'
         ,'-78,35.5,-62,44'
         ,'true'
@@ -1672,11 +1672,11 @@ function init() {
         ,''
         ,''
         ,''
-        ,(typeof defaultLayerLayers['Chlorophyll concentration'] != 'undefined' && defaultLayerLayers['Chlorophyll concentration'] != '' ? defaultLayerLayers['Chlorophyll concentration'] : 'http://wms.maracoos.org/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=chl_oc3&STYLES=' + defaultStyles['Chlorophyll concentration'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
+        ,(typeof defaultLayerLayers['Chlorophyll concentration'] != 'undefined' && defaultLayerLayers['Chlorophyll concentration'] != '' ? defaultLayerLayers['Chlorophyll concentration'] : 'http://wms.maracoos.org/wms/datasets/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=mass_concentration_of_chlorophyll_in_sea_water&STYLES=' + defaultStyles['Chlorophyll concentration'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
         ,'false'
         ,'-78,35.5,-62,44'
         ,'true'
-        ,typeof defaultLayerLayers['Chlorophyll concentration'] != 'undefined' && defaultLayerLayers['Chlorophyll concentration'] != '' ? defaultLayerLayers['Chlorophyll concentration'] : 'http://wms.maracoos.org/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,typeof defaultLayerLayers['Chlorophyll concentration'] != 'undefined' && defaultLayerLayers['Chlorophyll concentration'] != '' ? defaultLayerLayers['Chlorophyll concentration'] : 'http://wms.maracoos.org/wms/datasets/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&'
         ,'temperature'
       ]
       ,[
@@ -1701,11 +1701,11 @@ function init() {
         ,''
         ,''
         ,''
-        ,(typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'http://wms.maracoos.org/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=mcsst&STYLES=' + defaultStyles['Satellite water temperature'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
+        ,(typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'http://wms.maracoos.org/wms/datasets/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=sea_surface_temperature&STYLES=' + defaultStyles['Satellite water temperature'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
         ,'false'
         ,'-78,35.5,-62,44'
         ,'true'
-        ,typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'http://wms.maracoos.org/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,typeof defaultLayerLayers['Satellite water temperature'] != 'undefined' && defaultLayerLayers['Satellite water temperature'] != '' ? defaultLayerLayers['Satellite water temperature'] : 'http://wms.maracoos.org/wms/datasets/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
         ,'temperature'
       ]
       ,[
@@ -2122,32 +2122,32 @@ function init() {
     ,data : [
       [
          '7-day composite'
-        ,'http://wms.maracoos.org/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
-        ,'http://wms.maracoos.org/wms/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/datasets/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/datasets/maracoos_SST_Seven_Agg/?GFI_TIME=min/max&ELEVATION=0&'
         ,7 * 24
       ]
       ,[
          '3-day composite'
-        ,'http://wms.maracoos.org/wms/maracoos_SST_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&'
-        ,'http://wms.maracoos.org/wms/maracoos_SST_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/datasets/maracoos_SST_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/datasets/maracoos_SST_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&'
         ,3 * 24
       ]
       ,[
          '1-day composite'
-        ,'http://wms.maracoos.org/wms/maracoos_SST_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'
-        ,'http://wms.maracoos.org/wms/maracoos_SST_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/datasets/maracoos_SST_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/datasets/maracoos_SST_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'
         ,1 * 24
       ]
       ,[
          'Single pass declouded'
-        ,'http://wms.maracoos.org/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'
-        ,'http://wms.maracoos.org/wms/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/datasets/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/datasets/maracoos_Masked_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'
         ,-999
       ]
       ,[
          'Single pass'
-        ,'http://wms.maracoos.org/wms/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'
-        ,'http://wms.maracoos.org/wms/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/datasets/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'
+        ,'http://wms.maracoos.org/wms/datasets/maracoos_SST_Agg/?GFI_TIME=min/max&ELEVATION=0&'
         ,-999
       ]
     ]
@@ -2179,9 +2179,9 @@ function init() {
      ,'dMinHours'
     ]
     ,data : [
-       ['8-day composite'      ,'http://wms.maracoos.org/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://wms.maracoos.org/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&',8 * 24]
-      ,['3-day composite'      ,'http://wms.maracoos.org/wms/MODIS_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://wms.maracoos.org/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&',3 * 24]
-      ,['1-day composite'      ,'http://wms.maracoos.org/wms/MODIS_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'   ,'http://wms.maracoos.org/wms/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&',1 * 24]
+       ['8-day composite'      ,'http://wms.maracoos.org/wms/datasets/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://wms.maracoos.org/wms/datasets/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&',8 * 24]
+      ,['3-day composite'      ,'http://wms.maracoos.org/wms/datasets/MODIS_Three_Agg/?GFI_TIME=min/max&ELEVATION=0&' ,'http://wms.maracoos.org/wms/datasets/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&',3 * 24]
+      ,['1-day composite'      ,'http://wms.maracoos.org/wms/datasets/MODIS_One_Agg/?GFI_TIME=min/max&ELEVATION=0&'   ,'http://wms.maracoos.org/wms/datasets/MODIS_Eight_Agg/?GFI_TIME=min/max&ELEVATION=0&',1 * 24]
     ]
   });
 
@@ -3624,8 +3624,8 @@ function initMap() {
     });
     addWMS({
        name   : 'ESPRESSO bottom temperature'
-      ,url    : 'http://wms.maracoos.org/wms/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&'
-      ,layers : 'temp'
+      ,url    : 'http://wms.maracoos.org/wms/datasets/maracoos_espresso/?GFI_TIME=min/max&ELEVATION=0&'
+      ,layers : 'sea_water_potential_temperature'
       ,format : 'image/' + defaultImageTypes['ESPRESSO bottom temperature']
       ,styles : defaultStyles['ESPRESSO bottom temperature']
       ,singleTile : true
@@ -3634,7 +3634,7 @@ function initMap() {
     addWMS({
        name   : 'Satellite water temperature'
       ,url    : defaultLayerLayers['Satellite water temperature']
-      ,layers : 'mcsst'
+      ,layers : 'sea_surface_temperature'
       ,format : 'image/png'
       ,styles : defaultStyles['Satellite water temperature']
       ,singleTile : true
@@ -3725,7 +3725,7 @@ function initMap() {
     addWMS({
        name   : 'Chlorophyll concentration'
       ,url    : defaultLayerLayers['Chlorophyll concentration']
-      ,layers : 'chl_oc3'
+      ,layers : 'mass_concentration_of_chlorophyll_in_sea_water'
       ,format : 'image/png'
       ,styles : defaultStyles['Chlorophyll concentration']
       ,singleTile : true
