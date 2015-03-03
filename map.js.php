@@ -1594,6 +1594,35 @@ function init() {
       ]
       ,[
          'observation'
+        ,'HF radar currents (Scripps)'
+        ,'HF radar currents (Scripps)'
+        ,'off'
+        ,defaultLayers['HF radar currents (Scripps)'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HF radar currents (Scripps).html')))?>'
+        ,'palette'
+        ,typeof defaultOpacities['HF radar currents (Scripps)'] != 'undefined' && defaultOpacities['HF radar currents (Scripps)'] != '' ? defaultOpacities['HF radar currents (Scripps)'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,(typeof defaultLayerLayers['HF radar currents (Scripps)'] != 'undefined' && defaultLayerLayers['HF radar currents (Scripps)'] != '' ? defaultLayerLayers['HF radar currents (Scripps)'] : 'http://wms.maracoos.org/wms/datasets/HFRADAR_USEGC_2km/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=surface_eastward_sea_water_velocity,surface_northward_sea_water_velocity&STYLES=' + defaultStyles['HF radar currents (Scripps)'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
+        ,'false'
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'currentsVelocity'
+      ]
+      ,[
+         'observation'
         ,'HF radar currents (PR-VI)'
         ,'HF radar currents (PR-VI)'
         ,'off'
@@ -3856,6 +3885,15 @@ function initMap() {
       ,layers : 'MARCOOSHFRADAR_CURRENTS'
       ,format : 'image/' + defaultImageTypes['HF radar currents']
       ,styles : defaultStyles['HF radar currents']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'HF radar currents (Scripps)'
+      ,url    : 'http://wms.maracoos.org/wms/datasets/HFRADAR_USEGC_2km/?GFI_TIME=min/max&ELEVATION=0&'
+      ,layers : 'surface_eastward_sea_water_velocity,surface_northward_sea_water_velocity'
+      ,format : 'image/' + defaultImageTypes['HF radar currents (Scripps)']
+      ,styles : defaultStyles['HF radar currents (Scripps)']
       ,singleTile : true
       ,projection : proj3857
     });
