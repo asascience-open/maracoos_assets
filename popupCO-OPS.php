@@ -12,7 +12,14 @@
   foreach (explode(',',$_REQUEST['properties']) as $p) {
     if ($p != 'sea_surface_height_amplitude_due_to_equilibrium_ocean_tide') { // don't want predicted
       $xml = @simplexml_load_file("$base&observedProperty=$p".'&responseFormat=text/xml;schema="ioos/0.6.1"');
-      if ($xml->children('http://www.opengis.net/om/1.0')->{'result'}) {
+      if (
+        $xml->children('http://www.opengis.net/om/1.0')->{'result'}
+      && $xml
+        ->children('http://www.opengis.net/om/1.0')->{'result'}[0]
+        ->children('http://www.noaa.gov/ioos/0.6.1')->{'Composite'}[0]
+        ->children('http://www.opengis.net/gml/3.2')->{'valueComponents'}[0]
+        ->children('http://www.noaa.gov/ioos/0.6.1')->{'Array'}
+      ) {
         $t = sprintf("%s",$xml
           ->children('http://www.opengis.net/om/1.0')->{'result'}[0]
           ->children('http://www.noaa.gov/ioos/0.6.1')->{'Composite'}[0]
