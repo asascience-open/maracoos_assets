@@ -4932,6 +4932,7 @@ function addXYZ(l,timeSensitive) {
         var z = this.serverResolutions != null ?
             OpenLayers.Util.indexOf(this.serverResolutions, res) :
             this.map.getZoom() + this.zoomOffset;
+            z += map.baseLayer.minZoomLevel ? map.baseLayer.minZoomLevel : 0;
 
         var limit = Math.pow(2, z);
         if (this.wrapDateLine)
