@@ -1571,37 +1571,38 @@ function init() {
         ,defaultLayers['HF radar currents'] ? 'on' : 'off'
         ,'off'
         ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HF radar currents.html')))?>'
-        ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
+        ,''
         ,typeof defaultOpacities['HF radar currents'] != 'undefined' && defaultOpacities['HF radar currents'] != '' ? defaultOpacities['HF radar currents'] : 100
-        ,defaultStyles['HF radar currents'].split('-')[7]
-        ,defaultImageTypes['HF radar currents']
         ,''
-        ,defaultStyles['HF radar currents'].split('-')[0]
-        ,defaultStyles['HF radar currents'].split('-')[1]
-        ,defaultStyles['HF radar currents'].split('-')[3]
-        ,defaultStyles['HF radar currents'].split('-')[2]
-        ,defaultStyles['HF radar currents'].split('-')[4]
-        ,defaultStyles['HF radar currents'].split('-')[5]
-        ,defaultStyles['HF radar currents'].split('-')[6]
-        ,'0-6'
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=MARCOOSHFRADAR_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HF radar currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=MARCOOSHFRADAR_CURRENTS'
         ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'legends/HF radar currents.png'
+        ,'false'
         ,'-78,35.5,-62,44'
-        ,'true'
+        ,'false'
         ,''
-        ,'currentsVelocity'
+        ,''
       ]
+/*
       ,[
          'observation'
-        ,'HF radar currents (Scripps)'
-        ,'HF radar currents (Scripps)'
+        ,'HF radar currents (2km)'
+        ,'HF radar currents (2km)'
         ,'off'
-        ,defaultLayers['HF radar currents (Scripps)'] ? 'on' : 'off'
+        ,defaultLayers['HF radar currents (2km)'] ? 'on' : 'off'
         ,'off'
-        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HF radar currents (Scripps).html')))?>'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HF radar currents (2km).html')))?>'
         ,'palette'
-        ,typeof defaultOpacities['HF radar currents (Scripps)'] != 'undefined' && defaultOpacities['HF radar currents (Scripps)'] != '' ? defaultOpacities['HF radar currents (Scripps)'] : 100
+        ,typeof defaultOpacities['HF radar currents (2km)'] != 'undefined' && defaultOpacities['HF radar currents (2km)'] != '' ? defaultOpacities['HF radar currents (2km)'] : 100
         ,''
         ,''
         ,''
@@ -1614,12 +1615,71 @@ function init() {
         ,''
         ,''
         ,''
-        ,(typeof defaultLayerLayers['HF radar currents (Scripps)'] != 'undefined' && defaultLayerLayers['HF radar currents (Scripps)'] != '' ? defaultLayerLayers['HF radar currents (Scripps)'] : 'http://wms.maracoos.org/wms/datasets/HFRADAR_USEGC_2km/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=surface_eastward_sea_water_velocity,surface_northward_sea_water_velocity&STYLES=' + defaultStyles['HF radar currents (Scripps)'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
+        ,(typeof defaultLayerLayers['HF radar currents (2km)'] != 'undefined' && defaultLayerLayers['HF radar currents (2km)'] != '' ? defaultLayerLayers['HF radar currents (2km)'] : 'http://wms.maracoos.org/wms/datasets/HFRADAR_USEGC_2km/?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=surface_eastward_sea_water_velocity,surface_northward_sea_water_velocity&STYLES=' + defaultStyles['HF radar currents (2km)'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
         ,'false'
         ,'-78,35.5,-62,44'
         ,'true'
         ,''
         ,'currentsVelocity'
+      ]
+*/
+      ,[
+         'observation'
+        ,'HF radar currents (2km)'
+        ,'HF radar currents (2km)'
+        ,'off'
+        ,defaultLayers['HF radar currents (2km)'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HF radar currents (2km).html')))?>'
+        ,''
+        ,typeof defaultOpacities['HF radar currents (2km)'] != 'undefined' && defaultOpacities['HF radar currents (2km)'] != '' ? defaultOpacities['HF radar currents (2km)'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://cordc.ucsd.edu/projects/mapping/maps/img/php/cb.php?range=0,50&scheme=7&width=204&height=15&padding=15,8&title=Current%20Strength%20%28cm/s%29&font_size=10&ticks=6'
+        ,'false'
+        ,'-78,35.5,-62,44'
+        ,'false'
+        ,''
+        ,''
+      ]
+      ,[
+         'observation'
+        ,'HF radar currents (6km)'
+        ,'HF radar currents (6km)'
+        ,'off'
+        ,defaultLayers['HF radar currents (6km)'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HF radar currents (6km).html')))?>'
+        ,''
+        ,typeof defaultOpacities['HF radar currents (6km)'] != 'undefined' && defaultOpacities['HF radar currents (6km)'] != '' ? defaultOpacities['HF radar currents (6km)'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://cordc.ucsd.edu/projects/mapping/maps/img/php/cb.php?range=0,50&scheme=7&width=204&height=15&padding=15,8&title=Current%20Strength%20%28cm/s%29&font_size=10&ticks=6'
+        ,'false'
+        ,'-78,35.5,-62,44'
+        ,'false'
+        ,''
+        ,''
       ]
       ,[
          'observation'
@@ -3888,15 +3948,30 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
+/*
     addWMS({
-       name   : 'HF radar currents (Scripps)'
+       name   : 'HF radar currents (2km)'
       ,url    : 'http://wms.maracoos.org/wms/datasets/HFRADAR_USEGC_2km/?GFI_TIME=min/max&ELEVATION=0&'
       ,layers : 'surface_eastward_sea_water_velocity,surface_northward_sea_water_velocity'
-      ,format : 'image/' + defaultImageTypes['HF radar currents (Scripps)']
-      ,styles : defaultStyles['HF radar currents (Scripps)']
+      ,format : 'image/' + defaultImageTypes['HF radar currents (2km)']
+      ,styles : defaultStyles['HF radar currents (2km)']
       ,singleTile : true
       ,projection : proj3857
     });
+*/
+
+    addXYZ({
+       name : 'HF radar currents (6km)'
+      // ,url  : 'http://www.nhc.noaa.gov/storm_graphics/AT01/inundation/L${z}/' + stm1 + '_${x}i_${y}j.png'
+      ,url  : 'http://mosaic.ucsd.edu/tiles/rtv/us/a/6000/YYYY-MM/YYYYMMDD_HH00/${zz}/z${z}y${y}x${x}.png?rng=0,50&scheme=7'
+    },true);
+
+    addXYZ({
+       name : 'HF radar currents (2km)'
+      // ,url  : 'http://www.nhc.noaa.gov/storm_graphics/AT01/inundation/L${z}/' + stm1 + '_${x}i_${y}j.png'
+      ,url  : 'http://mosaic.ucsd.edu/tiles/rtv/us/a/2000/YYYY-MM/YYYYMMDD_HH00/${zz}/z${z}y${y}x${x}.png?rng=0,50&scheme=7'
+    },true);
+
     addWMS({
        name   : 'HF radar currents (PR-VI)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
@@ -3915,13 +3990,6 @@ function initMap() {
       ,singleTile : true
       ,projection : proj900913
     });
-
-/*
-    addXYZ({
-       name : 'NHC inundation'
-      ,url  : 'http://www.nhc.noaa.gov/storm_graphics/AT01/inundation/L${z}/' + stm1 + '_${x}i_${y}j.png'
-    });
-*/
 
     addTileCache({
        name   : 'Bathymetry contours'
@@ -4829,13 +4897,20 @@ function addTileCache(l) {
   addLayer(lyr,false);
 }
 
-function addXYZ(l) {
+function addXYZ(l,timeSensitive) {
   if (filterOutLayers && filterOutLayers[l.name] || restrictLayers && !restrictLayers[l.name]) {
     return;
   }
+  var url = l.url;
+  if (timeSensitive) {
+    url = url.replace(/YYYY/g,dNow.getUTCFullYear());
+    url = url.replace(/MM/g,String.leftPad(dNow.getUTCMonth() + 1,2,'0'));
+    url = url.replace(/DD/g,String.leftPad(dNow.getUTCDate(),2,'0'));
+    url = url.replace(/HH/g,String.leftPad(dNow.getUTCHours(),2,'0'));
+  }
   var lyr = new OpenLayers.Layer.XYZ(
      l.name
-    ,l.url
+    ,url
     ,{
        sphericalMercator : true
       ,isBaseLayer       : false
@@ -4843,6 +4918,29 @@ function addXYZ(l) {
       ,visibility        : mainStore.find('name',l.name) >= 0 ? mainStore.getAt(mainStore.find('name',l.name)).get('status') == 'on' : false
     }
   );
+
+  if (timeSensitive) {
+    lyr.timeSensitive = l.url;
+  }
+
+  lyr.getXYZ = function(bounds) {
+        var res = this.map.getResolution();
+        var x = Math.round((bounds.left - this.maxExtent.left) /
+            (res * this.tileSize.w));
+        var y = Math.round((this.maxExtent.top - bounds.top) /
+            (res * this.tileSize.h));
+        var z = this.serverResolutions != null ?
+            OpenLayers.Util.indexOf(this.serverResolutions, res) :
+            this.map.getZoom() + this.zoomOffset;
+
+        var limit = Math.pow(2, z);
+        if (this.wrapDateLine)
+        {
+           x = ((x % limit) + limit) % limit;
+        }
+
+        return {'x': x, 'y': y, 'z': z, 'zz' : String.leftPad(z,2,'0')};
+  }
 
   addLayer(lyr,false);
 }
@@ -6111,6 +6209,15 @@ function setMapTime() {
       if (mainStore.find('name',map.layers[i].name) >= 0) {
         pageTracker._trackEvent('timeSlider',mainStore.getAt(mainStore.find('name',map.layers[i].name)).get('displayName'));
       }
+    }
+    else if (map.layers[i].timeSensitive) {
+      var url = map.layers[i].timeSensitive;
+      url = url.replace(/YYYY/g,dNow.getUTCFullYear());
+      url = url.replace(/MM/g,String.leftPad(dNow.getUTCMonth() + 1,2,'0'));
+      url = url.replace(/DD/g,String.leftPad(dNow.getUTCDate(),2,'0'));
+      url = url.replace(/HH/g,String.leftPad(dNow.getUTCHours(),2,'0'));
+      map.layers[i].setUrl(url);
+      map.layers[i].redraw();
     }
   }
 
