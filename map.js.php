@@ -1646,7 +1646,7 @@ function init() {
         ,''
         ,''
         ,'http://cordc.ucsd.edu/projects/mapping/maps/img/php/cb.php?range=0,50&scheme=7&width=204&height=15&padding=15,8&title=Current%20Strength%20%28cm/s%29&font_size=10&ticks=6'
-        ,'false'
+        ,''
         ,'-78,35.5,-62,44'
         ,'false'
         ,''
@@ -1675,7 +1675,7 @@ function init() {
         ,''
         ,''
         ,'http://cordc.ucsd.edu/projects/mapping/maps/img/php/cb.php?range=0,50&scheme=7&width=204&height=15&padding=15,8&title=Current%20Strength%20%28cm/s%29&font_size=10&ticks=6'
-        ,'false'
+        ,''
         ,'-78,35.5,-62,44'
         ,'false'
         ,''
@@ -1704,7 +1704,7 @@ function init() {
         ,''
         ,''
         ,'http://cordc.ucsd.edu/projects/mapping/maps/img/php/cb.php?range=0,50&scheme=7&width=204&height=15&padding=15,8&title=Current%20Strength%20%28cm/s%29&font_size=10&ticks=6'
-        ,'false'
+        ,''
         ,'-78,35.5,-62,44'
         ,'false'
         ,''
@@ -2930,7 +2930,7 @@ function init() {
      id               : 'legendsGridPanel'
     ,hidden           : hideLegendsGridPanel
     ,region           : 'east'
-    ,width            : 180
+    ,width            : 200
     ,title            : 'Legends'
     ,collapsible      : true
     ,store            : legendsStore
@@ -4795,6 +4795,7 @@ function addLayer(lyr,timeSensitive) {
             + '&BBOX=' +  map.getExtent().toArray().join(',')
             + '&' + new Date().getTime()
             + '&drawImg=false'
+            + (/HF radar currents \(.*km\)/.test(lyr.name) ? ('&lyrName=' + lyr.name + '&mapTime=' + dNow.getUTCFullYear() + '-' + String.leftPad(dNow.getUTCMonth() + 1,2,'0') + '-' + String.leftPad(dNow.getUTCDate(),2,'0') + 'T' + String.leftPad(dNow.getUTCHours(),2,'0') + ':00') : '')
           ,callback : function(r) {
             if (r.responseText == '') {
               rec.set('timestamp','<span class="alert">There was a problem<br/>drawing this layer.<span>');
@@ -4804,6 +4805,9 @@ function addLayer(lyr,timeSensitive) {
             }
             else if (r.responseText == 'dateNotAvailable') {
               rec.set('timestamp','');
+            }
+            else if (/^latest=/.test(r.responseText)) {
+              rec.set('timestamp','<span class="alert">Data unavailable. Max time:<br/>' + shortDateString(new Date(r.responseText.split('=')[1] * 1000)) + '</span>');
             }
             else {
               var prevTs = rec.get('timestamp');
