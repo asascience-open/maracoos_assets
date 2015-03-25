@@ -1625,6 +1625,35 @@ function init() {
 */
       ,[
          'observation'
+        ,'HF radar currents (1km)'
+        ,'HF radar currents (1km)'
+        ,'off'
+        ,defaultLayers['HF radar currents (1km)'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HF radar currents (1km).html')))?>'
+        ,''
+        ,typeof defaultOpacities['HF radar currents (1km)'] != 'undefined' && defaultOpacities['HF radar currents (1km)'] != '' ? defaultOpacities['HF radar currents (1km)'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'http://cordc.ucsd.edu/projects/mapping/maps/img/php/cb.php?range=0,50&scheme=7&width=204&height=15&padding=15,8&title=Current%20Strength%20%28cm/s%29&font_size=10&ticks=6'
+        ,'false'
+        ,'-78,35.5,-62,44'
+        ,'false'
+        ,''
+        ,''
+      ]
+      ,[
+         'observation'
         ,'HF radar currents (2km)'
         ,'HF radar currents (2km)'
         ,'off'
@@ -3962,14 +3991,17 @@ function initMap() {
 
     addXYZ({
        name : 'HF radar currents (6km)'
-      // ,url  : 'http://www.nhc.noaa.gov/storm_graphics/AT01/inundation/L${z}/' + stm1 + '_${x}i_${y}j.png'
       ,url  : 'http://mosaic.ucsd.edu/tiles/rtv/us/a/6000/YYYY-MM/YYYYMMDD_HH00/${zz}/z${z}y${y}x${x}.png?rng=0,50&scheme=7'
     },true);
 
     addXYZ({
        name : 'HF radar currents (2km)'
-      // ,url  : 'http://www.nhc.noaa.gov/storm_graphics/AT01/inundation/L${z}/' + stm1 + '_${x}i_${y}j.png'
       ,url  : 'http://mosaic.ucsd.edu/tiles/rtv/us/a/2000/YYYY-MM/YYYYMMDD_HH00/${zz}/z${z}y${y}x${x}.png?rng=0,50&scheme=7'
+    },true);
+
+    addXYZ({
+       name : 'HF radar currents (1km)'
+      ,url  : 'http://mosaic.ucsd.edu/tiles/rtv/us/a/1000/YYYY-MM/YYYYMMDD_HH00/${zz}/z${z}y${y}x${x}.png?rng=0,50&scheme=7'
     },true);
 
     addWMS({
