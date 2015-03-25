@@ -1571,26 +1571,26 @@ function init() {
         ,defaultLayers['HF radar currents'] ? 'on' : 'off'
         ,'off'
         ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/HF radar currents.html')))?>'
-        ,''
+        ,'baseStyle,colorMap,barbLabel,striding,tailMag,min,max'
         ,typeof defaultOpacities['HF radar currents'] != 'undefined' && defaultOpacities['HF radar currents'] != '' ? defaultOpacities['HF radar currents'] : 100
+        ,defaultStyles['HF radar currents'].split('-')[7]
+        ,defaultImageTypes['HF radar currents']
         ,''
+        ,defaultStyles['HF radar currents'].split('-')[0]
+        ,defaultStyles['HF radar currents'].split('-')[1]
+        ,defaultStyles['HF radar currents'].split('-')[3]
+        ,defaultStyles['HF radar currents'].split('-')[2]
+        ,defaultStyles['HF radar currents'].split('-')[4]
+        ,defaultStyles['HF radar currents'].split('-')[5]
+        ,defaultStyles['HF radar currents'].split('-')[6]
+        ,'0-6'
         ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=MARCOOSHFRADAR_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['HF radar currents'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=MARCOOSHFRADAR_CURRENTS'
         ,''
+        ,'-180,-90,180,90' // '-78,35.5,-62,44'
+        ,'true'
         ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,''
-        ,'legends/HF radar currents.png'
-        ,'false'
-        ,'-78,35.5,-62,44'
-        ,'false'
-        ,''
-        ,''
+        ,'currentsVelocity'
       ]
 /*
       ,[
