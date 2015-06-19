@@ -68,6 +68,7 @@ var chartData;
 var chartUrls = {};
 var chartLayerStore;
 var esriOcean;     // special case for this layer
+var nauticalCharts; // special case for this layer, too
 var dNow = new Date();
 dNow.setUTCMinutes(0);
 dNow.setUTCSeconds(0);
@@ -3305,6 +3306,31 @@ function init() {
                         }
                       }
                     }
+                   ,'-'
+                    ,{
+                       text         : 'Show NOAA Raster Nautical Charts'
+                      ,checked      : false
+                      ,hideOnClick  : false
+                      ,group        : 'noaa_rnc'
+                      ,handler      : function() {
+                        var lyr = map.getLayersByName('NOAA_RNC')[0];
+                        if (lyr) {
+                          lyr.setVisibility(true);
+                        }
+                      }
+                    }
+                    ,{
+                       text         : 'Hide NOAA Raster Nautical Charts'
+                      ,checked      : true
+                      ,hideOnClick  : false
+                      ,group        : 'noaa_rnc'
+                      ,handler      : function() {
+                        var lyr = map.getLayersByName('NOAA_RNC')[0];
+                        if (lyr) {
+                          lyr.setVisibility(false);
+                        }
+                      }
+                    }
                   ]}}
                 ]
               }
@@ -3526,6 +3552,24 @@ function initMap() {
     ,{sphericalMercator: true,visibility : defaultBasemap == 'ESRI Ocean',isBaseLayer : true,opacity : defaultOpacities['ESRI Ocean'] / 100,wrapDateLine : true,attribution : "GEBCO, NOAA, National Geographic, AND data by <a href='http://www.arcgis.com/home/item.html?id=6348e67824504fc9a62976434bf0d8d5'>ESRI</a>"} // ,serverResolutions : basemapResolutions,resolutions : basemapResolutions.slice(1)}
   );
 
+  nauticalCharts = new OpenLayers.Layer.WMS(
+     'NOAA_RNC'
+    ,'http://seamlessrnc.nauticalcharts.noaa.gov/arcgis/services/RNC/NOAA_RNC/ImageServer/WMSServer'
+    ,{
+       layers      : 'NOAA_RNC'
+      ,format      : 'image/png'
+      ,transparent : false
+      ,styles      : ''
+    }
+    ,{
+       isBaseLayer  : false
+      ,visibility   : false
+      ,opacity      : 1
+      ,wrapDateLine : true
+      ,projection   : proj3857
+    }
+  );
+
   map = new OpenLayers.Map('map',{
     layers            : [
        esriOcean
@@ -3550,6 +3594,7 @@ function initMap() {
         ,visibility    : defaultBasemap == 'Google Terrain'
         ,minZoomLevel  : 2
       })
+      ,nauticalCharts
       ,lyrQueryPts
     ]
     ,projection        : proj900913
