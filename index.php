@@ -72,8 +72,8 @@
       };
       var defaultStyles = {
          'Chlorophyll concentration (VIIRS)'  : 'SST_USCG-0-2'
-        ,'Chlorophyll concentration'          : 'pcolor_average_jet_0.01_15_node_Log'
-        ,'ESPRESSO bottom temperature'        : 'pcolor_average_jet_0_30_grid_False'
+        ,'Chlorophyll concentration'          : 'pcolor_average_jet_0.01_15_50_Log'
+        ,'ESPRESSO bottom temperature'        : 'pcolor_average_jet_0_30_60_False'
         ,'GFS winds'                          : 'WINDS_VERY_SPARSE_GRADIENT-False-2-0-45-High'
         ,'HF radar currents (PR-VI)'          : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'HF radar currents'                  : 'CURRENTS_RAMP-Jet-False-3-True-0-2-High'
@@ -94,7 +94,7 @@
         ,'ROMS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'SABGOM currents'                    : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'NW_ATL currents'                    : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
-        ,'Satellite water temperature'        : 'pcolor_average_jet_5_32_node_False'
+        ,'Satellite water temperature'        : 'pcolor_average_jet_5_32_54_False'
         ,'Stevens NYHOPS'                     : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'STPS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'SWAN wave direction (Caribbean)'    : ''
