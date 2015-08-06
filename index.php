@@ -169,6 +169,9 @@
           ,'Chlorophyll concentration (VIIRS)'      : true
           ,'GFS winds'               : true
           ,'WRF winds (Caribbean)'   : true
+          ,'HF radar currents (1km)' : true
+          ,'HF radar currents (2km)' : true
+          ,'HF radar currents (6km)' : true
         };
         filterOutLayers = {};
 
