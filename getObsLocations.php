@@ -230,6 +230,7 @@
   }
 
   if ($_REQUEST['provider'] == 'Gliders') {
+    $u = 'http://marine.rutgers.edu/cool/auvs/track.php?service=track&&region=mab&t0='.date("Y-m-d H:i",time() - 365 / 2 * 24 * 3600);
     $json = json_decode(file_get_contents('http://marine.rutgers.edu/cool/auvs/track.php?service=track&&region=mab&t0='.date("Y-m-d H:i",time() - 365 / 2 * 24 * 3600)));
     foreach ($json as $k => $v) {
       $active = false; // honor what is marked as active

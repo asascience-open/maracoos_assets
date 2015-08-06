@@ -11,16 +11,18 @@
 
   if (preg_match('/text%2Fcsv/i',$_SERVER["REQUEST_URI"])) {
     $csv = csv_to_array(file_get_contents(substr($_SERVER["REQUEST_URI"],strpos($_SERVER["REQUEST_URI"],'?')+1)));
+    $rowhits = 0;
     for ($i = 0; $i < count($csv); $i++) {
       // round to nearest hour
       preg_match("/(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d)Z/",$csv[$i]['time'],$a);
       $t = mktime($a[4],0,0,$a[2],$a[3],$a[1]) + ($a[4] >= 30 ? 3600 : 0) - $_REQUEST['tz'] * 60;
-      $hits = 0;
+      $colhits = 0;
       foreach (array_keys($csv[$i]) as $vStr) {
         if (!preg_match('/time|longitude|latitude/i',$vStr)) {
           preg_match("/(.*)\[(.*)\]/",$vStr,$a);
           if ($csv[$i][$vStr] != '--') {
-            $hits++;
+            $colhits++;
+            $rowhits++;
             if (!array_key_exists($a[1],$data['d'])) {
               $data['d'][$a[1]] = array(sprintf("%f",$csv[$i][$vStr]));
               $data['u'][$a[1]] = sprintf("%s",$a[2]);
@@ -29,16 +31,16 @@
               array_push($data['d'][$a[1]],sprintf("%f",$csv[$i][$vStr]));
             }
           }
-          else {
-            $data['error'] = 'No data at location';
-          }
         }
       }
-      if ($hits > 0) {
+      if ($colhits > 0) {
         if ($mapTime == $t) {
           $data['nowIdx'] = count($data['t']);
         }
         array_push($data['t'],$t * 1000);
+      }
+      if ($rowhits == 0) {
+        $data['error'] = 'No data at location';
       }
     }
   }
