@@ -697,7 +697,7 @@ function init() {
         ,'off'
         ,defaultLayers['GFS winds'] ? 'on' : 'off'
         ,'off'
-        ,'No information currently available.'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/GFS winds.html')))?>'
         ,'baseStyle,barbLabel,striding,min,max'
         ,typeof defaultOpacities['GFS winds'] != 'undefined' && defaultOpacities['GFS winds'] != '' ? defaultOpacities['GFS winds'] : 100
         ,defaultStyles['GFS winds'].split('-')[5]
