@@ -148,7 +148,6 @@
         defaultLayers = {
            'NDBC'               : true
           ,'HYCOM currents (global)': true
-          ,'NHC storm tracks'       : true
         };
         restrictLayers = {
            'NDBC'                    : true
@@ -170,7 +169,8 @@
           ,'Chlorophyll concentration (VIIRS)'      : true
           ,'GFS winds'               : true
           ,'WRF winds (Caribbean)'   : true
-          ,'NHC storm tracks'        : true
+          ,'HF radar currents (2km)' : true
+          ,'HF radar currents (6km)' : true
         };
         filterOutLayers = {};
 

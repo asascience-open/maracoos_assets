@@ -8,6 +8,7 @@ if [ ! -f /tmp/lock_sos ]; then
   wget 'http://sdf.ndbc.noaa.gov/sos/server.php?VERSION=1.0.0&SERVICE=SOS&REQUEST=GetCapabilities' -O xml/ndbc.xml
   wget 'http://opendap.co-ops.nos.noaa.gov/ioos-dif-sos/SOS?service=SOS&request=GetCapabilities&version=1.0.0' -O xml/co-ops.xml
   wget 'http://d.weatherflow.com/sos/sos.pl?request=GetCapabilities&service=SOS' -O xml/weatherflow.xml
+  wget 'http://d.weatherflow.com/sos/sos_asa.pl?request=GetCapabilities&service=SOS' -O xml/weatherflow.cari.xml
 
   rm -f /tmp/lock_sos
 fi
