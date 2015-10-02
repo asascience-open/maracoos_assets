@@ -4058,17 +4058,11 @@ function initMap() {
       ,singleTile : true
       ,projection : proj3857
     });
-    addWMS({
+
+    addArcGIS93Rest({
        name   : 'NHC storm tracks'
-      ,url    : 'https://nowcoast.noaa.gov/arcgis/services/nowcoast/wwa_meteocean_tropicalcyclones_trackintensityfcsts_time/MapServer/WMSServer'
-      ,layers : '0,1,2,3,4,5,6,7,8,9'
-/*
-      ,url    : 'http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/wwa?BGCOLOR=0xCCCCFE&'
-      ,layers : 'NHC_TRACK_POLY,NHC_TRACK_LIN,NHC_TRACK_PT,NHC_TRACK_PT_72DATE,NHC_TRACK_PT_120DATE,NHC_TRACK_PT_0NAMEDATE,NHC_TRACK_PT_MSLPLABELS,NHC_TRACK_PT_72WLBL,NHC_TRACK_PT_120WLBL,NHC_TRACK_PT_72CAT,NHC_TRACK_PT_120CAT'
-*/
-      ,format : 'image/png'
-      ,styles : ''
-      ,singleTile : true
+      ,url    : 'http://tmservices1.esri.com/arcgis/rest/services/LiveFeeds/Hurricane_Active/MapServer/export'
+      ,layers : 'show:0,1,2,3,4'
       ,projection : proj3857
     });
 
@@ -4880,6 +4874,27 @@ function addLayer(lyr,timeSensitive) {
     }
   }
   map.addLayer(lyr);
+}
+
+function addArcGIS93Rest(l) {
+  if (filterOutLayers && filterOutLayers[l.name] || restrictLayers && !restrictLayers[l.name]) {
+    return;
+  }
+  var lyr = new OpenLayers.Layer.ArcGIS93Rest(
+     l.name
+    ,l.url
+    ,{
+       layers      : l.layers
+      ,transparent : true
+    }
+    ,{
+       isBaseLayer : false
+      ,projection  : l.projection
+      ,visibility  : mainStore.getAt(mainStore.find('name',l.name)).get('status') == 'on'
+      ,opacity     : mainStore.getAt(mainStore.find('name',l.name)).get('settingsOpacity') / 100
+    }
+  );
+  addLayer(lyr,true);
 }
 
 function addWMS(l) {
