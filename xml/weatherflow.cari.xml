@@ -147,7 +147,7 @@
 			<time>
 			  <gml:TimePeriod>
 			    <gml:beginPosition>2009-02-25T19:30Z</gml:beginPosition>
-			    <gml:endPosition>2015-08-29T14:00Z</gml:endPosition>
+			    <gml:endPosition>2015-10-02T17:05Z</gml:endPosition>
 			  </gml:TimePeriod>
 			</time>
 			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48649:anemometer1"/>
@@ -177,7 +177,7 @@
 			<time>
 			  <gml:TimePeriod>
 			    <gml:beginPosition>2009-03-04T15:35Z</gml:beginPosition>
-			    <gml:endPosition>2015-08-29T14:03Z</gml:endPosition>
+			    <gml:endPosition>2015-10-02T17:08Z</gml:endPosition>
 			  </gml:TimePeriod>
 			</time>
 			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48650:anemometer1"/>
@@ -207,7 +207,7 @@
 			<time>
 			  <gml:TimePeriod>
 			    <gml:beginPosition></gml:beginPosition>
-			    <gml:endPosition>2015-08-29T13:58Z</gml:endPosition>
+			    <gml:endPosition>2015-10-02T17:05Z</gml:endPosition>
 			  </gml:TimePeriod>
 			</time>
 			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48685:anemometer1"/>
@@ -237,7 +237,7 @@
 			<time>
 			  <gml:TimePeriod>
 			    <gml:beginPosition>2009-02-28T14:10Z</gml:beginPosition>
-			    <gml:endPosition>2015-08-29T14:05Z</gml:endPosition>
+			    <gml:endPosition>2015-10-02T17:00Z</gml:endPosition>
 			  </gml:TimePeriod>
 			</time>
 			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48686:anemometer1"/>
@@ -267,7 +267,7 @@
 			<time>
 			  <gml:TimePeriod>
 			    <gml:beginPosition>2009-02-28T15:15Z</gml:beginPosition>
-			    <gml:endPosition>2015-08-29T14:00Z</gml:endPosition>
+			    <gml:endPosition>2015-10-02T17:00Z</gml:endPosition>
 			  </gml:TimePeriod>
 			</time>
 			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48687:anemometer1"/>
@@ -297,7 +297,7 @@
 			<time>
 			  <gml:TimePeriod>
 			    <gml:beginPosition>2009-03-04T02:00Z</gml:beginPosition>
-			    <gml:endPosition>2015-08-29T14:00Z</gml:endPosition>
+			    <gml:endPosition>2015-10-02T17:05Z</gml:endPosition>
 			  </gml:TimePeriod>
 			</time>
 			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48688:anemometer1"/>
@@ -327,7 +327,7 @@
 			<time>
 			  <gml:TimePeriod>
 			    <gml:beginPosition>2009-02-25T19:45Z</gml:beginPosition>
-			    <gml:endPosition>2015-08-29T14:02Z</gml:endPosition>
+			    <gml:endPosition>2015-10-02T17:09Z</gml:endPosition>
 			  </gml:TimePeriod>
 			</time>
 			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48689:anemometer1"/>
@@ -357,7 +357,7 @@
 			<time>
 			  <gml:TimePeriod>
 			    <gml:beginPosition>2009-02-22T14:45Z</gml:beginPosition>
-			    <gml:endPosition>2015-08-29T14:04Z</gml:endPosition>
+			    <gml:endPosition>2015-10-02T17:09Z</gml:endPosition>
 			  </gml:TimePeriod>
 			</time>
 			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48690:anemometer1"/>
@@ -387,7 +387,7 @@
 			<time>
 			  <gml:TimePeriod>
 			    <gml:beginPosition>2009-02-22T14:20Z</gml:beginPosition>
-			    <gml:endPosition>2015-08-29T14:00Z</gml:endPosition>
+			    <gml:endPosition>2015-10-02T16:55Z</gml:endPosition>
 			  </gml:TimePeriod>
 			</time>
 			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48691:anemometer1"/>
@@ -417,7 +417,7 @@
 			<time>
 			  <gml:TimePeriod>
 			    <gml:beginPosition></gml:beginPosition>
-			    <gml:endPosition>2015-08-29T13:58Z</gml:endPosition>
+			    <gml:endPosition>2015-10-02T17:09Z</gml:endPosition>
 			  </gml:TimePeriod>
 			</time>
 			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48692:anemometer1"/>
@@ -447,7 +447,7 @@
 			<time>
 			  <gml:TimePeriod>
 			    <gml:beginPosition>2009-02-23T20:40Z</gml:beginPosition>
-			    <gml:endPosition>2015-08-29T14:00Z</gml:endPosition>
+			    <gml:endPosition>2015-10-02T17:05Z</gml:endPosition>
 			  </gml:TimePeriod>
 			</time>
 			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48693:anemometer1"/>
@@ -477,7 +477,7 @@
 			<time>
 			  <gml:TimePeriod>
 			    <gml:beginPosition></gml:beginPosition>
-			    <gml:endPosition>2015-08-29T14:06Z</gml:endPosition>
+			    <gml:endPosition>2015-10-02T17:05Z</gml:endPosition>
 			  </gml:TimePeriod>
 			</time>
 			<procedure xlink:href="urn:x-weatherflow:def:sensor:weatherflow.com::48694:anemometer1"/>

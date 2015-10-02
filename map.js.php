@@ -4060,12 +4060,16 @@ function initMap() {
     });
     addWMS({
        name   : 'NHC storm tracks'
+      ,url    : 'https://nowcoast.noaa.gov/arcgis/services/nowcoast/wwa_meteocean_tropicalcyclones_trackintensityfcsts_time/MapServer/WMSServer'
+      ,layers : '0,1,2,3,4,5,6,7,8,9'
+/*
       ,url    : 'http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/wwa?BGCOLOR=0xCCCCFE&'
       ,layers : 'NHC_TRACK_POLY,NHC_TRACK_LIN,NHC_TRACK_PT,NHC_TRACK_PT_72DATE,NHC_TRACK_PT_120DATE,NHC_TRACK_PT_0NAMEDATE,NHC_TRACK_PT_MSLPLABELS,NHC_TRACK_PT_72WLBL,NHC_TRACK_PT_120WLBL,NHC_TRACK_PT_72CAT,NHC_TRACK_PT_120CAT'
+*/
       ,format : 'image/png'
       ,styles : ''
       ,singleTile : true
-      ,projection : proj900913
+      ,projection : proj3857
     });
 
     addTileCache({
