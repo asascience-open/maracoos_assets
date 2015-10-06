@@ -117,6 +117,21 @@
     fclose($f);
   }
 
+  if ($_REQUEST['provider'] == 'CBIBS') {
+    $provider = 'CBIBS';
+    $json = json_decode(file_get_contents('xml/cbibs.json'),TRUE);
+    foreach ($json as $platform) {
+      addToStack($metadata,$bbox,$platform['lon'],$platform['lat'],$provider,array(
+         'id'       => $platform['id']
+        ,'descr'    => sprintf("$provider Station %s - %s",$platform['id'],$platform['name'])
+        ,'url'      => "popup$provider.php"
+          ."?id=".$platform['id']
+          ."&lon=".$platform['lon']
+          ."&lat=".$platform['lat']
+      ));
+    }
+  }
+
   if ($_REQUEST['provider'] == 'MDDNR') {
     $provider = 'MDDNR';
     $f = fopen("http://mddnr.chesapeakebay.net/newmontech/contmon/MACOORA_Station.cfm",'r');

@@ -46,6 +46,7 @@ var obsMinZoom = {
   ,'USGS'        : 5 + 5
   ,'Ship'        : 0 + 5
   ,'NERRS'       : 0 + 5
+  ,'CBIBS'       : 0
   ,'MDDNR'       : 0 + 5
   ,'Weatherflow' : 0 + 5
   ,'HRECOS'      : 0 
@@ -321,6 +322,35 @@ function init() {
         ,defaultLayers['NDBC'] ? 'on' : 'off'
         ,''
         ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/NDBC.html')))?>' 
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'-78,35.5,-62,44'
+        ,''
+        ,''
+        ,''
+      ]
+      ,[
+         'asset'
+        ,'CBIBS'
+        ,'CBIBS stations'
+        ,'off'
+        ,defaultLayers['CBIBS'] ? 'on' : 'off'
+        ,''
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/CBIBS.html')))?>'
         ,''
         ,''
         ,''
@@ -3676,6 +3706,7 @@ function initMap() {
       navControl.draw();
     }
     syncObs({name : 'NDBC'});
+    syncObs({name : 'CBIBS'});
     syncObs({name : 'CO-OPS'});
     syncObs({name : 'USGS'});
     syncObs({name : 'Ship'});
@@ -4076,6 +4107,10 @@ function initMap() {
     addObs({
        name       : 'NDBC'
       ,visibility : typeof defaultLayers['NDBC'] != 'undefined'
+    });
+    addObs({
+       name       : 'CBIBS'
+      ,visibility : typeof defaultLayers['CBIBS'] != 'undefined'
     });
     addObs({
        name       : 'CO-OPS'
