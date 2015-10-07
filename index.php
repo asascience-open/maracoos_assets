@@ -86,9 +86,9 @@
         ,'NAM winds'                          : 'WINDS_VERY_SPARSE_GRADIENT-False-1-0-45-High'
         ,'NCOM currents (S Atlantic)'         : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'NCOM salinity (S Atlantic)'         : 'SST_USCG-0-50'
-        ,'ROMS salinity (Caribbean)'          : 'SST_USCG-0-50'
+        ,'ROMS salinity (Caribbean)'          : 'SST_USCG-33.5-36.5'
         ,'NCOM SST'                           : 'SST_USCG-0-50'
-        ,'ROMS SST'                           : 'SST_USCG-0-50'
+        ,'ROMS SST'                           : 'SST_USCG-25-30'
         ,'ROMS currents (Caribbean)'          : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS ESPRESSO'                      : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
@@ -173,6 +173,8 @@
           ,'HF radar currents (2km)' : true
           ,'HF radar currents (6km)' : true
           ,'NHC storm tracks'  : true
+          ,'NCOM currents (S Atlantic)' : true
+          ,'NCOM salinity (S Atlantic)' : true
         };
         filterOutLayers = {};
 

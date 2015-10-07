@@ -726,7 +726,7 @@ function init() {
         ,'off'
         ,defaultLayers['WRF winds (Caribbean)'] ? 'on' : 'off'
         ,'off'
-        ,'No information currently available.'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/WRF winds (Caribbean).html')))?>'
         ,'baseStyle,barbLabel,striding,min,max'
         ,typeof defaultOpacities['WRF winds (Caribbean)'] != 'undefined' && defaultOpacities['WRF winds (Caribbean)'] != '' ? defaultOpacities['WRF winds (Caribbean)'] : 100
         ,defaultStyles['WRF winds (Caribbean)'].split('-')[5]
@@ -3745,7 +3745,7 @@ function initMap() {
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'CARIB_ROMSR1_SST'
       ,format : 'image/' + defaultImageTypes['ROMS SST']
-      ,styles : ''
+      ,styles : defaultStyles['ROMS SST']
       ,singleTile : true
       ,projection : proj3857
     });
@@ -3772,7 +3772,7 @@ function initMap() {
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'CARIB_ROMSR1_SALINITY'
       ,format : 'image/' + defaultImageTypes['ROMS salinity (Caribbean)']
-      ,styles : ''
+      ,styles : defaultStyles['ROMS salinity (Caribbean)']
       ,singleTile : true
       ,projection : proj3857
     });
