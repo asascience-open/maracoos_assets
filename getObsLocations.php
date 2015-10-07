@@ -126,8 +126,7 @@
         ,'descr'    => sprintf("$provider Station %s - %s",$platform['id'],$platform['name'])
         ,'url'      => "popup$provider.php"
           ."?id=".$platform['id']
-          ."&lon=".$platform['lon']
-          ."&lat=".$platform['lat']
+          ."&constellation=".$platform['constellation']
       ));
     }
   }

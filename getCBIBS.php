@@ -34,10 +34,11 @@
       ));
 
       array_push($d,array(
-         'id'   => $platforms['result']['id'][$i]
-        ,'name' => $platforms['result']['cn'][$i]
-        ,'lon'  => $metadata['result']['longitude']
-        ,'lat'  => $metadata['result']['latitude']
+         'id'            => $platforms['result']['id'][$i]
+        ,'name'          => $platforms['result']['cn'][$i]
+        ,'lon'           => $metadata['result']['longitude']
+        ,'lat'           => $metadata['result']['latitude']
+        ,'constellation' => $constellation
       ));
     }
   }
