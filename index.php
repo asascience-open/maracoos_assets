@@ -68,7 +68,8 @@
         ,'ROMS salinity (Caribbean)' : true
         ,'Chlorophyll concentration (VIIRS)'      : true
         ,'GFS winds'               : true
-        ,'WRF winds (Caribbean)'   : true
+        ,'WRF 1km winds (Caribbean)'   : true
+        ,'WRF 2km winds (Caribbean)'   : true
       };
       var defaultStyles = {
          'Chlorophyll concentration (VIIRS)'  : 'SST_USCG-0-2'
@@ -101,7 +102,8 @@
         ,'SWAN wave height (Caribbean)'       : 'WAVE_HEIGHT_STYLE-0-7'
         ,'SWAN wave period (Caribbean)'       : 'WAVE_PERIOD_STYLE-0-17'
         ,'UMass'                              : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
-        ,'WRF winds (Caribbean)'              : 'WINDS_VERY_SPARSE_GRADIENT-False-2-0-45-High'
+        ,'WRF 1km winds (Caribbean)'          : 'WINDS_VERY_SPARSE_GRADIENT-False-2-0-45-High'
+        ,'WRF 2km winds (Caribbean)'          : 'WINDS_VERY_SPARSE_GRADIENT-False-2-0-45-High'
         ,'WWIII wave direction'               : ''
         ,'WWIII wave height'                  : 'WAVE_HEIGHT_STYLE-0-7'
         ,'WWIII wave period'                  : 'WAVE_PERIOD_STYLE-0-17'
@@ -169,7 +171,8 @@
           ,'ROMS salinity (Caribbean)' : true
           ,'Chlorophyll concentration (VIIRS)'      : true
           ,'GFS winds'               : true
-          ,'WRF winds (Caribbean)'   : true
+          ,'WRF 1km winds (Caribbean)'   : true
+          ,'WRF 2km winds (Caribbean)'   : true
           ,'HF radar currents (2km)' : true
           ,'HF radar currents (6km)' : true
           ,'NHC storm tracks'  : true
