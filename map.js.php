@@ -721,27 +721,56 @@ function init() {
       ]
       ,[
          'model'
-        ,'WRF winds (Caribbean)'
-        ,'WRF winds (Caribbean)'
+        ,'WRF 1km winds (Caribbean)'
+        ,'WRF 1km winds (Caribbean)'
         ,'off'
-        ,defaultLayers['WRF winds (Caribbean)'] ? 'on' : 'off'
+        ,defaultLayers['WRF 1km winds (Caribbean)'] ? 'on' : 'off'
         ,'off'
-        ,'No information currently available.'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/WRF 1km winds (Caribbean).html')))?>'
         ,'baseStyle,barbLabel,striding,min,max'
-        ,typeof defaultOpacities['WRF winds (Caribbean)'] != 'undefined' && defaultOpacities['WRF winds (Caribbean)'] != '' ? defaultOpacities['WRF winds (Caribbean)'] : 100
-        ,defaultStyles['WRF winds (Caribbean)'].split('-')[5]
-        ,defaultImageTypes['WRF winds (Caribbean)']
+        ,typeof defaultOpacities['WRF 1km winds (Caribbean)'] != 'undefined' && defaultOpacities['WRF 1km winds (Caribbean)'] != '' ? defaultOpacities['WRF 1km winds (Caribbean)'] : 100
+        ,defaultStyles['WRF 1km winds (Caribbean)'].split('-')[5]
+        ,defaultImageTypes['WRF 1km winds (Caribbean)']
         ,''
-        ,defaultStyles['WRF winds (Caribbean)'].split('-')[0]
+        ,defaultStyles['WRF 1km winds (Caribbean)'].split('-')[0]
         ,''
-        ,defaultStyles['WRF winds (Caribbean)'].split('-')[2]
-        ,defaultStyles['WRF winds (Caribbean)'].split('-')[1]
+        ,defaultStyles['WRF 1km winds (Caribbean)'].split('-')[2]
+        ,defaultStyles['WRF 1km winds (Caribbean)'].split('-')[1]
         ,''
-        ,defaultStyles['WRF winds (Caribbean)'].split('-')[3]
-        ,defaultStyles['WRF winds (Caribbean)'].split('-')[4]
+        ,defaultStyles['WRF 1km winds (Caribbean)'].split('-')[3]
+        ,defaultStyles['WRF 1km winds (Caribbean)'].split('-')[4]
         ,'0-70'
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_WRF_WINDS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['WRF winds (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_WRF_WINDS'
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_WRF_WINDS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['WRF 1km winds (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_WRF_WINDS'
+        ,''
+        ,'-68,17,-63.9,19.5'
+        ,'true'
+        ,''
+        ,'windsVelocity'
+      ]
+      ,[
+         'model'
+        ,'WRF 2km winds (Caribbean)'
+        ,'WRF 2km winds (Caribbean)'
+        ,'off'
+        ,defaultLayers['WRF 2km winds (Caribbean)'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/WRF 2km winds (Caribbean).html')))?>'
+        ,'baseStyle,barbLabel,striding,min,max'
+        ,typeof defaultOpacities['WRF 2km winds (Caribbean)'] != 'undefined' && defaultOpacities['WRF 2km winds (Caribbean)'] != '' ? defaultOpacities['WRF 2km winds (Caribbean)'] : 100
+        ,defaultStyles['WRF 2km winds (Caribbean)'].split('-')[5]
+        ,defaultImageTypes['WRF 2km winds (Caribbean)']
+        ,''
+        ,defaultStyles['WRF 2km winds (Caribbean)'].split('-')[0]
+        ,''
+        ,defaultStyles['WRF 2km winds (Caribbean)'].split('-')[2]
+        ,defaultStyles['WRF 2km winds (Caribbean)'].split('-')[1]
+        ,''
+        ,defaultStyles['WRF 2km winds (Caribbean)'].split('-')[3]
+        ,defaultStyles['WRF 2km winds (Caribbean)'].split('-')[4]
+        ,'0-70'
+        ,''
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=CARIB_WRF_2KM_WINDS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['WRF 2km winds (Caribbean)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=CARIB_WRF_2KM_WINDS'
         ,''
         ,'-68,17,-63.9,19.5'
         ,'true'
@@ -3745,7 +3774,7 @@ function initMap() {
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'CARIB_ROMSR1_SST'
       ,format : 'image/' + defaultImageTypes['ROMS SST']
-      ,styles : ''
+      ,styles : defaultStyles['ROMS SST']
       ,singleTile : true
       ,projection : proj3857
     });
@@ -3772,7 +3801,7 @@ function initMap() {
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'CARIB_ROMSR1_SALINITY'
       ,format : 'image/' + defaultImageTypes['ROMS salinity (Caribbean)']
-      ,styles : ''
+      ,styles : defaultStyles['ROMS salinity (Caribbean)']
       ,singleTile : true
       ,projection : proj3857
     });
@@ -4157,11 +4186,20 @@ function initMap() {
       ,projection : proj3857
     });
     addWMS({
-       name   : 'WRF winds (Caribbean)'
+       name   : 'WRF 2km winds (Caribbean)'
+      ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
+      ,layers : 'CARIB_WRF_2KM_WINDS'
+      ,format : 'image/' + defaultImageTypes['WRF 2km winds (Caribbean)']
+      ,styles : defaultStyles['WRF 2km winds (Caribbean)']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'WRF 1km winds (Caribbean)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'CARIB_WRF_WINDS'
-      ,format : 'image/' + defaultImageTypes['WRF winds (Caribbean)']
-      ,styles : defaultStyles['WRF winds (Caribbean)']
+      ,format : 'image/' + defaultImageTypes['WRF 1km winds (Caribbean)']
+      ,styles : defaultStyles['WRF 1km winds (Caribbean)']
       ,singleTile : true
       ,projection : proj3857
     });
