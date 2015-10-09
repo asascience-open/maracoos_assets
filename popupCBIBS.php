@@ -22,7 +22,7 @@
   foreach ($readings['result']['measurement'] as $var) {
     $t = strtotime($readings['result']['time'][$i].'Z');
     $n = $var;
-    $a = convertUnits($readings['result']['value'][$i],$readings['result']['units'][$i],$_REQUEST['uom'] == 'english');
+    $a = convertUnits(sprintf("%.02f",$readings['result']['value'][$i]),$readings['result']['units'][$i],$_REQUEST['uom'] == 'english');
     $u = $a[0]["uom"];
     $v = $a[0]["val"];
     $dEnd   = date('m/d/Y H:i');

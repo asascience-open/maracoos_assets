@@ -135,7 +135,7 @@
     $i = 0;
     foreach ($var_data['result']['values']['time'] as $t) {
       $n = $var_data['result']['measurement'];
-      $a = convertUnits($var_data['result']['values']['value'][$i],$var_data['result']['units'],$_REQUEST['uom'] == 'english');
+      $a = convertUnits(sprintf("%.02f",$var_data['result']['values']['value'][$i]),$var_data['result']['units'],$_REQUEST['uom'] == 'english');
       $u = $a[0]["uom"];
       $v = $a[0]["val"];
       if (count($a) == 2 && isset($_REQUEST['uomB'])) {

@@ -57,9 +57,6 @@
       else if ($uom == 'bar') {
         array_push($a,Array('val' => sprintf("%.02f",$val / 1000),'uom' => 'hPa','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
-      else if ($uom == '&#37;') {
-        array_push($a,Array('val' => sprintf("%.02f",$val),'uom' => '&#37;','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
-      }
       else {
         return Array(Array('val' => $val,'uom' => $uom,'cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
