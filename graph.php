@@ -95,6 +95,58 @@
       }
     }
   }
+  else if (isset($_REQUEST['CBIBS'])) {
+    function request($url,$key,$d) {
+      $options = array(
+        'http' => array(
+          'header'  => array(
+             'Content-Type: application/json'
+            ,'Accept: application/json'
+          )
+          ,'method'  => 'POST'
+          ,'content' => json_encode($d)
+        )
+      );
+
+      $context = stream_context_create($options);
+      $result  = file_get_contents(
+         $url
+        ,false
+        ,$context
+      );
+      return json_decode($result, TRUE);
+    }
+
+    $url = 'http://cbibs-dev.asa.rocks/cdrh_rpc';
+    $key = '0b0e81fe763a79660716bcee98a9ccbea653c8bd';
+
+    $var_data = request($url,$key,array(
+       'method' => 'QueryData'
+      ,'params' => array(
+         $_REQUEST['constellation']
+        ,$_REQUEST['station']
+        ,$_REQUEST['name']
+        ,$_REQUEST['startDt']
+        ,$_REQUEST['endDt']
+        ,$key
+      )
+      ,'id' => 1
+    ));
+    $i = 0;
+    foreach ($var_data['result']['values']['time'] as $t) {
+      $n = $var_data['result']['measurement'];
+      $a = convertUnits(sprintf("%.02f",$var_data['result']['values']['value'][$i]),$var_data['result']['units'],$_REQUEST['uom'] == 'english');
+      $u = $a[0]["uom"];
+      $v = $a[0]["val"];
+      if (count($a) == 2 && isset($_REQUEST['uomB'])) {
+        $v = $a[1]['val'];
+        $u = $a[1]['uom'];
+      }
+      $uom = $u;
+      $data[$t] = $v;
+      $i++;
+    }
+  }
   // mddnr isn't either
   else if (isset($_REQUEST['MDDNR'])) {
     $a = getMDDNR(substr($_SERVER["REQUEST_URI"],strpos($_SERVER["REQUEST_URI"],'&MDDNR=')+7));
