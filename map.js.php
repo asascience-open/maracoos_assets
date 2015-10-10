@@ -5496,7 +5496,7 @@ function obsPopupCallback(target,r) {
     html = '<table id="obsPopup"><tr><th style="text-align:center">No recent observations</th></tr></table>';
   }
   else {
-    html = '<table id="obsPopup"><tr><td>' + obs.html + '</td></tr></table>';
+    html = '<div id="obsPopupContainer"><table id="obsPopup"><tr><td>' + obs.html + '</td></tr></table></div>';
   }
   if (document.getElementById(target + '.data')) {
     document.getElementById(target + '.data').innerHTML = html;
