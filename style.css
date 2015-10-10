@@ -229,8 +229,13 @@ div.olLayerGoogleCopyright, div.olLayerGooglePoweredBy {
   border : 1px solid #99BBE8;
 }
 
+#obsPopupContainer {
+  max-height : 300px;
+  overflow-y : auto;
+}
+
 #obsPopup table {
-  width : 310px;
+  width : 290px;
 }
 #obsPopup td {
   vertical-align : top;
