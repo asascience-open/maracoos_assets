@@ -39,6 +39,10 @@
         array_push($a,Array('val' => sprintf("%.02f",$val * 1.943844),'uom' => 'knots','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
         array_push($a,Array('val' => sprintf("%.02f",$val * 2.23693629),'uom' => 'mph','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
+      if ($uom == 'cm/s') {
+        array_push($a,Array('val' => sprintf("%.02f",$val * 1.943844 / 100),'uom' => 'knots','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
+        array_push($a,Array('val' => sprintf("%.02f",$val * 2.23693629 / 100),'uom' => 'mph','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
+      }
       else if ($uom == 'm') {
         array_push($a,Array('val' => sprintf("%.02f",$val * 3.2808399),'uom' => 'ft','cat' => isset($english_category[$uom]) ? $english_category[$uom] : ''));
       }
@@ -235,5 +239,81 @@
        'maxT' => $maxT
       ,'data' => $data
     );
+  }
+
+  function getCariCOOS($url,$param,$uomB) {
+    date_default_timezone_set('UTC');
+    $t = ''; // assume same time for all obs
+    $o = Array();
+
+    $f = fopen($url,'r');
+    $col = array();
+    $uom = array();
+    $dep = array();
+    $col2idx = Array();
+    $row_hits = 0;
+    $timeseries_data = Array();
+    $timeseries_uom = '';
+    while (($data = fgetcsv($f)) !== FALSE) {
+      foreach ($data as $k => $v) {
+        if (preg_match("/^\#(.................)(.*)/",$v,$matches)) {
+          if (count($col) == 0) {
+            $col = preg_split("/ +/",$matches[2]);
+          }
+          else if (count($uom) == 0) {
+            $uom = preg_split("/ +/",$matches[2]);
+          }
+          else if (count($dep) == 0) {
+            $dep = preg_split("/ +/",$matches[2]);
+            for ($i = 0; $i < count($dep); $i++) {
+              $col2idx[$col[$i].' '.$dep[$i]] = $i;
+            }
+          }
+        }
+        else if (preg_match("/^(....).(..).(..).(..).(..)..(.*)/",$v,$matches)) {
+          $val = preg_split("/ +/",$matches[6]);
+          $i = 0;
+          foreach ($col2idx as $n => $idx) {
+            if ($param == $n || ($param == '' && $row_hits == 0)) {
+              $t_str = sprintf(
+                 "%04d-%02d-%02d %02d:%02d UTC"
+                ,$matches[1]
+                ,$matches[2]
+                ,$matches[3]
+                ,$matches[4]
+                ,$matches[5]
+              );
+              $t = strtotime($t_str);
+              $a = convertUnits($val[$idx],$uom[$i],$_REQUEST['uom'] == 'english');
+              $u = $a[0]["uom"];
+              $v = $a[0]["val"];
+
+              $dEnd   = date('m/d/Y H:i');
+              $dBegin = date('m/d/Y H:i',time() - 60 * 60 * (24 * 7 + 1));
+              $dBegin = date('m/d/Y H:i',time() - 60 * 60 * (24 * 7 + 1));
+              $uEscape = str_replace('"','\\"',"graph.php?id=".$_REQUEST['id']."&name=$n&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&cat='.$a[0]['cat']."&CariCOOS&startDt=$dBegin&endDt=$dEnd");
+              $extra = '';
+              if (count($a) == 2) {
+                $extra = "<br><a href='javascript:showObsTimeseries([\"".str_replace('graph.php?','graph.php?uomB&',$uEscape)."\"])'><img src='img/graph.png' width=10 height=10></a> ".$a[1]["val"].' '.$a[1]["uom"];
+                if ($uomB) {
+                  $v = $a[1]['val'];
+                  $u = $a[1]['uom'];
+                }
+              }
+              $timeseries_data[$t_str] = $v;
+              $timeseries_uom = $u;
+              if ($v != '') {
+                array_push($o,sprintf("<tr><td><b>%s</b></td><td><a href='javascript:showObsTimeseries([\"$uEscape\"])'><img src='img/graph.png' width=10 height=10></a> $v $u$extra</td></tr>",$n));
+              }
+            }
+            $i++;
+          }
+          $row_hits++;
+        }
+      }
+    }
+    fclose($f);
+
+    return array('table' => array('data' => $o,'t' => $t),'timeseries' => array('data' => $timeseries_data,'uom' => $timeseries_uom));
   }
 ?>
