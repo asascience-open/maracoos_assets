@@ -242,7 +242,7 @@
     );
   }
 
-  function getCariCOOS($url,$param,$uomB) {
+  function getCariCOOS($url,$param,$uomB,$t0,$t1) {
     date_default_timezone_set('UTC');
     $t = ''; // assume same time for all obs
     $o = Array();

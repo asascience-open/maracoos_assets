@@ -101,7 +101,6 @@
       ,$_REQUEST['id']
       ,$_REQUEST['id']
     );
-    $url = 'http://localhost/assets/PR1_currents_10_ingest.txt';
 
     $h = getCariCOOS(
        $url
