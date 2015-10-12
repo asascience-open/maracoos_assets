@@ -70,6 +70,7 @@
         ,'GFS winds'               : true
         ,'WRF 1km winds (Caribbean)'   : true
         ,'WRF 2km winds (Caribbean)'   : true
+        ,'CariCOOS' : true
       };
       var defaultStyles = {
          'Chlorophyll concentration (VIIRS)'  : 'SST_USCG-0-2'
@@ -149,11 +150,13 @@
 
         defaultLayers = {
            'NDBC'               : true
+          ,'CariCOOS'           : true
           ,'HYCOM currents (global)': true
           ,'NHC storm tracks'  : true
         };
         restrictLayers = {
            'NDBC'                    : true
+          ,'CariCOOS'           : true
           ,'Weatherflow'             : true
           ,'HYCOM currents (global)'     : true
           ,'ROMS currents (Caribbean)' : true

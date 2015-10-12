@@ -33,7 +33,7 @@
       $extra = "<br><a href='javascript:showObsTimeseries([\"".str_replace('graph.php?','graph.php?uomB&',$uEscape)."\"])'><img src='img/graph.png' width=10 height=10></a> ".$a[1]["val"].' '.$a[1]["uom"];
     }
     if ($v != '') {
-      $tidy_n = substr($n,0,30).(strlen($n) > 30 ? '...' : '');
+      $tidy_n = substr($n,0,20).(strlen($n) > 20 ? '...' : '');
       array_push($o,sprintf("<tr><td><b>%s</b></td><td><a href='javascript:showObsTimeseries([\"$uEscape\"])'><img src='img/graph.png' width=10 height=10></a> $v $u$extra</td></tr>",$tidy_n));
     }
     $i++;

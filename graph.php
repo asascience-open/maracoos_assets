@@ -95,6 +95,21 @@
       }
     }
   }
+  else if (isset($_REQUEST['CariCOOS'])) {
+    $url = sprintf(
+       "http://gyre.umeoce.maine.edu/data/gomoos/buoy/archive/%s/ingest/%s_currents_10_ingest.txt"
+      ,$_REQUEST['id']
+      ,$_REQUEST['id']
+    );
+
+    $h = getCariCOOS(
+       $url
+      ,$_REQUEST['name']
+      ,isset($_REQUEST['uomB'])
+    );
+    $data = $h['timeseries']['data'];
+    $uom = $h['timeseries']['uom'];
+  }
   else if (isset($_REQUEST['CBIBS'])) {
     function request($url,$key,$d) {
       $options = array(

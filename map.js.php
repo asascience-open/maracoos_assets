@@ -51,6 +51,7 @@ var obsMinZoom = {
   ,'Weatherflow' : 0 + 5
   ,'HRECOS'      : 0 
   ,'BOB'         : 0
+  ,'CariCOOS' : 0
   ,'HF Radar'    : 0
   ,'Satellites'  : 0
   ,'Gliders'     : 0
@@ -484,6 +485,35 @@ function init() {
         ,''
         ,''
         ,'-76.542,38.915,-75.549,39.495'
+        ,''
+        ,''
+        ,''
+      ]
+      ,[
+         'asset'
+        ,'CariCOOS'
+        ,'CariCOOS buoys'
+        ,'off'
+        ,defaultLayers['CariCOOS'] ? 'on' : 'off'
+        ,''
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/CariCOOS.html')))?>'
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,'-68.014245605469, 16.507702845274, -63.899865722657, 19.754273418869'
         ,''
         ,''
         ,''
@@ -3744,6 +3774,7 @@ function initMap() {
     syncObs({name : 'Weatherflow'});
     syncObs({name : 'HRECOS'});
     syncObs({name : 'BOB'});
+    syncObs({name : 'CariCOOS'});
     syncObs({name : 'HF Radar'});
     syncObs({name : 'Satellites'});
     syncObs({name : 'Gliders'});
@@ -4172,6 +4203,10 @@ function initMap() {
     addObs({
        name       : 'BOB'
       ,visibility : typeof defaultLayers['BOB'] != 'undefined'
+    });
+    addObs({
+       name       : 'CariCOOS'
+      ,visibility : typeof defaultLayers['CariCOOS'] != 'undefined'
     });
     addObs({
        name       : 'HF Radar'
