@@ -3787,7 +3787,7 @@ function initMap() {
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'HYCOM_GLOBAL_NAVY_SST'
       ,format : 'image/' + defaultImageTypes['HYCOM SST']
-      ,styles : ''
+      ,styles : defaultStyles['HYCOM SST']
       ,singleTile : true
       ,projection : proj3857
     });
@@ -3814,7 +3814,7 @@ function initMap() {
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'HYCOM_GLOBAL_NAVY_SALINITY'
       ,format : 'image/' + defaultImageTypes['HYCOM salinity (global)']
-      ,styles : ''
+      ,styles : defaultStyles['HYCOM salinity (global)']
       ,singleTile : true
       ,projection : proj3857
     });
@@ -3823,7 +3823,7 @@ function initMap() {
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
       ,layers : 'NCOM_AM_SEA_SALINITY'
       ,format : 'image/' + defaultImageTypes['NCOM salinity (S Atlantic)']
-      ,styles : ''
+      ,styles : defaultStyles['NCOM salinity (S Atlantic)']
       ,singleTile : true
       ,projection : proj3857
     });
