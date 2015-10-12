@@ -3,30 +3,30 @@
         "id": "PR1",
         "lat": 17.86,
         "lon": -66.52383333,
-        "name": "PR1 - PR108 : CarICOOS Data Buoy A"
+        "name": "PR108 : CarICOOS Data Buoy A"
     },
     {
         "id": "PR2",
         "lat": 18.47433333,
         "lon": -66.099,
-        "name": "PR2 - PR206: CariCOOS Data Buoy B"
+        "name": "PR206: CariCOOS Data Buoy B"
     },
     {
         "id": "PR3",
         "lat": 18.25966667,
         "lon": -65.45733333,
-        "name": "PR3 - PR303 : CARICOOS Data Buoy E"
+        "name": "PR303 : CARICOOS Data Buoy E"
     },
     {
         "id": "VI1",
         "lat": 18.25133333,
         "lon": -64.76683333,
-        "name": "VI1 - VI105 : CarICOOS Data Buoy C"
+        "name": "VI105 : CarICOOS Data Buoy C"
     },
     {
         "id": "VIA",
         "lat": 18.25733333,
         "lon": -65.004,
-        "name": "VIA - VIA03 : USVI EPSCOR Data Buoy A"
+        "name": "VIA03 : USVI EPSCOR Data Buoy A"
     }
 ]

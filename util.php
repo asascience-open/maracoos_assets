@@ -25,6 +25,7 @@
       ,'F'      => 'temperature'
       ,'kelvin' => 'temperature'
       ,'m/s'    => 'velocity'
+      ,'cm/s'   => 'velocity'
       ,'m'      => 'elevation'
     );
     if ($val == '') {
