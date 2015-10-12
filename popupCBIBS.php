@@ -5,7 +5,7 @@
   $key = '0b0e81fe763a79660716bcee98a9ccbea653c8bd';
 
   date_default_timezone_set('UTC');
-  $t = ''; // assume same time for all obs
+  $t = Array();
   $o = Array();
 
   $readings = request($url,$key,array(
@@ -20,7 +20,7 @@
 
   $i = 0;
   foreach ($readings['result']['measurement'] as $var) {
-    $t = strtotime($readings['result']['time'][$i].'Z');
+    array_push($t,strtotime($readings['result']['time'][$i].'Z'));
     $n = $var;
     $a = convertUnits((float)sprintf("%.04f",$readings['result']['value'][$i]),$readings['result']['units'][$i],$_REQUEST['uom'] == 'english');
     $u = $a[0]["uom"];
@@ -43,6 +43,8 @@
     echo json_encode(Array('html' => '<table class="obsDetails"><tr><th style="text-align:center">No recent observations</th></tr></table>'));
   }
   else {
+    asort($t);
+    $t = array_pop($t);
     array_unshift($o,sprintf("<tr><td colspan=2 style='text-align:center'><b>%s-%02d</b></td></tr>",date('M d G:i e',$t - $_REQUEST['tz'] * 60),$_REQUEST['tz']/60));
     array_push($o,"<tr><td colspan=2 style='text-align:center'><a target=_blank href='http://buoybay.noaa.gov/'>More observations and station information</a></td></tr>");
     echo json_encode(Array('html' => '<table class="obsDetails">'.implode('',$o).'</table>'));
@@ -66,6 +68,7 @@
       ,false
       ,$context
     );
+
     return json_decode($result,TRUE);
   }
 ?>
