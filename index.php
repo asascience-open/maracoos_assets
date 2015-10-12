@@ -149,11 +149,13 @@
 
         defaultLayers = {
            'NDBC'               : true
+          ,'CariCOOS'           : true
           ,'HYCOM currents (global)': true
           ,'NHC storm tracks'  : true
         };
         restrictLayers = {
            'NDBC'                    : true
+          ,'CariCOOS'           : true
           ,'Weatherflow'             : true
           ,'HYCOM currents (global)'     : true
           ,'ROMS currents (Caribbean)' : true
