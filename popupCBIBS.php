@@ -34,7 +34,7 @@
     }
     if ($v != '') {
       $tidy_n = substr($n,0,20).(strlen($n) > 20 ? '...' : '');
-      array_push($o,sprintf("<tr><td><b>%s</b></td><td><a href='javascript:showObsTimeseries([\"$uEscape\"])'><img src='img/graph.png' width=10 height=10></a> $v $u$extra</td></tr>",$tidy_n));
+      array_push($o,sprintf("<tr><td><b><span title='%s'>%s</span></b></td><td><a href='javascript:showObsTimeseries([\"$uEscape\"])'><img src='img/graph.png' width=10 height=10></a> $v $u$extra</td></tr>",$n,$tidy_n));
     }
     $i++;
   }
