@@ -1091,7 +1091,7 @@ function init() {
         ,defaultStyles['NCOM currents (S Atlantic)'].split('-')[6]
         ,'0-6'
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM currents (S Atlantic)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_CURRENTS'
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEAS_CURRENTS&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM currents (S Atlantic)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEAS_CURRENTS'
         ,''
         ,'-100,5,-55,32'
         ,'true'
@@ -1470,7 +1470,7 @@ function init() {
         ,defaultStyles['NCOM SST'].split('-')[2]
         ,'0-50'
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_SST&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM SST'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_SST'
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEAS_SST&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM SST'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEAS_SST'
         ,''
         ,'-100,5,-55,32'
         ,'true'
@@ -1557,7 +1557,7 @@ function init() {
         ,defaultStyles['NCOM salinity (S Atlantic)'].split('-')[2]
         ,'0-50'
         ,''
-        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEA_SALINITY&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM salinity (S Atlantic)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEA_SALINITY'
+        ,'http://coastmap.com/ecop/wms.aspx?LAYERS=NCOM_AM_SEAS_SALINITY&FORMAT=image%2Fpng&TRANSPARENT=TRUE&STYLES=' + defaultStyles['NCOM salinity (S Atlantic)'] + '&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&TIME=&SRS=EPSG%3A3857&LAYER=NCOM_AM_SEAS_SALINITY'
         ,''
         ,'-100,5,-55,32'
         ,'true'
@@ -3825,9 +3825,9 @@ function initMap() {
     addWMS({
        name   : 'NCOM SST'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
-      ,layers : 'NCOM_AM_SEA_SST'
+      ,layers : 'NCOM_AM_SEAS_SST'
       ,format : 'image/' + defaultImageTypes['NCOM SST']
-      ,styles : ''
+      ,styles : defaultStyles['NCOM SST']
       ,singleTile : true
       ,projection : proj3857
     });
@@ -3852,7 +3852,7 @@ function initMap() {
     addWMS({
        name   : 'NCOM salinity (S Atlantic)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
-      ,layers : 'NCOM_AM_SEA_SALINITY'
+      ,layers : 'NCOM_AM_SEAS_SALINITY'
       ,format : 'image/' + defaultImageTypes['NCOM salinity (S Atlantic)']
       ,styles : defaultStyles['NCOM salinity (S Atlantic)']
       ,singleTile : true
@@ -4051,7 +4051,7 @@ function initMap() {
     addWMS({
        name   : 'NCOM currents (S Atlantic)'
       ,url    : 'http://coastmap.com/ecop/wms.aspx?GFI_TIME=min/max'
-      ,layers : 'NCOM_AM_SEA_CURRENTS'
+      ,layers : 'NCOM_AM_SEAS_CURRENTS'
       ,format : 'image/' + defaultImageTypes['NCOM currents (S Atlantic)']
       ,styles : defaultStyles['NCOM currents (S Atlantic)']
       ,singleTile : true
