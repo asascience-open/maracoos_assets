@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo cbibs start `date`
+if [ ! -f /tmp/lock_cbibs ]; then
+  touch /tmp/lock_cbibs
+
+  cd /var/www/html/assets
+  php ./getCBIBS.php
+
+  rm -f /tmp/lock_cbibs
+fi
+echo cbibs end `date`
