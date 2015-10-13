@@ -181,6 +181,7 @@
           ,'NHC storm tracks'  : true
           ,'NCOM currents (S Atlantic)' : true
           ,'NCOM salinity (S Atlantic)' : true
+          ,'NCOM SST' : true
         };
         filterOutLayers = {};
 
@@ -190,6 +191,7 @@
         defaultStyles['HYCOM SST'] = 'WATER_TEMP-25-30';
         defaultStyles['HYCOM salinity (global)'] = 'SST_USCG-33.5-36.5';
         defaultStyles['NCOM salinity (S Atlantic)'] = 'SST_USCG-33.5-36.5';
+        defaultStyles['NCOM SST'] = 'SST_USCG-33.5-36.5';
 
 <?php
   if (isset($_REQUEST['config']) && $_REQUEST['config'] == 'pr') {
