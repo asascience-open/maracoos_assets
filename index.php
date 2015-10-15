@@ -89,7 +89,7 @@
         ,'NCOM currents (S Atlantic)'         : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'NCOM salinity (S Atlantic)'         : 'SST_USCG-0-50'
         ,'ROMS salinity (Caribbean)'          : 'SST_USCG-33.5-36.5'
-        ,'NCOM SST'                           : 'SST_USCG-0-50'
+        ,'NCOM SST'                           : 'WATER_TEMP-25-30'
         ,'ROMS SST'                           : 'SST_USCG-25-30'
         ,'ROMS currents (Caribbean)'          : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'ROMS ESPRESSO'                      : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
@@ -191,7 +191,7 @@
         defaultStyles['HYCOM SST'] = 'WATER_TEMP-25-30';
         defaultStyles['HYCOM salinity (global)'] = 'SST_USCG-33.5-36.5';
         defaultStyles['NCOM salinity (S Atlantic)'] = 'SST_USCG-33.5-36.5';
-        defaultStyles['NCOM SST'] = 'SST_USCG-33.5-36.5';
+        defaultStyles['NCOM SST'] = 'WATER_TEMP-25-30';
 
 <?php
   if (isset($_REQUEST['config']) && $_REQUEST['config'] == 'pr') {
