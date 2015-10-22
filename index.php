@@ -205,7 +205,7 @@
       }
 
       if (config == 'gliders') {
-        introPanelHtmlOverride  = '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://www.ioos.noaa.gov/"><img title="Go to the IOOS home page" src="img/ioos.gif"></a></td></tr></table>';
+        introPanelHtmlOverride  = '<table class="smallFont" width="100%"><tr><td align=center><a target=_blank href="http://www.ioos.noaa.gov/"><img title="Go to the IOOS home page" src="img/ioos.jpg"></a></td></tr></table>';
         helpUnavailable = true;
         fdbkUnavailable = true
 
