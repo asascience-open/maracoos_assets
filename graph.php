@@ -129,7 +129,6 @@
         ,false
         ,$context
       );
-file_put_contents('/tmp/maplog',json_encode($result)."\n",FILE_APPEND);
       return json_decode($result, TRUE);
     }
 
