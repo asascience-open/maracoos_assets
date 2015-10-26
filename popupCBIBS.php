@@ -19,7 +19,7 @@
   ));
 
   $i = 0;
-  foreach ($readings['result']['measurement'] as $var) {
+  foreach ($readings['result']['report_name'] as $var) {
     array_push($t,strtotime($readings['result']['time'][$i].'Z'));
     $n = $var;
     $a = convertUnits((float)sprintf("%.04f",$readings['result']['value'][$i]),$readings['result']['units'][$i],$_REQUEST['uom'] == 'english');
@@ -27,7 +27,7 @@
     $v = $a[0]["val"];
     $dEnd   = date('m/d/Y H:i');
     $dBegin = date('m/d/Y H:i',time() - 60 * 60 * (24 * 7 + 1));
-    $uEscape = str_replace('"','\\"',"graph.php?constellation=".$_REQUEST['constellation']."&station=".$_REQUEST['id']."&name=$n&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&cat='.$a[0]['cat']."&CBIBS&startDt=$dBegin&endDt=$dEnd");
+    $uEscape = str_replace('"','\\"',"graph.php?constellation=".$_REQUEST['constellation']."&station=".$_REQUEST['id']."&name=".$readings['result']['measurement'][$i]."&tz=".$_REQUEST['tz'].'&uom='.$_REQUEST['uom'].'&cat='.$a[0]['cat']."&CBIBS&startDt=$dBegin&endDt=$dEnd");
     $extra = '';
     if (count($a) == 2) {
       $extra = "<br><a href='javascript:showObsTimeseries([\"".str_replace('graph.php?','graph.php?uomB&',$uEscape)."\"])'><img src='img/graph.png' width=10 height=10></a> ".$a[1]["val"].' '.$a[1]["uom"];
