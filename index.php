@@ -71,7 +71,6 @@
         ,'WRF 1km winds (Caribbean)'   : true
         ,'WRF 2km winds (Caribbean)'   : true
         ,'CariCOOS' : true
-        ,'CBIBS' : true
       };
       var defaultStyles = {
          'Chlorophyll concentration (VIIRS)'  : 'SST_USCG-0-2'
