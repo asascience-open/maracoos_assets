@@ -1918,6 +1918,35 @@ function init() {
       ]
       ,[
          'observation'
+        ,'MUR SST'
+        ,'MUR SST'
+        ,'off'
+        ,defaultLayers['MUR SST'] ? 'on' : 'off'
+        ,'off'
+        ,'<?php echo str_replace("'","\\'",str_replace("\n",' ',file_get_contents('info/MUR SST.html')))?>'
+        ,'palette'
+        ,typeof defaultOpacities['MUR SST'] != 'undefined' && defaultOpacities['MUR SST'] != '' ? defaultOpacities['MUR SST'] : 100
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,''
+        ,(typeof defaultLayerLayers['MUR SST'] != 'undefined' && defaultLayerLayers['MUR SST'] != '' ? defaultLayerLayers['MUR SST'] : 'http://wms.maracoos.org/wms/maracoos_espresso?GFI_TIME=min/max&ELEVATION=0&') + '&REQUEST=GetLegendGraphic&LAYER=sea_water_potential_temperature&STYLES=' + defaultStyles['MUR SST'] // + '&GetMetadata&COLORSCALERANGE=' + getColorScaleRange()
+        ,'false'
+        ,'-78,35.5,-62,44'
+        ,'true'
+        ,''
+        ,'temperature'
+      ]
+      ,[
+         'observation'
         ,'GOES visible imagery'
         ,'MODIS true color imagery'
         ,'off'
@@ -3891,6 +3920,15 @@ function initMap() {
       ,layers : 'sea_surface_temperature'
       ,format : 'image/png'
       ,styles : defaultStyles['Satellite water temperature']
+      ,singleTile : true
+      ,projection : proj3857
+    });
+    addWMS({
+       name   : 'MUR SST'
+      ,url    : 'http://wms.maracoos.org/wms/MURSST_Agg?GFI_TIME=min/max&ELEVATION=0&'
+      ,layers : 'sea_surface_temperature'
+      ,format : 'image/png'
+      ,styles : defaultStyles['MUR SST']
       ,singleTile : true
       ,projection : proj3857
     });
