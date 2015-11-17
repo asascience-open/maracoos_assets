@@ -97,6 +97,7 @@
         ,'SABGOM currents'                    : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'NW_ATL currents'                    : 'CURRENTS_RAMP-Jet-False-2-True-0-2-High'
         ,'Satellite water temperature'        : 'pcolor_average_jet_5_32_54_False'
+        ,'MUR SST'                            : 'pcolor_average_jet_5_32_54_False'
         ,'Stevens NYHOPS'                     : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'STPS'                               : 'CURRENTS_RAMP-Jet-False-1-True-0-2-High'
         ,'SWAN wave direction (Caribbean)'    : ''
@@ -287,6 +288,7 @@
         ,'HF radar currents'           : 100
         ,'Chlorophyll concentration'   : 100
         ,'Satellite water temperature' : 100
+        ,'MUR SST'                     : 100
         ,'GOES visible imagery'        : 100
         ,'NHC storm tracks'            :  65
         ,'Zones'                       : 100
