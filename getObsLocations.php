@@ -222,13 +222,15 @@
     $json = json_decode(file_get_contents('http://pro-bob.com/data/api/buoys?format=json'),true);
     foreach ($json as $slug) {
       foreach ($slug['deployments'] as $dep) {
-        addToStack($metadata,$bbox,$dep['location']['coordinates'][0],$dep['location']['coordinates'][1],$provider,array(
-           'id'    => $slug['slug']
-          ,'descr' => $dep['name']
-          ,'url'   => "popup$provider.php"
-            ."?id=".$slug['slug']
-            ."&descrip=".urlencode($dep['name'])
-        ));
+        if (is_null($dep['ending'])) {
+          addToStack($metadata,$bbox,$dep['location']['coordinates'][0],$dep['location']['coordinates'][1],$provider,array(
+             'id'    => $slug['slug']
+            ,'descr' => $dep['name']
+            ,'url'   => "popup$provider.php"
+              ."?id=".$slug['slug']
+              ."&descrip=".urlencode($dep['name'])
+          ));
+        }
       }
     }
   }    
